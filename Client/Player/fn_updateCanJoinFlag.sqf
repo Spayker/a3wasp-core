@@ -1,0 +1,1 @@
+missionNamespace setVariable ['WF_P_CANJOIN', (_this select 0)];

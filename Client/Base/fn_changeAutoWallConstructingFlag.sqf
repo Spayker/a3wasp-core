@@ -1,0 +1,1 @@
+WF_AutoWallConstructingEnabled = _this # 0;

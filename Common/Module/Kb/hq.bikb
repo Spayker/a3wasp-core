@@ -1,0 +1,287 @@
+#define SENTENCE(NAME) \
+	class NAME \
+	{ \
+		text = $STR##NAME##; \
+		speech[] = {%1,##NAME##,%2}; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+
+#define SENTENCECAPTUREDNEAR(NAME) \
+	class NAME \
+	{ \
+		text = %1; \
+		speech[] = { %1, %2, %3, %4 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";}; class 3 {type = "simple";}; class 4 {type = "simple";}; }; \
+	};
+	
+#define SENTENCELOSTAT(NAME) \
+	class NAME \
+	{ \
+		text = %1; \
+		speech[] = { %1, %2, %3, %4 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";}; class 3 {type = "simple";}; class 4 {type = "simple";}; }; \
+	};
+	
+#define SENTENCEDEPLOYED(NAME) \
+	class NAME \
+	{ \
+		text = $STRDeployed; \
+		speech[] = { %1, %2 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+
+#define SENTENCEMOBILISED(NAME) \
+	class NAME \
+	{ \
+		text = $STRMobilized; \
+		speech[] = { %1, %2 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+	
+#define SENTENCECONSTRUCTED(NAME, KEY) \
+	class NAME \
+	{ \
+		text = $##KEY##; \
+		speech[] = { %1, %2 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+	
+#define SENTENCEDESTROYED(NAME, KEY) \
+	class NAME \
+	{ \
+		text = $##KEY##; \
+		speech[] = { %1, %2 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+
+#define SENTENCENEWINTELAVAILABLE(NAME) \
+	class NAME \
+	{ \
+		text = $STR##NAME##; \
+		speech[] = { %1 }; \
+		class Arguments {class 1 {type = "simple";};}; \
+	};
+
+#define SENTENCELOST(NAME) \
+	class NAME \
+	{ \
+		text = %1; \
+		speech[] = { %1, %2, %3 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+
+#define SENTENCECAPTURED(NAME) \
+	class NAME \
+	{ \
+		text = %1; \
+		speech[] = { %1, %2, %3 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+	
+#define SENTENCEHOSTILESDETECTEDNEAR(NAME) \
+	class NAME \
+	{ \
+		text = %1 %2; \
+		speech[] = { %1, %2, %3 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";}; class 3 {type = "simple";};}; \
+	};
+	
+#define SENTENCE1(NAME) \
+	class NAME \
+	{ \
+		text = $STR##NAME##; \
+		speech[] = {##NAME##,%1,%2}; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};
+
+#define SENTENCE_KEY(NAME,KEY) \
+	class NAME \
+	{ \
+		text = $##KEY##; \
+		speech[] = {%1, ##NAME##, %2}; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};	
+	
+#define SENTENCE_KEY_VFRNC(NAME,KEY) \
+	class NAME \
+	{ \
+		text = $##KEY##; \
+		speech[] = { %1 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";};}; \
+	};	
+		
+#define SENTENCE_KEY_IUA(NAME,KEY) \
+	class NAME \
+	{ \
+		text = $##KEY##; \
+		speech[] = { %1, %2, %3 }; \
+		class Arguments {class 1 {type = "simple";};class 2 {type = "simple";}; class 3 {type = "simple";};}; \
+	};
+
+class Sentences
+{
+  
+  class HQ {text = $STR_DN_WARFARE_HQ_BASE_UNFOLDED; speech[] = {HQ};	class Arguments {};};  
+  
+  class OrderSent
+  {
+	text = "%1 %2, %3";
+	speech[] = {%1 ,%2 ,%3};
+	class Arguments {
+		class 1 {type = "simple";};
+		class 2 {type = "simple";};
+		class 3 {type = "simple";};
+		class 4 {type = "simple";};
+	};
+  };
+  
+  class OrderSentAll
+  {
+	text = "%1, %2, %3";
+	speech[] = {%1 ,%2 ,%3};
+	class Arguments {
+		class 1 {type = "simple";};
+		class 2 {type = "simple";};
+		class 3 {type = "simple";};
+	};
+  };
+  
+  class OrderDone
+  {
+	text = "%1, %2 %3 %4";
+	speech[] = {%1 ,%2 ,%3 ,%4};
+	class Arguments {
+		class 1 {type = "simple";};
+		class 2 {type = "simple";};
+		class 3 {type = "simple";};
+	};
+  };
+  
+  class simple
+  {
+	text = "%1";
+	speech[] = { %1 };
+	class Arguments {
+		class 1 {type = "simple";};
+	};
+  };
+  
+  class simpletwo
+  {
+	text = "%1 %2";
+	speech[] = { %1, %2 };
+	class Arguments {
+		class 1 {type = "simple";};
+		class 2 {type = "simple";};
+	};
+  };
+  
+  class simplethree
+  {
+	text = "%1 %2 %3";
+	speech[] = { %1, %2, %3 };
+	class Arguments {
+		class 1 {type = "simple";};
+		class 2 {type = "simple";};
+		class 3 {type = "simple";};
+	};
+  };
+  
+  class ExtractionTeam
+  {
+	text = "This is HQ, %1 is on the way, out.";
+	speech[] = {ThisIs, HQ, %1, Is, OnTheWay, Out};
+	class Arguments {
+		class 1 {type = "simple";};
+	};
+  };
+  
+  class ExtractionTeamCancel
+  {
+	text = "This is HQ, Abort the op, %1 is in danger, out.";
+	speech[] = {ThisIs, HQ, aborttheop, %1, Is, In, DangerE, Out};
+	class Arguments {
+		class 1 {type = "simple";};
+	};
+  };
+  
+  class MMissionFailed
+  {
+	text = "This is HQ, Mission Failure, carry on with your prior tasks, over.";
+	speech[] = {ThisIs, HQ, MissionFailure, CarryOnWithYourPriorTasksOver};
+	class Arguments {};
+  };
+  
+  class MMissionComplete
+  {
+	text = "This is HQ, %1";
+	speech[] = {ThisIs, HQ, %1};
+	class Arguments {
+		class 1 {type = "simple";};
+	};
+  };
+  
+  class CommonText
+  {
+	text = "%1";
+	speech[] = { };
+	class Arguments {
+		class 1 {type = "simple";};
+		class 2 {type = "simple";};
+		class 3 {type = "simple";};
+	};
+  };
+  
+    SENTENCE(Accomplished)	
+
+    SENTENCE_KEY(BaseUnderAtack,STRwfbaseunderattack)
+    SENTENCE(Cancelled)
+    SENTENCE(CanDoWereOnIt)    
+    SENTENCE_KEY(HC_OrderReceived,"Order Received")
+    
+	SENTENCEDEPLOYED(Deployed)	
+	SENTENCEMOBILISED(Mobilized)
+	SENTENCECONSTRUCTED(Constructed,STRwfstructureconstructed)
+	SENTENCEDESTROYED(Destroyed,STRwfbasestructuredestroyed)
+    
+	SENTENCECAPTUREDNEAR(CapturedNear)
+	SENTENCELOSTAT(LostAt)
+	
+	SENTENCECAPTURED(Captured)
+	SENTENCEHOSTILESDETECTEDNEAR(HostilesDetectedNear)
+	
+    SENTENCE(EnemyBaseLocated)
+    SENTENCE(EnemyForcesDetected)
+    SENTENCE(Failed)
+
+    SENTENCE_KEY_IUA(IsUnderAttack,STRwftownunderattack)	
+	SENTENCELOST(Lost)    
+	
+    SENTENCE(NegativeWeCannotDivert)    
+	SENTENCENEWINTELAVAILABLE(NewIntelAvailable)
+    SENTENCE(NewMissionAvailable)
+    SENTENCE(NewSupportAvailable)
+    SENTENCE_KEY(UnderAttack,STRisunderattack)
+    SENTENCE_KEY_VFRNC(VotingForNewCommander,STRwfvoteforcommanderinprogress)
+	SENTENCE(AntiAirRadar)    
+    SENTENCE(ArtilleryBattery)
+    SENTENCE(ArtilleryRadar)    
+    SENTENCE(Funds)
+    SENTENCE(Headquarters)
+    SENTENCE(HeavyVehicleSupply)
+    SENTENCE(Helipad)
+    SENTENCE(LightVehicleSupplyPoint)
+    SENTENCE(Mission)
+    SENTENCE(Resources)
+    SENTENCE(ServicePoint)
+    SENTENCE(Strongpoint)
+    SENTENCE(Supplies)
+    SENTENCE(UAVTerminal)    
+	
+	SENTENCE1(CiviliansUnderEnemyFireIn)    
+    SENTENCE1(Insufficient)
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

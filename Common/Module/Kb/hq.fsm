@@ -1,0 +1,110 @@
+/*%FSM<COMPILE "C:\Bis\fsmeditor\scriptedFSM.cfg, WF_HQ">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"React",0,250,-675.000000,-1800.000000,-575.000000,-1750.000000,0.000000,"React"};
+item1[] = {"",7,210,-625.645081,-1628.257446,-617.645203,-1620.257446,0.000000,""};
+item2[] = {"__",8,218,-775.000000,-1650.000000,-675.000000,-1600.000000,0.000000,"-"};
+item3[] = {"END",1,250,-775.000000,-1575.000000,-675.000000,-1525.000000,0.000000,"END"};
+item4[] = {"Come_on__come",4,218,-525.000000,-1525.000000,-225.000000,-1475.000000,1.000000,"Come on, come"};
+item5[] = {"___Nervous_anim",1,250,-175.000000,-1500.000000,125.000000,-1450.000000,0.000000,"< Nervous anim >" \n "No more!"};
+item6[] = {"___Interrupted_",4,218,-525.000000,-1650.000000,-225.000000,-1600.000000,1.000000,"< Interrupted >"};
+item7[] = {"Come_on__come",1,250,-175.000000,-1625.000000,125.000000,-1575.000000,0.000000,"Come on, come"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {1,4};
+link3[] = {1,6};
+link4[] = {2,3};
+link5[] = {4,5};
+link6[] = {6,7};
+globals[] = {25.000000,1,0,1,16777215,640,480,2,361,6316128,1,-785.646118,299.399323,-517.653870,-1918.175049,681,879,1};
+window[] = {2,-1,-1,-1,-1,790,54,1076,54,3,701};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "WF_HQ";
+  class States
+  {
+    /*%FSM<STATE "React">*/
+    class React
+    {
+      name = "React";
+      init = /*%FSM<STATEINIT""">*/"if (isNil ""BIS_DEBUG_DIALOG"") then {} else" \n "{" \n "  debugLog format[""DIALOG- FSM of %1 initiated by %2 sentenceId %3 sentence %4"",_this,_from, _sentenceId,  localize (""STR_""+""_sentenceId"")];" \n "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Come_on__come">*/
+        class Come_on__come
+        {
+          priority = 1.000000;
+          to="___Nervous_anim";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""Cooper_ComeOnWithMe""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "___Interrupted_">*/
+        class ___Interrupted_
+        {
+          priority = 1.000000;
+          to="Come_on__come";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_sentenceId in [""Interrupted""]);"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "__">*/
+        class __
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "___Nervous_anim">*/
+    class ___Nervous_anim
+    {
+      name = "___Nervous_anim";
+      init = /*%FSM<STATEINIT""">*/"_this doWatch _from;" \n "DEBUGLOG ""CooperGalkinaScene.fsm: START-----------------------------------"";" \n "" \n "DEBUGLOG ""Galkina is NERVOUS and ESCAPING"";" \n "_t = time;" \n "[] spawn" \n "{" \n "	_nic = [objNull, BIS_civWoman, rPLAYMOVENOW, ""Cwmn_GalkinaLiesNervousThenRun""] call RE;" \n "	DEBUGLOG ""sceneGalkina.sqf: Animation: Cwmn_GalkinaLiesNervousThenRun"";" \n "	_BIS_civWomanDone = BIS_civWoman addEventHandler 	[""AnimDone"",	" \n "										{	" \n "											//DEBUGLOG format[""%1 animdone: %2"", _this select 0, _this select 1];" \n "																					" \n "											//BIS_civWoman enableAI ""ANIM"";" \n "											//BIS_civWoman setSpeedMode ""FULL"";" \n "											" \n "											_nic = [objNull, BIS_civWoman, rPLAYMOVENOW, ""AmovPercMrunSnonWnonDf""] call RE;" \n "											_womanDir = (getDir BIS_civWoman) - 180;" \n "											BIS_civWoman setdir _womanDir;" \n "											_GalkinaEscapePoints = [""BIS_civWomanPositionEnd2a"", ""BIS_civWomanPositionEnd2b"", ""BIS_civWomanPositionEnd2c""];" \n "											_GalkinaSelectedPoint = _GalkinaEscapePoints select floor(random (count _GalkinaEscapePoints)); " \n "											DEBUGLOG format[""grpCIVWoman.fsm: Galkina ESCAPING on random point: %1"",_GalkinaSelectedPoint];" \n "												" \n "											//CREATE END TRIGGER " \n "											_trgGalkinaEnd2=createTrigger[""EmptyDetector"",getMarkerPos _GalkinaSelectedPoint];" \n "											_trgGalkinaEnd2 setTriggerArea[5,5,0,false];" \n "											_trgGalkinaEnd2 setTriggerActivation[""MEMBER"",""PRESENT"",true];" \n "											_trgGalkinaEnd2 triggerAttachVehicle [BIS_civWoman];" \n "											_trgGalkinaEnd2 setTriggerStatements" \n "															[" \n "																""this"", " \n "																""DEBUGLOG """"grpCIVWoman.fsm: Galkina reached her end position"""";BIS_civWoman setUnitPos """"DOWN""""; ""," \n "																""""" \n "															 ]; " \n "											" \n "											BIS_civWoman doMove getMarkerPos _GalkinaSelectedPoint;" \n "											BIS_civWoman forceSpeed 15;" \n "											BIS_civWoman removeEventHandler [""animDone"", 0];" \n "										}" \n "								];" \n "	sleep 7;" \n "	_nic = [objNull, BIS_civWoman , rKBTELL, BIS_cooper,  ""CooperGalkinaScene"", ""Galkina_NoNoMore""] call RE;" \n "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Come_on__come">*/
+    class Come_on__come
+    {
+      name = "Come_on__come";
+      init = /*%FSM<STATEINIT""">*/"_nic = [objNull, _from , rKBTELL, _this,  _topic, ""Cooper_ComeOnWithMe""] call RE;" \n "" \n "_this doWatch _from;" \n "DEBUGLOG ""CooperGalkinaScene.fsm: START-----------------------------------"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="React";
+  finalStates[] =
+  {
+    "END",
+    "___Nervous_anim",
+    "Come_on__come",
+  };
+};
+/*%FSM</COMPILE>*/

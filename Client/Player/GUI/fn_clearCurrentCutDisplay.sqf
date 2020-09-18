@@ -1,0 +1,1 @@
+["currentCutDisplay", displayNull] call BIS_FNC_GUIset;

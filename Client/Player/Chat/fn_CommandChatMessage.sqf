@@ -1,0 +1,1 @@
+player commandChat _this;

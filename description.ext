@@ -1,0 +1,67 @@
+#include "version.sqf"
+//#include "Sounds\description.ext"
+//--- Header contains the mission tite.
+#include "Rsc\Header.hpp"
+
+#include "AICommand\config.cpp"
+
+//--- Styles
+#include "Rsc\Styles.hpp"
+
+//--- Parameters contains the mission parameters.
+#include "Rsc\Parameters.hpp"
+//--- Ressource contains the dialog ressources.
+#include "Rsc\Ressources.hpp"
+
+//--- Titles contains the titles (overlay).
+#include "Rsc\Titles.hpp"
+//--- Include Identities (OA/CO Only).
+#include "Rsc\Identities.hpp"
+//--Include Sounds cfg--
+#include "Rsc\Sounds.hpp"
+//--Include TaskTypes cfg--
+#include "Rsc\TaskTypes.hpp"
+//--Remote Exec rules--
+#include "Rsc\RemoteExec.hpp"
+
+//--- Dialogs contain all the interfaces (dialogs).
+#include "Client\Player\GUI\WarfareMenu\Dialog.hpp"
+#include "Client\Player\GUI\UpgradeMenu\Dialog.hpp"
+#include "Client\Player\GUI\VoteMenu\Dialog.hpp"
+#include "Client\Player\GUI\CommanderVoteMenu\Dialog.hpp"
+#include "Client\Player\GUI\RespawnMenu\Dialog.hpp"
+#include "Client\Player\GUI\FundsMenu\Dialog.hpp"
+#include "Client\Player\GUI\GearMenu\Dialog.hpp"
+#include "Client\Player\GUI\TeamMenu\Dialog.hpp"
+#include "Client\Player\GUI\BuyUnitsMenu\Dialog.hpp"
+#include "Client\Player\GUI\SquadMenu\Dialog.hpp"
+#include "Client\Player\GUI\TacticalMenu\Dialog.hpp"
+#include "Client\Player\GUI\ServiceMenu\Dialog.hpp"
+#include "Client\Player\GUI\UnitCameraMenu\Dialog.hpp"
+#include "Client\Player\GUI\ParametersMenu\Dialog.hpp"
+#include "Client\Player\GUI\EasaMenu\Dialog.hpp"
+#include "Client\Player\GUI\TankMagsMenu\Dialog.hpp"
+#include "Client\Player\GUI\EconomyMenu\Dialog.hpp"
+#include "Client\Player\GUI\HelpMenu\Dialog.hpp"
+#include "Client\Player\GUI\RolesMenu\Dialog.hpp"
+
+class CfgServer {
+    DatabaseName = "wasp_warfare";
+};
+
+disabledAI=1;
+
+loadScreen = "logo1.paa";
+
+joinUnassigned = 1;
+
+DebugConsole = 1;
+
+#ifdef WF_DEBUG
+    allowFunctionsRecompile = 1;
+#endif
+
+class CfgFunctions {
+    #include "Rsc\Functions.hpp"
+    #include "AICommand\Functions.hpp"
+};

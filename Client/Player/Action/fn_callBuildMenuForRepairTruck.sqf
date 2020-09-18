@@ -1,0 +1,1 @@
+[player,player,2,RCoin,getpos player,_this select 0] call WFCL_fnc_callConstructionInterface;
