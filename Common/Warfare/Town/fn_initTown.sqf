@@ -1,4 +1,4 @@
-params ["_town", "_townName", "_townDubbingName", "_townStartSV", "_townMaxSV", "_townRange", "_town_type", ["_townSpecialities", []], ["_townServices", []]];
+params ["_town", "_townName", "_townDubbingName", "_townStartSV", "_townMaxSV", "_townRange", ["_townSpecialities", []], ["_townServices", []]];
 private ['_marker'];
 
 if ((missionNamespace getVariable "WF_DEBUG_DISABLE_TOWN_INIT") == 1) exitWith {
@@ -24,10 +24,6 @@ if (count _townSpecialities > 0) then {
 _town setVariable ["maxSupplyValue",_townMaxSV];
 _town setVariable ["initialMaxSupplyValue",_townMaxSV];
 _town setVariable ["initialStartSupplyValue",_townStartSV];
-
-//--- If the town type is an array rather than a single value, pick a random template (see Server_GetTownGroups.sqf).
-if (_town_type isEqualType []) then {_town_type = _town_type # floor(random count _town_type)};
-_town setVariable ["wf_town_type", _town_type];
 
 waitUntil {commonInitComplete};
 
