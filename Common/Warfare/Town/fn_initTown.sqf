@@ -1,4 +1,4 @@
-params ["_town", "_townName", "_townDubbingName", "_townStartSV", "_townMaxSV", "_townRange", ["_townSpecialities", []], ["_townServices", []]];
+params ["_town", "_townName", "_townDubbingName", "_townStartSV", "_townMaxSV", "_townRange", ["_townSpecialities", []], ["_townServices", []], ["_townDefendersSpeciality", []]];
 private ['_marker'];
 
 if ((missionNamespace getVariable "WF_DEBUG_DISABLE_TOWN_INIT") == 1) exitWith {
@@ -35,12 +35,20 @@ if (isServer) then {
     _town setVariable ["camps", _camps, true];
     ["INITIALIZATION",Format ["Init_Town.sqf : Found [%1] camps in [%2].", count _camps, _town getVariable "name"]] call WFCO_FNC_LogContent;
 
+    //--- Setup town defense speciality
+    if(count _townDefendersSpeciality > 0) then { _town setVariable ["townDefendersSpeciality", _townDefendersSpeciality] };
+
 _defenseLocations = [];
 {
     _kind = _x getVariable "wf_defense_kind";
+
     if !(isNil "_kind") then {
-        _defenseLocations pushBack [_kind, (getPosATL _x), getDir _x, nil];
-            // deleteVehicle _x
+            if(count _kind > 1) then {
+                _townBelongName = _kind # 1;
+                if(_townBelongName == _townName) then { _defenseLocations pushBack [_kind, (getPosATL _x), getDir _x, nil] }
+            } else {
+                _defenseLocations pushBack [_kind, (getPosATL _x), getDir _x, nil]
+            }
     }
 } forEach (_town nearEntities[["Logic"], _townRange]);
     _town setVariable ["wf_town_defenses", _defenseLocations];
