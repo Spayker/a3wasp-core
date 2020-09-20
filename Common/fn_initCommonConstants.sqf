@@ -336,7 +336,7 @@ if(WF_C_PARAMETER_COLORATION == 1) then {
 	missionNamespace setVariable ["WF_C_EAST_COLOR", "ColorEAST"];
 	missionNamespace setVariable ["WF_C_GUER_COLOR", "ColorGUER"];
 	missionNamespace setVariable ["WF_C_CIV_COLOR", "ColorYellow"];
-	missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "ColorUNKNOWN"];
+	missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "Color2_FD_F"];
 } else {
 	if (side player == west) then {
 	missionNamespace setVariable ["WF_C_WEST_COLOR", "ColorGreen"];
@@ -396,7 +396,8 @@ switch(side player) do {
     WF_C_PLANT = "plant";                   // pure supply income
     WF_C_POWER_PLANT = "powerPlant";        // pure supply income
     WF_C_LUMBER_MILL = "lumberMill";        // pure supply income
-    WF_C_MINE = "mine";                     // supply truck spawn
+    WF_C_MINE = "mine";                     // one time supply truck spawn
+    WF_C_PORT = "port";                     // periodic supply truck spawn
 
     WF_C_SECONDARY_SUPPLY_LOCATIONS = [WF_C_PLANT, WF_C_POWER_PLANT, WF_C_LUMBER_MILL];
 

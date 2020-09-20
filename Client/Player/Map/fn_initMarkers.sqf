@@ -16,15 +16,29 @@
 		_townColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR",(_townSide) Call WFCO_FNC_GetSideFromID]);
 	};
 
+	//--- Get town speciality
+	_townSpeciality = _x getVariable ["townSpeciality", []];
+
 	//--- Place a marker over the logic.
 	_townMarker = Format ["WF_%1_CityMarker", _x getVariable "name"];
 	createMarkerLocal [_townMarker, getPos _x];
     _townMarker setMarkerTextLocal (_x getVariable "name");
-    if(count _camps > 0) then {
-        _townMarker setMarkerTypeLocal "n_unknown"
-    } else {
-        _townMarker setMarkerTypeLocal "n_installation"
-    };
+
+
+    _townMarker setMarkerTypeLocal "n_unknown";
+
+    if (WF_C_PORT in _townSpeciality) then { _townMarker setMarkerTypeLocal "n_naval" };
+
+    if (WF_C_AIR_BASE in _townSpeciality) then { _townMarker setMarkerTypeLocal "c_plane" };
+
+    if (WF_C_MILITARY_BASE in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_WaterTower" };
+
+    if (WF_C_RADAR in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_Transmitter" };
+
+    if (WF_C_WAREHOUSE in _townSpeciality) then { _townMarker setMarkerTypeLocal "n_installation" };
+
+    if (WF_C_PLANT in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_Power" };
+
 	_townMarker setMarkerColorLocal _townColor;
 
 	//--- The town may have some camps.
