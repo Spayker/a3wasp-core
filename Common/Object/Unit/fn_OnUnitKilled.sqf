@@ -49,7 +49,6 @@ if(isHeadLessClient) then {
 };
 
 _killed_side = (_this # 2) Call WFCO_FNC_GetSideFromID;
-_type = typeOf _killed;
 
 _last_hit = _killed getVariable "wf_lasthitby";
 if !(isNil '_last_hit') then {
