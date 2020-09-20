@@ -7,32 +7,37 @@ while {!WF_GameOver} do {
 
 	{
 		_town = _x;
+		_townName = _town getVariable "name";
+		_supplyValue = _town getVariable "supplyValue";
+		_maxSupplyValue = _town getVariable "maxSupplyValue";
 		_range = (_town getVariable "range") * _tcarm;
 		_visible = false;
 		if ((_town getVariable "sideID") == sideID) then {_visible = true} else {{if (_town distance _x < _range) then {_visible = true}} forEach _units};
-		_marker = Format ["WF_%1_CityMarker", _town getVariable "name"];
-		_townSpecialities = _town getVariable "townSpeciality";
+		_marker = Format ["WF_%1_CityMarker", _townName];
+		_townSpecialities = _town getVariable ["townSpeciality", []];
 
 	    if (_visible) then {
 
-            if !(isNil "_townspecialities") then {
-            if (WF_C_MILITARY_BASE in (_townSpecialities)) exitWith { _marker setMarkerTextLocal Format["%1 AC: -15%2", _town getVariable "name", "%"] };
-
-            if (WF_C_RADAR in (_townSpecialities)) exitWith { _marker setMarkerTextLocal Format["%1 CC", _town getVariable "name"] };
-
-                if (WF_C_MINE in (_townSpecialities)) exitWith { _marker setMarkerTextLocal (_x getVariable "name") }
-            };
-            _marker setMarkerTextLocal Format["%1 SV: %2/%3", _town getVariable "name", _town getVariable "supplyValue",_town getVariable "maxSupplyValue"];
+            if (count _townSpecialities == 0) then {
+                _marker setMarkerTextLocal Format["%1 S$: %2/%3", _townName, _supplyValue, _maxSupplyValue]
+            } else {
+                if (WF_C_WAREHOUSE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 S$: %2/%3", _townName, _supplyValue, _maxSupplyValue] };
+                if (WF_C_MILITARY_BASE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 AC: -15%2", _townName, "%"] };
+                if (WF_C_RADAR in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 CC", _townName] };
+                if (WF_C_PLANT in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 SV: %2/%3", _townName, _supplyValue, _maxSupplyValue] };
+                if (WF_C_POWER_PLANT in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 SV: %2/%3", _townName, _supplyValue, _maxSupplyValue] };
+                if (WF_C_LUMBER_MILL in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 SV: %2/%3", _townName, _supplyValue, _maxSupplyValue] }
+            }
 		} else {
-            if !(isNil "_townspecialities") then {
-            if (WF_C_MILITARY_BASE in (_townSpecialities)) exitWith { _marker setMarkerTextLocal Format["%1 AC: -15%2", _town getVariable "name", "%"] };
+            if (count _townSpecialities == 0) then {
+                _marker setMarkerTextLocal (_townName)
+		} else {
+                if (WF_C_MILITARY_BASE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 AC: -15%2", _townName, "%"] };
 
-            if (WF_C_RADAR in (_townSpecialities)) exitWith { _marker setMarkerTextLocal Format["%1 CC", _town getVariable "name"] };
+                if (WF_C_RADAR in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 CC", _townName] };
 
-            if (WF_C_MINE in (_townSpecialities)) exitWith { _marker setMarkerTextLocal (_x getVariable "name") };
-            };
-
-            _marker setMarkerTextLocal (_town getVariable "name")
+                if (WF_C_MINE in (_townSpecialities)) then { _marker setMarkerTextLocal (_townName) }
+            }
 	    }
 	} forEach towns;
 	sleep 5;
