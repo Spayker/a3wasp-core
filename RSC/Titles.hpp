@@ -159,7 +159,7 @@ class RscTitles {
         "RUBHUD_SupplyMin_Value","RUBHUD_City","RUBHUD_City_Value","RUBHUD_Server","RUBHUD_Server_Value",
         "BGHUD","HealthHUD","FlagRedHUD","FlagBlueHUD","FlagBlueValHUD","FlagRedValHUD","MoneyHUD","MoneyValHUD","SupplyHUD","SupplyValHUD","TownsHUD",
         "statblue","score_blue","statred","score_red","OptionsIcon0", "OptionsIcon1", "OptionsIcon2", "OptionsIcon3", "OptionsIcon4", "OptionsIcon5", "OptionsIcon6", "OptionsIcon7", "OptionsIcon8",
-        "OptionsIcon9", "OptionsIcon10", "OptionsIcon11", "OptionsIcon12", "OptionsIcon13", "OptionsIcon14", "OptionsIcon15", "OptionsIcon16", "OptionsIcon17"};
+        "OptionsIcon9", "OptionsIcon10", "OptionsIcon11", "OptionsIcon12", "OptionsIcon13", "OptionsIcon14", "OptionsIcon15", "OptionsIcon16"};
 		controlsBackground[] = {};
 
 		class BGHUD: RscStructuredText
@@ -526,7 +526,7 @@ class RscTitles {
 		class OptionsIcon0 : OptionsImageAspectRatio {
 			idc = 3500;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157)";
-			y = 0+(0.0522876*17);
+			y = 0+(0.0510876*20);
 			w = 0.0392157;
 			h = 0.0522876;
 			colorText[] = WF_OA_Icon;
@@ -535,88 +535,95 @@ class RscTitles {
 
 		class OptionsIcon1 : OptionsIcon0 {
 			idc = 3500 + 1;
-			y = 0+(0.0522876*16);
+			y = 0+(0.0510876*19);
 		};
 
 		class OptionsIcon2 : OptionsIcon0 {
 			idc = 3500 + 2;
-			y = 0+(0.0522876*15);
+			y = 0+(0.0510876*18);
 		};
 
 		class OptionsIcon3 : OptionsIcon0 {
 			idc = 3500 + 3;
-			y = 0+(0.0522876*14);
+			y = 0+(0.0510876*17);
 		};
 
 		class OptionsIcon4 : OptionsIcon0 {
 			idc = 3500 + 4;
-			y = 0+(0.0522876*13);
+			y = 0+(0.0510876*16);
 		};
 
 		class OptionsIcon5 : OptionsIcon0 {
 			idc = 3500 + 5;
-			y = 0+(0.0522876*12);
+			y = 0+(0.0510876*15);
 		};
 
 		class OptionsIcon6 : OptionsIcon0 {
 			idc = 3500 + 6;
-			y = 0+(0.0522876*11);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 2)";
+			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon7 : OptionsIcon0 {
 			idc = 3500 + 7;
-			y = 0+(0.0522876*10);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 3)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon8 : OptionsIcon0 {
 			idc = 3500 + 8;
-			y = 0+(0.0522876*9);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 4)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon9 : OptionsIcon0 {
 			idc = 3500 + 9;
-			y = 0+(0.0522876*8);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 5)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon10 : OptionsIcon0 {
 			idc = 3500 + 10;
-			y = 0+(0.0522876*7);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 6)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon11 : OptionsIcon0 {
 			idc = 3500 + 11;
-			y = 0+(0.0522876*6);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 7)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon12 : OptionsIcon0 {
 			idc = 3500 + 12;
-			y = 0+(0.0522876*5);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 8)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon13 : OptionsIcon0 {
 			idc = 3500 + 13;
-			y = 0+(0.0522876*4);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 9)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon14 : OptionsIcon0 {
 			idc = 3500 + 14;
-			y = 0+(0.0522876*3);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 10)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon15 : OptionsIcon0 {
 			idc = 3500 + 15;
-			y = 0+(0.0522876*2);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 11)";
+            		y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon16 : OptionsIcon0 {
 			idc = 3500 + 16;
-			y = 0+(0.0522876*1);
+			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 12)";
+            		y = 0+(0.0510876*20);
 		};
 
-		class OptionsIcon17 : OptionsIcon0 {
-			idc = 3500 + 17;
-			y = 0.0522876;
-		};
 	};
 
 	class EndOfGameStats {
