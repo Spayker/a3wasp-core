@@ -15,7 +15,7 @@ if !(isNull _object) then {
 
 	_delay = missionNamespace getVariable ["WF_C_UNITS_CLEAN_TIMEOUT", 120];
 
-	uiSleep _delay;
+	sleep _delay;
 
     if !(isNull _object) then {
         ["INFORMATION", Format["fn_TrashObject.sqf: Deleting [%1], it has been [%2] seconds.", _object, _delay]] Call WFCO_FNC_LogContent;

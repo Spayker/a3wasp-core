@@ -293,6 +293,24 @@
 				<Italian>Our team has captured %2. $%1 Commander-Bonus</Italian>
 				<Portuguese>Nosso time capturou %2. $%1 Bonus de Comandante</Portuguese>
 			</Key>
+			<Key ID="STR_WF_CHAT_Commander_Supply_Truck_Move_Order">
+				<!--shared U-->
+				<English>Take the truck to closest HQ position</English>
+				<French>Take the truck to closest HQ position</French>
+				<German>Take the truck to closest HQ position</German>
+				<Russian>Доставьте грузовие к ближайшему штабу команды</Russian>
+				<Italian>Take the truck to closest HQ position</Italian>
+				<Portuguese>Take the truck to closest HQ position</Portuguese>
+			</Key>
+			<Key ID="STR_WF_CHAT_Commander_Supply_Truck_Too_Far">
+				<!--shared U-->
+				<English>HQ locates too far from Truck</English>
+				<French>HQ locates too far from Truck</French>
+				<German>HQ locates too far from Truck</German>
+				<Russian>Грузовик находится далеко от ближайшего штаба команды</Russian>
+				<Italian>HQ locates too far from Truck</Italian>
+				<Portuguese>HQ locates too far from Truck</Portuguese>
+			</Key>
 			<Key ID="STR_WF_CHAT_Commander_Supply_Truck_Sold">
 				<!--shared U-->
 				<English>Our team has captured supply truck. Supply reward: S%1</English>
@@ -415,6 +433,15 @@
 				<Russian>%1 захвачен командой %2 !</Russian>
 				<Italian>%1 has been captured by %2 !</Italian>
 				<Portuguese>%1 foi capturada por %2 !</Portuguese>
+			</Key>
+			<Key ID="STR_WF_CHAT_Town_Supply_Truck_Spawned">
+				<!--shared U-->
+				<English>Supply truck has been spawned in %1. Take it to get supply reward!</English>
+				<French>Supply truck has been spawned in %1. Take it to get supply reward!</French>
+				<German>Supply truck has been spawned in %1. Take it to get supply reward!</German>
+				<Russian>Стал доступен грузовик снабжения в %1. Захватите его, чтоб получить дополнительную поставку снабжения !</Russian>
+				<Italian>Supply truck has been spawned in %1. Take it to get supply reward!</Italian>
+				<Portuguese>Supply truck has been spawned in %1. Take it to get supply reward!</Portuguese>
 			</Key>
 			<Key ID="STR_WF_CHAT_Town_Hostiles">
 				<!--shared U-->

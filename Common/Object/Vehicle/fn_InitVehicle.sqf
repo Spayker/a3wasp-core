@@ -35,6 +35,14 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
     };
 
     if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1SUPPLY_TRUCK", _side], ""])) then {
+
+        _vehicle addEventHandler ["GetIn", {
+            params ["_vehicle", "_role", "_unit", "_turret"];
+            if(_role == "driver") then {
+                (localize "STR_WF_CHAT_Commander_Supply_Truck_Move_Order") remoteExecCall ["WFCL_FNC_GroupChatMessage", _unit]
+            }
+         }];
+
         _vehicle addEventHandler ["GetOut", {
         	params ["_vehicle", "_role", "_unit", "_turret"];
         	if(_role == "driver") then { [_vehicle, group (_unit)] call WFCO_fnc_SellSupplyTruck }
