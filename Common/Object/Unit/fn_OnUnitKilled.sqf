@@ -42,6 +42,9 @@ _processCommanderBounty = {
 //--Remove all eventHandlers from object and start trashing--
 _killed removeAllEventHandlers "killed";
 _killed removeAllEventHandlers "hit";
+_killed removeAllEventHandlers "getIn";
+_killed removeAllEventHandlers "getOut";
+_killed removeAllEventHandlers "fired";
 
 if(isHeadLessClient) then {
     _killed setVariable ["wf_trashed_time", time, 2];
