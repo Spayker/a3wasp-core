@@ -901,15 +901,36 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_logic setVariable ["BIS_COIN_lastdir",_dir];
 
 					//--- On Purchase.
-					_structures = missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText];
+					_structureNames = missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText];
+					_structures = missionNamespace getVariable Format["WF_%1STRUCTURES",WF_Client_SideJoinedText];
 					_defenses = missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText];
 					_costs = missionNamespace getVariable Format["WF_%1STRUCTURECOSTS",WF_Client_SideJoinedText];
 
 					//--- Structures.
-					_index = _structures find _itemclass;
+					_index = _structureNames find _itemclass;
+					if (_index != -1) then {
+						_price = _costs select _index;
+						_itemname = _structures select _index;
+
+						//--- Military base or airfield near?
+                        _area = [_pos,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+
+                        _town = [_area] Call WFCO_FNC_GetClosestLocation;
+                        _townside =  (_town getVariable "sideID") Call WFCO_FNC_GetSideFromID;
+                        if!(isNil "_townside") then {
+                            if ((_pos distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _area) then {
+                                _townSpecialities = _town getVariable "townSpeciality";
+                                if(WF_C_MILITARY_BASE in (_townSpecialities)) then {
+                                    _discountStructures = missionNamespace getVariable Format["WF_%1MILITARY_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
+                                    if (_itemname in _discountStructures) then { _price = _price - (_price * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                };
+                                if(WF_C_AIR_BASE in (_townSpecialities)) then {
+                                    _discountStructures = missionNamespace getVariable Format["WF_%1AIR_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
+                                    if (_itemname in _discountStructures) then { _price = _price - (_price * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                }
+                            }
+                        };
 					
-					if (_index != -1) then {												
-						_price = _costs # _index;
 						[WF_Client_SideJoined, -_price] Call WFCO_FNC_ChangeSideSupply;
 
 						if (_index == 0) then {
@@ -931,10 +952,8 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
                     _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 					_deployed = [WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus;
-					_structures = missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText];
-					_defenses = missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText];
 
-					_find = _structures find _itemclass;
+					_find = _structureNames find _itemclass;
 					if (_find != -1) then {
 						//--- Increment the buildings.
 						if ((_find - 1) > -1) then {

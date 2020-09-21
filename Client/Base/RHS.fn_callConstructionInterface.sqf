@@ -1021,13 +1021,17 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                             if ((_startPos distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _area) then {
                                 _townSpecialities = _town getVariable "townSpeciality";
                                 if(WF_C_MILITARY_BASE in (_townSpecialities)) then {
+                                    if!(isNil "_itemname") then {
                                     _discountStructures = missionNamespace getVariable Format["WF_%1MILITARY_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
                                     if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                    }
                                 };
                                 if(WF_C_AIR_BASE in (_townSpecialities)) then {
+                                    if!(isNil "_itemname") then {
                                     _discountStructures = missionNamespace getVariable Format["WF_%1AIR_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
                                     if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
                                 }
+                            }
                             }
                         };
 
