@@ -173,6 +173,10 @@ with missionNamespace do {
 	if (isNil "WF_C_GAMEPLAY_THIRDVIEW") then {WF_C_GAMEPLAY_THIRDVIEW = 1;}; //-- Enable thirdview on feet
 	WF_C_GAMEPLAY_VOTE_TIME = if (WF_Debug) then {4} else {40};
 	if (isNil "WF_DEBUG_DISABLE_TOWN_INIT") then {WF_DEBUG_DISABLE_TOWN_INIT = 0;};
+	missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_RANGE", 175];
+        missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_RANGE_MAX", 3500];
+        missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_PRICE_KM", 215];
+        missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_TIME_COEF", 0.8];
 
 //--- Modules.
 	if (isNil "WF_C_MODULE_WF_EASA") then {WF_C_MODULE_WF_EASA = 1;}; //--- Enable the Exchangeable Armament System for Aircraft.

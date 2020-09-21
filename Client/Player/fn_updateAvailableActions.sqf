@@ -8,10 +8,12 @@ _pgr = missionNamespace getVariable "WF_C_UNITS_PURCHASE_GEAR_RANGE";
 _rptr = missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE";
 _spr = missionNamespace getVariable "WF_C_STRUCTURES_SERVICE_POINT_RANGE";
 _tcr = missionNamespace getVariable "WF_C_TOWNS_CAPTURE_RANGE";
+_ftr = missionNamespace getVariable "WF_C_GAMEPLAY_FAST_TRAVEL_RANGE";
 _buygearfrom = missionNamespace getVariable "WF_C_TOWNS_GEAR";
 _gear_field_range = missionNamespace getVariable "WF_C_UNITS_PURCHASE_GEAR_MOBILE_RANGE";
 _boundaries_enabled = if ((missionNamespace getVariable "WF_C_GAMEPLAY_BOUNDARIES_ENABLED") > 0) then {true} else {false};
 _typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_SideJoinedText];
+_commandCenter = objNull;
 
 //--- Keep actions updated (GUI). - changed-MrNiceGuy 
 12450 cutRsc ["OptionsAvailable","PLAIN",0];
@@ -56,6 +58,22 @@ while {!WF_GameOver} do {
 			};
 		};
 
+		//--- Fast Travel.
+        if (commandInRange) then {
+        	_fastTravel = false;
+        	_isDeployed = [WF_Client_SideJoined, _base] Call WFCO_FNC_GetSideHQDeployStatus;
+
+            if (player distance _base < _ftr && alive _base && _isDeployed) then {_fastTravel = true} else {
+                _closest = [vehicle player, towns] Call WFCO_FNC_GetClosestEntity;
+                _sideID = _closest getVariable 'sideID';
+                if (player distance _closest < _ftr && _sideID == WF_Client_SideID) then {_fastTravel = true} else {
+                    if (!isNull _commandCenter) then {
+                        if (player distance _commandCenter < _ftr) then {_fastTravel = true}
+                    }
+                }
+            }
+        };
+
 		//--- HQ.
 		if !(isNull _base) then {
 			hqInRange = if ((player distance _base < _mhqbr) && alive _base  && (side _base in [WF_Client_SideJoined,civilian])) then {true} else {false};
@@ -96,6 +114,7 @@ while {!WF_GameOver} do {
 		if (depotInRange) then {serviceInRange = true};
 
 		_checks = ['COMMANDCENTERTYPE',_buildings,_ccr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange;
+		_commandCenter = _checks;
 		commandInRange = if (isNull _checks) then {false} else {true};
 		if!(commandInRange) then {
 		    _capturedRadars = [WF_Client_SideJoined, WF_C_RADAR, true] call WFCO_fnc_getSpecialLocations;

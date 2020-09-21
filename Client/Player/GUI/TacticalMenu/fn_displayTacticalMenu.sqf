@@ -18,6 +18,7 @@ _status = 0;
 _canFT = false;
 _forceReload = true;
 _startPoint = objNull;
+_ftr = missionNamespace getVariable "WF_C_GAMEPLAY_FAST_TRAVEL_RANGE";
 
 _marker = "artilleryMarker";
 createMarkerLocal [_marker,artyPos];
@@ -50,10 +51,10 @@ _currentFee = -1;
 
 //--- Support List.
 _lastSel = -1;
-_addToList = [localize 'STR_WF_ICBM',localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop',localize 'STR_WF_TACTICAL_UAV',localize 'STR_WF_TACTICAL_UAVDestroy',localize 'STR_WF_TACTICAL_UAVRemoteControl'];
-_addToListID = ["ICBM","Paradrop_Vehicle","Paratroopers","HeliParatroopers","UAV","UAV_Destroy","UAV_Remote_Control"];
-_addToListFee = [150000,9500,3500,3500,6500,0,0];
-_addToListInterval = [1000,800,600,600,0,0,0];
+_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_ICBM',localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop',localize 'STR_WF_TACTICAL_UAV',localize 'STR_WF_TACTICAL_UAVDestroy',localize 'STR_WF_TACTICAL_UAVRemoteControl'];
+_addToListID = ["Fast_Travel","ICBM","Paradrop_Vehicle","Paratroopers","HeliParatroopers","UAV","UAV_Destroy","UAV_Remote_Control"];
+_addToListFee = [0,150000,9500,3500,3500,6500,0,0];
+_addToListInterval = [0,1000,800,600,600,0,0,0];
 
 for '_i' from 0 to count(_addToList)-1 do {
 	lbAdd [_listBox,_addToList # _i];
@@ -103,6 +104,59 @@ while {alive player && dialog} do {
 	_currentUpgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
 	_currentSel = lbCurSel(_listBox);
 
+	//--- Fast travel processing
+    if (time - _lastUpdate > 15) then {
+        {deleteMarkerLocal _x} forEach _markers;
+        _markers = [];
+        _FTLocations = [];
+        _canFT = false;
+        _startPoint = objNull;
+        _lastUpdate = time;
+        _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
+        _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
+        _isDeployed = [WF_Client_SideJoined, _base] Call WFCO_FNC_GetSideHQDeployStatus;
+        if (player distance _base < _ftr && alive _base && vehicle player != _base && _isDeployed) then {
+            _canFT = true;
+            _startPoint = _base;
+        };
+        if (!canMove (vehicle player)) then {_canFT = false};
+        if (_canFT) then {
+            _buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
+            _checks = [WF_Client_SideJoined,missionNamespace getVariable Format ["WF_%1COMMANDCENTERTYPE",WF_Client_SideJoinedText],_buildings] Call WFCO_FNC_GetFactories;
+            _checks = _checks + _mhqs;
+            _i = 0;
+            _fee = 0;
+            _funds = Call WFCL_FNC_GetPlayerFunds;
+            {
+                if (_x distance player > _ftr) then {
+
+                    _sideID = _x getVariable "sideID";
+                    _fee = round(((_x distance player)/1000) * (missionNamespace getVariable "WF_C_GAMEPLAY_FAST_TRAVEL_PRICE_KM"));
+                    if (_funds < _fee) then {_skip = true};
+
+                    _FTLocations = _FTLocations + [_x];
+                    _markerName = Format ["FTMarker%1",_i];
+                    _markers = _markers + [_markerName];
+                    createMarkerLocal [_markerName,getPos _x];
+                    _markerName setMarkerTypeLocal "mil_circle";
+                    _markerName setMarkerColorLocal "ColorYellow";
+                    _markerName setMarkerSizeLocal [1,1];
+
+                    //--- Fee, Cheap marker stuff
+                    _markerName = Format ["FTMarker%1%1",_i];
+                    _markers = _markers + [_markerName];
+                    createMarkerLocal [_markerName,[(getPos _x select 0)-5,(getPos _x select 1)+75]];
+                    _markerName setMarkerTypeLocal "mil_circle";
+                    _markerName setMarkerColorLocal "ColorYellow";
+                    _markerName setMarkerSizeLocal [0,0];
+                    _markerName setMarkerTextLocal Format ["$%1",_fee];
+
+                    _i = _i + 1
+                }
+            } forEach _checks
+        }
+    };
+
 	//--- Special changed or a reload is requested.
 	if (_currentSel != _lastSel || _forceReload) then {
 		_currentValue = lbValue[_listBox, _currentSel];
@@ -127,6 +181,9 @@ while {alive player && dialog} do {
 
 		//--- Enabled or disabled?
 		switch (_currentSpecial) do {
+		    case "Fast_Travel": {
+                _controlEnable = if (count _FTLocations > 0) then {true} else {false}
+            };
 			case "ICBM": {
 				if ((missionNamespace getVariable "WF_C_MODULE_WF_ICBM") > 0) then {
 					_commander = false;
@@ -178,6 +235,11 @@ while {alive player && dialog} do {
 
 		//--- Output.
 		switch (_currentSpecial) do {
+		    case "Fast_Travel": {
+                WF_MenuAction = 7;
+                if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+                _textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
+            };
 			case "ICBM": {
 				WF_MenuAction = 8;
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
@@ -262,6 +324,99 @@ while {alive player && dialog} do {
 				hint parseText localize "STR_WF_INFO_Paratroop_Info";
 			};
 		};
+		
+		//--- Fast Travel.
+        if (WF_MenuAction == 7) then {
+            WF_MenuAction = -1;
+            _forceReload = true;
+            if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+            [17022] Call WFCL_FNC_SetControlFadeAnimStop;
+            _callPos = _map PosScreenToWorld[mouseX,mouseY];
+            _destination = [_callPos,_FTLocations] Call WFCO_FNC_GetClosestEntity;
+            if (_callPos distance _destination < 500) then {
+                closeDialog 0;
+                deleteMarkerLocal _marker;
+                deleteMarkerLocal _area;
+
+                //--- Remove Markers.
+                {
+                    _track = (_x # 0);
+                    _vehicle = (_x # 1);
+
+                    _vehicle setVariable ['WF_A_Tracked', nil];
+
+                    deleteMarkerLocal Format ["WF_A_Large%1",_track];
+                    deleteMarkerLocal Format ["WF_A_Small%1",_track];
+                } forEach _trackingArrayID;
+                _mode = -1;
+
+                _fee = round(((player distance _destination)/1000) * (missionNamespace getVariable "WF_C_GAMEPLAY_FAST_TRAVEL_PRICE_KM"));
+                -(_fee) Call WFCL_FNC_ChangePlayerFunds;
+
+                _travelingWith = [];
+                {
+                    if (_x distance _startPoint < _ftr && !(_x in _travelingWith) && canMove _x
+                        && !(vehicle _x isKindOf "StaticWeapon") && !stopped _x
+                            && !((currentCommand _x) in ["WAIT","STOP"])) then {
+                                _travelingWith pushBack (vehicle _x)
+                    }
+                } forEach units (group player);
+
+                ForceMap true;
+                _compass = shownCompass;
+                _GPS = shownGPS;
+                _pad = shownPad;
+                _radio = shownRadio;
+                _watch = shownWatch;
+
+                showCompass false;
+                showGPS false;
+                showPad false;
+                showRadio false;
+                showWatch false;
+
+                mapAnimClear;
+                mapAnimCommit;
+
+                _locationPosition = getPosATL _destination;
+                _camera = "camera" camCreate _locationPosition;
+                _camera camSetDir [0, 0, 0];
+                _camera camSetFov 1;
+                _camera cameraEffect["Internal","TOP"];
+
+                _camera camSetTarget _locationPosition;
+                _camera camSetPos [_locationPosition select 0,(_locationPosition select 1) + 2,100];
+                _camera camCommit 0;
+
+                mapAnimAdd [0,0.05,GetPos _startPoint];
+                mapAnimCommit;
+
+                _delay = ((_startPoint distance _destination) / 50) * (missionNamespace getVariable "WF_C_GAMEPLAY_FAST_TRAVEL_TIME_COEF");
+                mapAnimAdd [_delay,.18,getPos _destination];
+                mapAnimCommit;
+
+                waitUntil {mapAnimDone || !alive player};
+                _skip = false;
+                if (!alive player) then {_skip = true};
+                if (!_skip) then {
+                    {
+                        _emptyPosition = [_locationPosition, 120] call WFCO_fnc_getEmptyPosition;
+                        _x setPosATL _emptyPosition
+                    } forEach _travelingWith;
+                };
+                sleep 1;
+
+                ForceMap false;
+                showCompass _compass;
+                showGPS _GPS;
+                showPad _pad;
+                showRadio _radio;
+                showWatch _watch;
+
+                _camera cameraEffect["TERMINATE","BACK"];
+                camDestroy _camera;
+            };
+        };
 		
 		//--- ICBM Strike.
 		if (WF_MenuAction == 8) then {
