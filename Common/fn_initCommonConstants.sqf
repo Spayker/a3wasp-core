@@ -146,7 +146,7 @@ with missionNamespace do {
 	WF_C_ECONOMY_INCOME_DIVIDED = 2; //--- Prevent commander from being a millionaire, and add the rest to the players pool.
 	WF_C_ECONOMY_INCOME_PERCENT_MAX = 100; //--- Commander may set income up to x%.
 	WF_C_ECONOMY_SUPPLY_TIME_INCREASE_DELAY = 60; //--- Increase SV delay.
-	WF_C_ECONOMY_SUPPLY_TRUCK_TIME_CHECK_DELAY = 300; //--- supply truck alive status check.
+	WF_C_ECONOMY_SUPPLY_TRUCK_TIME_CHECK_DELAY = 2400; //--- supply truck alive status check.
 	WF_C_ECONOMY_SUPPLY_MAX_TEAM_LIMIT = 50000;
 
 //--- Environment.	
