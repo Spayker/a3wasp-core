@@ -19,8 +19,7 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
 	_hqs = _logik getVariable ["wf_hq", []];
 	_hqs = _hqs - [objNull];
 	_hqs pushBack _vehicle;
-	_logik setVariable ["wf_hq", _hqs, true];
-    if(count (_logik getVariable ["wf_hq", []]) > 1) then { [_vehicle] remoteExec ["WFSE_FNC_addEmptyVehicleToQueue", 2] };
+	_logik setVariable ["wf_hq", _hqs, true]
 } else {
     [_vehicle] remoteExec ["WFSE_FNC_addEmptyVehicleToQueue", 2]
 };
