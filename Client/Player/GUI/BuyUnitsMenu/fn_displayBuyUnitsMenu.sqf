@@ -497,7 +497,16 @@ while {alive player && dialog} do {
                         _extracrew = false;
                     };
                 } else {
-                    ctrlSetText [12036,Format ["%1/100",(_currentUnit select QUERYUNITSKILL) * 100]];
+                    //--- calculate skill
+                    _upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
+                    _current_infantry_upgrade = _upgrades select WF_UP_BARRACKS;
+                    _skill = 0.3;
+                    switch (_current_infantry_upgrade) do {
+                        case 1: { _skill = 0.5 };
+                        case 2: { _skill = 0.7 };
+                        case 3: { _skill = 0.9 };
+                    };
+                    ctrlSetText [12036,Format ["%1/100",_skill * 100]];
                     ctrlSetText [12037,"N/A"];
                     ctrlSetText [12038,"N/A"];
                     ctrlSetText [12039,"N/A"];
@@ -642,7 +651,18 @@ while {alive player && dialog} do {
             ctrlSetText [12009,_firstUnitConfig # QUERYUNITPICTURE];
             ctrlSetText [12033,_firstUnitConfig # QUERYUNITFACTION];
             ctrlSetText [12034,Format ["$ %1",_cost]];
-            ctrlSetText [12036,Format ["%1/100",(_firstUnitConfig # QUERYUNITSKILL) * 100]];
+
+            //--- calculate skill
+            _upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
+            _current_infantry_upgrade = _upgrades select WF_UP_BARRACKS;
+            _skill = 0.3;
+            switch (_current_infantry_upgrade) do {
+                case 1: { _skill = 0.5 };
+                case 2: { _skill = 0.7 };
+                case 3: { _skill = 0.9 };
+            };
+
+            ctrlSetText [12036,Format ["%1/100", _skill * 100]];
 
             _commonTime = 0;
             {
