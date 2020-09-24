@@ -639,9 +639,6 @@ while {alive player && dialog} do {
             _currentValue = lnbValue[_listBox,[_currentRow,0]];
             _cost = lnbValue[_listBox,[_currentRow,1]];
             _generalSquadCounter = lnbValue[_listBox,[_currentRow,2]];
-            if !(_isInfantry) then {
-
-            };
 
             _generalGroupTemplates = missionNamespace getVariable Format["WF_%1AITEAMTEMPLATES",WF_Client_SideJoined];
             _selectedGroupTemplate = _generalGroupTemplates # _generalSquadCounter;
