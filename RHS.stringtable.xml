@@ -665,6 +665,14 @@
 				<Italian>Set Income Distribution</Italian>
 				<Portuguese>Distribuição de ganhos</Portuguese>
 			</Key>
+			<Key ID="STR_WF_ECONOMY_SellStructure">
+				<English>Sell Structure [S]</English>
+				<French>Vendre Structure [S]</French>
+				<German>Gebäude verkaufen [S]</German>
+				<Russian>Продать строение [S]</Russian>
+				<Italian>Vendi Strutture [S]</Italian>
+				<Portuguese>Vender estrutura</Portuguese>
+			</Key>
 			<Key ID="STR_WF_END_Victory">
 				<English>%1 Team has won</English>
 				<French>L'équipe %1 a gagné</French>
@@ -673,6 +681,53 @@
 				<Italian>%1 ha Vinto!</Italian>
 				<Portuguese>%1 time venceu!</Portuguese>
 			</Key>
+			
+			<Key ID="STR_WF_GEAR_SquadMember">
+				<English>Squadmember:</English>
+				<French>Equipier:</French>
+				<German>Squadmitglied:</German>
+				<Russian>Член команды:</Russian>
+				<Italian>Squadmember:</Italian>
+				<Portuguese>Membro do esquadrão:</Portuguese>
+			</Key>			
+			<Key ID="STR_WF_GEAR_TemplateNameCaption">
+				<English>NAME</English>
+				<Russian>НАЗВАНИЕ</Russian>				
+			</Key>
+			<Key ID="STR_WF_GEAR_TemplateDelete">
+				<English>Delete Template</English>
+				<French>Supprimer Template</French>
+				<German>Template löschen</German>
+				<Russian>Удалить шаблон</Russian>
+				<Italian>Delete Template</Italian>
+				<Portuguese>Deletar Configuração</Portuguese>
+			</Key>
+			<Key ID="STR_WF_GEAR_TemplateSave">
+				<English>Save Template</English>
+				<French>Sauvegarder Template</French>
+				<German>Template speichern</German>
+				<Russian>Сохранить шаблон</Russian>
+				<Italian>Save Template</Italian>
+				<Portuguese>Salvar Configuração</Portuguese>
+			</Key>
+			<Key ID="STR_WF_GEAR_PurchaseMenu">
+				<English>Gear Purchase Menu :</English>
+				<Russian>Меню покупки снаряжения :</Russian>
+			</Key>			
+			<Key ID="STR_WF_GEAR_Buy">
+				<English>Buy gear</English>
+				<Russian>Купить снаряжение</Russian>
+			</Key>
+			<Key ID="STR_WF_GEAR_Clear">
+				<English>Clear</English>
+				<Russian>Очистить</Russian>
+			</Key>
+			<Key ID="STR_WF_GEAR_Reload">
+				<English>Reload</English>
+				<Russian>Перезагрузить</Russian>
+			</Key>
+			
+			
 			<!--INFO Strings - ALL DONE-->
 			<Key ID="STR_WF_INFO_BaseArea_NeedBarracks">
 				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;This weapon can be placed only in barracks area</English>
