@@ -51,10 +51,10 @@ _currentFee = -1;
 
 //--- Support List.
 _lastSel = -1;
-_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_ICBM',localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop',localize 'STR_WF_TACTICAL_UAV',localize 'STR_WF_TACTICAL_UAVDestroy',localize 'STR_WF_TACTICAL_UAVRemoteControl'];
-_addToListID = ["Fast_Travel","ICBM","Paradrop_Vehicle","Paratroopers","HeliParatroopers","UAV","UAV_Destroy","UAV_Remote_Control"];
-_addToListFee = [0,150000,9500,3500,3500,6500,0,0];
-_addToListInterval = [0,1000,800,600,600,0,0,0];
+_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_ICBM', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop',localize 'STR_WF_TACTICAL_UAV',localize 'STR_WF_TACTICAL_UAVDestroy',localize 'STR_WF_TACTICAL_UAVRemoteControl'];
+_addToListID = ["Fast_Travel","ICBM",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers","UAV","UAV_Destroy","UAV_Remote_Control"];
+_addToListFee = [0,150000,5000,9500,3500,3500,6500,0,0];
+_addToListInterval = [0,1000,1000,800,600,600,0,0,0];
 
 for '_i' from 0 to count(_addToList)-1 do {
 	lbAdd [_listBox,_addToList # _i];
@@ -194,6 +194,12 @@ while {alive player && dialog} do {
 					_controlEnable = (_currentLevel > 0 && _commander && _funds >= _currentFee);
 				};
 			};
+			case "CAS": {
+			    _controlEnable = false;
+			    if (!isNull(commanderTeam)) then {
+                    _controlEnable = ((commanderTeam == group player) && _funds >= _currentFee && time - lastCasCall > _currentInterval)
+                }
+			};
 			case "Paratroopers": {
 				_currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
 				_controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastParaCall > _currentInterval && _currentGroupSize <= WF_C_PLAYERS_AI_MAX);
@@ -244,6 +250,11 @@ while {alive player && dialog} do {
 				WF_MenuAction = 8;
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
 				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
+			};
+			case "CAS": {
+			    WF_MenuAction = 10;
+                if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+                _textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
 			};
 			case "Paratroopers": {
 				WF_MenuAction = 3;
@@ -445,6 +456,20 @@ while {alive player && dialog} do {
 			_callPos = _map PosScreenToWorld[mouseX,mouseY];
 			[WF_Client_SideJoined,_callPos,WF_Client_Team] remoteExec ["WFSE_FNC_ParaVehicles",2];
 		};
+
+		//--- CAS request
+		if (WF_MenuAction == 10) then {
+            _forceReload = true;
+            if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+            [17022] Call WFCL_FNC_SetControlFadeAnimStop;
+            WF_MenuAction = -1;
+            lastCasCall = time;
+            -_currentFee Call WFCL_FNC_ChangePlayerFunds;
+            _callPos = _map PosScreenToWorld[mouseX, mouseY];
+
+            [WF_Client_SideJoined, _callPos, WF_Client_Team] remoteExec ["WFSE_FNC_casRequest",2];
+            hint parseText localize "STR_WF_INFO_Cas_Info";
+        };
 	};
 	
 	//--- Update the Artillery Status.
