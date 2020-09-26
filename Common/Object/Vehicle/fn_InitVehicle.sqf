@@ -57,12 +57,12 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
 		};
 	};
 
-	if(typeOf _vehicle in ['CUP_O_2S6M_RU','CUP_B_M6LineBacker_USA_W','RHS_M6']) then {
-		_vehicle addeventhandler ['Fired',{_this spawn HandleAAMissiles;}];
+	if(typeOf _vehicle in ['CUP_O_2S6M_RU','CUP_B_M6LineBacker_USA_W']) then {
+		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleAAMissiles}]
 	};
 
 	if(typeOf _vehicle in WF_C_COMBAT_JETS_WITH_BOMBS) then {
-		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleBombs}];
+		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleBombs}]
 	};
 	
 	//--Check if vehicle is arty vehicle and add EH--	
