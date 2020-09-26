@@ -313,7 +313,7 @@ while {alive player && dialog} do {
 			if (!surfaceIsWater _callPos) then {
 				lastParaCall = time;
 				-(_currentFee) Call WFCL_FNC_ChangePlayerFunds;
-				[WF_Client_SideJoined, _callPos, WF_Client_Team, WF_C_PLAYERS_AI_MAX] remoteExec ["WFSE_FNC_Paratroopers",2];
+				[WF_Client_SideJoined, _callPos, WF_Client_Team, WF_C_PLAYERS_AI_MAX] remoteExec ["WFCO_FNC_Paratroopers",2];
 				hint parseText localize "STR_WF_INFO_Paratroop_Info";
 			};
 		};
@@ -331,7 +331,7 @@ while {alive player && dialog} do {
             if (!surfaceIsWater _callPos) then {
                 lastParaCall = time;
                 -(_currentFee) Call WFCL_FNC_ChangePlayerFunds;
-                [WF_Client_SideJoined, _callPos, WF_Client_Team, WF_C_PLAYERS_AI_MAX] remoteExec ["WFSE_FNC_HeliParatroopers",2];
+                [WF_Client_SideJoined, _callPos, WF_Client_Team, WF_C_PLAYERS_AI_MAX] remoteExec ["WFCO_FNC_HeliParatroopers",2];
 				hint parseText localize "STR_WF_INFO_Paratroop_Info";
 			};
 		};
@@ -454,7 +454,7 @@ while {alive player && dialog} do {
 			lastSupplyCall = time;
 			-_currentFee Call WFCL_FNC_ChangePlayerFunds;
 			_callPos = _map PosScreenToWorld[mouseX,mouseY];
-			[WF_Client_SideJoined,_callPos,WF_Client_Team] remoteExec ["WFSE_FNC_ParaVehicles",2];
+			[WF_Client_SideJoined,_callPos,WF_Client_Team] remoteExec ["WFCO_FNC_ParaVehicles",2];
 		};
 
 		//--- CAS request
@@ -467,7 +467,7 @@ while {alive player && dialog} do {
             -_currentFee Call WFCL_FNC_ChangePlayerFunds;
             _callPos = _map PosScreenToWorld[mouseX, mouseY];
 
-            [WF_Client_SideJoined, _callPos, WF_Client_Team] remoteExec ["WFSE_FNC_casRequest",2];
+            [WF_Client_SideJoined, _callPos, WF_Client_Team] remoteExec ["WFCO_FNC_casRequest",2];
             hint parseText localize "STR_WF_INFO_Cas_Info";
         };
 	};

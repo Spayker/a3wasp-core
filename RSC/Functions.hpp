@@ -419,6 +419,14 @@ class WF_Common {
         class roleList {};
     };
 
+    class ModuleSupport {
+        file = "Common\Module\Support";
+        class paratroopers {};
+        class heliParaTroopers {};
+        class paraVehicles {};
+        class casRequest {};
+    };
+
     class Object {
         file = "Common\Object";
         class trashObject {};
