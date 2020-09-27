@@ -1545,7 +1545,7 @@
 				<English>Funds Transfer Menu :</English>
 				<French>Menu de Transfer de Fonds :</French>
 				<German>Funds Transfer Menu :</German>
-				<Russian>Меню перевода бабла :</Russian>
+				<Russian>Меню денежных переводов :</Russian>
 				<Italian>Funds Transfer Menu :</Italian>
 				<Portuguese>Menu de transferencia bancária :</Portuguese>
 			</Key>
@@ -4156,6 +4156,24 @@
 				<Russian>Перевод средств: $%1</Russian>
 				<Italian>Trasferimento Fondi: $%1</Italian>
 				<Portuguese>Transferencia de Dinheiro: $%1</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Economy_Supplies">
+				<!--shared U-->
+				<English>Supplies: S%1</English>
+				<French>Supplies: S%1</French>
+				<German>Supplies: S%1</German>
+				<Russian>Снабжение: S%1</Russian>
+				<Italian>Supplies: S%1</Italian>
+				<Portuguese>Supplies: S%1</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Economy_Converted_Money">
+				<!--shared U-->
+				<English>Money: $%1</English>
+				<French>Money: $%1</French>
+				<German>Money: $%1</German>
+				<Russian>Деньги: $%1</Russian>
+				<Italian>Money: $%1</Italian>
+				<Portuguese>Money: $%1</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TEAM_ShadowsDistanceLabel">
 				<!--shared U-->

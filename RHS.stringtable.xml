@@ -1502,6 +1502,14 @@
 				<Italian>Gameplay: Ritardo rimozione corpi</Italian>
 				<Portuguese>JOGABILIDADE: Atraso para limpar corpos</Portuguese>
 			</Key>
+			<Key ID="STR_WF_MAIN_FundsMenu">
+				<English>Funds Transfer Menu :</English>
+				<French>Menu de Transfer de Fonds :</French>
+				<German>Funds Transfer Menu :</German>
+				<Russian>Меню денежных переводов :</Russian>
+				<Italian>Funds Transfer Menu :</Italian>
+				<Portuguese>Menu de transferencia bancária :</Portuguese>
+			</Key>
 			<Key ID="STR_WF_PARAMETER_VehicleDelay">
 				<English>GAMEPLAY: Empty Vehicles Lifespan</English>
 				<French>JOUABILITÉ: Durée de Vie des Véhicules Vide</French>
@@ -2573,9 +2581,17 @@
 				<English>Money Transfer:</English>
 				<French>Transfert de fond:</French>
 				<German>Geldtransfer:</German>
-				<Russian>Распил бабла:</Russian>
+				<Russian>Перевод Денег:</Russian>
 				<Italian>Money Transfer:</Italian>
 				<Portuguese>Transferencia de Dinheiro:</Portuguese>
+			</Key>
+			<Key ID="STR_WF_TEAM_SupplyConverterLabel">
+				<English>Supply To Money Converter:</English>
+				<French>Supply To Money Converter:</French>
+				<German>Supply To Money Converter:</German>
+				<Russian>Перевод Снабжения В Деньги:</Russian>
+				<Italian>Supply To Money Converter:</Italian>
+				<Portuguese>Supply To Money Converter:</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TEAM_MoneyTransfer">
 				<!--shared U-->
@@ -2585,6 +2601,24 @@
 				<Russian>Перевод средств: $%1</Russian>
 				<Italian>Trasferimento Fondi: $%1</Italian>
 				<Portuguese>Transferencia de Dinheiro: $%1</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Economy_Supplies">
+				<!--shared U-->
+				<English>Supplies: S%1</English>
+				<French>Supplies: S%1</French>
+				<German>Supplies: S%1</German>
+				<Russian>Снабжение: S%1</Russian>
+				<Italian>Supplies: S%1</Italian>
+				<Portuguese>Supplies: S%1</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Economy_Converted_Money">
+				<!--shared U-->
+				<English>Money: $%1</English>
+				<French>Money: $%1</French>
+				<German>Money: $%1</German>
+				<Russian>Деньги: $%1</Russian>
+				<Italian>Money: $%1</Italian>
+				<Portuguese>Money: $%1</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TEAM_ShadowsDistanceLabel">
 				<!--shared U-->
@@ -2605,12 +2639,20 @@
 				<Portuguese>Grade de Terreno: %1</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TEAM_TransferButton">
-				<English>Transfer Money</English>
+				<English>Transfer</English>
 				<French>Transfert</French>
-				<German>Geld zusenden</German>
-				<Russian>Перевести деньги</Russian>
-				<Italian>Trasferisci</Italian>
-				<Portuguese>Trasferir Dinheiro</Portuguese>
+				<German>Transfer</German>
+				<Russian>Перевести</Russian>
+				<Italian>Transfer</Italian>
+				<Portuguese>Transfer</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Economy_Convert">
+				<English>Convert</English>
+				<French>Convert</French>
+				<German>Convert</German>
+				<Russian>Конвертировать</Russian>
+				<Italian>Convert</Italian>
+				<Portuguese>Convert</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TEAM_ObjectDistanceLabel">
 				<English>Object Distance: %1m</English>

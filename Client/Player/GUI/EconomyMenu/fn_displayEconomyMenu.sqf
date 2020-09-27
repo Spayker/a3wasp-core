@@ -81,9 +81,7 @@ while {alive player && dialog} do {
             _funds = Call WFCL_FNC_GetPlayerFunds;
             (_funds + _convertedMoney) Call WFCL_FNC_ChangePlayerFunds;
             [WF_Client_SideJoined, -(_convertSupplyAmount)] Call WFCO_FNC_ChangeSideSupply;
-            sliderSetRange[1300771, 0, (WF_Client_SideJoined) Call WFCO_FNC_GetTownsIncome];
-            ctrlSetText [1300661, Format [localize "STR_WF_Economy_Supplies", 0]];
-            ctrlSetText [1300662, Format [localize "STR_WF_Economy_Converted_Money", 0]];
+            sliderSetRange[1300771, 0, (WF_Client_SideJoined) Call WFCO_FNC_GetSideSupply];
         };
     };
 
