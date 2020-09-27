@@ -67,7 +67,7 @@ class RscMenu_Economy {
 
 		class CA_Slider_Income : RscXSliderH {
 			idc = 23010;
-			x = 0.0372786;
+			x = 0.0462772;
 			y = 0.294119;
 			w = 0.334;
 			h = 0.029412;
@@ -80,7 +80,7 @@ class RscMenu_Economy {
 		};
 		class CA_IncomeSet_Button : RscButton {
 			idc = 23012;
-			x = 0.0372772;
+			x = 0.0462772;
 			y = 0.354873;
 			w = 0.334;
 			text = $STR_WF_ECONOMY_SetIncome;
@@ -94,15 +94,15 @@ class RscMenu_Economy {
 		};
 		class CA_LabelPlayerCommander : CA_LabelIncomeCommander {
 			idc = 23014;
-			x = 0.0372772;
-			y = 0.457535;
+			x = 0.284313;
+			y = 0.404608;
 			w = 0.399999;
 		};
 
 		/* Seperator */
         class Line_TRH1 : RscText {
             x = 0.0372772;
-            y = 0.505641;
+            y = 0.457535;
             w = 0.454486;
             h = WF_SPT1;
             colorBackground[] = WF_SPC1;
@@ -112,7 +112,7 @@ class RscMenu_Economy {
         class CA_Transfer_SubTitle1 : RscText_SubTitle {
             idc = 130122;
             x = 0.0372772;
-            y = 0.515232;
+            y = 0.465641;
             w = 0.3;
             text = $STR_WF_TEAM_MoneyTransferLabel;
         };
@@ -120,7 +120,7 @@ class RscMenu_Economy {
         class CA_TM_Combo : RscCombo {
             idc = 130088;
             x = 0.0472772;
-            y = 0.566712;
+            y = 0.515232;
             w = 0.219999;
             h = 0.035;
         };
@@ -128,7 +128,7 @@ class RscMenu_Economy {
         class CA_TM_Button : RscButton {
             idc = 130099;
             x = 0.284313;
-            y = 0.617846;
+            y = 0.566712;
             w = 0.208999;
             h = 0.035;
             colorBackground[] = {0.768627451, 1, 0.137254902, 0.7};
@@ -142,7 +142,7 @@ class RscMenu_Economy {
         class CA_TM_Slider : RscXSliderH {
             idc = 130077;
             x = 0.0472772;
-            y = 0.617846;
+            y = 0.566712;
             w = 0.219999;
             h = 0.035;
         };
@@ -150,25 +150,79 @@ class RscMenu_Economy {
         class CA_TM_Label : RscText {
             idc = 130066;
             x = 0.0472772;
-            y = 0.647846;
+            y = 0.597846;
             w = 0.219999;
         };
 
         class CA_TA_Button : RscButton {
             idc = 131099;
             x = 0.284313;
-            y = 0.566712;
+            y = 0.515232;
             w = 0.208999;
             text = "Transfer (Adv)";
             action = "WF_MenuAction = 101";
         };
 
+        /* Seperator */
+        class Line_TRH2 : RscText {
+            x = 0.0372772;
+            y = 0.637846;
+            w = 0.454486;
+            h = WF_SPT1;
+            colorBackground[] = WF_SPC1;
+        };
+
+        /* Supply Converter */
+        class CA_Converter_SubTitle1 : RscText_SubTitle {
+            idc = 1301221;
+            x = 0.0372772;
+            y = 0.637846;
+            w = 0.3;
+            text = $STR_WF_TEAM_SupplyConverterLabel;
+        };
+
+        class CA_SC_Slider : RscXSliderH {
+            idc = 1300771;
+            x = 0.0472772;
+            y = 0.68;
+            w = 0.219999;
+            h = 0.035;
+        };
+
+        class CA_SC_Button : RscButton {
+            idc = 1300991;
+            x = 0.284313;
+            y = 0.68;
+            w = 0.208999;
+            h = 0.035;
+            colorBackground[] = {0.768627451, 1, 0.137254902, 0.7};
+            colorBackgroundActive[] = {0.668627451, 0.9, 0.037254902, 1};
+            colorFocused[] = {0.768627451, 1, 0.137254902, 1};
+            colorBorder[] = {0,0,0,1};
+            text = $STR_WF_Economy_Convert;
+            action = "WF_MenuAction = 66";
+        };
+
+        class CA_SC_Supplies_Label : RscText {
+            idc = 1300661;
+            x = 0.0472772;
+            y = 0.71;
+            w = 0.219999;
+        };
+
+        class CA_SC_Money_Label : RscText {
+            idc = 1300662;
+            x = 0.284313;
+            y = 0.71;
+            w = 0.219999;
+        };
+
 		/* Selling Structures */
 		class CA_Sell : RscButton {
 			idc = 23015;
-			x = 0.5;
+			x = 0.505;
 			y = 0.757255;
-			w = 0.469125;
+			w = 0.459125;
 			text = $STR_WF_ECONOMY_SellStructure;
 			shortcuts[] = { 31 };
 			action = "WF_MenuAction = 105";

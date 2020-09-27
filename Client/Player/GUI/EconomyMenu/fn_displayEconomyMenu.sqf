@@ -5,6 +5,7 @@ _map = _display DisplayCtrl 23002;
 
 if(isNil "mouseButtonUp") then {mouseButtonUp = -1};
 
+_supplies = (WF_Client_SideJoined) Call WFCO_FNC_GetSideSupply;
 _funds = Call WFCL_FNC_GetPlayerFunds;
 _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
 _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
@@ -25,11 +26,16 @@ _hasStarted = true;
 _lastUse = 0;
 _timer = 0;
 
+SliderSetRange[1300771, 0, _supplies];
+
 SliderSetRange[130077,0,_funds];
 sliderSetRange[23010,50,missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX"];
 _commanderPercent = missionNamespace getVariable "wf_commander_percent";
 sliderSetPosition[23010, _commanderPercent];
 
+
+ctrlSetText [1300661, Format [localize "STR_WF_Economy_Supplies",0]];
+ctrlSetText [1300662, Format [localize "STR_WF_Economy_Converted_Money",0]];
 
 ctrlSetText [130066, Format [localize "STR_WF_TEAM_MoneyTransfer",0]];
 ctrlSetText [13010, Format [localize "STR_WF_Income",Call WFCL_FNC_GetPlayerFunds,(WF_Client_SideJoined) Call WFCL_FNC_GetIncome]];
@@ -47,8 +53,12 @@ while {alive player && dialog} do {
     if !(dialog) exitWith {};
 
     _transferAmount = Floor (SliderPosition 130077);
+    _convertSupplyAmount = Floor (SliderPosition 1300771);
+    _convertedMoney = ceil (_convertSupplyAmount * 2);
 
     ctrlSetText [130066, Format [localize "STR_WF_TEAM_MoneyTransfer",_transferAmount]];
+    ctrlSetText [1300661, Format [localize "STR_WF_Economy_Supplies", _convertSupplyAmount]];
+    ctrlSetText [1300662, Format [localize "STR_WF_Economy_Converted_Money", _convertedMoney]];
 
     _curSel = lbCurSel 130088;
     if (WF_MenuAction == 1) then {
@@ -64,17 +74,31 @@ while {alive player && dialog} do {
         };
     };
 
+    if (WF_MenuAction == 66) then {
+        WF_MenuAction = -1;
+        if ((_convertSupplyAmount != 0)) then {
+            -_convertSupplyAmount Call WFCL_FNC_ChangePlayerFunds;
+            _funds = Call WFCL_FNC_GetPlayerFunds;
+            (_funds + _convertedMoney) Call WFCL_FNC_ChangePlayerFunds;
+            [WF_Client_SideJoined, -(_convertSupplyAmount)] Call WFCO_FNC_ChangeSideSupply;
+            sliderSetRange[1300771, 0, (WF_Client_SideJoined) Call WFCO_FNC_GetTownsIncome];
+            ctrlSetText [1300661, Format [localize "STR_WF_Economy_Supplies", 0]];
+            ctrlSetText [1300662, Format [localize "STR_WF_Economy_Converted_Money", 0]];
+        };
+    };
+
     _funds = Call WFCL_FNC_GetPlayerFunds;
     _comEnable = false;
     if(!isNull commanderTeam)then{
-        if(commanderTeam == group player) then {
-            _comEnable = true
-        }
+        if(commanderTeam == group player) then { _comEnable = true }
     };
 
     ctrlEnable [23010,_comEnable];
     ctrlEnable [23012,_comEnable];
     ctrlEnable [23015,_comEnable];
+
+    ctrlEnable [1300771,_comEnable];
+    ctrlEnable [1300991,_comEnable];
 
     //--- Income System.
     _currentPercent = floor(sliderPosition 23010);
