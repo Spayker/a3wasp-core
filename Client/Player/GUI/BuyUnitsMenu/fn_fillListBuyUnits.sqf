@@ -1,4 +1,4 @@
-params ["_listNames", "_filler", "_listBox", "_value"];
+params ["_listNames", "_filler", "_listBox", "_value", "_isPort"];
 private ['_addin','_c','_currentUpgrades','_filter','_i','_u','_value','_selectedRole'];
 _selectedRole = WF_gbl_boughtRoles # 0;
 
@@ -44,7 +44,11 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 
 		_addit = false;
 		if(_filler == 'Depot') then {
-		    if(_UpBar >= (missionNamespace getVariable[_className, [0, 0, 0, 0, 0, 0]]) # 5) then { _addit = true }
+		    if(_UpBar >= (missionNamespace getVariable[_className, [0, 0, 0, 0, 0, 0]]) # 5) then { _addit = true };
+
+		    if!(_isPort) then {
+		        if (_className isKindOf 'Ship') then { _addit = false }
+		    }
 		};
 
 		if (_x in WF_ADV_ARTILLERY)then{ _isAdvVehicle = true};

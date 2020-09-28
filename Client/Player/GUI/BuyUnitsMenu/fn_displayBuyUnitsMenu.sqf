@@ -291,7 +291,16 @@ while {alive player && dialog} do {
                 }
             } foreach _listUnits;
 
-            [_listUnits,_type,_listBox,_val] Call WFCL_FNC_fillListBuyUnits;
+            _isPort = false;
+            if (_type == 'Depot') then {
+
+                _sorted = [[vehicle player, missionNamespace getVariable "WF_C_TOWNS_PURCHASE_RANGE"] Call WFCL_FNC_GetClosestDepot];
+
+                _townSpecialities = (_sorted # 0) getVariable ["townSpeciality", []];
+                if (WF_C_PORT in _townSpecialities) then { _isPort = true }
+            };
+
+            [_listUnits, _type, _listBox, _val, _isPort] Call WFCL_FNC_fillListBuyUnits;
         } else {
             [_type,_listBox,_val] Call WFCL_FNC_fillListBuyGroups;
         };
