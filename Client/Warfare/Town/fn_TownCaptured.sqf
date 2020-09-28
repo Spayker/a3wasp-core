@@ -42,6 +42,7 @@ if (_town_side_value_new == WF_Client_SideID) then {
 	_closest = [_town, (units group player) Call WFCO_FNC_GetLiveUnits] Call WFCO_FNC_GetClosestEntity;
 	
 	//--- Client reward.
+	_isComNear = false;
 	if !(isNull _closest) then {
 		//--- Check if the closest unit of the town in in range.
 		_distance = _closest distance _town;
@@ -63,7 +64,15 @@ if (_town_side_value_new == WF_Client_SideID) then {
 		
 		//--- Update the funds if necessary.
 		if (_bonus != -1) then {
-			(_bonus) Call WFCL_FNC_ChangePlayerFunds;
+		    _comBonus = 0;
+            if !(isNull commanderTeam) then {
+                if (commanderTeam == group player) then {
+                    _isComNear = true;
+                    _comBonus = (_town getVariable "startingSupplyValue") * (missionNamespace getVariable "WF_C_PLAYERS_COMMANDER_BOUNTY_CAPTURE_COEF")
+                }
+            };
+
+			(_bonus + _comBonus) Call WFCL_FNC_ChangePlayerFunds;
 			Format[Localize "STR_WF_CHAT_Town_Bounty_Full", _townName, _bonus] Call WFCL_FNC_CommandChatMessage;
 		};
 		
@@ -74,23 +83,17 @@ if (_town_side_value_new == WF_Client_SideID) then {
 	};
 	
 	//--- Commander reward (if the player is the commander)
+	if!(_isComNear) then {
 	if !(isNull commanderTeam) then {
 		if (commanderTeam == group player) then {
 			_bonus = (_town getVariable "startingSupplyValue") * (missionNamespace getVariable "WF_C_PLAYERS_COMMANDER_BOUNTY_CAPTURE_COEF");
 			if !(isNil "_bonus") then {
-		    _townSpecialities = _town getVariable "townSpeciality";
-                _hasSupplySpeciality = false;
-            { if (_x in WF_C_SECONDARY_SUPPLY_LOCATIONS) exitWith {_hasSuppluySpeciality = true} } forEach _townSpecialities;
-                if(_hasSupplySpeciality) then {
-                [side player, _bonus] Call WFCO_FNC_ChangeSideSupply;
-                    [Format[Localize "STR_WF_CHAT_Commander_Bounty_Town", "S"+ str _bonus, _townName]] spawn WFCL_fnc_handleMessage;
-            } else {
 			(_bonus) Call WFCL_FNC_ChangePlayerFunds;
                     Format[Localize "STR_WF_CHAT_Commander_Bounty_Town", _bonus, _townName] Call WFCL_FNC_CommandChatMessage
-			    }
 		};
             [player,score player + (missionNamespace getVariable "WF_C_PLAYERS_COMMANDER_SCORE_CAPTURE")] remoteExecCall ["WFSE_fnc_RequestChangeScore",2]
 		}
+        }
 	};
 	
 	//--- Taskman
