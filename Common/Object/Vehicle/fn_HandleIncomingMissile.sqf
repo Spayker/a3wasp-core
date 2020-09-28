@@ -8,7 +8,7 @@ if (isNull _missile) exitWith {};
 
 _irLock = getNumber(configFile >> "CfgAmmo" >> _ammo >> "irLock"); //--- Get the ammo type.
 
-if (_irLock == 1 || _ammo in WF_C_ADV_MISSILES_FOR_HANDLING) then { //--- IR Lock is affected
+if (_irLock == 1) then { //--- IR Lock is affected
 	_source = getPos _source;
 	_distance = _unit distance _source;
 	

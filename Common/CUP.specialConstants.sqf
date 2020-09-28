@@ -33,7 +33,6 @@ WF_C_ADV_AIR_DEFENCE = [
 							["B_SAM_System_02_F", "B_SAM_System_03_F", "O_SAM_System_04_F", "B_Radar_System_01_F", "O_Radar_System_02_F"], //--Weapons--
 							[                 10,					0,					 0,						0,					   0]	//--Reload time--
 						];
-WF_C_ADV_MISSILES_FOR_HANDLING = ["ammo_Missile_mim145", "ammo_Missile_s750", "ammo_Missile_rim162", "M_S400_AA"];
 
 WF_VEHICLES_WITH_EXTRA_SLOT_ISSUE = [
     // classname                        com,  gun,  not turret seats, turret seats
