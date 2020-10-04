@@ -140,6 +140,7 @@ while {alive player && dialog} do {
                 if !(_skip) then {
                     if(_unit == missionNamespace getVariable Format["WF_%1MHQNAME", WF_Client_SideJoined]) then {
                         _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
+                        _mhqs = _mhqs - [objNull];
                         if(count _mhqs >= missionNamespace getVariable "WF_C_BASE_AREA") then {
                             _skip = true;
                             hint parseText(Format [localize 'STR_WF_INFO_BaseArea_Reached',count _mhqs])

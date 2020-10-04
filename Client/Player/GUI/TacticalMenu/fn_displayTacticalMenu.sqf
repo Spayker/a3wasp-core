@@ -114,8 +114,7 @@ while {alive player && dialog} do {
         _lastUpdate = time;
         _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
         _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
-        _isDeployed = [WF_Client_SideJoined, _base] Call WFCO_FNC_GetSideHQDeployStatus;
-        if (player distance _base < _ftr && alive _base && vehicle player != _base && _isDeployed) then {
+        if (player distance _base < _ftr && alive _base && vehicle player != _base) then {
             _canFT = true;
             _startPoint = _base;
         };
