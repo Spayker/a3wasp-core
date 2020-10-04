@@ -57,9 +57,9 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
 		};
 	};
 
-	if(typeOf _vehicle in ['CUP_O_2S6M_RU','CUP_B_M6LineBacker_USA_W', 'CUP_B_M6LineBacker_USA_D']) then {
+	/*if(typeOf _vehicle in ['CUP_O_2S6M_RU','CUP_B_M6LineBacker_USA_W', 'CUP_B_M6LineBacker_USA_D']) then {
 		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleAAMissiles}]
-	};
+	};*/
 
 	if(typeOf _vehicle in WF_C_COMBAT_JETS_WITH_BOMBS) then {
 		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleBombs}]
