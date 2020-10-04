@@ -71,7 +71,7 @@ _paraGroup = createGroup [_side, true];
 //--- Tell the group to move.
 _vehicleGrp setCurrentWaypoint [_vehicleGrp, 1];
 
-sleep 1200;
+sleep 900;
 
 if !(isNull _vehicle) then {
     if (alive _vehicle) then {

@@ -225,10 +225,6 @@ while {alive player && dialog} do {
 			}
 		};
 
-		if(WF_Debug) then {
-		    _controlEnable = true;
-		};
-
 		ctrlEnable[17020, _controlEnable];
 
 		WF_MenuAction = -1;

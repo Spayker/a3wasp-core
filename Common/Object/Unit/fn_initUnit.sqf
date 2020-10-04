@@ -137,9 +137,10 @@ if (_isMan) then { //--- Man.
 	if (_unit_kind in (missionNamespace getVariable format["WF_%1REPAIRTRUCKS",str _side])) then {_type = "mil_box";};//--- Repair.
         if (_unit_kind in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_color = "ColorYellow"};//--- Medical.
         _params = [_type,_color,_size,_txt,_markerName,_unit,2,true,"waypoint",_color,false,_side,[2,2]];
-        if (_unit in ((_side) call WFCO_FNC_GetSideHQ)) then {
+        if (_unit_kind == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then {
             _color = "ColorOrange";
-            _params = ['b_hq',_color,[1,1],'HQ','HQUndeployed',_unit,1,false,'','',false,_side]
+            _hqSize = count ((_side) call WFCO_FNC_GetSideHQ);
+            _params = ['b_hq',_color,[1,1],'HQ','HQUndeployed' + (str _hqSize),_unit,1,false,'','',false,_side]
         }//--- HQ.
 };
 
