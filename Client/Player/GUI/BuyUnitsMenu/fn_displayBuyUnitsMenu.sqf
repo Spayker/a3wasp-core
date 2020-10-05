@@ -688,9 +688,11 @@ while {alive player && dialog} do {
                 _firstClassName = _selectedGroupTemplate # _z;
                 _firstUnitConfig = missionNamespace getVariable _firstClassName;
 
+                if!(isNil '_firstUnitConfig') then {
                 _txttg = _txttg + "<t color='#eee58b' shadow='2'>" + (_firstUnitConfig # QUERYUNITLABEL) + "</t>";
 
-                if ((_z+1) < count _selectedGroupTemplate) then {_txttg = _txttg + "<t color='#D3A119' shadow='2'>,</t> "};
+                    if ((_z+1) < count _selectedGroupTemplate) then {_txttg = _txttg + "<t color='#D3A119' shadow='2'>,</t> "}
+                }
             };
 
             _txt = _txt + _txttg;
