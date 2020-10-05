@@ -75,19 +75,7 @@ _defenseLocations = [];
         //--- setup town service related data
         _town setVariable ["townServices", _townServices, true];
 
-        _town_camp_flags    = [];
         {
-            Private ["_flag"];
-            //--- Create a flag near the camp location & position it.
-			_flag = createVehicle [missionNamespace getVariable "WF_C_CAMP_FLAG", [0,0,0]];
-			_flag enableSimulationGlobal false;
-			_flag setPosATL (getPosATL _x);
-            _flag setPosATL (_x modelToWorld (missionNamespace getVariable "WF_C_CAMP_FLAG_POS"));
-			_flagPos = getPosATL _flag;			
-			_flagPos set [2, -0.37];			
-            _flag setPosATL _flagPos;
-
-            _x setVariable ["wf_flag", _flag, true];
             //--- Initialize the camp.
             if (isNil {_x getVariable "sideID"}) then {_x setVariable ["sideID",WF_DEFENDER_ID,true]};
             if (isNil {_x getVariable "supplyValue"}) then {
@@ -95,10 +83,8 @@ _defenseLocations = [];
                 _x setVariable ["supplyValue", _town getVariable "supplyValue", true]
             };
 
-            _town_camp_flags pushBack _flag;
             ["INITIALIZATION",Format ["Init_Town.sqf : Initialized Camp in [%1].", _town getVariable "name"]] call WFCO_FNC_LogContent
         } forEach _camps;
-        _town setVariable ["flags", _town_camp_flags];
 
         if(WF_C_MILITARY_BASE in _townSpecialities || WF_C_AIR_BASE in _townSpecialities) then {
             _respVehPositions = [];
