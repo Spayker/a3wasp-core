@@ -334,6 +334,13 @@ AIC_fnc_remoteControlActionHandler = {
 	AIC_Remote_Control_Delete_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 211) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
 	
 	BIS_fnc_feedback_allowPP = false;
+	{
+	    _unit = _x;
+	    if(alive _unit && !(isPlayer _unit)) then {
+            {_unit disableAI _x} forEach ["MOVE","TEAMSWITCH"];
+	    }
+	} forEach (units (group player));
+
 	selectPlayer _rcUnit;
 	(vehicle _rcUnit) switchCamera "External";
 	openMap false;
@@ -346,7 +353,16 @@ AIC_fnc_terminateRemoteControl = {
 	(missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_From_Unit_Event_Handler",-1])];
 	(missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
 	missionNamespace setVariable ["AIC_Remote_Control_To_Unit",nil];
-	selectPlayer (missionNamespace getVariable ["AIC_Remote_Control_From_Unit",player]);
+	_player = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",player];
+	{
+        _unit = _x;
+        if(alive _unit && !(isPlayer _unit)) then {
+            {_unit enableAI _x} forEach ["MOVE","TEAMSWITCH"];
+        }
+    } forEach (units (group _player));
+
+	selectPlayer (_player);
+
 	missionNamespace setVariable ["AIC_Remote_Control_From_Unit",nil];
 	(vehicle player) switchCamera cameraView;
 	BIS_fnc_feedback_allowPP = true;
