@@ -370,6 +370,9 @@ if (leader(group player) != player) then {(group player) selectLeader player};
 // initiate the passive skills.
 WF_gbl_boughtRoles = [];
 
+// map click drop
+onMapSingleClick {true};
+
 /* Skill Module. */
 WF_SHOW_FAST_REPAIR_ACTION = false;
 [] Call WFCL_fnc_initSkill;
