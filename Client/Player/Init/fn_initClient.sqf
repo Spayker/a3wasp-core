@@ -371,7 +371,7 @@ if (leader(group player) != player) then {(group player) selectLeader player};
 WF_gbl_boughtRoles = [];
 
 // map click drop
-onMapSingleClick {true};
+onMapSingleClick {if (_shift) then {false} else {true}};
 
 /* Skill Module. */
 WF_SHOW_FAST_REPAIR_ACTION = false;
