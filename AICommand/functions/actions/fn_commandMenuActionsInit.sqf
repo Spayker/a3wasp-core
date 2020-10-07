@@ -336,7 +336,7 @@ AIC_fnc_remoteControlActionHandler = {
 	BIS_fnc_feedback_allowPP = false;
 	{
 	    _unit = _x;
-	    if(alive _unit && !(isPlayer _unit)) then {
+	    if(alive _unit) then {
             {_unit disableAI _x} forEach ["MOVE","TEAMSWITCH"];
 	    }
 	} forEach (units (group player));
@@ -356,7 +356,7 @@ AIC_fnc_terminateRemoteControl = {
 	_player = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",player];
 	{
         _unit = _x;
-        if(alive _unit && !(isPlayer _unit)) then {
+        if(alive _unit) then {
             {_unit enableAI _x} forEach ["MOVE","TEAMSWITCH"];
         }
     } forEach (units (group _player));
