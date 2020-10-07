@@ -114,10 +114,20 @@ while {alive player && dialog} do {
         _lastUpdate = time;
         _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
         _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
-        if (player distance _base < _ftr && alive _base && vehicle player != _base) then {
+
+        _closestTown = [player, towns] call WFCO_FNC_GetClosestEntity;
+        _sideID = _closestTown getVariable "sideID";
+        _side = (_sideID) Call WFCO_FNC_GetSideFromID;
+        if (side player == _side && player distance _closestTown < _ftr && vehicle player != _base) then {
             _canFT = true;
-            _startPoint = _base;
+            _startPoint = _closestTown
         };
+
+        if (!(_canFT) && player distance _base < _ftr && alive _base && vehicle player != _base) then {
+            _canFT = true;
+            _startPoint = _base
+        };
+
         if (!canMove (vehicle player)) then {_canFT = false};
         if (_canFT) then {
             _buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
