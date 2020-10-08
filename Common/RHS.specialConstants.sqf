@@ -1,4 +1,5 @@
-WF_AutoWallConstructingEnabled = true;
+//-- construction menu
+WF_AutoWallConstructingEnabled = false;
 
 //--Required addons list here. Push addon class name from config.bin in array--
 WF_REQ_ADDONS = 	[	//["@Bornholm", ["Bornholm"]], 

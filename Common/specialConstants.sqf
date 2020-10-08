@@ -1,3 +1,4 @@
+//-- construction menu
 WF_AutoWallConstructingEnabled = false;
 
 //--Required addons list here. Push addon class name from config.bin in array--
