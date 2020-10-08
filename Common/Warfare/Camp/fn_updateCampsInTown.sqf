@@ -1,4 +1,4 @@
-private["_camp","_flag","_newSID","_force","_camp_cap_rate","_camp_range","_camp_range_players","_town_starting_sv"];
+private["_camp","_newSID","_force","_camp_cap_rate","_camp_range","_camp_range_players","_town_starting_sv"];
 
 _newSID = -1;
 _force = 0;
@@ -19,12 +19,10 @@ while {!WF_GameOver} do {
         _town = _filteredTowns # _j;
         if!(isNil "_town") then {
         _camps = _town getVariable "camps";
-        _flags = _town getVariable "flags";
         _town_starting_sv = _town getVariable "startingSupplyValue";
 
         for "_i" from 0 to ((count _camps) - 1) step 1 do {
             _camp = _camps # _i;
-            _flag = _flags # _i;
 
             //--- Filter players and ai.
             _objects = _camp nearEntities["Man", _camp_range];
@@ -96,7 +94,6 @@ while {!WF_GameOver} do {
                     if (missionNamespace getVariable Format ["WF_%1_PRESENT",_newSide]) then {[_newSide,"CapturedNear",["Strongpoint",_town]] Spawn WFSE_FNC_SideMessage};
 
                     _camp setVariable ["sideID",_newSID,true];
-                    _flag setFlagTexture (missionNamespace getVariable Format["WF_%1FLAG",str _newSide]);
 
                     [_camp,_newSID,_sideID] remoteExecCall ["WFCL_FNC_CampCaptured"];
                 };
