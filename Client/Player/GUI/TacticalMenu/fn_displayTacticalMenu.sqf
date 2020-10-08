@@ -133,6 +133,22 @@ while {alive player && dialog} do {
             _buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
             _checks = [WF_Client_SideJoined,missionNamespace getVariable Format ["WF_%1COMMANDCENTERTYPE",WF_Client_SideJoinedText],_buildings] Call WFCO_FNC_GetFactories;
             _checks = _checks + _mhqs;
+
+            _takenBases = [];
+            {
+                _town = _x;
+                _sideID = _town getVariable "sideID";
+                _side = (_sideID) Call WFCO_FNC_GetSideFromID;
+                if (_side == WF_Client_SideJoined) then {
+                    _townSpecialities = _town getVariable "townSpeciality";
+                    if(WF_C_MILITARY_BASE in (_townSpecialities) || WF_C_AIR_BASE in (_townSpecialities)) then {
+                        _takenBases pushBack _town
+                    }
+                }
+            } forEach towns;
+
+            if(count _takenBases > 0) then { _checks = _checks + _takenBases };
+
             _i = 0;
             _fee = 0;
             _funds = Call WFCL_FNC_GetPlayerFunds;
