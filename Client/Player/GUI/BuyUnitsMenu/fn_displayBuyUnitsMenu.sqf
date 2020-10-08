@@ -90,13 +90,6 @@ while {alive player && dialog} do {
             if(_capturedMilitaryBases > 0) then {
                 _currentCost = ceil (_currentCost - (WF_C_MILITARY_BASE_DISCOUNT_PERCENT * _capturedMilitaryBases * _currentCost));
             };
-            if(_unit in WF_ADV_ARTILLERY) then {
-                if!(isNil '_selectedRole') then{
-                    if(_selectedRole == WF_ARTY_OPERATOR)then{
-                        _currentCost = ceil (_currentCost - (_currentCost * WF_ADV_ARTY_DISCOUNT));
-                    };
-                };
-            };
             _cpt = 1;
             _isInfantry = (_unit isKindOf 'Man');
             if !(_isInfantry) then {
@@ -382,13 +375,6 @@ while {alive player && dialog} do {
                 _capturedMilitaryBases = [WF_Client_SideJoined, WF_C_MILITARY_BASE, false] call WFCO_fnc_getSpecialLocations;
                 if(_capturedMilitaryBases > 0) then {
                     _currentCost = ceil (_currentCost - (WF_C_MILITARY_BASE_DISCOUNT_PERCENT * _capturedMilitaryBases * _currentCost));
-                };
-                if(_unit in WF_ADV_ARTILLERY) then {
-                    if!(isNil '_selectedRole')then{
-                        if(_selectedRole == WF_ARTY_OPERATOR)then{
-                            _currentCost = ceil (_currentCost - (_currentCost * WF_ADV_ARTY_DISCOUNT));
-                        };
-                    };
                 };
 
                 _isInfantry = (_unit isKindOf 'Man');

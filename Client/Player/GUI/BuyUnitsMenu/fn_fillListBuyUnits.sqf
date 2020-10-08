@@ -92,17 +92,7 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
                 _cost = ceil (_cost - (WF_C_MILITARY_BASE_DISCOUNT_PERCENT * _capturedMilitaryBases * _cost));
             };
 		    if(_isAdvVehicle) then {
-		        if!(isNil '_selectedRole') then {
-		            if(_selectedRole == WF_ARTY_OPERATOR) then {
-		            _cost = ceil (_cost - (_cost * WF_ADV_ARTY_DISCOUNT));
-		            lnbAddRow [_listBox,['$'+str (_cost),(_c # QUERYUNITLABEL)]];
-                    } else {
                         lnbAddRow [_listBox,['$'+str (_c # QUERYUNITPRICE),(_c # QUERYUNITLABEL)]];
-                    };
-		        } else {
-		            lnbAddRow [_listBox,['$'+str (_c # QUERYUNITPRICE),(_c # QUERYUNITLABEL)]];
-		        };
-				
                 lnbSetData [_listBox,[_i,0],_filler];
                 lnbSetValue [_listBox,[_i,0],_u];
                 lnbSetValue [_listBox,[_i,1],_cost];

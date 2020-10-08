@@ -323,7 +323,6 @@ with missionNamespace do {
 			[":sob:", ":weary:", ":tired_face:", ":persevere:", ":skull:", ":rage:"]
 		];
 
-	WF_ADV_ARTY_DISCOUNT = 0.3; // 30% discount on arty installations
 	WF_ADV_UAV_DISCOUNT = 0.3; // 30% discount on UAV in tactical menu
 
 	//--- Units Factions.
