@@ -62,7 +62,7 @@ while {!WF_GameOver} do {
         if (commandInRange) then {
         	_fastTravel = false;
         	_isDeployed = [WF_Client_SideJoined, _base] Call WFCO_FNC_GetSideHQDeployStatus;
-
+            if !(isNil '_isDeployed') then {
             if (player distance _base < _ftr && alive _base && _isDeployed) then {_fastTravel = true} else {
                 _closest = [vehicle player, towns] Call WFCO_FNC_GetClosestEntity;
                 _sideID = _closest getVariable 'sideID';
@@ -71,6 +71,7 @@ while {!WF_GameOver} do {
                         if (player distance _commandCenter < _ftr) then {_fastTravel = true}
                     }
                 }
+            }
             }
         };
 

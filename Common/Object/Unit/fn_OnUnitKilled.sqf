@@ -39,19 +39,25 @@ _processCommanderBounty = {
     [_killed_type, false, _killer_award] remoteExecCall ["WFCL_FNC_AwardBounty", _commanderTeam]
 };
 
-//--Remove all eventHandlers from object and start trashing--
-_killed removeAllEventHandlers "killed";
-_killed removeAllEventHandlers "hit";
-_killed removeAllEventHandlers "getIn";
-_killed removeAllEventHandlers "getOut";
-_killed removeAllEventHandlers "fired";
-
 if(isHeadLessClient) then {
     _killed setVariable ["wf_trashed_time", time, 2];
     _killed spawn WFCO_FNC_TrashObject;
 };
 
 _killed_side = (_this # 2) Call WFCO_FNC_GetSideFromID;
+_killed_group = group _killed;
+_killed_isman = (_killed isKindOf "Man");
+_killed_type = typeOf _killed;
+_killed_isplayer = (isPlayer _killed);
+
+if (_killed_type == missionNamespace getVariable Format["WF_%1MHQNAME", _killed_side]) then {
+    _logik = (_killed_side) Call WFCO_FNC_GetSideLogic;
+    _hqs = (_killed_side) call WFCO_FNC_GetSideHQ;
+    _hqs = _logik getVariable ["wf_hq", []];
+    _hqs = _hqs - [_killed];
+    _hqs = _hqs - [objNull];
+    _logik setVariable ["wf_hq", _hqs, true]
+};
 
 _last_hit = _killed getVariable "wf_lasthitby";
 if !(isNil '_last_hit') then {
@@ -60,9 +66,7 @@ if !(isNil '_last_hit') then {
 	};
 };
 
-if (isNil '_killed_side') then {
-	_killed_side = side _killed;
-};
+if (isNil '_killed_side') then { _killed_side = side _killed };
 
 ["INFORMATION", Format ["fn_OnUnitKilled.sqf: [%1] [%2] has been killed by [%3].", _killed_side, _killed, _killer]] Call WFCO_FNC_LogContent;
 [_killed, _killer, _killed_side] spawn {
@@ -98,13 +102,9 @@ if (isNil '_killed_side') then {
 if !(alive _killer) exitWith {}; //--- Killer is null or dead, nothing to see here.
 
 //--- Retrieve basic information.
-_killed_group = group _killed;
-_killed_isman = (_killed isKindOf "Man");
-_killed_type = typeOf _killed;
 _killer_group = group _killer;
 _leaderKillerGroup = leader _killer_group;
 _killer_isplayer = (isPlayer _killer);
-_killed_isplayer = (isPlayer _killed);
 _killer_iswfteam = (!isNil {_killer_group getVariable "wf_funds"});
 _killer_side = side _killer;
 _killer_type = typeOf _killer;
@@ -115,8 +115,6 @@ if (_killer_side == sideEnemy) then { //--- Make sure the killer is not renegade
 	if !(_killer isKindOf "Man") then {_killer_type = typeOf effectiveCommander(vehicle _killer)};
 	_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
 };
-
-if (_killer_side == civilian) exitWith {}; //--- Side couldn't be determined? exit.
 
 if (_killed_side in WF_PRESENTSIDES) then { //--- Update the statistics if needed.
 	if (_killed_isman) then {[str _killed_side,'Casualties',1] Call WFCO_FNC_UpdateStatistics} else {[str _killed_side,'VehiclesLost',1] Call WFCO_FNC_UpdateStatistics};
@@ -192,3 +190,10 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
 	    };
 	};
 };
+
+//--Remove all eventHandlers from object and start trashing--
+_killed removeAllEventHandlers "killed";
+_killed removeAllEventHandlers "hit";
+_killed removeAllEventHandlers "getIn";
+_killed removeAllEventHandlers "getOut";
+_killed removeAllEventHandlers "fired";
