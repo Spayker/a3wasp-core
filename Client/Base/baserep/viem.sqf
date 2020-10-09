@@ -29,7 +29,7 @@ while {alive player} do {
 					_color = "#00ff00";
 					if ( _dam > 67) then {_color = "#00ff00";} else { if ( _dam > 37) then {_color = "#ffe400"} else {_color = "#ff0000"}};  
 					_text = composeText [parseText format ["<t size='1.2'>%1:</t><t size='1.2' color='%2' align='center'> %3 %4</t>",localize "RB_state",_color ,str (_dam), "%"]];
-					hintSilent _text;
+					hint _text;
 				};
 			};
 		};
@@ -48,7 +48,7 @@ while {alive player} do {
 						if ( _dam > 67) then {_color = "#00ff00";} else { if ( _dam > 37) then {_color = "#ffe400"} else {_color = "#ff0000"}};  
 
 						_text = composeText [parseText format ["<t size='1'>%1</t><br /><t size='1.2'>%2:</t><t size='1.2' color='%3' align='center'> %4 %5</t>",(baseb select _i) select 1,localize "RB_state",_color ,str (_dam), "%"]];
-						hintSilent _text;
+						hint _text;
 						_dis = player distance _obj; 
 						if (_dis < (baseb select _i select 2) && _dam < 100 && isNil "rep") then {
 							obj = _obj; objnum = _i;

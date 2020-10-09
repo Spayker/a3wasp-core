@@ -78,7 +78,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
 
     if (typeOf _preview == "Sign_Danger" && !isNull ([_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2)) then {
         _color = _colorRed;
-        hintsilent "Minefields are not allowed at base!";
+        hint "Minefields are not allowed at base!";
     };
     if (_itemcategory != 0 && typeOf _preview isKindOf "Base_WarfareBVehicleServicePoint") then {
         _color = _colorGreen;

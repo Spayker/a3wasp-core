@@ -31,7 +31,6 @@ enableCamShake true;
 	{
 		_handle ppEffectAdjust [_i,1,5,0.5,0.3,0];
 		sleep 0.3;
-		//hint str _i;
 		_handle ppEffectCommit 0;
 	};
 	sleep 5;
@@ -41,7 +40,6 @@ enableCamShake true;
 	{
 		_i = _i-0.01;
 		_handle ppEffectAdjust [_i,1,5,0.5,0.3,0];
-		//hint str _i;
 		sleep 0.5;		
 		_handle ppEffectCommit 0;
 	};
@@ -69,7 +67,6 @@ if (goggles player=="") then
 		{
 			_i = _i-0.01;
 			_handle ppEffectAdjust [_i,1,0.33,0.16];
-			//hint str _i;
 			sleep 0.5;		
 			_handle ppEffectCommit 0;
 		};	

@@ -19,7 +19,7 @@ for "_j" from 0 to 1 do
     _text = composeText [   
     parseText format ["<t size='1'>%1</t><br /><t size='1.2'>%2:</t><t size='1.2' color='%3' align='center'> %4 %5</t>",(baseb select objnum) select 1,localize "RB_state",_color ,str (_dam), "%"]
     ];
-    hintSilent _text;
+    hint _text;
     if (_dam == 100 && _currentSupply == 0) exitWith {repairprocess = "no";};
 	[WF_Client_SideJoined, -15] Call WFCO_FNC_ChangeSideSupply;
     _dam = _dam + (baseb select objnum select 3);

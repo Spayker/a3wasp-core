@@ -14,7 +14,7 @@
 				format ["<t size='0.9'>Preparing %1</t><br /> ",_dots] + 
 				""
 			);
-			hintsilent _text;
+			hint _text;
 			_n = _n + 1;
 			sleep 0.2;
 		};
