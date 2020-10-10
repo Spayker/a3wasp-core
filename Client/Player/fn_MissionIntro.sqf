@@ -8,7 +8,7 @@ _randomValue = random 100;
 
 [] spawn {
 	uiSleep 7;
-	[parseText format["<t align='center' font='PuristaBold' size='4.5'>WASP %1</t><br /><br /><t align='center' valign='center' size='10'><img image='logo1.paa'/></t><br /><br /><br /><t align='center'>by WASP COMMUNITY</t>", briefingName],
+	[parseText format["<t align='center' font='PuristaBold' size='4.5'>Warfare at %1</t><br /><br /><t align='center' valign='center' size='10'><img image='logo1.paa'/></t><br /><br /><br /><t align='center'>by WASP COMMUNITY</t>", worldName],
 		[0,0,1,1], [10, 10], 7] spawn BIS_fnc_textTiles;
 };
 
