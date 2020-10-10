@@ -29,5 +29,5 @@ if(count (_resultGear # 1) > 0) then {
         _resultMessage = _resultMessage + format["<t align='left'><img image='%1' size='1.5'/></t><t color='#ee2222' size='1.1'>%2</t><br />", [_x, "picture", _config_type] Call WFCO_FNC_GetConfigInfo, [_x, "displayName", _config_type] Call WFCO_FNC_GetConfigInfo];
     } forEach (_resultGear # 1);
 
-    [format ["%1" _resultMessage]] spawn WFCL_fnc_handleMessage
+    [format ["%1", _resultMessage]] spawn WFCL_fnc_handleMessage
 };
