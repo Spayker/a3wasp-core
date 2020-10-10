@@ -5448,15 +5448,6 @@
 				<Italian>>> WF Menu</Italian>
 				<Portuguese>>> WF Menu</Portuguese>
 			</Key>
-			<Key ID="STR_WF_Options_TIP">
-				<!--shared W-->
-				<English>&lt;t color='#F8D664' size='1.25'&gt;Information:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='2'&gt;Use mouse scroll or UserAction 19 for access to main menu&lt;/t&gt;</English>
-				<French>&lt;t color='#F8D664' size='1.25'&gt;Information:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='2'&gt;Use mouse scroll or UserAction 19 for access to main menu&lt;/t&gt;</French>
-				<German>&lt;t color='#F8D664' size='1.25'&gt;Information:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='2'&gt;Use mouse scroll or UserAction 19 for access to main menu&lt;/t&gt;</German>
-				<Russian>&lt;t color='#F8D664' size='1.25'&gt;Информация:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='2'&gt;Используйте колесо мыши или UserAction 19 для доступа к главному меню&lt;/t&gt;</Russian>
-				<Italian>&lt;t color='#F8D664' size='1.25'&gt;Information:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='2'&gt;Use mouse scroll or UserAction 19 for access to main menu&lt;/t&gt;</Italian>
-				<Portuguese>&lt;t color='#F8D664' size='1.25'&gt;Information:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='2'&gt;Use mouse scroll or UserAction 19 for access to main menu&lt;/t&gt;</Portuguese>
-			</Key>
 			<Key ID="STR_WF_Push">
 				<English>Push (Vehicle)</English>
 				<French>Pousser (Véhicule)</French>

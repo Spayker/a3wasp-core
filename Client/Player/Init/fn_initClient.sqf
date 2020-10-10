@@ -451,13 +451,11 @@ sleep 5;
 0 = [] execVM "Client\Module\Valhalla\Init_Valhalla.sqf";
 
 if!(WF_Skip_Intro) then {
-    waitUntil {
-        WF_EndIntro && WF_IsRoleSelectedDialogClosed
-    };
+    waitUntil { WF_EndIntro };
 	
 	[] spawn {
-		sleep 10; //// wasp
-		[parseText(format["%1%2%3", localize "STR_WF_Options_TIP", "<br /><br /><t color='#42b6ff' size='2'>",localize "STR_WF_Options","</t>"])] spawn WFCL_fnc_handleMessage;
+		sleep 10;
+		["Buy first role for free near barracks or captured camp"] spawn WFCL_fnc_handleMessage;
 	};
 };
 

@@ -37,7 +37,6 @@ if(_result)then{
     } foreach (_roleDetails select 3);
 
     if(!WF_isFirstRoleSelected)then{
-        ["Buying role first time for FREE..."] spawn WFCL_fnc_handleMessage;
         WF_IsRoleSelectedDialogClosed = true;
     }else{
         // check if the user have enough money
