@@ -74,12 +74,12 @@ switch (_type) do {
 	    player removeSimpleTask _task;
 	};
 
-	//--- Hint for a new town task.
+	//--- Display for a new town task.
 	case "TownHintNew": {
 		["TaskAssigned",[localize "str_taskNew",format [localize "STR_WF_CHAT_TaskTown_Display",_location getVariable "name"]]] call BIS_fnc_showNotification;
 	};
 	
-	//--- Hint for a completed town task.
+	//--- Display for a completed town task.
 	case "TownHintDone": {
 		["TaskSucceeded",[localize "str_taskAccomplished",format [localize "STR_WF_CHAT_TaskTown_Display",_location getVariable "name"]]] call BIS_fnc_showNotification;
 	};

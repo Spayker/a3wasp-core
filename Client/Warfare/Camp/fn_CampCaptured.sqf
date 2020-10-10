@@ -30,7 +30,9 @@ if (WF_Client_SideID == _sideID_new) then {
 
 			//--- If the closest unit is in range, then award the player's group.
 			if (_closest distance _camp < (missionNamespace getVariable "WF_C_CAMPS_RANGE")) then {
-				hint parseText Format[localize "STR_WF_CHAT_Camp_Captured_Bounty",_town getVariable "name",missionNamespace getVariable "WF_C_CAMPS_CAPTURE_BOUNTY"];
+				_message = Format[localize "STR_WF_CHAT_Camp_Captured_Bounty",_town getVariable "name",missionNamespace getVariable "WF_C_CAMPS_CAPTURE_BOUNTY"];
+				[format["%1", _message]] spawn WFCL_fnc_handleMessage;
+
 				[player,score player + (missionNamespace getVariable 'WF_C_PLAYERS_SCORE_CAPTURE_CAMP')] remoteExecCall ["WFSE_fnc_RequestChangeScore",2];
 				
 				(missionNamespace getVariable "WF_C_CAMPS_CAPTURE_BOUNTY") Call WFCL_FNC_ChangePlayerFunds;
@@ -43,7 +45,8 @@ if (WF_Client_SideID == _sideID_new) then {
                             {
                                 _closest = [_camp, units _x] Call WFCO_FNC_GetClosestEntity;
                                 if (_closest distance _camp < (missionNamespace getVariable "WF_C_CAMPS_RANGE")) exitWith {
-                                    hint parseText Format[localize "STR_WF_CHAT_Camp_Captured_Bounty",_town getVariable "name",missionNamespace getVariable "WF_C_CAMPS_CAPTURE_BOUNTY"];
+                                    _message = Format[localize "STR_WF_CHAT_Camp_Captured_Bounty",_town getVariable "name",missionNamespace getVariable "WF_C_CAMPS_CAPTURE_BOUNTY"];
+                                    [format["%1", _message]] spawn WFCL_fnc_handleMessage;
                                     [player,score player + (missionNamespace getVariable 'WF_C_PLAYERS_SCORE_CAPTURE_CAMP')] remoteExecCall ["WFSE_fnc_RequestChangeScore",2];
 
                                     (missionNamespace getVariable "WF_C_CAMPS_CAPTURE_BOUNTY") Call WFCL_FNC_ChangePlayerFunds;

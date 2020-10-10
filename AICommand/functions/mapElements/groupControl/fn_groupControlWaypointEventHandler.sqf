@@ -28,8 +28,7 @@ private ["_group"];
 _group = AIC_fnc_getGroupControlGroup(_groupControlId);
 
 if( _event == "SELECTED" ) then {
-	[_groupControlId,_waypointId] call AIC_fnc_showGroupWpCommandMenu;
-	[_groupControlId,_waypointId] spawn AIC_fnc_showGroupWaypointReport;
+	[_groupControlId,_waypointId] call AIC_fnc_showGroupWpCommandMenu
 };
 
 if( _event == "DELETE_WAYPOINT_SELECTED" || _event == "KEY_DOWN_211" ) then {

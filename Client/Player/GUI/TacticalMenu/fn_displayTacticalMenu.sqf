@@ -228,12 +228,16 @@ while {alive player && dialog} do {
 			case "Paratroopers": {
 				_currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
 				_controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastParaCall > _currentInterval && _currentGroupSize <= WF_C_PLAYERS_AI_MAX);
-				if(_currentGroupSize > WF_C_PLAYERS_AI_MAX) then { hint parseText localize "STR_WF_INFO_Paratroop_NotAllowed" };
+				if(_currentGroupSize > WF_C_PLAYERS_AI_MAX) then {
+				    [format ["%1", localize "STR_WF_INFO_Paratroop_NotAllowed"]] spawn WFCL_fnc_handleMessage
+				};
 			};
 			case "HeliParatroopers": {
                 _currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
                 _controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastParaCall > _currentInterval && _currentGroupSize <= WF_C_PLAYERS_AI_MAX);
-                if(_currentGroupSize > WF_C_PLAYERS_AI_MAX) then { hint parseText localize "STR_WF_INFO_Paratroop_NotAllowed" };
+                if(_currentGroupSize > WF_C_PLAYERS_AI_MAX) then {
+                    [format ["%1", localize "STR_WF_INFO_Paratroop_NotAllowed"]] spawn WFCL_fnc_handleMessage
+                };
 			};
 			case "Paradrop_Vehicle": {
 				_currentLevel = _currentUpgrades # WF_UP_SUPPLYPARADROP;
@@ -335,7 +339,7 @@ while {alive player && dialog} do {
 				lastParaCall = time;
 				-(_currentFee) Call WFCL_FNC_ChangePlayerFunds;
 				[WF_Client_SideJoined, _callPos, WF_Client_Team, WF_C_PLAYERS_AI_MAX] remoteExec ["WFCO_FNC_Paratroopers",2];
-				hint parseText localize "STR_WF_INFO_Paratroop_Info";
+				[format ["%1", localize "STR_WF_INFO_Paratroop_Info"]] spawn WFCL_fnc_handleMessage
 			};
 		};
 
@@ -353,7 +357,7 @@ while {alive player && dialog} do {
                 lastParaCall = time;
                 -(_currentFee) Call WFCL_FNC_ChangePlayerFunds;
                 [WF_Client_SideJoined, _callPos, WF_Client_Team, WF_C_PLAYERS_AI_MAX] remoteExec ["WFCO_FNC_HeliParatroopers",2];
-				hint parseText localize "STR_WF_INFO_Paratroop_Info";
+				[format ["%1", localize "STR_WF_INFO_Paratroop_Info"]] spawn WFCL_fnc_handleMessage;
 			};
 		};
 		
@@ -489,7 +493,7 @@ while {alive player && dialog} do {
             _callPos = _map PosScreenToWorld[mouseX, mouseY];
 
             [WF_Client_SideJoined, _callPos, WF_Client_Team] remoteExec ["WFCO_FNC_casRequest",2];
-            hint parseText localize "STR_WF_INFO_Cas_Info";
+            [format ["%1", localize "STR_WF_INFO_Cas_Info"]] spawn WFCL_fnc_handleMessage;
         };
 	};
 	
@@ -512,7 +516,7 @@ while {alive player && dialog} do {
 			fireMissionTime = time;
 			[GetMarkerPos "artilleryMarker",lbCurSel(17008),_logik,_units] Spawn WFCL_FNC_RequestFireMission;
 		} else {
-			hint (localize "STR_WF_INFO_NoArty");
+			[format ["%1", localize "STR_WF_INFO_NoArty"]] spawn WFCL_fnc_handleMessage
 		};			
 	};
 	

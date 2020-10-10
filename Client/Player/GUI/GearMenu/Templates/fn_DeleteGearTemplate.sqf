@@ -17,6 +17,6 @@ if(!_result) then {
 	call WFCL_FNC_GetGearTemplates;
 };
 
-HINT parseText(_resultMessage);
+[format ["%1", _resultMessage]] spawn WFCL_fnc_handleMessage;
 
 _result;

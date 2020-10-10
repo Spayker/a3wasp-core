@@ -321,12 +321,12 @@
 				<Portuguese>Nosso time Capturou um campo em %1</Portuguese>
 			</Key>
 			<Key ID="STR_WF_CHAT_Camp_Captured_Bounty">								
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Your squad has captured a camp near &lt;t color='#B6F563'&gt;%1&lt;/t&gt; and has been rewarded with &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Votre escouade a capturé un camp près de &lt;t color='#B6F563'&gt;%1&lt;/t&gt; et a été récompensé par &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ihre Mannschaft hat ein Lager in der Nähe erobert &lt;t color='#B6F563'&gt;%1&lt;/t&gt; und wurde mit belohnt &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Your squad has captured a camp near &lt;t color='#B6F563'&gt;%1&lt;/t&gt; and has been rewarded with &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Votre escouade a capturé un camp près de &lt;t color='#B6F563'&gt;%1&lt;/t&gt; et a été récompensé par &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Ihre Mannschaft hat ein Lager in der Nähe erobert &lt;t color='#B6F563'&gt;%1&lt;/t&gt; und wurde mit belohnt &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ваш отряд захватил бункер в &lt;t color='#B6F563'&gt;%1&lt;/t&gt; получена награда &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;La tua squadra ha catturato un campo vicino &lt;t color='#B6F563'&gt;%1&lt;/t&gt; ed è stato premiato con &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Seu esquadrão capturou um acampamento perto &lt;t color='#B6F563'&gt;%1&lt;/t&gt; e foi recompensado com &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;La tua squadra ha catturato un campo vicino &lt;t color='#B6F563'&gt;%1&lt;/t&gt; ed è stato premiato con &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Seu esquadrão capturou um acampamento perto &lt;t color='#B6F563'&gt;%1&lt;/t&gt; e foi recompensado com &lt;t color='#EAD267'&gt;$%2.&lt;/t&gt;&lt;/t&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_CHAT_FundsTransfer">
 				<English>You have received $%1 from %2</English>
@@ -392,15 +392,6 @@
 				<Russian>$%1 Получено за утилизацию %2</Russian>
 				<Italian>$%1 Ricevuti recuperando i pezzi di un %2</Italian>
 				<Portuguese>$%1 Recebido por reciclar um %2</Portuguese>
-			</Key>
-			<Key ID="STR_WF_CHAT_Town_Captured">
-				<!--shared U-->
-				<English>%1 has been captured by %2 !</English>
-				<French>%1 a été capturé par l'équipe %2 !</French>
-				<German>Team %2 hat die Stadt %1 eingenommen!</German>
-				<Russian>%1 захвачен командой %2 !</Russian>
-				<Italian>%1 has been captured by %2 !</Italian>
-				<Portuguese>%1 foi capturada por %2 !</Portuguese>
 			</Key>
 			<Key ID="STR_WF_CHAT_Town_Supply_Truck_Spawned">
 				<!--shared U-->
@@ -488,28 +479,28 @@
 				<Portuguese>%1 melhoria completa, %1 agora esta no nível %2</Portuguese>
 			</Key>
 			<Key ID="STR_WF_HINT_Upgrading">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;Upgrading &lt;t color='#B6F563'&gt;%1&lt;/t&gt; to level &lt;t color='#F5D363'&gt;%2&lt;/t&gt;&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;Upgrading &lt;t color='#B6F563'&gt;%1&lt;/t&gt; to level &lt;t color='#F5D363'&gt;%2&lt;/t&gt;&lt;/t&gt;</English>	
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;Upgrading &lt;t color='#B6F563'&gt;%1&lt;/t&gt; to level &lt;t color='#F5D363'&gt;%2&lt;/t&gt;&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;Upgrading &lt;t color='#B6F563'&gt;%1&lt;/t&gt; to level &lt;t color='#F5D363'&gt;%2&lt;/t&gt;&lt;/t&gt;</English>	
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;Улучшение &lt;t color='#B6F563'&gt;%1&lt;/t&gt; запущено до уровня &lt;t color='#F5D363'&gt;%2&lt;/t&gt;&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_HINT_Dependencies">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;One or more &lt;t color='#F56363'&gt;dependencies&lt;/t&gt; are needed in order to process this upgrade</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;One or more &lt;t color='#F56363'&gt;dependencies&lt;/t&gt; are needed in order to process this upgrade</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;One or more &lt;t color='#F56363'&gt;dependencies&lt;/t&gt; are needed in order to process this upgrade</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;One or more &lt;t color='#F56363'&gt;dependencies&lt;/t&gt; are needed in order to process this upgrade</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;Требуется осуществить &lt;t color='#F56363'&gt;зависимые&lt;/t&gt; улучшения</Russian>
 			</Key>			
 			<Key ID="STR_WF_HINT_NotEnough">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt; There is not enough resources to process this upgrade (&lt;t color='#F56363'&gt;Funds&lt;/t&gt; or &lt;t color='#F56363'&gt;Supply&lt;/t&gt;)&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt; There is not enough resources to process this upgrade (&lt;t color='#F56363'&gt;Funds&lt;/t&gt; or &lt;t color='#F56363'&gt;Supply&lt;/t&gt;)&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt; There is not enough resources to process this upgrade (&lt;t color='#F56363'&gt;Funds&lt;/t&gt; or &lt;t color='#F56363'&gt;Supply&lt;/t&gt;)&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt; There is not enough resources to process this upgrade (&lt;t color='#F56363'&gt;Funds&lt;/t&gt; or &lt;t color='#F56363'&gt;Supply&lt;/t&gt;)&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt; Недостаточно ресурсов для проведения улучшения (&lt;t color='#F56363'&gt;Деньги&lt;/t&gt; или &lt;t color='#F56363'&gt;Снабжение&lt;/t&gt;)&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_HINT_ReachedMax">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;The upgrade has reached it's &lt;t color='#76F563'&gt;maximum level&lt;/t&gt;&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;The upgrade has reached it's &lt;t color='#76F563'&gt;maximum level&lt;/t&gt;&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;The upgrade has reached it's &lt;t color='#76F563'&gt;maximum level&lt;/t&gt;&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;The upgrade has reached it's &lt;t color='#76F563'&gt;maximum level&lt;/t&gt;&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;Данное улучшение &lt;t color='#76F563'&gt;достигло максимума&lt;/t&gt;&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_HINT_AlreadyRunning">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;An upgrade is &lt;t color='#B6F563'&gt;already running&lt;/t&gt;&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;An upgrade is &lt;t color='#B6F563'&gt;already running&lt;/t&gt;&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;An upgrade is &lt;t color='#B6F563'&gt;already running&lt;/t&gt;&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t&gt;An upgrade is &lt;t color='#B6F563'&gt;already running&lt;/t&gt;&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t&gt;Улучшение &lt;t color='#B6F563'&gt;уже выполняется&lt;/t&gt;&lt;/t&gt;</Russian>
 			</Key>
 			
@@ -564,7 +555,7 @@
 				<Russian>Снаряды:</Russian>
 			</Key>
 			<Key ID="STR_WF_TANK_MAGZ_NOTALLOW">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;There is a only %1 additional magazine allowed on the current upgrade level&lt;/t&gt;</English>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;There is a only %1 additional magazine allowed on the current upgrade level&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;На текущем уровне улучшения доступно только %1 дополнительных набора&lt;/t&gt;</Russian>
 			</Key>
 
@@ -634,11 +625,11 @@
 				<Portuguese>Pickup cargo ropes</Portuguese>
 			</Key>
 			<Key ID="STR_WF_EASA_TRYSELL_MESSAGE">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You can not cancel the purchase of equipment for the pylon. But it is possible to re-equip the machine with a set by default</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Vous ne pouvez pas annuler l'achat d'équipement pour le pylône. Mais il est possible de rééquiper la machine avec un set par défaut</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Sie können den Kauf der Ausrüstung für den Pylon nicht stornieren. Es ist jedoch möglich, das Auto standardmäßig mit einem Set auszurüsten</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can not cancel the purchase of equipment for the pylon. But it is possible to re-equip the machine with a set by default</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Vous ne pouvez pas annuler l'achat d'équipement pour le pylône. Mais il est possible de rééquiper la machine avec un set par défaut</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Sie können den Kauf der Ausrüstung für den Pylon nicht stornieren. Es ist jedoch möglich, das Auto standardmäßig mit einem Set auszurüsten</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нельзя отменить покупку снаряжения для пилона. Но возможно перевооружить машину набором по умолчянию</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Non è possibile annullare l'acquisto di attrezzature per il pilone. Ma è possibile riallineare la macchina con un set per impostazione predefinita</Italian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Non è possibile annullare l'acquisto di attrezzature per il pilone. Ma è possibile riallineare la macchina con un set per impostazione predefinita</Italian>
 				<Portuguese>&lt;t color='#F8D664'&gt;informaçãot;&lt;br/&gt;&lt;br/&gt; Você não pode cancelar a compra do equipamento para o pylon. Mas é possivel re-equipar a maquina com o equipamento padrão</Portuguese>
 			</Key>
 			<Key ID="STR_WF_ECONOMY_Income_Sys_Com">
@@ -730,101 +721,101 @@
 			
 			<!--INFO Strings - ALL DONE-->
 			<Key ID="STR_WF_INFO_BaseArea_NeedBarracks">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;This weapon can be placed only in barracks area</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;This weapon can be placed only in barracks area</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;This weapon can be placed only in barracks area</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;This weapon can be placed only in barracks area</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;This weapon can be placed only in barracks area</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;This weapon can be placed only in barracks area</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Это оружие можно разместить только в районе казарм</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;This weapon can be placed only in barracks area</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;This weapon can be placed only in barracks area</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;This weapon can be placed only in barracks area</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;This weapon can be placed only in barracks area</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_BaseArea_NoBarracksStaticGunner">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Установка находится за пределами казарм, стрелок назначен не будет</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A static is outside of the barracks area, the gunner don't be created</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_BaseArea_Reached">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You've reached the bases area limit, you can sell old buildings or build in an existing base area.</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;La limite de bases est atteinte, il est possible de vendre des vieilles structures ou de construire dans une base existante.</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die maximal erlaubte Anzahl an HQs wurde erreicht. Du kannst entweder alte Gebäude verkaufen oder in einer bereits bestehenden Base weiterbauen.</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You've reached the bases area limit, you can sell old buildings or build in an existing base area.</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;La limite de bases est atteinte, il est possible de vendre des vieilles structures ou de construire dans une base existante.</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die maximal erlaubte Anzahl an HQs wurde erreicht. Du kannst entweder alte Gebäude verkaufen oder in einer bereits bestehenden Base weiterbauen.</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Количество районов для баз достигло предела, вы можете продать старые строения, или построить в районе существующей базы.</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Hai raggiunto il limite di aree basi, puoi vendere le vecchie costruzioni o costruire in un area base esistente.</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Você atingiu o limite de bases, você pode vender estruturas antigas ou construir em uma base já existente.</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Hai raggiunto il limite di aree basi, puoi vendere le vecchie costruzioni o costruire in un area base esistente.</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Você atingiu o limite de bases, você pode vender estruturas antigas ou construir em uma base já existente.</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_FortsArea_Reached">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Количество районов для возведения фортификаций достигло предела &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of areas for the construction of fortifications has reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_FortsAreaCount_Reached">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Количество фортификаций в данном районе достигло предела &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The number of fortifications in the area reached the limit &lt;t color='#B6F563'&gt;%1&lt;/t&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Camps_Purchase">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Infantry may not be purchased while camps in the city are held by the enemy</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il est impossible d'acheter de l'infantrie tant que l'ennemi détient un ou plusieurs camps</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Infantry may not be purchased while camps in the city are held by the enemy</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Infantry may not be purchased while camps in the city are held by the enemy</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il est impossible d'acheter de l'infantrie tant que l'ennemi détient un ou plusieurs camps</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Infantry may not be purchased while camps in the city are held by the enemy</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;ФигВам, а не пехота пока рядом бегают буржуи</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Infantry may not be purchased while camps in the city are held by the enemy</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Infantaria não pode ser comprada enquanto os fortes da cidade estão na posse do inimigo</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Infantry may not be purchased while camps in the city are held by the enemy</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Infantaria não pode ser comprada enquanto os fortes da cidade estão na posse do inimigo</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Lockpick_Failed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You've failed to unlock the vehicle</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Vous n'avez pas réussi à déverouiller le véhicule</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Der Versuch, das Fahrzeug mit einem Dietrich zu öffnen ist fehlgeschlagen.\n\n Scheint, als wurde der Dietrich im Baumarkt gekauft, versuche es weiter</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You've failed to unlock the vehicle</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Vous n'avez pas réussi à déverouiller le véhicule</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Der Versuch, das Fahrzeug mit einem Dietrich zu öffnen ist fehlgeschlagen.\n\n Scheint, als wurde der Dietrich im Baumarkt gekauft, versuche es weiter</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Вам не удалось открыть транспорт отмычкой</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Non sei riuscito ad aprire il veicolo</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Você falhou em destrancar o veículo</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Non sei riuscito ad aprire il veicolo</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Você falhou em destrancar o veículo</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Lockpick_Succeed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The vehicle has been successfully unlocked</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le véhicule à été déverouillé avec succès</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Du hast das Fahrzeug mittels einem Dietrich erfolgreich geöffnet</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Транспорт успешно открыт отмычкой</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Sei riuscito ad aprire il veicolo</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O veículo foi destrancado com sucesso</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The vehicle has been successfully unlocked</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le véhicule à été déverouillé avec succès</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Du hast das Fahrzeug mittels einem Dietrich erfolgreich geöffnet</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Транспорт успешно открыт отмычкой</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Sei riuscito ad aprire il veicolo</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O veículo foi destrancado com sucesso</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Lockpick_Forbidden">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Unlock this vehicle is forbidden</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Unlock this vehicle is forbidden</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Unlock this vehicle is forbidden</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Вскрытие данного транспорта запрещено</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Unlock this vehicle is forbidden</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Unlock this vehicle is forbidden</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Unlock this vehicle is forbidden</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Unlock this vehicle is forbidden</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Unlock this vehicle is forbidden</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Вскрытие данного транспорта запрещено</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Unlock this vehicle is forbidden</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Unlock this vehicle is forbidden</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_NoArty">
 				<!--need rework -0.71-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You need at last one artillery in order to call a Fire Mission</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Au moins une unité d'artillerie est nécessaire pour utiliser un Appuie Feu</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Du benötigst mindestens eine Artillerie-Einheit, um einen Feuerbefehl erteilen zu können.\n\n Wenn du schon eine besitzt, versichere dich, dass du diese auch ausgewählt hast</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You need at last one artillery in order to call a Fire Mission</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Au moins une unité d'artillerie est nécessaire pour utiliser un Appuie Feu</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Du benötigst mindestens eine Artillerie-Einheit, um einen Feuerbefehl erteilen zu können.\n\n Wenn du schon eine besitzt, versichere dich, dass du diese auch ausgewählt hast</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;для вызова артиллерии у Вас должна быть хотя бы одна арт. установка</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Hai bisogno di almeno un unità di artiglieria per chiamare il fuoco di soppressione</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Você precisa de no mínimo uma artilharia para poder chamar uma salva de artilharia</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Hai bisogno di almeno un unità di artiglieria per chiamare il fuoco di soppressione</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Você precisa de no mínimo uma artilharia para poder chamar uma salva de artilharia</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Paratroop_Info">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;An aerial unit has been called according to your order, it shall arrive here quite soon</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Une unité aérienne a été assigner sur votre demande, elle sera la sous peut</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die angeforderten Fallschirmjäger sind auf dem Weg zur Absetzstelle</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;An aerial unit has been called according to your order, it shall arrive here quite soon</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Une unité aérienne a été assigner sur votre demande, elle sera la sous peut</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die angeforderten Fallschirmjäger sind auf dem Weg zur Absetzstelle</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;по вашему приказу вызван десантный ЛА, он скоро прибудет на место</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un unità aerea è stata assegnata su vostra richiesta, arriverà presto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Uma unidade aérea foi chamada de acordo com sua ordem, ela deve chegar em breve</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un unità aerea è stata assegnata su vostra richiesta, arriverà presto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Uma unidade aérea foi chamada de acordo com sua ordem, ela deve chegar em breve</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Cas_Info">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;По вашему приказу вызвана поддержка с воздуха. Скоро она прибудет на место</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A close air support has been called according to your order, it shall arrive as soon as possible</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Paratroop_NotAllowed">
 				<English>&lt;t color='#ee2222'&gt;Information:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;It is impossible to call the landing force, because the squad limit is exceeded</English>
@@ -836,47 +827,47 @@
 			</Key>
 			<Key ID="STR_WF_INFO_Spot_Info">
 				<!--need rework -0.71-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Spotting Ability require the use of binoculars</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le Repérage requiert l'utilisation d'une paire de jumelle</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Zum Beobachten wird ein Fernglas benötigt!\n\n Über das Ausrüstungsmenü kannst du dir ein Fernglas kaufen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Spotting Ability require the use of binoculars</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le Repérage requiert l'utilisation d'une paire de jumelle</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Zum Beobachten wird ein Fernglas benötigt!\n\n Über das Ausrüstungsmenü kannst du dir ein Fernglas kaufen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;чтобы указать цель используйте бинокль</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Hai bisogno del binocolo per Individuare</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A habilidade de spot requer o uso de binoculos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Hai bisogno del binocolo per Individuare</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A habilidade de spot requer o uso de binoculos</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_ArtyStrike_Info">
 				<!--need rework -0.71-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Arty strike requires the use of binoculars</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Arty strike requires the use of binoculars</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Arty strike requires the use of binoculars</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Arty strike requires the use of binoculars</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Arty strike requires the use of binoculars</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Arty strike requires the use of binoculars</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;чтобы указать цель используйте бинокль</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Arty strike requires the use of binoculars</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O chamado de artilharia requer o uso de binoculos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Arty strike requires the use of binoculars</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O chamado de artilharia requer o uso de binoculos</Portuguese>
 			</Key>
 			<!--Info Strings (color) - ALL DONE-->
 			<Key ID="STR_WF_INFO_BuyEffective">
 				<!--shared U-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Building &lt;t color='#85B5FA'&gt;%1&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; en Production</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Dein &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird gebaut</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Building &lt;t color='#85B5FA'&gt;%1&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; en Production</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Dein &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird gebaut</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; в производстве</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; In Costruzione</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; em produção</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; In Costruzione</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; em produção</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Build_Complete">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Your &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has arrived.&lt;br/&gt;&lt;img image='%2' size='2.5'/&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Votre &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est arrivé.&lt;br/&gt;&lt;img image='%2' size='2.5'/&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Dein &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist angekommen.&lt;br/&gt;&lt;img image='%2' size='2.5'/&gt;</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Производство &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; выполнено.&lt;br/&gt;&lt;img image='%2' size='2.5'/&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;il Tuo &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è arrivato.&lt;br/&gt;&lt;img image='%2' size='2.5'/&gt;</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;sua &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; chegou.&lt;br/&gt;&lt;img image='%2' size='2.5'/&gt;</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Your &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has arrived.&lt;br/&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Votre &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est arrivé.&lt;br/&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Dein &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist angekommen.&lt;br/&gt;</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Производство &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; выполнено.&lt;br/&gt;</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;il Tuo &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è arrivato.&lt;br/&gt;</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;sua &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; chegou.&lt;br/&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_EASA_HELP">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;To select a tool for pylon installation, first select the pylon then the gun type by clicking on the appropriate menu item.&lt;br/&gt;&lt;br/&gt;To double-click, double-click the Pylon position</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Pour sélectionner un outil pour l'installation d'un pylône, sélectionnez d'abord le pylône puis le type de pistolet en cliquant sur l'élément de menu approprié.&lt;br/&gt;&lt;br/&gt;Double-cliquez sur la position du Pylône</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um ein Werkzeug für die Pylon-Installation auszuwählen, wählen Sie zuerst den Pylon und dann den Pistolentyp, indem Sie auf den entsprechenden Menüpunkt klicken.&lt;br/&gt;&lt;br/&gt;Zum Doppelklicken auf die Pylon-Position</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;To select a tool for pylon installation, first select the pylon then the gun type by clicking on the appropriate menu item.&lt;br/&gt;&lt;br/&gt;To double-click, double-click the Pylon position</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Pour sélectionner un outil pour l'installation d'un pylône, sélectionnez d'abord le pylône puis le type de pistolet en cliquant sur l'élément de menu approprié.&lt;br/&gt;&lt;br/&gt;Double-cliquez sur la position du Pylône</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um ein Werkzeug für die Pylon-Installation auszuwählen, wählen Sie zuerst den Pylon und dann den Pistolentyp, indem Sie auf den entsprechenden Menüpunkt klicken.&lt;br/&gt;&lt;br/&gt;Zum Doppelklicken auf die Pylon-Position</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Чтобы выбрать орудие для установки на пилон, сначала выберите пилон затем тип орудия, кликнув на соответсвующий пункт меню.&lt;br/&gt;&lt;br/&gt;Чтобы снять выбор, произведите двойной клик по позиции Пилон</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Per selezionare uno strumento per l'installazione del pilone, selezionare prima il pilone, quindi il tipo di pistola facendo clic sull'elemento di menu appropriato.&lt;br/&gt;&lt;br/&gt;Per fare doppio clic, fare doppio clic sulla posizione Pylon</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Para selecionar a ferramenta de instalação, primeiro selecione o local e então o tipo de arma, clicando no menu apropriado.&lt;br/&gt;&lt;br/&gt;Para clicar duas vezes, clique duas vezes na posição da arma</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Per selezionare uno strumento per l'installazione del pilone, selezionare prima il pilone, quindi il tipo di pistola facendo clic sull'elemento di menu appropriato.&lt;br/&gt;&lt;br/&gt;Per fare doppio clic, fare doppio clic sulla posizione Pylon</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Para selecionar a ferramenta de instalação, primeiro selecione o local e então o tipo de arma, clicando no menu apropriado.&lt;br/&gt;&lt;br/&gt;Para clicar duas vezes, clique duas vezes na posição da arma</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Funds">
 				<English>&lt;t align='left' color='#8A9269'&gt;My Funds: $&lt;t color='#76F563'&gt;%1&lt;/t&gt;.&lt;/t&gt;</English>
@@ -888,70 +879,70 @@
 			</Key>
 			<Key ID="STR_WF_INFO_Funds_Missing">
 				<!--shared W-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order to buy: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il vous manque $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; pour acheter: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Du hast nicht genug Geld!&lt;br/&gt;&lt;br/&gt;Dir fehlen $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; um &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; kaufen zu können</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order to buy: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il vous manque $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; pour acheter: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Du hast nicht genug Geld!&lt;br/&gt;&lt;br/&gt;Dir fehlen $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; um &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; kaufen zu können</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;не хватает $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; для покупки: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ti Mancano $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; per comprare: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Esta faltando $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; para comprar: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Ti Mancano $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; per comprare: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Esta faltando $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; para comprar: &lt;t color='#85B5FA'&gt;%2&lt;/t&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Funds_Missing_Service">
 				<!--shared W-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;не хватает $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; in order</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Funds_Self">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; Il est impossible de s'envoyer de l'argent à &lt;t color='#BD63F5'&gt;soi-même&lt;/t&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; Você não pode transferir dinheiro para &lt;t color='#BD63F5'&gt;Você mesmo&lt;/t&gt;</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; Il est impossible de s'envoyer de l'argent à &lt;t color='#BD63F5'&gt;soi-même&lt;/t&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; You may not transfer money to &lt;t color='#BD63F5'&gt;yourself&lt;/t&gt;</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; Você não pode transferir dinheiro para &lt;t color='#BD63F5'&gt;Você mesmo&lt;/t&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Funds_Sent">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; ont été transférés à &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</Italian>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; ont été transférés à &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; were sent to &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</Italian>
 				<Portuguese>&lt;t color='#42b6ff' size='1.2' underline='1' shadow='1'&gt;Informação:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt; &lt;t color='#76F563'&gt;$%1.&lt;/t&gt; Foi mandado para &lt;t color='#BD63F5'&gt;%2&lt;/t&gt;</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Healing">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being healed. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the healing.</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de soins. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant les soins.</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird behandelt. &lt;br/&gt;&lt;br/&gt;Die Behandlung dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being healed. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the healing.</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de soins. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant les soins.</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird behandelt. &lt;br/&gt;&lt;br/&gt;Die Behandlung dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; лечится. &lt;br/&gt;&lt;br/&gt;Пожалуйста, подождите &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; секунд для лечения.</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being healed. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the healing.</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo curado. &lt;br/&gt;&lt;br/&gt;Por favor espere por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos durante a cura.</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being healed. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the healing.</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo curado. &lt;br/&gt;&lt;br/&gt;Por favor espere por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos durante a cura.</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Heal_Failed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be healed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été soigner</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die Behandlung des &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be healed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été soigner</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die Behandlung des &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; не вылечен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be healed</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; falhou em ser curado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be healed</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; falhou em ser curado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Heal_Success">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been successfully healed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été soigner</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Der &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich behandelt</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been successfully healed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été soigner</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Der &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich behandelt</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; вылечен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been successfully healed</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; foi curado com sucesso</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been successfully healed</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; foi curado com sucesso</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_MaxGroup">
 				<!--shared U-->
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Units Limit reached (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Units)</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Maximum d'Unité atteint (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Unités)</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Einheiten-Limit wurde erreicht&lt;br /&gt;&lt;br /&gt; (max.&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Einheiten)</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Units Limit reached (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Units)</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Maximum d'Unité atteint (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Unités)</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Einheiten-Limit wurde erreicht&lt;br /&gt;&lt;br /&gt; (max.&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Einheiten)</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;достигнут лимит отряда (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; чел.)</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Limite Unità Raggiunto (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Unità)</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Limite de unidades alcançado (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Unidades)</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Limite Unità Raggiunto (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Unità)</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Limite de unidades alcançado (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Unidades)</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_OffmapWarning">
 				<English>&lt;t color='#EB0606'&gt;Warning!&lt;/t&gt; &lt;br/&gt;&lt;br/&gt; You are leaving the battlefield!&lt;br/&gt;&lt;br/&gt; &lt;t color='#EB0606'&gt; %1 &lt;/t&gt; Seconds left</English>
@@ -962,101 +953,101 @@
 				<Portuguese>&lt;t color='#EB0606'&gt;Aviso!&lt;/t&gt; &lt;br/&gt;&lt;br/&gt; Você esta deixando o campo de batalha!&lt;br/&gt;&lt;br/&gt; &lt;t color='#EB0606'&gt; %1 &lt;/t&gt; Segundos restantes</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Queu">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Queued</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Mis en attente</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Dein &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; befindet sich in der Warteschlange</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Queued</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Mis en attente</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Dein &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; befindet sich in der Warteschlange</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; на очереди</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; In Coda</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; na fila</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; In Coda</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; na fila</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Queu_Max">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal queue has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), please be patient</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;La file d'attente maximale à été atteinte pour cette usine (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), veuillez patienter</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Diese Fabrik hat das Limit für die Warteschlange erreicht (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), könnte also ein wenig dauern</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal queue has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), please be patient</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;La file d'attente maximale à été atteinte pour cette usine (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), veuillez patienter</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Diese Fabrik hat das Limit für die Warteschlange erreicht (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), könnte also ein wenig dauern</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;очередь завода достигла максимума (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), пожалуйста, подождите</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal queue has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), please be patient</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A quantidade maxima de unidades por vez dessa fabrica foi alcançado (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), por favor seja paciente</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal queue has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), please be patient</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A quantidade maxima de unidades por vez dessa fabrica foi alcançado (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;), por favor seja paciente</Portuguese>
 			</Key>
 	
 <Key ID="STR_WF_INFO_HC_Group_Max">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Достигнуто максимальное количество подконтрольных групп (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The maximal group size has been reached for this factory (&lt;t color='#85B5FA'&gt;%1&lt;/t&gt;).</Portuguese>
 			</Key>
 		<Key ID="STR_WF_INFO_Rearming">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being rearmed. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the rearm process.</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de réarmement. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant la phase de réarmement.</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird aufmunitioniert. &lt;br/&gt;&lt;br/&gt;Das Aufmunitionieren dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being rearmed. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the rearm process.</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de réarmement. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant la phase de réarmement.</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird aufmunitioniert. &lt;br/&gt;&lt;br/&gt;Das Aufmunitionieren dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; перевооружается. &lt;br/&gt;&lt;br/&gt;Ждите &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; секунд для перезарядки.</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riarmo in corso. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the rearm process.</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo rearmado. &lt;br/&gt;&lt;br/&gt;Por favor aguarde por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos.</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riarmo in corso. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the rearm process.</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo rearmado. &lt;br/&gt;&lt;br/&gt;Por favor aguarde por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos.</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Rearm_Failed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be rearmed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été réarmé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Aufmunitionieren von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be rearmed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été réarmé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Aufmunitionieren von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;ваша техника &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; не перезаряжена</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riarmo fallito</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Falhou em ser rearmado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riarmo fallito</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Falhou em ser rearmado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Rearm_Success">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been rearmed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été réarmé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich aufmunitioniert</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been rearmed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été réarmé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich aufmunitioniert</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;ваша техника &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; перезаряжена</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è stato riarmato</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Foi rearmado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è stato riarmato</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Foi rearmado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Refueling">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being refueled. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the refuel process.</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de ravitaillement. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant la phase de ravitaillement.</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird aufgetankt. &lt;br/&gt;&lt;br/&gt;Die Betankung dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being refueled. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the refuel process.</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de ravitaillement. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant la phase de ravitaillement.</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird aufgetankt. &lt;br/&gt;&lt;br/&gt;Die Betankung dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;ваша техника &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; заправляется. &lt;br/&gt;&lt;br/&gt;Пожалуйста, ждите &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; секунд для заправки.</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; rifornimento in corso. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the refuel process.</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo reabastecido. &lt;br/&gt;&lt;br/&gt;Por favor espere por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos.</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; rifornimento in corso. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the refuel process.</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo reabastecido. &lt;br/&gt;&lt;br/&gt;Por favor espere por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos.</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Refueling_Failed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be refueled</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été ravitaillé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die Betankung von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be refueled</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été ravitaillé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die Betankung von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; заправка неудалась</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; rifornimento fallito</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; falhou em ser reabastecido</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; rifornimento fallito</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; falhou em ser reabastecido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Refueling_Success">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been refueled</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été ravitaillé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die Betankung von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich abgeschlossen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been refueled</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été ravitaillé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die Betankung von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich abgeschlossen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; полный бак</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è stato rifornito</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Foi reabastecido</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è stato rifornito</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; Foi reabastecido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Repairing">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being repaired. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the reparations.</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de réparation. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant les réparations.</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird repariert. &lt;br/&gt;&lt;br/&gt;Die Reparatur dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; is being repaired. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; seconds during the reparations.</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; est en cours de réparation. &lt;br/&gt;&lt;br/&gt;Veuillez attendre &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondes durant les réparations.</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wird repariert. &lt;br/&gt;&lt;br/&gt;Die Reparatur dauert &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; Sekunden.</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ремонтируется. &lt;br/&gt;&lt;br/&gt;Ждите &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; секунд для починки.</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riparazione in corso. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondi al termine della riparazione.</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo consertado. &lt;br/&gt;&lt;br/&gt;Por favor espere por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos.</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riparazione in corso. &lt;br/&gt;&lt;br/&gt;Please wait for &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; secondi al termine della riparazione.</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; esta sendo consertado. &lt;br/&gt;&lt;br/&gt;Por favor espere por &lt;t color='#85B5FA'&gt;%2&lt;/t&gt; segundos.</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Repair_Failed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été reparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die Reparatur von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has failed to be repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; n'a pas été reparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die Reparatur von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; ist fehlgeschlagen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#85B5FA'&gt;%1&lt;/t&gt; починка не удалась</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riparazione fallita</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; falhou em ser consertado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; riparazione fallita</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; falhou em ser consertado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_INFO_Repair_Success">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been successfully repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été reparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Die Reparatur von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich abgeschlossen</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; has been successfully repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Un &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; a été reparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Die Reparatur von &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; wurde erfolgreich abgeschlossen</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ваша техника &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; отремонтирована</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è stato completamente riparato</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; foi consertado com sucesso</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; è stato completamente riparato</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Um &lt;t color='#85B5FA'&gt;%1&lt;/t&gt; foi consertado com sucesso</Portuguese>
 			</Key>
 			<Key ID="STR_WF_COMMAND_All">
 				<Original>Command All</Original>
@@ -1623,20 +1614,20 @@
 				<Portuguese>GAMEPLAY: Third view on feet</Portuguese>
 			</Key>
 			<Key ID="STR_WF_GAMEPLAY_THIRDVIEW_MESSAGE">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Вид от третьего лица запрещен настройками миссии</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</Portuguese>
 			</Key>
 			<Key ID="STR_WF_PARAMETER_ViewDistance_KEYBOARDCHANGED">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;View distance is set to </English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;View distance is set to </French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;View distance is set to </German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Дальность прорисвоки установлена в </Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;View distance is set to </Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;View distance is set to </Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </Portuguese>
 			</Key>
 			<!--Modul-->
 			<Key ID="STR_WF_PARAMETER_EASA">
@@ -1822,44 +1813,44 @@
 				<Portuguese>CIDADES: Modo de inicio</Portuguese>
 			</Key>
 			<Key ID="STR_HINT_FieldStarted">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs started</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs started</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs started</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs started</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs started</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs started</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Полевой ремонт начат</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs started</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Consertos Rápidos sendo feitos... </Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs started</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Consertos Rápidos sendo feitos... </Portuguese>
 			</Key>
 			<Key ID="STR_HINT_FieldFailed">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs interrupted</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs interrupted</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs interrupted</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs interrupted</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs interrupted</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs interrupted</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Полевой ремонт прерван</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs interrupted</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Consertos Rápidos Interrompidos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs interrupted</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Consertos Rápidos Interrompidos</Portuguese>
 			</Key>
 			<Key ID="STR_HINT_FieldComplete">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs complete</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs complete</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs complete</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs complete</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs complete</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs complete</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Полевой ремонт закончен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Field repairs complete</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Consertos Rápidos completos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Field repairs complete</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Consertos Rápidos completos</Portuguese>
 			</Key>
 			<Key ID="STR_HINT_EARPLUGS_INSERTED">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ear plugs inserted</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Bouchons d'oreille insérés</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ohrstöpsel eingefügt</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Ear plugs inserted</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Bouchons d'oreille insérés</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Ohrstöpsel eingefügt</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Беруши вставлены</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Plugs d'orecchio inseriti</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Fones de ouvido inseridos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Plugs d'orecchio inseriti</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Fones de ouvido inseridos</Portuguese>
 			</Key>
 			<Key ID="STR_HINT_EARPLUGS_REMOVED">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ear plugs removed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Bouchons d'oreille supprimés</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ohrstöpsel entfernt</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Ear plugs removed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Bouchons d'oreille supprimés</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Ohrstöpsel entfernt</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Беруши извлечены</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le prese d'orecchio sono rimosse</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Fones de ouvido Removidos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le prese d'orecchio sono rimosse</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Fones de ouvido Removidos</Portuguese>
 			</Key>
 			<Key ID="STR_ACT_LowGearOff">
 				<English>High-climbing gear off</English>
@@ -2343,12 +2334,12 @@
 				<Portuguese>Consertar</Portuguese>
 			</Key>
 			<Key ID="STR_WF_SERVICE_CANTAIR_INTOWN">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You can't rearm air in the town</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You can't rearm air in the town</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You can't rearm air in the town</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can't rearm air in the town</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can't rearm air in the town</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can't rearm air in the town</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нельзя перезаряжать воздушную технику в городе</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You can't rearm air in the town</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You can't rearm air in the town</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can't rearm air in the town</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can't rearm air in the town</Portuguese>
 			</Key>
 
 			<!--Tactical Menu - ALL DONE-->
@@ -2818,12 +2809,12 @@
 				<Portuguese>Seleção de funções com características específicas</Portuguese>
 			</Key>
 			<Key ID="STR_WF_RoleSelector_Text">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You bought the "%1" role</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Vous avez acheté le rôle "%1"</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Sie haben die Rolle "%1" gekauft</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You bought the "%1" role</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Vous avez acheté le rôle "%1"</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Sie haben die Rolle "%1" gekauft</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Вы купили роль "%1"</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Hai acquistato il ruolo "%1"</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Você comprou a função de "%1"</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Hai acquistato il ruolo "%1"</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Você comprou a função de "%1"</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TOOLTIP_MainMenu_VoteForCommander">
 				<English>Vote for a new Commander</English>
@@ -3665,100 +3656,100 @@
 				<Portuguese>Jogador morreu ou se afastou demais da casamata</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_IsAlive">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is already repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est déjà réparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is already repaired</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп уже восстановлен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is already repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo ja está de pé</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is already repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est déjà réparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is already repaired</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Кемп уже восстановлен</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is already repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo ja está de pé</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_IsAlive">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is already destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est déjà détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Lager ist bereits zerstört</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп уже разрушен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il campo è già distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo ja está destruido</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is already destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est déjà détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Lager ist bereits zerstört</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Кемп уже разрушен</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il campo è già distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo ja está destruido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_IsBeingRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est en cours de réparation</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being repaired</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est en cours de réparation</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being repaired</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп в процессе восстановления</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo está sendo consertado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo está sendo consertado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_IsBeingRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est en train d'être détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Lager wird zerstört</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est en train d'être détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Lager wird zerstört</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп в процессе разрушения</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il campo viene distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo esta sendo detruido</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il campo viene distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo esta sendo detruido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_IsRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est réparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is repaired</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est réparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is repaired</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп восстановлен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo esta sendo consertado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo esta sendo consertado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_IsRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Lager ist zerstört</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Lager ist zerstört</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп уничтожен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il campo è distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A casamata foi destruida</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il campo è distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A casamata foi destruida</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_None">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Aucun camp à proximité ne peut être réparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be repaired</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Aucun camp à proximité ne peut être réparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be repaired</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нет доступных кемпов для ремеонта</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Não tem casamatas por perto para serem consertadas</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Não tem casamatas por perto para serem consertadas</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_None">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il n'y a pas de camps à proximité qui peuvent être détruits</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Es gibt keine nahe gelegenen Lager, die zerstört werden können</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il n'y a pas de camps à proximité qui peuvent être détruits</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Es gibt keine nahe gelegenen Lager, die zerstört werden können</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нет доступных кемпов для уничтожения</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Non ci sono campi vicini che possono essere distrutti</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Não tem casamatas proximas para serem destruidas</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Non ci sono campi vicini che possono essere distrutti</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Não tem casamatas proximas para serem destruidas</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_NoFunds">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il vous manque actuellement $%1. afin de réparer le camp</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Você necessita de mais $%1. para consertar a casamata</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il vous manque actuellement $%1. afin de réparer le camp</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Você necessita de mais $%1. para consertar a casamata</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_None_Dead">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;None of the nearby camps are destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Aucun camp à proximité n'est détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Keines der umliegenden Lager ist zerstört</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;None of the nearby camps are destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Aucun camp à proximité n'est détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Keines der umliegenden Lager ist zerstört</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ни один из близлежащих лагерей не уничтожен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Nessuno dei campi vicini è distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Nenhuma das casamatas proximos estão destruidos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Nessuno dei campi vicini è distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Nenhuma das casamatas proximos estão destruidos</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_None_Dead">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;No nearby camps for destruction</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Aucun des camps voisins n'est détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Keine nahegelegenen Lager zur Vernichtung</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;No nearby camps for destruction</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Aucun des camps voisins n'est détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Keine nahegelegenen Lager zur Vernichtung</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нет кемпов для уничтожения</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Nessun campo vicino per la distruzione</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Não há casamatas proximas para destruir</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Nessun campo vicino per la distruzione</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Não há casamatas proximas para destruir</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_TruckIsDeadOrTooFar">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The repair truck is either too far or destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camion de réparation est trop loin de la cible ou à été détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The repair truck is either too far or destroyed</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Рем. грузовик уничтожен или слишком далеко</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The repair truck is either too far or destroyed</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O caminhão de conserto esta muito distante ou destruido</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The repair truck is either too far or destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camion de réparation est trop loin de la cible ou à été détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The repair truck is either too far or destroyed</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Рем. грузовик уничтожен или слишком далеко</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The repair truck is either too far or destroyed</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O caminhão de conserto esta muito distante ou destruido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TaxiReverse">
 				<English>Taxi Reverse</English>
@@ -3948,13 +3939,13 @@
 			</Key>
 			
 			<Key ID="STR_WF_GEARTEMPLATE_SAVE_ERROR">				
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Произошла ошибка при попытке сохранить шаблон на Сервере!&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_SAVE_OK">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;Шаблон вооружения игрока [%1] был успешно сохранен на Сервере!&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_SAVE_EXCLUDES">
@@ -3963,28 +3954,28 @@
 				<Russian>&lt;t color='#ffffff' size='1.1' &gt;За исключением следующих предметов (не соответствуют текущему апгрейду или не входят в снаряжение стороны):&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_LOAD_EXCLUDES">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;Следующие предметы не были загружены из шаблона (возможно требуется прокачать снаряжение или другая роль):&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_NAME_ERROR">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Необходимо указать имя шаблона&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_GEARTEMPLATE_LIMIT_ERROR">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Количество создаваемых шаблонов ограничено&lt;br/&gt;Лимит [%1]&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_GEARTEMPLATE_DELETE_ERROR">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;При попытке удалить шаблон возникла ошибка&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_GEARTEMPLATE_DELETE_OK">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;Шаблон был удален&lt;/t&gt;</Russian>
 			</Key>
 			

@@ -7,10 +7,12 @@ _delay =  5;
 _reloadtime = 600;
 
 _binoculars = ["Laserdesignator", "Binocular", "Binocular_Vector","rhs_1PN138","rhs_pdu4","lerca_1200_black","lerca_1200_tan","Leupold_Mk4","Rangefinder"];
-if !((currentWeapon player) in _binoculars) exitWith {hint (localize "STR_WF_INFO_ArtyStrike_Info")};
+if !((currentWeapon player) in _binoculars) exitWith {
+    [format["%1", localize "STR_WF_INFO_ArtyStrike_Info"]] spawn WFCL_fnc_handleMessage
+};
 WF_SK_V_LastUse_ArtyStrike = time;
 
-hint "FIRE MISSION RECEIVED. WAIT OUT";
+["FIRE MISSION RECEIVED. WAIT OUT"] spawn WFCL_fnc_handleMessage;
 sleep _delay;
 
 _position = screenToWorld [0.5,0.5];
@@ -23,7 +25,5 @@ for "_round" from 1 to _rounds do {
     sleep _delay - 0.5;
 };
 
-hint "FIRE MISSION COMPLETE.";
-
-
-hint "Artillary ready. Awaiting orders...";
+["FIRE MISSION COMPLETE."] spawn WFCL_fnc_handleMessage;
+["Artillary ready. Awaiting orders..."] spawn WFCL_fnc_handleMessage

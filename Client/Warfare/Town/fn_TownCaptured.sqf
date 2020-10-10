@@ -23,7 +23,6 @@ _townMarker setMarkerColorLocal _color;
 
 //--- Display a title message.
 _side_label = switch (_side_captured) do {case west: {localize "STR_WF_PARAMETER_Side_West"}; case east: {localize "STR_WF_PARAMETER_Side_East"}; case resistance: {localize "STR_WF_Side_Resistance"};	default {"Civilian"}};
-[Format[Localize "STR_WF_CHAT_Town_Captured", _townName, _side_label]] Call WFCL_FNC_TitleTextMessage;
 
 //--- Task.
 _task = _town getVariable 'taskLink';

@@ -6,7 +6,7 @@ if!(isNil 'WF_resetRoleRequest')then{
 
         WF_gbl_boughtRoles = [];
 
-        hint "Your skills have been reset.";
+        ["Your skills have been reset."] spawn WFCL_fnc_handleMessage;
 
         [] call WFCL_fnc_updateRolesMenu;
         [] spawn WFCL_fnc_selectRole;

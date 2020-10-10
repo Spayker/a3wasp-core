@@ -15,4 +15,4 @@ if (_votepopup) then {
     if (voted) then {voted = false};
 };
 
-if (isMultiplayer) then {[format[localize "STR_WF_CHAT_HasVotedForNewCommander", _name]] call WFCL_FNC_TitleTextMessage};
+if (isMultiplayer) then { [Format[localize "STR_WF_CHAT_HasVotedForNewCommander", _name]] spawn WFCL_fnc_handleMessage };

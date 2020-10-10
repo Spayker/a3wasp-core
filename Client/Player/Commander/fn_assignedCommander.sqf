@@ -11,4 +11,4 @@ if (!isNull _commanderTeam) then {
     _logic setVariable ["wf_commander", _commanderTeam, true];
 };
 
-[_text] Call WFCL_FNC_TitleTextMessage;
+[_text] spawn WFCL_fnc_handleMessage;

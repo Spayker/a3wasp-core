@@ -34,16 +34,8 @@ AIC_fnc_setGroupColorActionHandler = {
 	AIC_fnc_setGroupControlColor(_groupControlId,_color);
 	[_groupControlId,"REFRESH_GROUP_ICON",[]] call AIC_fnc_groupControlEventHandler;
 	[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-	[_groupControlId,"REFRESH_ACTIONS",[]] call AIC_fnc_groupControlEventHandler;
-	hint ("Color set to " + toLower (_color select 0));
+	[_groupControlId,"REFRESH_ACTIONS",[]] call AIC_fnc_groupControlEventHandler
 };
-
-//["GROUP","Red",["Set Group Color"],AIC_fnc_setGroupColorActionHandler,[AIC_COLOR_RED]] call AIC_fnc_addCommandMenuAction;
-//["GROUP","Blue",["Set Group Color"],AIC_fnc_setGroupColorActionHandler,[AIC_COLOR_BLUE]] call AIC_fnc_addCommandMenuAction;
-//["GROUP","Green",["Set Group Color"],AIC_fnc_setGroupColorActionHandler,[AIC_COLOR_GREEN]] call AIC_fnc_addCommandMenuAction;
-//["GROUP","Black",["Set Group Color"],AIC_fnc_setGroupColorActionHandler,[AIC_COLOR_BLACK]] call AIC_fnc_addCommandMenuAction;
-//["GROUP","White",["Set Group Color"],AIC_fnc_setGroupColorActionHandler,[AIC_COLOR_WHITE]] call AIC_fnc_addCommandMenuAction;
-
 
 AIC_fnc_setGroupBehaviourActionHandler = {
 	params ["_menuParams","_actionParams"];
@@ -51,8 +43,8 @@ AIC_fnc_setGroupBehaviourActionHandler = {
 	private ["_group"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	_actionParams params ["_mode"];
-	[_group,_mode] remoteExec ["setBehaviour", leader _group]; 
-	hint ("Behaviour set to " + toLower _mode);
+	[_group,_mode] remoteExec ["setBehaviour", leader _group];
+	[("Behaviour set to " + toLower _mode)] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP",localize "STR_WF_HC_BEHAVIOUR_CARELESS",[localize "STR_WF_HC_SETGROUPBEHAVIOUR"],AIC_fnc_setGroupBehaviourActionHandler,["CARELESS"]] call AIC_fnc_addCommandMenuAction;
@@ -69,81 +61,18 @@ AIC_fnc_joinGroupActionHandler = {
 	private ["_selectedGroup"];
 	_selectedGroup = [_groupControlId] call AIC_fnc_selectGroupControlGroup;
 	if((count (units _group)) + (count (units _selectedGroup)) <= WF_C_PLAYERS_AI_MAX) then {
-	if(!isNull _selectedGroup) then {
-		(units _group) joinSilent _selectedGroup;
-            hint ("Selected Group Joined")
-	} else {
-            hint ("No Group Selected")
+        if(!isNull _selectedGroup) then {
+            (units _group) joinSilent _selectedGroup;
+            ["Selected Group Joined"] spawn WFCL_fnc_handleMessage
+        } else {
+            ["No Group Selected"] spawn WFCL_fnc_handleMessage
         }
 	} else {
-	    hint format ["Max group unit reached: %1", WF_C_PLAYERS_AI_MAX]
+	    [format ["Max group unit reached: %1", WF_C_PLAYERS_AI_MAX]] spawn WFCL_fnc_handleMessage
 	}
 };
 
 ["GROUP",localize "STR_WF_HC_COMMAND_JOINGROUP",[localize "STR_WF_HC_GROUPSIZE"],AIC_fnc_joinGroupActionHandler,[]] call AIC_fnc_addCommandMenuAction;
-
-/*
-AIC_fnc_splitGroupHalfActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	_group2 = createGroup (side _group);
-	_joinNewGroup = false;
-	{
-		if(_joinNewGroup) then {
-			[_x] joinSilent _group2;
-			_joinNewGroup = false;
-		} else {	
-			_joinNewGroup = true;
-		};
-	} forEach (units _group);
-	hint ("Group Split in Half");
-};
-
-["GROUP","In Half",["Group Size","Split Group"],AIC_fnc_splitGroupHalfActionHandler,[],{
-	params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	count units _group > 1;
-}] call AIC_fnc_addCommandMenuAction;
-
-AIC_fnc_splitGroupUnitsActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	
-	// Find all command controls to update with new split groups
-	_commandControlsToUpdate = [];
-	_commandControls = AIC_fnc_getCommandControls();
-	{
-		_commandControlId = _x;
-		_groups = AIC_fnc_getCommandControlGroups(_commandControlId);
-		if(_group in _groups) then {
-			_commandControlsToUpdate pushBack _commandControlId;
-		};
-	} forEach _commandControls;
-	
-	{
-		_group = createGroup (side _x);
-		[_x] joinSilent _group;
-		{
-			[_x,_group] call AIC_fnc_commandControlAddGroup;
-		} forEach _commandControlsToUpdate;
-	} forEach (units _group);
-	
-	hint ("Group Split into Individual Units");
-	
-};
-
-["GROUP","Into Individual Units",["Group Size","Split Group"],AIC_fnc_splitGroupUnitsActionHandler,[],{
-	params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	count units _group > 1;
-}] call AIC_fnc_addCommandMenuAction;
-*/
 
 AIC_fnc_setGroupSpeedActionHandler = {
 	params ["_menuParams","_actionParams"];
@@ -151,8 +80,8 @@ AIC_fnc_setGroupSpeedActionHandler = {
 	private ["_group"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	_actionParams params ["_speed","_label"];
-	[_group,_speed] remoteExec ["setSpeedMode", leader _group]; 
-	hint ("Speed set to " + _label);
+	[_group,_speed] remoteExec ["setSpeedMode", leader _group];
+	[("Speed set to " + _label)] spawn WFCL_fnc_handleMessage
 };	
 		
 ["GROUP",localize "STR_WF_HC_LIMITEDSPEED",[localize "STR_WF_HC_SETGROUPSPEED"],AIC_fnc_setGroupSpeedActionHandler,["LIMITED", "Half Speed"]] call AIC_fnc_addCommandMenuAction;
@@ -165,8 +94,8 @@ AIC_fnc_setGroupFormationActionHandler = {
 	private ["_group"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	_actionParams params ["_mode"];
-	[_group,_mode] remoteExec ["setFormation", leader _group]; 
-	hint ("Formation set to " + toLower _mode);
+	[_group,_mode] remoteExec ["setFormation", leader _group];
+	[("Formation set to " + toLower _mode)] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP",localize "STR_WF_HC_FORMATION_COLUMN",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["COLUMN"]] call AIC_fnc_addCommandMenuAction;
@@ -203,7 +132,7 @@ AIC_fnc_setFlyInHeightActionHandler = {
 			[_x,_height] remoteExec ["flyInHeight", _x]; 
 		};
 	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-	hint ("Fly in height set to " + (str _height) + " meters");
+	[("Fly in height set to " + (str _height) + " meters")] spawn WFCL_fnc_handleMessage;
 };
 
 ["GROUP","10 meters",["Set Fly in Height"],AIC_fnc_setFlyInHeightActionHandler,[10],AIC_fnc_commandMenuIsAir] call AIC_fnc_addCommandMenuAction;
@@ -221,8 +150,8 @@ AIC_fnc_setGroupCombatModeActionHandler = {
 	private ["_group"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	_actionParams params ["_mode","_modeLabel"];
-	[_group,_mode] remoteExec ["setCombatMode", leader _group]; 
-	hint ("Combat mode set to " + toLower _modeLabel);
+	[_group,_mode] remoteExec ["setCombatMode", leader _group];
+	[("Combat mode set to " + toLower _modeLabel)] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP","Never fire",[localize "STR_WF_HC_SETGROUPCOMBATMODE"],AIC_fnc_setGroupCombatModeActionHandler,["BLUE","Never fire"]] call AIC_fnc_addCommandMenuAction;
@@ -238,7 +167,7 @@ AIC_fnc_clearAllWaypointsActionHandler = {
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	[_group] call AIC_fnc_disableAllWaypoints;	
 	[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-	hint ("All waypoints cleared");
+	[("All waypoints cleared")] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP",localize "STR_WF_HC_CONFIRMCANCELALL",[localize "STR_WF_HC_CLEARALLWAYPOINTS"],AIC_fnc_clearAllWaypointsActionHandler] call AIC_fnc_addCommandMenuAction;
@@ -341,7 +270,7 @@ AIC_fnc_remoteControlActionHandler = {
 	    }
 	} forEach (units (group player));
 
-	selectPlayer _rcUnit;
+    selectPlayer _rcUnit;
 	(vehicle _rcUnit) switchCamera "External";
 	openMap false;
 	
@@ -430,9 +359,9 @@ AIC_fnc_assignVehicleActionHandler = {
 			[_selectedVehicle,100] remoteExec ["flyInHeight", _selectedVehicle]; 
 		};
 		_vehicleName = getText (configFile >> "CfgVehicles" >> typeOf _selectedVehicle >> "displayName");
-		hint ("Vehicle assigned: " + _vehicleName);
+		[("Vehicle assigned: " + _vehicleName)] spawn WFCL_fnc_handleMessage
 	} else {
-		hint ("No vehicle assigned");
+	    ["No vehicle assigned"] spawn WFCL_fnc_handleMessage
 	};
 };
 
@@ -477,7 +406,7 @@ AIC_fnc_unassignVehicleActionHandler = {
 		[_group,_x] remoteExec ["leaveVehicle", leader _group];
 	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
 	[_group,nil] call AIC_fnc_setGroupAssignedVehicles;
-	hint ("All vehicles unassigned");
+	["All vehicles unassigned"] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP",localize "STR_WF_HC_UNASIGALLVEHS",[],AIC_fnc_unassignVehicleActionHandler,[],{
@@ -516,7 +445,7 @@ AIC_fnc_unloadOtherGroupsActionHandler = {
 			};
 		} forEach (crew _vehicle);
 	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-	hint ((str count _unloadedGroups) + " other group(s) unloaded");
+	[((str count _unloadedGroups) + " other group(s) unloaded")] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP","Unload Other Group(s)",[],AIC_fnc_unloadOtherGroupsActionHandler,[],{
@@ -624,7 +553,7 @@ AIC_fnc_setGroupAutoCombatActionHandler = {
 	} else {
 		{_x disableAI "AUTOCOMBAT"} foreach (units _group);
 	};
-	hint ("AutoCombat " + toLower _mode);
+	[("AutoCombat " + toLower _mode)] spawn WFCL_fnc_handleMessage
 };
 
 ["GROUP","On",[localize "STR_WF_HC_SETGROUPBEHAVIOUR","Toggle Auto Combat"],AIC_fnc_setGroupAutoCombatActionHandler,["On"]] call AIC_fnc_addCommandMenuAction;
@@ -651,7 +580,7 @@ AIC_fnc_setWaypointFormationActionHandler = {
 	_waypoint set [7,_mode];
 	[_group, _waypoint] call AIC_fnc_setWaypoint;
 	[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-	hint ("Formation set to " + toLower _mode);
+	[("Formation set to " + toLower _mode)] spawn WFCL_fnc_handleMessage
 };
 
 ["WAYPOINT",localize "STR_WF_HC_FORMATION_COLUMN",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setWaypointFormationActionHandler,["COLUMN"]] call AIC_fnc_addCommandMenuAction;
@@ -674,7 +603,7 @@ AIC_fnc_setWaypointTypeActionHandler = {
 	_waypoint set [3,_mode];
 	[_group, _waypoint] call AIC_fnc_setWaypoint;
 	[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-	hint ("Type set to " + toLower _label);
+	[("Type set to " + toLower _label)] spawn WFCL_fnc_handleMessage
 };
 
 AIC_fnc_setLoiterTypeActionHandler = {
@@ -697,7 +626,7 @@ AIC_fnc_setLoiterTypeActionHandler = {
 	if(!_clockwise) then {
 		_loiterTypeLabel = "loiter counter clockwise";
 	};
-	hint ("Type set to " + _loiterTypeLabel + " at " + str _radius + " meter radius");
+	[("Type set to " + _loiterTypeLabel + " at " + str _radius + " meter radius")] spawn WFCL_fnc_handleMessage
 };
 
 ["WAYPOINT","Move (default)",["Set Waypoint Type"],AIC_fnc_setWaypointTypeActionHandler,["MOVE","Move"]] call AIC_fnc_addCommandMenuAction;
@@ -740,7 +669,7 @@ AIC_fnc_setWaypointFlyInHeightActionHandler = {
 	_waypoint set [4,_script];
 	_waypoint set [12,_height];
 	[_group, _waypoint] call AIC_fnc_setWaypoint;
-	hint ("Waypoint fly in height set to " + (str _height) + " meters");
+	[("Waypoint fly in height set to " + (str _height) + " meters")] spawn WFCL_fnc_handleMessage
 };
 
 ["WAYPOINT","10 meters",["Set Fly in Height"],AIC_fnc_setWaypointFlyInHeightActionHandler,[10],AIC_fnc_commandMenuIsAir] call AIC_fnc_addCommandMenuAction;
@@ -761,7 +690,7 @@ AIC_fnc_setWaypointDurationActionHandler = {
 	_waypoint = [_group, _waypointId] call AIC_fnc_getWaypoint;
 	_waypoint set [9,_duration * 60];
 	[_group, _waypoint] call AIC_fnc_setWaypoint;
-	hint ("Waypoint duration set to " + (str _duration) + " mins");
+	[("Waypoint duration set to " + (str _duration) + " mins")] spawn WFCL_fnc_handleMessage
 };
 
 ["WAYPOINT","None",["Set Duration"],AIC_fnc_setWaypointDurationActionHandler,[0]] call AIC_fnc_addCommandMenuAction;

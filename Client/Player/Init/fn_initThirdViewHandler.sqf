@@ -12,8 +12,8 @@ player addEventHandler ["GetOutMan", {
 
     if (isNull objectParent player) then {
         if (_key in actionKeys "curatorPersonView") then {
-            HINT parseText(localize "STR_WF_GAMEPLAY_THIRDVIEW_MESSAGE");
-            true;
+            [format["%1", localize "STR_WF_GAMEPLAY_THIRDVIEW_MESSAGE"]] spawn WFCL_fnc_handleMessage;
+            true
         };
     };
 }];

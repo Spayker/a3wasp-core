@@ -46,6 +46,10 @@ WF_Client_PendingRequests = [];
 WF_Client_PendingRequests_Accepted = [];
 call WFCL_fnc_Squads;
 
+//--- Notification HUD init
+call WFCL_fnc_initMessageHUD;
+WF_PREVIOUS_HINT_MESSAGE = "";
+
 //--- Namespace related (GUI).
 BIS_FNC_GUIset = {UInamespace setVariable [_this # 0, _this # 1]};
 BIS_FNC_GUIget = {UInamespace getVariable (_this # 0)};
@@ -446,21 +450,14 @@ sleep 5;
 //--- Valhalla init.
 0 = [] execVM "Client\Module\Valhalla\Init_Valhalla.sqf";
 
-if(WF_Skip_Intro) then {
-    while {isNull (findDisplay 2800)}do{
-        createDialog "WF_roles_menu";
-        sleep 0.01;
-    };
-    [] call WFCL_fnc_updateRolesMenu;
-    lbSetCurSel [2801, 0];
-} else {
+if!(WF_Skip_Intro) then {
     waitUntil {
         WF_EndIntro && WF_IsRoleSelectedDialogClosed
     };
 	
 	[] spawn {
-		sleep 10;
-		hint parseText(format["%1%2%3", localize "STR_WF_Options_TIP", "<br /><br /><t color='#42b6ff' size='2'>",localize "STR_WF_Options","</t>"]);
+		sleep 10; //// wasp
+		[parseText(format["%1%2%3", localize "STR_WF_Options_TIP", "<br /><br /><t color='#42b6ff' size='2'>",localize "STR_WF_Options","</t>"])] spawn WFCL_fnc_handleMessage;
 	};
 };
 

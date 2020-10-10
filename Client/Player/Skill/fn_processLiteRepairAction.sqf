@@ -25,23 +25,28 @@ WF_SK_V_LastUse_LR = time;
 
 _skip = false;
 
-HINT parseText(localize 'STR_HINT_FieldStarted');
+[format["%1", localize 'STR_HINT_FieldStarted']] spawn WFCL_fnc_handleMessage;
 
 for [{_z = 0},{_z < 25},{_z = _z + 1}] do {
 	player playMove "Acts_carFixingWheel";
 	sleep 1;
-	if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > 5) exitWith { HINT parseText(localize 'STR_HINT_FieldFailed'); _skip = true; };
+	if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > 5) exitWith {
+	    [format["%1", localize 'STR_HINT_FieldFailed']] spawn WFCL_fnc_handleMessage;
+	    _skip = true;
+	}
 };
 
-if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > 5) exitWith { HINT parseText(localize 'STR_HINT_FieldFailed'); _skip = true; };
+if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > 5) exitWith {
+    [format["%1", localize 'STR_HINT_FieldFailed']] spawn WFCL_fnc_handleMessage;
+    _skip = true
+};
 
 
 if (!_skip) then {
 	_dammages = _dammages - .15;
 	if (_dammages < 0) then {_dammages = 0};
 	_vehicle setDammage _dammages;
-	
-	HINT parseText(localize 'STR_HINT_FieldComplete');
+	[format["%1", localize 'STR_HINT_FieldComplete']] spawn WFCL_fnc_handleMessage
 };
 
 player switchmove "";

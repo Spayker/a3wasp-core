@@ -5,7 +5,9 @@ _supportRange = missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE";
 _repairRange = missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE";
 _get = _veh getVariable "stopped";
 if(!isNil '_get') then {
-	if (_get) exitWith {hint "Enable engine!";};
+	if (_get) exitWith {
+	    ["Enable engine!"] spawn WFCL_fnc_handleMessage
+	};
 };
 
 //--- Retrieve Informations.
@@ -53,7 +55,7 @@ if (_veh isKindOf 'Tank') then {_refTime = round(_refTime * (_heaCoef + (1 - fue
 if (_veh isKindOf 'Car' || _veh isKindOf 'Motorcycle') then {_refTime = round(_refTime * (_ligCoef + (1 - fuel _veh)))};
 
 //--- Inform the player.
-hint parseText(Format[localize "STR_WF_INFO_Refueling",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name],_refTime]);
+[Format[localize "STR_WF_INFO_Refueling",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name],_refTime]] spawn WFCL_fnc_handleMessage;
 
 //--- Make sure that we still have something as a support.
 _cts = 0;
@@ -70,11 +72,14 @@ while {true} do {
 
 	_i = _i + 1;
 
-	if (_cts == 0 || !(alive _veh) || (getPos _veh) select 2 > 2) exitWith {_cts = 0;hint parseText(Format[localize "STR_WF_INFO_Refueling_Failed",_name])};
-	if (_i >= _refTime) exitWith {hint parseText(Format[localize "STR_WF_INFO_Refueling_Success",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name]])};
+	if (_cts == 0 || !(alive _veh) || (getPos _veh) select 2 > 2) exitWith {
+	    _cts = 0;
+	    [Format[localize "STR_WF_INFO_Refueling_Failed",_name]] spawn WFCL_fnc_handleMessage
+	};
+	if (_i >= _refTime) exitWith {
+	    [Format[localize "STR_WF_INFO_Refueling_Success",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name]]] spawn WFCL_fnc_handleMessage
+	}
 };
 
 //--- Refuel the vehicle?
-if (_cts != 0) then {
-	_veh setFuel 1;
-};
+if (_cts != 0) then { _veh setFuel 1 }

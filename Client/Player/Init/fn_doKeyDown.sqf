@@ -27,11 +27,11 @@ if (_key in (actionKeys "User18")) then {
 	if(player getvariable["_earplugs", true]) then {
 		0.1 fadeSound 0.1;
 		player setvariable["_earplugs", false];
-		HINT parseText(localize 'STR_HINT_EARPLUGS_INSERTED');
+		[format[localize 'STR_HINT_EARPLUGS_INSERTED']] spawn WFCL_fnc_handleMessage
 	} else {
 		0.1 fadeSound 1;
 		player setvariable["_earplugs", true];
-		HINT parseText(localize 'STR_HINT_EARPLUGS_REMOVED');
+		[format[localize 'STR_HINT_EARPLUGS_REMOVED']] spawn WFCL_fnc_handleMessage
 	}		
 };
 //--INS/REMOVE earplugs handler--END----------------------------------------------------------------------------------//
@@ -62,7 +62,7 @@ if (_key in (actionKeys "User14") || _key in (actionKeys "User15")) then {
 		};
 	};
 	
-	HINT parseText(format["%1 %2", localize "STR_WF_PARAMETER_ViewDistance_KEYBOARDCHANGED", _currentVD]);
+	[format["%1 %2", localize "STR_WF_PARAMETER_ViewDistance_KEYBOARDCHANGED", _currentVD]] spawn WFCL_fnc_handleMessage;
 	setViewDistance _currentVD;
 	if !(isNil 'WFCO_FNC_SetProfileVariable') then {
 		['WF_PERSISTENT_CONST_VIEW_DISTANCE', _currentVD] Call WFCO_FNC_SetProfileVariable;

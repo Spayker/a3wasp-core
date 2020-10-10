@@ -105,20 +105,28 @@ while {alive player && dialog} do {
                 _skip = false;
                 if (_funds < _currentCost) then {
                     _skip = true;
-                    hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing',_currentCost - _funds,_currentUnit select QUERYUNITLABEL])
+                    [Format[localize 'STR_WF_INFO_Funds_Missing',_currentCost - _funds,_currentUnit select QUERYUNITLABEL]] spawn WFCL_fnc_handleMessage
                 };
                 //--- Make sure that we own all camps before being able to purchase infantry.
                 if (_type == "Depot" && _isInfantry) then {
                     _totalCamps = _closest Call WFCO_FNC_GetTotalCamps;
                     _campsSide = [_closest,WF_Client_SideJoined] Call WFCO_FNC_GetTotalCampsOnSide;
-                    if (_totalCamps != _campsSide) then {_skip = true; hint parseText(localize 'STR_WF_INFO_Camps_Purchase')};
+                    if (_totalCamps != _campsSide) then {
+                        _skip = true;
+                        [format["%1", (localize 'STR_WF_INFO_Camps_Purchase')]] spawn WFCL_fnc_handleMessage
+                    };
                 };
                 if !(_skip) then {
                     _currentGroupSize = Count ((Units (group player)) Call WFCO_FNC_GetLiveUnits);
                     //--- Get the infantry limit based off the infantry upgrade.
                     _realSize = missionNamespace getVariable 'WF_C_PLAYERS_AI_MAX';
 
-                    if (_isInfantry) then {if ((unitQueu + _currentGroupSize + 1) > _realSize) then {_skip = true;hint parseText(Format [localize 'STR_WF_INFO_MaxGroup',_realSize])}};
+                    if (_isInfantry) then {
+                        if ((unitQueu + _currentGroupSize + 1) > _realSize) then {
+                            _skip = true;
+                            [Format [localize 'STR_WF_INFO_MaxGroup',_realSize]] spawn WFCL_fnc_handleMessage
+                        }
+                    };
 
                     if (!_isInfantry && !_skip) then {
                         _cpt = 0;
@@ -126,7 +134,10 @@ while {alive player && dialog} do {
                         if (_gunner) then {_cpt = _cpt + 1};
                         if (_commander) then {_cpt = _cpt + 1};
                         if (_extracrew) then {_cpt = _cpt + ((_currentUnit select QUERYUNITCREW) select 3)};
-                        if ((unitQueu + _currentGroupSize + _cpt) > _realSize && _cpt != 0) then {_skip = true;hint parseText(Format [localize 'STR_WF_INFO_MaxGroup',_realSize])};
+                        if ((unitQueu + _currentGroupSize + _cpt) > _realSize && _cpt != 0) then {
+                            _skip = true;
+                            [Format [localize 'STR_WF_INFO_MaxGroup',_realSize]] spawn WFCL_fnc_handleMessage
+                        };
                     };
                 };
 
@@ -136,7 +147,7 @@ while {alive player && dialog} do {
                         _mhqs = _mhqs - [objNull];
                         if(count _mhqs >= missionNamespace getVariable "WF_C_BASE_AREA") then {
                             _skip = true;
-                            hint parseText(Format [localize 'STR_WF_INFO_BaseArea_Reached',count _mhqs])
+                            [Format [localize 'STR_WF_INFO_BaseArea_Reached',count _mhqs]] spawn WFCL_fnc_handleMessage
                         }
                     }
                 };
@@ -147,9 +158,9 @@ while {alive player && dialog} do {
                         missionNamespace setVariable [Format["WF_C_QUEUE_%1",_type],(missionNamespace getVariable Format["WF_C_QUEUE_%1",_type])+1];
 
                         _queu = _closest getVariable 'queu';
-                        _txt = parseText(Format [localize 'STR_WF_INFO_BuyEffective',_currentUnit select QUERYUNITLABEL]);
-                        if (!isNil '_queu') then {if (count _queu > 0) then {_txt = parseText(Format [localize 'STR_WF_INFO_Queu',_currentUnit select QUERYUNITLABEL])}};
-                        hint _txt;
+                        _txt = Format [localize 'STR_WF_INFO_BuyEffective',_currentUnit select QUERYUNITLABEL];
+                        if (!isNil '_queu') then {if (count _queu > 0) then {_txt = Format [localize 'STR_WF_INFO_Queu',_currentUnit select QUERYUNITLABEL]}};
+                        [format["%1", _txt]] spawn WFCL_fnc_handleMessage;
 
                         _gunnerEqCommander = false; //--crutch for vehicles such as CUP BPPU VODNIK--
                         if(count _currentUnit >= 12) then {
@@ -160,7 +171,7 @@ while {alive player && dialog} do {
                         _params Spawn WFCL_FNC_BuildUnit;
                         -(_currentCost) Call WFCL_FNC_ChangePlayerFunds;
                     } else {
-                        hint parseText(Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_QUEUE_%1_MAX",_type]]);
+                        [Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_QUEUE_%1_MAX",_type]]] spawn WFCL_fnc_handleMessage
                     };
                 };
             };
@@ -189,7 +200,7 @@ while {alive player && dialog} do {
 
                 if (_funds < _cost) then {
                     _skip = true;
-                    hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing',_cost - _funds,_selectedGroupTemplateDescription])
+                    [Format[localize 'STR_WF_INFO_Funds_Missing',_cost - _funds,_selectedGroupTemplateDescription]] spawn WFCL_fnc_handleMessage;
                 };
 
                 if !(_skip) then {
@@ -198,14 +209,14 @@ while {alive player && dialog} do {
                     _purchasedGroups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
                     if((count _purchasedGroups) >= _hcAllowedGroupAmount ) then {
                         _skip = true;
-                        hint parseText(Format [localize 'STR_WF_INFO_HC_Group_Max', _hcAllowedGroupAmount]);
+                        [Format [localize 'STR_WF_INFO_HC_Group_Max', _hcAllowedGroupAmount]] spawn WFCL_fnc_handleMessage
                     }
                 };
                 if !(_skip) then {
                     _purchasedGroups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
                     if (groupQueu  >= WF_C_HIGH_COMMAND_MAX_QUEUE_ORDER_GROUP_PURCHASE) then {
                         _skip = true;
-                        hint parseText(Format [localize 'STR_WF_INFO_Queu_Max', WF_C_HIGH_COMMAND_MAX_QUEUE_ORDER_GROUP_PURCHASE])
+                        [Format [localize 'STR_WF_INFO_Queu_Max', WF_C_HIGH_COMMAND_MAX_QUEUE_ORDER_GROUP_PURCHASE]] spawn WFCL_fnc_handleMessage;
                     }
                 };
                 if !(_skip) then {
@@ -214,15 +225,15 @@ while {alive player && dialog} do {
                         missionNamespace setVariable [Format["WF_C_GROUP_QUEUE_%1",_type],(missionNamespace getVariable Format["WF_C_GROUP_QUEUE_%1",_type])+1];
 
                         _queu = _closest getVariable 'groupQueu';
-                        _txt = parseText(Format [localize 'STR_WF_INFO_BuyEffective',_selectedGroupTemplateDescription]);
-                        if (!isNil '_queu') then {if (count _queu > 0) then {_txt = parseText(Format [localize 'STR_WF_INFO_Queu',_selectedGroupTemplateDescription])}};
-                        hint _txt;
+                        _txt = Format [localize 'STR_WF_INFO_BuyEffective',_selectedGroupTemplateDescription];
+                        if (!isNil '_queu') then {if (count _queu > 0) then {_txt = Format [localize 'STR_WF_INFO_Queu',_selectedGroupTemplateDescription]}};
+                        [format ["%1", _txt]] spawn WFCL_fnc_handleMessage;
 
                         [_closest,_selectedGroupTemplate,_type,_cpt, _commonTime, _selectedGroupTemplateDescription] Spawn WFCL_FNC_BuildGroup;
                         -(_cost) Call WFCL_FNC_ChangePlayerFunds;
 
                     } else {
-                        hint parseText(Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_GROUP_QUEUE_%1_MAX",_type]]);
+                        [Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_GROUP_QUEUE_%1_MAX",_type]]] spawn WFCL_fnc_handleMessage
                     };
                 };
             };
@@ -675,7 +686,7 @@ while {alive player && dialog} do {
                 _firstUnitConfig = missionNamespace getVariable _firstClassName;
 
                 if!(isNil '_firstUnitConfig') then {
-                _txttg = _txttg + "<t color='#eee58b' shadow='2'>" + (_firstUnitConfig # QUERYUNITLABEL) + "</t>";
+                    _txttg = _txttg + "<t color='#eee58b' shadow='2'>" + (_firstUnitConfig # QUERYUNITLABEL) + "</t>";
 
                     if ((_z+1) < count _selectedGroupTemplate) then {_txttg = _txttg + "<t color='#D3A119' shadow='2'>,</t> "}
                 }

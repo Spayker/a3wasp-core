@@ -369,7 +369,7 @@ while {true} do {
 			} forEach _vehi;
 
 			if(_funds < _fullPrice) then {
-				hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]);
+				[Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]] spawn WFCL_fnc_handleMessage;
 			} else {
 				-_fullPrice Call WFCL_FNC_ChangePlayerFunds;
 
@@ -425,7 +425,7 @@ while {true} do {
 			} forEach _vehi;
 
 			if(_funds < _fullPrice) then {
-				hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]);
+				[Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]] spawn WFCL_fnc_handleMessage
 			} else {
 				-_fullPrice Call WFCL_FNC_ChangePlayerFunds;
 
@@ -475,7 +475,7 @@ while {true} do {
 			} forEach _vehi;
 
 			if(_funds < _fullPrice) then {
-				hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]);
+				[Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]] spawn WFCL_fnc_handleMessage
 			} else {
 				-_fullPrice Call WFCL_FNC_ChangePlayerFunds;
 
@@ -523,7 +523,7 @@ while {true} do {
 			} forEach _vehi;
 
 			if(_funds < _fullPrice) then {
-				hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]);
+				[Format[localize 'STR_WF_INFO_Funds_Missing_Service', _fullPrice - _funds]] spawn WFCL_fnc_handleMessage
 			} else {
 				-_fullPrice Call WFCL_FNC_ChangePlayerFunds;
 

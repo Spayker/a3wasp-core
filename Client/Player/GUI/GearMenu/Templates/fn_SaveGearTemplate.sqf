@@ -38,6 +38,6 @@ if(!_result) then {
 	};
 };
 
-HINT parseText(_resultMessage);
+[format["%1", _resultMessage]] spawn WFCL_fnc_handleMessage;
 
 _result;

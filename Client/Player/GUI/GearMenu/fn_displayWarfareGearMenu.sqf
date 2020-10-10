@@ -335,7 +335,7 @@ switch (_action) do {
 			call WFCL_fnc_updatePrice;
 			-(_cost) Call WFCL_FNC_ChangePlayerFunds
 		} else {
-			hint "not enough funds";
+			["not enough funds"] spawn WFCL_fnc_handleMessage
 		};
 	};
 
@@ -388,7 +388,7 @@ switch (_action) do {
 	case "onTemplateCreation": {
 		_templateName = ctrlText 1400;
 		if(_templateName == "") then {
-			HINT parseText(localize "STR_WF_GEARTEMPLATE_NAME_ERROR");
+			[format["%1", localize "STR_WF_GEARTEMPLATE_NAME_ERROR"]] spawn WFCL_fnc_handleMessage
 		} else {
 			_selectedRole = WF_gbl_boughtRoles select 0;
 			if(isNil "_selectedRole") then { _selectedRole = "" };
@@ -399,7 +399,7 @@ switch (_action) do {
 				WF_GEAR_TAB_HANDGUN call WFCL_fnc_displayShoppingItems;
 				uiNamespace setVariable ["wf_dialog_ui_gear_shop_tab", WF_GEAR_TAB_HANDGUN];
 			} else {
-				HINT parseText(format[localize "STR_WF_GEARTEMPLATE_LIMIT_ERROR", WF_C_PLAYERS_GEAR_TEMPLATES_COUNT]);
+				[format[localize "STR_WF_GEARTEMPLATE_LIMIT_ERROR", WF_C_PLAYERS_GEAR_TEMPLATES_COUNT]] spawn WFCL_fnc_handleMessage
 			};
 		};
 	};
@@ -423,7 +423,7 @@ switch (_action) do {
 				uiNamespace setVariable ["wf_dialog_ui_gear_shop_tab", WF_GEAR_TAB_HANDGUN];
 			};
 		} else {
-			hint parseText "<t size='1.3' color='#2394ef'>Information</t><br /><br /><t align='left'>Templates may only be removed from the <t color='#eaff96'>Template</t> tab</t><br /><br /><img image='Rsc\Pictures\icon_wf_building_barracks.paa' size='2.5'/>";
+		    [format["%1", "<t size='1.3' color='#2394ef'>Information</t><br /><br /><t align='left'>Templates may only be removed from the <t color='#eaff96'>Template</t> tab</t><br /><br /><img image='Rsc\Pictures\icon_wf_building_barracks.paa' size='2.5'/>"]] spawn WFCL_fnc_handleMessage
 		};
 	};
 

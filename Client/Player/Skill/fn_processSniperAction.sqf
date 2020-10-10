@@ -5,7 +5,9 @@
 Private ['_binoculars','_markerName','_markertime','_screenPos'];
 
 _binoculars = ["Laserdesignator", "Binocular", "Binocular_Vector","rhs_1PN138","rhs_pdu4","lerca_1200_black","lerca_1200_tan","Leupold_Mk4","Rangefinder"];
-if !((currentWeapon player) in _binoculars) exitWith {hint (localize "STR_WF_INFO_Spot_Info")};
+if !((currentWeapon player) in _binoculars) exitWith {
+    [format["%1", localize "STR_WF_INFO_Spot_Info"]] spawn WFCL_fnc_handleMessage
+};
 
 if (isNil "markerID") then {markerID = 1};
 _screenPos = screenToWorld [0.5,0.5];

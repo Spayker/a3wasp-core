@@ -23,22 +23,22 @@ if!(isNil 'WF_newBuyRolerequest')then{
 
         switch (_status) do {
             case "owned": {
-                hint format["You have already selected the ""%1"" role.", (_roleDetails # 1)];
+                [format["You have already selected the ""%1"" role.", (_roleDetails # 1)]] spawn WFCL_fnc_handleMessage;
                 if (!isNull (findDisplay 2800)) then { ctrlEnable[2804, true]; };
             };
 
             case "maxRoleLimit": {
-                hint format["Maximum limit is reached for ""%1"" role in team.", (_roleDetails # 1)];
+                [format["Maximum limit is reached for ""%1"" role in team.", (_roleDetails # 1)]] spawn WFCL_fnc_handleMessage;
                 if (!isNull (findDisplay 2800)) then { ctrlEnable[2804, true]; };
             };
 
             case "money": {
-                hint format["You do not have enough money to buy the ""%1"" role.", (_roleDetails # 1)];
+                [format["You do not have enough money to buy the ""%1"" role.", (_roleDetails # 1)]] spawn WFCL_fnc_handleMessage;
                 if (!isNull (findDisplay 2800)) then { ctrlEnable[2804, true]; };
             };
 
             case "success": {                
-				HINT parseText(format[localize 'STR_WF_RoleSelector_Text', (_roleDetails # 1)]);
+				[format[localize 'STR_WF_RoleSelector_Text', (_roleDetails # 1)]] spawn WFCL_fnc_handleMessage;
                 [] call WFCL_fnc_updateRolesMenu;
                 removeAllActions player;
                 player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"},

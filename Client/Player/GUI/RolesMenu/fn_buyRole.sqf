@@ -37,7 +37,7 @@ if(_result)then{
     } foreach (_roleDetails select 3);
 
     if(!WF_isFirstRoleSelected)then{
-        hint "Buying role first time for FREE...";
+        ["Buying role first time for FREE..."] spawn WFCL_fnc_handleMessage;
         WF_IsRoleSelectedDialogClosed = true;
     }else{
         // check if the user have enough money
@@ -46,7 +46,7 @@ if(_result)then{
             [_role,"money",_funds,WF_gbl_boughtRoles] spawn WFCL_fnc_buyRoleConfirm;
         };
         -(_cost) Call WFCL_FNC_ChangePlayerFunds;
-        hint "Buying role, please wait..";
+        ["Buying role, please wait.."] spawn WFCL_fnc_handleMessage;
     };
 
     [player,_role] remoteExecCall ["WFSE_fnc_buyRole", 2];

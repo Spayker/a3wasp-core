@@ -34,7 +34,9 @@ if (isNil 'WF_COIN_Root') then {WF_COIN_Root = ""};
 if (WF_COIN_Root != _root) then {lastBuilt = []};
 WF_COIN_Root = _root;
 
-if (_tooFar) exitWith {hint parseText (localize 'STR_WF_INFO_BaseArea_Reached')};//--- Base area reached.
+if (_tooFar) exitWith {
+    [format ["%1", localize 'STR_WF_INFO_BaseArea_Reached']] spawn WFCL_fnc_handleMessage
+};//--- Base area reached.
 
 //--- Call in the construction interface.
 112200 cutrsc ["WF_ConstructionInterface","plain"]; //---added-MrNiceGuy
@@ -282,7 +284,6 @@ BIS_CONTROL_CAM_Handler = {
 		    		if (!isNil '_get' && isNil '_sold') then {
 		    		    _price = _get # QUERYUNITPRICE;
 
-		    		    if((missionNameSpace getVariable ["commanderTeam", grpNull]) isEqualTo WF_Client_Team) then {
                             _closest setVariable ['sold',true];
                             _returnPrice = round(_price/2.5);
                             _returnPrice Call WFCL_FNC_ChangePlayerFunds;
@@ -306,11 +307,7 @@ BIS_CONTROL_CAM_Handler = {
                                 };
                             };
 
-                            deleteVehicle _closest;
-                        } else {
-                            //--Player is not a commander, request server to sell by player UID--
-                            [_closest,player,_price] remoteExec ["WFSE_fnc_RequestDefenseSell",2];
-                        };
+                        deleteVehicle _closest
 		    		};
 		    	};
 		    };
@@ -829,7 +826,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                         };
 
                         if(((WF_C_ADV_AIR_DEFENCE # 0) find _itemclass) > -1 && !_canRequest) then {
-                            hint parseText (localize 'STR_WF_INFO_BaseArea_NeedBarracks');
+                            [format["%1", localize 'STR_WF_INFO_BaseArea_NeedBarracks']] spawn WFCL_fnc_handleMessage
                         } else {
                             _area = [_pos,((WF_Client_SideJoined) call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] call WFCO_FNC_GetClosestEntity2;
                             _canRequestOutsideBase = true;
@@ -849,13 +846,13 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                                             if(count (_x getVariable ["fortifications", []]) < WF_C_BASE_AV_FORTIFICATIONS) then {
                                                 _canRequestOutsideBase = true;
                                             } else {
-                                                hint parseText format[localize "STR_WF_INFO_FortsAreaCount_Reached", WF_C_BASE_AV_FORTIFICATIONS];
+                                                [format[localize "STR_WF_INFO_FortsAreaCount_Reached", WF_C_BASE_AV_FORTIFICATIONS]] spawn WFCL_fnc_handleMessage
                                             };
                                         };
                                     } forEach _playerAreas;
 
                                     if(!_canRequestOutsideBase) then {
-                                        hint parseText format[localize "STR_WF_INFO_FortsArea_Reached", WF_C_BASE_AREA];
+                                        [format[localize "STR_WF_INFO_FortsArea_Reached", WF_C_BASE_AREA]] spawn WFCL_fnc_handleMessage
                                     };
                                 };
                             };
@@ -893,7 +890,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                                 };
 
                                 if((_itemclass isKindOf "staticWeapon") && !_canRequest) then {
-                                    hint parseText (localize 'STR_WF_INFO_BaseArea_NoBarracksStaticGunner');
+                                    [format ["%1", localize 'STR_WF_INFO_BaseArea_NoBarracksStaticGunner']] spawn WFCL_fnc_handleMessage
                                 };
                             };
                         };

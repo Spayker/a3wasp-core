@@ -5,7 +5,10 @@ startLoadingScreen ["UAV","RscDisplayLoadMission"];
 
 _uav = playerUAV;
 //--- UAV destroyed
-if (isnull _uav) exitwith {endLoadingScreen;hint format [localize "strwfbasestructuredestroyed",localize "str_uav_action"]};
+if (isnull _uav) exitwith {
+    endLoadingScreen;
+    [format [localize "strwfbasestructuredestroyed",localize "str_uav_action"]] spawn WFCL_fnc_handleMessage
+};
 
 //--- Switch view
 gunner _uav removeweapon "nvgoggles";
@@ -106,7 +109,7 @@ endLoadingScreen;
 //--- TERMINATE
 waituntil {!isnil "bis_uav_terminate" || !alive _uav || !alive player};
 if (!alive _uav) then {
-	hint format [localize "strwfbasestructuredestroyed",localize "str_uav_action"];
+	[format [localize "strwfbasestructuredestroyed",localize "str_uav_action"]] spawn WFCL_fnc_handleMessage;
 } else {
 	{(driver playerUAV) enableAI _x} forEach ["TARGET","AUTOTARGET"];
 };

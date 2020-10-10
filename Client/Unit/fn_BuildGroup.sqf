@@ -76,7 +76,7 @@ while {_unique != _queu # 0 && alive _building && !isNull _building} do {
 	};
 };
 
-if (_show) then {hint(parseText(Format [localize "STR_WF_INFO_BuyEffective",_unitdescription]))};
+if (_show) then { [Format [localize "STR_WF_INFO_BuyEffective",_unitdescription]] spawn WFCL_fnc_handleMessage };
 
 _queu = _building getVariable "groupQueu";
 _queu = _queu - [_unique];
@@ -95,4 +95,4 @@ sleep _commonTime;
 groupQueu = groupQueu - _cpt;
 
 missionNamespace setVariable [Format["WF_C_GROUP_QUEUE_%1",_factory],(missionNamespace getVariable Format["WF_C_GROUP_QUEUE_%1",_factory])-1];
-hint parseText(Format [localize "STR_WF_INFO_Build_Complete",_selectedGroupTemplateDescription, _unitlogo]);
+[Format [localize "STR_WF_INFO_Build_Complete",_selectedGroupTemplateDescription, _unitlogo]] spawn WFCL_fnc_handleMessage

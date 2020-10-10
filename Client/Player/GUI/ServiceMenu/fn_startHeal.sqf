@@ -52,7 +52,7 @@ if (_veh isKindOf 'Tank') then {_healTime = round(_healTime * (_heaCoef + getDam
 if (_veh isKindOf 'Car' || _veh isKindOf 'Motorcycle') then {_healTime = round(_healTime * (_ligCoef + getDammage _veh))};
 
 //--- Inform the player.
-hint parseText(Format[localize "STR_WF_INFO_Healing",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name],_healTime]);
+[Format[localize "STR_WF_INFO_Healing",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name],_healTime]] spawn WFCL_fnc_handleMessage;
 
 //--- Make sure that we still have something as a support.
 _cts = 0;
@@ -69,8 +69,13 @@ while {true} do {
 
 	_i = _i + 1;
 
-	if (_cts == 0 || !(alive _veh) || (getPos _veh) select 2 > 2) exitWith {_cts = 0;hint parseText(Format[localize "STR_WF_INFO_Heal_Failed",_name])};
-	if (_i >= _healTime) exitWith {hint parseText(Format[localize "STR_WF_INFO_Heal_Success",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name]])};
+	if (_cts == 0 || !(alive _veh) || (getPos _veh) select 2 > 2) exitWith {
+	    _cts = 0;
+	    [Format[localize "STR_WF_INFO_Heal_Failed",_name]] spawn WFCL_fnc_handleMessage
+	};
+	if (_i >= _healTime) exitWith {
+	    [Format[localize "STR_WF_INFO_Heal_Success",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name]]] spawn WFCL_fnc_handleMessage
+	};
 };
 
 //--- Heal the damages?

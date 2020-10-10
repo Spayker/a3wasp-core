@@ -990,7 +990,7 @@ ASL_Advanced_Sling_Loading_Install = {
 				["Whoops", [_msg]] call ExileClient_gui_notification_event_addNotification; 
 			};
 		} else {
-			hint _msg;
+			[_msg] spawn WFCL_fnc_handleMessage
 		};
 	};
 

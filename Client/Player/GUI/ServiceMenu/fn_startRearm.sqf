@@ -19,7 +19,9 @@ _nearIsRT = false;
 } forEach _supports;
 
 _isAirVehicle = (typeOf _veh) iskindOf "Air";
-if (_isAirVehicle && !_isAirBase && _nearIsDP) exitWith { hint parseText(localize "STR_WF_SERVICE_CANTAIR_INTOWN"); };
+if (_isAirVehicle && !_isAirBase && _nearIsDP) exitWith {
+    [format["%1", localize "STR_WF_SERVICE_CANTAIR_INTOWN"]] spawn WFCL_fnc_handleMessage
+};
 
 
 //--- Coefficient Vary depending on the support type.
@@ -53,7 +55,7 @@ if (_veh isKindOf 'Tank') then {_rearmTime = round(_rearmTime * _heaCoef)};
 if (_veh isKindOf 'Car' || _veh isKindOf 'Motorcycle') then {_rearmTime = round(_rearmTime * _ligCoef)};
 
 //--- Inform the player.
-hint parseText(Format[localize "STR_WF_INFO_Rearming",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name],_rearmTime]);
+[Format[localize "STR_WF_INFO_Rearming",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name],_rearmTime]] spawn WFCL_fnc_handleMessage;
 
 //--- Make sure that we still have something as a support.
 _cts = 0;
@@ -70,8 +72,13 @@ while {true} do {
 
 	_i = _i + 1;
 
-	if (_cts == 0 || !(alive _veh) || (getPos _veh) select 2 > 2) exitWith { _cts = 0; hint parseText(format[localize "STR_WF_INFO_Rearm_Failed",_name])};
-	if (_i >= _rearmTime) exitWith {hint parseText(format[localize "STR_WF_INFO_Rearm_Success",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name]])};
+	if (_cts == 0 || !(alive _veh) || (getPos _veh) select 2 > 2) exitWith {
+	    _cts = 0;
+	    [format[localize "STR_WF_INFO_Rearm_Failed",_name]] spawn WFCL_fnc_handleMessage
+	};
+	if (_i >= _rearmTime) exitWith {
+	    [format[localize "STR_WF_INFO_Rearm_Success",format["%1 [%2] %3", group _veh, _veh call WFCO_FNC_GetAIDigit, _name]]] spawn WFCL_fnc_handleMessage
+	};
 };
 
 //--- Rearm?

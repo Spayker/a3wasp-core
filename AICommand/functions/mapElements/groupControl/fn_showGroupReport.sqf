@@ -14,7 +14,7 @@
 				format ["<t size='0.9'>Preparing %1</t><br /> ",_dots] + 
 				""
 			);
-			hint _text;
+			[format["%1", _text]] spawn WFCL_fnc_handleMessage;
 			_n = _n + 1;
 			sleep 0.2;
 		};
@@ -141,34 +141,13 @@
 			};
 		} foreach _classes;
 	};
-/*
-	{
-		_categoryName = _x select 0;
-		_categoryCount = _x select 1;
-		_items = _x select 2;
-
-		_vehInfo = _vehInfo + format [_textLarge,_categoryName,_categoryCount,_sizeLarge];
-		{
-			_itemName = _x select 0;
-			_itemCount = _x select 1;
-			_vehInfo = _vehInfo + format [_textSmall,_itemName,_itemCount,_sizeSmall];
-			
-		} foreach _items;
-		
-	} foreach _result;
-*/
-
-
-
-
 	//--- Display text
 	terminate _loading;
-	_text = parsetext (
+	_text =
 		"<t size='1.3' color='#ffffff' font='PuristaMedium' underline='true' align='left'>SITREP</t>" + 
 		format ["<t size='0.9' align='right'>%1</t><br />",[daytime] call bis_fnc_timetostring] + 
 	 	_textIcons + "<br />" + 
 		format ["<t>%1</t>",_unitInfo] + 
 		format ["<t>%1</t>",_vehInfo] + 
-		""
-	);
-	hint _text;
+		"";
+	[format["%1", _text]] spawn WFCL_fnc_handleMessage;

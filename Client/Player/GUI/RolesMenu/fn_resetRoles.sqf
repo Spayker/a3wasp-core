@@ -16,7 +16,7 @@ if(!_isAutomaticReset)then{
 
 ctrlEnable[2804, false];
 ctrlEnable[2805, false];
-hint "Refreshing your role, please wait..";
+["Refreshing your role, please wait.."] spawn WFCL_fnc_handleMessage;
 
 [player, WF_gbl_boughtRoles select 0] remoteExecCall ["WFSE_fnc_resetRoles", 2];
 true

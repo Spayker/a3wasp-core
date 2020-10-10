@@ -221,11 +221,11 @@ while {alive player && dialog} do {
 
 	if (WF_MenuAction == 17) then {
 		WF_MenuAction = -1;
-	    if ( zoomgps < 1 ) then { zoomgps = (zoomgps + 0.025); hint "zoom OUT";} else { zoomgps = 1; hint "GPS Zoom: \n MAX Value";};
+	    if ( zoomgps < 1 ) then { zoomgps = (zoomgps + 0.025)} else { zoomgps = 1};
 	};
 	if (WF_MenuAction == 18) then {
 		WF_MenuAction = -1;
-	    if ( zoomgps >= 0.025) then { zoomgps = (zoomgps - 0.025); hint "zoom IN";} else { zoomgps = 0.025; hint "GPS Zoom: \n MIN Value";};
+	    if ( zoomgps >= 0.025) then { zoomgps = (zoomgps - 0.025)} else { zoomgps = 0.025};
 	};
 	
 	sleep 0.1;

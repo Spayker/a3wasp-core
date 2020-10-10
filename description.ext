@@ -10,6 +10,10 @@
 
 //--- Parameters contains the mission parameters.
 #include "Rsc\Parameters.hpp"
+
+// Notification HUD
+#include "Rsc\Notification\common.hpp"
+
 //--- Ressource contains the dialog ressources.
 #include "Rsc\Ressources.hpp"
 

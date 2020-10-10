@@ -89,7 +89,6 @@ if(AIC_fnc_getGroupControlAddingWaypoints(_groupControlId)) then {
 		(AIC_fnc_getMouseMapPosition()),
 		_lineColor
 	];
-	//hint str (AIC_fnc_getMouseMapPosition());
 };
 
 // Draw the waypoint interactive icons on top of the line

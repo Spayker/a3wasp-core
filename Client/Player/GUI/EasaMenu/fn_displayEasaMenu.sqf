@@ -50,7 +50,7 @@ private _allPylons = "true" configClasses (
 	_ix = _ix + 1;
 } foreach _allPylons;
 
-hint parseText(localize 'STR_WF_INFO_EASA_HELP');
+[format ["%1", localize 'STR_WF_INFO_EASA_HELP']] spawn WFCL_fnc_handleMessage;
 	
 lbAdd[230035, "ON"];
 lbAdd[230035, "OFF"];
@@ -234,7 +234,7 @@ while {alive player && dialog} do {
 		ctrlSetText [230006,"$" + str(round(_rearmPrice / 2))];		
 		
 		if(_trysell_message) then {
-			hint parseText(localize 'STR_WF_EASA_TRYSELL_MESSAGE');
+			[format["%1", localize 'STR_WF_EASA_TRYSELL_MESSAGE']] spawn WFCL_fnc_handleMessage
 		};		
 	};
 	

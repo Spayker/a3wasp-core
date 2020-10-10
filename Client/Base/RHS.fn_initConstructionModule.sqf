@@ -78,7 +78,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
 
     if (typeOf _preview == "Sign_Danger" && !isNull ([_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2)) then {
         _color = _colorRed;
-        hint "Minefields are not allowed at base!";
+        ["Minefields are not allowed at base!"] spawn WFCL_fnc_handleMessage;
     };
     if (_itemcategory != 0 && typeOf _preview isKindOf "Base_WarfareBVehicleServicePoint") then {
         _color = _colorGreen;
@@ -94,7 +94,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         if!(isNil "_townside")then{
             if ((_preview distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _eArea) then {
                 _color = _colorRed;
-                 hintSilent parseText "<t color='#fb0808'> You have entered a restricted area ! Impossible to build here! </t>";
+                 [format ["%1", "<t color='#fb0808'> You have entered a restricted area ! Impossible to build here! </t>"]] spawn WFCL_fnc_handleMessage
             };
         };
     };
@@ -113,7 +113,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         {
             if(_itemcategory !=0 && side _x == _opposite_side)exitwith{
                 _color = _colorRed;
-                hintSilent parseText "<t color='#fb0808'> Enemies are detected near your base! </t>";
+                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage;
             };
 
         }foreach _detected;

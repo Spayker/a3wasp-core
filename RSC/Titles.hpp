@@ -930,4 +930,32 @@ class RscTitles {
     		};
     	};
     };
+
+    class life_message_hud {
+
+        idd = 245000;
+        name = "life_message_hud";
+        duration = 1e+007;
+        movingEnable = 0;
+        fadein = 0;
+        fadeout = 0;
+
+        onLoad = "uiNamespace setVariable ['life_message_hud', _this select 0]";
+        onUnload = "uiNamespace setVariable ['life_message_hud', nil]";
+
+        class controls {
+
+            class MessageContainer: Life_RscControlsGroupNoScrollbars
+            {
+                idc = 245001;
+
+                x = 0.8020 * safezoneW + safezoneX;
+                y = 0.1560 * safezoneH + safezoneY;
+                w = 0.1700 * safezoneW;
+                h = 0.2375 * safezoneH;
+
+                class controls {};
+            };
+        };
+    };
 };

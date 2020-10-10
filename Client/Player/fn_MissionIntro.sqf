@@ -74,11 +74,3 @@ _sleepTime = 3;
 if(!isNil {_logic getVariable "wf_votetime"}) then {
 	_sleepTime = _sleepTime + (_logic getVariable "wf_votetime");
 };
-
-sleep _sleepTime;
-
-while {isNull (findDisplay 2800)}do{
-    createDialog "WF_roles_menu";
-    sleep 0.01;
-};
-[] call WFCL_fnc_updateRolesMenu;

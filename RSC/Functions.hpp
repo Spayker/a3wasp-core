@@ -76,6 +76,15 @@ class WF_Client {
         class localizeMessage {};
     };
 
+    class Notification {
+        file = "Client\Player\Notification";
+        class createMessage {};
+        class deleteMessage {};
+        class handleMessage {};
+        class initMessageHUD {};
+        class insertElement {};
+    };
+
     class Skill {
         file = "Client\Player\Skill";
         class applySkill {};

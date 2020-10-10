@@ -388,10 +388,6 @@ class AICommand
 		{
 			description="";
 		};
-		class showGroupWaypointReport
-		{
-			description="";
-		};
 		class removeGroupControl
 		{
 			description="";

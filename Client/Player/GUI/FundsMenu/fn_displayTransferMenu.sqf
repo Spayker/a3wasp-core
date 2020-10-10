@@ -43,7 +43,7 @@ while {alive player && dialog} do {
 				_selected = WF_Client_Teams select _ui_lnb_currow;
 				if !(isNull leader _selected) then {
 					if (_selected != group player) then {
-						hint parseText format [localize "STR_WF_INFO_Funds_Sent", _funds_transfering, name leader _selected];
+						[format [localize "STR_WF_INFO_Funds_Sent", _funds_transfering, name leader _selected]] spawn WFCL_fnc_handleMessage;
 						-(_funds_transfering) Call WFCL_FNC_ChangePlayerFunds;
 						[_selected, _funds_transfering] Call WFCO_FNC_ChangeTeamFunds;
 						if (isPlayer leader _selected) then {
@@ -54,7 +54,7 @@ while {alive player && dialog} do {
 						_funds = Call WFCL_FNC_GetPlayerFunds;
 						_last_update = -1;
 					} else {
-						hint parseText localize "STR_WF_INFO_Funds_Self";
+						[format ["%1", localize "STR_WF_INFO_Funds_Self"]] spawn WFCL_fnc_handleMessage
 					};
 				};
 			};

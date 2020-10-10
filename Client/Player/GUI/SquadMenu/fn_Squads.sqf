@@ -8,14 +8,14 @@ WFCL_FNC_Groups_JoinAccepted = {
 	Private ["_group"];
 	_group = _this # 0;
 	WF_Client_PendingRequests = [];//--- Flush all existing requests.
-	hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>Your request to join the the group <t color='#BD63F5'>%1</t> has been <t color='#B6F563'>Accepted</t>.</t>", _group];
+    [Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>Your request to join the the group <t color='#BD63F5'>%1</t> has been <t color='#B6F563'>Accepted</t>.</t>", _group]] spawn WFCL_fnc_handleMessage
 };
 
 //--- The client join request has been denied.
 WFCL_FNC_Groups_JoinDenied = {
 	Private ["_group"];
 	_group = _this # 0;
-	hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>Your request to join the the group <t color='#BD63F5'>%1</t> has been <t color='#B6F563'>Denied</t>.</t>", _group];
+    [Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>Your request to join the the group <t color='#BD63F5'>%1</t> has been <t color='#B6F563'>Denied</t>.</t>", _group]] spawn WFCL_fnc_handleMessage
 };
 
 //--- The client get kicked back to his original group.
@@ -25,7 +25,7 @@ WFCL_FNC_Groups_KickedOff = {
 	
 	[player, WF_Client_Team, WF_Client_SideJoined] Call WFCO_FNC_ChangeUnitGroup;
 	if (leader WF_Client_Team != player) then {WF_Client_Team selectLeader player};
-	hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>You were kicked from the group <t color='#BD63F5'>%1</t>, you have been transfered back to your <t color='#B6F563'>Original group</t>.</t>", _group];
+    [Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>You were kicked from the group <t color='#BD63F5'>%1</t>, you have been transfered back to your <t color='#B6F563'>Original group</t>.</t>", _group]] spawn WFCL_fnc_handleMessage
 };
 
 //--- Used to display incomming group join requests.
@@ -70,9 +70,9 @@ WFCL_FNC_Groups_ReceiveRequest = {
 				};
 			};
 			[WF_Client_PendingRequests, [_uid, _name]] Call WFCO_FNC_ArrayPush;
-			hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>Player <t color='#BD63F5'>%1</t> has been requested to join your squad, you may accept or deny the request in the <t color='#B6F563'>Groups Menu</t>.</t>", _name];
-		};
-	};
+		    [Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>Player <t color='#BD63F5'>%1</t> has been requested to join your squad, you may accept or deny the request in the <t color='#B6F563'>Groups Menu</t>.</t>", _name]] spawn WFCL_fnc_handleMessage
+		}
+	}
 };
 
 //--- Groups LB filler.
@@ -113,7 +113,7 @@ WFCL_FNC_UI_Groups_Join = {
 				if (_group == WF_Client_Team) then {
 					[player, _group, WF_Client_SideJoined] Call WFCO_FNC_ChangeUnitGroup;
 					_group selectLeader _unit;
-					hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>You have joined back your original group (<t color='#BD63F5'>%1</t>) as a squad leader.</t>",_group];
+                    [Format["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>You have joined back your original group (<t color='#BD63F5'>%1</t>) as a squad leader.</t>",_group]] spawn WFCL_fnc_handleMessage;
 					_update_group = true;
 					_update_list = -1;
 				} else {
@@ -122,30 +122,30 @@ WFCL_FNC_UI_Groups_Join = {
 						//--- The team might be controlled by a player, if so this is a request.
 						if (isPlayer leader _group) then {
 							["RequestSpecial", ["group-query", _group, player, WF_Client_SideJoined]] Call WFCO_FNC_SendToServer;
-							hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>A <t color='#B6F563'>Group join Request</t> has been sent to the group <t color='#BD63F5'>%1</t> controlled by <t color='#BD63F5'>%2</t>.</t>", _group, name leader _group];
+						    [Format["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>A <t color='#B6F563'>Group join Request</t> has been sent to the group <t color='#BD63F5'>%1</t> controlled by <t color='#BD63F5'>%2</t>.</t>", _group, name leader _group]] spawn WFCL_fnc_handleMessage
 						} else {
 							//--- AI Teams may only be joined if the AI TL parameter is enabled.
 							if ((missionNamespace getVariable "WF_C_AI_TEAMS_ENABLED") > 0) then {
 								["RequestSpecial", ["group-query", _group, player, WF_Client_SideJoined]] Call WFCO_FNC_SendToServer;
 								_update_group = true;
 							} else {
-								hint parseText "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t><t color='#B6F563'>AI Teams</t> might not be joined if the AI Teams parameter is disabled.</t>";
+								[format ["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t><t color='#B6F563'>AI Teams</t> might not be joined if the AI Teams parameter is disabled.</t>"]] spawn WFCL_fnc_handleMessage;
 								WF_Client_LastGroupJoinRequest = -5000;
 							};
 						};
 					} else {
-						hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>The group you've attempted to join has no leader or the leader is dead (<t color='#BD63F5'>%1</t>).</t>", if (isNull _group) then {"Null"} else {_group}];
+                        [Format["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>The group you've attempted to join has no leader or the leader is dead (<t color='#BD63F5'>%1</t>).</t>", if (isNull _group) then {"Null"} else {_group}]] spawn WFCL_fnc_handleMessage;
 						WF_Client_LastGroupJoinRequest = -5000;
 					};
 				};
 			} else {
-				hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>You cannot change groups that often, please wait <t color='#F56363'>%1</t> seconds.</t>", round(((missionNamespace getVariable "WF_C_PLAYERS_SQUADS_REQUEST_DELAY") + WF_Client_LastGroupJoinRequest) - time)];
+			    [Format["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>You cannot change groups that often, please wait <t color='#F56363'>%1</t> seconds.</t>", round(((missionNamespace getVariable "WF_C_PLAYERS_SQUADS_REQUEST_DELAY") + WF_Client_LastGroupJoinRequest) - time)]] spawn WFCL_fnc_handleMessage
 			};
 		} else {
-			hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>The <t color='#B6F563'>player limit</t> on this group has been reached (<t color='#F56363'>%1</t>).</t>",missionNamespace getVariable "WF_C_PLAYERS_SQUADS_MAX_PLAYERS"];
+		    [Format["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>The <t color='#B6F563'>player limit</t> on this group has been reached (<t color='#F56363'>%1</t>).</t>",missionNamespace getVariable "WF_C_PLAYERS_SQUADS_MAX_PLAYERS"]] spawn WFCL_fnc_handleMessage
 		};
 	} else {
-		hint parseText "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>You are already in this squad.</t>";
+		[format ["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>You are already in this squad.</t>"]] spawn WFCL_fnc_handleMessage;
 	};
 };
 
@@ -204,7 +204,7 @@ WFCL_FNC_UI_Groups_RequestAccept = {
 			};
 		};
 	} else {
-		hint parseText Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>The <t color='#B6F563'>player limit</t> on this group has been reached (<t color='#F56363'>%1</t>).</t>", missionNamespace getVariable "WF_C_PLAYERS_SQUADS_MAX_PLAYERS"];
+	    [Format["%1", "<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Warning:</t><br /><br /><t>The <t color='#B6F563'>player limit</t> on this group has been reached (<t color='#F56363'>%1</t>).</t>", missionNamespace getVariable "WF_C_PLAYERS_SQUADS_MAX_PLAYERS"]] spawn WFCL_fnc_handleMessage
 	};
 };
 

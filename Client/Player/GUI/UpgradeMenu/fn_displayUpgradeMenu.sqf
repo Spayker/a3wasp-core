@@ -160,18 +160,18 @@ while {alive player && dialog} do {
 									[WF_Client_SideJoined, _this # 0, _this # 1] remoteExecCall ["WFSE_FNC_synchronizeUpgade",2];
 								};
 							};
-							hint parseText(Format[localize "STR_WF_HINT_Upgrading",_upgrade_labels # _id,_upgrade_current + 1]);
+							[Format[localize "STR_WF_HINT_Upgrading",_upgrade_labels # _id,_upgrade_current + 1]] spawn WFCL_fnc_handleMessage
 						} else {
-							hint parseText(localize "STR_WF_HINT_Dependencies");
+							[Format["%1", localize "STR_WF_HINT_Dependencies"]] spawn WFCL_fnc_handleMessage
 						};
 					} else {
-						hint parseText(Format[localize "STR_WF_HINT_NotEnough",_upgrade_labels # _id,_upgrade_current]);
+						[Format[localize "STR_WF_HINT_NotEnough",_upgrade_labels # _id,_upgrade_current]] spawn WFCL_fnc_handleMessage
 					};
 				} else {
-					hint parseText(localize "STR_WF_HINT_ReachedMax");
+					[format ["%1", localize "STR_WF_HINT_ReachedMax"]] spawn WFCL_fnc_handleMessage
 				};
 			} else {
-				hint parseText(localize "STR_WF_HINT_AlreadyRunning");
+				[format ["%1", localize "STR_WF_HINT_AlreadyRunning"]] spawn WFCL_fnc_handleMessage
 			};
 		};
 	};

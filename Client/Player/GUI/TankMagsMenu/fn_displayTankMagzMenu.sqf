@@ -110,7 +110,7 @@ while {alive player && dialog} do {
 				_data set[0, 1];
 				_countOfSelectedMagz = _countOfSelectedMagz + 1;
 			} else {
-				HINT parseText(Format[localize "STR_WF_TANK_MAGZ_NOTALLOW", _currentLevel]);
+				[Format[localize "STR_WF_TANK_MAGZ_NOTALLOW", _currentLevel]] spawn WFCL_fnc_handleMessage
 			};
 		} else {
 			lbSetPicture [230033, _idx, "\a3\ui_f\data\IGUI\Cfg\Actions\ico_OFF_ca.paa"];
@@ -138,7 +138,7 @@ while {alive player && dialog} do {
 		if(_rearmXPrice > 0) then { _rearmPrice = _rearmXPrice; };
 				
 		if (_curFunds < _rearmPrice) then {
-			hint parseText(Format[localize 'STR_WF_INFO_Funds_Missing', _rearmPrice - _curFunds, ""]);
+			[Format[localize 'STR_WF_INFO_Funds_Missing', _rearmPrice - _curFunds, ""]] spawn WFCL_fnc_handleMessage
 		} else {
 			_veh setVehicleAmmoDef 1;			
 			-_rearmPrice Call WFCL_FNC_ChangePlayerFunds;
