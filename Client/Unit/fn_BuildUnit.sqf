@@ -123,7 +123,7 @@ if (_isMan) then {
 
 	_factoryPosition = getPos _building;
     _position = [_position, 30] call WFCO_fnc_getEmptyPosition;
-	if(_unit isKindOf 'Ship') then { _position = [_position, 2, 150, 5, 2, 0, 0] call BIS_fnc_findSafePos };
+	if(_unit isKindOf 'Ship') then { _position = [_position, 2, 60, 5, 2, 0, 0] call BIS_fnc_findSafePos };
 
 	_direction = -((((_position # 1) - (_factoryPosition # 1)) atan2 ((_position # 0) - (_factoryPosition # 0))) - 90);//--- model to world that later on.
     _vehicle = [_unit, _position, sideID, _direction, _locked, nil, nil, nil, _unitdescription] Call WFCO_FNC_CreateVehicle;
