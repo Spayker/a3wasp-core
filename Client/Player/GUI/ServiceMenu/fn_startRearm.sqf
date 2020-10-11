@@ -14,7 +14,7 @@ _nearIsDP = false;
 _nearIsRT = false;
 {
 	if ((typeOf _x) == _spType) then {_nearIsSP = true};
-	if ((typeOf _x) in WF_Logic_Depot) then {_nearIsDP = true};
+	if (((typeOf _x) in WF_Logic_Depot) || ((typeOf _x) in WF_Logic_Airfield)) then {_nearIsDP = true};
 	if ((typeOf _x) in _typeRepair) then {_nearIsRT = true};
 } forEach _supports;
 
