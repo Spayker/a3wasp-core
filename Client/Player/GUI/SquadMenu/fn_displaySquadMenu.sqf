@@ -55,7 +55,7 @@ while {alive player && dialog} do {
 		
 		//--- Current request present in the client variable.
 		_uids_clients = [];
-		{[_uids_clients, _x # 0] Call WFCO_FNC_ArrayPush} forEach WF_Client_PendingRequests;
+		{_uids_clients pushBack (_x # 0)} forEach WF_Client_PendingRequests;
 		
 		//--- Remove the request that are no long there or timed out.
 		_uids_presents = [];
@@ -67,7 +67,7 @@ while {alive player && dialog} do {
 				if (_data in _uids_presents) then {
 					lnbDeleteRow [508007, _i];
 				} else {
-					[_uids_presents, _data] Call WFCO_FNC_ArrayPush;
+					_uids_presents pushBack _data;
 				};
 			};
 		};

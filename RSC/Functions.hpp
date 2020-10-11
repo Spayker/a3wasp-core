@@ -487,6 +487,7 @@ class WF_Common {
         class getCommanderTeam {};
         class saveProfile {};
         class setProfileVariable {};
+        class changeUnitGroup {};
     };
 
     class ObjectUnitTeam {
