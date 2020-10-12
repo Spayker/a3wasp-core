@@ -77,9 +77,8 @@ while {alive player && dialog} do {
     if (WF_MenuAction == 66) then {
         WF_MenuAction = -1;
         if ((_convertSupplyAmount != 0)) then {
-            -_convertSupplyAmount Call WFCL_FNC_ChangePlayerFunds;
             _funds = Call WFCL_FNC_GetPlayerFunds;
-            (_funds + _convertedMoney) Call WFCL_FNC_ChangePlayerFunds;
+            (_convertedMoney) Call WFCL_FNC_ChangePlayerFunds;
             [WF_Client_SideJoined, -(_convertSupplyAmount)] Call WFCO_FNC_ChangeSideSupply;
             sliderSetRange[1300771, 0, (WF_Client_SideJoined) Call WFCO_FNC_GetSideSupply];
         };
