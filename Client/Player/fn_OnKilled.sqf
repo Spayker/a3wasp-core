@@ -12,6 +12,7 @@ removeAllActions _body;
 
 WF_Client_IsRespawning = true;
 
+player removeAction WF_PlayerMenuAction;
 {player removeAction _x} forEach [0,1,2,3,4,5];
 if !(isNil "HQAction") then {player removeAction HQAction};
 

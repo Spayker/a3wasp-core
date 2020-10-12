@@ -31,6 +31,17 @@ if !(_spawnInside) then {
 //--Disable fatigue--
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {_unit enableFatigue false;};
 
+WF_PlayerMenuAction = _unit addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
+
+[_this # 0] spawn {
+	waitUntil {!isNil "ASL_Add_Player_Actions"};
+
+	if!(_this # 0 getVariable ["ASL_Actions_Loaded",false]) then {
+		[] call ASL_Add_Player_Actions;
+		_this # 0 setVariable ["ASL_Actions_Loaded",true];
+	};
+};
+
 //--- Loadout.
 if (!isNil 'WF_P_CurrentGear' && !WF_RespawnDefaultGear && _allowCustom) then {
 	_mode = missionNamespace getVariable "WF_C_RESPAWN_PENALTY";
