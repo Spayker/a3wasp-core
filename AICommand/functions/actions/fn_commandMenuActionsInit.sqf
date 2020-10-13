@@ -24,19 +24,6 @@ AIC_fnc_addWaypointsActionHandler = {
 ["GROUP",localize "STR_WF_HC_COMMAND_ADDWP",[],AIC_fnc_addWaypointsActionHandler] call AIC_fnc_addCommandMenuAction;
 ["WAYPOINT",localize "STR_WF_HC_COMMAND_ADDWP",[],AIC_fnc_addWaypointsActionHandler] call AIC_fnc_addCommandMenuAction;
 
-AIC_fnc_setGroupColorActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	_actionParams params ["_color"];
-	[_group,_color] call AIC_fnc_setGroupColor;
-	AIC_fnc_setGroupControlColor(_groupControlId,_color);
-	[_groupControlId,"REFRESH_GROUP_ICON",[]] call AIC_fnc_groupControlEventHandler;
-	[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-	[_groupControlId,"REFRESH_ACTIONS",[]] call AIC_fnc_groupControlEventHandler
-};
-
 AIC_fnc_setGroupBehaviourActionHandler = {
 	params ["_menuParams","_actionParams"];
 	_menuParams params ["_groupControlId"];
@@ -392,10 +379,34 @@ AIC_fnc_disbandGroupActionHandler = {
     }
 };
 
+AIC_fnc_unflipGroupActionHandler = {
+    params ["_menuParams"];
+    _menuParams params ["_groupControlId"];
+    private ["_group"];
+    _group = AIC_fnc_getGroupControlGroup(_groupControlId);
+
+    if (commanderTeam == group player) then {
+        if (!(isNil '_group')) then {
+            _units = units _group;
+            {
+                if (getPos _x select 2 > 3 && !surfaceIsWater (getPos _x)) then {
+                    [_x] Call WFCO_FNC_BrokeTerObjsAround;
+                    [_x, getPos _x, 15] Call WFCO_FNC_PlaceSafe;
+                } else {
+                    [_x] Call WFCO_FNC_BrokeTerObjsAround;
+                    _x setPos [getPos _x select 0, getPos _x select 1, 0.5];
+                    _x setVelocity [0,0,-0.5];
+                };
+            } forEach _units;
+        }
+    }
+};
+
 ["GROUP",localize "STR_WF_HC_ASSIGNVEHICLE",[],AIC_fnc_assignVehicleActionHandler,[]] call AIC_fnc_addCommandMenuAction;
 
 
 ["GROUP",localize "STR_WF_TEAM_DisbandButton",[],AIC_fnc_disbandGroupActionHandler,[]] call AIC_fnc_addCommandMenuAction;
+["GROUP",localize "STR_WF_TOOLTIP_UnitCamUnflip",[],AIC_fnc_unflipGroupActionHandler,[]] call AIC_fnc_addCommandMenuAction;
 
 AIC_fnc_unassignVehicleActionHandler = {
 	params ["_menuParams","_actionParams"];
@@ -423,123 +434,6 @@ AIC_fnc_unassignVehicleActionHandler = {
 	} forEach (units _group);
 	_canUnassign;
 }] call AIC_fnc_addCommandMenuAction;	
-
-AIC_fnc_unloadOtherGroupsActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	private ["_vehicle","_unloadedGroups","_assignedVehicles"];
-	_unloadedGroups = [];
-	{
-		_vehicle = _x;
-		{
-			if(group _x != _group) then {
-				if!(group _x in _unloadedGroups) then {
-					[group _x, _vehicle] remoteExec ["leaveVehicle", leader group _x];
-					_unloadedGroups pushBack (group _x);
-					_assignedVehicles = [group _x] call AIC_fnc_getGroupAssignedVehicles;
-					_assignedVehicles = _assignedVehicles - [_vehicle];
-					[group _x,_assignedVehicles] call AIC_fnc_setGroupAssignedVehicles;
-				};
-			};
-		} forEach (crew _vehicle);
-	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-	[((str count _unloadedGroups) + " other group(s) unloaded")] spawn WFCL_fnc_handleMessage
-};
-
-["GROUP","Unload Other Group(s)",[],AIC_fnc_unloadOtherGroupsActionHandler,[],{
-	params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	_group getVariable ["AIC_Has_Group_Cargo",false];
-}] call AIC_fnc_addCommandMenuAction;	
-
-
-
-
-AIC_fnc_landActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	private ["_selectedPosition"];
-	_selectedPosition = [_groupControlId] call AIC_fnc_selectGroupControlPosition;
-	if(count _selectedPosition > 0) then {
-		_hasAir = false;
-		{
-			if(_x isKindOf "Air") then {
-				_hasAir = true;
-			};
-		} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-		if(_hasAir) then {
-			[_group] call AIC_fnc_disableAllWaypoints;	
-			[_group, [_selectedPosition,false,"MOVE","{ if((vehicle _x) isKindOf 'Air') then { (vehicle this) land 'LAND'; }; } forEach (units (group this))"]] call AIC_fnc_addWaypoint;
-			[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-		};
-	};
-};
-
-["GROUP","Land",[],AIC_fnc_landActionHandler,[],{
-	params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	_hasAir = false;
-	{
-		if(_x isKindOf "Air") then {
-			if(((position _x) select 2) > 1) then {
-				_hasAir = true;
-			};
-		};
-	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-	_hasAir;	
-}] call AIC_fnc_addCommandMenuAction;
-
-
-AIC_fnc_rappelActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	private ["_selectedPosition"];
-	_selectedPosition = [_groupControlId] call AIC_fnc_selectGroupControlPosition;
-	if(count _selectedPosition > 0) then {
-		{
-			if(_x isKindOf "Helicopter") then {
-				[_x,25,AGLtoASL [_selectedPosition select 0, _selectedPosition select 1, 0]] call AR_Rappel_All_Cargo;
-			};
-		} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-		[_group] spawn {
-			params ["_groupRappelling"];
-			_unitsInVehicle = true;
-			while {_unitsInVehicle} do {
-				_unitsInVehicle = false;
-				{
-					if(vehicle _x != _x) then {
-						_unitsInVehicle = true;
-					};
-				} forEach (units _groupRappelling);
-				sleep 1;
-			};
-			[_groupRappelling] call AIC_fnc_unassignVehicleActionHandler;
-		};
-	};
-};
-
-["GROUP","Rappel Other Group(s)",[],AIC_fnc_rappelActionHandler,[],{
-	params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	_hasAir = false;
-	{
-		if(_x isKindOf "Helicopter") then {
-			if(((position _x) select 2) > 1) then {
-				_hasAir = true;
-			};
-		};
-	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-	_hasAir && (_group getVariable ["AIC_Has_Group_Cargo",false]) && !isNil "AR_RAPPELLING_INIT";	
-}] call AIC_fnc_addCommandMenuAction;
 
 
 AIC_fnc_setGroupAutoCombatActionHandler = {
