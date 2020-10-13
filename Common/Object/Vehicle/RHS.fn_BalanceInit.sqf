@@ -85,6 +85,13 @@ switch (typeOf _this) do
         if(_current_light_level < 4)then{
             _this disableTIEquipment true
     	}
+    };
+	
+	case "CUP_O_L39_TK";
+    case "CUP_B_L39_CZ_GREY";
+    case "CUP_I_L39_AAF":{
+        _this addWeapon "CMFlareLauncher";
+        _this addmagazine "120Rnd_CMFlare_Chaff_Magazine";
     }
 };
 
