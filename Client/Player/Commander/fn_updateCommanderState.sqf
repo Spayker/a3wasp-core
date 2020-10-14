@@ -20,12 +20,6 @@ _MHQ = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 
 
     if (IsNull _lastCommanderTeam) then {
-			if (!IsNull _MHQ) then {
-				_MHQ RemoveAction 0;
-				_MHQ RemoveAction 1;
-				_MHQ RemoveAction 2;
-				_MHQ RemoveAction 3;
-			};
 			if (!isNil "HQAction") then {player removeAction HQAction};
 		};
 
