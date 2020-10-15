@@ -22,7 +22,7 @@ while {!WF_GameOver} do {
                 _marker setMarkerTextLocal Format["%1 S$: %2/%3", _townName, _supplyValue, _maxSupplyValue]
             } else {
                 if (WF_C_WAREHOUSE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 S$: %2/%3", _townName, _supplyValue, _maxSupplyValue] };
-                if (WF_C_MILITARY_BASE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 AC: -15%2", _townName, "%"] };
+                    if (WF_C_MILITARY_BASE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 AC: -5%2", _townName, "%"] };
                 if (WF_C_RADAR in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 CC", _townName] };
                 if (WF_C_PLANT in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 SV: %2/%3", _townName, _supplyValue, _maxSupplyValue] };
                 if (WF_C_POWER_PLANT in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 SV: %2/%3", _townName, _supplyValue, _maxSupplyValue] };
@@ -32,7 +32,7 @@ while {!WF_GameOver} do {
             if (count _townSpecialities == 0) then {
                 _marker setMarkerTextLocal (_townName)
 		} else {
-                if (WF_C_MILITARY_BASE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 AC: -15%2", _townName, "%"] };
+                    if (WF_C_MILITARY_BASE in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 AC: -5%2", _townName, "%"] };
 
                 if (WF_C_RADAR in (_townSpecialities)) then { _marker setMarkerTextLocal Format["%1 CC", _townName] };
 
