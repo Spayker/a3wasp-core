@@ -47,7 +47,7 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 		    if(_UpBar >= (missionNamespace getVariable[_className, [0, 0, 0, 0, 0, 0]]) # 5) then { _addit = true };
 
 		    if!(_isPort) then {
-		        if (_className isKindOf 'Ship') then { _addit = false }
+		        if (_className isKindOf 'Ship') then { _addit = false; _addin = false }
 		    }
 		};
 
