@@ -87,6 +87,8 @@ switch (typeOf _this) do
     	}
     };
 	
+	case "CUP_O_MI6T_RU";
+    case "CUP_O_MI6A_RU";
 	case "CUP_O_L39_TK";
     case "CUP_B_L39_CZ_GREY";
     case "CUP_I_L39_AAF":{
