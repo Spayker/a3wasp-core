@@ -108,7 +108,7 @@ with missionNamespace do {
 	if (isNil "WF_C_BASE_DEFENSE_MAX") then {WF_C_BASE_DEFENSE_MAX = 20;}; //--- Maximum AIs that will be able to man defense within the barracks area.
 	if (isNil "WF_C_BASE_DEFENSE_MANNING_RANGE") then {WF_C_BASE_DEFENSE_MANNING_RANGE = 250;}; //--- Within x meters, defenses may be manned.
 	WF_C_BASE_DEFENSE_MANNING_RANGE_EXT = 50;
-	WF_C_BASE_DEFENSE_MANNING_TIMEOUT = 210; //-- A time for recreate unit for static weapon on the base defense.
+	WF_C_BASE_DEFENSE_MANNING_TIMEOUT = 420; //-- A time for recreate unit for static weapon on the base defense.
 	if (isNil "WF_C_BASE_PATROLS_INFANTRY") then {WF_C_BASE_PATROLS_INFANTRY = 1;}; //--- Enable AI Squad patrol in base from Barracks.
 	if (isNil "WF_C_BASE_START_TOWN") then {WF_C_BASE_START_TOWN = 1;}; //--- Remove the spawn locations which are too far away from the towns.
 	if (isNil "WF_C_BASE_STARTING_DISTANCE") then {WF_C_BASE_STARTING_DISTANCE = 7500;}; //--- Sides need at last xkm of distance between them.
