@@ -46,6 +46,7 @@ if (_unit isKindOf "Tank" || _unit isKindOf "Car") then {
 if (_unit isKindOf "Ship") then { //--- Boats.
 	//--- Push action.
 	_unit addAction [localize "STR_WF_Push",{call WFCL_fnc_pushVehicle}, [], 93, false, true, "", 'driver _target == _this && alive _target && speed _target < 30'];
+	_unit addAction [localize "STR_WF_TaxiReverse",{call WFCL_fnc_taxiReverse}, [], 92, false, true, "", 'driver _target == _this && alive _target && speed _target < 4 && speed _target > -4 && getPos _target # 2 < 4'];
 };
 
 if (_unit isKindOf "Air") then { //--- Air units.
