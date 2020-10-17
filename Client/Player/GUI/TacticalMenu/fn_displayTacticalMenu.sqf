@@ -437,7 +437,8 @@ while {alive player && dialog} do {
                 if (!_skip) then {
                     {
                         _emptyPosition = [_locationPosition, 120] call WFCO_fnc_getEmptyPosition;
-                        _x setPosATL _emptyPosition
+                        _x setPosATL _emptyPosition;
+                        _x setVectorUp surfaceNormal position _x
                     } forEach _travelingWith;
                 };
                 sleep 1;
