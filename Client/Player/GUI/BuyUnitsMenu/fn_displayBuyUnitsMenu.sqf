@@ -396,7 +396,7 @@ while {alive player && dialog} do {
                     ctrlSetText [12037,str (getNumber (configFile >> 'CfgVehicles' >> _unit >> 'transportSoldier'))];
                     ctrlSetText [12038,str (getNumber (configFile >> 'CfgVehicles' >> _unit >> 'maxSpeed'))];
                     ctrlSetText [12039,str (getNumber (configFile >> 'CfgVehicles' >> _unit >> 'armor'))];
-                    if (_type != 'Depot') then {
+
                         _slots = _currentUnit select QUERYUNITCREW;
                         if (_slots isEqualType []) then {
 
@@ -496,13 +496,7 @@ while {alive player && dialog} do {
                             //--- Set the 'extra' price.
                             _currentCost = _currentCost + ((missionNamespace getVariable "WF_C_UNITS_CREW_COST") * _extra);
                         };
-                    } else {
-                        {ctrlShow [_x,false]} forEach (_IDCSVehi);
-                        _driver = false;
-                        _gunner = false;
-                        _commander = false;
-                        _extracrew = false;
-                    };
+
                 } else {
                     //--- calculate skill
                     _upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
