@@ -895,6 +895,14 @@ class RscTitles {
                 h = 0.1;
             };
 
+            class autoOptionsValueText : descText {
+                idc = 112227;
+                x = "SafezoneX + 0.760*2";
+                y = "SafezoneY + SafezoneH - 0.13 + 0.02";
+                w = 0.4;
+                h = 0.1;
+            };
+
 			class defenseText : descText {
                 idc = 112226;
                 x = "SafezoneX + 0.802*2";

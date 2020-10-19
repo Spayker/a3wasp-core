@@ -101,16 +101,29 @@ _showConstructionMode = {
     _optionText = format ["<t color='#00FF00' shadow='2' size='%1' align='left' valign='middle'>",_optionSize];
     _optionLines = 0;
     for "_i" from 0 to 1 do {
-        _optionValue = _optionValues # _i;
-        _optionText = _optionText + format ["%1 %2<br />", _optionDescription # _i, _optionValue];
+        _optionText = _optionText + format ["%1 %2<br />", _optionDescription # _i];
         _optionLines = _optionLines + 0.05;
     };
+
     _optionText = _optionText + "</t>";
     _optionPos = ctrlPosition ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225);
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlSetStructuredText (parseText _optionText);
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlSetPosition [_optionPos # 0,_optionPos # 1,_optionPos # 2,(_optionPos # 3) + _optionLines];
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlShow true;
-    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlCommit 0
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlCommit 0;
+
+    _optionTextValue = format ["<t color='#00FF00' shadow='2' size='%1' align='left' valign='middle'>",_optionSize];
+    for "_i" from 0 to 1 do {
+        _optionTextValue = _optionTextValue + format["%1<br />", _optionValues # _i];
+        _optionLines = _optionLines + 0.05;
+    };
+
+    _optionTextValue = _optionTextValue + "</t>";
+    _optionPos = ctrlPosition ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlSetStructuredText (parseText _optionTextValue);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlSetPosition [_optionPos # 0,_optionPos # 1,_optionPos # 2,(_optionPos # 3) + _optionLines];
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlShow true;
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlCommit 0;
 };
 
 _logic setVariable ["BIS_COIN_selected",objNull];
