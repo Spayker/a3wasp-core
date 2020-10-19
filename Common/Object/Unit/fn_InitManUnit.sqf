@@ -36,9 +36,9 @@ if(_side == 2) then {
     _current_infantry_upgrade = _upgrades select WF_UP_BARRACKS;
     _skill = 0.3;
     switch (_current_infantry_upgrade) do {
-        case 1: { _skill = 0.5 };
-        case 2: { _skill = 0.7 };
-        case 3: { _skill = 0.9 };
+        case 1: { _skill = 0.65 };
+        case 2: { _skill = 0.85 };
+        case 3: { _skill = 1 };
     };
     _unit setSkill ["aimingShake", _skill];
     _unit setSkill ["aimingAccuracy", _skill];
