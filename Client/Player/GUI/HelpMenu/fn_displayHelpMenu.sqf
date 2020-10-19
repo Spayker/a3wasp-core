@@ -190,7 +190,8 @@ The following penalty scale represents the maximum penalty admins may give for b
 <br />
 <t size='1' color='#ffec1c' font='EtelkaMonospacePro' align='left'>
 Unflip vehicle: ........................................ UserAction 2<br />
-Switch autowallconstruct mode in construction menu: .... UserAction 13<br />
+Switch auto wall deployment in construction menu: ....   UserAction 12<br />
+Switch auto defense manning in construction menu: ....   UserAction 13<br />
 Decrease/Increase view distance: ....................... UserAction 14/15<br />
 Sell structure from build menu: ........................ UserAction 17<br />
 Use Earplugs: .......................................... UserAction 18<br />

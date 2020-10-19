@@ -234,7 +234,7 @@ BIS_CONTROL_CAM_Handler = {
 
 	_keysBanned	= [1];
 	_keyNightVision		= actionKeys "NightVision";
-	_keyAutoWallConstructing = actionKeys "User14";
+	_keyAutoWallConstructing = actionKeys "User12";
 
 	//--- Mouse DOWN
 	if (_mode == "mousedown") then {
