@@ -82,7 +82,7 @@ while {alive player && dialog} do {
 			{
 				if !(isPlayer _x) then {
 					if (_x isKindOf 'Man') then {removeAllWeapons _x};
-					_x setDammage 1;
+					deleteVehicle _x;
 				};
 			} forEach _destroy;
 			
