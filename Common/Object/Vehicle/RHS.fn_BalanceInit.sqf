@@ -87,6 +87,7 @@ switch (typeOf _this) do
     	}
     };
 	
+    case "CUP_B_AC47_Spooky_USA";
 	case "CUP_O_MI6T_RU";
     case "CUP_O_MI6A_RU";
 	case "CUP_O_L39_TK";
