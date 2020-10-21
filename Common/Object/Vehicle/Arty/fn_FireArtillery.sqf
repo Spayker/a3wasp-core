@@ -51,23 +51,7 @@ if(_side == west) then {
 	[_art_pos, west] remoteExec ["WFCL_FNC_ARRadarMarkerUpdate", west]
 };
 
-if(typeOf _artillery == "CUP_B_M119_USMC" || typeOf _artillery == "CUP_B_M119_US") then {
-    for '_i' from 1 to _burst*3 do {
-        sleep (_reloadTime+random 3);
-        if (!alive _gunner || !alive _artillery) exitWith {};
 
-        //--- Default Position.
-        _distance = random (_distance / _maxRange * 100) + random _radius;
-        _direction = random 360;
-
-        //--- Default Position.
-        _landDestination = [((_destination # 0)+((sin _direction)*_distance))+(random _dispersion)-(random _dispersion),(_destination # 1)+((cos _direction)*_distance)+(random _dispersion)-(random _dispersion),0];
-
-        _artillery doArtilleryFire [_landDestination, currentMagazine _artillery, 0];
-        sleep 5;
-        _artillery fire (currentWeapon _artillery);
-    }
-} else {
 for '_i' from 1 to _burst do {
 	sleep (_reloadTime+random 3);
 	if (!alive _gunner || !alive _artillery) exitWith {};
@@ -79,9 +63,9 @@ for '_i' from 1 to _burst do {
 	//--- Default Position.
 	_landDestination = [((_destination # 0)+((sin _direction)*_distance))+(random _dispersion)-(random _dispersion),(_destination # 1)+((cos _direction)*_distance)+(random _dispersion)-(random _dispersion),0];
 	
-	_artillery doArtilleryFire [_landDestination, currentMagazine _artillery, 3];
-    	sleep 5
-    }
+    _artillery doArtilleryFire [_landDestination, currentMagazine _artillery, 0];
+    sleep 5;
+    _artillery fire (currentWeapon _artillery)
 };
 
 if (alive (_gunner)) then {{_gunner enableAI _x} forEach ['MOVE','TARGET','AUTOTARGET']};
