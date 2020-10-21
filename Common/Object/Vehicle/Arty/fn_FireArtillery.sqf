@@ -64,7 +64,7 @@ for '_i' from 1 to _burst do {
 	_landDestination = [((_destination # 0)+((sin _direction)*_distance))+(random _dispersion)-(random _dispersion),(_destination # 1)+((cos _direction)*_distance)+(random _dispersion)-(random _dispersion),0];
 	
     _artillery doArtilleryFire [_landDestination, currentMagazine _artillery, 0];
-    sleep 5;
+    sleep 10;
     _artillery fire (currentWeapon _artillery)
 };
 
