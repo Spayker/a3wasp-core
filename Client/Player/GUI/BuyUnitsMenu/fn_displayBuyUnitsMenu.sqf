@@ -90,6 +90,14 @@ while {alive player && dialog} do {
             if(_capturedMilitaryBases > 0) then {
                 _currentCost = ceil (_currentCost - (WF_C_MILITARY_BASE_DISCOUNT_PERCENT * _capturedMilitaryBases * _currentCost));
             };
+
+
+            if(_unit == missionNamespace getVariable Format["WF_%1MHQNAME", WF_Client_SideJoined]) then {
+                _currentHQPenalty = missionNamespace getVariable (format ["wf_%1_hq_penalty", WF_Client_SideJoined]);
+                _currentCost = _currentCost + _currentHQPenalty;
+                missionNamespace setVariable [format ["wf_%1_hq_penalty", WF_Client_SideJoined], _currentHQPenalty + WF_C_ECONOMY_HQ_PENALTY_INCREASE_STEP, true]
+            };
+
             _cpt = 1;
             _isInfantry = (_unit isKindOf 'Man');
             if !(_isInfantry) then {
@@ -100,6 +108,7 @@ while {alive player && dialog} do {
                 if (_extracrew) then {_extra = _extra + ((_currentUnit select QUERYUNITCREW) select 3)};
                 _currentCost = _currentCost + ((missionNamespace getVariable "WF_C_UNITS_CREW_COST") * _extra);
             };
+
             if ((_currentRow) != -1) then {
                 _funds = Call WFCL_FNC_GetPlayerFunds;
                 _skip = false;
@@ -172,6 +181,7 @@ while {alive player && dialog} do {
                             _params = [[_closest,_unit,[_driver,_gunner,_commander,_extracrew,_isLocked,_gunnerEqCommander],_type,_cpt], [_closest,_unit,[],_type,_cpt]] select (_isInfantry);
                             _params Spawn WFCL_FNC_BuildUnit;
                             -(_currentCost) Call WFCL_FNC_ChangePlayerFunds;
+                            _update = true
                         } else {
                             [Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_QUEUE_%1_HQ_MAX",_type]]] spawn WFCL_fnc_handleMessage
                         }

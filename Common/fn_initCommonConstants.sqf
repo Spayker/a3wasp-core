@@ -148,6 +148,7 @@ with missionNamespace do {
 	WF_C_ECONOMY_SUPPLY_TIME_INCREASE_DELAY = 60; //--- Increase SV delay.
 	WF_C_ECONOMY_SUPPLY_TRUCK_TIME_CHECK_DELAY = 2400; //--- supply truck alive status check.
 	WF_C_ECONOMY_SUPPLY_MAX_TEAM_LIMIT = 50000;
+	WF_C_ECONOMY_HQ_PENALTY_INCREASE_STEP = 5000;
 
 //--- Environment.	
 	if (isNil "WF_C_OBJECT_MAX_VIEW") then {WF_C_OBJECT_MAX_VIEW = 5000;}; //--- Max object distance.

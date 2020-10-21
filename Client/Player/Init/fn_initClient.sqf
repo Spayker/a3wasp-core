@@ -259,6 +259,11 @@ Call Compile "enableEngineArtillery false;";
 //--- Commander % stock init.
 if (isNil { missionNamespace getVariable "wf_commander_percent"}) then { missionNamespace setVariable ["wf_commander_percent", if ((missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX") >= 50 && (missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX") <= 100) then {missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX"} else {100}]};
 
+//--- HQ price penalty.
+if (isNil { missionNamespace getVariable (format ["wf_%1_hq_penalty", WF_Client_SideJoined])}) then {
+    missionNamespace setVariable [format ["wf_%1_hq_penalty", WF_Client_SideJoined], 0]
+};
+
 /* Exec SQF|FSM Misc stuff. */
 [] spawn WFCL_fnc_updateTeamsMarkers;
 
