@@ -2217,6 +2217,13 @@
 				<Italian>Ambiente: Waves</Italian>
 				<Portuguese>AMBIENTE: Ondas</Portuguese>
 			</Key>
+			<Key ID="STR_WF_PARAMETER_Fast_Time">
+				<English>ENVIRONMENT: Fast Time</English>
+				<French>ENVIRONEMENT: Temp Acceléré</French>
+				<German>UMWELT: Zeitraffer</German>
+				<Russian>Природа: Быстрое время</Russian>
+				<Italian>Ambiente: Tempo Accellerato</Italian>
+			</Key>
 			<!--Extension-->
 			<Key ID="STR_WF_PARAMETER_BAF">
 				<English>EXTENSION: British Armed Forces</English>
