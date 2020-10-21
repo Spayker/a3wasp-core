@@ -69,7 +69,6 @@ _effective = [];
 _nearSupport = [];
 _spType = missionNamespace getVariable Format ["%1SP",WF_Client_SideJoinedText];
 _i = 0;
-_townSpeciality = [];
 {
 	_closestSP = objNull;
 	_add = false;
@@ -89,7 +88,6 @@ _townSpeciality = [];
 
 	//--- Depots.
 	_nObject = [_x, (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE")] Call WFCL_FNC_GetClosestDepot;
-    _townSpeciality = _nObject getVariable ["townSpeciality", []];
 
 	if !(isNull _nObject) then {
 		_add = true;
@@ -326,8 +324,6 @@ while {true} do {
 		};
 
 		_lastVeh = _veh;
-		_isAirBase = false;
-        if (WF_C_AIR_BASE in _townSpeciality) then { _isAirBase = true };
 
 		//--- Rearm.
 		if (WF_MenuAction == 1) then {
@@ -335,7 +331,7 @@ while {true} do {
 			-_rearmPrice Call WFCL_FNC_ChangePlayerFunds;
 
 			//--- Spawn a Rearm thread.
-			[_veh,_nearSupport select _curSel,_typeRepair,_spType, _isAirBase] Spawn WFCL_fnc_startRearm;
+			[_veh,_nearSupport select _curSel,_typeRepair,_spType] Spawn WFCL_fnc_startRearm;
 		};
 
 		//--- Rearm ALL.
@@ -376,7 +372,7 @@ while {true} do {
 				//--- Spawn a Rearm thread.
 				{
 					if ((_x distance ((_nearSupport # _curSel ) # 0)) < (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE") && !(_x isKindOf "Man")) then {
-						[_x, _nearSupport select _curSel,_typeRepair,_spType, _isAirBase] Spawn WFCL_fnc_startRearm;
+						[_x, _nearSupport select _curSel,_typeRepair,_spType] Spawn WFCL_fnc_startRearm;
 						uiSleep 0.5;
 					};
 				} forEach _vehi;

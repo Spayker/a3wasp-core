@@ -1,4 +1,4 @@
-params ["_veh", "_supports", "_typeRepair", "_spType", ["_isAirBase", false]];
+params ["_veh", "_supports", "_typeRepair", "_spType"];
 private ['_airCoef','_artCoef','_cts','_distanceMin','_heaCoef','_i','_ligCoef','_name','_nearIsDP','_nearIsRT','_nearIsSP','_repairRange','_rearmTime','_supportRange'];
 
 _supportRange = missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE";
@@ -17,12 +17,6 @@ _nearIsRT = false;
 	if (((typeOf _x) in WF_Logic_Depot) || ((typeOf _x) in WF_Logic_Airfield)) then {_nearIsDP = true};
 	if ((typeOf _x) in _typeRepair) then {_nearIsRT = true};
 } forEach _supports;
-
-_isAirVehicle = (typeOf _veh) iskindOf "Air";
-if (_isAirVehicle && !_isAirBase && _nearIsDP) exitWith {
-    [format["%1", localize "STR_WF_SERVICE_CANTAIR_INTOWN"]] spawn WFCL_fnc_handleMessage
-};
-
 
 //--- Coefficient Vary depending on the support type.
 _airCoef = 1;
