@@ -153,7 +153,29 @@ while {alive player && dialog} do {
                 };
 
                 if !(_skip) then {
+
                     //--- Check the max queu.
+                    if(_unit == missionNamespace getVariable Format["WF_%1MHQNAME", WF_Client_SideJoined]) then {
+                        if ((missionNamespace getVariable Format["WF_C_QUEUE_HQ_%1",_type]) < (missionNamespace getVariable Format["WF_C_QUEUE_%1_HQ_MAX",_type])) then {
+                            missionNamespace setVariable [Format["WF_C_QUEUE_HQ_%1",_type],(missionNamespace getVariable Format["WF_C_QUEUE_HQ_%1",_type])+1];
+
+                            _queu = _closest getVariable 'queu';
+                            _txt = Format [localize 'STR_WF_INFO_BuyEffective',_currentUnit select QUERYUNITLABEL];
+                            if (!isNil '_queu') then {if (count _queu > 0) then {_txt = Format [localize 'STR_WF_INFO_Queu',_currentUnit select QUERYUNITLABEL]}};
+                            [format["%1", _txt]] spawn WFCL_fnc_handleMessage;
+
+                            _gunnerEqCommander = false; //--crutch for vehicles such as CUP BPPU VODNIK--
+                            if(count _currentUnit >= 12) then {
+                                _gunnerEqCommander = _currentUnit # 11;
+                            };
+
+                            _params = [[_closest,_unit,[_driver,_gunner,_commander,_extracrew,_isLocked,_gunnerEqCommander],_type,_cpt], [_closest,_unit,[],_type,_cpt]] select (_isInfantry);
+                            _params Spawn WFCL_FNC_BuildUnit;
+                            -(_currentCost) Call WFCL_FNC_ChangePlayerFunds;
+                        } else {
+                            [Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_QUEUE_%1_HQ_MAX",_type]]] spawn WFCL_fnc_handleMessage
+                        }
+                    } else {
                     if ((missionNamespace getVariable Format["WF_C_QUEUE_%1",_type]) < (missionNamespace getVariable Format["WF_C_QUEUE_%1_MAX",_type])) then {
                         missionNamespace setVariable [Format["WF_C_QUEUE_%1",_type],(missionNamespace getVariable Format["WF_C_QUEUE_%1",_type])+1];
 
@@ -172,7 +194,8 @@ while {alive player && dialog} do {
                         -(_currentCost) Call WFCL_FNC_ChangePlayerFunds;
                     } else {
                         [Format [localize 'STR_WF_INFO_Queu_Max',missionNamespace getVariable Format["WF_C_QUEUE_%1_MAX",_type]]] spawn WFCL_fnc_handleMessage
-                    };
+                        }
+                    }
                 };
             };
 		} else {

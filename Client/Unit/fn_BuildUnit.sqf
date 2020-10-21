@@ -95,7 +95,11 @@ _building setVariable ["queu",_queu,true];
 _group = WF_Client_Team;
 if (!alive _building || isNull _building) exitWith {
 	unitQueu = unitQueu - _cpt;
+	if(_unit == missionNamespace getVariable Format["WF_%1MHQNAME", WF_Client_SideJoined]) then {
+	    missionNamespace setVariable [Format["WF_C_QUEUE_HQ_%1",_factory],(missionNamespace getVariable Format["WF_C_QUEUE_HQ_%1",_factory])-1];
+	} else {
 	missionNamespace setVariable [Format["WF_C_QUEUE_%1",_factory],(missionNamespace getVariable Format["WF_C_QUEUE_%1",_factory])-1];
+	}
 };
 
 if (_isMan) then {
@@ -208,5 +212,9 @@ if (_isMan) then {
 
 unitQueu = unitQueu - _cpt;
 
-missionNamespace setVariable [Format["WF_C_QUEUE_%1",_factory],(missionNamespace getVariable Format["WF_C_QUEUE_%1",_factory])-1];
+if(_unit == missionNamespace getVariable Format["WF_%1MHQNAME", WF_Client_SideJoined]) then {
+    missionNamespace setVariable [Format["WF_C_QUEUE_HQ_%1",_factory],(missionNamespace getVariable Format["WF_C_QUEUE_HQ_%1",_factory])-1]
+} else {
+    missionNamespace setVariable [Format["WF_C_QUEUE_%1",_factory],(missionNamespace getVariable Format["WF_C_QUEUE_%1",_factory])-1]
+};
 [Format [localize "STR_WF_INFO_Build_Complete",_unitdescription]] spawn WFCL_fnc_handleMessage
