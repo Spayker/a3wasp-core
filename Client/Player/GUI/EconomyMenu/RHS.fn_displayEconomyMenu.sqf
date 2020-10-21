@@ -139,14 +139,12 @@ while {alive player && dialog} do {
             _position = _map posScreenToWorld[mouseX,mouseY];
             _structures = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
             _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
-            _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
-            _hqDeployed = ([WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus);
-            _closest = objNull;
-            if(_hqDeployed) then {
-                _closest = [_position,_structures + [_mhq]] Call WFCO_FNC_GetClosestEntity
-            } else {
-                _closest = [_position,_structures] Call WFCO_FNC_GetClosestEntity
-            };
+
+            {
+                _hqDeployed = ([WF_Client_SideJoined, _x] Call WFCO_FNC_GetSideHQDeployStatus);
+                if!(_hqDeployed) then { _mhqs = _mhqs - [_x] }
+            } forEach _mhqs;
+            _closest = [_position,_structures + _mhqs] Call WFCO_FNC_GetClosestEntity;
 
             if (!isNull _closest) then {
                 //--- 100 meters close only.
