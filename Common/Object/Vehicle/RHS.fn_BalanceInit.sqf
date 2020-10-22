@@ -82,9 +82,7 @@ switch (typeOf _this) do
 	case "CUP_B_LAV25_desert_USMC";
 	case "CUP_B_LAV25_USMC":{
     	_current_light_level = ((side player) Call WFCO_FNC_GetSideUpgrades) select WF_UP_LIGHT;
-        if(_current_light_level < 4)then{
-            _this disableTIEquipment true
-    	}
+        if(_current_light_level < 3) then { _this disableTIEquipment true }
     };
 	
     case "CUP_B_AC47_Spooky_USA";
@@ -97,6 +95,5 @@ switch (typeOf _this) do
         _this addmagazine "120Rnd_CMFlare_Chaff_Magazine";
     }
 };
-
 
 
