@@ -575,18 +575,17 @@ while {alive player && dialog} do {
 		_i = 0;
 		{
             _artillery = _x;
-		    _magazines = getArtilleryAmmo [_artillery];
 		    _magazineRangeOk = false;
-		    {
-		        if(artyPos inRangeOfArtillery [[_artillery], _x]) exitWith { _magazineRangeOk = true }
-		    } forEach _magazines;
 
-            _text = localize 'STR_WF_TACTICAL_ArtilleryInRange'; 																		//---changed-MrNiceGuy //"In Range";
+		    if(artypos inRangeOfArtillery [[_artillery], currentMagazine _artillery]) then { _magazineRangeOk = true };
+
+            _text = localize 'STR_WF_TACTICAL_ArtilleryInRange'; 																		//"In Range";
 			_color = [0, 0.875, 0, 0.8];
 		    if(_magazineRangeOk) then {
 		        _distance = _artillery distance (getMarkerPos _marker);
-			if (_distance > _maxRange) then {_color = [0.875, 0, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryOutOfRange'}; 		 //---changed-MrNiceGuy //"Out of Range"};
-			if (_distance <= _minRange) then {_color = [0.875, 0.5, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryRangeTooClose'}; //---changed-MrNiceGuy //"Too close"};
+
+                if (_distance > _maxRange) then {_color = [0.875, 0, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryOutOfRange'}; 	 //"Out of Range";
+                if (_distance <= _minRange) then {_color = [0.875, 0.5, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryRangeTooClose'}; //"Too close";
 		    } else {
 		        _color = [0.875, 0, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryRangeTooClose'
 		    };
