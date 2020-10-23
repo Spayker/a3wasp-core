@@ -34,7 +34,7 @@ while {alive player && dialog} do {
 	if ((barracksInRange || lightInRange || heavyInRange || aircraftInRange || hangarInRange || depotInRange) && (player == leader WF_Client_Team)) then {_enable = true};
 	ctrlEnable [2002,_enable];
 	ctrlEnable [2003,gearInRange];
-	ctrlEnable [2001,gearInRange];
+	ctrlEnable [2001,gearInRange || WF_FreeRolePurchase];
 
 	_enable = false; //added-MrNiceGuy
 	if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_enable = true}};

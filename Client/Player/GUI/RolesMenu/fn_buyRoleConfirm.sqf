@@ -62,6 +62,8 @@ if!(isNil 'WF_newBuyRolerequest')then{
                 if (!isNull (findDisplay 2800)) then { ctrlEnable[2805, true]; };
                 [] call WF_fnc_selectRole;
 
+                WF_FreeRolePurchase = false;
+
                 if(!WF_isFirstRoleSelected)then {
                     _roleDefaultGear = [];
                     switch (WF_SK_V_Type) do {

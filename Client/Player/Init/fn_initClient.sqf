@@ -391,6 +391,7 @@ if (leader(group player) != player) then {(group player) selectLeader player};
 
 // initiate the passive skills.
 WF_gbl_boughtRoles = [];
+WF_FreeRolePurchase = true;
 
 // map click drop
 onMapSingleClick {if (_shift) then {false} else {true}};
