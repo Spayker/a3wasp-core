@@ -19,7 +19,7 @@ _temp = _camps;
 
 //--- Make sure that there is at least one camp nearby, abort otherwise.
 if (count _camps == 0) exitWith {
-    [(parseText (localize "STR_WF_Repair_Camp_None"))] spawn WFCL_fnc_handleMessage
+    [format["%1", localize "STR_WF_Repair_Camp_None"]] spawn WFCL_fnc_handleMessage
 };
 
 //--- Now, we need to check if one of those camp is destroyed at least, remove the living ones.
@@ -47,7 +47,7 @@ if ((missionNamespace getVariable "WF_C_CAMPS_REPAIR_PRICE") > 0) then {
 //--- Get the closest camp then.
 _camp = [_vehicle, _camps] Call WFCO_FNC_GetClosestEntity;
 
-[(localize "STR_WF_Repair_Camp_IsBeingRepaired")] spawn WFCL_fnc_handleMessage;
+[format["%1", localize "STR_WF_Repair_Camp_IsBeingRepaired"]] spawn WFCL_fnc_handleMessage;
 
 //--- Begin the repair.
 _delay = missionNamespace getVariable "WF_C_CAMPS_REPAIR_DELAY";
@@ -60,12 +60,11 @@ while {_delay > 0} do {
 }; 
 
 if (!(alive _vehicle) || (_vehicle distance _camp > _range)) exitWith {
-    [(localize "STR_WF_Repair_TruckIsDeadOrTooFar")] spawn WFCL_fnc_handleMessage
+    [format["%1", localize "STR_WF_Repair_TruckIsDeadOrTooFar"]] spawn WFCL_fnc_handleMessage
 };
 
 if (!isObjectHidden _camp) exitWith {
-	[(localize "STR_WF_Repair_Camp_IsAlive")] spawn WFCL_fnc_handleMessage;
-	
+	[format["%1", localize "STR_WF_Repair_Camp_IsAlive"]] spawn WFCL_fnc_handleMessage;
 	//--- Refunds the player.
 	(missionNamespace getVariable "WF_C_CAMPS_REPAIR_PRICE") Call WFCL_FNC_ChangePlayerFunds;
 };
@@ -73,4 +72,4 @@ if (!isObjectHidden _camp) exitWith {
 //--- Repair order is sent to the server.
 [_camp, WF_Client_SideID] remoteExecCall ["WFSE_FNC_repairCamp",2];
 
-[(parseText(localize "STR_WF_Repair_Camp_IsRepaired"))] spawn WFCL_fnc_handleMessage
+[format["%1", localize "STR_WF_Repair_Camp_IsRepaired"]] spawn WFCL_fnc_handleMessage
