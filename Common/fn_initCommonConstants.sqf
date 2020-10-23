@@ -195,7 +195,7 @@ with missionNamespace do {
 	WF_C_PLAYERS_COMMANDER_SCORE_CAPTURE = 5;
 	WF_C_PLAYERS_COMMANDER_SCORE_UPGRADE = 2;
 	WF_C_PLAYERS_GEAR_SELL_COEF = 0.6; //--- Sell price of the gear: item price * x (800 * 0.2 = 400)
-	WF_C_PLAYERS_GEAR_TEMPLATES_COUNT = 5; //--A count limit of gear templates for a role--
+	WF_C_PLAYERS_GEAR_TEMPLATES_COUNT = 10; //--A count limit of gear templates for a role--
 	WF_C_PLAYERS_GEAR_VEHICLE_RANGE = 50; //--- Possible to buy gear in vehicle if that one is within that range.
 	WF_C_PLAYERS_HALO_HEIGHT = 200; //--- Distance above which units are able to perform an HALO jump.
 	WF_C_PLAYERS_MARKER_DEAD_DELAY = 60; //--- Time that a marker remain on a dead unit.
