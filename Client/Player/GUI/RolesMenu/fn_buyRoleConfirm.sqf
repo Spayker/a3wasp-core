@@ -41,8 +41,6 @@ if!(isNil 'WF_newBuyRolerequest')then{
 				[format[localize 'STR_WF_RoleSelector_Text', (_roleDetails # 1)]] spawn WFCL_fnc_handleMessage;
                 [] call WFCL_fnc_updateRolesMenu;
                 removeAllActions player;
-                player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"},
-                                    "", 999, false, true, "", ""];
 				[] spawn {
 					waitUntil {!isNil "ASL_Add_Player_Actions"};					
 					
