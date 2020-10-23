@@ -661,6 +661,38 @@
 				<Italian>Vendi Strutture [S]</Italian>
 				<Portuguese>Vender estrutura</Portuguese>
 			</Key>
+			<Key ID="STR_WF_END_Soldier_Lost">
+				<English>Soldiers Lost</English>
+				<French>Soldats Perdus</French>
+				<German>Soldaten verloren</German>
+				<Russian>Погибло солдат</Russian>
+				<Italian>Soldati Persi</Italian>
+				<Portuguese>Soldados perdidos</Portuguese>
+			</Key>
+			<Key ID="STR_WF_END_Soldier_Recruited">
+				<English>Soldier Recruited</English>
+				<French>Soldats Recrutés</French>
+				<German>Soldaten rekrutiert</German>
+				<Russian>Мобилизовано солдат</Russian>
+				<Italian>Soldati Reclutati</Italian>
+				<Portuguese>Soldados recrutados</Portuguese>
+			</Key>
+			<Key ID="STR_WF_END_Vehicle_Built">
+				<English>Vehicles Built</English>
+				<French>Véhicules Construits</French>
+				<German>Fahrzeuge gebaut</German>
+				<Russian>Построено техники</Russian>
+				<Italian>Veicoli Costruiti</Italian>
+				<Portuguese>Veículos Construidos</Portuguese>
+			</Key>
+			<Key ID="STR_WF_END_Vehicle_Lost">
+				<English>Vehicles Lost</English>
+				<French>Véhicules Perdus</French>
+				<German>Fahrzeuge verloren</German>
+				<Russian>Потеряно техники</Russian>
+				<Italian>Veicoli Persi</Italian>
+				<Portuguese>Veículos Perdidos</Portuguese>
+			</Key>
 			<Key ID="STR_WF_END_Victory">
 				<English>%1 Team has won</English>
 				<French>L'équipe %1 a gagné</French>
