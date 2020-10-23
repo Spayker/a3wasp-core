@@ -37,10 +37,13 @@ while {!WF_GameOver} do {
 		_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
         _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
 
+        if(isNil 'WF_PlayerMenuAction') then {
+            WF_PlayerMenuAction = player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""]
+        };
+
         _actions = actionIDs player;
         _isWfMenuActionRemoved = true;
         { if(_x == WF_PlayerMenuAction) exitWith { _isWfMenuActionRemoved = false } } forEach _actions;
-
         if (_isWfMenuActionRemoved) then {
             WF_PlayerMenuAction = player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""]
         };
