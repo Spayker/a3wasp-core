@@ -437,7 +437,10 @@ player addEventHandler ["WeaponAssembled", {
 }];
 
 //--Disable fatigue--
-if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {player enableFatigue false;};
+if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {
+    player enableFatigue false;
+    player setUnitTrait ["loadCoef",0.9]
+};
 
 _roleDefaultGear = [];
 _roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];

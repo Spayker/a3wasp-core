@@ -29,7 +29,10 @@ if !(_spawnInside) then {
 };
 
 //--Disable fatigue--
-if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {_unit enableFatigue false;};
+if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {
+    _unit enableFatigue false;
+    _unit setUnitTrait ["loadCoef",0.9]
+};
 
 WF_PlayerMenuAction = nil;
 
