@@ -68,14 +68,15 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 		    }
 		};
 
-        if(_filler == 'Light')then{
+        if(_filler == 'Light' || _filler == 'Heavy')then{
             if(_x == missionNamespace getVariable Format["WF_%1MHQNAME", WF_Client_SideJoined]) then {
                 if (isNull(commanderTeam)) then {
                     _addit = false;
                     _addin = false
                 } else {
                     if (commanderTeam == group player) then {
-                        _addit = true
+                        _addit = true;
+                        _addin = true
                     } else {
                         _addit = false;
                         _addin = false
