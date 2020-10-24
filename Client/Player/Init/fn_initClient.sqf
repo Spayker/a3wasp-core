@@ -202,7 +202,6 @@ groupQueu = 0;
 fireMissionTime = -1000;
 artyRange = 15;
 artyPos = [0,0,0];
-playerUAV = objNull;
 comTask = objNull;
 voted = false;
 votePopUp = true;

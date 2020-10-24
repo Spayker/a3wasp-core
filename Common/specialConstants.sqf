@@ -38,6 +38,7 @@ WF_C_AIR_VEHICLE_TO_REQUIP = [
 ];
 
 WF_AR2_UAVS = ['O_UAV_01_F', 'B_UAV_01_F', 'I_UAV_01_F'];
+WF_FLY_UAVS = ['O_UAV_02_dynamicLoadout_F', 'O_T_UAV_04_CAS_F', 'B_UAV_05_F', 'B_UAV_02_dynamicLoadout_F'];
 
 WF_STATIC_ARTILLERY = [];
 WF_ADV_ARTILLERY = [];

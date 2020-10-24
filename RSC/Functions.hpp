@@ -294,9 +294,6 @@ class WF_Client {
         class setControlFadeAnim {};
         class setControlFadeAnimStop {};
         class RequestFireMission {};
-        class uav {};
-        class uav_interface {};
-        class uav_spotter {};
     };
 
     class GuiTankMagsMenu {

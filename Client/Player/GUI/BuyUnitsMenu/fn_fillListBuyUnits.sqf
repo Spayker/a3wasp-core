@@ -52,6 +52,7 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 		};
 
 		if (_x in WF_ADV_ARTILLERY)then{ _isAdvVehicle = true};
+		if (_x in WF_FLY_UAVS)then{ _isAdvVehicle = true};
 
         if!(isNil '_selectedRole')then{
             if(_selectedRole == WF_ARTY_OPERATOR)then{
@@ -65,6 +66,14 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
                         _addit = true
                     }
                 }
+		    };
+
+		    if(_selectedRole == WF_UAV_OPERATOR) then {
+		        if(_filler == 'Aircraft' || _filler == 'Airport') then {
+		            if (_isAdvVehicle) then {
+		                _addit = true
+		            }
+		        }
 		    }
 		};
 

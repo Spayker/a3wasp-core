@@ -51,10 +51,10 @@ _currentFee = -1;
 
 //--- Support List.
 _lastSel = -1;
-_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_ICBM', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop',localize 'STR_WF_TACTICAL_UAV',localize 'STR_WF_TACTICAL_UAVDestroy',localize 'STR_WF_TACTICAL_UAVRemoteControl'];
-_addToListID = ["Fast_Travel","ICBM",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers","UAV","UAV_Destroy","UAV_Remote_Control"];
-_addToListFee = [0,150000,5000,9500,3500,3500,6500,0,0];
-_addToListInterval = [0,1000,1000,800,600,600,0,0,0];
+_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_ICBM', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop'];
+_addToListID = ["Fast_Travel","ICBM",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers"];
+_addToListFee = [0,150000,5000,9500,3500,3500];
+_addToListInterval = [0,1000,1000,800,600,600];
 
 for '_i' from 0 to count(_addToList)-1 do {
 	lbAdd [_listBox,_addToList # _i];
@@ -188,12 +188,6 @@ while {alive player && dialog} do {
 
 		_currentSpecial = _addToListID # _currentValue;
 		_currentFee = _addToListFee # _currentValue;
-        _selectedRole = WF_gbl_boughtRoles # 0;
-        if!(isNil '_selectedRole')then{
-            if(_selectedRole == WF_UAV_OPERATOR)then{
-                _currentFee = _currentFee - (_currentFee * WF_ADV_UAV_DISCOUNT);
-            };
-        };
 
 	    _currentGroupSize = count ((Units (group player)) Call WFCO_FNC_GetLiveUnits);
 		_currentInterval = _addToListInterval # _currentValue;
@@ -242,16 +236,6 @@ while {alive player && dialog} do {
 			case "Paradrop_Vehicle": {
 				_currentLevel = _currentUpgrades # WF_UP_SUPPLYPARADROP;
 				_controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastSupplyCall > _currentInterval);
-			};
-			case "UAV": {
-				_currentLevel = _currentUpgrades # WF_UP_UAV;
-				_controlEnable = (_funds >= _currentFee && _currentLevel > 0 && !(alive playerUAV));
-			};
-			case "UAV_Destroy": {
-				_controlEnable = (alive playerUAV);
-			};
-			case "UAV_Remote_Control": {
-				_controlEnable = (alive playerUAV);
 			}
 		};
 
@@ -296,21 +280,6 @@ while {alive player && dialog} do {
 
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
 				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
-			};
-			case "UAV": {
-				closeDialog 0;
-				call WFCL_fnc_uav;
-			};
-			case "UAV_Destroy": {
-				if !(isNull playerUAV) then {
-					{_x setDammage 1} forEach (crew playerUAV);
-					playerUAV setDammage 1;
-					playerUAV = objNull;
-				};
-			};
-			case "UAV_Remote_Control": {
-				closeDialog 0;
-				call WFCL_fnc_uav;
 			}
 		};
 	};
