@@ -31,6 +31,7 @@ lnbClear _listBox;
 _UpBar = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_BARRACKS;
 _UpLight = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_LIGHT;
 _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
+_UpAir = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_AIR;
 {
 	_addin = true;
 	_isAdvVehicle = false;
@@ -70,7 +71,7 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 
 		    if(_selectedRole == WF_UAV_OPERATOR) then {
 		        if(_filler == 'Aircraft' || _filler == 'Airport') then {
-		            if (_isAdvVehicle) then {
+		            if (_isAdvVehicle  && _UpAir >= _c # QUERYUNITUPGRADE) then {
 		                _addit = true
 		            }
 		        }

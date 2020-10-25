@@ -61,7 +61,7 @@ while {!WF_GameOver} do {
 
             _playerWaypoints = waypoints (group player);
             if(count _playerWaypoints > 1) then {
-                for "_i" from (count _playerWaypoints) - 1 to 0 step -1 do { deleteWaypoint [_group, _i] }
+                for "_i" from (count _playerWaypoints) - 1 to 0 step -1 do { deleteWaypoint [group player, _i] }
             }
         } else {
             removeAllActions player
