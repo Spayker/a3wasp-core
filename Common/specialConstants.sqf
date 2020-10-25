@@ -12,7 +12,13 @@ WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = [];
 
 WF_C_UNITS_TO_BALANCE = ['O_Heli_Attack_02_dynamicLoadout_F'];
 
-WF_C_INFANTRY_TO_REQUIP = []; //--Example: ['rhs_vdv_des_at', ['AK-74M', '9M131'], ['7H10 30 AK-74 x8', 'RGN x1', '9M131 x1']]
+WF_C_INFANTRY_TO_REQUIP = [
+    ['CUP_O_MVD_Soldier_MG', ['PKP'], ['7.62mm 100Rnd PKM (Green TE4) Box x4']],
+    ['CUP_B_USMC_Soldier_MG_FROG_WDL', ['M240G'], ['7.62mm 100Rnd M240 (White TE4) Box x4']],
+    ['CUP_B_USMC_Soldier_AR_FROG_WDL', ['M249 PIP'], ['5.56mm 200Rnd M249 (Red TE4) Box x4']],
+    ['CUP_I_RACS_Soldier_HAT_Urban', ['M16A2'], ['30Rnd_556x45 x6', 'Smoke GR x1', 'Dragon Launcher x1']]
+
+]; //--Example: ['rhs_vdv_des_at', ['AK-74M', '9M131'], ['7H10 30 AK-74 x8', 'RGN x1', '9M131 x1']]
 
 WF_C_COMBAT_JETS_WITH_BOMBS = [];
 
