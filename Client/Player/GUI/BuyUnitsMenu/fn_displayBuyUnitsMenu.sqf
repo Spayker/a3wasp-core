@@ -423,7 +423,7 @@ while {alive player && dialog} do {
                 };
 
                 _side = switch (getNumber(configFile >> "CfgVehicles" >> _unit >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
-                if(_side == civilian) then {
+                if(_side == civilian || _unit in WF_FLY_UAVS) then {
                     {ctrlShow [_x,false]} forEach (_IDCSVehi);
                     _driver = false;
                     _gunner = false;
@@ -434,7 +434,7 @@ while {alive player && dialog} do {
                 _isInfantry = (_unit isKindOf 'Man');
 
                 //--- Update driver-gunner-commander icons.
-                if (!(_isInfantry)) then {
+                if (!(_isInfantry) && !(_unit in WF_FLY_UAVS)) then {
                     ctrlSetText [12036,"N/A"];
                     ctrlSetText [12037,str (getNumber (configFile >> 'CfgVehicles' >> _unit >> 'transportSoldier'))];
                     ctrlSetText [12038,str (getNumber (configFile >> 'CfgVehicles' >> _unit >> 'maxSpeed'))];
@@ -644,7 +644,7 @@ while {alive player && dialog} do {
                 };
 
                 //--- Lock Icon.
-                if !(_isInfantry) then {
+                if (!(_isInfantry) && !(_unit in WF_FLY_UAVS)) then {
                     ctrlShow[_IDCLock,true];
                     _color = if (_isLocked) then {_enabledColor2} else {_disabledColor};
                     _con = _display displayCtrl _IDCLock;

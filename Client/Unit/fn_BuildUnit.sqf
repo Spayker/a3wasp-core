@@ -159,6 +159,9 @@ if (_isMan) then {
         } forEach _turrets;
     };
 	
+	if (typeOf _vehicle in WF_FLY_UAVS) then {
+	    createVehicleCrew _vehicle
+	} else {
     {
         [_x, typeOf _x,_group,_position,WF_Client_SideID] spawn WFCO_FNC_InitManUnit;
 
@@ -174,6 +177,7 @@ if (_isMan) then {
         _x setUnitTrait ["Engineer",true];
     } forEach crew _vehicle;
     (crew _vehicle) join (leader WF_Client_Team);
+	};
 
 	//--- Clear the vehicle.	
 	_vehicle call WFCO_FNC_ClearVehicleCargo;

@@ -1,6 +1,11 @@
 WF_MenuAction = -1;
 
 _veh = vehicle player;
+if (_veh == player) then {
+    _playerUav = getConnectedUAV player;
+    if(!isNull _playerUav) then { _veh = _playerUav }
+};
+
 _type = typeOf (vehicle player);
 _pylons = [];
 _rearmPrice = 0;

@@ -20,6 +20,7 @@ if (dialog) then {closeDialog 0};
 if(!WF_GameOver) then
 {
 	WF_DeathLocation = getPos _body;
+	player connectTerminalToUAV objNull;
 
 	//--- Fade transition.
 	titleCut["","BLACK OUT",1];

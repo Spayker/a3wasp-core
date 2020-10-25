@@ -1,6 +1,9 @@
 WF_MenuAction = -1;
 
 _vehi = [group player,false] Call WFCO_FNC_GetTeamVehicles;
+_playerUav = getConnectedUAV player;
+if!(isNull _playerUav) then { _vehi pushBack _playerUav };
+
 if (!isNull(commanderTeam)) then {
     if (commanderTeam == Group player) then {
         _hcGroups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
@@ -57,7 +60,8 @@ if ((missionNamespace getVariable "WF_C_MODULE_WF_EASA") > 0) then {
 	_easaLevel = _currentUpgrades select WF_UP_EASA;
 	if (!(isNull _csp) && _easaLevel > 0) then {
 		if (player distance _csp < (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE")) then {
-				if ((vehicle player isKindOf 'Air') && driver (vehicle player) == player) then { _enable = true; };
+				if (((vehicle player isKindOf 'Air') && driver (vehicle player) == player)) then { _enable = true };
+				if(!(_enable) && !isNull _playerUav) then { _enable = true }
 		};
 	};
 	ctrlEnable [20010,_enable];
