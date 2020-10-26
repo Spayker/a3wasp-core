@@ -324,8 +324,6 @@ with missionNamespace do {
 			[":sob:", ":weary:", ":tired_face:", ":persevere:", ":skull:", ":rage:"]
 		];
 
-	WF_ADV_UAV_DISCOUNT = 0.3; // 30% discount on UAV in tactical menu
-
 	//--- Units Factions.
 	if (isNil "WF_C_UNITS_FACTION_EAST") then {WF_C_UNITS_FACTION_EAST = 0;}; //--- East Faction.
 	if (isNil "WF_C_UNITS_FACTION_GUER") then {WF_C_UNITS_FACTION_GUER = 0;}; //--- Guerilla Faction.
