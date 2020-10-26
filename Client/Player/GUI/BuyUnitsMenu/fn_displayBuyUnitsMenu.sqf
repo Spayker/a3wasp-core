@@ -644,7 +644,7 @@ while {alive player && dialog} do {
                 };
 
                 //--- Lock Icon.
-                if (!(_isInfantry) && !(_unit in WF_FLY_UAVS)) then {
+                if (!_isInfantry) then {
                     ctrlShow[_IDCLock,true];
                     _color = if (_isLocked) then {_enabledColor2} else {_disabledColor};
                     _con = _display displayCtrl _IDCLock;
