@@ -20,13 +20,13 @@ _startPosArray = [];
 _bd = missionNamespace getVariable 'WF_BOUNDARIESXY';
 if !(isNil '_bd') then {
     _startPosArray = [
-        [0+random(200),0+random(200),250],
-        [0+random(200),_bd-random(200),250],
-        [_bd-random(200),_bd-random(200),250],
-        [_bd-random(200),0+random(200),250]
+        [0+random(200),0+random(200),350],
+        [0+random(200),_bd-random(200),350],
+        [_bd-random(200),_bd-random(200),350],
+        [_bd-random(200),0+random(200),350]
     ];
 } else {
-    _startPosArray = [[0+random(200),0+random(200),250],[500+random(20),0+random(200),250]];
+    _startPosArray = [[0+random(200),0+random(200),350],[500+random(20),0+random(200),350]];
 };
 
 //--- Create the vehicles.
@@ -71,7 +71,7 @@ _paraGroup = createGroup [_side, true];
 
 //--- Tell the group to move.
 _vehicleGrp setCurrentWaypoint [_vehicleGrp, 1];
-_vehicle flyInHeight 250;
+_vehicle flyInHeight 350;
 
 sleep 900;
 
