@@ -47,6 +47,7 @@ _vehicle = _vehicleArray # 0;
 } forEach crew _vehicle;
 [_vehicle, _sideID, false, true, true, -1] call WFCO_FNC_InitVehicle;
 [_vehicle, _sideID] remoteExec ["WFCO_FNC_initUnit"];
+[_vehicle, 750, _casPosition] spawn WFCO_FNC_RevealArea;
 
 //--- Spawn the pilot.
 _pilot = driver _vehicle;
