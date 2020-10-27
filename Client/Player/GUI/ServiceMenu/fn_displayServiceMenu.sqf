@@ -29,11 +29,14 @@ if (!isNull(commanderTeam)) then {
         _areas = _logik getVariable "wf_basearea";
         {
             _areaPos = getPosATL _x;
-            _alives = _alives + (_areaPos nearEntities [WF_STATIC_ARTILLERY, WF_C_BASE_AREA_RANGE])
+            _foundArtyEntities = _areaPos nearEntities [WF_STATIC_ARTILLERY, WF_C_BASE_AREA_RANGE];
+            {
+                if(!isNull (gunner _x)) then { _alives pushBackUnique _x }
+            } forEach _foundArtyEntities;
         } forEach _areas;
     };
 };
-{if (vehicle _x == _x) then {_vehi pushBack _x}} forEach _alives;
+{if (vehicle _x == _x) then {_vehi pushBackUnique _x}} forEach _alives;
 _lastUse = 0;
 _typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_SideJoinedText];
 
