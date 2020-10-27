@@ -176,8 +176,7 @@ while {true} do {
 	//--Enable/Disable TANK MAGZ MENU--
     _tanksRearmEnabled = false;
     _currentLevelHeavyMagz = _currentUpgrades select WF_UP_HEAVY_MAGZ;
-    if(_currentLevelHeavyMagz > 0 && (player distance _csp < (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE") ||
-        !isNull([player, (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE")] call WFCL_FNC_GetClosestDepot))) then {
+    if(_currentLevelHeavyMagz > 0 && (player distance _csp < (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE"))) then {
         if(driver (vehicle player) == player && (vehicle player isKindOf 'Tank' ||
             vehicle player isKindOf 'Wheeled_APC_F' || vehicle player isKindOf 'StaticWeapon')) then {
             _tanksRearmEnabled = true;
@@ -224,11 +223,11 @@ while {true} do {
 			//--- Prevent on the air re-supply.
 			_canBeUsed = if ((getPos _veh) select 2 <= 2 && speed _veh <= 20) then {true} else {false};
 
-
             if (isNull _nObject) then {
 			_enabled = if (_canBeUsed && _funds >= _rearmPrice) then {true} else {false};
 			ctrlEnable [20003,_enabled];
                 ctrlEnable [1608, _enabled];
+                ctrlEnable [20018, _enabled && _tanksRearmEnabled];
 
 			_enabled = if (_canBeUsed && _funds >= _repairPrice) then {true} else {false};
 			ctrlEnable [20004,_enabled];
@@ -577,7 +576,7 @@ while {true} do {
 			};
 		};
 	} else {
-		{ctrlEnable[_x,false]} forEach [20003,20004,20005,20008];
+		{ctrlEnable[_x,false]} forEach [20003,20004,20005,20008,20018];
 	};
 
 	//--- EASA. TBD: Add dialog;
