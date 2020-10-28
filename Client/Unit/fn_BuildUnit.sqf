@@ -160,7 +160,8 @@ if (_isMan) then {
     };
 	
 	if (typeOf _vehicle in WF_FLY_UAVS) then {
-	    createVehicleCrew _vehicle
+	    createVehicleCrew _vehicle;
+	    _vehicle setVariable ['uavOwnerGroup', group player, true];
 	} else {
     {
         [_x, typeOf _x,_group,_position,WF_Client_SideID] spawn WFCO_FNC_InitManUnit;

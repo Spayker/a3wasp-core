@@ -171,6 +171,14 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
         };
 	} else {
 	    if (_killer_side != _killed_side && _killer_side != resistance) then {
+
+	        if (_killer isKindOf 'UAV' ) then {
+                    _uavOwnerGroup = _killer getVariable ['uavOwnerGroup', objNull];
+                    if!(isNull _uavOwnerGroup) then {
+                        [_killer_isplayer, _killer, _killed_type, _uavOwnerGroup] call _processCommanderBounty
+                    }
+	        };
+
 	        _commanderTeam = (_killer_side) Call WFCO_FNC_GetCommanderTeam;
 	        if(!(isNil '_commanderTeam')) then {
                 if !(isPlayer(leader _killer_group)) then {
