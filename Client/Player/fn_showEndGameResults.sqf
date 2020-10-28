@@ -1,13 +1,14 @@
 if (!hasInterface || isDedicated) exitWith {};
-params ["_side"];
+params ["_winnerSide"];
 private ['_HQ','_base','_blist','_camShotOrder','_camera','_nvgstate','_position','_secTarget','_track','_vehi'];
 
 WF_GameOver = true;
 
-[_side] spawn WFCL_fnc_displayEndOfGameStats;
+[_winnerSide] spawn WFCL_fnc_displayEndOfGameStats;
 
 playMusic "LeadTrack01a_F";
 
+_blist = [];
 _track_hq = [];
 _track = [];
 {
@@ -15,18 +16,18 @@ _track = [];
 	    _side = _x;
 		_logik = (_side) Call WFCO_FNC_GetSideLogic;
 		_hqs = (_side) Call WFCO_FNC_GetSideHQ;
-		diag_log format ["fn_showEndGameResults.sqf: _hqs - %1", _hqs];
 		{
-		    diag_log format ["fn_showEndGameResults.sqf: _x - %1", _x];
-		    _track_hq pushBack _x;
+		    if(!isNull  _x) then { _track_hq pushBack _x };
             _track = _track + ([_x, (_side) Call WFCO_FNC_GetSideStructures] Call WFCO_FNC_SortByDistance)
-		} forEach _hqs
+		} forEach _hqs;
 	}
-} forEach ([west,east,resistance] - [_side]);
+} forEach ([west,east] - [_winnerSide]);
 
-_mhqs = (_side) Call WFCO_FNC_GetSideHQ;
+_mhqs = (_winnerSide) Call WFCO_FNC_GetSideHQ;
 _hq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
-_blist = [_hq] + _track_hq + ([_hq, (_side) Call WFCO_FNC_GetSideStructures] Call WFCO_FNC_SortByDistance) + _track;
+
+if(!isNull _hq) then { _blist pushBack _hq };
+_blist = _blist + _track_hq + ([_hq, (_winnerSide) Call WFCO_FNC_GetSideStructures] Call WFCO_FNC_SortByDistance) + _track;
 
 //--- Safety Pos.
 _vehi = vehicle player;
