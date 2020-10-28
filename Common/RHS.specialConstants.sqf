@@ -172,7 +172,7 @@ WF_C_AIR_VEHICLE_TO_REQUIP = [
 	]
 ];
 
-WF_STATIC_ARTILLERY = ['RHS_M119_WD','CUP_B_M252_USMC','rhs_D30_vdv','rhs_2b14_82mm_msv'];
+WF_STATIC_ARTILLERY = ['RHS_M119_WD','CUP_B_M252_USMC','rhs_D30_vdv','rhs_2b14_82mm_msv', 'CUP_B_D30_CDF'];
 WF_ADV_ARTILLERY = ['I_Truck_02_MRL_F','rhs_2s3_tv','rhsusf_m109d_usarmy','rhsusf_m109_usarmy',
 'rhs_9k79','CUP_O_BM21_RU','CUP_B_M270_HE_USMC','CUP_B_M270_HE_USA','CUP_B_RM70_CZ','I_Truck_02_MRL_F_OPFOR'];
 
