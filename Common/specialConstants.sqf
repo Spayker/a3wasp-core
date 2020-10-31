@@ -48,3 +48,5 @@ WF_FLY_UAVS = ['O_UAV_02_dynamicLoadout_F', 'O_T_UAV_04_CAS_F', 'B_UAV_05_F', 'B
 
 WF_STATIC_ARTILLERY = [];
 WF_ADV_ARTILLERY = [];
+
+WF_NightVisionDevices = [ 'O_NVGoggles_ghex_F', 'O_NVGoggles_hex_F'];

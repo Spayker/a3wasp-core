@@ -471,6 +471,10 @@ sleep 5;
 //--- Valhalla init.
 0 = [] execVM "Client\Module\Valhalla\Init_Valhalla.sqf";
 
+//--- Night Vision Mode init
+WF_fullScreenNightVisionMode = currentVisionMode player;
+(findDisplay 46) displayAddEventHandler ["KeyDown", "_this call WFCL_fnc_initNVGPlayerMode"];
+
 if!(WF_Skip_Intro) then {
     waitUntil { WF_EndIntro };
 	
