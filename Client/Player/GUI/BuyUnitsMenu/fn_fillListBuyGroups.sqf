@@ -50,6 +50,11 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 
         } foreach _unitClassNamesByGroup;
 
+        _capturedMilitaryBases = [WF_Client_SideJoined, WF_C_MILITARY_BASE, false] call WFCO_fnc_getSpecialLocations;
+        if(_capturedMilitaryBases > 0) then {
+            _cost = ceil (_cost - (WF_C_MILITARY_BASE_DISCOUNT_PERCENT * _capturedMilitaryBases * _cost));
+        };
+
         lnbAddRow   [_listBox,['$'+str (_cost), _groupName]];
         lnbSetData  [_listBox,[_i,0],_filler];
         lnbSetValue [_listBox,[_i,1],_cost];
