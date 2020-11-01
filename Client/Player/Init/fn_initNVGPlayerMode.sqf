@@ -3,7 +3,7 @@ _handled = false;
 
 
 if ((_keyCode in actionKeys "NightVision")) then {
-
+    if(leader WF_Client_Team == player) then {
     switch WF_fullScreenNightVisionMode do {
         case 0: {
             if (cameraView != "GUNNER") then {
@@ -13,8 +13,7 @@ if ((_keyCode in actionKeys "NightVision")) then {
                     player action ["nvGoggles", player];
                     WF_fullScreenNightVisionMode = currentVisionMode player;
                     _handled = true
-                };
-
+                    }
             }
         };
         case 1: {
@@ -27,6 +26,7 @@ if ((_keyCode in actionKeys "NightVision")) then {
                 _handled = true
             }
         }
+    }
     }
 };
 _handled
