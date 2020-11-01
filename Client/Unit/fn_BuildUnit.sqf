@@ -134,6 +134,12 @@ if (_isMan) then {
     WF_Client_Team reveal _vehicle;
     createVehicleCrew _vehicle;
 
+    {
+        _crew = _x;
+        _isMajorCrewMember = false;
+        if(_crew isEqualTo driver objectParent _crew ||
+            _crew isEqualTo gunner objectParent _crew ||
+                _crew isEqualTo commander objectParent _crew) then {
     //--- Driver.
     if (!_driver) then { _vehicle deleteVehicleCrew (driver _vehicle) };
 	
@@ -145,6 +151,8 @@ if (_isMan) then {
         //--- Commander.
         if (!_commander) then { _vehicle deleteVehicleCrew (commander _vehicle) };
     };
+            _isMajorCrewMember = true
+        };
 
     if (_extracrew) then {
         _turrets = _currentUnit # QUERYUNITTURRETS;
@@ -157,8 +165,16 @@ if (_isMan) then {
         		_soldier moveInTurret [_vehicle, _x];
         	};
         } forEach _turrets;
+            _isMajorCrewMember = true
     };
 	
+        if!(_isMajorCrewMember) then {
+            _vehicle deleteVehicleCrew _crew
+        }
+    } forEach crew _vehicle;
+
+
+
 	if (typeOf _vehicle in WF_FLY_UAVS) then {
 	    createVehicleCrew _vehicle;
 	    _vehicle setVariable ['uavOwnerGroup', group player, true];
