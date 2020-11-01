@@ -5,6 +5,7 @@
 */
 
 params ["_killed", "_killer"];
+Private ["_delay"];
 
 WF_Client_IsRespawning = true;
 
@@ -13,8 +14,6 @@ if !(isNil "HQAction") then {player removeAction HQAction};
 //--- Close any existing dialogs.
 if (dialog) then {closeDialog 0};
 
-if(!WF_GameOver) then
-{
 	WF_DeathLocation = getPos _killed;
 	player connectTerminalToUAV objNull;
 
@@ -31,6 +30,9 @@ if(!WF_GameOver) then
 	//--- Make sure that player is always the leader (of his group).
 	if (! (isPlayer (leader(group player))) && !(WF_Client_SideJoined isEqualTo resistance)) then {(group player) selectLeader player};
 
+//--- Create a respawn menu.
+createDialog "WF_RespawnMenu";
+
 	titleCut["","BLACK IN",1];
 
 	/* Re-add client UAV deploy handler */
@@ -46,8 +48,6 @@ if(!WF_GameOver) then
 	(player) Call WFCL_FNC_PreRespawnHandler;
 
 	//--- Camera & PP thread
-	[] Spawn {
-		Private ["_delay"];
 		_delay = missionNamespace getVariable "WF_C_RESPAWN_DELAY";
 
 		"dynamicBlur" ppEffectEnable true;
@@ -72,10 +72,4 @@ if(!WF_GameOver) then
 
 		WF_DeathCamera camSetPos [WF_DeathLocation select 0,(WF_DeathLocation select 1) + 2,30];
 		WF_DeathCamera camCommit _delay+2;
-	};
 
-	sleep random 1;
-
-	//--- Create a respawn menu.
-	createDialog "WF_RespawnMenu";
-};

@@ -192,16 +192,9 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
 				if(!(isNil '_highCommandCreatedGroups')) then {
 					if(_killer_group in _highCommandCreatedGroups) then {
 						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
-                    };
-                };
-            };
-	    };
-	};
-};
-
-//--Remove all eventHandlers from object and start trashing--
-_killed removeAllEventHandlers "killed";
-_killed removeAllEventHandlers "hit";
-_killed removeAllEventHandlers "getIn";
-_killed removeAllEventHandlers "getOut";
-_killed removeAllEventHandlers "fired";
+                    }
+                }
+            }
+	    }
+	}
+}
