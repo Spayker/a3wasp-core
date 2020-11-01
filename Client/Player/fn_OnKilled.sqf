@@ -4,11 +4,7 @@
 		- Killed
 */
 
-params ["_body"];
-
-//--- EH are flushed on unit death, still, just make sure.
-player removeAllEventHandlers "killed";
-removeAllActions _body;
+params ["_killed", "_killer"];
 
 WF_Client_IsRespawning = true;
 
@@ -19,24 +15,23 @@ if (dialog) then {closeDialog 0};
 
 if(!WF_GameOver) then
 {
-	WF_DeathLocation = getPos _body;
+	WF_DeathLocation = getPos _killed;
 	player connectTerminalToUAV objNull;
 
 	//--- Fade transition.
 	titleCut["","BLACK OUT",1];
+
+	[_killed, _killer, sideID] Spawn WFCO_FNC_OnUnitKilled;
+
 	waitUntil {alive player};
 
 	//--- Update the player.
 	[WF_Client_Team, player] remoteExecCall ["WFSE_FNC_updateTeamLeader",2];
+
 	//--- Make sure that player is always the leader (of his group).
-	if (group player == WF_Client_Team) then {
-		if (leader(group player) != player) then {(group player) selectLeader player};
-	};
+	if (! (isPlayer (leader(group player))) && !(WF_Client_SideJoined isEqualTo resistance)) then {(group player) selectLeader player};
 
 	titleCut["","BLACK IN",1];
-
-	//--- Re-add the KEH to the client.
-	player addEventHandler ['Killed', {[_this select 0,_this select 1] Spawn WFCL_FNC_OnKilled; [_this select 0,_this select 1, sideID] Spawn WFCO_FNC_OnUnitKilled}];
 
 	/* Re-add client UAV deploy handler */
     player addEventHandler ["WeaponAssembled", {

@@ -424,7 +424,7 @@ waitUntil {townInit};
 [WF_Client_SideJoinedText,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
 
 /* Client death handler. */
-player addEventHandler ['Killed', {[_this # 0,_this # 1] Spawn WFCL_FNC_OnKilled; [_this # 0,_this # 1, sideID] Spawn WFCO_FNC_OnUnitKilled}];
+player addEventHandler ['Killed', {_this Spawn WFCL_FNC_OnKilled}];
 
 /* Client UAV deploy handler */
 player addEventHandler ["WeaponAssembled", {
