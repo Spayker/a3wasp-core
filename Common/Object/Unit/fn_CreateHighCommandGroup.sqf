@@ -19,6 +19,7 @@ params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
                 _vehicle  spawn {_this allowDamage false; sleep 15; _this allowDamage true};
                 _position = [_position, 30] call WFCO_fnc_getEmptyPosition;
                 _vehicle setPosATL [_position # 0, _position # 1, .5];
+                _vehicle setVectorUp surfaceNormal position _vehicle;
                 [str _side,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
                 {
                     [_x, typeOf _x,_unitGroup,_position,_sideID] spawn WFCO_FNC_InitManUnit;

@@ -88,7 +88,7 @@ if (!alive _building || isNull _building) exitWith {
 };
 
 
-_position = [_position, 0, 15, 4, 0, 0, 0] call BIS_fnc_findSafePos;
+_position = [_position, 2, 30, 5, 0, 20, 0] call BIS_fnc_findSafePos;
 [player,_selectedGroupTemplate, _position, _direction] remoteExecCall ["WFSE_fnc_buyGroup", 2];
 
 sleep _commonTime;
