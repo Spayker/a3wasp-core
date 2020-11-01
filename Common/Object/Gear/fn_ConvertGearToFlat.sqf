@@ -19,7 +19,11 @@ _classnames = [];
 
 {
 	if(!isnil "_x")then{
-		{if (_x != "") then { _classnames pushBack _x }} forEach _x;
+		{
+		    _item = _x;
+            if(typeName _x == 'ARRAY') then { _item = _item # 0 };
+		    if (_item != "") then { _classnames pushBack _item }
+		} forEach _x;
 	};
 } forEach (_gear select 3);
 

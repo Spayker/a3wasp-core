@@ -58,24 +58,23 @@ if (_item != "") then {
 
 //--- Muzzle
 {
-	if (_x != "") exitWith {
+	if !(_x isEqualTo "") exitWith {
 		_muzzles = getArray (configFile >> "CfgWeapons" >> _x >> "muzzles"); 
 		if !("this" in _muzzles) then {_unit selectWeapon (_muzzles select 0)} else {_unit selectWeapon _x}; 
 	};
 } forEach [primaryWeapon _unit, handgunWeapon _unit, secondaryWeapon _unit];
 
-
 //--- ######## [Equipment check-in] ########
 _new = _gear select 1;
 
 //--- Check if the containers are ok
-if (((_gear select 1) select 2) select 0 != backpack _unit || [((_gear select 1) select 2) select 1, backpackItems _unit] call WFCO_FNC_ArrayDiffers) then {
+if (!((((_gear select 1) select 2) select 0) isEqualTo backpack _unit) || [((_gear select 1) select 2) select 1, backpackItems _unit] call WFCO_FNC_ArrayDiffers) then {
 	[_unit, ((_gear select 1) select 2) select 0, ((_gear select 1) select 2) select 1] call WFCO_FNC_EquipContainerBackpack;
 };
-if (((_gear select 1) select 1) select 0 != vest _unit || [((_gear select 1) select 1) select 1, vestItems _unit] call WFCO_FNC_ArrayDiffers) then {
+if (!((((_gear select 1) select 1) select 0) isEqualTo vest _unit) || [((_gear select 1) select 1) select 1, vestItems _unit] call WFCO_FNC_ArrayDiffers) then {
 	[_unit, ((_gear select 1) select 1) select 0, ((_gear select 1) select 1) select 1] call WFCO_FNC_EquipContainerVest;
 };
-if (((_gear select 1) select 0) select 0 != uniform _unit || [((_gear select 1) select 0) select 1, uniformItems _unit] call WFCO_FNC_ArrayDiffers) then {
+if (!((((_gear select 1) select 0) select 0) isEqualTo uniform _unit) || [((_gear select 1) select 0) select 1, uniformItems _unit] call WFCO_FNC_ArrayDiffers) then {
 	[_unit, ((_gear select 1) select 0) select 0, ((_gear select 1) select 0) select 1] call WFCO_FNC_EquipContainerUniform;
 };
 
@@ -85,14 +84,19 @@ removeAllAssignedItems _unit; //--- Due to the lack of commands for some of them
 _new = _gear select 2;
 
 _item = _new select 0;
-if (_item != headgear _unit) then {removeHeadgear _unit};
-if (_item != "") then {_unit addHeadgear _item};
+if !(_item isEqualTo headgear _unit) then {removeHeadgear _unit};
+if !(_item isEqualTo "") then {_unit addHeadgear _item};
 
 _item = _new select 1;
-if (_item != goggles _unit) then {removeGoggles _unit};
-if (_item != "") then {_unit addGoggles _item};
+if !(_item isEqualTo goggles _unit) then {removeGoggles _unit};
+if !(_item isEqualTo "") then {_unit addGoggles _item};
 
-{ if (_x != "") then {_unit linkItem _x} } forEach ([((_gear select 3) select 0) select 0] + ((_gear select 3) select 1));
+{ if !(_x isEqualTo "") then {_unit linkItem _x} } forEach ([((_gear select 3) select 0) select 0] + ((_gear select 3) select 1));
 
 //--- Binoculars are special, they can't be linked like the other items.
-if (((_gear select 3) select 0) select 1 != "") then {_unit addWeapon (((_gear select 3) select 0) select 1)};
+if ((((_gear select 3) select 0) select 1) isEqualType []) then {
+	if !(((((_gear select 3) select 0) select 1) select 0) isEqualTo "") then {_unit addWeapon ((((_gear select 3) select 0) select 1) select 0)};
+	if !(((((_gear select 3) select 0) select 1) select 1) isEqualTo "") then {_unit addMagazine ((((_gear select 3) select 0) select 1) select 1)};
+} else {
+	if !((((_gear select 3) select 0) select 1) isEqualTo "") then {_unit addWeapon (((_gear select 3) select 0) select 1)};
+}

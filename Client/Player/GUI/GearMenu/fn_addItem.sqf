@@ -33,7 +33,7 @@ if !(isNil '_get') then {
             //--- Simulation?
             _index = if (getText(configFile >> 'CfgWeapons' >> _item >> 'simulation') == "NVGoggles") then {0} else {1};
             _current = ((_gear select 3) select 0) select _index;
-
+            if(typeName _current == 'ARRAY') then { _current = _current # 0 };
             if (_current != _item) then { //--- Replace
                 ((uiNamespace getVariable "wf_dialog_ui_gear") displayCtrl (70006+_index)) ctrlSetText getText(configFile >> 'CfgWeapons' >> _item >> 'picture');
                 ((uiNamespace getVariable "wf_dialog_ui_gear") displayCtrl (70006+_index)) ctrlSetTooltip getText(configFile >> 'CfgWeapons' >> _item >> 'displayName');

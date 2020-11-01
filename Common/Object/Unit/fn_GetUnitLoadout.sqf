@@ -27,9 +27,16 @@ _handgun_current_magazine = (handgunMagazine _target) call WFCO_FNC_ArrayToLower
 _headgear = toLower(headgear _target);
 _goggles = toLower(goggles _target);
 
+_binomag = "";
+{
+    if ((_x select 0) isEqualTo binocular _target) exitWith {
+        _binomag = (_x select 4) param [0, ""];
+    };
+} forEach weaponsitems _target;
+
 //--- Items
 _allitems = ((assignedItems _target) call WFCO_FNC_ArrayToLower) - [_headgear, _goggles];
-_items = [["", ""], ["", "", "", "", ""]];
+_items = [["", ["",""]], ["", "", "", "", ""]];
 
 {
 	_slot = switch (getText(configFile >> 'CfgWeapons' >> _x >> 'simulation')) do {
@@ -42,13 +49,20 @@ _items = [["", ""], ["", "", "", "", ""]];
 		case "ItemWatch": {[1,4]};
 		default {[-1]};
 	};
-	if (_slot select 0 == -1) then { //--- The simulation couldn't be determined, try to get the subtype maybe?
+	if ((_slot select 0) isEqualTo -1) then {
 		if (getNumber(configFile >> 'CfgWeapons' >> _x >> 'ItemInfo' >> 'type') isEqualTo WF_SUBTYPE_UAVTERMINAL) then {_slot = [1,1]};
 		if (getNumber(configFile >> 'CfgWeapons' >> _x >> 'useAsBinocular') isEqualTo 1 && getText(configFile >> 'CfgWeapons' >> _x >> 'simulation') isEqualTo "weapon") then {_slot = [0,1]};
 	};
-	if (_slot select 0 != -1) then { (_items select (_slot select 0)) set [_slot select 1, _x] };
+	if !(_slot select 0 isEqualTo -1) then {
+		if (_slot isEqualTo [0,1]) then {
+			((_items select (_slot select 0)) select (_slot select 1)) set [0, _x];
+			((_items select (_slot select 0)) select (_slot select 1)) set [1, _binomag];
+		} else {
+			(_items select (_slot select 0)) set [(_slot select 1), _x];
+		}
+	};
 } forEach _allitems;
-_items = [(_items select 0) call WFCO_FNC_ArrayToLower, (_items select 1) call WFCO_FNC_ArrayToLower];
+_items = [[toLower ((_items select 0) select 0), ((_items select 0) select 1) call WFCO_FNC_ArrayToLower] , (_items select 1) call WFCO_FNC_ArrayToLower];
 
 //--- Return the preformated gear
 [

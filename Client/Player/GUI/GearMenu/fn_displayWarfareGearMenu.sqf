@@ -10,7 +10,7 @@ switch (_action) do {
 		_dragging = if (isNil{uiNamespace getVariable "wf_dialog_ui_gear_dragging"}) then {false} else {uiNamespace getVariable "wf_dialog_ui_gear_dragging"};
 		
 		if (_dragging) then {uiNamespace setVariable ["wf_dialog_ui_gear_dragging", false]};
-		(findDisplay 503000) displaySetEventHandler ["mouseButtonUp", "_dragging = if (isNil{uiNamespace getVariable 'wf_dialog_ui_gear_dragging'}) then {false} else {uiNamespace getVariable 'wf_dialog_ui_gear_dragging'}; if (_dragging) then {['onShoppingListMouseUp', _this select 1] call WFCL_fnc_displayWarareGearMenu"];
+		(findDisplay 503000) displaySetEventHandler ["mouseButtonUp", "_dragging = if (isNil{uiNamespace getVariable 'wf_dialog_ui_gear_dragging'}) then {false} else {uiNamespace getVariable 'wf_dialog_ui_gear_dragging'}; if (_dragging) then {['onShoppingListMouseUp', _this select 1] call WFCL_fnc_displayWarfareGearMenu"];
 	};
 	case "onShoppingTabClicked": { //--- A shopping tab was clicked upon
 		//--- New tab		
