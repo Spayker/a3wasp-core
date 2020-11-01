@@ -29,7 +29,11 @@ _item = (_gear select 2) select 1;
 _generic_mass = _generic_mass + (if (_item != "") then {getNumber(configFile >> "CfgGlasses" >> _item >> "mass")} else {0});
 
 //--- Special and items
-_generic_mass = _generic_mass + (((_gear select 3) select 0) call WFCL_fnc_getItemsMass) + (((_gear select 3) select 1) call WFCL_fnc_getItemsMass);
+_nvg_mass = [(((_gear select 3) select 0) select 0)] call WFCL_fnc_getItemsMass;
+_bino_w_mag_mass = (((_gear select 3) select 0) select 1);
+if(_bino_w_mag_mass isEqualType "") then {_bino_w_mag_mass = [_bino_w_mag_mass];};
+_bino_w_mag_mass = _bino_w_mag_mass call WFCL_fnc_getItemsMass;
+_generic_mass = _generic_mass + _nvg_mass + _bino_w_mag_mass;
 
 //--- Weapons
 for '_i' from 0 to 2 do {
