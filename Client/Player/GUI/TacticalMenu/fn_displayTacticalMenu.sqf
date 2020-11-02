@@ -118,12 +118,12 @@ while {alive player && dialog} do {
         _closestTown = [player, towns] call WFCO_FNC_GetClosestEntity;
         _sideID = _closestTown getVariable "sideID";
         _side = (_sideID) Call WFCO_FNC_GetSideFromID;
-        if (side player == _side && player distance _closestTown < _ftr && vehicle player != _base) then {
+        if (side player == _side && player distance _closestTown < _ftr) then {
             _canFT = true;
             _startPoint = _closestTown
         };
 
-        if (!(_canFT) && player distance _base < _ftr && alive _base && vehicle player != _base) then {
+        if (!(_canFT) && player distance _base < _ftr && alive _base) then {
             _canFT = true;
             _startPoint = _base
         };
