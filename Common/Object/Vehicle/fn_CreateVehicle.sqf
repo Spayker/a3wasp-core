@@ -36,12 +36,6 @@ for "_x" from 0 to ((count WF_C_AIR_VEHICLE_TO_REQUIP) - 1) do
 	};	
 };
 
-if (_vehicle isKindOf "Plane") then {
-	_vehicle removeWeaponGlobal "Laserdesignator";
-	_vehicle removeWeaponGlobal "Laserdesignator_mounted";
-	_vehicle removeWeaponGlobal "Laserdesignator_pilotCamera";
-};
-
 if (_special == "FLY") then {
 	_vehicle setVelocity [50 * (sin _direction), 50 * (cos _direction), 0];
 };
