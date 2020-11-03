@@ -101,7 +101,7 @@ _paratroopers = [];
 [str _side,'UnitsCreated', _built] Call WFCO_FNC_UpdateStatistics;
 
 //--- Tell the group to move.
-[_grp, _destination, "MOVE", 10] Call WFSE_fnc_aiMoveTo;
+[_grp, _destination, "MOVE", 10] Call WFCO_fnc_aiMoveTo;
 
 {
 	_x setPosATL [getPosATL _x select 0, getPosATL _x select 1, (getPosATL _x select 2)  + 100];
@@ -183,7 +183,7 @@ if (_greenlight) then {
     forEach _paratroopers;
 
 	//--- Once done, the air units can fly back to their source.
-	[_grp, (_ranPos select _ran), "MOVE", 5] Call WFSE_fnc_aiMoveTo;
+	[_grp, (_ranPos select _ran), "MOVE", 5] Call WFCO_fnc_aiMoveTo;
 
 	//--- Loop until death or arrival.
 	while {true} do {

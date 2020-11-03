@@ -114,7 +114,7 @@ if (_greenlight) then {
     } forEach _paratroopers;
     //--- Once done, the air units can fly back to their source.
     sleep 15;
-    [_vehicleGrp, _closestStartPos, "MOVE", 5] Call WFSE_fnc_aiMoveTo;
+    [_vehicleGrp, _closestStartPos, "MOVE", 5] Call WFCO_fnc_aiMoveTo;
 
     //--- Loop until death or arrival.
     while {true} do {

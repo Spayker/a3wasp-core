@@ -415,6 +415,15 @@ class WF_Common {
         class swapArray {};
     };
 
+    class ModuleAiOrders {
+        file = "Common\Module\AI\Orders";
+        class aiMoveTo {};
+        class aiPatrol {};
+        class aiTownPatrol {};
+        class aiWPAdd {};
+        class aiWPRemove {};
+    };
+
     class ModuleKbFunctions {
         file = "Common\Module\Kb";
         class initHq {};

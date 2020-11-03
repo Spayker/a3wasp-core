@@ -44,7 +44,7 @@ _grp setBehaviour 'CARELESS';
 _grp setCombatMode 'STEALTH';
 _pilot disableAI 'AUTOTARGET';
 _pilot disableAI 'TARGET';
-[_grp,_position,"MOVE",10] call WFSE_fnc_aiMoveTo;
+[_grp,_position,"MOVE",10] call WFCO_fnc_aiMoveTo;
 call compile format ["_vehicle addEventHandler ['Killed',{[_this select 0,_this # 1,%1] spawn WFCO_FNC_OnUnitKilled}]",_sideID];
 
 _vehicle flyInHeight (300 + random(75));
@@ -79,7 +79,7 @@ detach _cargoVehicle;
 	deleteVehicle _chute;
 };
 
-[_grp,(_ranPos select _ran),"MOVE",10] call WFSE_fnc_aiMoveTo;
+[_grp,(_ranPos select _ran),"MOVE",10] call WFCO_fnc_aiMoveTo;
 
 while {true} do {
 	sleep 1;
