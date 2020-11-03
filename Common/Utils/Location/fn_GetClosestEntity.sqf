@@ -8,6 +8,8 @@
 private["_distance","_nearest"];
 params ["_object", "_objects", ["_distance", 100000]];
 
+if (typeName _objects == 'OBJECT') then { _objects = [_objects] };
+
 _nearest = objNull;
 {
     _spawnLoc = _x;

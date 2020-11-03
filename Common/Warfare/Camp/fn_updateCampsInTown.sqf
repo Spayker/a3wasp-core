@@ -18,7 +18,7 @@ while {!WF_GameOver} do {
     for "_j" from 0 to ((count _filteredTowns) - 1) step 1 do {
         _town = _filteredTowns # _j;
         if!(isNil "_town") then {
-        _camps = _town getVariable "camps";
+        _camps = _town getVariable ["camps", []];
         _town_starting_sv = _town getVariable "startingSupplyValue";
 
         for "_i" from 0 to ((count _camps) - 1) step 1 do {
@@ -98,13 +98,11 @@ while {!WF_GameOver} do {
                     [_camp,_newSID,_sideID] remoteExecCall ["WFCL_FNC_CampCaptured"];
                 };
             };
-
             sleep 0.01
         };
 
         sleep 0.01
         }
     };
-
     sleep 5
 }
