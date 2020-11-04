@@ -65,18 +65,18 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
 		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleBombs}]
 	};
 	
-	//--Check if vehicle is arty vehicle and add EH--	
-	{	        
-	    if(typeOf _vehicle == (_x # 0)) exitWith {				
-			[_vehicle, ["Fired", {
+	//--Check if vehicle is arty vehicle and add EH--
+    {
+        if(typeOf _vehicle == (_x # 0)) exitWith {
+    		[_vehicle, ["Fired", {
             	params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
-				
-				if(isPlayer _gunner) then {
-					deleteVehicle _projectile;
-				};
+
+    			if(isPlayer _gunner || _gunner == (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
+    				deleteVehicle _projectile;
+    			};
             }]] remoteExec ["addEventHandler", -2, true];
-	    };
-	} forEach (missionNamespace getVariable [format['WF_%1_ARTILLERY_CLASSNAMES', _sideId], []]);
+        };
+    } forEach (missionNamespace getVariable [format['WF_%1_ARTILLERY_CLASSNAMES', _side], []]);
 
 	_vehicle addEventHandler ["GetOut", {
 		private _vehicle = param [0, objNull, [objNull]];
