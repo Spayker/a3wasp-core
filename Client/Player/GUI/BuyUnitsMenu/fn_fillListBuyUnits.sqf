@@ -95,8 +95,7 @@ _UpAir = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_AIR;
             }
         };
 
-		if (
-		    ((_c # QUERYUNITUPGRADE) <= (_currentUpgrades # _value) && _addin && !_isAdvVehicle) || (_addit && _addin)) then {
+		if (((_c # QUERYUNITUPGRADE) <= (_currentUpgrades # _value) && _addin && !_isAdvVehicle) || (_addit && _addin)) then {
 		    _cost = _c # QUERYUNITPRICE;
 		    _capturedMilitaryBases = [WF_Client_SideJoined, WF_C_MILITARY_BASE, false] call WFCO_fnc_getSpecialLocations;
             if(_capturedMilitaryBases > 0) then {
@@ -123,18 +122,30 @@ _UpAir = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_AIR;
                 if(_filler == 'Depot' && _x isKindOf 'Man') then {
                     lnbSetColor [_listBox,[_i,1],[0.6, 0.6, 0.0, 1.0]]
                 };
-				
+
 				if(_x in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {
 					lnbSetColor [_listBox,[_i,1],[1.0, 1.0, 0.0, 1.0]]
 				};
-				
+
 				if(_x in (missionNamespace getVariable [format["WF_%1SALVAGETRUCK", WF_Client_SideJoined], []])) then {
 					lnbSetColor [_listBox,[_i,1],[0.0, 0.5, 1.0, 1.0]]
 				};
-				
+
 				if(_x in (missionNamespace getVariable [format["WF_%1REPAIRTRUCKS", WF_Client_SideJoined], []])) then {
 					lnbSetColor [_listBox,[_i,1],[1.0, 0.5, 0.25, 1.0]]
-				}
+				};
+
+				if(_x in (missionNamespace getVariable [format["WF_%1REPAIRTRUCKS", WF_Client_SideJoined], []])) then {
+                    lnbSetColor [_listBox,[_i,1],[1.0, 0.5, 0.25, 1.0]]
+                };
+
+                if((_c # QUERYUNITLABEL) find "(Fuel Truck)" > -1) then {
+                    lnbSetColor [_listBox,[_i,1],[0.75, 0.25, 0.25, 1.0]]
+                };
+
+                if((_c # QUERYUNITLABEL) find "(Ammo Truck)" > -1) then {
+                    lnbSetColor [_listBox,[_i,1],[0.25, 0.75, 0.25, 1.0]]
+                };
 		    };
 		_i = _i + 1;
 	};
