@@ -76,10 +76,11 @@ _effective = [];
 _nearSupport = [];
 _spType = missionNamespace getVariable Format ["%1SP",WF_Client_SideJoinedText];
 _i = 0;
+_foundClosestSP = objNull;
+_foundRepairTruck = objNull;
 {
-	_closestSP = objNull;
 	_add = false;
-
+	_closestSP = objNull;
 	_nearSupport set [_i, []];
 
 	//--- Service Point.
@@ -89,6 +90,7 @@ _i = 0;
 			if (_x distance _closestSP < (missionNamespace getVariable "WF_C_UNITS_SUPPORT_RANGE")) then {
 				_add = true;
 				_nearSupport set [_i,(_nearSupport select _i) + [_closestSP]];
+				_foundClosestSP = _closestSP;
 			};
 		};
 	};
@@ -102,10 +104,11 @@ _i = 0;
 	};
 
 	//--- Repairs Trucks.
-	_checks = (getPos _x) nearEntities[_typeRepair, missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE"];
-	if (count _checks > 0) then {
+	_repairTrucks = (getPos _x) nearEntities[_typeRepair, missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE"];
+	if (count _repairTrucks > 0) then {
 		_add = true;
-		_nearSupport set [_i,(_nearSupport select _i) + _checks];
+		_nearSupport set [_i,(_nearSupport select _i) + _repairTrucks];
+		_foundRepairTruck = _repairTrucks # 0
 	};
 
 	//--- Add the vehicle ?
@@ -147,9 +150,10 @@ _i = 0;
 	};
 } forEach _vehi;
 
-_checks = (getPos player) nearEntities[_typeRepair, missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE"];
-if (count _checks > 0) then {
-	_repair = _checks select 0;
+_repairTrucks = (getPos player) nearEntities[_typeRepair, missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE"];
+if (count _repairTrucks > 0) then {
+	_repair = _repairTrucks select 0;
+	_foundRepairTruck = _repair;
 	_vehi = ((getPos _repair) nearEntities[["Car","Motorcycle","Tank","Air","Ship","StaticWeapon","UAV"],100]) - [_repair];
 	{
 		if !(_x in _effective) then {
@@ -210,7 +214,7 @@ while {true} do {
 		    } else {
 		        _townServices = _nObject getVariable ["townServices", []];
 		        _healServiceExists = false;
-                if(WF_C_TOWNS_SERVICE_HEAL in _townServices) then { _healServiceExists = true };
+                if(WF_C_TOWNS_SERVICE_HEAL in _townServices  || !(isNull _foundClosestSP) || !(isNull _foundRepairTruck)) then { _healServiceExists = true };
                 _enabled = if (_healServiceExists && _funds >= _healPrice) then {true} else {false};
                 ctrlEnable [20008, _enabled];
                 ctrlEnable [1611, _enabled]
@@ -245,32 +249,45 @@ while {true} do {
                 ctrlEnable [1611, _enabled];
             } else {
                 _townServices = _nObject getVariable ["townServices", []];
+
+                _rearmServiceExists = false;
+                _repairServiceExists = false;
+                _fuelServiceExists = false;
+                _healServiceExists = false;
                 if(count _townServices > 0) then {
-                    _rearmServiceExists = false;
                     if(WF_C_TOWNS_SERVICE_REARM in _townServices) then { _rearmServiceExists = true };
+                    if(WF_C_TOWNS_SERVICE_REPAIRING in _townServices) then { _repairServiceExists = true };
+                    if(WF_C_TOWNS_SERVICE_FUEL in _townServices) then { _fuelServiceExists = true };
+                    if(WF_C_TOWNS_SERVICE_HEAL in _townServices) then { _healServiceExists = true }
+                } else {
+                    if(!(isNull _foundClosestSP) || !(isNull _foundRepairTruck)) then {
+                        _rearmServiceExists = true;
+                        _repairServiceExists = true;
+                        _fuelServiceExists = true;
+                        _healServiceExists = true;
+                    }
+                };
+
                     _enabled = if (_canBeUsed && _rearmServiceExists && _funds >= _rearmPrice) then {true} else {false};
                     ctrlEnable [20003, _enabled];
                     ctrlEnable [1608, _enabled];
                     ctrlEnable [20018, if (_enabled && _tanksRearmEnabled) then {true} else {false}];
 
-                    _repairServiceExists = false;
-                    if(WF_C_TOWNS_SERVICE_REPAIRING in _townServices) then { _repairServiceExists = true };
+
                     _enabled = if (_canBeUsed && _repairServiceExists && _funds >= _repairPrice) then {true} else {false};
                     ctrlEnable [20004, _enabled];
                     ctrlEnable [1610, _enabled];
 
-                    _fuelServiceExists = false;
-                    if(WF_C_TOWNS_SERVICE_FUEL in _townServices) then { _fuelServiceExists = true };
+
                     _enabled = if (_canBeUsed && _fuelServiceExists && _funds >= _refuelPrice) then {true} else {false};
                     ctrlEnable [20005, _enabled];
                     ctrlEnable [1609, _enabled];
 
-                    _healServiceExists = false;
-                    if(WF_C_TOWNS_SERVICE_HEAL in _townServices) then { _healServiceExists = true };
+
                     _enabled = if (_canBeUsed && _healServiceExists && _funds >= _healPrice) then {true} else {false};
                     ctrlEnable [20008, _enabled];
                     ctrlEnable [1611, _enabled];
-                }
+
             };
 			//--- Healing.
 			_healPrice = 0;
