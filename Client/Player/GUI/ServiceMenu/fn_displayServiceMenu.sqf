@@ -150,10 +150,10 @@ _i = 0;
 _checks = (getPos player) nearEntities[_typeRepair, missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE"];
 if (count _checks > 0) then {
 	_repair = _checks select 0;
-	_vehi = ((getPos _repair) nearEntities[["Car","Motorcycle","Tank","Air","Ship","StaticWeapon"],100]) - [_repair];
+	_vehi = ((getPos _repair) nearEntities[["Car","Motorcycle","Tank","Air","Ship","StaticWeapon","UAV"],100]) - [_repair];
 	{
 		if !(_x in _effective) then {
-			_effective = _effective + [_x];
+			_effective pushBackUnique _x;
 			_nearSupport set [_i,[_repair]];
 			_descVehi = [typeOf (vehicle _x), 'displayName'] Call WFCO_FNC_GetConfigInfo;
 			lbAdd[20002,_descVehi];
