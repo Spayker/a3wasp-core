@@ -1555,12 +1555,19 @@
 				<Italian>Ambiente: Waves</Italian>
 				<Portuguese>AMBIENTE: Ondas</Portuguese>
 			</Key>
-			<Key ID="STR_WF_PARAMETER_Fast_Time">
-				<English>ENVIRONMENT: Fast Time</English>
-				<French>ENVIRONEMENT: Temp Acceléré</French>
-				<German>UMWELT: Zeitraffer</German>
-				<Russian>Природа: Быстрое время</Russian>
-				<Italian>Ambiente: Tempo Accellerato</Italian>
+			<Key ID="STR_WF_PARAMETER_FastTime_DAY">
+				<English>ENVIRONMENT: Fast Time Day</English>
+				<French>ENVIRONEMENT: Temp Acceléré Day</French>
+				<German>UMWELT: Zeitraffer Day</German>
+				<Russian>Природа: Быстрое время День</Russian>
+				<Italian>Ambiente: Tempo Accellerato Day</Italian>
+			</Key>
+			<Key ID="STR_WF_PARAMETER_FastTime_NIGHT">
+				<English>ENVIRONMENT: Fast Time Night</English>
+				<French>ENVIRONEMENT: Temp Acceléré Night</French>
+				<German>UMWELT: Zeitraffer Night</German>
+				<Russian>Природа: Быстрое время Ночь</Russian>
+				<Italian>Ambiente: Tempo Accellerato Night</Italian>
 			</Key>
 			<!--Gameplay-->
 			<Key ID="STR_WF_PARAMETER_BodiesTimeout">

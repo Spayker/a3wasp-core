@@ -161,6 +161,8 @@ with missionNamespace do {
 	if (isNil "WF_C_ENVIRONMENT_WEATHER_FOG") then {WF_C_ENVIRONMENT_WEATHER_FOG = 0;}; //--- fog conditions
 	if (isNil "WF_C_ENVIRONMENT_WEATHER_WIND") then {WF_C_ENVIRONMENT_WEATHER_WIND = 30;}; //--- wind conditions
 	if (isNil "WF_C_ENVIRONMENT_WEATHER_WAVES") then {WF_C_ENVIRONMENT_WEATHER_WAVES = 0;}; //--- waves on sea conditions
+	if (isNil "WF_C_ENVIRONMENT_DAY_FAST_TIME") then {WF_C_ENVIRONMENT_DAY_FAST_TIME = 15;};
+	if (isNil "WF_C_ENVIRONMENT_NIGHT_FAST_TIME") then {WF_C_ENVIRONMENT_NIGHT_FAST_TIME = 60;};
 	WF_C_ENVIRONMENT_WEATHER_TRANSITION = 1800; //--- Weather Transition period, change weather overcast each x seconds (longer is more realistic).
 
 //--- Gameplay.
