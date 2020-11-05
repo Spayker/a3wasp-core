@@ -32,6 +32,7 @@ switch (typeOf _this) do
         removeVest _this;
         _this addVest "CUP_V_B_Eagle_SPC_AR";
         _this addItemToVest "CUP_200Rnd_TE4_Red_Tracer_556x45_M249";
+        _this addItemToVest "CUP_200Rnd_TE4_Red_Tracer_556x45_M249";
 
 		removeBackpack _this;
         _this addBackpack "CUP_B_USMC_MOLLE_AR";
