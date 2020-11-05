@@ -174,8 +174,6 @@ if (_isMan) then {
         }
     } forEach crew _vehicle;
 
-
-
 	if (typeOf _vehicle in WF_FLY_UAVS) then {
 	    createVehicleCrew _vehicle;
 	    _vehicle setVariable ['uavOwnerGroup', group player, true];
@@ -183,9 +181,9 @@ if (_isMan) then {
     {
         [_x, typeOf _x,_group,_position,WF_Client_SideID] spawn WFCO_FNC_InitManUnit;
 
-        private _classLoadout = missionNamespace getVariable Format ['WF_%1WHEELEDCREW',WF_Client_SideJoined];
+            private _classLoadout = missionNamespace getVariable Format ['WF_%1ENGINEER', WF_Client_SideJoined];
         if(_vehicle isKindOf "Tank") then {
-            _classLoadout = missionNamespace getVariable Format ['WF_%1TRACKEDCREW',WF_Client_SideJoined];
+                _classLoadout = missionNamespace getVariable Format ['WF_%1ENGINEER',WF_Client_SideJoined];
         };
         if(_vehicle isKindOf "Air") then {
             _classLoadout = missionNamespace getVariable Format ['WF_%1PILOT',WF_Client_SideJoined];
