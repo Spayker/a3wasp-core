@@ -663,14 +663,6 @@
 				<Italian>Pickup cargo ropes</Italian>
 				<Portuguese>Pickup cargo ropes</Portuguese>
 			</Key>
-			<Key ID="STR_WF_EASA_TRYSELL_MESSAGE">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You can not cancel the purchase of equipment for the pylon. But it is possible to re-equip the machine with a set by default</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Vous ne pouvez pas annuler l'achat d'équipement pour le pylône. Mais il est possible de rééquiper la machine avec un set par défaut</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Sie können den Kauf der Ausrüstung für den Pylon nicht stornieren. Es ist jedoch möglich, das Auto standardmäßig mit einem Set auszurüsten</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нельзя отменить покупку снаряжения для пилона. Но возможно перевооружить машину набором по умолчянию</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Non è possibile annullare l'acquisto di attrezzature per il pilone. Ma è possibile riallineare la macchina con un set per impostazione predefinita</Italian>
-				<Portuguese>&lt;t color='#F8D664'&gt;informaçãot;&lt;br/&gt;&lt;br/&gt; Você não pode cancelar a compra do equipamento para o pylon. Mas é possivel re-equipar a maquina com o equipamento padrão</Portuguese>
-			</Key>
 			<Key ID="STR_WF_ECONOMY_Income_Sys_Com">
 				<English>Commander Income</English>
 				<French>Salaire Commandant</French>
