@@ -1,6 +1,22 @@
 _display = _this select 0;
 
 _enable = false;
+ctrlEnable [2000, false];
+ctrlEnable [2001, false];
+ctrlEnable [2002, false];
+ctrlEnable [2003, false];
+ctrlEnable [2004, false];
+ctrlEnable [2005, false];
+ctrlEnable [2006, false];
+ctrlEnable [2007, false];
+ctrlEnable [2008, false];
+ctrlEnable [2009, false];
+ctrlEnable [2010, false];
+ctrlEnable [2011, false];
+ctrlEnable [2012, false];
+ctrlEnable [2013, false];
+ctrlEnable [2014, false];
+
 if ((barracksInRange || lightInRange || heavyInRange || aircraftInRange || hangarInRange || depotInRange) && (player == leader WF_Client_Team)) then {_enable = true};
 ctrlEnable [2002,_enable];
 ctrlEnable [2004,commandInRange && (player == leader WF_Client_Team)]; //--- Special Menu
