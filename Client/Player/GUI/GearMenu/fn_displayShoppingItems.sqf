@@ -43,57 +43,80 @@ if!(isnil '_selectedRole')then{
                 missionNamespace getVariable "wf_gear_list_pistol"
             };
         };
-        case WF_GEAR_TAB_ACCESSORIES: {
-            _gear_list_accessories = missionNamespace getVariable format["wf_gear_list_accessories_%1",_selectedRole];
-            if!(isNil '_gear_list_pistol')then{
-                (missionNamespace getVariable "wf_gear_list_accessories") + _gear_list_accessories
+        case WF_GEAR_TAB_UNIFORMS: {
+            _gear_list_uniforms = missionNamespace getVariable format["wf_gear_list_uniforms_%1",_selectedRole];
+            if(!(isNil '_gear_list_uniforms'))then{
+                (missionNamespace getVariable "wf_gear_list_uniforms") + _gear_list_uniforms
             } else {
-                missionNamespace getVariable "wf_gear_list_accessories"
+                (missionNamespace getVariable "wf_gear_list_uniforms")
+            }
             };
-        };
-        case WF_GEAR_TAB_AMMO: {
-            _gear_list_magazines = missionNamespace getVariable format["wf_gear_list_magazines_%1",_selectedRole];
-            if!(isNil '_gear_list_pistol')then{
-                (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_magazines
+        case WF_GEAR_TAB_BACKPACK: {
+            _gear_list_backpacks = missionNamespace getVariable format["wf_gear_list_backpacks_%1",_selectedRole];
+            if(!(isNil 'wf_gear_list_backpacks'))then{
+                (missionNamespace getVariable "wf_gear_list_backpacks") + _gear_list_backpacks
             } else {
-                missionNamespace getVariable "wf_gear_list_magazines"
-            };
+                (missionNamespace getVariable "wf_gear_list_backpacks")
+            }
         };
-        case WF_GEAR_TAB_MISC: {
+        case WF_GEAR_TAB_SPECIAL: {
             _gear_list_special = missionNamespace getVariable format["wf_gear_list_special_%1",_selectedRole];
-            _gear_list_misc = missionNamespace getVariable format["wf_gear_list_misc_%1",_selectedRole];
+            if(!(isNil '_gear_list_special'))then{
+                (missionNamespace getVariable "wf_gear_list_special") + _gear_list_special
+            } else {
+                (missionNamespace getVariable "wf_gear_list_special")
+            };
+        };
+        case WF_GEAR_TAB_EXPLOSIVES: {
             _gear_list_explosives = missionNamespace getVariable format["wf_gear_list_explosives_%1",_selectedRole];
 
-            if(!(isNil '_gear_list_special') && !(isNil '_gear_list_misc') && !(isNil '_gear_list_explosives'))then{
-                (missionNamespace getVariable "wf_gear_list_special") + _gear_list_special +
-                (missionNamespace getVariable "wf_gear_list_misc") + _gear_list_misc +
-                (missionNamespace getVariable "wf_gear_list_explosives") + _gear_list_explosives
+            if(!(isNil '_gear_list_explosives'))then{
+                (missionNamespace getVariable "wf_gear_list_explosives") + _gear_list_special
             } else {
-                (missionNamespace getVariable "wf_gear_list_special") +
-                (missionNamespace getVariable "wf_gear_list_misc") +
                 (missionNamespace getVariable "wf_gear_list_explosives")
             };
         };
-        case WF_GEAR_TAB_EQUIPMENT: {
-            _gear_list_uniforms = missionNamespace getVariable format["wf_gear_list_uniforms_%1",_selectedRole];
-            _gear_list_vests = missionNamespace getVariable format["wf_gear_list_vests_%1",_selectedRole];
-            _gear_list_backpacks = missionNamespace getVariable format["wf_gear_list_backpacks_%1",_selectedRole];
+        case WF_GEAR_TAB_HEADGEAR: {
             _gear_list_headgear = missionNamespace getVariable format["wf_gear_list_headgear_%1",_selectedRole];
+            if(!(isNil '_gear_list_headgear'))then{
+                (missionNamespace getVariable "wf_gear_list_headgear") + _gear_list_backpacks
+            } else {
+                missionNamespace getVariable "wf_gear_list_headgear"
+            }
+        };
+        case WF_GEAR_TAB_EQUIPMENT: {
+            _gear_list_vests = missionNamespace getVariable format["wf_gear_list_vests_%1",_selectedRole];
+            if(!(isNil '_gear_list_vests'))then{
+                (missionNamespace getVariable "wf_gear_list_vests") + _gear_list_vests
+            }else{
+                (missionNamespace getVariable "wf_gear_list_vests")
+            };
+        };
+        case WF_GEAR_TAB_GLASSES: {
             _gear_list_glasses = missionNamespace getVariable format["wf_gear_list_glasses_%1",_selectedRole];
 
-            if(!(isNil '_gear_list_uniforms') && !(isNil '_gear_list_vests') && !(isNil '_gear_list_backpacks') &&
-                !(isNil '_gear_list_headgear') && !(isNil '_gear_list_glasses'))then{
-                (missionNamespace getVariable "wf_gear_list_uniforms") + _gear_list_uniforms +
-                (missionNamespace getVariable "wf_gear_list_vests") + _gear_list_vests +
-                (missionNamespace getVariable "wf_gear_list_backpacks") + _gear_list_backpacks +
-                (missionNamespace getVariable "wf_gear_list_headgear") + _gear_list_headgear +
+            if(!(isNil '_gear_list_glasses'))then{
                 (missionNamespace getVariable "wf_gear_list_glasses") + _gear_list_glasses
             }else{
-                (missionNamespace getVariable "wf_gear_list_uniforms") +
-                (missionNamespace getVariable "wf_gear_list_vests") +
-                (missionNamespace getVariable "wf_gear_list_backpacks") +
-                (missionNamespace getVariable "wf_gear_list_headgear") +
                 (missionNamespace getVariable "wf_gear_list_glasses")
+            };
+        };
+        case WF_GEAR_TAB_MISC: {
+            _gear_list_misc = missionNamespace getVariable format["wf_gear_list_misc_%1",_selectedRole];
+
+            if(!(isNil '_gear_list_misc'))then{
+                (missionNamespace getVariable "wf_gear_list_misc") + _gear_list_misc
+            }else{
+                (missionNamespace getVariable "wf_gear_list_misc")
+            };
+        };
+        case WF_GEAR_TAB_MAGAZINES: {
+            _gear_list_magazines = missionNamespace getVariable format["wf_gear_list_magazines_%1",_selectedRole];
+
+            if(!(isNil '_gear_list_magazines'))then{
+                (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_magazines
+            }else{
+                (missionNamespace getVariable "wf_gear_list_magazines")
             };
         };
     };
@@ -102,13 +125,15 @@ if!(isnil '_selectedRole')then{
         case WF_GEAR_TAB_PRIMARY: {missionNamespace getVariable "wf_gear_list_primary"};
         case WF_GEAR_TAB_SECONDARY: {missionNamespace getVariable "wf_gear_list_secondary"};
         case WF_GEAR_TAB_HANDGUN: {missionNamespace getVariable "wf_gear_list_pistol"};
-        case WF_GEAR_TAB_ACCESSORIES: {missionNamespace getVariable "wf_gear_list_accessories"};
-        case WF_GEAR_TAB_AMMO: {missionNamespace getVariable "wf_gear_list_magazines"};
-        case WF_GEAR_TAB_MISC: {(missionNamespace getVariable "wf_gear_list_special") + (missionNamespace getVariable "wf_gear_list_misc") + (missionNamespace getVariable "wf_gear_list_explosives")};
-        case WF_GEAR_TAB_EQUIPMENT: {
-            (missionNamespace getVariable "wf_gear_list_uniforms") + (missionNamespace getVariable "wf_gear_list_vests") + (missionNamespace getVariable "wf_gear_list_backpacks") +
-            (missionNamespace getVariable "wf_gear_list_headgear") + (missionNamespace getVariable "wf_gear_list_glasses")
-        };
+        case WF_GEAR_TAB_UNIFORMS: {missionNamespace getVariable "wf_gear_list_uniforms"};
+        case WF_GEAR_TAB_BACKPACK: {missionNamespace getVariable "wf_gear_list_backpacks"};
+        case WF_GEAR_TAB_SPECIAL: {(missionNamespace getVariable "wf_gear_list_special")};
+        case WF_GEAR_TAB_EQUIPMENT: { (missionNamespace getVariable "wf_gear_list_vests") };
+        case WF_GEAR_TAB_HEADGEAR: { (missionNamespace getVariable "wf_gear_list_headgear") };
+        case WF_GEAR_TAB_GLASSES: { (missionNamespace getVariable "wf_gear_list_glasses") };
+        case WF_GEAR_TAB_EXPLOSIVES: { (missionNamespace getVariable "wf_gear_list_explosives") };
+        case WF_GEAR_TAB_MISC: { (missionNamespace getVariable "wf_gear_list_misc") };
+        case WF_GEAR_TAB_MAGAZINES: { (missionNamespace getVariable "wf_gear_list_magazines") };
     };
 };
 

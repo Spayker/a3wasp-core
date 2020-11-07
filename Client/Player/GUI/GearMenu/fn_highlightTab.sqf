@@ -1,7 +1,7 @@
 private ["_IDCs", "_index", "_selected"];
 _index = _this;
 
-_IDCs = [70501, 70502, 70503, 70504, 70505, 70506, 70507, 70508];
+_IDCs = [70500, 70501, 70502, 70503, 70504, 70505, 70506, 70507, 70508, 7059, 70510, 70511, 70512];
 _selected = _IDCs select _index;
 _IDCS = _IDCS - [_selected];
 

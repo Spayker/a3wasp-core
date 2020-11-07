@@ -55,29 +55,29 @@ class WF_BuyGearMenu
 			x = "SafeZoneX + (SafeZoneW * 0.01)";
 			y = "SafeZoneY + (SafezoneH * 0.07)";
 			w = "SafeZoneW * 0.38";
-			h = "SafeZoneH * 0.08";
+			h = "SafeZoneH * 0.16";
 		};
 		class WF_Menu_Icons_Background : RscTextGear {
 			x = "SafeZoneX + (SafeZoneW * 0.01)";
 			y = "SafeZoneY + (SafezoneH * 0.07)";
 			w = "SafeZoneW * 0.38";
-			h = "SafeZoneH * 0.08";
+			h = "SafeZoneH * 0.16";
 			colorBackground[] = {0.5, 0.5, 0.5, 0.25};
 		};
 
 		class WF_Menu_ComboTarget_Frame : RscFrameGear {
 			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafezoneH * 0.17)";
+			y = "SafeZoneY + (SafezoneH * 0.25)";
 			w = "SafeZoneW * 0.38";
 			h = "SafeZoneH * 0.055";
 		};
 		class WF_Menu_ComboTarget_Background : WF_Menu_Icons_Background {
-			y = "SafeZoneY + (SafezoneH * 0.17)";
+			y = "SafeZoneY + (SafezoneH * 0.25)";
 			h = "SafeZoneH * 0.055";
 		};
 		class WF_Menu_ComboTarget_Label : RscTextGear {
 			x = "SafeZoneX + (SafeZoneW * 0.02)";
-			y = "SafeZoneY + (SafezoneH * 0.18)";
+			y = "SafeZoneY + (SafezoneH * 0.26)";
 			w = "SafeZoneW * 0.1";
 			h = "SafeZoneH * 0.035";
 
@@ -88,13 +88,13 @@ class WF_BuyGearMenu
 
 		class WF_Menu_ShopList_Frame : RscFrameGear {
 			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafezoneH * 0.245)";
+			y = "SafeZoneY + (SafezoneH * 0.32)";
 			w = "SafeZoneW * 0.38";
-			h = "SafeZoneH * 0.48";
+			h = "SafeZoneH * 0.4";
 		};
 		class WF_Menu_ShopList_Background : WF_Menu_ComboTarget_Background {
-			y = "SafeZoneY + (SafezoneH * 0.245)";
-			h = "SafeZoneH * 0.48";
+			y = "SafeZoneY + (SafezoneH * 0.32)";
+			h = "SafeZoneH * 0.4";
 		};
 		class WF_Menu_MagsList_Background : WF_Menu_ComboTarget_Background {
 			x = "SafeZoneX + (SafeZoneW * 0.41)";
@@ -306,9 +306,9 @@ class WF_BuyGearMenu
 			idc = 70108;
 
 			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafezoneH * 0.245)";
+			y = "SafeZoneY + (SafezoneH * 0.32)";
 			w = "SafeZoneW * 0.38";
-			h = "SafeZoneH * 0.48";
+			h = "SafeZoneH * 0.395";
 
 			rowHeight = "1.5 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 			sizeEx = "0.78 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -692,7 +692,7 @@ class WF_BuyGearMenu
 			idc = 70201;
 
 			x = "SafeZoneX + (SafeZoneW * 0.15)";
-			y = "SafeZoneY + (SafezoneH * 0.18)";
+			y = "SafeZoneY + (SafezoneH * 0.26)";
 			w = "SafeZoneW * 0.235";
 			h = "SafeZoneH * 0.037";
 
@@ -726,9 +726,9 @@ class WF_BuyGearMenu
 		};
 
 		class WF_Icon_Primary : RscActiveTextGear {
-			idc = 70501;
+			idc = 70500;
 			style = ST_KEEP_ASPECT_RATIO;
-			x = "SafeZoneX + (SafeZoneW * 0.028)";
+			x = "SafeZoneX + (SafeZoneW * 0.03)";
 			y = "SafeZoneY + (SafezoneH * 0.07)";
 			w = "SafeZoneW * 0.043";
 			h = "SafeZoneH * 0.08";
@@ -740,56 +740,97 @@ class WF_BuyGearMenu
 			colorFocused[] = {0.0, 0.0, 0.0, 0};
 			colorDisabled[] = {1,1,1,0.3};
 
-			text = "Rsc\Pictures\icon_wf_gear_primary.paa";
+			text = "Rsc\Pictures\geariconprimary.paa";
 			action = "['onShoppingTabClicked', WF_GEAR_TAB_PRIMARY] call WFCL_fnc_displayWarfareGearMenu";
 		};
 		class WF_Icon_Secondary : WF_Icon_Primary {
-			idc = 70502;
-			x = "SafeZoneX + (SafeZoneW * 0.071)";
+			idc = 70501;
+			x = "SafeZoneX + (SafeZoneW * 0.081)";
 
-			text = "Rsc\Pictures\icon_wf_gear_secondary.paa";
+			text = "Rsc\Pictures\geariconsecondary.paa";
 			action = "['onShoppingTabClicked', WF_GEAR_TAB_SECONDARY] call WFCL_fnc_displayWarfareGearMenu";
 		};
 		class WF_Icon_Handgun : WF_Icon_Primary {
-			idc = 70503;
-			x = "SafeZoneX + (SafeZoneW * 0.114)";
+			idc = 70502;
+			x = "SafeZoneX + (SafeZoneW * 0.131)";
 
-			text = "Rsc\Pictures\icon_wf_gear_handgun.paa";
+			text = "Rsc\Pictures\geariconsidearm.paa";
 			action = "['onShoppingTabClicked', WF_GEAR_TAB_HANDGUN] call WFCL_fnc_displayWarfareGearMenu";
 		};
-		class WF_Icon_Accessories : WF_Icon_Primary {
+		class WF_Icon_Uniforms : WF_Icon_Primary {
+			idc = 70503;
+			x = "SafeZoneX + (SafeZoneW * 0.181)";
+
+			text = "Rsc\Pictures\geariconuniform.paa";
+			action = "['onShoppingTabClicked', WF_GEAR_TAB_UNIFORMS] call WFCL_fnc_displayWarfareGearMenu";
+		};
+		class WF_Icon_Backpacks : WF_Icon_Primary {
 			idc = 70504;
-			x = "SafeZoneX + (SafeZoneW * 0.157)";
+			x = "SafeZoneX + (SafeZoneW * 0.231)";
 
-			text = "Rsc\Pictures\icon_wf_gear_accessories.paa";
-			action = "['onShoppingTabClicked', WF_GEAR_TAB_ACCESSORIES] call WFCL_fnc_displayWarfareGearMenu";
-		};
-		class WF_Icon_Ammunitions : WF_Icon_Primary {
-			idc = 70505;
-			x = "SafeZoneX + (SafeZoneW * 0.2)";
-
-			text = "Rsc\Pictures\icon_wf_gear_ammunition.paa";
-			action = "['onShoppingTabClicked', WF_GEAR_TAB_AMMO] call WFCL_fnc_displayWarfareGearMenu";
-		};
-		class WF_Icon_Misc : WF_Icon_Primary {
-			idc = 70506;
-			x = "SafeZoneX + (SafeZoneW * 0.243)";
-
-			text = "Rsc\Pictures\icon_wf_gear_miscellaneous.paa";
-			action = "['onShoppingTabClicked', WF_GEAR_TAB_MISC] call WFCL_fnc_displayWarfareGearMenu";
+			text = "Rsc\Pictures\geariconbackpack.paa";
+			action = "['onShoppingTabClicked', WF_GEAR_TAB_BACKPACK] call WFCL_fnc_displayWarfareGearMenu";
 		};
 		class WF_Icon_Equipment : WF_Icon_Primary {
-			idc = 70507;
-			x = "SafeZoneX + (SafeZoneW * 0.286)";
+			idc = 70505;
+            x = "SafeZoneX + (SafeZoneW * 0.28)";
 
-			text = "Rsc\Pictures\icon_wf_gear_equipment.paa";
-			action = "['onShoppingTabClicked', WF_GEAR_TAB_EQUIPMENT] call WFCL_fnc_displayWarfareGearMenu";
+            text = "Rsc\Pictures\geariconvest.paa";
+            action = "['onShoppingTabClicked', WF_GEAR_TAB_EQUIPMENT] call WFCL_fnc_displayWarfareGearMenu";
 		};
-		class WF_Icon_Template : WF_Icon_Primary {
-			idc = 70508;
+		class WF_Icon_HeadGear : WF_Icon_Primary {
+			idc = 70506;
 			x = "SafeZoneX + (SafeZoneW * 0.329)";
 
-			text = "Rsc\Pictures\icon_wf_building_barracks.paa";
+			text = "Rsc\Pictures\geariconheadgear.paa";
+			action = "['onShoppingTabClicked', WF_GEAR_TAB_HEADGEAR] call WFCL_fnc_displayWarfareGearMenu";
+		};
+		class WF_Icon_Glasses : WF_Icon_Primary {
+			idc = 70507;
+            x = "SafeZoneX + (SafeZoneW * 0.03)";
+            y = "SafeZoneY + (SafezoneH * 0.15)";
+
+            text = "Rsc\Pictures\gearicongoggle.paa";
+            action = "['onShoppingTabClicked', WF_GEAR_TAB_GLASSES] call WFCL_fnc_displayWarfareGearMenu";
+        };
+        class WF_Icon_Explosives : WF_Icon_Primary {
+            idc = 70508;
+            x = "SafeZoneX + (SafeZoneW * 0.081)";
+            y = "SafeZoneY + (SafezoneH * 0.15)";
+
+            text = "Rsc\Pictures\geariconput.paa";
+            action = "['onShoppingTabClicked', WF_GEAR_TAB_EXPLOSIVES] call WFCL_fnc_displayWarfareGearMenu";
+        };
+		class WF_Icon_Binoculars : WF_Icon_Primary {
+            idc = 70509;
+            x = "SafeZoneX + (SafeZoneW * 0.131)";
+            y = "SafeZoneY + (SafezoneH * 0.15)";
+
+            text = "Rsc\Pictures\geariconbinocular.paa";
+            action = "['onShoppingTabClicked', WF_GEAR_TAB_SPECIAL] call WFCL_fnc_displayWarfareGearMenu";
+        };
+        class WF_Icon_Magazines : WF_Icon_Primary {
+            idc = 70510;
+            x = "SafeZoneX + (SafeZoneW * 0.181)";
+            y = "SafeZoneY + (SafezoneH * 0.15)";
+
+            text = "Rsc\Pictures\geariconthrow.paa";
+            action = "['onShoppingTabClicked', WF_GEAR_TAB_MAGAZINES] call WFCL_fnc_displayWarfareGearMenu";
+        };
+        class WF_Icon_Misc : WF_Icon_Primary {
+            idc = 70511;
+            x = "SafeZoneX + (SafeZoneW * 0.231)";
+            y = "SafeZoneY + (SafezoneH * 0.15)";
+
+            text = "Rsc\Pictures\geariconmisc.paa";
+            action = "['onShoppingTabClicked', WF_GEAR_TAB_MISC] call WFCL_fnc_displayWarfareGearMenu";
+		};
+		class WF_Icon_Template : WF_Icon_Primary {
+			idc = 70512;
+			x = "SafeZoneX + (SafeZoneW * 0.329)";
+			y = "SafeZoneY + (SafezoneH * 0.15)";
+
+			text = "Rsc\Pictures\gearicontemplate.paa";
 			action = "['onShoppingTabClicked', WF_GEAR_TAB_TEMPLATES] call WFCL_fnc_displayWarfareGearMenu";
 		};
 
