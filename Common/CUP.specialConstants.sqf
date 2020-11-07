@@ -37,8 +37,8 @@ WF_C_BOMBS_TO_DISABLE_AUTOGUIDE = ["CUP_FAB250", "CUP_Mk_82", "CUP_Bo_GBU12_LGB"
 	"CUP_Triple_Bomb_Rack_Dummy", "CUP_Dual_Bomb_Rack_Dummy"];
 
 WF_C_ADV_AIR_DEFENCE = [
-							["B_SAM_System_02_F", "B_SAM_System_03_F", "O_SAM_System_04_F", "B_Radar_System_01_F", "O_Radar_System_02_F"], //--Weapons--
-							[                 10,					0,					 0,						0,					   0]	//--Reload time--
+							["B_SAM_System_02_F", "B_SAM_System_03_F", "O_SAM_System_04_F", "B_Radar_System_01_F", "O_Radar_System_02_F", "CUP_WV_B_CRAM", "CUP_WV_B_CRAM_OPFOR"], //--Weapons--
+							[                 10,					0,					 0,						0,					   0,               0,                     0]	//--Reload time--
 						];
 
 WF_VEHICLES_WITH_EXTRA_SLOT_ISSUE = [
