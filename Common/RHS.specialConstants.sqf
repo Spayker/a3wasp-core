@@ -28,7 +28,7 @@ WF_C_GARBAGE_OBJECTS = ['Land_HBarrier_large','Land_HBarrier5','Land_GarbageWash
                         'Land_HBarrier_3_F', 'Land_fort_bagfence_long','Land_fort_bagfence_round','Land_HBarrier1',
                         'Land_HBarrier3', 'Land_BagFence_Long_F','Land_BagFence_Round_F'];
 
-WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = ['rhsgref_nat_DSHKM','CUP_I_2b14_82mm_TK_GUE'];
+WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = ['rhsgref_nat_DSHKM','CUP_I_2b14_82mm_TK_GUE','CUP_I_ZU23_NAPA'];
 
 WF_C_UNITS_TO_BALANCE = ['RHS_AH64D', 'RHS_AH64D_AA', 'RHS_AH64D_CS', 'RHS_Ka52_UPK23_vvsc', 'RHS_Ka52_vvsc',
 'CUP_B_AH1Z_Dynamic_USMC', 'RHS_M6','RHS_M6_wd','RHS_M2A2','RHS_M2A2_BUSKI','RHS_M2A3','RHS_M2A3_BUSKI',

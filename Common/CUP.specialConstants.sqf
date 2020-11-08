@@ -17,7 +17,7 @@ WF_C_GARBAGE_OBJECTS = ['Land_HBarrier_large','Land_HBarrier5','Land_GarbageWash
                         	                                    'Land_fort_bagfence_long','Land_fort_bagfence_round','Land_HBarrier1','Land_HBarrier3',
                         	                                        'Land_BagFence_Long_F','Land_BagFence_Round_F'];
 
-WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = ['CUP_I_DSHKM_NAPA', 'CUP_I_2b14_82mm_TK_GUE'];
+WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = ['CUP_I_DSHKM_NAPA', 'CUP_I_2b14_82mm_TK_GUE', 'CUP_I_ZU23_NAPA'];
 
 WF_C_UNITS_TO_BALANCE = ['CUP_B_AH1Z_Dynamic_USMC'];
 
@@ -101,5 +101,3 @@ WF_FLY_UAVS = ['CUP_O_Pchela1T_RU', 'O_UAV_02_dynamicLoadout_F', 'O_T_UAV_04_CAS
 
 WF_STATIC_ARTILLERY = ['CUP_O_D30_RU', 'CUP_O_2b14_82mm_RU', 'CUP_B_M252_USMC', 'CUP_B_M119_US', 'CUP_B_D30_CDF'];
 WF_ADV_ARTILLERY = ['CUP_O_BM21_RU','CUP_B_M270_HE_USMC','CUP_B_M270_HE_USA','CUP_B_RM70_CZ'];
-
-WF_NightVisionDevices = [ 'O_NVGoggles_ghex_F', 'O_NVGoggles_hex_F', 'CUP_NVG_HMNVS', 'CUP_NVG_PVS14', 'CUP_NVG_PVS7', 'NVGoggles' ];
