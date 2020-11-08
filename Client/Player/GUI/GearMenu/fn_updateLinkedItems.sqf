@@ -49,7 +49,7 @@ _dsplCtrl = _dspl displayCtrl 22556;
 
 _info = "";
 
-if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" == 7) then {
+if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" == WF_GEAR_TAB_TEMPLATES) then {
     _index = lnbCurSelRow 70108;
     _gear = missionNamespace getVariable [format["wf_player_gearTemplates_%1", WF_SK_V_Type], []];
 

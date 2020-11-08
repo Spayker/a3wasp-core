@@ -78,7 +78,7 @@ switch (_action) do {
 		_selected = _this select 1;		
 
 		//--- Get the current tab
-		if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" != 7) then {//--- Skip on template tab
+		if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" != WF_GEAR_TAB_TEMPLATES) then {//--- Skip on template tab
 			_updated = false;
 			if (uiNamespace getVariable "wf_dialog_ui_gear_target" isKindOf "Man") then {
 				_updated = (lnbData [70108, [_selected,0]]) call WFCL_fnc_addItem;
@@ -97,7 +97,7 @@ switch (_action) do {
 		//--- Item (Data)
 		_selected = ((_this select 1) select 0) select 2;
 
-		if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" != 7) then { //--- Skip on template tab
+		if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" != WF_GEAR_TAB_TEMPLATES) then { //--- Skip on template tab
 			uiNamespace setVariable ["wf_dialog_ui_gear_dragging", true];
 			(_selected) call WFCL_fnc_onShoppingItemDrag;
 		};
@@ -108,7 +108,7 @@ switch (_action) do {
 		_dropped = _this select 3;
 		_path = _this select 4;
 
-		if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" != 7) then { //--- Skip on template tab
+		if (uiNamespace getVariable "wf_dialog_ui_gear_shop_tab" != WF_GEAR_TAB_TEMPLATES) then { //--- Skip on template tab
 			_updated = [_idc, _dropped, _kind, _path] call WFCL_fnc_onShoppingItemDrop;
 			if (_updated) then { call WFCL_fnc_updatePrice };
 		};
