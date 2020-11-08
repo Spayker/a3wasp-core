@@ -9,6 +9,7 @@ _rptr = missionNamespace getVariable "WF_C_UNITS_REPAIR_TRUCK_RANGE";
 _spr = missionNamespace getVariable "WF_C_STRUCTURES_SERVICE_POINT_RANGE";
 _tcr = missionNamespace getVariable "WF_C_TOWNS_CAPTURE_RANGE";
 _ftr = missionNamespace getVariable "WF_C_GAMEPLAY_FAST_TRAVEL_RANGE";
+_uavRange = missionNamespace getVariable "WF_C_GAMEPLAY_DARTER_CONNECT_DISTANCE_LIMITATION";
 _buygearfrom = missionNamespace getVariable "WF_C_TOWNS_GEAR";
 _gear_field_range = missionNamespace getVariable "WF_C_UNITS_PURCHASE_GEAR_MOBILE_RANGE";
 _boundaries_enabled = if ((missionNamespace getVariable "WF_C_GAMEPLAY_BOUNDARIES_ENABLED") > 0) then {true} else {false};
@@ -87,6 +88,17 @@ while {!WF_GameOver} do {
 				paramBoundariesRunning = false;
 			};
 		};
+
+		//--- UAV distance limitation
+		_currentlyConnectedDrone = getConnectedUAV player;
+        if(!(isNull _currentlyConnectedDrone)) then {
+            if (_currentlyConnectedDrone isKindOf "UAV_01_base_F") then {
+                if((player distance _currentlyConnectedDrone) >= _uavRange) then {
+                    player connectTerminalToUAV objNull;
+                    [Format["<t color='#42b6ff' size='1.2' underline='1' shadow='1'>Information:</t><br /><br /><t>UAV lost signal with you. Max range is (<t color='#BD63F5'>%1</t>) meters.</t>",_uavRange]] spawn WFCL_fnc_handleMessage;
+                };
+            };
+        };
 
 		//--- Fast Travel.
         if (commandInRange) then {

@@ -179,6 +179,7 @@ with missionNamespace do {
 	missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_RANGE", 175];
         missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_PRICE_KM", 215];
     missionNamespace setVariable ["WF_C_GAMEPLAY_FAST_TRAVEL_TIME_COEF", 0.4];
+    WF_C_GAMEPLAY_DARTER_CONNECT_DISTANCE_LIMITATION = 500;
 
 //--- Modules.
 	if (isNil "WF_C_MODULE_WF_EASA") then {WF_C_MODULE_WF_EASA = 1;}; //--- Enable the Exchangeable Armament System for Aircraft.
