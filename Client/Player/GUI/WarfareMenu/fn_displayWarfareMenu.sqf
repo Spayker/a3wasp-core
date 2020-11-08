@@ -7,7 +7,6 @@ ctrlEnable [2003, false];
 ctrlEnable [2004, false];
 ctrlEnable [2005, false];
 ctrlEnable [2007, false];
-ctrlEnable [2009, false];
 
 if ((barracksInRange || lightInRange || heavyInRange || aircraftInRange || hangarInRange || depotInRange) && (player == leader WF_Client_Team)) then {_enable = true};
 ctrlEnable [2002,_enable];
