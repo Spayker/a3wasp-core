@@ -16,10 +16,6 @@ if (_special == "FLY") then {
         sleep 15;
         _vehicle removeEventHandler ["HandleDamage", _eventHandler];
         _vehicle allowDamage true;
-        if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", ((_sideId) Call WFCO_FNC_GetSideFromID)], ""])) then {
-            //--- HQ Friendly Fire handler.
-            _vehicle addEventHandler ['handleDamage',{_this Call WFSE_fnc_BuildingHandleDamage}];
-        }
     }
 };
 

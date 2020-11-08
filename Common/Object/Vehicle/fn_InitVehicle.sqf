@@ -1,5 +1,5 @@
 params ["_vehicle", "_sideId", "_locked", ["_bounty", true], ["_global", true], ["_skin", -1]];
-private ["_side", "_vehicle"];
+private ["_side", "_vehicle", "_isHQ"];
 
 _side = (_sideId) Call WFCO_FNC_GetSideFromID;
 
@@ -7,12 +7,20 @@ if (_locked) then {_vehicle lock _locked};
 
 _vehicle spawn WFCO_FNC_ClearVehicleCargo;
 
+_isHQ = (typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _side], ""]));
 //-- Init HQ
-if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _side], ""])) then {
+if(_isHQ) then {
     _vehicle setVariable ["wf_side", _side];
     _vehicle setVariable ["wf_trashable", false];
     _vehicle setVariable ["wf_structure_type", "Headquarters"];
     _vehicle setVariable ["wf_hq_deployed", false, true];
+    _vehicle addEventHandler ['handleDamage', {
+        params ["_unit", "_selection", "_damage", "_source"];
+        if(WF_C_BASE_ALLOW_TEAM_DAMMAGE <= 0 && ((side _source) == (_unit getVariable "wf_side"))) exitWith {0};
+    }];
+    _vehicle setVariable ["wf_structure_type", "Headquarters"];
+    _vehicle addMPEventHandler ['MPKilled', {_this spawn WFSE_FNC_OnHQKilled}];
+    _vehicle addMPEventHandler ["MPHit",{_this spawn WFSE_FNC_BuildingDamaged}];
 
 	_logik = (_side) Call WFCO_FNC_GetSideLogic;
     _hqs = (_side) call WFCO_FNC_GetSideHQ;
@@ -24,8 +32,8 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
     [_vehicle] remoteExec ["WFSE_FNC_addEmptyVehicleToQueue", 2]
 };
 
-[_vehicle, _bounty, _sideId, _side, _global, _skin] spawn {
-    params ["_vehicle", "_bounty", "_sideId", "_side", "_global", "_skin"];
+[_vehicle, _bounty, _sideId, _side, _global, _skin, _ishq] spawn {
+    params ["_vehicle", "_bounty", "_sideId", "_side", "_global", "_skin", "_ishq"];
 
     if (_global) then {
     	if (_sideId != WF_DEFENDER_ID) then {
@@ -48,7 +56,7 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
         }]
     };
 
-	if (_bounty) then {
+	if (_bounty && !_isHQ) then {
 		_vehicle addEventHandler ["killed", format ['[_this # 0,_this # 1,%1] spawn WFCO_FNC_OnUnitKilled', _sideId]];
 		_vehicle addEventHandler ["hit", {_this spawn WFCO_FNC_OnUnitHit}];
 		if(!isHostedServer) then {
@@ -64,7 +72,7 @@ if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _sid
 	if(typeOf _vehicle in WF_C_COMBAT_JETS_WITH_BOMBS) then {
 		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleBombs}]
 	};
-	
+
 	//--Check if vehicle is arty vehicle and add EH--
     {
         if(typeOf _vehicle == (_x # 0)) exitWith {

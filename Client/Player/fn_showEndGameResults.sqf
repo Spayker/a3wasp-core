@@ -4,6 +4,8 @@ private ['_HQ','_base','_blist','_camShotOrder','_camera','_nvgstate','_position
 
 WF_GameOver = true;
 
+if (dialog) then {closeDialog 0};
+
 [_winnerSide] spawn WFCL_fnc_displayEndOfGameStats;
 
 playMusic "LeadTrack01a_F";
@@ -37,9 +39,9 @@ _vehi setVelocity [0,0,-0.1];
 _vehi setPos ([getPos _hq,20,30] Call WFCO_FNC_GetRandomPosition);
 [_vehi, false] remoteExecCall ["enableSimulationGlobal", 2];
 
-if (!isNil "DeathCamera") then {
-	DeathCamera cameraEffect["TERMINATE","BACK"];
-	camDestroy DeathCamera;
+if (!isNil "WF_DeathCamera") then {
+	WF_DeathCamera cameraEffect["TERMINATE","BACK"];
+	camDestroy WF_DeathCamera;
 	"colorCorrections" ppEffectEnable false;
 	"dynamicBlur" ppEffectEnable false;
 };

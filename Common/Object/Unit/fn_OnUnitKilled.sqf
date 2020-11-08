@@ -50,15 +50,6 @@ _killed_isman = (_killed isKindOf "Man");
 _killed_type = typeOf _killed;
 _killed_isplayer = (isPlayer _killed);
 
-if (_killed_type == missionNamespace getVariable Format["WF_%1MHQNAME", _killed_side]) then {
-    _logik = (_killed_side) Call WFCO_FNC_GetSideLogic;
-    _hqs = (_killed_side) call WFCO_FNC_GetSideHQ;
-    _hqs = _logik getVariable ["wf_hq", []];
-    _hqs = _hqs - [_killed];
-    _hqs = _hqs - [objNull];
-    _logik setVariable ["wf_hq", _hqs, true]
-};
-
 _last_hit = _killed getVariable "wf_lasthitby";
 if !(isNil '_last_hit') then {
 	if (alive _last_hit) then {
