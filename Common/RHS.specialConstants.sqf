@@ -180,5 +180,3 @@ WF_AR2_UAVS = ['O_UAV_01_F', 'B_UAV_01_F', 'I_UAV_01_F'];
 WF_FLY_UAVS = ['CUP_O_Pchela1T_RU', 'O_UAV_02_dynamicLoadout_F', 'O_T_UAV_04_CAS_F', 'CUP_B_USMC_DYN_MQ9', 'B_UAV_05_F', 'B_UAV_02_dynamicLoadout_F'];
 
 profileNameSpace setVariable ["rhs_voiceAnnouncer", 0];
-
-WF_NightVisionDevices = [ 'O_NVGoggles_ghex_F', 'O_NVGoggles_hex_F', 'CUP_NVG_HMNVS', 'CUP_NVG_PVS14', 'CUP_NVG_PVS7', 'NVGoggles' ];

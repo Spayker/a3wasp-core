@@ -271,7 +271,6 @@ class WF_Client {
 		class doKeyDown {};
         class initKeybind {};
         class initProfileVariables {};
-        class initNVGPlayerMode {};
     };
 
     class GuiServiceMenu {
