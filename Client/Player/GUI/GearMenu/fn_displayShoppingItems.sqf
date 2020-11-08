@@ -71,7 +71,7 @@ if!(isnil '_selectedRole')then{
             _gear_list_explosives = missionNamespace getVariable format["wf_gear_list_explosives_%1",_selectedRole];
 
             if(!(isNil '_gear_list_explosives'))then{
-                (missionNamespace getVariable "wf_gear_list_explosives") + _gear_list_special
+                (missionNamespace getVariable "wf_gear_list_explosives") + _gear_list_explosives
             } else {
                 (missionNamespace getVariable "wf_gear_list_explosives")
             };
@@ -79,7 +79,7 @@ if!(isnil '_selectedRole')then{
         case WF_GEAR_TAB_HEADGEAR: {
             _gear_list_headgear = missionNamespace getVariable format["wf_gear_list_headgear_%1",_selectedRole];
             if(!(isNil '_gear_list_headgear'))then{
-                (missionNamespace getVariable "wf_gear_list_headgear") + _gear_list_backpacks
+                (missionNamespace getVariable "wf_gear_list_headgear") + _gear_list_headgear
             } else {
                 missionNamespace getVariable "wf_gear_list_headgear"
             }
