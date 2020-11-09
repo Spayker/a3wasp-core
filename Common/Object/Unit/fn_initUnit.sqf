@@ -23,8 +23,8 @@ waitUntil {clientInitComplete}; //--- Wait for the client part.
 _isMan = (_unit isKindOf 'Man');
 // --- [Generic Vehicle initialization] (Run on all clients)
 
-if(local _unit && !(_unit hasWeapon "NVGoggles")) then {
-	_unit addWeapon "NVGoggles";
+if(local _unit && !(_unit hasWeapon "NVGoggles_WASP")) then {
+	_unit addWeapon "NVGoggles_WASP";
 };
 
 if (_unit_kind in (missionNamespace getVariable "WF_REPAIRTRUCKS")) then { //--- Repair Trucks.

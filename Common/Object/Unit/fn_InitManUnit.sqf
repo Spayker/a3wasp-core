@@ -53,7 +53,7 @@ if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     _unit enableFatigue false;
 };
 
-if(side _unit == east && !(_unit hasWeapon "NVGoggles")) then { _unit addWeapon "NVGoggles"; };
+if(side _unit == east && !(_unit hasWeapon "NVGoggles_WASP")) then { _unit addWeapon "NVGoggles_WASP"; };
 
 if (_side IsEqualType WEST) then {_side = (_side) Call WFCO_FNC_GetSideID;};
 
