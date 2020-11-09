@@ -84,8 +84,6 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         _color = _colorGreen;
     };
 
-    if ((typeOf _preview) isKindOf "StaticWeapon") then { _color = _colorGreen; };
-
     if ((typeOf _preview) iskindOf "Warfare_HQ_base_unfolded") then {
         Private ["_town","_townside","_eArea"];
         _town = [_preview] Call WFCO_FNC_GetClosestLocation;
@@ -99,24 +97,23 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         };
     };
 
-    if(!((typeOf _preview) iskindOf "Warfare_HQ_base_unfolded"))then{
-        _current_side  = side commanderTeam;
-        _opposite_side = east;
-
+    if((typeOf _preview) == "M2StaticMGPreview")then{
+        _color = _colorGreen;
+        _current_side  = WF_Client_SideJoined;
+        _opposite_side = [resistance];
         if(_current_side == west)then{
-            _opposite_side = east;
+            _opposite_side pushBack east
         } else{
-            _opposite_side = west;
+            _opposite_side pushBack west
         };
 
-        _detected = (_area nearEntities [["Man","Car","Motorcycle","Tank","Air","Ship"], missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
+        _detected = (_area nearEntities [["Man", "Car", "Motorcycle", "Tank", "Air", "Ship", "Uav"], missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
         {
-            if(_itemcategory !=0 && side _x == _opposite_side)exitwith{
+            if(_itemcategory != 0 && (side _x in _opposite_side)) exitwith {
                 _color = _colorRed;
-                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage;
-            };
-
-        }foreach _detected;
+                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage
+            }
+        }foreach _detected
     };
 
     _color
