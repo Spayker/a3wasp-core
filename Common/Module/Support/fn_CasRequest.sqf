@@ -57,17 +57,14 @@ _waypoint setWayPointSpeed "FULL";
 _waypoint setWayPointType "SAD";
 _vehicleGrp setBehaviour 'COMBAT';
 _vehicleGrp setCombatMode 'RED';
+_vehicleGrp setVariable ['isCasGroup', true, true];
+
 
 //--- Tell the group to move.
 _built = 0;
 _built = _built + 1;
 _vehicle lockDriver true;
 [str _side, 'VehiclesCreated', _built] Call WFCO_FNC_UpdateStatistics;
-
-//--- Create the units.
-_paraGroup = createGroup [_side, true];
-
-[str _side,'UnitsCreated', _built] Call WFCO_FNC_UpdateStatistics;
 
 //--- Tell the group to move.
 _vehicleGrp setCurrentWaypoint [_vehicleGrp, 1];

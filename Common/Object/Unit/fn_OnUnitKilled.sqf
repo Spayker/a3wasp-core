@@ -128,6 +128,7 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
 						case (_killed_type isKindOf "Tank"): {4};
 						case (_killed_type isKindOf "Helicopter"): {4};
 						case (_killed_type isKindOf "Plane"): {6};
+						case (_killed_type isKindOf "Uav"): {4};
 						case (_killed_type isKindOf "StaticWeapon"): {2};
 						case (_killed_type isKindOf "Building"): {2};
 						default {1};
@@ -172,10 +173,16 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
 
 	        _commanderTeam = (_killer_side) Call WFCO_FNC_GetCommanderTeam;
 	        if(!(isNil '_commanderTeam')) then {
+
                 if !(isPlayer(leader _killer_group)) then {
                     if (_killer_type isKindOf "StaticWeapon") then {
 						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
                     };
+
+                    _isCasGroup = _killer_group getVariable ['isCasGroup', false];
+                    if(_isCasGroup) then {
+                        [_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                    }
                 };
 
 				_highCommandCreatedGroups = [_killer_side] call WFCO_FNC_getHighCommandGroups;
