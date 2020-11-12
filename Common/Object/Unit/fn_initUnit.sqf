@@ -104,14 +104,6 @@ if (_unit isKindOf "Air") then { //--- Air units.
 waitUntil {!isNil 'sideID'};
 if (sideID != _sideID) exitWith {};
 
-/*
-if !(_isMan) then { //--- Vehicle Specific.
-    if ((missionNamespace getVariable "WF_C_GAMEPLAY_MISSILES_RANGE") != 0) then { //--- Max missile range.
-        _unit addEventHandler ['incomingMissile', {_this spawn WFCO_FNC_HandleIncomingMissile}]; //--- Handle incoming missiles.
-    };
-};
-*/
-
 if !(isHeadLessClient) then {
 
 Private ["_color","_markerName","_params","_size","_txt","_type"];

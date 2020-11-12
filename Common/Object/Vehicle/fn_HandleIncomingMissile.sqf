@@ -1,21 +1,13 @@
-Private ["_ammo","_irLock","_missile","_source","_unit"];
-_unit = _this select 0;
-_ammo = _this select 1;
-_source = _this select 2;
+Private ["_limit","_source","_target","_distance"];
+params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
 
-_missile = nearestObject [_source,_ammo];
-if (isNull _missile) exitWith {};
+_limit = missionNamespace getVariable "WF_C_GAMEPLAY_MISSILES_RANGE";
+_source = getPos _unit;
+_target = missileTarget _projectile;
 
-_irLock = getNumber(configFile >> "CfgAmmo" >> _ammo >> "irLock"); //--- Get the ammo type.
-
-if (_irLock == 1) then { //--- IR Lock is affected
-	_source = getPos _source;
-	_distance = _unit distance _source;
-	
-	_limit = missionNamespace getVariable "WF_C_GAMEPLAY_MISSILES_RANGE";
+_distance = _target distance _source;
 	
 	if (_distance > _limit) then {
-		waitUntil {_missile distance _source > _limit};
-		deleteVehicle _missile;
-	};
+    waitUntil {_projectile distance _source > _limit};
+    deleteVehicle _projectile;
 };
