@@ -22,7 +22,6 @@ if(isNil '_availableRoles')then{
         WF_SOLDIER,
         WF_SOLDIER,
         "Assault role for town taking. Abilities: <br/>"+
-        "- handles more bots in team <br/>"+
         "- repairs camps",
         [],
         5000,
@@ -47,8 +46,7 @@ if(isNil '_availableRoles')then{
         WF_SPECOPS,
         "Support role on battlefield. Abilities: <br/>"+
         "- hi-jacks enemy locked vehicles <br/>" +
-        "- light vehicle repair ability <br/>" +
-        "- steals info from enemy CC (not yet implemented)",
+        "- light vehicle repair ability <br/>",
         [],
         7500,
         [],
@@ -59,8 +57,7 @@ if(isNil '_availableRoles')then{
         WF_ARTY_OPERATOR,
         WF_ARTY_OPERATOR,
         "Support role on battlefield. Abilities: <br/>"+
-        "- access to advanced artillery<br/>"+
-        "- lower price for all kinds of arty",
+        "- access to advanced artillery<br/>",
         [],
         7500,
         [],
@@ -71,8 +68,7 @@ if(isNil '_availableRoles')then{
         WF_UAV_OPERATOR,
         WF_UAV_OPERATOR,
         "Support role on battlefield. Features: <br/>"+
-        "- access to backpacks with UAVs<br/>"+
-        "- lower price for UAV in tactical menu",
+        "- access to backpacks with UAVs<br/>",
         [],
         7500,
         [],
