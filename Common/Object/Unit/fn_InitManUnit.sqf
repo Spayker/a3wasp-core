@@ -49,8 +49,10 @@ if(_side == 2) then {
 
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     _unit enableFatigue true;
+    _unit enableStamina true
 } else {
     _unit enableFatigue false;
+    _unit enableStamina false
 };
 
 if(side _unit == east && !(_unit hasWeapon "NVGoggles_WASP")) then { _unit addWeapon "NVGoggles_WASP"; };
