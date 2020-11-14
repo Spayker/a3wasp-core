@@ -69,16 +69,11 @@ if(_isHQ) then {
 		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleAAMissiles}]
 	};*/
 
-	if(typeOf _vehicle in WF_C_COMBAT_JETS_WITH_BOMBS) then {
-		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleBombs}]
-	};
-
 	//--Check if vehicle is arty vehicle and add EH--
     {
         if(typeOf _vehicle == (_x # 0)) exitWith {
     		[_vehicle, ["Fired", {
             	params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
-
     			if(isPlayer _gunner || _gunner == (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
     				deleteVehicle _projectile;
     			};
