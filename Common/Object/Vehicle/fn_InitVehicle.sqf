@@ -45,9 +45,11 @@ if(_isHQ) then {
 
         _vehicle addEventHandler ["GetIn", {
             params ["_vehicle", "_role", "_unit", "_turret"];
-            if(_role == "driver") then {
+            _isSupplyVehicle = _vehicle getVariable ['isSupplyVehicle', false];
+            if(_isSupplyVehicle && _role == "driver") then {
                 (localize "STR_WF_CHAT_Commander_Supply_Truck_Move_Order") remoteExecCall ["WFCL_FNC_GroupChatMessage", _unit]
             }
+
          }];
 
         _vehicle addEventHandler ["GetOut", {
