@@ -1,5 +1,5 @@
 params ["_filler", "_listBox", "_value"];
-private ['_addin','_c','_currentUpgrades','_filter','_i','_u','_value'];
+private ['_c','_currentUpgrades','_filter','_i','_u','_value'];
 
 _u = 0;
 _i = 0;
@@ -8,6 +8,7 @@ _listGroups = missionNamespace getVariable Format["WF_%1AITEAMTEMPLATEDESCRIPTIO
 _unitClassNames = missionNamespace getVariable Format["WF_%1AITEAMTEMPLATES", WF_Client_SideJoined];
 _requiredGroupUpgrades = missionNamespace getVariable Format["WF_%1AITEAMUPGRADES", WF_Client_SideJoined];
 _groupTypes = missionNamespace getVariable Format["WF_%1AITEAMTYPES", WF_Client_SideJoined];
+_selectedRole = WF_gbl_boughtRoles # 0;
 
 _currentUpgrades = (WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades;
 lnbClear _listBox;
@@ -18,7 +19,8 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 
 
 {
-	_addin = true;
+    _addit = false;
+	_isAdvVehicle = false;
     _groupName = _x;
     _unitClassNamesByGroup = _unitClassNames # _forEachIndex;
     _requiredUpgradesByGroup = _requiredGroupUpgrades # _forEachIndex;
@@ -38,7 +40,17 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
         };
     };
 
-    if(_groupType == _filler && _isUpgradeOk) then {
+    if ((_unitClassNamesByGroup # 0) in WF_ADV_ARTILLERY) then { _isAdvVehicle = true };
+
+    if(_isAdvVehicle) then {
+        if!(isNil '_selectedRole')then{
+            if(_selectedRole == WF_ARTY_OPERATOR)then{
+                _addit = true;
+            }
+        }
+    };
+
+    if(_groupType == _filler && ((_isUpgradeOk && !_isAdvVehicle) || (_isAdvVehicle && _addit))) then {
         _cost = 0;
         {
             _c = missionNamespace getVariable _x;
