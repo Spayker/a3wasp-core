@@ -333,7 +333,8 @@ switch (_action) do {
 			uiNamespace setVariable ["wf_dialog_ui_gear_target_staticgear", +(uiNamespace getVariable "wf_dialog_ui_gear_target_gear")];
 
 			call WFCL_fnc_updatePrice;
-			-(_cost) Call WFCL_FNC_ChangePlayerFunds
+			-(_cost) Call WFCL_FNC_ChangePlayerFunds;
+			WF_P_gearPurchased = true
 		} else {
 			["not enough funds"] spawn WFCL_fnc_handleMessage
 		};

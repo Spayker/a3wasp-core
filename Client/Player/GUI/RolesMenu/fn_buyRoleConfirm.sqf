@@ -65,6 +65,7 @@ if!(isNil 'WF_newBuyRolerequest')then{
                 WF_FreeRolePurchase = false;
 
                 if(!WF_isFirstRoleSelected)then {
+                    if!(WF_P_gearPurchased) then {
                     _roleDefaultGear = [];
                     switch (WF_SK_V_Type) do {
                         case WF_SNIPER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", WF_Client_SideJoinedText];};
@@ -75,7 +76,8 @@ if!(isNil 'WF_newBuyRolerequest')then{
                         case WF_UAV_OPERATOR: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearUAVOperator", WF_Client_SideJoinedText];};
                     };
                     [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
-                    WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
+                        WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout
+                    };
                     WF_isFirstRoleSelected = true;
                     closeDialog 0;
                 };

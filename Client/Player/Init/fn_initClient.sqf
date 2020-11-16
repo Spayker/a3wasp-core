@@ -443,16 +443,11 @@ player addEventHandler ["WeaponAssembled", {
 	}
 }];
 
-//--Disable fatigue--
-if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {
-    player enableFatigue false;
-    player setUnitTrait ["loadCoef",0.9]
-};
-
 _roleDefaultGear = [];
 _roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];
 [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
 WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
+WF_P_gearPurchased = false;
 
 /* Vote System, define whether a vote is already running or not */
 ["INITIALIZATION", "fn_initClient.sqf: Vote system is initialized."] Call WFCO_FNC_LogContent;
