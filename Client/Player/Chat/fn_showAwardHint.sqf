@@ -1,6 +1,10 @@
 params ["_bounty", "_killedName"];
 private[ "_fillKillPayTitle", "_Display", "_isTimeToCleanUp", "_cleanUp"];
 
+if (isServer) exitWith {
+    ["WARNING", Format ["fn_showAwardHint was called from server with following params: _bounty - %1, _killedName - %2", _bounty, _killedName]] Call WFCO_FNC_LogContent
+};
+
 disableSerialization;
 
 _display	= uiNamespace getVariable "Display_KillPay";
