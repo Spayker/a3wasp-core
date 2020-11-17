@@ -39,11 +39,6 @@ _processCommanderBounty = {
     [_killed_type, false, _killer_award] remoteExecCall ["WFCL_FNC_AwardBounty", _commanderTeam]
 };
 
-if(isHeadLessClient) then {
-    _killed setVariable ["wf_trashed_time", time, 2];
-    _killed spawn WFCO_FNC_TrashObject;
-};
-
 _killed_side = (_this # 2) Call WFCO_FNC_GetSideFromID;
 _killed_group = group _killed;
 _killed_isman = (_killed isKindOf "Man");
