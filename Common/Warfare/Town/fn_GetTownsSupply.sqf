@@ -15,7 +15,9 @@ _income = 0;
             if(count _townSpeciality == 0) then {
                 _income = _income + _townSuppluyValue
     } else {
-                if((_townSpeciality # 0) in WF_C_SECONDARY_SUPPLY_LOCATIONS) then { _income = _income + _townSuppluyValue }
+                if(((_townSpeciality # 0) in WF_C_SECONDARY_SUPPLY_LOCATIONS) || ((_townSpeciality # 0) == WF_C_WAREHOUSE)) then {
+                    _income = _income + _townSuppluyValue
+                }
             }
         }
     }
