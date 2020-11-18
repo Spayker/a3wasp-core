@@ -21,11 +21,8 @@ if (_typeof in (missionNamespace getVariable ["WF_AMBULANCES", []]) && alive _sp
 };
 
 if !(_spawnInside) then {
-	_notSafePos = [getPos _spawn, 10, 20] Call WFCO_FNC_GetRandomPosition;
-	_safePos = [_notSafePos, 0, 25] call BIS_fnc_findSafePos;
-	_notSafePos set [0, _safePos # 0];
-	_notSafePos set [1, _safePos # 1];
-	_unit setPos _notSafePos;
+	_safePos = [getPos _spawn, 1, 45, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+	_unit setPos _safePos
 };
 
 //--Disable fatigue--
