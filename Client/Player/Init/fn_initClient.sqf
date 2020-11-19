@@ -489,6 +489,7 @@ WF_C_MAP_MARKER_HANDLER = {
     {
         _unit = _x # 0;
         _colorStr = _x # 1;
+        _shallDraw = true;
 
         _text = if(count _x > 2) then { _x # 2 } else { '' };
         _iconType = getText (configFile >> "CfgVehicles" >> typeOf _unit >> "icon");
@@ -502,7 +503,40 @@ WF_C_MAP_MARKER_HANDLER = {
             default {_color = [0.85,0.4,0,1] };
         };
 
-        if(vehicle _unit == _unit) then {
+        if(_unit isKindOf 'Man') then {
+            if(group _unit != group player) then {_text = ''};
+            if (vehicle _unit != _unit) then {
+                _vehicleUnit = vehicle _unit;
+                if(_vehicleUnit iskindof 'StaticWeapon') then {
+                    _iconType = getText (configFile >> "CfgVehicles" >> typeOf _vehicleUnit >> "icon");
+                    _unitCrew = crew _vehicleUnit;
+                    _digitArray = [];
+                    {
+                        if (group _x == group player) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
+                    } forEach _unitCrew;
+                    _text = _digitArray joinString ", "
+                } else {
+                    _text = '';
+                    _shallDraw = false;
+                }
+            }
+        } else {
+            _iconType = getText (configFile >> "CfgVehicles" >> typeOf (_unit) >> "icon");
+            _unitCrew = crew _unit;
+
+            _text = '';
+            if (count _unitCrew > 0) then {
+                _digitArray = [];
+                {
+                    if (group _x == group player) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
+                } forEach _unitCrew;
+                _text = _digitArray joinString ", ";
+            }
+        };
+
+
+        if (!(isNull _unit) && alive _unit && _shallDraw) then {
+
             _this select 0 drawIcon [
                 _iconType,
                 _color,
@@ -516,7 +550,9 @@ WF_C_MAP_MARKER_HANDLER = {
                 "TahomaB",
                 "right"
             ]
+
         }
+
     } forEach WF_UNIT_MARKERS;
 };
 
