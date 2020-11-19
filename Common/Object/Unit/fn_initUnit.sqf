@@ -116,7 +116,7 @@ _markerName = format ["unitMarker%1", unitMarker];
 
 if (_isMan) then { //--- Man.
         if (group _unit == group player) then { _color = "ColorOrange" };
-        _params = [_unit, _color];
+        _params = [_unit, _color, (_unit) call WFCO_FNC_GetAIDigit];
 } else { //--- Vehicle.
         if (local _unit && isMultiplayer) then {_color = "ColorOrange"};
         if (_unit_kind in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_color = "ColorYellow"};//--- Medical.

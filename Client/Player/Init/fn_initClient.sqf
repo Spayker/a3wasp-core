@@ -489,6 +489,8 @@ WF_C_MAP_MARKER_HANDLER = {
     {
         _unit = _x # 0;
         _colorStr = _x # 1;
+
+        _text = if(count _x > 2) then { _x # 2 } else { '' };
         _iconType = getText (configFile >> "CfgVehicles" >> typeOf _unit >> "icon");
 
         _color = nil;
@@ -508,7 +510,7 @@ WF_C_MAP_MARKER_HANDLER = {
                 24,
                 24,
                 getDir _unit,
-                '',
+                _text,
                 1,
                 0.03,
                 "TahomaB",
