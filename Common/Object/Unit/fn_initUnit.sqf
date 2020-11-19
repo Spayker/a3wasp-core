@@ -106,36 +106,25 @@ if (sideID != _sideID) exitWith {};
 
 if !(isHeadLessClient) then {
 
-Private ["_color","_markerName","_params","_size","_txt","_type"];
+    Private ["_color","_params"];
 //--- Map Marker tracking.
-_type = "mil_dot";
 _color = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);
-_size = [1,1];
-_txt = "";
 _params = [];
 
 unitMarker = unitMarker + 1;
 _markerName = format ["unitMarker%1", unitMarker];
 
 if (_isMan) then { //--- Man.
-	_type = "mil_dot";
-	_size = [0.5,0.5];
-	if (group _unit == group player) then {
-		_color = "ColorOrange";
-		_txt = (_unit) call WFCO_FNC_GetAIDigit;
-	};
-        _params = [_type,_color,_size,_txt,_markerName,_unit,2,true,"waypoint",_color,false,_side,[1,1]];
+        if (group _unit == group player) then { _color = "ColorOrange" };
+        _params = [_unit, _color];
 } else { //--- Vehicle.
         if (local _unit && isMultiplayer) then {_color = "ColorOrange"};
-	if (_unit_kind in (missionNamespace getVariable format["WF_%1REPAIRTRUCKS",str _side])) then {_type = "mil_box";};//--- Repair.
         if (_unit_kind in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_color = "ColorYellow"};//--- Medical.
-        _params = [_type,_color,_size,_txt,_markerName,_unit,2,true,"waypoint",_color,false,_side,[2,2]];
+        _params = [_unit, _color];
         if (_unit_kind == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then {
-            _color = "ColorOrange";
-            _hqSize = count ((_side) call WFCO_FNC_GetSideHQ);
-            _params = ['b_hq',_color,[1,1],'HQ','HQUndeployed' + (str _hqSize),_unit,1,false,'','',false,_side]
+            _params = [_unit, "ColorCIV"]
         }//--- HQ.
 };
 
-    _params spawn WFCO_FNC_MarkerUpdate;
+    WF_UNIT_MARKERS pushBack (_params);
 }

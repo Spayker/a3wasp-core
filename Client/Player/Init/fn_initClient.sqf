@@ -483,6 +483,44 @@ if!(WF_Skip_Intro) then {
 	};
 };
 
+//--- map marker handler
+WF_C_MAP_MARKER_HANDLER = {
+    Private ['_unit', '_colorStr', '_iconType', '_color'];
+    {
+        _unit = _x # 0;
+        _colorStr = _x # 1;
+        _iconType = getText (configFile >> "CfgVehicles" >> typeOf _unit >> "icon");
+
+        _color = nil;
+        switch (_colorStr) do {
+            case 'ColorEAST':{ _color = [0.5,0,0,1] };
+            case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
+            case 'ColorYellow':{ _color = [0.85,0.85,0,1] };
+            case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
+            default {_color = [0.85,0.4,0,1] };
+        };
+
+        if(vehicle _unit == _unit) then {
+            _this select 0 drawIcon [
+                _iconType,
+                _color,
+                getPos _unit,
+                24,
+                24,
+                getDir _unit,
+                '',
+                1,
+                0.03,
+                "TahomaB",
+                "right"
+            ]
+        }
+    } forEach WF_UNIT_MARKERS;
+};
+
+waitUntil {!isNull findDisplay 12};
+findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
+
 //--- res base logic clean up
 { deleteVehicle _x } forEach ([0,0,0] nearEntities [["LocationOutpost_F"], 100000]);
 

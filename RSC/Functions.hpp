@@ -399,7 +399,6 @@ class WF_Common {
 
     class Map {
         file = "Common\Map";
-        class markerUpdate {};
         class trackAirTargets {};
         class initBoundaries {};
     };

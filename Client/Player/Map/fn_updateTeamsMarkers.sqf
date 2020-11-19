@@ -53,40 +53,6 @@ while {!WF_GameOver} do {
             _count = _count + 1
         } forEach WF_Client_Teams
     };
-
-	_unitMarkers = WF_UNIT_MARKERS;
-    {
-        _markerName = _x # 0;
-        _tracked = _x # 1;
-        _trackDeath = _x # 2;
-        _deathMarkerType = _x # 3;
-        _deathMarkerColor = _x # 4;
-        _deathMarkerSize = _x # 5;
-
-        if(isNull _tracked) then {
-            deleteMarkerLocal _markerName;
-            WF_UNIT_MARKERS set [_forEachIndex, objNull];
-        } else {
-            _markerName setMarkerPosLocal (getPos _tracked);
-            if(!alive _tracked) then {
-                if (_trackDeath) then {
-                    [_markerName, _deathMarkerType, _deathMarkerColor, _deathMarkerSize] spawn {
-                        params ["_markerName", "_deathMarkerType", "_deathMarkerColor", "_deathMarkerSize"];
-                        _markerName setMarkerTypeLocal _deathMarkerType;
-                        _markerName setMarkerColorLocal _deathMarkerColor;
-                        _markerName setMarkerSizeLocal _deathMarkerSize;
-                        sleep (missionNamespace getVariable "WF_C_PLAYERS_MARKER_DEAD_DELAY");
-                        deleteMarkerLocal _markerName;
-                    };
-                } else {
-                    deleteMarkerLocal _markerName;
-                };
-                WF_UNIT_MARKERS set [_forEachIndex, objNull];
-            };
-        };
-    } forEach _unitMarkers;
-
     WF_UNIT_MARKERS = WF_UNIT_MARKERS - [objNull];
-
 	sleep 3
 }

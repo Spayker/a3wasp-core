@@ -1,8 +1,12 @@
 uiNamespace setVariable ["wf_display_respawn", _this select 0];
 
+_map =  (_this select 0) displayCtrl 511001;
+_drawMarkerId = _map ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
+
 //--- Focus on the player death location.
-((uiNamespace getVariable "wf_display_respawn") displayCtrl 511001) ctrlMapAnimAdd [0, .095, WF_DeathLocation];
+_map ctrlMapAnimAdd [0, .095, WF_DeathLocation];
 ctrlMapAnimCommit ((uiNamespace getVariable "wf_display_respawn") displayCtrl 511001);
+
 
 //--- Recall the last gear mode.
 ctrlSetText [511004, if (WF_RespawnDefaultGear) then {localize "STR_WF_RESPAWN_GearDefault"} else {localize "STR_WF_RESPAWN_GearCurrent"}];
@@ -134,7 +138,10 @@ if(WF_GameOver) then {
 	{deleteMarkerLocal _x} forEach _spawn_markers;
 
 	//--- Close dialog if opened.
-	if (dialog) then {closeDialog 0};
+	if (dialog) then {
+	    _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
+	    closeDialog 0
+	};
 	
 	//--- Release the UI.
 	uiNamespace setVariable ["wf_display_respawn", nil];
@@ -217,7 +224,10 @@ if(WF_GameOver) then {
 	{deleteMarkerLocal _x} forEach _spawn_markers;
 
 	//--- Close dialog if opened.
-	if (dialog) then {closeDialog 0};
+	if (dialog) then {
+	    _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
+	    closeDialog 0
+	};
 
 	//--- Release the UI.
 	uiNamespace setVariable ["wf_display_respawn", nil];

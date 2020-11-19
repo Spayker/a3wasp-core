@@ -33,6 +33,8 @@ _area setMarkerColorLocal "ColorRed";
 _area setMarkerSizeLocal [artyRange,artyRange];
 
 _map = _display DisplayCtrl 17002;
+_drawMarkerId = _map ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
+
 _listboxControl = _display DisplayCtrl _listBox;
 
 _pard = missionNamespace getVariable "WF_C_PLAYERS_SUPPORT_PARATROOPERS_DELAY";
@@ -98,7 +100,15 @@ WF_MenuAction = -1;
 mouseButtonUp = -1;
 
 while {alive player && dialog} do {
-	if (side player != WF_Client_SideJoined) exitWith {deleteMarkerLocal _marker;deleteMarkerLocal _area;{deleteMarkerLocal _x} forEach _markers;closeDialog 0};
+	if (side player != WF_Client_SideJoined) exitWith {
+	    deleteMarkerLocal _marker;
+	    deleteMarkerLocal _area;
+	    {deleteMarkerLocal _x} forEach _markers;
+	    _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
+	    closeDialog 0
+	};
+
+
 	if (!dialog) exitWith {deleteMarkerLocal _marker;deleteMarkerLocal _area;{deleteMarkerLocal _x} forEach _markers};
 	
 	_currentUpgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
@@ -339,6 +349,7 @@ while {alive player && dialog} do {
             _callPos = _map PosScreenToWorld[mouseX,mouseY];
             _destination = [_callPos,_FTLocations] Call WFCO_FNC_GetClosestEntity;
             if (_callPos distance _destination < 500) then {
+                _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
                 closeDialog 0;
                 deleteMarkerLocal _marker;
                 deleteMarkerLocal _area;
