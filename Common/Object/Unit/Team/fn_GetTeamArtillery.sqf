@@ -7,7 +7,7 @@ _units = units _team;
 
 _artyTypes = (missionNamespace getVariable Format ["WF_%1_ARTILLERY_CLASSNAMES",_side]) # _index;
 if (!isNull(commanderTeam)) then {
-    if (commanderTeam == Group player) then {
+    if (commanderTeam == WF_Client_Team) then {
         _purchasedGroups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
         {
             _groupUnits = units _x;
@@ -28,7 +28,7 @@ _artillery = [];
 {
 	_vehicle = vehicle _x;
 	if (typeOf(_vehicle) in _artyTypes) then {
-		if (!(isNull(gunner _vehicle)) && !(_vehicle in _artillery) && !(isPlayer(gunner _vehicle))) then {
+		if (!(isNull(gunner _vehicle)) && !(isPlayer(gunner _vehicle))) then {
 			if !(isPlayer(gunner _vehicle)) then {
 				_haveAmmo = false;
 				_weapons = _vehicle weaponsTurret [0];
@@ -38,7 +38,7 @@ _artillery = [];
 				} forEach _weapons;
 
 				if (_ignoreAmmo || _haveAmmo) then {
-					_artillery pushBack (_vehicle)
+					_artillery pushBackUnique (_vehicle)
 				}
 			}
 		}

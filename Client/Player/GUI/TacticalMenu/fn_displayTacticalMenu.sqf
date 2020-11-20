@@ -547,7 +547,7 @@ while {alive player && dialog} do {
 		//--- No need to update the list all the time.
 		if (time - _lastArtyUpdate > 5) then {
 			_lastArtyUpdate = time;
-			_trackingArray = [group player,true,lbCurSel(17008),WF_Client_SideJoined,_logik] Call WFCO_FNC_GetTeamArtillery;
+			_trackingArray = [WF_Client_Team,true,lbCurSel(17008),WF_Client_SideJoined,_logik] Call WFCO_FNC_GetTeamArtillery;
 		};
 		
 		//--- Clear & Fill;
