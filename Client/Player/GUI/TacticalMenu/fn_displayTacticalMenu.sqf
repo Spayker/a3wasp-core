@@ -199,7 +199,7 @@ while {alive player && dialog} do {
 		_currentSpecial = _addToListID # _currentValue;
 		_currentFee = _addToListFee # _currentValue;
 
-	    _currentGroupSize = count ((Units (group player)) Call WFCO_FNC_GetLiveUnits);
+	    _currentGroupSize = count ((Units (WF_Client_Team)) Call WFCO_FNC_GetLiveUnits);
 		_currentInterval = _addToListInterval # _currentValue;
 		_forceReload = false;
 		_controlEnable = false;
@@ -217,7 +217,7 @@ while {alive player && dialog} do {
 				if ((missionNamespace getVariable "WF_C_MODULE_WF_ICBM") > 0) then {
 					_commander = false;
 					if (!isNull(commanderTeam)) then {
-						if (commanderTeam == group player) then {_commander = true};
+						if (commanderTeam == WF_Client_Team) then {_commander = true};
 					};
 					_currentLevel = _currentUpgrades # WF_UP_ICBM;
 					_controlEnable = (_currentLevel > 0 && _commander && _funds >= _currentFee);
@@ -226,7 +226,7 @@ while {alive player && dialog} do {
 			case "CAS": {
 			    _controlEnable = false;
 			    if (!isNull(commanderTeam)) then {
-                    _controlEnable = ((commanderTeam == group player) && _funds >= _currentFee && time - lastCasCall > _currentInterval)
+                    _controlEnable = ((commanderTeam == WF_Client_Team) && _funds >= _currentFee && time - lastCasCall > _currentInterval)
                 }
 			};
 			case "Paratroopers": {
@@ -376,7 +376,7 @@ while {alive player && dialog} do {
                             && !((currentCommand _x) in ["WAIT","STOP"])) then {
                                 _travelingWith pushBack (vehicle _x)
                     }
-                } forEach units (group player);
+                } forEach units (WF_Client_Team);
 
                 ForceMap true;
                 _compass = shownCompass;
@@ -492,7 +492,7 @@ while {alive player && dialog} do {
 	//--- Request Fire Mission.
 	if (WF_MenuAction == 2) then {
 		WF_MenuAction = -1;
-		_units = [Group player,false,lbCurSel(17008),WF_Client_SideJoinedText,_logik] Call WFCO_FNC_GetTeamArtillery;
+		_units = [WF_Client_Team,false,lbCurSel(17008),WF_Client_SideJoinedText,_logik] Call WFCO_FNC_GetTeamArtillery;
 		if (Count _units > 0) then {
 			fireMissionTime = time;
 			[GetMarkerPos "artilleryMarker",lbCurSel(17008),_logik,_units] Spawn WFCL_FNC_RequestFireMission;
@@ -509,7 +509,7 @@ while {alive player && dialog} do {
 		_minRange = (missionNamespace getVariable Format ["WF_%1_ARTILLERY_RANGES_MIN",WF_Client_SideJoined]) # _index;
 		_maxRange = round(((missionNamespace getVariable Format ["WF_%1_ARTILLERY_RANGES_MAX",WF_Client_SideJoined]) # _index) / (missionNamespace getVariable "WF_C_ARTILLERY"));
 
-		_trackingArray = [group player,true,lbCurSel(17008),WF_Client_SideJoined,_logik] Call WFCO_FNC_GetTeamArtillery;
+		_trackingArray = [WF_Client_Team,true,lbCurSel(17008),WF_Client_SideJoined,_logik] Call WFCO_FNC_GetTeamArtillery;
 		
 		_requestMarkerTransition = true;
 		_requestRangedList = true;
@@ -624,7 +624,7 @@ while {alive player && dialog} do {
 			//--- No need to update the marker all the time.
 			if (time - _lastArtyUpdate > 5) then {
 				_lastArtyUpdate = time;
-				_trackingArray = [group player,true,lbCurSel(17008),WF_Client_SideJoined,_logik] Call WFCO_FNC_GetTeamArtillery;
+				_trackingArray = [WF_Client_Team,true,lbCurSel(17008),WF_Client_SideJoined,_logik] Call WFCO_FNC_GetTeamArtillery;
 			};
 			
 			//--- Live Feed.
