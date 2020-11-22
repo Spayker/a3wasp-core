@@ -98,10 +98,7 @@ while {!WF_GameOver} do {
                     [_camp,_newSID,_sideID] remoteExecCall ["WFCL_FNC_CampCaptured"];
                 };
             };
-            sleep 0.01
         };
-
-        sleep 0.01
         }
     };
     sleep 5
