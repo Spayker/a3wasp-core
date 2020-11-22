@@ -492,7 +492,7 @@ while {alive player && dialog} do {
 	//--- Request Fire Mission.
 	if (WF_MenuAction == 2) then {
 		WF_MenuAction = -1;
-		_units = [WF_Client_Team,false,lbCurSel(17008),WF_Client_SideJoinedText,_logik] Call WFCO_FNC_GetTeamArtillery;
+		_units = [WF_Client_Team,true,lbCurSel(17008),WF_Client_SideJoinedText,_logik] Call WFCO_FNC_GetTeamArtillery;
 		if (Count _units > 0) then {
 			fireMissionTime = time;
 			[GetMarkerPos "artilleryMarker",lbCurSel(17008),_logik,_units] Spawn WFCL_FNC_RequestFireMission;
@@ -569,6 +569,17 @@ while {alive player && dialog} do {
 		    } else {
 		        _color = [0.875, 0, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryRangeTooClose'
 		    };
+
+		    _noAmmo = false;
+		    _weapons = _artillery weaponsTurret [0];
+		    {
+                if((_artillery ammo _x) == 0) then { _noAmmo = true }
+            } forEach _weapons;
+
+            if(_noAmmo) then {
+                _color = [0.875, 0, 0, 0.8];_text = localize 'STR_WF_TACTICAL_ArtilleryNoAmmo'
+            };
+
 		    lnbAddRow [17024,[[typeOf _artillery, 'displayName'] Call WFCO_FNC_GetConfigInfo,_text]];
             lnbSetPicture [17024,[_i,0],[typeOf _artillery, 'picture'] Call WFCO_FNC_GetConfigInfo];
 			

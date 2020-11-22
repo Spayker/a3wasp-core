@@ -28,7 +28,7 @@ _artillery = [];
 {
 	_vehicle = vehicle _x;
 	if (typeOf(_vehicle) in _artyTypes) then {
-		if (!(isNull(gunner _vehicle)) && !(isPlayer(gunner _vehicle))) then {
+		if (!(isNull(gunner _vehicle))) then {
 			if !(isPlayer(gunner _vehicle)) then {
 				_haveAmmo = false;
 				_weapons = _vehicle weaponsTurret [0];

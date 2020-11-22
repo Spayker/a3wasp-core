@@ -2477,6 +2477,14 @@
 				<Italian>Range OK</Italian>
 				<Portuguese>Alcance OK</Portuguese>
 			</Key>
+			<Key ID="STR_WF_TACTICAL_ArtilleryNoAmmo">
+				<English>No Ammo</English>
+				<French>No Ammo</French>
+				<German>No Ammo</German>
+				<Russian>Нет Снарядов</Russian>
+				<Italian>No Ammo</Italian>
+				<Portuguese>No Ammo</Portuguese>
+			</Key>
 			<Key ID="STR_WF_TACTICAL_ArtilleryOutOfRange">
 				<English>Out of Range</English>
 				<French>Hors de Portée</French>
