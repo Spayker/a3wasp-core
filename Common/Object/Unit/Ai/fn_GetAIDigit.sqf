@@ -16,6 +16,6 @@ if (_find != -1) then {
 	};
 };
 
-if (count _yield == 0) exitWith {"0"};
+if (count _yield == 0) exitWith {''};
 
 toString(_yield)

@@ -394,7 +394,7 @@ _greenList = [];
 missionNamespace setVariable ["COIN_UseHelper", _greenList];
 
 //--- Make sure that player is always the leader.
-if (leader(group player) != player) then {(group player) selectLeader player};
+if (leader(WF_Client_Team) != player) then {(WF_Client_Team) selectLeader player};
 
 // initiate the passive skills.
 WF_gbl_boughtRoles = [];
@@ -504,7 +504,7 @@ WF_C_MAP_MARKER_HANDLER = {
         };
 
         if(_unit isKindOf 'Man') then {
-            if(group _unit != group player) then {_text = ''};
+            if(group _unit != WF_Client_Team) then {_text = ''};
             if (vehicle _unit != _unit) then {
                 _vehicleUnit = vehicle _unit;
                 if(_vehicleUnit iskindof 'StaticWeapon') then {
@@ -512,7 +512,10 @@ WF_C_MAP_MARKER_HANDLER = {
                     _unitCrew = crew _vehicleUnit;
                     _digitArray = [];
                     {
-                        if (group _x == group player) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
+                        if (group _x == WF_Client_Team) then {
+                            _digit = (_x) call WFCO_FNC_GetAIDigit;
+                            if(_digit != '') then { _digitArray pushBack _digit }
+                        };
                     } forEach _unitCrew;
                     _text = _digitArray joinString ", "
                 } else {
@@ -528,7 +531,7 @@ WF_C_MAP_MARKER_HANDLER = {
             if (count _unitCrew > 0) then {
                 _digitArray = [];
                 {
-                    if (group _x == group player) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
+                    if (group _x == WF_Client_Team) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
                 } forEach _unitCrew;
                 _text = _digitArray joinString ", ";
             }
@@ -550,10 +553,8 @@ WF_C_MAP_MARKER_HANDLER = {
                 "TahomaB",
                 "right"
             ]
-
         }
-
-    } forEach WF_UNIT_MARKERS;
+    } forEach WF_UNIT_MARKERS
 };
 
 waitUntil {!isNull findDisplay 12};
