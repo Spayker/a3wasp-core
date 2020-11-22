@@ -65,6 +65,12 @@ WF_VEHICLES_WITH_EXTRA_SLOT_ISSUE = [
     ["CUP_B_BAF_Coyote_GMG_D",         [true, true, 0,                  0]],
     ["CUP_B_M1A2_TUSK_MG_US_Army",     [true, true, 0,                  1]],
     ["CUP_B_M1A2_TUSK_MG_DES_US_Army", [true, true, 0,                  1]],
+    ["CUP_B_Leopard2A6_GER",           [true, true, 0,                  1]],
+    ["CUP_B_Leopard2A6DST_GER",        [true, true, 0,                  1]],
+    ["CUP_O_BTR80_TK",                 [false, true, 0,                 0]],
+    ["CUP_O_BTR80A_TK",                [false, true, 0,                 0]],
+    ["CUP_O_BTR80_GREEN_RU",                [false, true, 0,            0]],
+    ["CUP_O_BTR80A_CAMO_RU",                [false, true, 0,            0]],
     ["CUP_O_Ka52_RU",                  [false,true, 0,                  0]]
 ];
 
