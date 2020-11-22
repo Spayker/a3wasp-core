@@ -86,8 +86,7 @@ if !(isNull _vehicle) then {
                 sleep 5;
                 if (!alive _vehicle) exitWith { };//--- Vehicle destruction.
                 if (!alive driver _vehicle) exitWith { };//--- Pilots are dead.
-                _vehicleCoord = [(getPosASL _vehicle) # 0, (getPosASL _vehicle) # 1];
-                if (_vehicleCoord distance _closestStartPos < 300) exitWith {
+                if (_closestStartPos distance (getPos _vehicle) < 300) exitWith {
                     {deleteVehicle _x} forEach crew _vehicle;
                     deleteVehicle _vehicle;
                 };//--- Destination reached.
