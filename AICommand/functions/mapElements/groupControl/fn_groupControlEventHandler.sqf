@@ -103,6 +103,7 @@ if(isNil "_groupControlId") then {
 		_waypointIconCount = count _waypointIcons;
 		
 		_waypoints = [_group] call AIC_fnc_getAllActiveWaypoints;
+		(units _group) doFollow (leader _group);
 		_color = AIC_fnc_getGroupControlColor(_groupControlId);
 
 		_currentWpRevision = _waypoints select 0;

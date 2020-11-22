@@ -42,9 +42,10 @@ params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
     } forEach _selectedGroupTemplate;
     _unitGroup allowFleeing 0;
     _unitGroup setCombatMode "RED";
-    _unitGroup setBehaviour "COMBAT";
+    _unitGroup setBehaviour "AWARE";
     _unitGroup setFormation "FILE";
     _unitGroup setSpeedMode "FULL";
+    (units _unitGroup) doFollow (leader _unitGroup);
 
     _unitGroup setVariable ["isHighCommandPurchased",true, true];
 }

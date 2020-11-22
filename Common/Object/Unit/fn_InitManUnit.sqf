@@ -44,7 +44,8 @@ if(_side == 2) then {
     _unit setSkill ["aimingAccuracy", _skill];
     _unit setSkill ["aimingSpeed", _skill];
     _unit setSkill ["spotTime", _skill];
-    _unit setSkill ["spotDistance", _skill]
+    _unit setSkill ["spotDistance", _skill];
+    _unit setSkill ["courage", 1]
 };
 
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
