@@ -5,7 +5,6 @@ WF_AutoWallConstructingEnabled = false;
 WF_REQ_ADDONS = 	[
 						["@AdWaspLite", ["wasp_vehicle_fix"]],
 						["@CBA_A3", ["cba_xeh", "cba_help"]], 
-						["@Enhanced Movement", ["BaBe_core"]],
 						["@CUP Units", ["CUP_Creatures_People_Civil_Chernarus", "CUP_Creatures_People_Core"]],
 						["@CUP Vehicles", ["CUP_AirVehicles_Core", "CUP_TrackedVehicles_Core"]],
 						["@CUP Weapons", ["CUP_BaseData", "CUP_Weapons_AK"]]

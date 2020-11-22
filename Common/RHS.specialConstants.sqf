@@ -5,7 +5,6 @@ WF_AutoWallConstructingEnabled = false;
 WF_REQ_ADDONS = 	[	//["@Bornholm", ["Bornholm"]], 
 						//["@AdWasp", ["wasp_vehicle_fix"]],
 						["@CBA_A3", ["cba_xeh", "cba_help"]], 
-						["@Enhanced Movement", ["BaBe_core"]], 
 						//["@Napf Island V1.2", ["Napf"]], 
 						//["@Tembelan Island", ["A3_Map_Tembelan"]],
 						//["@Caucasus Insurgency", ["FGN_RU_Gear"]],
