@@ -44,15 +44,12 @@
 	//--- The town may have some camps.
 	{
 		Private ["_campColor","_campMarker","_campSide"];
-		
-		//--- Wait for the sideID to be initialized.
-		waitUntil {!isNil {_x getVariable "sideID"}};
-		_campSide = _x getVariable "sideID";
+		_campSideId = _x getVariable "sideID";
 		
 		// --- Determine the coloration method.
 		_campColor = missionNamespace getVariable "WF_C_UNKNOWN_COLOR";
-		if (_townSide == WF_Client_SideID) then {
-			_campColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR",(_campSide) Call WFCO_FNC_GetSideFromID]);
+		if (_campSideId == WF_Client_SideID) then {
+			_campColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR",(_campSideId) Call WFCO_FNC_GetSideFromID])
 		};
 
 		//--- Place a marker over the logic.
