@@ -3,6 +3,8 @@ params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
 [_player, _selectedGroupTemplate, _position, _direction] spawn {
     params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
 
+    _isVehicle = true;
+
     _side = side _player;
     _sideID = _side Call WFCO_FNC_GetSideID;
     _unitGroup = createGroup [_side, true];
@@ -11,6 +13,7 @@ params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
             sleep (_c # QUERYUNITTIME);
 
             if (_x isKindOf "Man") then {
+                _isVehicle = false;
                 [_x, _unitGroup, _position, _sideID] Call WFCO_FNC_CreateUnit;
                 [str _side,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
             } else {
@@ -43,8 +46,9 @@ params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
     _unitGroup allowFleeing 0;
     _unitGroup setCombatMode "RED";
     _unitGroup setBehaviour "AWARE";
-    _unitGroup setFormation "FILE";
+    if (_isVehicle) then { _unitGroup setFormation "FILE" };
     _unitGroup setSpeedMode "FULL";
+
     (units _unitGroup) doFollow (leader _unitGroup);
 
     _unitGroup setVariable ["isHighCommandPurchased",true, true];
