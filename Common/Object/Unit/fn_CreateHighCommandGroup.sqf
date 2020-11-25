@@ -44,7 +44,7 @@ params ["_player", "_selectedGroupTemplate", "_position", "_direction"];
         }
     } forEach _selectedGroupTemplate;
     _unitGroup allowFleeing 0;
-    _unitGroup setCombatMode "RED";
+    _unitGroup setCombatMode "YELLOW";
     _unitGroup setBehaviour "AWARE";
     if (_isVehicle) then { _unitGroup setFormation "FILE" };
     _unitGroup setSpeedMode "FULL";
