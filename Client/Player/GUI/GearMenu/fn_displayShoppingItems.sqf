@@ -53,7 +53,7 @@ if!(isnil '_selectedRole')then{
             };
         case WF_GEAR_TAB_BACKPACK: {
             _gear_list_backpacks = missionNamespace getVariable format["wf_gear_list_backpacks_%1",_selectedRole];
-            if(!(isNil 'wf_gear_list_backpacks'))then{
+            if(!(isNil '_gear_list_backpacks'))then{
                 (missionNamespace getVariable "wf_gear_list_backpacks") + _gear_list_backpacks
             } else {
                 (missionNamespace getVariable "wf_gear_list_backpacks")
