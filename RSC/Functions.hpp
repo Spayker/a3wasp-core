@@ -617,6 +617,5 @@ class WF_Common {
         class getSideFLAG {};
         class getTotalCamps {};
         class getTotalCampsOnSide {};
-        class updateCampsInTown {};
      };	
 };
