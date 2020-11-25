@@ -77,6 +77,9 @@ if (_global) then {
 };
 
 _unit addEventHandler ['killed', format ['[_this # 0,_this # 1,%1] spawn WFCO_FNC_OnUnitKilled', _side]];
+if(!isHostedServer) then {
+    [_unit, ["killed", format ['params ["_unit", "_killer"]; if(local _unit) then { [_unit, _killer, %1] spawn WFCO_FNC_OnUnitKilled; };', _side]]] remoteExec ["addEventHandler", 2];
+};
 
 ["INFORMATION", Format ["fn_InitManUnit.sqf: [%1] Unit [%2] skill [%5] with a was created at [%3] and has been assigned to team [%4]",
     _side Call WFCO_FNC_GetSideFromID, _type, _position, _group, _skill]] Call WFCO_FNC_LogContent;
