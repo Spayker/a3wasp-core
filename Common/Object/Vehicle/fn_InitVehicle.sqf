@@ -10,15 +10,14 @@ _vehicle spawn WFCO_FNC_ClearVehicleCargo;
 _isHQ = (typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _side], ""]));
 //-- Init HQ
 if(_isHQ) then {
-    _vehicle setVariable ["wf_side", _side];
-    _vehicle setVariable ["wf_trashable", false];
-    _vehicle setVariable ["wf_structure_type", "Headquarters"];
+    _vehicle setVariable ["wf_side", _side, true];
+    _vehicle setVariable ["wf_trashable", false, true];
+    _vehicle setVariable ["wf_structure_type", "Headquarters", true];
     _vehicle setVariable ["wf_hq_deployed", false, true];
     _vehicle addEventHandler ['handleDamage', {
         params ["_unit", "_selection", "_damage", "_source"];
         if(WF_C_BASE_ALLOW_TEAM_DAMMAGE <= 0 && ((side _source) == (_unit getVariable "wf_side"))) exitWith {0};
     }];
-    _vehicle setVariable ["wf_structure_type", "Headquarters"];
     _vehicle addMPEventHandler ['MPKilled', {_this spawn WFSE_FNC_OnHQKilled}];
     _vehicle addMPEventHandler ["MPHit",{_this spawn WFSE_FNC_BuildingDamaged}];
 
