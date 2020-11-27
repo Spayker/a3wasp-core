@@ -18,7 +18,7 @@ _currentUnit switchCamera _currentMode;
 _units = (Units (group player) - [player]) Call WFCO_FNC_GetLiveUnits;
 private _track = 0;
 {
-    lbAdd[21004,Format["(%1) %2",getText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];
+    lbAdd[21004,Format["(%1) %2 %3",_x Call WFCO_FNC_GetAIDigit,getText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];
     _n = _n + 1;
 
     //--Check is there WF_A_Tracked variables--
@@ -33,6 +33,7 @@ _type = ["Internal","External","Ironsight"];
 lbSetCurSel[21006,0];
 
 _map = _display displayCtrl 21007;
+_drawMarkerId = _map ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
 _map ctrlMapAnimAdd [0,.25,getPos _currentUnit];
 ctrlMapAnimCommit _map;
 
@@ -81,7 +82,10 @@ while {true} do {
 		_units = (Units (group _selected) - [_selected]) Call WFCO_FNC_GetLiveUnits;
 
 		lbClear 21004;
-		{lbAdd[21004,Format["(%1) %2",GetText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];_n = _n + 1} forEach _units;
+		{
+		    lbAdd[21004,Format["(%1) %2 %3",_x Call WFCO_FNC_GetAIDigit, GetText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];
+		    _n = _n + 1
+		} forEach _units;
 		_cameraSwap = true;
 	};
 
@@ -143,7 +147,7 @@ while {true} do {
                 }];
 
             missionNamespace setVariable ["wf_remote_ctrl_displayEH", _eventId];
-
+                _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
             closeDialog 0;
     	};
     };
@@ -178,6 +182,7 @@ while {true} do {
 	};
 };
 
+_map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
 closeDialog 0;
 
 //--If we have some WF_A_Tracked variables, then delete arti markers--
