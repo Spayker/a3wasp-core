@@ -60,20 +60,16 @@ if (_builtveh > 0) then {[str _side,'VehiclesCreated',_builtveh] spawn WFCO_FNC_
 
 ["INFORMATION", Format["fn_CreateTownUnits.sqf: Town [%1] held by [%2] was activated witha total of [%3] units.", _town, _side, _built + _builtveh]] Call WFCO_FNC_LogContent;
 
-if(isHeadLessClient) then {
-    _teamsFromServer = ["WFSE_FNC_GetTownActiveGroups", player, [_town], 6000] call WFCL_FNC_remoteExecServer;
-    _wf_town_teams = _teamsFromServer # 0;
-    _wf_active_vehicles = _teamsFromServer # 1;
-} else {
-    _wf_town_teams = _town getVariable ["wf_town_teams", []];
-    _wf_active_vehicles = _town getVariable ["wf_active_vehicles", []];
-};
-_wf_active_vehicles = _wf_active_vehicles + _town_vehicles;
+
+_teams = _town getVariable ["wf_town_teams", []];
+_teams = _teams - [grpNull];
+_vehicles = _town getVariable ["wf_active_vehicles", []];
+_vehicles = _vehicles - [objNull];
+
+_wf_active_vehicles = _vehicles + _town_vehicles;
 _wf_active_vehicles = _wf_active_vehicles - [objNull];
-_town setVariable ["wf_active_vehicles", _wf_active_vehicles, 2];
+_town setVariable ["wf_active_vehicles", _wf_active_vehicles, true];
 
-_wf_town_teams = _wf_town_teams + _town_teams;
+_wf_town_teams = _teams + _town_teams;
 _wf_town_teams = _wf_town_teams - [grpNull];
-_town setVariable ["wf_town_teams", _wf_town_teams, 2];
-
-_town setVariable ['wf_unlocked', true, 2];
+_town setVariable ["wf_town_teams", _wf_town_teams, true];

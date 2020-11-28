@@ -98,7 +98,7 @@ Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Defenses\De
 Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Defenses\Defenses_%1.sqf",_grpRes];
 
 //--- Server Exec.
-if (isServer) then {
+if (isServer || isHeadLessClient) then {
 	//--- Import the desired town groups.
 	Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Groups\Groups_%1.sqf",_grpWest];
 	Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Groups\Groups_%1.sqf",_grpEast];
