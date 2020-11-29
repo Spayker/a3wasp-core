@@ -2,9 +2,9 @@
 	Kill vehicle crew when static defense is killed or deleted
 */
 params ["_defense"];
-private ["_crewUnits", "_publicFor"];
+private ["_crewUnits"];
 
-_crewUnits = _defense getVariable ["_crewUnits", []];
+_crewUnits = _defense getVariable ["crewUnits", []];
 
 {
 	if(!isNull _x) then {
@@ -14,9 +14,4 @@ _crewUnits = _defense getVariable ["_crewUnits", []];
 	};
 } forEach _crewUnits;
 
-_publicFor = [2];
-if (missionNamespace getVariable ["WF_HEADLESSCLIENT_ID", 0] > 0) then {
-    _publicFor pushBack (missionNamespace getVariable "WF_HEADLESSCLIENT_ID");
-};
-
-_defense setVariable ["_crewUnits", nil, _publicFor];
+_defense setVariable ["crewUnits", nil, true];

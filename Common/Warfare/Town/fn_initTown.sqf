@@ -30,13 +30,13 @@ waitUntil {commonInitComplete};
 _camps = nearestObjects [_town, [WF_C_CAMP], _townRange];
 _camps = _camps select { (_x getVariable ["WF_CAMP_TOWN", ""]) == _townName };
 
-if (isServer) then {
+if (isServer || (!hasInterface && !isDedicated)) then {
     //--- Get the camps and defenses
     _town setVariable ["camps", _camps, true];
     ["INITIALIZATION",Format ["Init_Town.sqf : Found [%1] camps in [%2].", count _camps, _town getVariable "name"]] call WFCO_FNC_LogContent;
 
     //--- Setup town defense speciality
-    if(count _townDefendersSpeciality > 0) then { _town setVariable ["townDefendersSpeciality", _townDefendersSpeciality] };
+    if(count _townDefendersSpeciality > 0) then { _town setVariable ["townDefendersSpeciality", _townDefendersSpeciality, true] };
 
 _defenseLocations = [];
 {
@@ -51,14 +51,14 @@ _defenseLocations = [];
             }
     }
 } forEach (_town nearEntities[["Logic"], _townRange]);
-    _town setVariable ["wf_town_defenses", _defenseLocations];
+    _town setVariable ["wf_town_defenses", _defenseLocations, true];
 
     _townDubbingName = switch (_townDubbingName) do {
         case "+": {_townName};//--- Copy the name.
         case "": {"Town"};//--- Unknown name, apply Town dubbing.
         default {_townDubbingName};//--- Input name.
     };
-    _town setVariable ["wf_town_dubbing", _townDubbingName];
+    _town setVariable ["wf_town_dubbing", _townDubbingName, true];
 
     [_town,_camps,_townStartSV, _townMaxSV, _townSpecialities, _townRange, _townServices] spawn {
         params ["_town", "_camps","_townStartSV", "_townMaxSV", "_townSpecialities", "_townRange", "_townServices"];
@@ -95,7 +95,7 @@ _defenseLocations = [];
                _respVehPositions pushBack (_respVehDetails);
                deleteVehicle _x
             } forEach (_town nearEntities[["LocationRespawnPoint_F"], _townRange]);
-            _town setVariable ["respVehPositions", _respVehPositions]
+            _town setVariable ["respVehPositions", _respVehPositions, true]
         }
     }
 };
