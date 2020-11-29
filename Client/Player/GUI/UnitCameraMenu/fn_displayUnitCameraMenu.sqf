@@ -15,6 +15,8 @@ _currentUnit = (player) Call WFCL_FNC_getUnitVehicle;
 _currentUnitMan = objNull;
 _currentMode = "Internal";
 _currentUnit switchCamera _currentMode;
+_casVehicle = objNull;
+_casGunner = objNull;
 _units = (Units (group player) - [player]) Call WFCO_FNC_GetLiveUnits;
 private _track = 0;
 {
@@ -26,6 +28,35 @@ private _track = 0;
         _track = (vehicle _x) getVariable ["WF_A_Tracked",0];
     };
 } forEach _units;
+
+_checkCasVehicle = {
+
+    if !(isNull commanderTeam) then {
+        if (commanderTeam == group player) then {
+            {
+                _group = _x;
+                if(side _group == WF_Client_SideJoined) then {
+
+                    _isCasGroup = _group getVariable ['isCasGroup', false];
+                    if(_isCasGroup) exitWith {
+
+                        _casVehicle = vehicle (leader _group);
+                        _casGunner = gunner _casVehicle;
+                        lbAdd[21004,Format["(%1) %2 ",getText (configFile >> "CfgVehicles" >> (typeOf _casVehicle) >> "displayName"),name _casGunner]];
+                        _n = _n + 1;
+
+                        //--Check is there WF_A_Tracked variables--
+                        if(_track == 0) then {
+                            _track = (_casVehicle) getVariable ["WF_A_Tracked",0];
+                        };
+                    }
+                }
+            } forEach allGroups
+        }
+    }
+};
+
+[] call _checkCasVehicle;
 
 //--Don't check difficultyEnabled. Use three cam modes every time.--
 _type = ["Internal","External","Ironsight"];
@@ -86,6 +117,8 @@ while {true} do {
 		    lbAdd[21004,Format["(%1) %2 %3",_x Call WFCO_FNC_GetAIDigit, GetText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];
 		    _n = _n + 1
 		} forEach _units;
+
+		[] call _checkCasVehicle;
 		_cameraSwap = true;
 	};
 
@@ -94,6 +127,12 @@ while {true} do {
 		WF_MenuAction = -1;
 		_currentUnit = (_units # (lbCurSel 21004)) Call WFCL_FNC_getUnitVehicle;
 		_currentUnitMan = _units # (lbCurSel 21004);
+
+		if(isNil '_currentUnit') then {
+		    _currentUnit = _casVehicle;
+		    _currentUnitMan = _casGunner
+		};
+
 		_vehicle = vehicle _currentUnit;
 		_crew = crew _vehicle;
 		{
@@ -118,7 +157,7 @@ while {true} do {
 	//--Remote control clicked--
     if (WF_MenuAction == 141 && !(isNil "_currentUnitMan")) then {
     	WF_MenuAction = -1;
-    	if(!(isPlayer (_currentUnitMan)) && group player == group _currentUnitMan
+    	if(!(isPlayer (_currentUnitMan)) && ((group player == group _currentUnitMan) || ((group _currentUnitMan) getVariable ['isCasGroup', false]))
     	    && !alive (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
     	    if(_currentUnitMan getVariable ["wf_remote_ctrl_eh", 0] == 0) then { //--Avoid stacked EH--
     	        _currentUnitMan setVariable ["wf_remote_ctrl_eh", 1];
@@ -167,6 +206,11 @@ while {true} do {
 		};
 		_cameraSwap = true;
 	};
+
+    if(isNil '_currentUnit') then {
+        _currentUnit = _casVehicle;
+        _currentUnitMan = _casGunner
+    };
 
 	if !(alive _currentUnit) then {
 		_currentUnit = (player) Call WFCL_FNC_getUnitVehicle;
