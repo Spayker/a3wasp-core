@@ -31,8 +31,7 @@ _sideID = _side call WFCO_FNC_GetSideID;
 		["INFORMATION", format["fn_CreateUnitForstaticDefence.sqf: %2 [%1] will be assigned to %3", _side, _gunnerType, _defence]] spawn WFCO_FNC_LogContent;
 	} else {
 		["INFORMATION", format["fn_CreateUnitForstaticDefence.sqf: [%1] will create %2 at %3", _side, _gunnerType, _position]] spawn WFCO_FNC_LogContent;
-		_soldier = _group createUnit [_gunnerType, _position, [], 0, 'NONE'];
-		//_soldier = [_gunnerType, _group, _position, _sideID] call WFCO_FNC_CreateUnit;
+		_soldier = [_gunnerType, _group, _position, _sideID] call WFCO_FNC_CreateUnit;
 
 		if(_side in [west, east]) then {
 			_soldier setSkill 1;
