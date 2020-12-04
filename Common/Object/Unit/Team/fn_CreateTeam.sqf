@@ -45,7 +45,7 @@ if (_list isEqualType "") then {_list = [_list]};
             _vehicle allowDamage true
         };
 
-        _safePos = [_position, 2, 200, 5, 0, 20, 0] call BIS_fnc_findSafePos;
+        _safePos = [_position, 200] call WFCO_fnc_getEmptyPosition;
         if(_x isKindOf 'Ship') then { _safePos = [_position, 2, 75, 5, 2, 0, 1] call BIS_fnc_findSafePos };
 
         _vehicle setPosATL ([_safePos # 0, _safePos # 1, _height]);
