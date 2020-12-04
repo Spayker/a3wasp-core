@@ -514,13 +514,15 @@ WF_C_MAP_MARKER_HANDLER = {
                     {
                         if (group _x == WF_Client_Team) then {
                             _digit = (_x) call WFCO_FNC_GetAIDigit;
-                            if(_digit != '') then { _digitArray pushBack _digit }
-                        };
-                    } forEach _unitCrew;
+                            if(_digit != '') then {
+                                _digitArray pushBack _digit;
                     _text = _digitArray joinString ", "
+                            }
+                        }
+                    } forEach _unitCrew
                 } else {
                     _text = '';
-                    _shallDraw = false;
+                    _shallDraw = false
                 }
             }
         } else {
