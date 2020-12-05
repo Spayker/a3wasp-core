@@ -26,7 +26,7 @@ format["<br />
 - Originally the mission was ported from Arma 2 WASP server to Arma 3 one. <br/><br/>
 CREDITS: <br/>
 - main mission author of Arma 2 warfare: Benny <br/><br/>
-- WASP mission editors of Arma 2/3 warfare: <t size='1.1' color='#2394af' align='center'> Spayker, Qazdar, DNS, HarryD, Predator, =RUS=Морпех, smirnoff.</t><br/><br/>
+- WASP mission editors of Arma 2/3 warfare: <t size='1.1' color='#2394af' align='center'> Spayker, Qazdar, DNS, HarryD, smirnoff.</t><br/><br/>
 - Mission testers: <t size='1.1' color='#2394af' align='center'> Damage, nAh, opftafel007, blast, E_2, Avatar, Swoff, umke, BCMM, 2Pac and others... </t> <br/>
 <br/>
 <br/>
