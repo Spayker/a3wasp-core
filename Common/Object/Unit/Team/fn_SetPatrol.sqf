@@ -1,8 +1,8 @@
 private["_lastSV","_startSV","_mode","_lastMode","_patrol_range","_defense_range"];
 params ["_location", "_team", "_sideID", ["_focus", objNull]];
 
-_lastSV = _location getVariable 'supplyValue';
-_startSV = _location getVariable 'startingSupplyValue';
+_lastSV = _location getVariable ['supplyValue', 10];
+_startSV = _location getVariable ['startingSupplyValue', 10];
 _mode = "patrol";
 _lastMode = "nil";
 
@@ -10,7 +10,7 @@ _patrol_range = missionNamespace getVariable 'WF_C_TOWNS_PATROL_RANGE';
 _defense_range = missionNamespace getVariable 'WF_C_TOWNS_DEFENSE_RANGE';
 _aliveTeam = !(count ((units _team) Call WFCO_FNC_GetLiveUnits) == 0 || isNull _team);
 
-	_currentSV = _location getVariable 'supplyValue';
+	_currentSV = _location getVariable ['supplyValue', 10];
 	if (_currentSV < _lastSV || _currentSV < _startSV || _sideID != (_location getVariable 'sideID')) then {
 		_mode = "defense";
 	} else {
