@@ -9,40 +9,30 @@
 params ["_killed", "_killer"];
 private ["_get", "_killed_isplayer","_killed_group","_killed_isman","_killed_side","_killed_type","_killer_group","_killer_isplayer","_killer_iswfteam","_killer_side","_killer_type","_killer_vehicle","_killer_uid", "_processCommanderBounty"];
 
-_processCommanderBounty = {
-    params["_killer_isplayer", "_killer", "_killed_type", "_commanderTeam"];
-    private["_points", "_leaderCommanderTeam"];
-
-    if !(_killer_isplayer) then { //--- An AI is the killer.
-        _points = switch (true) do {
-            case (_killed_type isKindOf "Infantry"): {1};
-            case (_killed_type isKindOf "Car"): {2};
-            case (_killed_type isKindOf "Ship"): {4};
-            case (_killed_type isKindOf "Motorcycle"): {1};
-            case (_killed_type isKindOf "Tank"): {4};
-            case (_killed_type isKindOf "Helicopter"): {4};
-            case (_killed_type isKindOf "Plane"): {6};
-            case (_killed_type isKindOf "StaticWeapon"): {2};
-            case (_killed_type isKindOf "Building"): {2};
-            default {1};
-        };
-        _leaderCommanderTeam = leader _commanderTeam;
-
-        if (isServer) then {
-            [_leaderCommanderTeam, (score _leaderCommanderTeam) + _points] call WFSE_fnc_RequestChangeScore;
-        } else {
-            [_leaderCommanderTeam, (score _leaderCommanderTeam) + _points] remoteExecCall ["WFSE_fnc_RequestChangeScore",2];
-        };
-    };
-    [_killed_type, false] remoteExecCall ["WFCL_FNC_AwardBounty", _commanderTeam]
+_killed_type = typeOf _killed;
+_killed_side = switch (getNumber(configFile >> "CfgVehicles" >> _killed_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
+if(isServer || isHeadLessClient) exitWith {
+    ["INFORMATION", Format ["fn_OnUnitKilled.sqf: [%1] [%2] has been killed by [%3].", _killed_side, _killed, _killer]] Call WFCO_FNC_LogContent
 };
 
-_killed_side = (_this # 2) Call WFCO_FNC_GetSideFromID;
+//--- Retrieve basic information.
+_killer_group = group _killer;
+_leaderKillerGroup = leader _killer_group;
+_killer_isplayer = (isPlayer _killer);
+_killer_type = typeOf _killer;
+_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
+_killer_vehicle = vehicle _killer;
+_killer_uid = getPlayerUID _leaderKillerGroup;
+
+if(_killer_side == resistance) exitWith {};
+
+if(isPlayer _leaderKillerGroup && player != _leaderKillerGroup) exitWith { };
+
 _killed_group = group _killed;
 _killed_isman = (_killed isKindOf "Man");
-_killed_type = typeOf _killed;
 _killed_isplayer = (isPlayer _killed);
 
+_get = missionNamespace getVariable _killed_type; //--- Get the killed informations.
 _last_hit = _killed getVariable "wf_lasthitby";
 if !(isNil '_last_hit') then {
 	if (alive _last_hit) then {
@@ -52,7 +42,6 @@ if !(isNil '_last_hit') then {
 
 if (isNil '_killed_side') then { _killed_side = side _killed };
 
-["INFORMATION", Format ["fn_OnUnitKilled.sqf: [%1] [%2] has been killed by [%3].", _killed_side, _killed, _killer]] Call WFCO_FNC_LogContent;
 [_killed, _killer, _killed_side] spawn {
 	params ["_killed","_killer","_killed_side"];
 
@@ -85,29 +74,13 @@ if (isNil '_killed_side') then { _killed_side = side _killed };
 
 if !(alive _killer) exitWith {}; //--- Killer is null or dead, nothing to see here.
 
-//--- Retrieve basic information.
-_killer_group = group _killer;
-_leaderKillerGroup = leader _killer_group;
-_killer_isplayer = (isPlayer _killer);
-_killer_iswfteam = (!isNil {_killer_group getVariable "wf_funds"});
-_killer_side = side _killer;
-_killer_type = typeOf _killer;
-_killer_vehicle = vehicle _killer;
-_killer_uid = getPlayerUID _leaderKillerGroup;
-
-if (_killer_side == sideEnemy) then { //--- Make sure the killer is not renegade, if so, get the side from the config.
-	if !(_killer isKindOf "Man") then {_killer_type = typeOf effectiveCommander(vehicle _killer)};
-	_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
-};
-
 if (_killed_side in WF_PRESENTSIDES) then { //--- Update the statistics if needed.
 	if (_killed_isman) then {[str _killed_side,'Casualties',1] Call WFCO_FNC_UpdateStatistics} else {[str _killed_side,'VehiclesLost',1] Call WFCO_FNC_UpdateStatistics};
 };
 
 _get = missionNamespace getVariable _killed_type; //--- Get the killed informations.
 if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in the core files
-
-		if (_killer_side != _killed_side && _killer_side != resistance) then { //--- Normal kill.
+    if (_killer_side != _killed_side) then { //--- Normal kill.
 			if (isPlayer _leaderKillerGroup) then { //--- The team is lead by a player.
 				if !(_killer_isplayer) exitWith { //--- An AI is the killer.
 					_points = switch (true) do {
@@ -123,64 +96,45 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
 						case (_killed_type isKindOf "Building"): {2};
 						default {1};
 					};
-
-					if (isServer) then {
-					    [_leaderKillerGroup, (score _leaderKillerGroup) + _points] call WFSE_fnc_RequestChangeScore
-					} else {
-					    [_leaderKillerGroup, (score _leaderKillerGroup) + _points] remoteExecCall ["WFSE_fnc_RequestChangeScore",2]
+                [_leaderKillerGroup, (score _leaderKillerGroup) + _points] remoteExecCall ["WFSE_fnc_RequestChangeScore",2];
+                [_killed_type, false] call WFCL_FNC_AwardBounty;
 					};
-
-					[_killed_type, true] remoteExecCall ["WFCL_FNC_AwardBounty", leader _leaderKillerGroup];
-				};
-
 				//--- Award the bounty if needed.
-				if (_killed_isplayer) exitWith {
-					[_killed] remoteExecCall ["WFCL_FNC_AwardBountyPlayer", leader _leaderKillerGroup];
-				};
+            if (_killed_isplayer) exitWith { [_killed] call WFCL_FNC_AwardBountyPlayer };
 
-				if (vehicle _killed != _killed && alive _killed) exitWith { //--- Kill assist (players in the same vehicle).
-					{
-						if (alive _x && isPlayer _x) then {
-							[_objectType, true] remoteExecCall ["WFCL_FNC_AwardBounty", getPlayerUID(_x)];
-						}
-					} forEach ((crew (vehicle _killed)) - [_killer, player]);
-				};
-
-				if (_killer_isplayer) exitWith {
-				    [_killed_type, false] remoteExecCall ["WFCL_FNC_AwardBounty", _killer]
-				}
+            if (_killer_isplayer) exitWith { [_killed_type, false] call WFCL_FNC_AwardBounty }
 	} else {
 	        if (_killer isKindOf 'UAV' ) then {
                     _uavOwnerGroup = _killer getVariable ['uavOwnerGroup', objNull];
                     if!(isNull _uavOwnerGroup) exitWith {
-                        [_killer_isplayer, _killer, _killed_type, _uavOwnerGroup] call _processCommanderBounty
+                    [_killer_isplayer, _killer, _killed_type, _uavOwnerGroup] call WFCO_FNC_processCommanderBounty
                     }
 	        };
 
 	        _commanderTeam = (_killer_side) Call WFCO_FNC_GetCommanderTeam;
 	        if(!(isNil '_commanderTeam')) then {
                     if (_killer_type isKindOf "StaticWeapon") exitWith {
-						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                    [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty
                     };
 
                     _isCasGroup = _killer_group getVariable ['isCasGroup', false];
                     if(_isCasGroup) exitWith {
-                        [_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                    [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty
                 };
 
 				_highCommandCreatedGroups = [_killer_side] call WFCO_FNC_getHighCommandGroups;
 				if(!(isNil '_highCommandCreatedGroups')) then {
                         if(_killer_group in _highCommandCreatedGroups) exitWith {
-						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                        [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty
                     }
                 }
             }
 	    }
 		} else { //--- Teamkill.
-			if ((isPlayer _leaderKillerGroup) && _killer != _killed && !(_killed_type isKindOf "Building")) then {
+        if (_killer != _killed && !(_killed_type isKindOf "Building")) then {
 				//--- Only applies to player groups.
-        		['Teamkill'] remoteExecCall ["WFCL_FNC_LocalizeMessage", _killer]
-        	};
-        };
-
+            ['Teamkill'] call WFCL_FNC_LocalizeMessage
+        }
+    }
 }
+

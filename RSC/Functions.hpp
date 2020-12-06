@@ -476,6 +476,7 @@ class WF_Common {
         class killStaticDefenseCrew {};
         class onUnitHit {};
         class onUnitKilled {};
+        class processCommanderBounty {};
         class requip_AI {};
         class revealArea {};
         class getLiveUnits {};

@@ -18,8 +18,8 @@ if(_isHQ) then {
         params ["_unit", "_selection", "_damage", "_source"];
         if(WF_C_BASE_ALLOW_TEAM_DAMMAGE <= 0 && ((side _source) == (_unit getVariable "wf_side"))) exitWith {0};
     }];
-    _vehicle addMPEventHandler ['MPKilled', {_this spawn WFSE_FNC_OnHQKilled}];
-    _vehicle addMPEventHandler ["MPHit",{_this spawn WFSE_FNC_BuildingDamaged}];
+    _vehicle addMPEventHandler ['MPKilled', {_this call WFSE_FNC_OnHQKilled}];
+    _vehicle addMPEventHandler ["MPHit",{_this call WFSE_FNC_BuildingDamaged}];
 
 	_logik = (_side) Call WFCO_FNC_GetSideLogic;
     _hqs = (_side) call WFCO_FNC_GetSideHQ;
@@ -58,12 +58,8 @@ if(_isHQ) then {
     };
 
 	if (_bounty && !_isHQ) then {
-		_vehicle addEventHandler ["killed", format ['[_this # 0,_this # 1,%1] spawn WFCO_FNC_OnUnitKilled', _sideId]];
-		_vehicle addEventHandler ["hit", {_this spawn WFCO_FNC_OnUnitHit}];
-		if(!isHostedServer) then {
-			[_vehicle, ["killed", format ['params ["_unit", "_killer"]; if(local _unit) then { [_unit, _killer, %1] spawn WFCO_FNC_OnUnitKilled; };', _sideId]]] remoteExec ["addEventHandler", 2];
-			[_vehicle, ["hit", {params ["_unit"]; if(local _unit) then { _this spawn WFCO_FNC_OnUnitHit; };}]] remoteExec ["addEventHandler", 2];
-		};
+		_vehicle addMPEventHandler ['MPKilled', {[_this # 0,_this # 1] call WFCO_FNC_OnUnitKilled}];
+		_vehicle addMPEventHandler ["MPHit",{_this call WFCO_FNC_OnUnitHit}];
 	};
 
 	/*if(typeOf _vehicle in ['CUP_O_2S6M_RU','CUP_B_M6LineBacker_USA_W', 'CUP_B_M6LineBacker_USA_D']) then {
