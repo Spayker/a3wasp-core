@@ -1,10 +1,7 @@
+Params ['_type', '_assist'];
 Private["_assist","_bounty","_get","_name","_type"];
 
-_type = _this select 0;
-_assist = _this select 1;
-
 _get = missionNamespace getVariable _type;
-
 _name = _get select QUERYUNITLABEL;
 
 

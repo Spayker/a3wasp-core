@@ -11,11 +11,9 @@ private ["_get", "_killed_isplayer","_killed_group","_killed_isman","_killed_sid
 
 _processCommanderBounty = {
     params["_killer_isplayer", "_killer", "_killed_type", "_commanderTeam"];
-    private["_killer_award", "_points", "_leaderCommanderTeam"];
+    private["_points", "_leaderCommanderTeam"];
 
-    _killer_award = objNull;
     if !(_killer_isplayer) then { //--- An AI is the killer.
-        _killer_award = _killer;
         _points = switch (true) do {
             case (_killed_type isKindOf "Infantry"): {1};
             case (_killed_type isKindOf "Car"): {2};
@@ -36,7 +34,7 @@ _processCommanderBounty = {
             [_leaderCommanderTeam, (score _leaderCommanderTeam) + _points] remoteExecCall ["WFSE_fnc_RequestChangeScore",2];
         };
     };
-    [_killed_type, false, _killer_award] remoteExecCall ["WFCL_FNC_AwardBounty", _commanderTeam]
+    [_killed_type, false] remoteExecCall ["WFCL_FNC_AwardBounty", _commanderTeam]
 };
 
 _killed_side = (_this # 2) Call WFCO_FNC_GetSideFromID;
@@ -107,14 +105,11 @@ if (_killed_side in WF_PRESENTSIDES) then { //--- Update the statistics if neede
 };
 
 _get = missionNamespace getVariable _killed_type; //--- Get the killed informations.
-
 if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in the core files
-	if(_killer_iswfteam) then { //---the killer is a WF team.
-		if (_killer_side != _killed_side) then { //--- Normal kill.
+
+		if (_killer_side != _killed_side && _killer_side != resistance) then { //--- Normal kill.
 			if (isPlayer _leaderKillerGroup) then { //--- The team is lead by a player.
-				_killer_award = objNull;
-				if !(_killer_isplayer) then { //--- An AI is the killer.
-					_killer_award = _killer;
+				if !(_killer_isplayer) exitWith { //--- An AI is the killer.
 					_points = switch (true) do {
 						case (_killed_type isKindOf "Infantry"): {1};
 						case (_killed_type isKindOf "Car"): {2};
@@ -130,66 +125,62 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
 					};
 
 					if (isServer) then {
-								[_leaderKillerGroup, (score _leaderKillerGroup) + _points] call WFSE_fnc_RequestChangeScore;
+					    [_leaderKillerGroup, (score _leaderKillerGroup) + _points] call WFSE_fnc_RequestChangeScore
 					} else {
-								[_leaderKillerGroup, (score _leaderKillerGroup) + _points] remoteExecCall ["WFSE_fnc_RequestChangeScore",2];
+					    [_leaderKillerGroup, (score _leaderKillerGroup) + _points] remoteExecCall ["WFSE_fnc_RequestChangeScore",2]
 					};
+
+					[_killed_type, true] remoteExecCall ["WFCL_FNC_AwardBounty", leader _leaderKillerGroup];
 				};
 
 				//--- Award the bounty if needed.
-				if (_killed_isplayer && _killer_isplayer) then {
-					[_killed] remoteExecCall ["WFCL_FNC_AwardBountyPlayer", _killer];
+				if (_killed_isplayer) exitWith {
+					[_killed] remoteExecCall ["WFCL_FNC_AwardBountyPlayer", leader _leaderKillerGroup];
 				};
 
-						[_killed_type, false, _killer_award] remoteExecCall ["WFCL_FNC_AwardBounty", _leaderKillerGroup];
-				if (vehicle _killed != _killed && alive _killed) then { //--- Kill assist (players in the same vehicle).
+				if (vehicle _killed != _killed && alive _killed) exitWith { //--- Kill assist (players in the same vehicle).
 					{
 						if (alive _x && isPlayer _x) then {
 							[_objectType, true] remoteExecCall ["WFCL_FNC_AwardBounty", getPlayerUID(_x)];
 						}
 					} forEach ((crew (vehicle _killed)) - [_killer, player]);
 				};
-			};
+
+				if (_killer_isplayer) exitWith {
+				    [_killed_type, false] remoteExecCall ["WFCL_FNC_AwardBounty", _killer]
+				}
+	} else {
+	        if (_killer isKindOf 'UAV' ) then {
+                    _uavOwnerGroup = _killer getVariable ['uavOwnerGroup', objNull];
+                    if!(isNull _uavOwnerGroup) exitWith {
+                        [_killer_isplayer, _killer, _killed_type, _uavOwnerGroup] call _processCommanderBounty
+                    }
+	        };
+
+	        _commanderTeam = (_killer_side) Call WFCO_FNC_GetCommanderTeam;
+	        if(!(isNil '_commanderTeam')) then {
+                    if (_killer_type isKindOf "StaticWeapon") exitWith {
+						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                    };
+
+                    _isCasGroup = _killer_group getVariable ['isCasGroup', false];
+                    if(_isCasGroup) exitWith {
+                        [_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                };
+
+				_highCommandCreatedGroups = [_killer_side] call WFCO_FNC_getHighCommandGroups;
+				if(!(isNil '_highCommandCreatedGroups')) then {
+                        if(_killer_group in _highCommandCreatedGroups) exitWith {
+						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
+                    }
+                }
+            }
+	    }
 		} else { //--- Teamkill.
 			if ((isPlayer _leaderKillerGroup) && _killer != _killed && !(_killed_type isKindOf "Building")) then {
 				//--- Only applies to player groups.
         		['Teamkill'] remoteExecCall ["WFCL_FNC_LocalizeMessage", _killer]
         	};
         };
-	} else {
-	    if (_killer_side != _killed_side && _killer_side != resistance) then {
 
-	        if (_killer isKindOf 'UAV' ) then {
-                    _uavOwnerGroup = _killer getVariable ['uavOwnerGroup', objNull];
-                    if!(isNull _uavOwnerGroup) then {
-                        [_killer_isplayer, _killer, _killed_type, _uavOwnerGroup] call _processCommanderBounty
-                    }
-	        };
-
-	        _commanderTeam = (_killer_side) Call WFCO_FNC_GetCommanderTeam;
-
-	        if(!(isNil '_commanderTeam')) then {
-                if (isPlayer(leader _killer_group)) then {
-                    [_killer_isplayer, _killer, _killed_type, leader _killer_group] call _processCommanderBounty
-                } else {
-                    if (_killer_type isKindOf "StaticWeapon") then {
-						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
-                    };
-
-                    _isCasGroup = _killer_group getVariable ['isCasGroup', false];
-                    if(_isCasGroup) then {
-                        [_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
-                    }
-                };
-
-				_highCommandCreatedGroups = [_killer_side] call WFCO_FNC_getHighCommandGroups;
-				
-				if(!(isNil '_highCommandCreatedGroups')) then {
-					if(_killer_group in _highCommandCreatedGroups) then {
-						[_killer_isplayer, _killer, _killed_type, _commanderTeam] call _processCommanderBounty
-                    }
-                }
-            }
-	    }
-	}
 }
