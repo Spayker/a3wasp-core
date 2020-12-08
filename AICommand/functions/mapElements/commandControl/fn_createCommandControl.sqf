@@ -17,7 +17,7 @@ private ["_commandId"];
 
 _commandId = param [0];
 
-if(isHeadLessClient) then {
+if(!hasInterface && !isDedicated) then {
 
 	private ["_commandControls"];
 
