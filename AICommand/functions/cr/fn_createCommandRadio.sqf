@@ -1,4 +1,4 @@
-if(isServer) then {
+if(isHeadLessClient) then {
 	private ["_radios","_startPos","_tasks","_showArrow"];
 	_startPos = [_this,0] call BIS_fnc_param;
 	_tasks = [_this,1] call BIS_fnc_param;

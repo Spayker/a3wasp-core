@@ -17,7 +17,7 @@ private ["_commandId"];
 
 _commandId = param [0];
 
-if(isServer) then {
+if(isHeadLessClient) then {
 
 	private ["_commandControls"];
 

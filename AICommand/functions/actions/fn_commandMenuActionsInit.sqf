@@ -76,25 +76,6 @@ AIC_fnc_setGroupSpeedActionHandler = {
 ["GROUP",localize "STR_WF_HC_HALFSPEED",[localize "STR_WF_HC_SETGROUPSPEED"],AIC_fnc_setGroupSpeedActionHandler,["NORMAL", "Full Speed (In Formation)"]] call AIC_fnc_addCommandMenuAction;
 ["GROUP",localize "STR_WF_HC_FULLSPEED",[localize "STR_WF_HC_SETGROUPSPEED"],AIC_fnc_setGroupSpeedActionHandler,["FULL", "Full (No Formation)"]] call AIC_fnc_addCommandMenuAction;
 
-AIC_fnc_setGroupFormationActionHandler = {
-	params ["_menuParams","_actionParams"];
-	_menuParams params ["_groupControlId"];
-	private ["_group"];
-	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	_actionParams params ["_mode"];
-	[_group,_mode] remoteExec ["setFormation", leader _group];
-	[("Formation set to " + toLower _mode)] spawn WFCL_fnc_handleMessage
-};
-
-["GROUP",localize "STR_WF_HC_FORMATION_COLUMN",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["COLUMN"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_STAGCOLUMN",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["STAG COLUMN"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_WEDGE",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["WEDGE"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_ECHELONLEFT",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["ECH LEFT"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_ECHELONRIGHT",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["ECH RIGHT"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_V",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["VEE"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_LINE",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["LINE"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_FILE",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["FILE"]] call AIC_fnc_addCommandMenuAction;
-["GROUP",localize "STR_WF_HC_FORMATION_DIAMOND",[localize "STR_WF_HC_SETGROUPFORMATION"],AIC_fnc_setGroupFormationActionHandler,["DIAMOND"]] call AIC_fnc_addCommandMenuAction;
 
 AIC_fnc_commandMenuIsAir = {
 	params ["_menuParams","_actionParams"];

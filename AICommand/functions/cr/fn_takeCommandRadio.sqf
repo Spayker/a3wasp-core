@@ -1,4 +1,4 @@
-if(isServer) then {
+if(isHeadLessClient) then {
 	private ["_radio","_caller","_currentRadioOwner","_radioMarker"];
 	_radio = [_this,0] call BIS_fnc_param;
 	_caller = [_this,1] call BIS_fnc_param;

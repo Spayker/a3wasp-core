@@ -64,7 +64,7 @@ if(hasInterface) then {
 	
 };
 
-if(isServer) then {
+if(isHeadLessClient) then {
 	[] spawn {
 		while {true} do {
 			{

@@ -2,7 +2,7 @@ private ["_taskId","_enable","_radioTasks","_newRadioTasks"];
 _taskId = [_this,0] call BIS_fnc_param;
 _enable = [_this,1,true] call BIS_fnc_param;
 _newRadioTasks = [];
-if(isServer) then {
+if(isHeadLessClient) then {
 	_radioTasks = ["pv_cr_radio_tasks",[]] call AIC_fnc_getPublicVariable;
 	{
 		if( _x select 0 == _taskId ) then {
