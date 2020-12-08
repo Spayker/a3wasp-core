@@ -579,14 +579,6 @@ class WF_Common {
         class getUnitConfigGear {};
     };
 
-    class UtilMutex {
-        file = "Common\Utils\Mutex";
-        class IsMutexLocked {};
-        class MutexLock {};
-        class MutexTryLock {};
-        class MutexUnlock {};
-    };
-
     class UtilDate {
         file = "Common\Utils\Date";
         class dateToString {};
