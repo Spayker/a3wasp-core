@@ -464,9 +464,7 @@ class WF_Common {
 
     class ObjectUnit {
         file = "Common\Object\Unit";
-        class createTownUnits {};
         class createUnit {};
-        class CreateHighCommandGroup {};
         class createUnitForStaticDefence {};
         class createUnitsForResBases {};
         class equipUnit {};
