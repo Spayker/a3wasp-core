@@ -45,6 +45,7 @@ if !(isNil '_last_hit') then {
 	};
 
     if(player == _leaderKillerGroup) then { // current player killed someone
+        if(vehicle player != player) then { _killer_side = WF_Client_SideJoined };
         if (_killer_side != _killed_side) then { //--- Normal kill.
 
             if(_killed_isplayer) then {
@@ -65,6 +66,7 @@ if !(isNil '_last_hit') then {
     } else { // bots killed some one
 
         if (group player == _killer_group) then { // player's bots killed someone
+            if(vehicle _killer != _killer) then { _killer_side = WF_Client_SideJoined };
             if (_killer_side != _killed_side) then { //--- Normal kill.
                 [_killed_type, true] call WFCL_FNC_AwardBounty;
                 _shallUpdateStats = true;
@@ -84,6 +86,7 @@ if !(isNil '_last_hit') then {
                 _uavOwnerGroup = _killer getVariable ['uavOwnerGroup', objNull];
                 if!(isNull _uavOwnerGroup) then {
                     if(_uavOwnerGroup == group player) then {
+                        if(vehicle _killer != _killer) then { _killer_side = WF_Client_SideJoined };
                         if (_killer_side != _killed_side) then { //--- Normal kill.
                             [_killed_type, true] call WFCL_FNC_AwardBounty;
                             _shallUpdateStats = true;
