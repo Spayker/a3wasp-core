@@ -16,6 +16,8 @@ _killed_side = switch (getNumber(configFile >> "CfgVehicles" >> _killed_type >> 
 if(isServer) exitWith { ["INFORMATION", Format ["fn_OnUnitKilled.sqf: [%1] [%2] has been killed by [%3].", side _killed, _killed, _killer]] Call WFCO_FNC_LogContent };
 
 if !(alive _killer) exitWith {}; //--- Killer is null or dead, nothing to see here.
+
+_killer_type = typeOf _killer;
 _killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
 if(_killer_side == resistance) exitWith {};
 
@@ -23,7 +25,6 @@ if(_killer_side == resistance) exitWith {};
 _killer_group = group _killer;
 _leaderKillerGroup = leader _killer_group;
 _killer_isplayer = (isPlayer _killer);
-_killer_type = typeOf _killer;
 _killer_vehicle = vehicle _killer;
 _killer_uid = getPlayerUID _leaderKillerGroup;
 
