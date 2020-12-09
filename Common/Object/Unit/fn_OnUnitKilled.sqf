@@ -18,21 +18,21 @@ if(isServer) exitWith { ["INFORMATION", Format ["fn_OnUnitKilled.sqf: [%1] [%2] 
 if !(alive _killer) exitWith {}; //--- Killer is null or dead, nothing to see here.
 
 _killer_type = typeOf _killer;
-_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
+_killer_side = side _killer;
+_vehicleKiller = vehicle _killer;
+if (vehicle _killer != _killer) then {
+	switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
+};
+
+
 if(_killer_side == resistance) exitWith {};
 
 //--- Retrieve basic information.
 _killer_group = group _killer;
 _leaderKillerGroup = leader _killer_group;
 _killer_isplayer = (isPlayer _killer);
-_killer_vehicle = vehicle _killer;
-_killer_uid = getPlayerUID _leaderKillerGroup;
-
-
-_killed_group = group _killed;
 _killed_isman = (_killed isKindOf "Man");
 _killed_isplayer = (isPlayer _killed);
-
 _shallUpdateStats = false;
 _shallChangeScore = false;
 
@@ -46,7 +46,6 @@ if !(isNil '_last_hit') then {
 	};
 
     if(player == _leaderKillerGroup) then { // current player killed someone
-        if(vehicle player != player) then { _killer_side = WF_Client_SideJoined };
         if (_killer_side != _killed_side) then { //--- Normal kill.
 
             if(_killed_isplayer) then {
@@ -63,11 +62,9 @@ if !(isNil '_last_hit') then {
                 _shallUpdateStats = true
             }
         }
-
     } else { // bots killed some one
 
         if (group player == _killer_group) then { // player's bots killed someone
-            if(vehicle _killer != _killer) then { _killer_side = WF_Client_SideJoined };
             if (_killer_side != _killed_side) then { //--- Normal kill.
                 [_killed_type, true] call WFCL_FNC_AwardBounty;
                 _shallUpdateStats = true;
@@ -87,7 +84,6 @@ if !(isNil '_last_hit') then {
                 _uavOwnerGroup = _killer getVariable ['uavOwnerGroup', objNull];
                 if!(isNull _uavOwnerGroup) then {
                     if(_uavOwnerGroup == group player) then {
-                        if(vehicle _killer != _killer) then { _killer_side = WF_Client_SideJoined };
                         if (_killer_side != _killed_side) then { //--- Normal kill.
                             [_killed_type, true] call WFCL_FNC_AwardBounty;
                             _shallUpdateStats = true;
@@ -110,8 +106,8 @@ if !(isNil '_last_hit') then {
                 _commanderTeam = (_killer_side) Call WFCO_FNC_GetCommanderTeam;
                 if (!isNull(_commanderTeam)) then {
                     if (_commanderTeam == group player) then {
-
                         if (_killer_type isKindOf "StaticWeapon") then { // base static defense
+
                             [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty;
                             _shallUpdateStats = true;
                             _shallChangeScore = true;
