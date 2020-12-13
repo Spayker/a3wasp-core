@@ -24,7 +24,6 @@ if (vehicle _killer != _killer) then {
 	switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
 };
 
-
 if(_killer_side == resistance) exitWith {};
 
 //--- Retrieve basic information.
@@ -49,7 +48,10 @@ if !(isNil '_last_hit') then {
         if (_killer_side != _killed_side) then { //--- Normal kill.
 
             if(_killed_isplayer) then {
-                [_killed] call WFCL_FNC_AwardBountyPlayer
+                [_killed] call WFCL_FNC_AwardBountyPlayer;
+				
+				if (vehicle _killed != _killed) then { [typeOf (vehicle _killed), false] call WFCL_FNC_AwardBounty }
+				
             } else {
                 [_killed_type, false] call WFCL_FNC_AwardBounty
             };
@@ -66,9 +68,19 @@ if !(isNil '_last_hit') then {
 
         if (group player == _killer_group) then { // player's bots killed someone
             if (_killer_side != _killed_side) then { //--- Normal kill.
-                [_killed_type, true] call WFCL_FNC_AwardBounty;
+			
+				if(_killed_isplayer) then {
+					[_killed] call WFCL_FNC_AwardBountyPlayer;
+					
+					if (vehicle _killed != _killed) then { [typeOf (vehicle _killed), false] call WFCL_FNC_AwardBounty }
+					
+				} else {
+					[_killed_type, false] call WFCL_FNC_AwardBounty
+				};
+			
                 _shallUpdateStats = true;
                 _shallChangeScore = true
+				
             } else {
                 if (_killer != _killed && !(_killed_type isKindOf "Building")) then {
                     //--- Only applies to player groups.
@@ -85,7 +97,16 @@ if !(isNil '_last_hit') then {
                 if!(isNull _uavOwnerGroup) then {
                     if(_uavOwnerGroup == group player) then {
                         if (_killer_side != _killed_side) then { //--- Normal kill.
-                            [_killed_type, true] call WFCL_FNC_AwardBounty;
+                            
+							if(_killed_isplayer) then {
+								[_killed] call WFCL_FNC_AwardBountyPlayer;
+								
+								if (vehicle _killed != _killed) then { [typeOf (vehicle _killed), false] call WFCL_FNC_AwardBounty }
+								
+							} else {
+								[_killed_type, false] call WFCL_FNC_AwardBounty
+							};
+							
                             _shallUpdateStats = true;
                             _shallChangeScore = true
                         } else {
@@ -109,6 +130,11 @@ if !(isNil '_last_hit') then {
                         if (_killer_type isKindOf "StaticWeapon") then { // base static defense
 
                             [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty;
+							
+							if(_killed_isplayer) then {
+								if (vehicle _killed != _killed) then { [_killer_isplayer, _killer, typeOf (vehicle _killed), _commanderTeam] call WFCO_FNC_processCommanderBounty }
+							};
+							
                             _shallUpdateStats = true;
                             _shallChangeScore = true;
                             _shallCheck = false
@@ -117,7 +143,13 @@ if !(isNil '_last_hit') then {
                         if(_shallCheck) then {
                             _isCasGroup = _killer_group getVariable ['isCasGroup', false];
                             if(_isCasGroup) then { // CAS group
+                                
                                 [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty;
+								
+								if(_killed_isplayer) then {
+									if (vehicle _killed != _killed) then { [_killer_isplayer, _killer, typeOf (vehicle _killed), _commanderTeam] call WFCO_FNC_processCommanderBounty }
+								};
+								
                                 _shallUpdateStats = true;
                                 _shallChangeScore = true;
                                 _shallCheck = false
@@ -129,6 +161,11 @@ if !(isNil '_last_hit') then {
                             if(!(isNil '_highCommandCreatedGroups')) then { // hc group
                                 if(_killer_group in _highCommandCreatedGroups) then {
                                     [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty;
+									
+									if(_killed_isplayer) then {
+										if (vehicle _killed != _killed) then { [_killer_isplayer, _killer, typeOf (vehicle _killed), _commanderTeam] call WFCO_FNC_processCommanderBounty }
+									};
+									
                                     _shallUpdateStats = true;
                                     _shallChangeScore = true
                                 }
