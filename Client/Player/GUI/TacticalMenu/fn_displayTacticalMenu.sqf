@@ -55,7 +55,7 @@ _currentFee = -1;
 _lastSel = -1;
 _addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_CRUISE_MISSILE', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop'];
 _addToListID = ["Fast_Travel","Cruise Missile",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers"];
-_addToListFee = [0,150000,5000,9500,3500,3500];
+_addToListFee = [0,7500,5000,9500,3500,3500];
 _addToListInterval = [0,1000,1000,800,600,600];
 
 for '_i' from 0 to count(_addToList)-1 do {
