@@ -16,6 +16,20 @@ if(_damage < _health) then {
     _health = 0
 };
 
+if(isNull _instigator) then {
+    if(_projectile == 'ammo_Missile_Cruise_01') then {
+        {
+            _side = _x;
+            _logik = (_side) Call WFCO_FNC_GetSideLogic;
+            _cruiseMissileTarget = _logik getVariable 'cruiseMissileTargetPosition';
+            if(((getPos _unit) distance _cruiseMissileTarget) <= 15) exitWith {
+                _commanderTeam = (_side) Call WFCO_FNC_GetCommanderTeam;
+                _instigator = leader _commanderTeam
+            }
+        } forEach [west, east]
+    }
+};
+
 _master setVariable ["wf_site_health", _health, true];
 _master setVariable ["wf_instigator", _instigator, true];
 

@@ -53,8 +53,8 @@ _currentFee = -1;
 
 //--- Support List.
 _lastSel = -1;
-_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_ICBM', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop'];
-_addToListID = ["Fast_Travel","ICBM",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers"];
+_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_CRUISE_MISSILE', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop'];
+_addToListID = ["Fast_Travel","Cruise Missile",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers"];
 _addToListFee = [0,150000,5000,9500,3500,3500];
 _addToListInterval = [0,1000,1000,800,600,600];
 
@@ -213,13 +213,13 @@ while {alive player && dialog} do {
 		    case "Fast_Travel": {
                 _controlEnable = if (count _FTLocations > 0) then {true} else {false}
             };
-			case "ICBM": {
-				if ((missionNamespace getVariable "WF_C_MODULE_WF_ICBM") > 0) then {
+			case "Cruise Missile": {
+				if ((missionNamespace getVariable "WF_C_MODULE_WF_CRUISE_MISSILE") > 0) then {
 					_commander = false;
 					if (!isNull(commanderTeam)) then {
 						if (commanderTeam == WF_Client_Team) then {_commander = true};
 					};
-					_currentLevel = _currentUpgrades # WF_UP_ICBM;
+					_currentLevel = _currentUpgrades # WF_UP_CRUISE_MISSILE;
 					_controlEnable = (_currentLevel > 0 && _commander && _funds >= _currentFee);
 				};
 			};
@@ -265,7 +265,7 @@ while {alive player && dialog} do {
                 if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
                 _textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
             };
-			case "ICBM": {
+			case "Cruise Missile": {
 				WF_MenuAction = 8;
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
 				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
@@ -435,7 +435,7 @@ while {alive player && dialog} do {
             };
         };
 		
-		//--- ICBM Strike.
+		//--- Cruise Missile Strike.
 		if (WF_MenuAction == 8) then {
 			_forceReload = true;
 			if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
@@ -444,12 +444,12 @@ while {alive player && dialog} do {
 			-_currentFee Call WFCL_FNC_ChangePlayerFunds;
 			_callPos = _map PosScreenToWorld[mouseX,mouseY];
 			_obj = "Land_HelipadEmpty_F" createVehicle _callPos;
-			_nukeMarker = createMarkerLocal ["icbmstrike", _callPos];
+			_nukeMarker = createMarkerLocal ["cruiseMissileStrike", _callPos];
 			_nukeMarker setMarkerTypeLocal "mil_warning";
-			_nukeMarker setMarkerTextLocal "Nuclear Strike";
+			_nukeMarker setMarkerTextLocal "Cruise Missile Strike";
 			_nukeMarker setMarkerColorLocal "ColorRed";
 			
-			[_obj,_nukeMarker] spawn WFCO_FNC_NukeIncomming;
+			[_obj,_nukeMarker] spawn WFCL_FNC_CruiseMissileIncoming
 		};
 		//--- Vehicle Paradrop.
 		if (WF_MenuAction == 9) then {

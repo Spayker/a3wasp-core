@@ -114,12 +114,6 @@ if (isServer || isHeadLessClient) then {
 Call WFCO_fnc_initBoundaries;
 ["INITIALIZATION", "Init_Common.sqf: Boundaries are loaded."] Call WFCO_FNC_LogContent;
 
-//--- ICBM.
-if ((missionNamespace getVariable "WF_C_MODULE_WF_ICBM") > 0) then {
-	WFCO_FNC_Nuke = Compile preprocessFile "Client\Module\Nuke\nuke.sqf";
-	WFCO_FNC_NukeIncomming = Compile preprocessFile "Client\Module\Nuke\nukeincoming.sqf";
-}; 
-
 //--- Longest vehicles purchase (+ extra processing).
 _balancePrice = missionNamespace getVariable "WF_C_UNITS_PRICING";
 {

@@ -344,14 +344,6 @@
 				<Italian>You were deducted from $%1 due to your gear</Italian>
 				<Portuguese>Foi debitado $%1 devido ao seu equipamento</Portuguese>
 			</Key>
-			<Key ID="STR_WF_CHAT_ICBM_Launch">
-				<English>WARNNING! An Intercontinental ballistic missile launch has been detected!</English>
-				<French>ATTENTION! Le lancement d'un Missile balistique intercontinental a été detecté!</French>
-				<German>WARNUNG! Der Abschuss einer Interkontinentalrakete wurde gemeldet!</German>
-				<Russian>ВНИМАНИЕ! Зафиксирован запуск ядерной ракеты!</Russian>
-				<Italian>ATTENZIONE! Un Missile Balistico intercontinentale è stato avvistato!</Italian>
-				<Portuguese>ATENÇÃO! Um lançamento de missel intercontinamental balistico foi detectado!</Portuguese>
-			</Key>
 			<Key ID="STR_WF_CHAT_PlayerCommander">
 				<!--shared U-->
 				<English>You are the new Commander! Good luck!</English>
@@ -1715,21 +1707,21 @@
 				<Russian>Модуль: EASA</Russian>
 				<Portuguese>MÓDULO: EASA</Portuguese>
 			</Key>
-			<Key ID="STR_WF_PARAMETER_ICBM">
-				<English>MODULE: ICBM</English>
-				<French>MODULE: MBI</French>
-				<German>MODUL: Nuklearwaffen (ICBM)</German>
-				<Russian>Модуль: МБР</Russian>
-				<Italian>Modulo: Missile Nucleare</Italian>
-				<Portuguese>MODULO: Missel Nuclear</Portuguese>
+			<Key ID="STR_WF_PARAMETER_CRUISE_MISSILE">
+				<English>MODULE: Cruise Missile</English>
+				<French>MODULE: Cruise Missile</French>
+				<German>MODULE: Cruise Missile</German>
+				<Russian>Модуль: Крылатая Ракета</Russian>
+				<Italian>MODULE: Cruise Missile</Italian>
+				<Portuguese>MODULE: Cruise Missile</Portuguese>
 			</Key>
-			<Key ID="STR_WF_PARAMETER_ICBM_TIMEOUT">
-				<English>MODULE: Income time of ICBM in secs</English>
-				<French>MODULE: Temps de revenu de l'ICBM en secondes</French>
-				<German>MODUL: Einkommenszeit der ICBM</German>
-				<Russian>Модуль: МБР время прилета сек</Russian>
-				<Italian>Modulo: Missile Nucleare orario di arrivo</Italian>
-				<Portuguese>MODULO: Tempo de chegada do missel nuclear</Portuguese>
+			<Key ID="STR_WF_PARAMETER_CRUISE_MISSILE_TIMEOUT">
+				<English>MODULE: Income time of Cruise Missile in secs</English>
+				<French>MODULE: Income time of Cruise Missile in secs</French>
+				<German>MODULE: Income time of Cruise Missile in secs</German>
+				<Russian>Модуль: Крылатая Ракета время прилета сек</Russian>
+				<Italian>MODULE: Income time of Cruise Missile in secs</Italian>
+				<Portuguese>MODULE: Income time of Cruise Missile in secs</Portuguese>
 			</Key>
 			<!--Respawn-->
 			<Key ID="STR_WF_PARAMETER_Camp">
@@ -2814,12 +2806,12 @@
 				<Portuguese>Permite que o comandante altere a distribuição do salário</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TOOLTIP_CommandMenu_SpecialMenu">
-				<English>Artillery, Ammo/Vehicle-drop, Paratroop, UnitCam, FastTravel, UAV and ICBM</English>
-				<French>Artillerie, Parachutage de Munitions/Véhicule, Parachutistes, Caméra d'unité, Déplacement Rapide, Drone et MBI</French>
-				<German>Artillerie, Munition/Fahrzeug-Abwurf, Fallschirmjäger, Einheitenkamera, Schnelles-Reisen, UAV und ICBM</German>
-				<Russian>Артиллерия, Сброс боеприпасов/техники, Десант, Камера юнитов, Быстрое перемещение, БЛА и МБР</Russian>
-				<Italian>Artillery, Ammo/Vehicle-drop, Paratroop, UnitCam, FastTravel, UAV and ICBM</Italian>
-				<Portuguese>Artilharia, lançamento de munição e/ou veículos, paraquedistas, cameras de unidade, Viagem Rapida, UAV e Missel Nuclear(ICBM)</Portuguese>
+				<English>Artillery, Ammo/Vehicle-drop, Paratroop, UnitCam, FastTravel, UAV and Cruise Missile</English>
+				<French>Artillerie, Parachutage de Munitions/Véhicule, Parachutistes, Caméra d'unité, Déplacement Rapide, Drone et Cruise Missile</French>
+				<German>Artillerie, Munition/Fahrzeug-Abwurf, Fallschirmjäger, Einheitenkamera, Schnelles-Reisen, UAV und Cruise Missile</German>
+				<Russian>Артиллерия, Сброс боеприпасов/техники, Десант, Камера юнитов, Быстрое перемещение, БЛА и Крылатая Ракета</Russian>
+				<Italian>Artillery, Ammo/Vehicle-drop, Paratroop, UnitCam, FastTravel, UAV and Cruise Missile</Italian>
+				<Portuguese>Artilharia, lançamento de munição e/ou veículos, paraquedistas, cameras de unidade, Viagem Rapida, UAV e Cruise Missile</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TOOLTIP_CommandMenu_SupportMenu">
 				<English>Rearm, Refuel, Repair, Heal and EASA</English>
@@ -3258,13 +3250,13 @@
 				<Italian>This upgrade unlocks UAV.&lt;br/&gt;&lt;br/&gt;This allows the team to buy a UAV from the Tactical Center</Italian>
 				<Portuguese>Essa melhoria libera o UAV.&lt;br/&gt;&lt;br/&gt;Isso permite que seu time compre um UAV atravez do Centro Tatico</Portuguese>
 			</Key>
-			<Key ID="STR_WF_UPGRADE_ICBM_Desc">
-				<English>This upgrade unlocks ICBM.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an ICBM from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</English>
-				<French>This upgrade unlocks ICBM.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an ICBM from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</French>
-				<German>Dieses Upgrade schaltet die ICBM frei.&lt;br/&gt;&lt;br/&gt;Dadurch kann das Team über das Tactical Center die ICBM kaufen.&lt;br/&gt;&lt;br/&gt;Maximaler Schmerz für unsere Freunde</German>
-				<Russian>Данная модернизация разблокирует МБР.&lt;br/&gt;&lt;br/&gt;Это поможет купить Межконтинентальную баллистическую ракету в Тактическом центре.&lt;br/&gt;&lt;br/&gt;Максимальный урон для наших друзей;)</Russian>
-				<Italian>This upgrade unlocks ICBM.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an ICBM from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</Italian>
-				<Portuguese>Essa melhoria libera a bomba nuclear(ICBM).&lt;br/&gt;&lt;br/&gt;Isso permite que o time chame um Missel nucluear intercontinamental do centro tatico.&lt;br/&gt;&lt;br/&gt;Dor maxima para nos nossos bons amigos</Portuguese>
+			<Key ID="STR_WF_UPGRADE_CRUISE_MISSILE_Desc">
+				<English>This upgrade unlocks Cruise Missile.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an Cruise Missile from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</English>
+				<French>This upgrade unlocks Cruise Missile.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an Cruise Missile from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</French>
+				<German>This upgrade unlocks Cruise Missile.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an Cruise Missile from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</German>
+				<Russian>Данная модернизация разблокирует Крылатую Ракету.&lt;br/&gt;&lt;br/&gt;Это поможет купить Крылатую ракету в Тактическом центре.&lt;br/&gt;&lt;br/&gt;Точечный урон для наших друзей</Russian>
+				<Italian>This upgrade unlocks Cruise Missile.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an Cruise Missile from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</Italian>
+				<Portuguese>This upgrade unlocks Cruise Missile.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an Cruise Missile from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</Portuguese>
 			</Key>
 			<Key ID="STR_WF_UPGRADE_EASA_Desc">
 				<English>This upgrade unlocks EASA.&lt;br/&gt;&lt;br/&gt;This allows the team using EASA to change the primary loadout of aircraft.&lt;br/&gt; - Bomb&lt;br/&gt; - AT Guided Missile&lt;br/&gt; - AA Guided Missile</English>
@@ -3509,14 +3501,14 @@
 				<Italian>Entrate: $%1 ($%2/Min)</Italian>
 				<Portuguese>Salário: $%1 ($%2/Min)</Portuguese>
 			</Key>
-			<Key ID="STR_WF_ICBM">
+			<Key ID="STR_WF_CRUISE_MISSILE">
 				<!--shared W-->
-				<English>ICBM</English>
-				<French>MBI</French>
-				<German>ICBM</German>
-				<Russian>МБР</Russian>
-				<Italian>ICBM</Italian>
-				<Portuguese>ICBM</Portuguese>
+				<English>Cruise Missile</English>
+				<French>Cruise Missile</French>
+				<German>Cruise Missile</German>
+				<Russian>Крылатая Ракета</Russian>
+				<Italian>Cruise Missile</Italian>
+				<Portuguese>Cruise Missile</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Price">
 				<!--shared W-->
@@ -3707,6 +3699,14 @@
 				<Italian>Riparazione (Camp)</Italian>
 				<Portuguese>Consertar (Campo)</Portuguese>
 			</Key>	  
+			<Key ID="STR_WF_Take_Camp">
+				<English>Take Camp</English>
+				<French>Take Camp</French>
+				<German>Take Camp</German>
+				<Russian>Захватить Кемп</Russian>
+				<Italian>Take Camp</Italian>
+				<Portuguese>Take Camp</Portuguese>
+			</Key>
 			<Key ID="STR_WF_Destroy_Camp">
 				<English>Destroy (Camp)</English>
 				<French>Détruire (Camp)</French>
@@ -4446,4 +4446,4 @@
 			</Key>
 		</Container>
 	</Package>
-</Project>
+</Project>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

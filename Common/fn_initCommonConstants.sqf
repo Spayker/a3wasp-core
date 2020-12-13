@@ -56,7 +56,7 @@ WF_UP_UAV = 5;
 WF_UP_SUPPLYRATE = 6;
 WF_UP_RESPAWNRANGE = 7;
 WF_UP_ARTYTIMEOUT = 8;
-WF_UP_ICBM = 9;
+WF_UP_CRUISE_MISSILE = 9;
 WF_UP_GEAR = 10;
 WF_UP_AMMOCOIN = 11;
 WF_UP_EASA = 12;
@@ -183,8 +183,7 @@ with missionNamespace do {
 
 //--- Modules.
 	if (isNil "WF_C_MODULE_WF_EASA") then {WF_C_MODULE_WF_EASA = 1;}; //--- Enable the Exchangeable Armament System for Aircraft.
-	if (isNil "WF_C_MODULE_WF_ICBM") then {WF_C_MODULE_WF_ICBM = 1;}; //--- Enable the Intercontinental Ballistic Missile call for the commander.
-	if (isNil "WF_C_INCOME_TIME_OF_ICBM") then {WF_C_INCOME_TIME_OF_ICBM = 180;}; //--- Default value for income time of ICBM if it did not get.
+	if (isNil "WF_C_MODULE_WF_CRUISE_MISSILE") then {WF_C_MODULE_WF_CRUISE_MISSILE = 1;}; //--- Enable the Intercontinental Ballistic Missile call for the commander.
 	WF_C_MINIMAL_PARATROPPER_GROUP_SIZE = 4; //--- minimal group size of troopers to be sent on battlefield
 
 //--- Players.
