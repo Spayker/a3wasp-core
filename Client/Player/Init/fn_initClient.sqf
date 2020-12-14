@@ -219,6 +219,7 @@ WF_AutoManningDefense = true;
 lastParaCall = -1200;
 lastSupplyCall = -1200;
 lastCasCall = -1200;
+lastCruiseMissileCall = -1200;
 canBuildWHQ = true;
 WF_RespawnDefaultGear = false;
 WF_ForceUpdate = true;

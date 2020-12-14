@@ -215,13 +215,14 @@ while {alive player && dialog} do {
             };
 			case "Cruise Missile": {
 				if ((missionNamespace getVariable "WF_C_MODULE_WF_CRUISE_MISSILE") > 0) then {
+				    _controlEnable = false;
 					_commander = false;
 					if (!isNull(commanderTeam)) then {
 						if (commanderTeam == WF_Client_Team) then {_commander = true};
-					};
 					_currentLevel = _currentUpgrades # WF_UP_CRUISE_MISSILE;
-					_controlEnable = (_currentLevel > 0 && _commander && _funds >= _currentFee);
-				};
+                        _controlEnable = (_currentLevel > 0 && _commander && _funds >= _currentFee && time - lastCruiseMissileCall > _currentInterval)
+					}
+				}
 			};
 			case "CAS": {
 			    _controlEnable = false;
@@ -448,6 +449,7 @@ while {alive player && dialog} do {
 			_nukeMarker setMarkerTypeLocal "mil_warning";
 			_nukeMarker setMarkerTextLocal "Cruise Missile Strike";
 			_nukeMarker setMarkerColorLocal "ColorRed";
+			lastCruiseMissileCall = time;
 			
 			[_obj,_nukeMarker] spawn WFCL_FNC_CruiseMissileIncoming
 		};
