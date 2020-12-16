@@ -388,8 +388,8 @@ switch(side player) do {
 	if (isNil 'WF_C_STRUCTURES_MAX_TENTS') then {WF_C_STRUCTURES_MAX_TENTS = 3;};
 
 //--- Apply a towns unit coeficient.
-	WF_C_TOWNS_UNITS_COEF = switch (WF_C_TOWNS_OCCUPATION) do {case 0: {0}; case 1: {1}; case 2: {1.5}; case 3: {2}; case 4: {2.5}; default {1}};
-	WF_C_TOWNS_UNITS_DEFENDER_COEF = switch (WF_C_TOWNS_DEFENDER) do {case 0: {0}; case 1: {1}; case 2: {1.5}; case 3: {2}; case 4: {2.5}; default {1}};
+	WF_C_TOWNS_UNITS_COEF = switch (WF_C_TOWNS_OCCUPATION) do {case 0: {0}; case 1: {1}; case 2: {1}; case 3: {2}; case 4: {2}; default {1}};
+	WF_C_TOWNS_UNITS_DEFENDER_COEF = switch (WF_C_TOWNS_DEFENDER) do {case 0: {0}; case 1: {1}; case 2: {1}; case 3: {2}; case 4: {2}; default {1}};
 	WF_C_TOWNS_ALL_SIDES = [west, east, resistance, sideEnemy];
 
     //----
