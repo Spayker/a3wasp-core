@@ -5500,92 +5500,92 @@
 				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo ja está de pé</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_IsAlive">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is already destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est déjà détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Lager ist bereits zerstört</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп уже разрушен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il campo è già distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo ja está destruido</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is already destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est déjà détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Lager ist bereits zerstört</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Кемп уже разрушен</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il campo è già distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo ja está destruido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_IsBeingRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est en cours de réparation</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being repaired</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est en cours de réparation</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being repaired</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп в процессе восстановления</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo está sendo consertado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo está sendo consertado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_IsBeingRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is being destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est en train d'être détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Lager wird zerstört</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is being destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est en train d'être détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Lager wird zerstört</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп в процессе разрушения</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il campo viene distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo esta sendo detruido</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il campo viene distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo esta sendo detruido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_IsRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est réparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is repaired</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est réparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is repaired</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп восстановлен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O campo esta sendo consertado</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O campo esta sendo consertado</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_IsRepaired">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The camp is destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camp est détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Das Lager ist zerstört</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The camp is destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camp est détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Das Lager ist zerstört</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Кемп уничтожен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il campo è distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;A casamata foi destruida</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il campo è distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;A casamata foi destruida</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_None">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be repaired</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Aucun camp à proximité ne peut être réparé</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be repaired</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be repaired</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Aucun camp à proximité ne peut être réparé</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be repaired</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нет доступных кемпов для ремеонта</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be repaired</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Não tem casamatas por perto para serem consertadas</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be repaired</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Não tem casamatas por perto para serem consertadas</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_None">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;There is no nearby camps which can be destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il n'y a pas de camps à proximité qui peuvent être détruits</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Es gibt keine nahe gelegenen Lager, die zerstört werden können</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;There is no nearby camps which can be destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il n'y a pas de camps à proximité qui peuvent être détruits</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Es gibt keine nahe gelegenen Lager, die zerstört werden können</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нет доступных кемпов для уничтожения</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Non ci sono campi vicini che possono essere distrutti</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Não tem casamatas proximas para serem destruidas</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Non ci sono campi vicini che possono essere distrutti</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Não tem casamatas proximas para serem destruidas</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_NoFunds">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Il vous manque actuellement $%1. afin de réparer le camp</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Você necessita de mais $%1. para consertar a casamata</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Il vous manque actuellement $%1. afin de réparer le camp</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;You are currently missing $%1. in order to repair a camp</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Você necessita de mais $%1. para consertar a casamata</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_Camp_None_Dead">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;None of the nearby camps are destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Aucun camp à proximité n'est détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Keines der umliegenden Lager ist zerstört</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;None of the nearby camps are destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Aucun camp à proximité n'est détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Keines der umliegenden Lager ist zerstört</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Ни один из близлежащих лагерей не уничтожен</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Nessuno dei campi vicini è distrutto</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Nenhuma das casamatas proximos estão destruidos</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Nessuno dei campi vicini è distrutto</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Nenhuma das casamatas proximos estão destruidos</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Destroy_Camp_None_Dead">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;No nearby camps for destruction</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Aucun des camps voisins n'est détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Keine nahegelegenen Lager zur Vernichtung</German>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;No nearby camps for destruction</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Aucun des camps voisins n'est détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Keine nahegelegenen Lager zur Vernichtung</German>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Нет кемпов для уничтожения</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Nessun campo vicino per la distruzione</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Não há casamatas proximas para destruir</Portuguese>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Nessun campo vicino per la distruzione</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Não há casamatas proximas para destruir</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Repair_TruckIsDeadOrTooFar">
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The repair truck is either too far or destroyed</English>
-				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Le camion de réparation est trop loin de la cible ou à été détruit</French>
-				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The repair truck is either too far or destroyed</German>
-				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Рем. грузовик уничтожен или слишком далеко</Russian>
-				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;The repair truck is either too far or destroyed</Italian>
-				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;O caminhão de conserto esta muito distante ou destruido</Portuguese>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The repair truck is either too far or destroyed</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le camion de réparation est trop loin de la cible ou à été détruit</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The repair truck is either too far or destroyed</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Рем. грузовик уничтожен или слишком далеко</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;The repair truck is either too far or destroyed</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;O caminhão de conserto esta muito distante ou destruido</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TaxiReverse">
 				<English>Taxi Reverse</English>
@@ -5668,23 +5668,6 @@
 				<Russian>Сопротивление</Russian>
 				<Italian>Resistenza</Italian>
 				<Portuguese>Resistência</Portuguese>
-			</Key>
-			<Key ID="STR_WF_Minefield">
-				<!--shared W-->
-				<English>Minefield</English>
-				<French>Champs de Mines</French>
-				<German>Minenfeld</German>
-				<Russian>Минное поле</Russian>
-				<Italian>Campo Minato</Italian>
-				<Portuguese>Campo Minado</Portuguese>
-			</Key>
-			<Key ID="STR_WF_ArtilleryNest">
-				<English>Earthen artillery nest</English>
-				<French>Nid artil. terre</French>
-				<German>Erd-Artilleriestellung</German>
-				<Russian>Окоп артиллерии</Russian>
-				<Italian>Nido mitragliatrici di terra</Italian>
-				<Portuguese>Ninho de Artilharia terrestre</Portuguese>
 			</Key>
 			<Key ID="STR_WF_TownSV" >
 				<English>Town SV: %1/%2</English>
@@ -6250,13 +6233,13 @@
 			</Key>
 			
 			<Key ID="STR_WF_GEARTEMPLATE_SAVE_ERROR">				
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to save gear templates on the Server!&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Произошла ошибка при попытке сохранить шаблон на Сервере!&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_SAVE_OK">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A gear template [%1] was successfully saved on the Server!&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;Шаблон вооружения игрока [%1] был успешно сохранен на Сервере!&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_SAVE_EXCLUDES">
@@ -6265,28 +6248,28 @@
 				<Russian>&lt;t color='#ffffff' size='1.1' &gt;За исключением следующих предметов (не соответствуют текущему апгрейду или не входят в снаряжение стороны):&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_LOAD_EXCLUDES">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;There are several items, which were not included (maybe gear upgrade required or a special role):&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;Следующие предметы не были загружены из шаблона (возможно требуется прокачать снаряжение или другая роль):&lt;/t&gt;</Russian>
 			</Key>
 			<Key ID="STR_WF_GEARTEMPLATE_NAME_ERROR">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Template name is required&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Необходимо указать имя шаблона&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_GEARTEMPLATE_LIMIT_ERROR">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Only [%1] templates allowed&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;Количество создаваемых шаблонов ограничено&lt;br/&gt;Лимит [%1]&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_GEARTEMPLATE_DELETE_ERROR">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;An error occurred while trying to delete gear template!&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;При попытке удалить шаблон возникла ошибка&lt;/t&gt;</Russian>
 			</Key>			
 			<Key ID="STR_WF_GEARTEMPLATE_DELETE_OK">
-				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</Original>
-				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</English>
+				<Original>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</Original>
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;A tempalte was deleted&lt;/t&gt;</English>
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ffffff' size='1.1' &gt;Шаблон был удален&lt;/t&gt;</Russian>
 			</Key>
 			
@@ -6325,14 +6308,6 @@
 			<Key ID="STR_WF_HUD_FPS">
 				<English>FPS</English>
 				<Russian>FPS</Russian>
-			</Key>
-			<Key ID="STR_WF_HUD_FPS_SERVER">
-				<English>Server FPS</English>
-				<Russian>Server FPS</Russian>
-			</Key>
-			<Key ID="STR_WF_HUD_ROLE">
-				<English>Role</English>
-				<Russian>Роль</Russian>
 			</Key>
 			<Key ID="STR_WF_STAT_GAMES_TIME">
 				<English>Player [%1] participated in %2 games. Total played hours: %3. Commanded hours: %4. </English>
