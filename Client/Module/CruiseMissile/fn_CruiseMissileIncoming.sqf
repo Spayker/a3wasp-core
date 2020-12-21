@@ -3,10 +3,10 @@ params ["_ftarget", "_nukeMarker"];
 private ['_cruise','_dropPosition','_dropPosX','_dropPosY','_dropPosZ','_misFlare','_path','_pathS','_planespawnpos','_type'];
 
 _dropPosition = getpos _ftarget;
-_distance = 5000;
+_distance = 4000;
 _direction = 180;
 _missileSpeed = 500;
-_radiusSearch = 30;
+_radiusSearch = 50;
 _perSecondsChecks = 100;
 _target = objNull;
 
@@ -15,10 +15,6 @@ _target = selectRandom _nearObj;
 
 _startPos =  _target getRelPos [_distance, _direction];
 _cruise = "ammo_Missile_Cruise_01" createVehicle _startPos;
-
-_logik = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-_logik setVariable ['cruiseMissileTargetPosition', _ftarget, true];
-
 
 //Placing the misssile at the desired height
 [_cruise, _distance, _dropPosition,"ASL"] call BIS_fnc_setHeight;
