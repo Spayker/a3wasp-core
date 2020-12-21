@@ -16,12 +16,16 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") == 2) then {
 //--- Respawn.
 if (_spawn isKindOf "Man") then {_spawn = vehicle _spawn};
 _spawnInside = false;
+
 if (_typeof in (missionNamespace getVariable ["WF_AMBULANCES", []]) && alive _spawn) then {
-	if (_spawn emptyPositions "cargo" > 0 && (locked _spawn in [0, 1])) then {_unit moveInCargo _spawn;_spawnInside = true};
+	if (_spawn emptyPositions "cargo" > 0 && (locked _spawn in [0, 1])) then {
+	    _unit moveInAny _spawn;
+	    _spawnInside = true
+	};
 };
 
 if !(_spawnInside) then {
-	_safePos = [getPos _spawn, 1, 45, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+	_safePos = [getPos _spawn, 2, 45, 2, 0, 0, 0] call BIS_fnc_findSafePos;
 	_unit setPos _safePos
 };
 
