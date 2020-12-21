@@ -281,7 +281,6 @@ class WF_Menu {
             idc	= 2013;
             x = WFMM_X - WFMM_XD * 0.55;
             y = WFMM_Y - WFMM_YD * -3.1;
-            shortcuts[] = { 16 };
             tooltip = $STR_WF_COMMAND_UnflipButton;
             action = "WF_MenuAction = 10";
         };
@@ -291,7 +290,6 @@ class WF_Menu {
             idc	= 2014;
             x = WFMM_X + WFMM_XD * 1.15;
             y = WFMM_Y - WFMM_YD * -3.1;
-            shortcuts[] = { 44 };
             tooltip = $STR_WF_TOOLTIP_HeadbugFix;
             action = "WF_MenuAction = 11";
         };
