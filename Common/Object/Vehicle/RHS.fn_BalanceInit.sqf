@@ -65,19 +65,8 @@ switch (typeOf _this) do
 	case "CUP_B_MCV80_GB_W";
 	case "CUP_B_MCV80_GB_W_SLAT";
 	case "CUP_B_MCV80_GB_D";
-	case "CUP_B_MCV80_GB_D_SLAT";
-	case "CUP_B_M7Bradley_USA_W";
-	case "CUP_B_M2Bradley_USA_W";
-	case "CUP_B_M7Bradley_USA_D";
-	case "CUP_B_M2Bradley_USA_D":{ _this disableTIEquipment true };
+	case "CUP_B_MCV80_GB_D_SLAT":{ _this disableTIEquipment true };
 
-	case "CUP_B_LAV25M240_USMC";
-	case "CUP_B_LAV25M240_desert_USMC";
-	case "CUP_B_LAV25_desert_USMC";
-	case "CUP_B_LAV25_USMC":{
-    	_current_light_level = ((side player) Call WFCO_FNC_GetSideUpgrades) select WF_UP_LIGHT;
-        if(_current_light_level < 3) then { _this disableTIEquipment true }
-    };
 	
     case "CUP_B_AC47_Spooky_USA";
 	case "CUP_O_MI6T_RU";
