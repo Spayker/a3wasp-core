@@ -82,6 +82,7 @@ while {alive player && dialog} do {
 			{
 				if !(isPlayer _x) then {
 					if (_x isKindOf 'Man') then {removeAllWeapons _x};
+					[typeOf _x, false] call WFCL_FNC_AwardBounty;
 					deleteVehicle _x;
 				};
 			} forEach _destroy;

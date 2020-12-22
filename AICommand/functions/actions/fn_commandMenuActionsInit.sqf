@@ -350,10 +350,14 @@ AIC_fnc_disbandGroupActionHandler = {
                         _vehicles pushBackUnique (vehicle _x)
                     };
                     if (_x isKindOf 'Man') then {removeAllWeapons _x};
+                    [typeOf _x, false] call WFCL_FNC_AwardBounty;
                     deleteVehicle _x
                 }
             } forEach _destroy;
-            {  _x setDammage 1 } forEach _vehicles;
+            {
+                _x setDammage 1;
+                [typeOf _x, false] call WFCL_FNC_AwardBounty;
+            } forEach _vehicles;
             _group setVariable ["isHighCommandPurchased", false, true];
             deleteGroup _group;
             _groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
