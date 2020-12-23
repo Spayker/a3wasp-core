@@ -1,3 +1,5 @@
+if (!hasInterface && !isDedicated) exitWith {};
+
 waitUntil {commonInitComplete}; //--- Wait for the common part.
 
 if (local player) then {
