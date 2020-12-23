@@ -34,11 +34,9 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") > 0) then {
 	_checks = _deathLoc nearEntities[_mobileRespawns,_range];
 	if (count _checks > 0) then {
 		{
-			if (_x emptyPositions "cargo" > 0) then {
-				_availableSpawn pushBackUnique _x;
-			};
-		} forEach _checks;
-	};
+			_availableSpawn pushBackUnique _x
+		} forEach _checks
+	}
 };
 
 //--- Camps.
