@@ -2,16 +2,10 @@
 WF_AutoWallConstructingEnabled = false;
 
 //--Required addons list here. Push addon class name from config.bin in array--
-WF_REQ_ADDONS = 	[	//["@Bornholm", ["Bornholm"]], 
-						//["@AdWasp", ["wasp_vehicle_fix"]],
+WF_REQ_ADDONS = 	[	
 						["@CBA_A3", ["cba_xeh", "cba_help"]], 
-						//["@Napf Island V1.2", ["Napf"]], 
-						//["@Tembelan Island", ["A3_Map_Tembelan"]],
-						//["@Caucasus Insurgency", ["FGN_RU_Gear"]],
-						//["@Chernarus winter With fixed footsteps", ["Chernarus_winter"]],
 						["@CUP Terrains - Core", ["CUP_Core", "CUP_Terrains_Plants"]],
 						["@CUP Terrains - Maps", ["CUP_Takistan_Data", "CUP_Bohemia_Data", "CUP_Chernarus_Data"]],
-						//["@Fallujah V1.2", ["fallujah_v1_0"]],
 						["@RHSAFRF", ["rhs_btr70", "rhs_c_t72"]],
 						["@RHSGREF", ["rhsgref_c_air"]],
 						["@RHSSAF", ["rhssaf_m_weapon_m70c", "rhssaf_main"]],

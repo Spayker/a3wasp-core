@@ -3,7 +3,7 @@ WF_AutoWallConstructingEnabled = false;
 
 //--Required addons list here. Push addon class name from config.bin in array--
 WF_REQ_ADDONS = 	[
-						["@AdWaspLite", ["wasp_vehicle_fix"]],
+						//["@AdWaspLite", ["wasp_vehicle_fix"]],
 						["@CBA_A3", ["cba_xeh", "cba_help"]], 
 						["@CUP Units", ["CUP_Creatures_People_Civil_Chernarus", "CUP_Creatures_People_Core"]],
 						["@CUP Vehicles", ["CUP_AirVehicles_Core", "CUP_TrackedVehicles_Core"]],
