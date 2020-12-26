@@ -214,7 +214,6 @@ comTask = objNull;
 voted = false;
 votePopUp = true;
 hudOn = true;
-hudStyle = true;
 WF_AutoManningDefense = true;
 lastParaCall = -1200;
 lastSupplyCall = -1200;

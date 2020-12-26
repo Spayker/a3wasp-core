@@ -130,13 +130,6 @@ while {alive player && dialog} do {
 		};
 	};
 
-	//--- HUD STYLE
-    if (WF_MenuAction == 114) then {
-    	WF_MenuAction = -1;
-
-    	hudStyle = !hudStyle;
-	};
-	
     //--- FACS ICONS
     if (WF_MenuAction == 115) then {
         WF_MenuAction = -1;

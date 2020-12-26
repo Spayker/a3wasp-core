@@ -174,16 +174,6 @@ class RscMenu_Team {
             sizeEx = 0.030;
         };
 
-        class HUD_STYLE_BUTTON: RscButton
-        {
-            idc = 13021;
-            action = "WF_MenuAction = 114";
-            x = 0.514313;
-            y = 0.65;
-            w = 0.275;
-            sizeEx = 0.030;
-        };
-
 		/* Vote PopUp */
 		class VPOPON_Button : RscButton {
 			idc = 13019;
