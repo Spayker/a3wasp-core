@@ -820,6 +820,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 				};
 			} else {
 				//--- Check zone
+				_color = _colorRed;
 				if (([position _preview,_startPos] call BIS_fnc_distance2D) > _limitH) then {
 					_color = _colorGray
 				} else {
