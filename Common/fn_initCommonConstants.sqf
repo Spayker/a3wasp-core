@@ -408,6 +408,9 @@ switch(side player) do {
     WF_C_MILITARY_BASE_DISCOUNT_PERCENT = 0.05;
     WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT = 0.25;
 
+//--- Chemical protection
+WF_C_GAS_MASKS = ['g_regulatormask_f','g_airpurifyingrespirator_02_olive_f','g_airpurifyingrespirator_02_sand_f','g_airpurifyingrespirator_02_black_f','g_airpurifyingrespirator_01_f'];
+
 };
 
 ["INITIALIZATION", "Init_CommonConstants.sqf: Constants are defined."] Call WFCO_FNC_LogContent;

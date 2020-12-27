@@ -3510,6 +3510,15 @@
 				<Italian>Cruise Missile</Italian>
 				<Portuguese>Cruise Missile</Portuguese>
 			</Key>
+			<Key ID="STR_WF_CHEMICAL_MISSILE">
+				<!--shared W-->
+				<English>Chemical Missile</English>
+				<French>Chemical Missile</French>
+				<German>Chemical Missile</German>
+				<Russian>Химическая Ракета</Russian>
+				<Italian>Chemical Missile</Italian>
+				<Portuguese>Chemical Missile</Portuguese>
+			</Key>
 			<Key ID="STR_WF_Price">
 				<!--shared W-->
 				<English>Price</English>
