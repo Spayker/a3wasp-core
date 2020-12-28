@@ -143,6 +143,7 @@ class WF_Client {
         file = "Client\Module\CruiseMissile";
         class CruiseMissileIncoming {};
         class ChemicalMissileIncoming {};
+        class ProcessChemicalDamage {};
     };
 
     class Gui {
