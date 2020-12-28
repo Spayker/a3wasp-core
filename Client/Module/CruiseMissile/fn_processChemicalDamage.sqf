@@ -4,7 +4,7 @@ params ["_dropPosition"];
 
     params ["_dropPosition"];
     //--- Chemical post effect
-    _radiusZone 	= 100;
+    _radiusZone 	= 250;
     _chemicalDamage = 0.03;
     _rad_prot_mask_obj	= [''];
 
