@@ -21,12 +21,12 @@ _tooFar = false;
 
 if (_source == _hq) then {_root = "HQ"};
 if ((missionNamespace getVariable "WF_C_BASE_AREA") > 0) then {
-	if (_source == _hq) then {
-		if (count(WF_Client_Logic getVariable "wf_basearea") >= (missionNamespace getVariable "WF_C_BASE_AREA")) then {
-			_startpos = [_startPos,WF_Client_Logic getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity;
-			if (_source distance _startpos > (missionNamespace getVariable "WF_C_BASE_HQ_BUILD_RANGE")) exitWith {_tooFar = true};
-		};
-	};
+    if (_source == _hq) then {
+        if (count(WF_Client_Logic getVariable "wf_basearea") >= (missionNamespace getVariable "WF_C_BASE_AREA")) then {
+            _startpos = [_startPos,WF_Client_Logic getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity;
+            if (_source distance _startpos > (missionNamespace getVariable "WF_C_BASE_HQ_BUILD_RANGE")) exitWith {_tooFar = true};
+        };
+    };
 };
 
 
@@ -297,28 +297,28 @@ BIS_CONTROL_CAM_Handler = {
 		    		if (!isNil '_get' && isNil '_sold') then {
 		    		    _price = _get # QUERYUNITPRICE;
 
-                            _closest setVariable ['sold',true];
-                            _returnPrice = round(_price/2.5);
-                            _returnPrice Call WFCL_FNC_ChangePlayerFunds;
-                            [_returnPrice, (_get # QUERYUNITLABEL)] spawn WFCL_FNC_showAwardHint;
-                            _area = [getPos (_closest),((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+                        _closest setVariable ['sold',true];
+                        _returnPrice = round(_price/2.5);
+                        _returnPrice Call WFCL_FNC_ChangePlayerFunds;
+                        [_returnPrice, (_get # QUERYUNITLABEL)] spawn WFCL_FNC_showAwardHint;
+                        _area = [getPos (_closest),((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
 
-                            if(_closest isKindOf "staticWeapon") then {
-                                _get = _area getVariable 'availStaticDefense';
-                                if(!isNil '_get') then {
-                                    if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_DEFENSE_MAX") then {
-                                        _area setVariable [ "availStaticDefense" ,_get +1];
-                                    };
-                                };
-                            } else {
-                                _get = _area getVariable 'avail';
-
-                                if(!isNil '_get') then {
-                                    if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_AV_FORTIFICATIONS") then {
-                                        _area setVariable [ "avail" ,_get +1];
-                                    };
+                        if(_closest isKindOf "staticWeapon") then {
+                            _get = _area getVariable 'availStaticDefense';
+                            if(!isNil '_get') then {
+                                if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_DEFENSE_MAX") then {
+                                    _area setVariable [ "availStaticDefense" ,_get +1];
                                 };
                             };
+                        } else {
+                            _get = _area getVariable 'avail';
+
+                            if(!isNil '_get') then {
+                                if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_AV_FORTIFICATIONS") then {
+                                    _area setVariable [ "avail" ,_get +1];
+                                };
+                            };
+                        };
 
                         deleteVehicle _closest
 		    		};
@@ -671,7 +671,6 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 
 			} else {
 				//--- Check zone
-				_color = _colorRed;
 				if (([position _preview,_startPos] call BIS_fnc_distance2D) > _limitH) then {
 					_color = _colorGray
 				} else {
@@ -685,28 +684,30 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 
 				//--Check if it is stationary defense and barracks in the area--
 				_area = [_startPos,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
-				if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
+				if!(isNil '_color') then {
+					if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
 				    && _itemclass isKindOf "StaticWeapon") then {
-                    //--Check if defense is special and barracks in area--
-                    _buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
-                    _closest = ['BARRACKSTYPE',_buildings,
-                                WF_C_BASE_DEFENSE_MANNING_RANGE,WF_Client_SideJoined,_preview] call WFCO_FNC_BuildingInRange;
+						//--Check if defense is special and barracks in area--
+						_buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
+						_closest = ['BARRACKSTYPE',_buildings,
+									WF_C_BASE_DEFENSE_MANNING_RANGE,WF_Client_SideJoined,_preview] call WFCO_FNC_BuildingInRange;
 
-                    if (!alive _closest) then {
-                        //--Second check if we have a barracks in WF_C_BASE_DEFENSE_MANNING_RANGE + WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2 (DIAMETER)--
-                        //--and any building in this area--
-                        _closest = ['BARRACKSTYPE',_buildings,
-                                   (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2)),
-                                   WF_Client_SideJoined,_preview] call WFCO_FNC_BuildingInRange;
-                        if!(alive _closest && alive([position _preview,_buildings] call WFCO_FNC_GetClosestEntity5)) then {
-                    	    _color = _colorYellow;
-                    	};
-                    };
-                    _availStaticDefense = _area getVariable ['availStaticDefense', WF_C_BASE_DEFENSE_MAX];
-                    if (_availStaticDefense <= 0) then {
-                        _color = _colorRed
-                    }
-                };
+						if (!alive _closest) then {
+							//--Second check if we have a barracks in WF_C_BASE_DEFENSE_MANNING_RANGE + WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2 (DIAMETER)--
+							//--and any building in this area--
+							_closest = ['BARRACKSTYPE',_buildings,
+									   (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2)),
+									   WF_Client_SideJoined,_preview] call WFCO_FNC_BuildingInRange;
+							if!(alive _closest && alive([position _preview,_buildings] call WFCO_FNC_GetClosestEntity5)) then {
+								_color = _colorYellow;
+							};
+						};
+						_availStaticDefense = _area getVariable ['availStaticDefense', WF_C_BASE_DEFENSE_MAX];
+						if (_availStaticDefense <= 0) then {
+							_color = _colorRed
+						}
+					}
+				};
 
                 if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
                 				    && !(_itemclass isKindOf "StaticWeapon")) then {
@@ -805,7 +806,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
                     _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 					_deployed = [WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus;
-
+					
 					_find = _structureNames find _itemclass;
 					if (_find != -1) then {
 						//--- Increment the buildings.
@@ -1033,16 +1034,16 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                                 _townSpecialities = _town getVariable "townSpeciality";
                                 if(WF_C_MILITARY_BASE in (_townSpecialities)) then {
                                     if!(isNil "_itemname") then {
-                                    _discountStructures = missionNamespace getVariable Format["WF_%1MILITARY_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
-                                    if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                        _discountStructures = missionNamespace getVariable Format["WF_%1MILITARY_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
+                                        if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
                                     }
                                 };
                                 if(WF_C_AIR_BASE in (_townSpecialities)) then {
                                     if!(isNil "_itemname") then {
-                                    _discountStructures = missionNamespace getVariable Format["WF_%1AIR_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
-                                    if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                        _discountStructures = missionNamespace getVariable Format["WF_%1AIR_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
+                                        if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                    }
                                 }
-                            }
                             }
                         };
 
