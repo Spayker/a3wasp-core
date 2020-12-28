@@ -89,9 +89,9 @@ with missionNamespace do {
 	WF_C_AI_TOWN_ATTACK_HOPS_WP = 4; //--- AI may use up to x WP to attack a town.
 	
 //--- High Command module
-    WF_C_HIGH_COMMAND_MAX_GROUP_AMOUNT = 5;
-    WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT = 2;
-    WF_C_HIGH_COMMAND_MAX_QUEUE_ORDER_GROUP_PURCHASE = 2;
+    WF_C_HIGH_COMMAND_MAX_GROUP_AMOUNT = 10;
+    WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT = 4;
+    WF_C_HIGH_COMMAND_MAX_QUEUE_ORDER_GROUP_PURCHASE = 3;
 
 //--- Artillery.
 	if (isNil "WF_C_ARTILLERY") then {WF_C_ARTILLERY = 1;}; //--- Enable or disable Artillery fire missions (0: Disabled, 1: Short, 2: Medium, 3: Long).

@@ -45,6 +45,7 @@ if(_side == 2) then {
     _unit setSkill ["aimingSpeed", _skill];
     _unit setSkill ["spotTime", _skill];
     _unit setSkill ["spotDistance", _skill];
+    _unit setSkill ["commanding", _skill];
     _unit setSkill ["courage", 1]
 };
 

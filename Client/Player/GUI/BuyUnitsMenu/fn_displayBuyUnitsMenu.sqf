@@ -238,7 +238,7 @@ while {alive player && dialog} do {
                 };
 
                 if !(_skip) then {
-                    _hcAllowedGroupAmount = WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT + (((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HC_GROUP_AMOUNT);
+                    _hcAllowedGroupAmount = WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT + ( (((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HC_GROUP_AMOUNT) * 2 );
 
                     _purchasedGroups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
                     if((count _purchasedGroups) >= _hcAllowedGroupAmount ) then {

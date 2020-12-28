@@ -171,10 +171,12 @@ while {!WF_GameOver} do {
 		//--- Airport.
 		hangarInRange = if !(isNull ([vehicle player, _pura] Call WFCL_FNC_GetClosestAirport)) then {true} else {false};
 
+
 		_usable = [hqInRange,barracksInRange,gearInRange,lightInRange,heavyInRange,aircraftInRange,hangarInRange,
 		    serviceInRange,commandInRange,antiAirRadarInRange,antiArtyRadarInRange];
+        _c = 0;
 
-		_c = 0;
+        if (hudOn) then {
 		if (isNull (["currentCutDisplay"] call BIS_FNC_GUIget)) then {12450 cutRsc["OptionsAvailable","PLAIN",0]};
 		{
 			if (_x) then {
@@ -185,6 +187,14 @@ while {!WF_GameOver} do {
 			};
 			_c = _c + 1;
 		} forEach _usable;
+        } else {
+            {
+                _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
+                _icon = _cutDisplay DisplayCtrl (3500 + _c);
+                _icon ctrlShow false;
+                _c = _c + 1;
+            } forEach _usable;
+        };
 
 		[] spawn WFCL_fnc_updateCommanderState;
 
