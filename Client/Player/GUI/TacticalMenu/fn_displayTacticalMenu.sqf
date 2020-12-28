@@ -224,6 +224,17 @@ while {alive player && dialog} do {
 					}
 				}
 			};
+			case "Chemical Missile": {
+				if ((missionNamespace getVariable "WF_C_MODULE_WF_CRUISE_MISSILE") > 0) then {
+				    _controlEnable = false;
+					_commander = false;
+					if (!isNull(commanderTeam)) then {
+						if (commanderTeam == WF_Client_Team) then {_commander = true};
+                        _currentLevel = _currentUpgrades # WF_UP_CRUISE_MISSILE;
+                        _controlEnable = (_currentLevel > 0 && _commander && _funds >= _currentFee && time - lastChemicalMissileCall > _currentInterval)
+					}
+				}
+			};
 			case "CAS": {
 			    _controlEnable = false;
 			    if (!isNull(commanderTeam)) then {
@@ -268,6 +279,11 @@ while {alive player && dialog} do {
             };
 			case "Cruise Missile": {
 				WF_MenuAction = 8;
+				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
+			};
+			case "Chemical Missile": {
+				WF_MenuAction = 11;
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
 				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
 			};

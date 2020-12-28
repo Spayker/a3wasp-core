@@ -548,6 +548,11 @@
 				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;&lt;t color='#ee2222' size='1.1' &gt;На текущем уровне улучшения доступно только %1 дополнительных набора&lt;/t&gt;</Russian>
 			</Key>
 			
+			<Key ID="STR_WF_RES_BASE_ATTACK_WARNING">
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Intelligence: &lt;/t&gt;&lt;br/&gt;&lt;t&gt; Guerillas are preparing attack on our base(s). Setup defenses around each base you have &lt;/t&gt;</English>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Данные Разведки:&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t&gt; Силы сопротивления готовят атаку на одну из наших баз. Укрепите оборону &lt;/t&gt;</Russian>
+			</Key>
+			
 			<!--EASA Menu - ALL DONE-->
 			<Key ID="STR_WF_EASA">
 				<English>Exchangeable Armament System</English>
