@@ -275,10 +275,10 @@ AIC_fnc_terminateRemoteControl = {
         _unitGroup setBehaviour "AWARE";
         _unitGroup setSpeedMode "FULL";
 
-        _groupControlId = missionNamespace getVariable ["AIC_Remote_Control_To_GroupId", 0];
-        if(_groupControlId != 0) then {
+        _groupControlId = missionNamespace getVariable ["AIC_Remote_Control_To_GroupId", nil];
+        if!(isnil '_groupControlId') then {
             [_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
-            missionNamespace setVariable ["AIC_Remote_Control_To_GroupId",0];
+            missionNamespace setVariable ["AIC_Remote_Control_To_GroupId",nil];
         }
 	};
 	missionNamespace setVariable ["AIC_Remote_Control_To_Unit",nil];

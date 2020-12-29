@@ -86,7 +86,10 @@ _icons = [
 	"RSC\Pictures\icon_wf_building_am_radar.paa"
 ];
 
+12450 cutRsc ["OptionsAvailable","PLAIN",0];
+
 while {true} do {
+
     _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
     _usable = [hqInRange,barracksInRange,gearInRange,lightInRange,heavyInRange,aircraftInRange,hangarInRange,
                                     serviceInRange,commandInRange,antiAirRadarInRange,antiArtyRadarInRange];
@@ -202,29 +205,26 @@ while {true} do {
             _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaBold' size='%5' valign='middle'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\default_ca.paa'/>%1 <img image='\A3\ui_f\data\GUI\Rsc\RscDisplayOptionsVideo\icon_performance.paa'/> S:%2 HC:%3 C:%4</t>",
             format["%1/%2", WF_Client_SideJoined Call WFCO_FNC_GetTownsHeld, count towns], floor(missionNamespace getVariable["WF_SERVER_FPS", 0]), floor(missionNamespace getVariable["WF_HC_FPS", 0]), floor(diag_fps), _textSize];
             _tControl ctrlSetStructuredText parseText _fText;
-
-        if (isNull (["currentCutDisplay"] call BIS_FNC_GUIget)) then {
-            12450 cutRsc["OptionsAvailable","PLAIN",0]
-        };
-
+        if (isNull _cutDisplay) then {12450 cutRsc["OptionsAvailable","PLAIN",0]};
         {
             if (_x) then {
-                ((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) ctrlSetText (_icons select _c);
-                ((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) ctrlSetTextColor WF_C_TITLETEXT_COLOR_INT;
+                ((_cutDisplay) DisplayCtrl (3500 + _c)) ctrlSetText (_icons select _c);
+                ((_cutDisplay) DisplayCtrl (3500 + _c)) ctrlSetTextColor WF_C_TITLETEXT_COLOR_INT;
             } else {
-                ((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) CtrlSetText "";
+                ((_cutDisplay) DisplayCtrl (3500 + _c)) CtrlSetText "";
             };
             _c = _c + 1;
         } forEach _usable;
+
 	} else {
         call _hideHud;
-        if !(isNull (["currentCutDisplay"] call BIS_FNC_GUIget)) then { 12450 cuttext ["","plain"] };
         {
             if (_x) then {
-                ((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) ctrlSetText ("");
+                ((_cutDisplay) DisplayCtrl (3500 + _c)) ctrlSetText ("");
             };
             _c = _c + 1;
         } forEach _usable
+
     };
 
 	sleep 3
