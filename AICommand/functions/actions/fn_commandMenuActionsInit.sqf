@@ -226,6 +226,7 @@ AIC_fnc_remoteControlActionHandler = {
 		["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
 	};
 	missionNamespace setVariable ["AIC_Remote_Control_To_Unit",_rcUnit];
+	missionNamespace setVariable ["AIC_Remote_Control_To_GroupId",_groupControlId];
 
 	AIC_Remote_Control_From_Unit_Event_Handler = _fromUnit addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
 	AIC_Remote_Control_To_Unit_Event_Handler = _rcUnit addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
@@ -235,7 +236,7 @@ AIC_fnc_remoteControlActionHandler = {
 	{
 	    _unit = _x;
 	    if(alive _unit) then {
-            {_unit disableAI _x} forEach ["MOVE","TEAMSWITCH"];
+            {_unit disableAI _x} forEach ["MOVE","TEAMSWITCH","AUTOTARGET","TARGET"]
 	    }
 	} forEach (units (group player));
 
@@ -247,10 +248,11 @@ AIC_fnc_remoteControlActionHandler = {
 };
 
 AIC_fnc_terminateRemoteControl = {
+	_originalLeader = missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull];
 	["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
 	(missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_From_Unit_Event_Handler",-1])];
 	(missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
-	missionNamespace setVariable ["AIC_Remote_Control_To_Unit",nil];
+
 	_player = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",player];
 	{
         _unit = _x;
@@ -265,6 +267,21 @@ AIC_fnc_terminateRemoteControl = {
 	(vehicle player) switchCamera cameraView;
 	BIS_fnc_feedback_allowPP = true;
 	["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL",localize "STR_WF_HC_REMOTECONTROL_TERMINATED"]] call BIS_fnc_showNotification;
+
+	if!(isNull _originalLeader) then {
+	    _unitGroup = group _originalLeader;
+	    _unitGroup allowFleeing 0;
+        _unitGroup setCombatMode "YELLOW";
+        _unitGroup setBehaviour "AWARE";
+        _unitGroup setSpeedMode "FULL";
+
+        _groupControlId = missionNamespace getVariable ["AIC_Remote_Control_To_GroupId", 0];
+        if(_groupControlId != 0) then {
+            [_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
+            missionNamespace setVariable ["AIC_Remote_Control_To_GroupId",0];
+        }
+	};
+	missionNamespace setVariable ["AIC_Remote_Control_To_Unit",nil];
 };
 
 ["GROUP",localize "STR_WF_HC_REMOTECONTROLDIRECT",[localize "STR_WF_HC_REMOTECONTROL"],AIC_fnc_remoteControlActionHandler,[],{
