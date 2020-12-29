@@ -47,6 +47,7 @@ if !(isNil {player getVariable "bis_coin_logic"}) exitWith {};
 player setVariable ["bis_coin_logic",_logic];
 bis_coin_player = player;
 
+_originalHudOn = hudOn;
 if (hudOn) then {
     hudOn = !hudOn;
     ctrlSetText[13020, "HUD OFF"];
@@ -1234,8 +1235,8 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 };
 //--- end of loop
 
-if (!hudOn) then {
-    hudOn = !hudOn;
+if (_originalHudOn) then {
+    hudOn = true;
     ctrlSetText[13020, "HUD ON"];
 };
 

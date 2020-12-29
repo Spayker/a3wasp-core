@@ -19,19 +19,6 @@ _wfMenuAction = [];
 
 //--- Keep actions updated (GUI). - changed-MrNiceGuy 
 12450 cutRsc ["OptionsAvailable","PLAIN",0];
-_icons = [
-	"RSC\Pictures\icon_wf_building_mhq.paa",       //mhq deployable
-	"Rsc\Pictures\icon_wf_building_barracks.paa",  //barracks
-	"RSC\Pictures\icon_wf_building_gear.paa",      //gear avail
-	"RSC\Pictures\icon_wf_building_lvs.paa",       //lvsp
-	"RSC\Pictures\icon_wf_building_hvs.paa",       //hvsp
-	"RSC\Pictures\icon_wf_building_air.paa",       //helipad
-	"RSC\Pictures\icon_wf_building_hangar.paa",    //hangar
-	"RSC\Pictures\icon_wf_building_repair.paa",    //rearm | repair | refuel
-	"RSC\Pictures\icon_wf_building_cc.paa",        //command center
-	"RSC\Pictures\icon_wf_building_aa_radar.paa",  //AA radar
-	"RSC\Pictures\icon_wf_building_am_radar.paa"
-];
 
 while {!WF_GameOver} do {
 
@@ -170,31 +157,6 @@ while {!WF_GameOver} do {
 
 		//--- Airport.
 		hangarInRange = if !(isNull ([vehicle player, _pura] Call WFCL_FNC_GetClosestAirport)) then {true} else {false};
-
-
-		_usable = [hqInRange,barracksInRange,gearInRange,lightInRange,heavyInRange,aircraftInRange,hangarInRange,
-		    serviceInRange,commandInRange,antiAirRadarInRange,antiArtyRadarInRange];
-        _c = 0;
-
-        if (hudOn) then {
-		if (isNull (["currentCutDisplay"] call BIS_FNC_GUIget)) then {12450 cutRsc["OptionsAvailable","PLAIN",0]};
-		{
-			if (_x) then {
-				((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) ctrlSetText (_icons select _c);
-				((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) ctrlSetTextColor WF_C_TITLETEXT_COLOR_INT;
-			} else {
-				((["currentCutDisplay"] call BIS_FNC_GUIget) DisplayCtrl (3500 + _c)) CtrlSetText "";
-			};
-			_c = _c + 1;
-		} forEach _usable;
-        } else {
-            {
-                _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
-                _icon = _cutDisplay DisplayCtrl (3500 + _c);
-                _icon ctrlShow false;
-                _c = _c + 1;
-            } forEach _usable;
-        };
 
 		[] spawn WFCL_fnc_updateCommanderState;
 
