@@ -542,8 +542,10 @@ WF_C_MAP_MARKER_HANDLER = {
 			_shallAdd = true;
 
 			{
-				if( ((_x # 0) + (_x # 3) + str (vehicle _unit) ) == (_iconType + _text + str (vehicle _unit))  ) then {
+				if( ((_x # 0) + (_x # 3)) == (_iconType + _text)  ) then {
+				    if(_x # 2 == (vehicle _unit)) exitWith {
 					_shallAdd = false
+				}
 				}
 			} foreach _iconsToBeDisplayed;
 
