@@ -487,9 +487,12 @@ if!(WF_Skip_Intro) then {
 //--- map marker handler
 WF_C_MAP_MARKER_HANDLER = {
     Private ['_unit', '_colorStr', '_iconType', '_color'];
+
+	_iconsToBeDisplayed = [];
     {
         _unit = _x # 0;
         _colorStr = _x # 1;
+		_unitPos = getPos _unit;
         _shallDraw = true;
 
         _text = if(count _x > 2) then { _x # 2 } else { '' };
@@ -508,7 +511,6 @@ WF_C_MAP_MARKER_HANDLER = {
             if(group _unit != WF_Client_Team) then {_text = ''};
             if (vehicle _unit != _unit) then {
                 _vehicleUnit = vehicle _unit;
-                if(_vehicleUnit iskindof 'StaticWeapon') then {
                     _iconType = getText (configFile >> "CfgVehicles" >> typeOf _vehicleUnit >> "icon");
                     _unitCrew = crew _vehicleUnit;
                     _digitArray = [];
@@ -521,10 +523,6 @@ WF_C_MAP_MARKER_HANDLER = {
                             }
                         }
                     } forEach _unitCrew
-                } else {
-                    _text = '';
-                    _shallDraw = false
-                }
             }
         } else {
             _iconType = getText (configFile >> "CfgVehicles" >> typeOf (_unit) >> "icon");
@@ -536,12 +534,31 @@ WF_C_MAP_MARKER_HANDLER = {
                 {
                     if (group _x == WF_Client_Team) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
                 } forEach _unitCrew;
-                _text = _digitArray joinString ", ";
+                        _text = _digitArray joinString ", ";
             }
-        };
+                    };
 
+		if (!(isNull _unit) && alive _unit && _shallDraw) then {
+			_shallAdd = true;
 
-        if (!(isNull _unit) && alive _unit && _shallDraw) then {
+			{
+				if( ((_x # 0) + (_x # 3) + str (vehicle _unit) ) == (_iconType + _text + str (vehicle _unit))  ) then {
+					_shallAdd = false
+				}
+			} foreach _iconsToBeDisplayed;
+
+			if(_shallAdd) then {
+				_iconsToBeDisplayed pushBack [_iconType, _color, vehicle _unit, _text]
+            }
+
+		}
+    } forEach WF_UNIT_MARKERS;
+
+	{
+		_iconType = _x # 0;
+		_color = 	_x # 1;
+		_unit  = 	_x # 2;
+		_text  = 	_x # 3;
 
             _this select 0 drawIcon [
                 _iconType,
@@ -556,8 +573,8 @@ WF_C_MAP_MARKER_HANDLER = {
                 "TahomaB",
                 "right"
             ]
-        }
-    } forEach WF_UNIT_MARKERS
+
+	} foreach _iconsToBeDisplayed
 };
 
 waitUntil {!isNull findDisplay 12};
