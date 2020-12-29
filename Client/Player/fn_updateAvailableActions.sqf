@@ -17,9 +17,6 @@ _typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_
 _commandCenter = objNull;
 _wfMenuAction = [];
 
-//--- Keep actions updated (GUI). - changed-MrNiceGuy 
-12450 cutRsc ["OptionsAvailable","PLAIN",0];
-
 while {!WF_GameOver} do {
 
 	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
