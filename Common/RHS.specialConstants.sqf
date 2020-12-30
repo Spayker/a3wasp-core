@@ -176,6 +176,6 @@ WF_ADV_ARTILLERY = ['I_Truck_02_MRL_F','rhs_2s3_tv','rhsusf_m109d_usarmy','rhsus
 'rhs_9k79','CUP_O_BM21_RU','CUP_B_M270_HE_USMC','CUP_B_M270_HE_USA','CUP_B_RM70_CZ','I_Truck_02_MRL_F_OPFOR'];
 
 WF_AR2_UAVS = ['O_UAV_01_F', 'B_UAV_01_F', 'I_UAV_01_F'];
-WF_FLY_UAVS = ['CUP_O_Pchela1T_RU', 'O_UAV_02_dynamicLoadout_F', 'O_T_UAV_04_CAS_F', 'CUP_B_USMC_DYN_MQ9', 'B_UAV_05_F', 'B_UAV_02_dynamicLoadout_F'];
+WF_FLY_UAVS = ['CUP_O_Pchela1T_RU', 'O_UAV_02_dynamicLoadout_F', 'O_T_UAV_04_CAS_F', 'CUP_B_USMC_DYN_MQ9', 'B_UAV_05_F', 'B_UAV_02_dynamicLoadout_F', 'B_UGV_01_rcws_F', 'O_UGV_01_rcws_F'];
 
 profileNameSpace setVariable ["rhs_voiceAnnouncer", 0];
