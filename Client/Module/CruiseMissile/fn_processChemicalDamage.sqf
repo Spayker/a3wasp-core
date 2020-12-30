@@ -4,8 +4,8 @@ params ["_dropPosition"];
 
     params ["_dropPosition"];
     //--- Chemical post effect
-    _radiusZone 	= 250;
-    _chemicalDamage = 0.03;
+    _radiusZone 	= 500;
+    _chemicalDamage = 0.06;
     _rad_prot_mask_obj	= [''];
 
     _velocityFog = [random 3, random 3, -0.2]; // fog spreading
