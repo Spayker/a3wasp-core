@@ -23,8 +23,18 @@ waitUntil {clientInitComplete}; //--- Wait for the client part.
 _isMan = (_unit isKindOf 'Man');
 // --- [Generic Vehicle initialization] (Run on all clients)
 
-if(local _unit && !(_unit hasWeapon "NVGoggles_WASP")) then {
-	_unit addWeapon "NVGoggles_WASP";
+if(_isMan) then {
+    if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
+        _unit enableFatigue true;
+        _unit enableStamina true
+    } else {
+        _unit enableFatigue false;
+        _unit enableStamina false
+    }
+};
+
+if(local _unit && !(_unit hasWeapon "CUP_NVG_PVS14_Hide_WASP")) then {
+	_unit addWeapon "CUP_NVG_PVS14_Hide_WASP";
 };
 
 if (_unit_kind in (missionNamespace getVariable "WF_REPAIRTRUCKS")) then { //--- Repair Trucks.
