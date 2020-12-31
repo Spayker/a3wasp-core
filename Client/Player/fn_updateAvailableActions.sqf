@@ -60,7 +60,22 @@ while {!WF_GameOver} do {
             }
         } forEach _mhqs;
         _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
+        _purchaseRange = -1;
+        _checks = ['COMMANDCENTERTYPE',_buildings,_ccr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange;
+        _commandCenter = _checks;
+        commandInRange = if (isNull _checks) then {false} else {true};
+        if!(commandInRange) then {
+            _capturedRadars = [WF_Client_SideJoined, WF_C_RADAR, true] call WFCO_fnc_getSpecialLocations;
+            if(count _capturedRadars > 0) then {
+                {
+                    if ((_x distance player) <= (_ccr/2)) exitWith { commandInRange = true; _purchaseRange = _ccr/2 }
+                } forEach _capturedRadars;
+            }
+        };
+
+        if (_purchaseRange == -1) then {
 		_purchaseRange = if (commandInRange) then {_ccr} else {_pur};
+        };
 
 		//--- Boundaries are limited ?
 		if (_boundaries_enabled) then {
@@ -139,18 +154,6 @@ while {!WF_GameOver} do {
 		//--- Town Depot.
 		depotInRange = if !(isNull ([vehicle player, _tcr] Call WFCL_FNC_GetClosestDepot)) then {true} else {false};
 		if (depotInRange) then {serviceInRange = true};
-
-		_checks = ['COMMANDCENTERTYPE',_buildings,_ccr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange;
-		_commandCenter = _checks;
-		commandInRange = if (isNull _checks) then {false} else {true};
-		if!(commandInRange) then {
-		    _capturedRadars = [WF_Client_SideJoined, WF_C_RADAR, true] call WFCO_fnc_getSpecialLocations;
-		    if(count _capturedRadars > 0) then {
-                {
-                    if ((_x distance player) <= (_ccr/2)) exitWith { commandInRange = true }
-                } forEach _capturedRadars;
-		    }
-		};
 
 		//--- Airport.
 		hangarInRange = if !(isNull ([vehicle player, _pura] Call WFCL_FNC_GetClosestAirport)) then {true} else {false};
