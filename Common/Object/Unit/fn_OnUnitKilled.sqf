@@ -21,7 +21,7 @@ _killer_type = typeOf _killer;
 _killer_side = side _killer;
 _vehicleKiller = vehicle _killer;
 if (vehicle _killer != _killer) then {
-	switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
+	_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
 };
 
 if(_killer_side == resistance) exitWith {};
@@ -37,10 +37,19 @@ _shallChangeScore = false;
 
 _get = missionNamespace getVariable _killed_type; //--- Get the killed informations.
 if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in the core files
-_last_hit = _killed getVariable "wf_lasthitby";
-if !(isNil '_last_hit') then {
-	if (alive _last_hit) then {
-    		if (side _last_hit != _killed_side && time - (_killed getVariable "wf_lasthittime") < 25) then {_killer = _last_hit}
+    _lastHit = _killed getVariable "wf_lasthitby";
+	_lastHitSide = switch (getNumber(configFile >> "CfgVehicles" >> typeOf _lastHit >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
+    if !(isNil '_lastHit') then {
+    	if (alive _lastHit) then {
+    		if (_lastHitSide != _killed_side && time - (_killed getVariable "wf_lasthittime") < 25) then {
+				_killer = _lastHit;
+				_killer_type = typeOf _killer;
+				_killer_side = side _killer;
+				_vehicleKiller = vehicle _killer;
+				if (vehicle _killer != _killer) then {
+					_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
+				};
+			}
     	}
 	};
 
