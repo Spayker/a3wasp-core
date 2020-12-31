@@ -15,11 +15,11 @@ WF_REQ_ADDONS = 	[
 						["@CUP Weapons", ["CUP_BaseData", "CUP_Weapons_AK"]]
 				];
 
-WF_C_GARBAGE_OBJECTS = ['Land_HBarrier_large','Land_HBarrier5','Land_GarbageWashingMachine_F','Land_GarbageBags_F',
-                        'Land_Garbage_square5_F','Land_BagFence_End_F','Land_Wreck_Skodovka_F','Land_GarbagePallet_F',
-                        'Land_Wreck_BMP2_F','Land_HelipadCircle_F', 'Land_HBarrier_1_F', 'Land_HBarrier_5_F',
-                        'Land_HBarrier_3_F', 'Land_fort_bagfence_long','Land_fort_bagfence_round','Land_HBarrier1',
-                        'Land_HBarrier3', 'Land_BagFence_Long_F','Land_BagFence_Round_F'];
+WF_C_GARBAGE_OBJECTS = ['Land_HBarrier_large','Land_HBarrier5','Base_WarfareBBarrier10xTall', 'Land_BagBunker_Small_F',
+'Land_BagBunker_01_small_green_F', 'Land_HBarrier_01_wall_6_green_F', 'Land_HBarrier_01_wall_corner_green_F', 'Land_fort_artillery_nest',
+'Land_fort_rampart', 'Hedgehog', 'Land_Razorwire_F', 'Wire', 'Hhedgehog_concreteBig', 'Concrete_Wall_EP1', 'Land_CamoConcreteWall_01_l_4m_v2_F',
+'Land_Vez_svetla', 'Land_HBarrier_large', 'Land_fort_bagfence_long','Land_fort_bagfence_round',  'CamoNet_INDP_F',
+'CamoNet_INDP_open_F', 'CamoNet_INDP_big_F', 'CamoNet_BLUFOR_F', 'CamoNet_BLUFOR_open_F', 'CamoNet_BLUFOR_big_F', 'Land_StoneWall_01_s_d_F'];
 
 WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = ['rhsgref_nat_DSHKM','CUP_I_2b14_82mm_TK_GUE','CUP_I_ZU23_NAPA'];
 
