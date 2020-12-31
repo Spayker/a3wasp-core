@@ -95,6 +95,16 @@ if(_isHQ) then {
 		};
 	}];
 
+	if(_vehicle isKindOf "Car" || _vehicle isKindOf "Apc" || _vehicle isKindOf "Motorcycle") then {
+        _vehicle addEventHandler ["HandleDamage", {
+        if ((_this # 1) find "wheel" != -1) then {
+            (_this # 2) * 0.8
+        } else {
+            (_this # 2)
+        }
+        }]
+	};
+
 	if(_skin > -1) then {
 		_type = typeOf _vehicle;
 		_colorConfigs = "true" configClasses (configfile >> "CfgVehicles" >> _type >> "textureSources");
