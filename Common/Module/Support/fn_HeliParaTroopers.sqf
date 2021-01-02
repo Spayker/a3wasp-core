@@ -70,7 +70,7 @@ _waypoint setWayPointType "MOVE";
 _waypoint setWaypointStatements ["true", "[vehicle this, 15, [(getPosASL this) # 0, (getPosASL this) # 1, ((getPosASL this) # 2) - 30] ] call AR_Rappel_ALL_Cargo;"];
 
 _vehicleGrp setBehaviour 'COMBAT';
-_vehicleGrp setCombatMode 'RED';
+_vehicleGrp setCombatMode 'YELLOW';
 {_pilot disableAI _x} forEach ["AUTOTARGET","TARGET"];
 
 //--- Tell the group to move.

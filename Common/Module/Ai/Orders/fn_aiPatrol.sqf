@@ -3,7 +3,7 @@ params ["_team", "_destination", ["_radius", 30], ["_formation", "DIAMOND"]];
 
 if (_destination isEqualType objNull) then {_destination = getPos _destination};
 
-_team setCombatMode "RED";
+_team setCombatMode "YELLOW";
 _team setBehaviour "COMBAT";
 _team setFormation _formation;
 _team setSpeedMode "NORMAL";

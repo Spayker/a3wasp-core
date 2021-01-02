@@ -1,13 +1,13 @@
 Params ["_team","_destinations", ["_radius", 30], ["_formation", "COLUMN"], ["_isInfantry", false]];
 Private ["_destination","_maxWaypoints","_pos","_radius","_rand1","_rand2","_team","_type","_update","_wps","_z"];
 
-_team setCombatMode "RED";
+_team setCombatMode "YELLOW";
 _team setBehaviour "AWARE";
 _team setFormation _formation;
 _team setSpeedMode "NORMAL";
 
 if(_isInfantry)then{
-    _team setCombatMode "RED";
+    _team setCombatMode "YELLOW";
     _team setBehaviour "AWARE";
     _team setFormation "WEDGE";
     _team setSpeedMode "FULL"

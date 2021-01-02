@@ -19,7 +19,6 @@ AIC_fnc_addWaypointsActionHandler = {
 	private ["_group"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	AIC_fnc_setGroupControlAddingWaypoints(_groupControlId,true);
-	(units _group) doFollow (leader _group);
 };
 
 ["GROUP",localize "STR_WF_HC_COMMAND_ADDWP",[],AIC_fnc_addWaypointsActionHandler] call AIC_fnc_addCommandMenuAction;

@@ -56,7 +56,7 @@ _waypoint setWayPointBehaviour "CARELESS";
 _waypoint setWayPointSpeed "FULL";
 _waypoint setWayPointType "SAD";
 _vehicleGrp setBehaviour 'COMBAT';
-_vehicleGrp setCombatMode 'RED';
+_vehicleGrp setCombatMode 'YELLOW';
 _vehicleGrp setVariable ['isCasGroup', true, true];
 
 

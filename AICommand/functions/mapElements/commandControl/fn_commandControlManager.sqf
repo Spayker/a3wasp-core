@@ -147,7 +147,6 @@ if(!hasInterface && !isDedicated) then {
 							if(!isNil "_wpLoiterDirection") then {
 								_wp setWaypointLoiterType _wpLoiterDirection;
 							};  
-							
 						};
 					} forEach _groupControlWaypointArray;
 					if(count (waypoints _group)==0) then {
@@ -172,10 +171,8 @@ if(!hasInterface && !isDedicated) then {
 						[_group, _nextActiveWaypoint] call AIC_fnc_setWaypoint;
 					};
 				};
-				
 			} forEach allGroups;
-			sleep 2;
-		};
-	};
-};
-
+			sleep 2
+		}
+	}
+}
