@@ -11,6 +11,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
     _affected = ["Warfare_HQ_base_unfolded","Base_WarfareBBarracks","Base_WarfareBLightFactory","Base_WarfareBHeavyFactory",
                         "Base_WarfareBAircraftFactory","Base_WarfareBUAVterminal","Base_WarfareBVehicleServicePoint","BASE_WarfareBAntiAirRadar"];
     _area = [_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+    _colorRed = "#(argb,8,8,3)color(1,0,0,0.3,ca)";
 
     if(_area getVariable 'avail' <= 0) exitwith { _color = _colorRed };
     if (surfaceIsWater(position _preview)) exitwith { _color = _colorRed };

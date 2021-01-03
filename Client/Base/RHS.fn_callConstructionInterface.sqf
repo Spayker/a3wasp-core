@@ -680,7 +680,6 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					call compile format ["_funds = %1;",_itemFunds];
 					_fundsRemaining = _funds - _itemcost;
 					if (_fundsRemaining < 0) then {_color = _colorRed};
-					_color = [_itemcategory, _preview, _color] Call (missionNamespace getVariable "WF_C_STRUCTURES_PLACEMENT_METHOD");
 				};
 
 				//--Check if it is stationary defense and barracks in the area--
@@ -707,7 +706,6 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 						if (_availStaticDefense <= 0) then {
 							_color = _colorRed
 						}
-					}
 				};
 
                 if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
@@ -731,6 +729,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 
 				((uiNamespace getVariable "wf_title_coin") displayCtrl 112201) ctrlSetTextColor _colorGUI;
 				((uiNamespace getVariable "wf_title_coin") displayCtrl 112201) ctrlCommit 0;
+			};
 			};
 
 			//--- Place

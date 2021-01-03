@@ -11,6 +11,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD", {
     _affected = [];
 	_affected append (missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText]);
     _area = [_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+    _colorRed = "#(argb,8,8,3)color(1,0,0,0.3,ca)";
 
     if(_area getVariable 'avail' <= 0) exitwith { _color = _colorRed };
     if (surfaceIsWater(position _preview)) exitwith { _color = _colorRed };
