@@ -105,7 +105,7 @@ if(isNil "_groupControlId") then {
 		_waypoints = [_group] call AIC_fnc_getAllActiveWaypoints;
 		(units _group) doFollow (leader _group);
 		{
-            _x doMove (position (leader _group))
+		    if(_x != leader _group) then { _x doMove (position (leader _group)) }
         } forEach (units _group);
 		_color = AIC_fnc_getGroupControlColor(_groupControlId);
 

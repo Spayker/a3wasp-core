@@ -270,8 +270,13 @@ AIC_fnc_terminateRemoteControl = {
 	if!(isNull _originalLeader) then {
 	    _unitGroup = group _originalLeader;
 	    _unitGroup allowFleeing 0;
+
+	    if(vehicle (leader _unitGroup) != leader _unitGroup) then {
+	        _unitGroup setBehaviour "COMBAT"
+	    } else {
+            _unitGroup setBehaviour "AWARE"
+	    };
         _unitGroup setCombatMode "YELLOW";
-        _unitGroup setBehaviour "AWARE";
         _unitGroup setSpeedMode "FULL";
 
         _groupControlId = missionNamespace getVariable ["AIC_Remote_Control_To_GroupId", nil];
