@@ -6,15 +6,16 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
     Private["_i","_factory","_sorted","_walls","_factories","_area","_lx","_ly","_type","_p","_entities"];
     _itemcategory = _this # 0;
     _preview = _this # 1;
-    _color = _this # 2;
+    _colorRed = "#(argb,8,8,3)color(1,0,0,0.3,ca)";
+    _colorGreen = "#(argb,8,8,3)color(0,1,0,0.3,ca)";
+    _color = _colorGreen;
     _eside = if (side commanderTeam == west) then {east} else {west};
     _affected = ["Warfare_HQ_base_unfolded","Base_WarfareBBarracks","Base_WarfareBLightFactory","Base_WarfareBHeavyFactory",
                         "Base_WarfareBAircraftFactory","Base_WarfareBUAVterminal","Base_WarfareBVehicleServicePoint","BASE_WarfareBAntiAirRadar"];
     _area = [_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
-    _colorRed = "#(argb,8,8,3)color(1,0,0,0.3,ca)";
 
-    if(_area getVariable 'avail' <= 0) exitwith { _color = _colorRed };
-    if (surfaceIsWater(position _preview)) exitwith { _color = _colorRed };
+    
+    if (surfaceIsWater(position _preview)) exitwith { _colorRed };
 
     if ({_preview isKindOf _x} count _affected != 0) then {
         Private["_building","_sort","_strs","_lax","_lay"];
@@ -25,7 +26,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         _lax=((boundingBox _building) select 1) select 0;
         _lay=((boundingBox _building) select 1) select 1;
             if(_preview distance _building < 1.5*(_lax max _lay)) exitwith {
-            _color = _colorRed
+                _colorRed
             }
         }
     };
@@ -33,10 +34,10 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
     if (_itemcategory == 2) then {
         _walls = _preview nearEntities [[typeOf _preview],2];
 
-        if(count _walls > 1) exitwith {_color = _colorRed};
+        if(count _walls > 1) exitwith {_colorRed};
         if(count (nearestObjects [_preview, missionNamespace getVariable (Format["WF_%1DEFENSENAMES",WF_Client_SideJoined]),((((boundingbox _preview) select 1) select 0) max (((boundingbox _preview) select 1) select 1)) max 2] - [_preview]) > 0) then {_color = _colorRed} else{_color = _colorGreen};
         _entities = (position _preview) nearEntities [['Man','Car','Motorcycle','Tank','Air','Ship'],12];
-        if ((count _entities > 0) && {side _x != WF_Client_SideJoined} count _entities !=0) exitwith {_color = _colorRed};
+        if ((count _entities > 0) && {side _x != WF_Client_SideJoined} count _entities !=0) exitwith {_colorRed};
         _factories = nearestObjects [_preview, ["Warfare_HQ_base_unfolded","WarfareBBaseStructure","Base_WarfareBContructionSite"],25];
         if (count _factories > 0) then {
         _sorted = [_preview,_factories] Call WFCO_FNC_SortByDistance;
@@ -56,14 +57,15 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
             default {_p=1};
         };
 
-            if(_preview distance _factory < _p*(_lx min _ly)) exitwith { _color = _colorRed };
+            if(_preview distance _factory < _p*(_lx min _ly)) exitwith { _colorRed };
         };
+		if(_area getVariable 'avail' <= 0) exitwith { _colorRed };
     } else {
         private ["_objects","_sideEfacs","_object"];
         _sideEfacs = if (side commanderTeam == west) then {east} else {west};
         _objects = _preview nearEntities [["WarfareBBaseStructure","Base_WarfareBContructionSite"],25];
         if (count _objects > 0) then {
-            if (side (_objects select 0) == _sideEfacs && _preview distance (_objects select 0) < 10)exitwith {_color = _colorRed};
+            if (side (_objects select 0) == _sideEfacs && _preview distance (_objects select 0) < 10)exitwith {_colorRed};
         };
     };
 
@@ -72,7 +74,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         _color = _colorGreen;
         _camos = _preview nearEntities [[typeOf _preview],25];
         if(count _camos > 1) exitwith {
-            _color = _colorRed
+            _colorRed
     };
     };
 
@@ -83,8 +85,8 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         _eArea = [_preview,((_eside) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity3;
         if!(isNil "_townside")then{
             if ((_preview distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _eArea) exitwith {
-                _color = _colorRed;
-                 [format ["%1", "<t color='#fb0808'> You have entered a restricted area ! Impossible to build here! </t>"]] spawn WFCL_fnc_handleMessage
+                 [format ["%1", "<t color='#fb0808'> You have entered a restricted area ! Impossible to build here! </t>"]] spawn WFCL_fnc_handleMessage;
+                _colorRed
             };
         };
     };
@@ -101,8 +103,8 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
         _detected = (_area nearEntities [["Man", "Car", "Motorcycle", "Tank", "Air", "Ship", "Uav"], missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
         {
             if(side _x in _opposite_side) exitwith {
-                _color = _colorRed;
-                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage
+                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage;
+                _colorRed
             }
         }foreach _detected
     };

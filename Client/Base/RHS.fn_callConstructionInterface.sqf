@@ -679,7 +679,11 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_funds = 0;
 					call compile format ["_funds = %1;",_itemFunds];
 					_fundsRemaining = _funds - _itemcost;
-					if (_fundsRemaining < 0) then {_color = _colorRed};
+					if (_fundsRemaining < 0) then {
+						_color = _colorRed
+					} else {
+					    _color = [_itemcategory, _preview] Call (missionNamespace getVariable "WF_C_STRUCTURES_PLACEMENT_METHOD")
+					}
 				};
 
 				//--Check if it is stationary defense and barracks in the area--
