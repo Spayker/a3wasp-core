@@ -9,11 +9,10 @@
 params ["_killed", "_killer"];
 private ["_get", "_killed_isplayer","_killed_group","_killed_isman","_killed_side","_killed_type","_killer_group","_killer_isplayer","_killer_iswfteam","_killer_side","_killer_type","_killer_vehicle","_killer_uid", "_processCommanderBounty"];
 
-if(isHeadLessClient) exitWith {};
+if(isHeadLessClient || isServer) exitWith {};
 
 _killed_type = typeOf _killed;
 _killed_side = switch (getNumber(configFile >> "CfgVehicles" >> _killed_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
-if(isServer) exitWith { ["INFORMATION", Format ["fn_OnUnitKilled.sqf: [%1] [%2] has been killed by [%3].", side _killed, _killed, _killer]] Call WFCO_FNC_LogContent };
 
 if !(alive _killer) exitWith {}; //--- Killer is null or dead, nothing to see here.
 

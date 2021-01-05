@@ -36,7 +36,7 @@ if(_isHQ) then {
 
     if (_global) then {
     	if (_sideId != WF_DEFENDER_ID) then {
-    		[_vehicle, _sideId] remoteExec ["WFCO_FNC_initUnit",0,true];
+    		[_vehicle, _sideId] remoteExec ["WFCO_FNC_initUnit",-2,true];
     	};
     };
 
