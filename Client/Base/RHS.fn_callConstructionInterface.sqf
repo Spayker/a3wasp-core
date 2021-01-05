@@ -681,14 +681,13 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_fundsRemaining = _funds - _itemcost;
 					if (_fundsRemaining < 0) then {
 						_color = _colorRed
-					} else {
-					    _color = [_itemcategory, _preview] Call (missionNamespace getVariable "WF_C_STRUCTURES_PLACEMENT_METHOD")
-					}
+					};
+					_color = [_itemcategory, _preview, _color] Call (missionNamespace getVariable "WF_C_STRUCTURES_PLACEMENT_METHOD")
 				};
 
 				//--Check if it is stationary defense and barracks in the area--
 				_area = [_startPos,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
-				if!(isNil '_color') then {
+				
 					if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
 				    && _itemclass isKindOf "StaticWeapon") then {
 						//--Check if defense is special and barracks in area--
@@ -733,7 +732,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 
 				((uiNamespace getVariable "wf_title_coin") displayCtrl 112201) ctrlSetTextColor _colorGUI;
 				((uiNamespace getVariable "wf_title_coin") displayCtrl 112201) ctrlCommit 0;
-			};
+				
 			};
 
 			//--- Place
