@@ -69,19 +69,19 @@ if(_configurationMode == "SPECIFIED_COMMANDERS_SPECIFIED_GROUPS") then {
 				} forEach ( synchronizedObjects _x );
 			};
 		} forEach (synchronizedObjects _x);
-		[_configurationMode, [_x, _commandControlId]] remoteExec ["AIC_fnc_initAICommandClient", 0, true];
+		[_configurationMode, [_x, _commandControlId]] remoteExec ["AIC_fnc_initAICommandClient", -2, true];
 		_commandControlIndex = _commandControlIndex + 1;
 	} forEach _commandersModules;
 };
 
 if(_configurationMode == "SPECIFIED_COMMANDERS_ALL_GROUPS") then {
 	{
-		[_configurationMode, [_x]] remoteExec ["AIC_fnc_initAICommandClient", 0, true];
+		[_configurationMode, [_x]] remoteExec ["AIC_fnc_initAICommandClient", -2, true];
 	} forEach _commandersModules;
 };
 
 if(_configurationMode == "ALL_COMMANDERS_ALL_GROUPS") then {
-	[_configurationMode] remoteExec ["AIC_fnc_initAICommandClient", 0, true];
+	[_configurationMode] remoteExec ["AIC_fnc_initAICommandClient", -2, true];
 };
 
 
