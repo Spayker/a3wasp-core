@@ -461,9 +461,8 @@ if ((WF_Client_Logic getVariable "wf_votetime") > 0) then {createDialog "WF_Vote
 	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",55555, true, true];
 call WFCL_FNC_GetGearTemplates;
 
-if(WF_C_GAMEPLAY_THIRDVIEW == 0) then {
-    [] ExecVM "Client\Player\Init\fn_initThirdViewHandler.sqf";
-};
+[] ExecVM "Client\Player\Init\fn_initThirdViewHandler.sqf";
+
 
 clientInitComplete = true;
 

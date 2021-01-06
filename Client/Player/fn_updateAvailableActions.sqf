@@ -167,10 +167,6 @@ while {!WF_GameOver} do {
 		if (WF_ForceUpdate) then {WF_ForceUpdate  = false}
 	};
 
-	if (cameraView == "GROUP") then {
-             player switchCamera "EXTERNAL"
-	};
-
 	_lastUpdate = time;
 	sleep 5;
 };

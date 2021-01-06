@@ -1695,6 +1695,14 @@
 				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</Italian>
 				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent third view when player on feet</Portuguese>
 			</Key>
+			<Key ID="STR_WF_GAMEPLAY_TACTICALVIEW_MESSAGE">
+				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent tactical view</English>
+				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent tactical view</French>
+				<German>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent tactical view</German>
+				<Russian>&lt;t size='1.3' color='#2394ef'&gt;Информация&lt;/t&gt;&lt;br /&gt;&lt;br /&gt;Тактический вид запрещен настройками миссии</Russian>
+				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent tactical view</Italian>
+				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Mission settings are prevent tactical view</Portuguese>
+			</Key>
 			<Key ID="STR_WF_PARAMETER_ViewDistance_KEYBOARDCHANGED">
 				<English>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </English>
 				<French>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;View distance is set to </French>
