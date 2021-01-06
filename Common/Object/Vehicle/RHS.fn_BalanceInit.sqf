@@ -26,14 +26,6 @@ switch (typeOf _this) do
         };
 	};
 	
-	case "CUP_B_LAV25_desert_USMC";
-	case "CUP_B_LAV25_USMC":{
-    	_current_light_level = ((side player) Call WFCO_FNC_GetSideUpgrades) select WF_UP_LIGHT;
-        if(_current_light_level < 4)then{
-            _this disableTIEquipment true;
-    	};
-    };
-	
 	case "rhs_bmd1pk":{
         _current_heavy_level = ((side player) Call WFCO_FNC_GetSideUpgrades) select WF_UP_HEAVY;
         if(_current_heavy_level < 1)then{
