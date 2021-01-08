@@ -49,11 +49,31 @@ params ["_dropPosition"];
             } else {
                 _unitIsWeared = false;
                 _currentDamage= _currentDamage + _chemicalDamage;
-                _unit setdammage _currentDamage;
+
                 if (_isUnitInLightVehicle) then {
                     {
+                        if(group _x == WF_Client_Team) then {
+                            if(!isNull (missionNamespace getVariable "AIC_Remote_View_From_Unit")) then {
+                                [] call AIC_fnc_terminateRemoteControl
+                            };
+                            
+                            if(!isNull (missionNamespace getVariable "AIC_Remote_Control_From_Unit")) then {
+                                [] call AIC_fnc_terminateRemoteControl
+                            };
+                        };
                         (_x) setdammage _currentDamage
                     } foreach (crew (vehicle _unit))
+                } else {
+                    if(group _unit == WF_Client_Team) then {
+                        if(!isNull (missionNamespace getVariable "AIC_Remote_View_From_Unit")) then {
+                            [] call AIC_fnc_terminateRemoteControl
+                        };
+
+                        if(!isNull (missionNamespace getVariable "AIC_Remote_Control_From_Unit")) then {
+                            [] call AIC_fnc_terminateRemoteControl
+                        };
+                    };
+                    _unit setdammage _currentDamage
                 };
 
                 _amplificat_effect = linearConversion [0, 1,(getdammage _unit), 2, 0.1, true];
