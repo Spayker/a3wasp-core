@@ -404,6 +404,7 @@ class WF_Common {
         file = "Common\Map";
         class trackAirTargets {};
         class initBoundaries {};
+        class performAirVehicleTracking {};
     };
 
     class ModuleCipher {

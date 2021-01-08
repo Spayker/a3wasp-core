@@ -561,7 +561,7 @@ WF_C_MAP_MARKER_HANDLER = {
 		_unit  = 	_x # 2;
 		_text  = 	_x # 3;
 
-            _this select 0 drawIcon [
+        (_this select 0) drawIcon [
                 _iconType,
                 _color,
                 getPos _unit,
