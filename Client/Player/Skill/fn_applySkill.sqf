@@ -88,6 +88,7 @@ fnc_addFastRepairAction = {
         "time - WF_SK_V_LastUse_LR > WF_SK_V_Reload_LR && isNull objectParent player"
 	];
 };
+
 //--- Repair Trucks.
 _unit addAction [localize 'STR_WF_BuildMenu_Repair',
                  {call WFCL_fnc_callBuildMenuForRepairTruck},
