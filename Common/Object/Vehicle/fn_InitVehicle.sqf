@@ -34,10 +34,11 @@ if(_isHQ) then {
 [_vehicle, _bounty, _sideId, _side, _global, _skin, _ishq] spawn {
     params ["_vehicle", "_bounty", "_sideId", "_side", "_global", "_skin", "_ishq"];
 
+
     if (_global) then {
     	if (_sideId != WF_DEFENDER_ID) then {
-    		[_vehicle, _sideId] remoteExec ["WFCO_FNC_initUnit",-2,true];
-    	};
+            [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true]
+        }
     };
 
     if(typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1SUPPLY_TRUCK", _side], ""])) then {

@@ -61,7 +61,7 @@ for '_i' from 1 to _vehicle_count do {
 	_vehPos = getPosATL _vehicle;
 	_vehicle setPosATL [_vehPos # 0, _vehPos # 1, (_ranPos select _ran) # 2];
 
-    [_vehicle,_sideID] remoteExec ["WFCO_FNC_initUnit"];
+    [_vehicle,_sideID] remoteExec ["WFCO_FNC_initUnit", _side, true];
 	_vehicles pushBack _vehicle;
 
 	//--- Spawn the pilot.

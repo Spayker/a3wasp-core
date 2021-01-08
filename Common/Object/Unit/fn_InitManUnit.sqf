@@ -67,14 +67,15 @@ for "_x" from 0 to ((count WF_C_INFANTRY_TO_REQUIP) - 1) do {
 	if ((typeOf _unit) in _currentElement) exitWith{(_unit) call WFCO_FNC_Requip_AI;};
 };
 
+
 if (_global) then {
 	if (_side != WF_DEFENDER_ID) then {
 		if ((missionNamespace getVariable "WF_C_UNITS_TRACK_INFANTRY") > 0) then {
-			[_unit,_side] remoteExec ["WFCO_FNC_initUnit", -2, true];
+            [_unit,_side] remoteExec ["WFCO_FNC_updateUnitMarkerStorage", (_side) call WFCO_FNC_GetSideFromID, true]
 		} else {
-			if (isPlayer leader _group) then {[_unit, _side] spawn WFCO_FNC_initUnit};
-		};
-	};
+            if (isPlayer leader _group) then {[_unit, _side] spawn WFCO_FNC_initUnit}
+        }
+    }
 };
 
 _unit addMPEventHandler ['MPKilled', {

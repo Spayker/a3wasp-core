@@ -59,7 +59,7 @@ _vehicle = _vehicleArray # 0;
     _x setUnitLoadout (missionNamespace getVariable Format ['WF_%1PILOT',_side]);
 } forEach crew _vehicle;
 [_vehicle, _sideID, false, true, true, -1] call WFCO_FNC_InitVehicle;
-[_vehicle, _sideID] remoteExec ["WFCO_FNC_initUnit"];
+[_vehicle, _sideID] remoteExec ["WFCO_FNC_initUnit", _side, true];
 
 //--- Spawn the pilot.
 _pilot = driver _vehicle;

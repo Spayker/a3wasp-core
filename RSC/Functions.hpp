@@ -482,6 +482,7 @@ class WF_Common {
         class getLiveUnits {};
         class getUnitLoadout {};
         class getHostilesInArea {};
+        class updateUnitMarkerStorage {};
     };
 
     class ObjectUnitAi {
