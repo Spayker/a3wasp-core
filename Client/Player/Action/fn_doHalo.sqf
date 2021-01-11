@@ -6,7 +6,7 @@ Parameters:
 */
 Private ["_unit","_vehicle"];
 
-_vehicle = _this select 0;
+_vehicle = vehicle (_this select 0);
 _unit = _this select 1;
 
 _unit action ["EJECT",_vehicle];

@@ -1,6 +1,6 @@
 Private ["_dir","_speed","_vehicle","_vel"];
 
-_vehicle = _this select 0;
+_vehicle = vehicle (_this select 0);
 
 _vel = velocity _vehicle;
 _dir = direction _vehicle;

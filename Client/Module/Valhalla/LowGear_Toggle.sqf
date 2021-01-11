@@ -1,6 +1,6 @@
 Private ["_vehicle"];
 
-_vehicle = _this select 0;
+_vehicle = vehicle (_this select 0);
 
 Local_HighClimbingModeOn=!Local_HighClimbingModeOn;
 

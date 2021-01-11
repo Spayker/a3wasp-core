@@ -1,6 +1,6 @@
 Private ["_cargo","_vehicle"];
 
-_vehicle = _this select 0;
+_vehicle = vehicle(_this select 0);
 
 //--- Get the crew.
 _cargo = (crew _vehicle) - [driver _vehicle, gunner _vehicle, commander _vehicle];

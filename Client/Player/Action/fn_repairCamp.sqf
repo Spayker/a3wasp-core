@@ -3,9 +3,10 @@
 	  todo, action can be reused after x time.
 */
 
-params ["_vehicle"];
+params ["_unit"];
 private ["_camp","_camp_sideID","_camps","_delay","_range","_temp","_townModel"];
 
+_vehicle = vehicle _unit;
 _range = missionNamespace getVariable "WF_C_CAMPS_REPAIR_RANGE";
 
 //--- Attempt to get a nearby camp.
