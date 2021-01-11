@@ -4,6 +4,8 @@ params ['_unit', '_sideID'];
 waitUntil {!isNil 'WF_UNIT_MARKERS'};
 waitUntil {!isNil 'sideID'};
 
+if (typeName _sideId == "SIDE") then {_sideId = (_sideId) call WFCO_FNC_GetSideID};
+
 if (sideID != _sideID) exitWith {};
 
 _unit_kind = typeOf _unit;
