@@ -38,20 +38,20 @@ WF_C_ADV_AIR_DEFENCE = [
 						];
 
 WF_VEHICLES_WITH_EXTRA_SLOT_ISSUE = [
-    // classname                        com,  gun,  not turret seats, turret seats
-    ["CUP_B_Jackal2_GMG_GB_W",         [true, true, 0,                  0]],
-    ["CUP_B_Jackal2_GMG_GB_D",         [true, true, 0,                  0]],
-    ["CUP_B_BAF_Coyote_GMG_W",         [true, true, 0,                  0]],
-    ["CUP_B_BAF_Coyote_GMG_D",         [true, true, 0,                  0]],
-    ["CUP_B_M1A2_TUSK_MG_US_Army",     [true, true, 0,                  1]],
-    ["CUP_B_M1A2_TUSK_MG_DES_US_Army", [true, true, 0,                  1]],
-    ["CUP_B_Leopard2A6_GER",           [true, true, 0,                  1]],
-    ["CUP_B_Leopard2A6DST_GER",        [true, true, 0,                  1]],
-    ["CUP_O_BTR80_TK",                 [false, true, 0,                 0]],
-    ["CUP_O_BTR80A_TK",                [false, true, 0,                 0]],
+    // classname                        		com,  gun,  not turret seats, turret seats
+    ["CUP_B_Jackal2_GMG_GB_W",         		[true, true, 0,                  0]],
+    ["CUP_B_Jackal2_GMG_GB_D",         		[true, true, 0,                  0]],
+    ["CUP_B_BAF_Coyote_GMG_W",         		[true, true, 0,                  0]],
+    ["CUP_B_BAF_Coyote_GMG_D",         		[true, true, 0,                  0]],
+    ["CUP_B_M1A2_TUSK_MG_US_Army_WASP",     [true, true, 0,                  1]],
+    ["CUP_B_M1A2_TUSK_MG_DES_US_Army_WASP", [true, true, 0,                  1]],
+    ["CUP_B_Leopard2A6_GER",           		[true, true, 0,                  1]],
+    ["CUP_B_Leopard2A6DST_GER",        		[true, true, 0,                  1]],
+    ["CUP_O_BTR80_TK",                 		[false, true, 0,                 0]],
+    ["CUP_O_BTR80A_TK",                		[false, true, 0,                 0]],
     ["CUP_O_BTR80_GREEN_RU",                [false, true, 0,            0]],
     ["CUP_O_BTR80A_CAMO_RU",                [false, true, 0,            0]],
-    ["CUP_O_Ka52_RU",                  [false,true, 0,                  0]]
+    ["CUP_O_Ka52_RU",                  		[false,true, 0,                  0]]
 ];
 
 //--Parameters: 1 - pylon num, 2 - ammo class name, 3 - pylot direction, 4 - turret num, 5 - count--
