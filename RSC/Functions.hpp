@@ -539,7 +539,6 @@ class WF_Common {
         class clearVehicleCargo {};
         class createVehicle {};
         class findTurretsRecursive {};
-        class handleAAMissiles {};
         class handleIncomingMissile {};
         class placeSafe {};
         class rearmVehicle {};

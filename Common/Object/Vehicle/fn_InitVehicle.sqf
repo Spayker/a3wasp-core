@@ -70,10 +70,6 @@ if(_isHQ) then {
 		_vehicle addMPEventHandler ["MPHit",{_this call WFCO_FNC_OnUnitHit}];
 	};
 
-	/*if(typeOf _vehicle in ['CUP_O_2S6M_RU','CUP_B_M6LineBacker_USA_W', 'CUP_B_M6LineBacker_USA_D']) then {
-		_vehicle addeventhandler ['Fired',{_this spawn WFCO_FNC_HandleAAMissiles}]
-	};*/
-
 	//--Check if vehicle is arty vehicle and add EH--
     {
         if(typeOf _vehicle == (_x # 0)) exitWith {
