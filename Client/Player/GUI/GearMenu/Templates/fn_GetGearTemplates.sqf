@@ -16,4 +16,4 @@ private ["_templates"];
 	["MESSAGE", Format["fn_GetGearTemplates.sqf: The gear templates has been recieved for a role %1: %2", _x, _templates]] Call WFCO_FNC_LogContent;
 
 	missionNamespace setVariable [format["wf_player_gearTemplates_%1", _x], _templates];
-} forEach [WF_SNIPER,WF_SOLDIER,WF_ENGINEER,WF_SPECOPS,WF_ARTY_OPERATOR,WF_UAV_OPERATOR,""];
+} forEach [WF_SNIPER,WF_SOLDIER,WF_ENGINEER,WF_SPECOPS,WF_MEDIC,WF_SUPPORT,""];

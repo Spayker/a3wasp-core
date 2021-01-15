@@ -44,7 +44,7 @@ _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 
     if(_isAdvVehicle) then {
         if!(isNil '_selectedRole')then{
-            if(_selectedRole == WF_ARTY_OPERATOR)then{
+            if(_selectedRole == WF_SUPPORT)then{
                 _addit = true;
             }
         }

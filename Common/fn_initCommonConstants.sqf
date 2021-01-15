@@ -43,8 +43,8 @@ WF_SNIPER         = "Sniper";
 WF_SOLDIER        = "Soldier";
 WF_ENGINEER       = "Engineer";
 WF_SPECOPS        = "SpecOps";
-WF_ARTY_OPERATOR  = "Arty Operator";
-WF_UAV_OPERATOR  = "UAV Operator";
+WF_MEDIC          = "Medic";
+WF_SUPPORT        = "Support";
 
 //--- Common Upgrades, each number match the upgrades arrays.
 WF_UP_BARRACKS = 0;

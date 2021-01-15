@@ -66,10 +66,10 @@ switch (WF_SK_V_Type) do {
 		_unit addAction ["<t color='#11ec52'>" + localize 'STR_WF_Repair_Camp' + "</t>",{call WFCL_fnc_repairCampEngineer}, [], 97, false, true, '', '_camp = [player] call WFCL_FNC_GetNearestCamp; (!isNull _camp && (isObjectHidden _camp))'];
 		[_unit] call fnc_addFastRepairAction;
 	};
-	case WF_ARTY_OPERATOR: {
+	case WF_MEDIC: {
 		[_unit] call fnc_addFastRepairAction;
 	};
-    case WF_UAV_OPERATOR: {
+    case WF_SUPPORT: {
 		[_unit] call fnc_addFastRepairAction;
 	};
 };

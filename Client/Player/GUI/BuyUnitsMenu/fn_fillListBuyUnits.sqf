@@ -56,7 +56,7 @@ _UpAir = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_AIR;
 		if (_x in WF_FLY_UAVS)then{ _isAdvVehicle = true};
 
         if!(isNil '_selectedRole')then{
-            if(_selectedRole == WF_ARTY_OPERATOR)then{
+            if(_selectedRole == WF_SUPPORT)then{
                 if(_filler == 'Light')then{
                     if (_isAdvVehicle && _UpLight >= _c # QUERYUNITUPGRADE) then {
                         _addit = true
@@ -69,7 +69,7 @@ _UpAir = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_AIR;
                 }
 		    };
 
-		    if(_selectedRole == WF_UAV_OPERATOR) then {
+		    if(_selectedRole == WF_SUPPORT) then {
 		        if(_filler == 'Aircraft' || _filler == 'Airport') then {
 		            if (_isAdvVehicle  && _UpAir >= _c # QUERYUNITUPGRADE) then {
 		                _addit = true

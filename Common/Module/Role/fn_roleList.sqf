@@ -54,8 +54,8 @@ if(isNil '_availableRoles')then{
         0 // current occupied amount
     ];
     _availableRoles pushBack [
-        WF_ARTY_OPERATOR,
-        WF_ARTY_OPERATOR,
+        WF_MEDIC,
+        WF_MEDIC,
         "Support role on battlefield. Abilities: <br/>"+
         "- access to advanced artillery<br/>",
         [],
@@ -65,8 +65,8 @@ if(isNil '_availableRoles')then{
         0 // current occupied amount
     ];
     _availableRoles pushBack [
-        WF_UAV_OPERATOR,
-        WF_UAV_OPERATOR,
+        WF_SUPPORT,
+        WF_SUPPORT,
         "Support role on battlefield. Features: <br/>"+
         "- access to backpacks with UAVs<br/>",
         [],

@@ -72,8 +72,8 @@ if!(isNil 'WF_newBuyRolerequest')then{
                         case WF_SOLDIER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];};
                         case WF_ENGINEER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearEngineer", WF_Client_SideJoinedText];};
                         case WF_SPECOPS: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearLock", WF_Client_SideJoinedText];};
-                        case WF_ARTY_OPERATOR: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearArtOperator", WF_Client_SideJoinedText];};
-                        case WF_UAV_OPERATOR: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearUAVOperator", WF_Client_SideJoinedText];};
+                            case WF_MEDIC: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", WF_Client_SideJoinedText];};
+                            case WF_SUPPORT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", WF_Client_SideJoinedText];};
                     };
                     [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
                         WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout

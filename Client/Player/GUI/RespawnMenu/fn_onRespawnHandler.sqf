@@ -98,9 +98,9 @@ if (_loadDefault) then {
 
 		case WF_SPECOPS: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearLock", WF_Client_SideJoinedText]};
 
-        case WF_ARTY_OPERATOR: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearArtOperator", WF_Client_SideJoinedText];};
+        case WF_MEDIC: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", WF_Client_SideJoinedText];};
 
-        case WF_UAV_OPERATOR: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearUAVOperator", WF_Client_SideJoinedText];};
+        case WF_SUPPORT: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", WF_Client_SideJoinedText];};
 	};
 	
 	[player, _default] call WFCO_FNC_EquipUnit;
