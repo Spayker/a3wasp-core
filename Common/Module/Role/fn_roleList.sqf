@@ -57,7 +57,8 @@ if(isNil '_availableRoles')then{
         WF_MEDIC,
         WF_MEDIC,
         "Support role on battlefield. Abilities: <br/>"+
-        "- access to advanced artillery<br/>",
+        "- can do full heal<br/>",
+        "- can build field hospitals<br/>",
         [],
         7500,
         [],
@@ -69,6 +70,7 @@ if(isNil '_availableRoles')then{
         WF_SUPPORT,
         "Support role on battlefield. Features: <br/>"+
         "- access to backpacks with UAVs<br/>",
+        "- access to advanced artillery<br/>",
         [],
         7500,
         [],
