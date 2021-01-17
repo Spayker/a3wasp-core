@@ -67,7 +67,6 @@ for "_x" from 0 to ((count WF_C_INFANTRY_TO_REQUIP) - 1) do {
 	if ((typeOf _unit) in _currentElement) exitWith{(_unit) call WFCO_FNC_Requip_AI;};
 };
 
-
 if (_global) then {
 	if (_side != WF_DEFENDER_ID) then {
 		if ((missionNamespace getVariable "WF_C_UNITS_TRACK_INFANTRY") > 0) then {

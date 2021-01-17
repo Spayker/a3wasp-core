@@ -130,7 +130,15 @@ if(!hasInterface && !isDedicated) then {
 								_priorWaypointDurationEnabled = true;
 							};
 							_wp = _group addWaypoint [_x select 1, 0];
+                            
+							if (_wpCondition == "true" ) then {
+							    if (_wpType == "MOVE") then {
 							_wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",_wpCondition], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
+							    }
+							} else {
+							    _wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",((getPos (leader _group)) distance _wpPosition) < 25], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
+							};
+
 							_wp setWaypointType _wpType;
 							if(!isNil "_wpTimeout") then {
 								_wp setWaypointTimeOut [_wpTimeout,_wpTimeout,_wpTimeout];

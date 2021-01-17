@@ -90,12 +90,15 @@ _icons = [
 
 while {true} do {
 
-    _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
+
     _usable = [hqInRange,barracksInRange,gearInRange,lightInRange,heavyInRange,aircraftInRange,hangarInRange,
                                     serviceInRange,commandInRange,antiAirRadarInRange,antiArtyRadarInRange];
     _c = 0;
 
-	if (!isNull _cutDisplay && hudOn) then {
+    if(isNull _cutDisplay) then {
+        _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
+    } else {
+        if (hudOn) then {
             //--HUD variables--START----------------------------------------------------------------------------------------------//
             _bgControl = _cutDisplay DisplayCtrl 1099;
             _hControl = _cutDisplay DisplayCtrl 1100;
@@ -215,7 +218,6 @@ while {true} do {
             };
             _c = _c + 1;
         } forEach _usable;
-
 	} else {
         call _hideHud;
         {
@@ -224,8 +226,7 @@ while {true} do {
             };
             _c = _c + 1;
         } forEach _usable
-
+        }
     };
-
 	sleep 3
 }

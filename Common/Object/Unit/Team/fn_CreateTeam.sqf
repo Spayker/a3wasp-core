@@ -10,7 +10,7 @@ if (_list isEqualType "") then {_list = [_list]};
 	if (_x isKindOf 'Man') then {
 		_position = [_position, 2, 15, 5, 0, 20, 0] call BIS_fnc_findSafePos;
 		_unit = [_x,_group,_position,_sideID] Call WFCO_FNC_CreateUnit;
-		
+		_unit disableAI "RADIOPROTOCOL";
 		if(isDedicated) then {
             _unit enableSimulationGlobal false
 		} else {
@@ -67,6 +67,7 @@ if (_list isEqualType "") then {_list = [_list]};
             };
             _x setUnitLoadout _classLoadout;
             _x setUnitTrait ["Engineer",true];
+            _x disableAI "RADIOPROTOCOL";
         } forEach crew _vehicle;
 
         _unitskin = -1;

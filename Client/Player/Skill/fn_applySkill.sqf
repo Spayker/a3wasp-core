@@ -39,6 +39,8 @@ switch (WF_SK_V_Type) do {
 		[_unit] call fnc_addFastRepairAction;
 	};
 	case WF_SNIPER: {
+	    player setUnitTrait ["audibleCoef", true];
+	    player setUnitTrait ["camouflageCoef", true];
 		/* Spotting Ability */
 		_unit addAction [
 			("<t color='#f8d664'>" + localize 'STR_WF_ACTION_Spot'+ "</t>"),
@@ -67,9 +69,11 @@ switch (WF_SK_V_Type) do {
 		[_unit] call fnc_addFastRepairAction;
 	};
 	case WF_MEDIC: {
+	    player setUnitTrait ["Medic", true];
 		[_unit] call fnc_addFastRepairAction;
 	};
     case WF_SUPPORT: {
+        player setUnitTrait ["UAVHacker", true];
 		[_unit] call fnc_addFastRepairAction;
 	};
 };

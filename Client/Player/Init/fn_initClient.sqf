@@ -141,8 +141,8 @@ if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNu
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_SpecOps_East.sqf"};
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_SpecOps_West.sqf"};
 
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_UAV_Operator_East.sqf"};
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_UAV_Operator_West.sqf"};
+if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_East.sqf"};
+if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_West.sqf"};
 
 
 //--- UI Namespace release from previous possible games (only on titles dialog!).
