@@ -10,6 +10,7 @@ if(isNil '_availableRoles')then{
         WF_SNIPER,
         "Sniper role with special abilities: <br/>" +
          "- leaves marks on map by aiming<br/>" +
+         "- have harder to spot by enemy feature<br/>" +
          "- can request arty strikes",
         [],
         5000,
@@ -22,6 +23,7 @@ if(isNil '_availableRoles')then{
         WF_SOLDIER,
         WF_SOLDIER,
         "Assault role for town taking. Abilities: <br/>"+
+        "- have access to assault rifles<br/>"+
         "- repairs camps",
         [],
         5000,
@@ -34,6 +36,7 @@ if(isNil '_availableRoles')then{
         WF_ENGINEER,
         "Support role on battlefield. Abilities: <br/>" +
         "- Repairs vehicles without toolsets <br/>"+
+        "- Can destroy camps<br/>"+
         "- Repairs camps",
         [],
         7500,
@@ -46,7 +49,7 @@ if(isNil '_availableRoles')then{
         WF_SPECOPS,
         "Support role on battlefield. Abilities: <br/>"+
         "- hi-jacks enemy locked vehicles <br/>" +
-        "- light vehicle repair ability <br/>",
+        "- access to adv silencer rifles <br/>",
         [],
         7500,
         [],
@@ -57,7 +60,8 @@ if(isNil '_availableRoles')then{
         WF_MEDIC,
         WF_MEDIC,
         "Support role on battlefield. Abilities: <br/>"+
-        "- can do full heal<br/>",
+        "- can do full heal<br/>" +
+        "- can heal with medkit package <br/>" +
         "- can build field hospitals<br/>",
         [],
         7500,
@@ -69,7 +73,8 @@ if(isNil '_availableRoles')then{
         WF_SUPPORT,
         WF_SUPPORT,
         "Support role on battlefield. Features: <br/>"+
-        "- access to backpacks with UAVs<br/>",
+        "- access to backpacks with UAVs<br/>" +
+        "- can hack UAV vehicles<br/>" +
         "- access to advanced artillery<br/>",
         [],
         7500,
