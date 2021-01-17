@@ -103,15 +103,6 @@ if(isNil "_groupControlId") then {
 		_waypointIconCount = count _waypointIcons;
 		
 		_waypoints = [_group] call AIC_fnc_getAllActiveWaypoints;
-		{
-		    if(_x != leader _group) then { doStop _x }
-        } forEach (units _group);
-
-		{
-		    if(_x != leader _group) then {
-		        _x doFollow (leader _group);
-		    }
-        } forEach (units _group);
 
 		_color = AIC_fnc_getGroupControlColor(_groupControlId);
 
@@ -159,6 +150,12 @@ if(isNil "_groupControlId") then {
 			
 		} forEach _waypointsArray;
 	
+		if(count (waypoints _group) > 0) then {
+            {
+                if(_x != leader _group) then { _x doMove (getWPPos ((waypoints _group) # 0)) }
+            } forEach (units _group);
+		};
+
 		if(_waypointIconIndex < _waypointIconCount) then {
 			for "_i" from _waypointIconIndex to (_waypointIconCount-1) do
 			{

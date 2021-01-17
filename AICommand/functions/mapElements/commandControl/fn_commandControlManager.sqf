@@ -112,6 +112,7 @@ if(!hasInterface && !isDedicated) then {
 			private ["_group","_groupControl","_lastWpRevision","_groupWaypoints","_groupControlWaypoints","_currentWpRevision","_groupControlWaypointArray","_wp","_goCodeWpFound","_wpType","_waitForCode","_wpActionScript","_wpCondition","_wpTimeout"];
 			{
 				_group = _x;
+				if (side _group != WF_DEFENDER && (_group getVariable["isHighCommandPurchased",false]) ) then {
 				_lastWpRevision = _group getVariable ["AIC_Server_Last_Wp_Revision",0];
 				_groupWaypoints = waypoints _group;
 				_groupControlWaypoints = [_group] call AIC_fnc_getAllActiveWaypoints;
@@ -130,13 +131,20 @@ if(!hasInterface && !isDedicated) then {
 								_priorWaypointDurationEnabled = true;
 							};
 							_wp = _group addWaypoint [_x select 1, 0];
-                            
 							if (_wpCondition == "true" ) then {
 							    if (_wpType == "MOVE") then {
+                                        if (_forEachIndex == 0) then {
+                                            {
+                                                if(_x != leader _group) then { _x doMove (getWPPos (_groupWaypoints # 0) ) }
+                                            } forEach (units _group)
+                                        };
+
+                                        _wp setWaypointStatements ["true", "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
+                                    } else {
 							_wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",_wpCondition], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
 							    }
 							} else {
-							    _wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",((getPos (leader _group)) distance _wpPosition) < 25], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
+                                    _wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",_wpCondition], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
 							};
 
 							_wp setWaypointType _wpType;
@@ -179,6 +187,7 @@ if(!hasInterface && !isDedicated) then {
 						[_group, _nextActiveWaypoint] call AIC_fnc_setWaypoint;
 					};
 				};
+				}
 			} forEach allGroups;
 			sleep 2
 		}
