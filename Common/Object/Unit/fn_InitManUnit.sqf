@@ -56,8 +56,9 @@ if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     _unit enableFatigue false;
     _unit enableStamina false
 };
-
-if(!(_unit hasWeapon "CUP_NVG_PVS14_Hide_WASP")) then { _unit addWeapon "CUP_NVG_PVS14_Hide_WASP"; };
+if (_side != WF_DEFENDER_ID) then {
+    if(!(_unit hasWeapon "CUP_NVG_PVS14_Hide_WASP")) then { _unit addWeapon "CUP_NVG_PVS14_Hide_WASP" }
+};
 
 if (_side IsEqualType WEST) then {_side = (_side) Call WFCO_FNC_GetSideID;};
 
