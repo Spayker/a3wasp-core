@@ -132,15 +132,6 @@ if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNu
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_East.sqf"};
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_West.sqf"};
 
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Engineer_East.sqf"};
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Engineer_West.sqf"};
-
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Soldier_East.sqf"};
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Soldier_West.sqf"};
-
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_SpecOps_East.sqf"};
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_SpecOps_West.sqf"};
-
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_East.sqf"};
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_West.sqf"};
 
