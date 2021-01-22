@@ -214,12 +214,13 @@ while {alive player && dialog} do {
             _currentValue = lnbValue[_listBox,[_currentRow,0]];
             _cost = lnbValue[_listBox,[_currentRow,1]];
             _generalSquadCounter = lnbValue[_listBox,[_currentRow,2]];
-            _cpt = 1;
+
 
 		    _generalGroupTemplates = missionNamespace getVariable Format["WF_%1AITEAMTEMPLATES",WF_Client_SideJoined];
 		    _generalGroupTemplateDescriptions = missionNamespace getVariable Format["WF_%1AITEAMTEMPLATEDESCRIPTIONS",WF_Client_SideJoined];
             _selectedGroupTemplate = _generalGroupTemplates # _generalSquadCounter;
             _selectedGroupTemplateDescription = _generalGroupTemplateDescriptions # _generalSquadCounter;
+            _cpt = 1;
 
             _commonTime = 0;
             {

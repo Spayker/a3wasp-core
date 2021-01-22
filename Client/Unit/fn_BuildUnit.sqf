@@ -55,6 +55,7 @@ varQueu = time + random 10000 - random 500 + diag_frameno;
 _queu = _building getVariable "queu";
 if (isNil "_queu") then {_queu = []};
 _queu pushBack _unique;
+
 _building setVariable ["queu",_queu,true];
 
 _ret = 0;

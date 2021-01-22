@@ -47,6 +47,7 @@ varGroupQueu = time + random 10000 - random 500 + diag_frameno;
 _queu = _building getVariable "groupQueu";
 if (isNil "_queu") then {_queu = []};
 _queu pushBack _unique;
+
 _building setVariable ["groupQueu",_queu,true];
 
 _ret = 0;
@@ -78,7 +79,13 @@ while {_unique != _queu # 0 && alive _building && !isNull _building} do {
 
 if (_show) then { [Format [localize "STR_WF_INFO_BuyEffective",_unitdescription]] spawn WFCL_fnc_handleMessage };
 
+_position = [_position, 2, 30, 5, 0, 20, 0] call BIS_fnc_findSafePos;
+[player,_selectedGroupTemplate, _position, _direction] remoteExecCall ["WFSE_fnc_buyGroup", 2];
+
+sleep _commonTime;
+
 _queu = _building getVariable "groupQueu";
+
 _queu = _queu - [_unique];
 _building setVariable ["groupQueu",_queu,true];
 
@@ -87,11 +94,6 @@ if (!alive _building || isNull _building) exitWith {
 	missionNamespace setVariable [Format["WF_C_GROUP_QUEUE_%1",_factory],(missionNamespace getVariable Format["WF_C_GROUP_QUEUE_%1",_factory])-1];
 };
 
-
-_position = [_position, 2, 30, 5, 0, 20, 0] call BIS_fnc_findSafePos;
-[player,_selectedGroupTemplate, _position, _direction] remoteExecCall ["WFSE_fnc_buyGroup", 2];
-
-sleep _commonTime;
 groupQueu = groupQueu - _cpt;
 
 missionNamespace setVariable [Format["WF_C_GROUP_QUEUE_%1",_factory],(missionNamespace getVariable Format["WF_C_GROUP_QUEUE_%1",_factory])-1];
