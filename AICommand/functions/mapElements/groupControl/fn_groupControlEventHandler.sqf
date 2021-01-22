@@ -142,7 +142,6 @@ if(isNil "_groupControlId") then {
 				AIC_fnc_setInteractiveIconIconSet(_interactiveIconId,_waypointIconSet);
 				_eventHandlerScriptParams = [_groupControlId,_x select 0];
 				AIC_fnc_setInteractiveIconEventHandlerScriptParams(_interactiveIconId, _eventHandlerScriptParams);
-				//diag_log format ["Setting Waypoints: %1, %2, %3", _x, _interactiveIconId, _eventHandlerScriptParams];
 				_waypointIcons set [_waypointIconIndex,_waypointIcon];
 			};
 			
@@ -150,10 +149,13 @@ if(isNil "_groupControlId") then {
 			
 		} forEach _waypointsArray;
 	
+        _groupLeader = leader _group;
+        if(vehicle _groupLeader != _groupLeader) then {
 		if(count (waypoints _group) > 0) then {
             {
-                if(_x != leader _group) then { _x doMove (getWPPos ((waypoints _group) # 0)) }
+                    if(_x != _groupLeader) then { _x doMove ([getWPPos ((waypoints _group) # 0), 15] call WFCO_fnc_getEmptyPosition) }
             } forEach (units _group);
+            }
 		};
 
 		if(_waypointIconIndex < _waypointIconCount) then {

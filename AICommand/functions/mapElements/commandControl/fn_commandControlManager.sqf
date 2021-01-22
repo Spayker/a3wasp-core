@@ -131,11 +131,12 @@ if(!hasInterface && !isDedicated) then {
 								_priorWaypointDurationEnabled = true;
 							};
 							_wp = _group addWaypoint [_x select 1, 0];
-							if (_wpCondition == "true" ) then {
+                                _groupLeader = leader _group;
+                                if (_wpCondition == "true" && (vehicle _groupLeader != _groupLeader)) then {
 							    if (_wpType == "MOVE") then {
                                         if (_forEachIndex == 0) then {
                                             {
-                                                if(_x != leader _group) then { _x doMove (getWPPos (_groupWaypoints # 0) ) }
+                                                if(_x != _groupLeader) then { _x doMove ([getWPPos (_groupWaypoints # 0), 15] call WFCO_fnc_getEmptyPosition ) }
                                             } forEach (units _group)
                                         };
 
