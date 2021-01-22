@@ -4,7 +4,6 @@
 #include "mapIcon\functions.h"
 #include "vehicleIcon\functions.h"
 #include "eventHandler\functions.h"
-#include "remoteCamera\functions.h"
 
 #define AIC_MAP_CONTROL (findDisplay 12 displayCtrl 51)
 #define AIC_MAP_DISPLAY (findDisplay 12)

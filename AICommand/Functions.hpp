@@ -161,30 +161,6 @@ class AICommand
 			description="";
 		};
 	};
-	class RemoteCamera
-	{
-		file="AICommand\functions\remoteCamera";
-		class disable3rdPersonCamera
-		{
-			description="";
-		};
-		class enable3rdPersonCamera
-		{
-			description="";
-		};
-		class cameraMouseMoveHandler
-		{
-			description="";
-		};
-		class cameraMouseZoomHandler
-		{
-			description="";
-		};
-		class cameraUpdatePosition
-		{
-			description="";
-		};
-	};
 	class VehicleIcon
 	{
 		file="AICommand\functions\vehicleIcon";
