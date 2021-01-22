@@ -13,7 +13,6 @@ _i = 0;
 		//--- Create the airport model.
 		_airport = (missionNamespace getVariable "WF_C_HANGAR") createVehicle (getPos _x);
 		_airport setDir ((getDir _x) + (missionNamespace getVariable "WF_C_HANGAR_RDIR"));
-		_airport setPos (getPos _x);
 		
 		//--- Link the airport to the logic.
 		_x setVariable ["wf_hangar", _airport, true];
