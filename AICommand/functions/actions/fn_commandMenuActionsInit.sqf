@@ -170,6 +170,15 @@ AIC_fnc_remoteControlActionHandler = {
 	AIC_Remote_Control_Delete_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 211) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
 	
 	BIS_fnc_feedback_allowPP = false;
+
+	if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
+        _rcUnit enableFatigue true;
+        _rcUnit enableStamina true
+    } else {
+        _rcUnit enableFatigue false;
+        _rcUnit enableStamina false
+    };
+
 	{
 	    _unit = _x;
 	    if(alive _unit) then {
@@ -181,11 +190,33 @@ AIC_fnc_remoteControlActionHandler = {
 	(vehicle _rcUnit) switchCamera "External";
 	openMap false;
 	
+	(vehicle _rcUnit) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOn")+"</t>",
+                     "Client\Module\Valhalla\LowGear_Toggle.sqf",
+                     [],
+                     91,
+                     false,
+                     true,
+                     "",
+                     "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') &&  (_this == driver _target) && !Local_HighClimbingModeOn && canMove _target"
+    ];
+
+    (vehicle _rcUnit) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOff")+"</t>",
+                     "Client\Module\Valhalla\LowGear_Toggle.sqf",
+                     [],
+                     91,
+                     false,
+                     true,
+                     "",
+                     "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') && (_this == driver _target) && Local_HighClimbingModeOn && canMove _target"
+    ];
+	
 	["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL",localize "STR_WF_HC_REMOTECONTROL_PRESSDEL"]] call BIS_fnc_showNotification;
 };
 
 AIC_fnc_terminateRemoteControl = {
 	_originalLeader = missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull];
+	removeAllActions (vehicle _originalLeader);
+
 	["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
 	(missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_From_Unit_Event_Handler",-1])];
 	(missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
