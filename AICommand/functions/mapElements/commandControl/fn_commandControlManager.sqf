@@ -136,7 +136,7 @@ if(!hasInterface && !isDedicated) then {
 							    if (_wpType == "MOVE") then {
                                         if (_forEachIndex == 0) then {
                                             {
-                                                if(_x != _groupLeader) then { _x doMove ([getWPPos (_groupWaypoints # 0), 15] call WFCO_fnc_getEmptyPosition ) }
+                                                if(_x != _groupLeader) then { _x doMove ([getWPPos (_groupWaypoints # 0), 10] call WFCO_fnc_getEmptyPosition ) }
                                             } forEach (units _group)
                                         };
 

@@ -153,7 +153,7 @@ if(isNil "_groupControlId") then {
         if(vehicle _groupLeader != _groupLeader) then {
 		if(count (waypoints _group) > 0) then {
             {
-                    if(_x != _groupLeader) then { _x doMove ([getWPPos ((waypoints _group) # 0), 15] call WFCO_fnc_getEmptyPosition) }
+                    if(_x != _groupLeader) then { _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition) }
             } forEach (units _group);
             }
 		};
