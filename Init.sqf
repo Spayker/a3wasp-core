@@ -65,11 +65,21 @@ if (isHostedServer || (!isHeadLessClient && !isDedicated)) then {
 	["INITIALIZATION", "Init.sqf: Client is not null..."] Call WFCO_FNC_LogContent;
 };
 
-setObjectViewDistance 1750; //--- Server & Client default View Distance.
-setViewDistance 4000;
+//--- Server & Client default View Distance.
+if(isServer) then {
+    setObjectViewDistance 500;
+    setViewDistance 500;
+} else {
+    if (isHeadLessClient) then {
+        setObjectViewDistance 1000;
+        setViewDistance 1000;
+    } else {
+        setObjectViewDistance 1750;
+        setViewDistance 3000;
 waitUntil {time > 0};
 enableEnvironment [false, true];
-
+    }
+};
 
 if (isMultiplayer) then {Call WFCO_fnc_initParameters}; //--- In MP, we get the parameters.
 WF_Parameters_Ready = true; //--- All parameters are set and ready.
