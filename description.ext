@@ -427,7 +427,7 @@ class CfgRespawnInventory {
             "B_UavTerminal"
         };
         uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
-        backpack = "C_IDAP_UGV_02_Demining_backpack_F";
+        backpack = "B_UGV_02_Demining_backpack_F";
     };
     class East_Support_0 {
         displayName = "Default Gear";
@@ -471,7 +471,7 @@ class CfgRespawnInventory {
             "O_UavTerminal"
         };
         uniformClass = "U_O_R_Gorka_01_F";
-        backpack = "C_IDAP_UGV_02_Demining_backpack_F";
+        backpack = "O_UGV_02_Demining_backpack_F";
     };
     class West_Medic_0 {
         displayName = "Default Gear";
