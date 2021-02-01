@@ -103,7 +103,6 @@ with missionNamespace do {
 
 	//--- Base
 	if (isNil "WF_C_BASE_AREA") then {WF_C_BASE_AREA = 2;}; //--- Force the bases to be grouped by areas.
-	if (WF_Debug) then { WF_C_BASE_AREA = 99; };
 	if (isNil "WF_C_BASE_RES") then {WF_C_BASE_RES = 0;}; //--- RES Parameters (0 Disabled, 1 West, 2 East, 3 both).
 	if (isNil "WF_C_BASE_DEFENSE_MAX") then {WF_C_BASE_DEFENSE_MAX = 20;}; //--- Maximum AIs that will be able to man defense within the barracks area.
 	if (isNil "WF_C_BASE_DEFENSE_MANNING_RANGE") then {WF_C_BASE_DEFENSE_MANNING_RANGE = 250;}; //--- Within x meters, defenses may be manned.
@@ -222,7 +221,7 @@ with missionNamespace do {
 	if (isNil "WF_C_RESPAWN_CAMPS_RANGE") then {WF_C_RESPAWN_CAMPS_RANGE = 550;}; //--- How far a player need to be from a town to spawn at camps.
 	if (isNil "WF_C_RESPAWN_CAMPS_RULE_MODE") then {WF_C_RESPAWN_CAMPS_RULE_MODE = 2;}; //--- Respawn Camps Rule (0: Disabled, 1: West | East, 2: West | East | Resistance).
 	if (isNil "WF_C_RESPAWN_DELAY") then {WF_C_RESPAWN_DELAY = 10;}; //--- Respawn Delay (Players/AI).
-	if (WF_Debug) then {WF_C_RESPAWN_DELAY = 1;};
+	if (WF_Debug) then {WF_C_RESPAWN_DELAY = 5;};
 	if (isNil "WF_C_RESPAWN_MOBILE") then {WF_C_RESPAWN_MOBILE = 2;}; //--- Allow mobile respawn (0: Disabled, 1: Enabled, 2: Enabled but default gear).
 	if (isNil "WF_C_RESPAWN_PENALTY") then {WF_C_RESPAWN_PENALTY = 4;}; //--- Respawn Penalty (0: None, 1: Remove All, 2: Pay full gear price, 3: Pay 1/2 gear price, 4: pay 1/4 gear price, 5: Charge on Mobile).
 	WF_C_RESPAWN_CAMPS_SAFE_RADIUS = 50;

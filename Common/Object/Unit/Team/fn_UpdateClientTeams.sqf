@@ -13,7 +13,7 @@ if(_sideJoined == _side) then {
 		if (isNil "_logic") then {sleep 1};
 	};
 
-	_teams = _logic getVariable "wf_teams";
+	_teams = _logic getVariable ["wf_teams", []];
 	_teams pushBackUnique _team;
 	{
 		if !(isNil '_x') then {
