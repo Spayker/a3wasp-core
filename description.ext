@@ -500,7 +500,6 @@ class CfgRespawnInventory {
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
             "SmokeShellBlue",
-            "Medikit",
             "HandGrenade",
             "HandGrenade",
             "HandGrenade"
@@ -545,7 +544,6 @@ class CfgRespawnInventory {
             "CUP_8Rnd_9x18_Makarov_M",
             "CUP_8Rnd_9x18_Makarov_M",
             "SmokeShellPurple",
-            "Medikit",
             "CUP_HandGrenade_RGO",
             "CUP_HandGrenade_RGO",
             "CUP_HandGrenade_RGO"
