@@ -33,7 +33,6 @@
 #include "Client\Player\GUI\UpgradeMenu\Dialog.hpp"
 #include "Client\Player\GUI\VoteMenu\Dialog.hpp"
 #include "Client\Player\GUI\CommanderVoteMenu\Dialog.hpp"
-#include "Client\Player\GUI\RespawnMenu\Dialog.hpp"
 #include "Client\Player\GUI\FundsMenu\Dialog.hpp"
 #include "Client\Player\GUI\GearMenu\Dialog.hpp"
 #include "Client\Player\GUI\TeamMenu\Dialog.hpp"
@@ -266,8 +265,7 @@ class CfgRespawnInventory {
         };
         magazines[] = {
             "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_8Rnd_9x18_Makarov_M",
-            "CUP_1Rnd_HE_GP25_M"
+            "CUP_8Rnd_9x18_Makarov_M"
         };
         items[] = {
             "FirstAidKit",
