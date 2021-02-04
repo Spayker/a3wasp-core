@@ -97,12 +97,10 @@ class CfgRoles {
 };
 
 class CfgRespawnInventory {
+
 	class West_Soldier_0 {
 		displayName = "Default Gear";
-		icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
 		role = "Soldier";
-
-		// Loadout definition, uses same entries as CfgVehicles classes
 		weapons[] = {
 			"CUP_arifle_Mk16_CQC_EGLM_woodland",
 			"CUP_launch_M136",
@@ -156,10 +154,7 @@ class CfgRespawnInventory {
 
 	class East_Soldier_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Soldier";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_AK74M_GL_top_rail_camo",
             "CUP_launch_RPG26",
@@ -207,10 +202,7 @@ class CfgRespawnInventory {
 
     class West_Engineer_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Engineer";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_Mk16_STD_FG_woodland",
             "CUP_launch_M136",
@@ -252,10 +244,7 @@ class CfgRespawnInventory {
 
     class East_Engineer_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Engineer";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_AK74M_railed_afg_camo",
             "CUP_launch_RPG26",
@@ -295,10 +284,7 @@ class CfgRespawnInventory {
     };
     class West_Recon_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Recon";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_srifle_M24_wdl",
             "CUP_launch_M136",
@@ -340,10 +326,7 @@ class CfgRespawnInventory {
     };
     class East_Recon_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Recon";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_srifle_SVD_wdl",
             "CUP_launch_RPG26",
@@ -385,10 +368,7 @@ class CfgRespawnInventory {
     };
     class West_Support_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Support";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_CZ805_A1_coyote",
             "CUP_launch_M136",
@@ -429,10 +409,7 @@ class CfgRespawnInventory {
     };
     class East_Support_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Support";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_AK74M_railed_camo",
             "CUP_launch_RPG26",
@@ -473,10 +450,7 @@ class CfgRespawnInventory {
     };
     class West_Medic_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Medic";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_L85A2_G",
             "CUP_launch_M136",
@@ -517,10 +491,7 @@ class CfgRespawnInventory {
     };
     class East_Medic_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "Medic";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_AKS74U_railed",
             "CUP_launch_RPG26",
@@ -560,10 +531,7 @@ class CfgRespawnInventory {
     };
     class West_SpecOps_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "SpecOps";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_G36K_KSK_VFG_hex",
             "CUP_launch_M136",
@@ -608,10 +576,7 @@ class CfgRespawnInventory {
     };
     class East_SpecOps_0 {
         displayName = "Default Gear";
-        icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa";
         role = "SpecOps";
-
-        // Loadout definition, uses same entries as CfgVehicles classes
         weapons[] = {
             "CUP_arifle_AS_VAL_VFG",
             "CUP_launch_RPG26",
@@ -651,5 +616,134 @@ class CfgRespawnInventory {
         };
         uniformClass = "U_O_R_Gorka_01_camo_F";
         backpack = "CUP_O_RUS_Patrol_bag_Green";
+    };
+    class West_Saved_Soldier_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Soldier";
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+
+    class East_Saved_Soldier_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Soldier";
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+
+    class West_Saved_Engineer_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Engineer";
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+
+    class East_Saved_Engineer_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Engineer";
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class West_Saved_Recon_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Recon";
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class East_Saved_Recon_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Recon";
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class West_Saved_Support_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Support";
+
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class East_Saved_Support_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Support";
+
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class West_Saved_Medic_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Medic";
+
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class East_Saved_Medic_0 {
+    	displayName = "Last Saved Gear";
+    	role = "Medic";
+
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class West_Saved_SpecOps_0 {
+    	displayName = "Last Saved Gear";
+    	role = "SpecOps";
+
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
+    };
+    class East_Saved_SpecOps_0 {
+    	displayName = "Last Saved Gear";
+    	role = "SpecOps";
+
+    	weapons[] = {};
+    	magazines[] = {};
+    	items[] = {};
+    	linkedItems[] = {};
+    	uniformClass = "";
+    	backpack = "";
     };
 };
