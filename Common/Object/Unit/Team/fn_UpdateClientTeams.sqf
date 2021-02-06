@@ -39,7 +39,7 @@ if(_sideJoined == _side) then {
 	_logic setVariable ["wf_teams", _teams, true];
 	_logic setVariable ["wf_teams_count", count _teams];
 	
-	missionNamespace setVariable [Format["WF_%1TEAMS",_sideJoined], _logic getVariable "wf_teams"];
+	missionNamespace setVariable [Format["WF_%1TEAMS",_sideJoined], _logic getVariable "wf_teams", true];
 	WF_Client_Teams = missionNamespace getVariable Format['WF_%1TEAMS',_sideJoined];
 	WF_Client_Teams_Count = count WF_Client_Teams;
 };

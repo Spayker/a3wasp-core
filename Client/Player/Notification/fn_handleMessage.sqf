@@ -4,6 +4,8 @@
 //  Description: Handle the creation of new messages
 
 // Error checks
+waitUntil {clientInitComplete};
+
 if ((isNil "_thisScript") || !(canSuspend)) exitWith {_this spawn (call compile _fnc_scriptName)};
 
 // Parameters

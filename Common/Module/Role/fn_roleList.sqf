@@ -13,9 +13,9 @@ if(isNil '_availableRoles')then{
          "- have harder to spot by enemy feature<br/>" +
          "- can request arty strikes",
         [],
-        5000,
+        2500,
         [],
-        3, // max limit of the role in team
+        2, // max limit of the role in team
         0 // current occupied amount
     ];
 
@@ -26,9 +26,9 @@ if(isNil '_availableRoles')then{
         "- have access to assault rifles<br/>"+
         "- repairs camps",
         [],
-        5000,
+        2500,
         [],
-        12, // max limit of the role in team
+        16, // max limit of the role in team
         0 // current occupied amount
     ];
     _availableRoles pushBack [
@@ -39,7 +39,7 @@ if(isNil '_availableRoles')then{
         "- Can destroy camps<br/>"+
         "- Repairs camps",
         [],
-        7500,
+        5000,
         [],
         6, // max limit of the role in team
         0 // current occupied amount
@@ -51,9 +51,9 @@ if(isNil '_availableRoles')then{
         "- hi-jacks enemy locked vehicles <br/>" +
         "- access to adv silencer rifles <br/>",
         [],
-        7500,
+        5000,
         [],
-        3, // max limit of the role in team
+        2, // max limit of the role in team
         0 // current occupied amount
     ];
     _availableRoles pushBack [
@@ -64,9 +64,9 @@ if(isNil '_availableRoles')then{
         "- can heal with medkit package <br/>" +
         "- can build field hospitals<br/>",
         [],
-        7500,
+        5000,
         [],
-        3, // max limit of the role in team
+        2, // max limit of the role in team
         0 // current occupied amount
     ];
     _availableRoles pushBack [
@@ -77,9 +77,9 @@ if(isNil '_availableRoles')then{
         "- can hack UAV vehicles<br/>" +
         "- access to advanced artillery<br/>",
         [],
-        7500,
+        5000,
         [],
-        3, // max limit of the role in team
+        2, // max limit of the role in team
         0 // current occupied amount
     ];
     missionNamespace setVariable [Format["WF_%1AvailableRoles",str _side], _availableRoles];

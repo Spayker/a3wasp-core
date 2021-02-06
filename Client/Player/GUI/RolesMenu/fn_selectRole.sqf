@@ -19,12 +19,11 @@ WF_IsRoleListUpdated = false;
 
 _roleDetails = [_roleName, WF_Client_SideJoined] call WFCO_fnc_getRoleDetails;
 
-if(WF_isFirstRoleSelected)then{
     _funds = call WFCL_FNC_GetPlayerFunds;
     if (_funds < (_roleDetails select 4)) then {
         _roleStatus = false;
     };
-};
+
 
 if ((_roleDetails select 6) <= (_roleDetails select 7)) then {
     _reqStatus = false;
@@ -49,10 +48,8 @@ if ((_roleDetails select 0) in WF_gbl_boughtRoles) then {
     ctrlEnable[2805, false];
 };
 
-_cost = "First select is FREE";
-if(WF_isFirstRoleSelected)then{
     _cost = str (_roleDetails select 4) + "$";
-};
+
 
 ((findDisplay 2800) displayCtrl 2806) ctrlSetStructuredText parseText format[
     "<t size='4.2' align='center' color='#ffae2b'>%1</t><br/>",

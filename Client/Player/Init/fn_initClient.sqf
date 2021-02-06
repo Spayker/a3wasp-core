@@ -212,7 +212,6 @@ lastCasCall = -1200;
 lastCruiseMissileCall = -1200;
 lastChemicalMissileCall = -1200;
 canBuildWHQ = true;
-WF_RespawnDefaultGear = false;
 WF_ForceUpdate = true;
 
 //--Set default Shadows Distance if it wasn't loaded from the profile--
@@ -260,9 +259,6 @@ if (isNil { missionNamespace getVariable "wf_commander_percent"}) then { mission
 if (isNil { missionNamespace getVariable (format ["wf_%1_hq_penalty", WF_Client_SideJoined])}) then {
     missionNamespace setVariable [format ["wf_%1_hq_penalty", WF_Client_SideJoined], 0]
 };
-
-/* Exec SQF|FSM Misc stuff. */
-[] spawn WFCL_fnc_updateTeamsMarkers;
 
 /* Don't pause the client initialization process. */
 [] Spawn {
@@ -357,11 +353,11 @@ if (time < 30) then {
 ["INITIALIZATION", Format["fn_initClient.sqf: Client spawn location has been determined at [%1].", _base]] Call WFCO_FNC_LogContent;
 
 /* Position the client at the previously defined location */
-private _pos = getPos _base;
+private _pos = getPosATL _base;
 _safePos = [_pos, 0, 60] call BIS_fnc_findSafePos;
 _pos set [0, _safePos # 0];
 _pos set [1, _safePos # 1];
-player setPos _pos;
+player setPosAtl _pos;
 
 /* HQ Building Init. */
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 
@@ -390,7 +386,6 @@ if (leader(WF_Client_Team) != player) then {(WF_Client_Team) selectLeader player
 
 // initiate the passive skills.
 WF_gbl_boughtRoles = [];
-WF_FreeRolePurchase = true;
 
 // map click drop
 onMapSingleClick {if (_shift) then {false} else {true}};
@@ -398,7 +393,6 @@ onMapSingleClick {if (_shift) then {false} else {true}};
 /* Skill Module. */
 WF_SHOW_FAST_REPAIR_ACTION = false;
 [] Call WFCL_fnc_initSkill;
-(player) Call WFCL_fnc_applySkill;
 
 /* Debug System - Client */
 if (WF_Debug) then {
@@ -477,8 +471,8 @@ if!(WF_Skip_Intro) then {
 //--- map marker handler
 WF_C_MAP_MARKER_HANDLER = {
     Private ['_unit', '_colorStr', '_iconType', '_color'];
-
 	_iconsToBeDisplayed = [];
+
     {
         _unit = _x # 0;
         _colorStr = _x # 1;
@@ -565,12 +559,14 @@ WF_C_MAP_MARKER_HANDLER = {
                 "TahomaB",
                 "right"
             ]
-
 	} foreach _iconsToBeDisplayed
 };
 
 waitUntil {!isNull findDisplay 12};
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
+
+/* Exec SQF|FSM Misc stuff. */
+[] spawn WFCL_fnc_updateTeamsMarkers;
 
 //--- res base logic clean up
 { deleteVehicle _x } forEach ([0,0,0] nearEntities [["LocationOutpost_F"], 100000]);
