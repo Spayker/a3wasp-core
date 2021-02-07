@@ -23,19 +23,17 @@ if(count (toArray(_reqAddons)) > 0) then {
 	failMission "END1";
 };
 
-WF_Client_SideJoined = side player;
 WF_Client_SideJoinedText = str WF_Client_SideJoined;
 
 WF_STRCUCTURES_ICONS = true;
 WF_MAXPLAYERS_IN_TEAM = 30;
 WF_EndIntro = if(WF_Skip_Intro) then {true} else {false};
 WF_IsRoleSelectedDialogClosed = false;
-WF_isFirstRoleSelected = false;
 WF_KillPay_Array = [];
 //--- Position the client on the temp spawn (Common is not yet init'd so we call is straigh away).
-12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
-	"<br /><t size='1.5'>35%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetPreRespawn')+"</t>","BLACK IN",55555, true, true];
-player setPos ([getMarkerPos Format["%1TempRespawnMarker",WF_Client_SideJoinedText],1,10] Call WFCO_FNC_GetRandomPosition);
+//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
+	//"<br /><t size='1.5'>35%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetPreRespawn')+"</t>","BLACK IN",55555, true, true];
+// player setPos ([getMarkerPos Format["%1TempRespawnMarker",WF_Client_SideJoinedText],1,10] Call WFCO_FNC_GetRandomPosition);
 
 // Dialog: Skills Menu
 WF_role_list = [];
@@ -333,8 +331,8 @@ if (!WF_Debug) then {
 };
 
 /* Get the client starting location */
-12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
-	"<br /><t size='1.5'>85%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetRespawn')+"</t>","BLACK IN",55555, true, true];
+//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
+//	"<br /><t size='1.5'>85%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetRespawn')+"</t>","BLACK IN",55555, true, true];
 ["INITIALIZATION", "fn_initClient.sqf: Retrieving the client spawn location."] Call WFCO_FNC_LogContent;
 _base = objNull;
 if (time < 30) then {
@@ -360,8 +358,8 @@ _pos set [1, _safePos # 1];
 player setPosAtl _pos;
 
 /* HQ Building Init. */
-12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 
-	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingWaitForHQ')+"</t>","BLACK IN",55555, true, true];
+//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
+//	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingWaitForHQ')+"</t>","BLACK IN",55555, true, true];
 
 
 ["INITIALIZATION", "fn_initClient.sqf: Initializing COIN Module."] Call WFCO_FNC_LogContent;
@@ -418,7 +416,7 @@ waitUntil {townInit};
 [WF_Client_SideJoinedText,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
 
 /* Client death handler. */
-player addEventHandler ['Killed', {_this Spawn WFCL_FNC_OnKilled}];
+// player addEventHandler ['Killed', {_this Spawn WFCL_FNC_OnKilled}];
 
 /* Client UAV deploy handler */
 player addEventHandler ["WeaponAssembled", {
@@ -429,22 +427,24 @@ player addEventHandler ["WeaponAssembled", {
 	}
 }];
 
-_roleDefaultGear = [];
-_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];
-[player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
+
+//_roleDefaultGear = [];
+//_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];
+//[player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
+
 WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
 WF_P_gearPurchased = false;
 
 /* Vote System, define whether a vote is already running or not */
 ["INITIALIZATION", "fn_initClient.sqf: Vote system is initialized."] Call WFCO_FNC_LogContent;
-if ((WF_Client_Logic getVariable "wf_votetime") > 0) then {createDialog "WF_VoteMenu"};
+if (time > 10 && (WF_Client_Logic getVariable "wf_votetime") > 0) then {createDialog "WF_VoteMenu"};
 
 /* Towns Task System */
 ["TownAddComplete"] Spawn WFCL_FNC_TaskSystem;
 
-12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 
-	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",55555, true, true];
-call WFCL_FNC_GetGearTemplates;
+//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
+//	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",55555, true, true];
+// call WFCL_FNC_GetGearTemplates;
 
 [] ExecVM "Client\Player\Init\fn_initThirdViewHandler.sqf";
 

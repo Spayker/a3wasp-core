@@ -1,4 +1,4 @@
-params ["_side", "_deathLoc"];
+params ["_side", ["_deathLoc", [0, 0, random 100]]];
 private ["_availableSpawn","_base_respawn","_buildings","_checks","_deathLoc","_farps","_has_baserespawn","_mhqs","_mobileRespawns","_range","_side","_sideText","_upgrades"];
 
 _sideText = str _side;
@@ -29,8 +29,11 @@ _has_baserespawn = false;
 //--- Mobile respawn.
 if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") > 0) then {
 	_mobileRespawns = missionNamespace getVariable [format["WF_AMBULANCES_%1", _side], []];
+	_range = (missionNamespace getVariable "WF_C_RESPAWN_RANGES") select 0;
 	_upgrades = (_side) Call WFCO_FNC_GetSideUpgrades;
+	if(count _upgrades > 0) then {
 	_range = (missionNamespace getVariable "WF_C_RESPAWN_RANGES") select (_upgrades select WF_UP_RESPAWNRANGE);
+	};
 	_checks = _deathLoc nearEntities[_mobileRespawns,_range];
 	if (count _checks > 0) then {
 		{

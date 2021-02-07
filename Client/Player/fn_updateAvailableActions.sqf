@@ -15,42 +15,12 @@ _gear_field_range = missionNamespace getVariable "WF_C_UNITS_PURCHASE_GEAR_MOBIL
 _boundaries_enabled = if ((missionNamespace getVariable "WF_C_GAMEPLAY_BOUNDARIES_ENABLED") > 0) then {true} else {false};
 _typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_SideJoinedText];
 _commandCenter = objNull;
-_wfMenuAction = [];
 
 while {!WF_GameOver} do {
 
 	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
 		_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
         _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
-
-        //--- Check extra wf action menu appearance
-        if(leader WF_Client_Team == player) then {
-        if(isNil 'WF_PlayerMenuAction') then {
-                WF_PlayerMenuAction = player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
-                _wfMenuAction pushBack WF_PlayerMenuAction;
-            } else {
-        _actions = actionIDs player;
-        _isWfMenuActionRemoved = true;
-        { if(_x == WF_PlayerMenuAction) exitWith { _isWfMenuActionRemoved = false } } forEach _actions;
-        if (_isWfMenuActionRemoved) then {
-                    WF_PlayerMenuAction = player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
-                   _wfMenuAction pushBack WF_PlayerMenuAction;
-                }
-            };
-            if(count _wfMenuAction > 1) then {
-                { player removeAction _x } forEach _wfMenuAction;
-                _wfMenuAction = [];
-                WF_PlayerMenuAction = player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
-                _wfMenuAction pushBack WF_PlayerMenuAction;
-            };
-
-            _playerWaypoints = waypoints (group player);
-            if(count _playerWaypoints > 1) then {
-                for "_i" from (count _playerWaypoints) - 1 to 0 step -1 do { deleteWaypoint [group player, _i] }
-            }
-        } else {
-            removeAllActions player
-        };
 
         {
             if((typeOf _x) in (missionNamespace getVariable [format["WF_AMBULANCES_%1", WF_Client_SideJoined], []])) then {
