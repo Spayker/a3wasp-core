@@ -89,7 +89,6 @@ class WF_Client {
         file = "Client\Player\Skill";
         class applySkill {};
         class initSkill {};
-        class processArtyStrikeAction {};
         class processEngineerAction {};
         class processLiteRepairAction {};
         class processSniperAction {};
@@ -108,7 +107,6 @@ class WF_Client {
     class Player {
         file = "Client\Player";
         class changeScore {};
-        class preRespawnHandler {};
         class onKilled {};
         class missionIntro {};
         class showEndGameResults {};
@@ -248,9 +246,6 @@ class WF_Client {
 
     class GuiRespawnMenu {
         file = "Client\Player\GUI\RespawnMenu";
-        class displayRespawnMenu {};
-        class respawnSelector {};
-        class onRespawnHandler {};
         class getRespawnAvailable {};
     };
 
@@ -259,7 +254,6 @@ class WF_Client {
         class buyRole {};
         class selectRole {};
         class updateRolesMenu {};
-        class closeRoleSelectDialog {};
         class updateRoleList {};
         class resetRoles {};
         class buyRoleConfirm {};

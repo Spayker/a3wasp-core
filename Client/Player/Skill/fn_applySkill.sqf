@@ -7,6 +7,21 @@ Private ["_unit"];
 
 _unit = _this;
 
+fnc_addFastRepairAction = {
+    params ["_unit"];
+
+	_unit addAction [
+		(localize "STR_WASP_actions_fastrep"),
+		{call WFCL_fnc_processLiteRepairAction},
+		[],
+		80,
+		false,
+		true,
+		"",
+        "time - WF_SK_V_LastUse_LR > WF_SK_V_Reload_LR && isNull objectParent player"
+	];
+};
+
 switch (WF_SK_V_Type) do {
 	case WF_ENGINEER: {
 		/* Repair Ability */
@@ -54,16 +69,6 @@ switch (WF_SK_V_Type) do {
 			"", 
 			"time - WF_SK_V_LastUse_Spot > WF_SK_V_Reload_Spot && (vehicle player == player)"
 		];
-		_unit addAction [
-            ("<t color='#FF0000'>" + localize 'STR_WF_ACTION_Arty_Strike'+ "</t>"),
-            {call WFCL_fnc_processArtyStrikeAction},
-            [],
-            80,
-            false,
-            true,
-            "",
-            "time - WF_SK_V_LastUse_ArtyStrike > WF_SK_V_Reload_Arty_Strike && (vehicle player == player)"
-		];
 		[_unit] call fnc_addFastRepairAction;
 	};
     case WF_SOLDIER: {
@@ -80,21 +85,6 @@ switch (WF_SK_V_Type) do {
         player setUnitTrait ["explosiveSpecialist ", true];
 		[_unit] call fnc_addFastRepairAction;
 	};
-};
-
-fnc_addFastRepairAction = {
-    params ["_unit"];
-
-	_unit addAction [
-		(localize "STR_WASP_actions_fastrep"),
-		{call WFCL_fnc_processLiteRepairAction},
-		[],
-		80,
-		false,
-		true,
-		"",
-        "time - WF_SK_V_LastUse_LR > WF_SK_V_Reload_LR && isNull objectParent player"
-	];
 };
 
 //--- Repair Trucks.

@@ -15,7 +15,7 @@ if(isNil '_availableRoles')then{
         [],
         2500,
         [],
-        2, // max limit of the role in team
+        3, // max limit of the role in team
         0 // current occupied amount
     ];
 
@@ -28,7 +28,7 @@ if(isNil '_availableRoles')then{
         [],
         2500,
         [],
-        16, // max limit of the role in team
+        12, // max limit of the role in team
         0 // current occupied amount
     ];
     _availableRoles pushBack [
@@ -53,7 +53,7 @@ if(isNil '_availableRoles')then{
         [],
         5000,
         [],
-        2, // max limit of the role in team
+        3, // max limit of the role in team
         0 // current occupied amount
     ];
     _availableRoles pushBack [
@@ -66,7 +66,7 @@ if(isNil '_availableRoles')then{
         [],
         5000,
         [],
-        2, // max limit of the role in team
+        3, // max limit of the role in team
         0 // current occupied amount
     ];
     _availableRoles pushBack [
@@ -79,7 +79,7 @@ if(isNil '_availableRoles')then{
         [],
         5000,
         [],
-        2, // max limit of the role in team
+        3, // max limit of the role in team
         0 // current occupied amount
     ];
     missionNamespace setVariable [Format["WF_%1AvailableRoles",str _side], _availableRoles];
