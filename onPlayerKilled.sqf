@@ -35,6 +35,8 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
                 WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
             }
         } forEach _spawn_locations;
+
+        if (!isNil 'WF_PlayerMenuAction') then { player removeAction WF_PlayerMenuAction };
     }
 }
 

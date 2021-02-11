@@ -1,58 +1,30 @@
-
-class CfgRoles {
-	class Soldier {
-		displayName = "Soldier";
-		icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\assault_ca.paa";
-	};
-	class Engineer {
-        displayName = "Engineer";
-        icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\support_ca.paa";
-    };
-	class Support {
-		displayName = "Fire Support";
-		icon = "a3\Ui_f\data\IGUI\Cfg\Actions\gear_ca.paa";
-	};
-	class Recon {
-		displayName = "Recon";
-		icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\recon_ca.paa";
-	};
-	class Medic {
-		displayName = "Medic";
-		icon = "a3\Ui_f\data\IGUI\Cfg\Actions\heal_ca.paa";
-	};
-	class SpecOps {
-        displayName = "Spec Ops";
-        icon = "a3\Ui_f\data\IGUI\Cfg\Actions\getincommander_ca.paa";
-    };
-};
-
 class CfgRespawnInventory {
 
 	class West_Soldier_0 {
 		displayName = "Default Gear";
 		role = "Soldier";
 		weapons[] = {
-			"CUP_arifle_Mk16_CQC_EGLM_woodland",
+			"CUP_arifle_Mk16_CQC_EGLM",
 			"CUP_launch_M136",
 			"CUP_hgun_Glock17_tan",
 			"Binocular",
 			"CUP_NVG_PVS14_Hide_WASP"
 		};
 		magazines[] = {
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
 			"CUP_17Rnd_9x19_glock17",
 			"CUP_1Rnd_HE_M203"
 		};
 		items[] = {
 			"FirstAidKit",
 			"FirstAidKit",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-			"CUP_30Rnd_556x45_Stanag_Mk16_woodland",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
+			"CUP_30Rnd_556x45_Stanag_Mk16",
 			"CUP_17Rnd_9x19_glock17",
 			"CUP_17Rnd_9x19_glock17",
 			"CUP_17Rnd_9x19_glock17",
@@ -69,40 +41,40 @@ class CfgRespawnInventory {
 			"HandGrenade"
 		};
 		linkedItems[] = {
-			"V_I_G_resistanceLeader_F",
-			"CUP_H_CZ_Helmet09",
-			"CUP_G_Scarf_Face_Grn",
-			"CUP_optic_AC11704_OD",
+			"V_TacVest_brn",
+			"CUP_H_CZ_Helmet07",
+			"CUP_G_ESS_KHK_Scarf_Face_Tan_GPS",
+			"CUP_optic_AC11704_Coyote",
 			"ItemMap",
 			"ItemCompass",
 			"ItemWatch",
 			"ItemRadio"
 		};
-		uniformClass = "CUP_U_CRYE_G3C_M81_US_V2";
-		backpack = "CUP_B_USMC_AssaultPack";
+		uniformClass = "CUP_U_CRYE_G3C_Tan_MC_US";
+		backpack = "CUP_B_Kombat_Olive";
 	};
 
 	class East_Soldier_0 {
         displayName = "Default Gear";
         role = "Soldier";
         weapons[] = {
-            "CUP_arifle_AK74M_GL_top_rail_camo",
+            "CUP_arifle_AK74M_GL_top_rail_desert",
             "CUP_launch_RPG26",
             "CUP_hgun_Makarov",
             "Binocular",
             "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_545x39_AK74M_camo_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M",
             "CUP_8Rnd_9x18_Makarov_M",
             "CUP_1Rnd_HE_GP25_M"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
-            "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_30Rnd_545x39_AK74M_camo_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M",
             "CUP_8Rnd_9x18_Makarov_M",
             "CUP_8Rnd_9x18_Makarov_M",
             "CUP_8Rnd_9x18_Makarov_M",
@@ -117,40 +89,40 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "V_TacVest_oli",
-            "CUP_H_RUS_6B47_SF",
-            "CUP_G_RUS_Balaclava_Ratnik",
-            "CUP_optic_1P87_RIS_woodland",
+            "V_TacVest_khk",
+            "CUP_H_RUS_6B47_SF_headset_goggles_desert",
+            "CUP_G_PMC_Facewrap_Tan_Glasses_Dark_Headset",
+            "CUP_optic_1P87_RIS_desert",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "U_O_R_Gorka_01_camo_F";
-        backpack = "CUP_O_RUS_Patrol_bag_Green";
+        uniformClass = "U_O_R_Gorka_01_brown_F";
+        backpack = "B_Kitbag_cbr";
     };
 
     class West_Engineer_0 {
         displayName = "Default Gear";
         role = "Engineer";
         weapons[] = {
-            "CUP_arifle_Mk16_STD_FG_woodland",
+            "CUP_arifle_Mk16_STD_FG",
             "CUP_launch_M136",
             "CUP_hgun_Glock17_tan",
             "Binocular",
             "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_556x45_Stanag_Mk16_woodland",
+            "CUP_30Rnd_556x45_Stanag_Mk16",
             "CUP_17Rnd_9x19_glock17"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
-            "CUP_30Rnd_556x45_Stanag_Mk16_woodland", "CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-            "CUP_30Rnd_556x45_Stanag_Mk16_woodland", "CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-            "CUP_30Rnd_556x45_Stanag_Mk16_woodland", "CUP_30Rnd_556x45_Stanag_Mk16_woodland",
-            "CUP_30Rnd_556x45_Stanag_Mk16_woodland",
+            "CUP_30Rnd_556x45_Stanag_Mk16", "CUP_30Rnd_556x45_Stanag_Mk16",
+            "CUP_30Rnd_556x45_Stanag_Mk16", "CUP_30Rnd_556x45_Stanag_Mk16",
+            "CUP_30Rnd_556x45_Stanag_Mk16", "CUP_30Rnd_556x45_Stanag_Mk16",
+            "CUP_30Rnd_556x45_Stanag_Mk16",
             "CUP_17Rnd_9x19_glock17",
             "CUP_17Rnd_9x19_glock17",
             "CUP_17Rnd_9x19_glock17",
@@ -159,39 +131,39 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "CUP_V_B_RRV_TL",
+            "V_Chestrig_khk",
             "CUP_H_USA_Cap_MARSOC_DEF",
-            "G_Bandanna_oli",
-            "CUP_optic_AC11704_OD",
+            "CUP_G_PMC_Facewrap_Tan_Glasses_Dark_Headset",
+            "CUP_optic_AC11704_Coyote",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "CUP_U_CRYE_G3C_RGR_MC_US";
-        backpack = "B_Kitbag_rgr";
+        uniformClass = "CUP_U_CRYEG3_V1";
+        backpack = "B_Kitbag_cbr";
     };
 
     class East_Engineer_0 {
         displayName = "Default Gear";
         role = "Engineer";
         weapons[] = {
-            "CUP_arifle_AK74M_railed_afg_camo",
+            "CUP_arifle_AK74M_railed_desert",
             "CUP_launch_RPG26",
             "CUP_hgun_Makarov",
             "Binocular",
             "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_545x39_AK74M_camo_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M",
             "CUP_8Rnd_9x18_Makarov_M"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
-            "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_30Rnd_545x39_AK74M_camo_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M",
             "CUP_8Rnd_9x18_Makarov_M",
             "CUP_8Rnd_9x18_Makarov_M",
             "CUP_8Rnd_9x18_Makarov_M",
@@ -200,23 +172,23 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "V_SmershVest_01_radio_F",
-            "CUP_H_RUS_Bandana_GSSh_Headphones",
-            "G_Bandanna_oli",
-            "CUP_optic_1P87_RIS_woodland",
+            "V_HarnessO_brn",
+            "CUP_H_PMC_Cap_PRR_Tan",
+            "CUP_G_PMC_Facewrap_Tan_Glasses_Dark_Headset",
+            "CUP_optic_1P87_RIS_desert",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "U_O_R_Gorka_01_camo_F";
-        backpack = "CUP_O_RUS_Patrol_bag_Green_Shovel";
+        uniformClass = "U_O_R_Gorka_01_brown_F";
+        backpack = "B_Kitbag_cbr";
     };
     class West_Recon_0 {
         displayName = "Default Gear";
         role = "Recon";
         weapons[] = {
-            "CUP_srifle_M24_wdl",
+            "CUP_srifle_M24_des",
             "CUP_launch_M136",
             "CUP_hgun_M17_Black",
             "Rangefinder",
@@ -241,24 +213,24 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "CUP_V_B_RRV_Scout2",
-            "CUP_G_Scarf_Face_Grn",
+            "V_Chestrig_khk",
+            "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS",
             "CUP_Mxx_camo",
-            "CUP_optic_LeupoldMk4_10x40_LRT_Woodland",
+            "CUP_optic_LeupoldMk4_10x40_LRT_Desert",
             "CUP_muzzle_snds_M9",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "U_B_FullGhillie_lsh";
+        uniformClass = "U_B_FullGhillie_ard";
         backpack = "";
     };
     class East_Recon_0 {
         displayName = "Default Gear";
         role = "Recon";
         weapons[] = {
-            "CUP_srifle_SVD_wdl",
+            "CUP_srifle_SVD_des",
             "CUP_launch_RPG26",
             "CUP_hgun_SA61",
             "Rangefinder",
@@ -283,9 +255,9 @@ class CfgRespawnInventory {
             "CUP_HandGrenade_RGO"
         };
         linkedItems[] = {
-            "V_SmershVest_01_F",
-            "CUP_G_Scarf_Face_Grn",
-            "CUP_SVD_camo_g",
+            "V_SmershVest_01_radio_F",
+            "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS",
+            "CUP_SVD_camo_d",
             "CUP_optic_PSO_3",
             "CUP_muzzle_snds_SA61",
             "ItemMap",
@@ -293,111 +265,28 @@ class CfgRespawnInventory {
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "U_I_FullGhillie_sard";
+        uniformClass = "U_I_FullGhillie_ard";
         backpack = "";
     };
     class West_Support_0 {
         displayName = "Default Gear";
         role = "Support";
         weapons[] = {
-            "CUP_arifle_CZ805_A1_coyote",
+            "CUP_arifle_L85A2_G",
             "CUP_launch_M136",
             "CUP_hgun_M17_Green",
             "Binocular",
              "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_556x45_CZ805",
-            "CUP_21Rnd_9x19_M17_Green"
-        };
-        items[] = {
-            "FirstAidKit",
-            "FirstAidKit",
-            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
-            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
-            "CUP_21Rnd_9x19_M17_Green",
-            "CUP_21Rnd_9x19_M17_Green",
-            "CUP_21Rnd_9x19_M17_Green",
-            "SmokeShellBlue",
-            "HandGrenade",
-            "HandGrenade",
-            "HandGrenade"
-        };
-        linkedItems[] = {
-            "CUP_V_B_RRV_TL",
-            "CUP_H_CZ_Cap_Headphones",
-            "optic_MRD_black",
-            "CUP_optic_AC11704_Coyote",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio",
-            "B_UavTerminal"
-        };
-        uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
-        backpack = "B_UGV_02_Demining_backpack_F";
-    };
-    class East_Support_0 {
-        displayName = "Default Gear";
-        role = "Support";
-        weapons[] = {
-            "CUP_arifle_AK74M_railed_camo",
-            "CUP_launch_RPG26",
-            "CUP_hgun_Makarov",
-            "Binocular",
-            "CUP_NVG_PVS14_Hide_WASP"
-        };
-        magazines[] = {
-            "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_8Rnd_9x18_Makarov_M"
-        };
-        items[] = {
-            "FirstAidKit",
-            "FirstAidKit",
-            "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M", "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_30Rnd_545x39_AK74M_camo_M",
-            "CUP_8Rnd_9x18_Makarov_M",
-            "CUP_8Rnd_9x18_Makarov_M",
-            "CUP_8Rnd_9x18_Makarov_M",
-            "SmokeShellPurple",
-            "CUP_HandGrenade_RGO",
-            "CUP_HandGrenade_RGO",
-            "CUP_HandGrenade_RGO"
-        };
-        linkedItems[] = {
-            "V_SmershVest_01_radio_F",
-            "H_Cap_headphones",
-            "CUP_optic_1P87_RIS_woodland",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio",
-            "O_UavTerminal"
-        };
-        uniformClass = "U_O_R_Gorka_01_F";
-        backpack = "O_UGV_02_Demining_backpack_F";
-    };
-    class West_Medic_0 {
-        displayName = "Default Gear";
-        role = "Medic";
-        weapons[] = {
-            "CUP_arifle_L85A2_G",
-            "CUP_launch_M136",
-            "CUP_hgun_M17_Green",
-            "Binocular",
-            "CUP_NVG_PVS14_Hide_WASP"
-        };
-        magazines[] = {
             "CUP_30Rnd_556x45_Stanag_L85",
             "CUP_21Rnd_9x19_M17_Green"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
+            "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
             "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
-            "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
-            "CUP_30Rnd_556x45_Stanag_L85",
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
@@ -408,16 +297,99 @@ class CfgRespawnInventory {
         };
         linkedItems[] = {
             "CUP_V_B_BAF_MTP_Osprey_Mk4_Webbing",
-            "CUP_H_BAF_PARA_PRRUNDER_BERET",
-            "CUP_optic_AC11704_Black",
+            "CUP_H_CZ_Cap_Headphones",
+            "optic_MRD_black",
+            "CUP_optic_AC11704_Coyote",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio",
+            "B_UavTerminal"
+        };
+        uniformClass = "CUP_U_B_BAF_MTP_UBACSLONGKNEE_Gloves";
+        backpack = "B_UGV_02_Demining_backpack_F";
+    };
+    class East_Support_0 {
+        displayName = "Default Gear";
+        role = "Support";
+        weapons[] = {
+            "CUP_arifle_AK74M_railed_desert",
+            "CUP_launch_RPG26",
+            "CUP_hgun_Makarov",
+            "Binocular",
+            "CUP_NVG_PVS14_Hide_WASP"
+        };
+        magazines[] = {
+            "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_8Rnd_9x18_Makarov_M"
+        };
+        items[] = {
+            "FirstAidKit",
+            "FirstAidKit",
+            "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M", "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_30Rnd_545x39_AK74M_desert_M",
+            "CUP_8Rnd_9x18_Makarov_M",
+            "CUP_8Rnd_9x18_Makarov_M",
+            "CUP_8Rnd_9x18_Makarov_M",
+            "SmokeShellPurple",
+            "CUP_HandGrenade_RGO",
+            "CUP_HandGrenade_RGO",
+            "CUP_HandGrenade_RGO"
+        };
+        linkedItems[] = {
+            "V_HarnessO_gry",
+            "CUP_H_PMC_Cap_EP_Tan",
+            "CUP_optic_1P87_RIS_desert",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio",
+            "O_UavTerminal"
+        };
+        uniformClass = "U_O_R_Gorka_01_brown_F";
+        backpack = "O_UGV_02_Demining_backpack_F";
+    };
+    class West_Medic_0 {
+        displayName = "Default Gear";
+        role = "Medic";
+        weapons[] = {
+            "CUP_arifle_CZ805_A1_coyote",
+            "CUP_launch_M136",
+            "CUP_hgun_M17_Green",
+            "Binocular",
+            "CUP_NVG_PVS14_Hide_WASP"
+        };
+        magazines[] = {
+            "CUP_30Rnd_556x45_CZ805",
+            "CUP_21Rnd_9x19_M17_Green"
+        };
+        items[] = {
+            "FirstAidKit",
+            "FirstAidKit",
+            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
+            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
+            "CUP_30Rnd_556x45_CZ805",
+            "CUP_21Rnd_9x19_M17_Green",
+            "CUP_21Rnd_9x19_M17_Green",
+            "CUP_21Rnd_9x19_M17_Green",
+            "SmokeShellBlue",
+            "HandGrenade",
+            "HandGrenade",
+            "HandGrenade"
+        };
+        linkedItems[] = {
+            "V_Chestrig_khk",
+            "CUP_H_CZ_Cap_Headphones_des",
+            "CUP_optic_AC11704_Coyote",
             "optic_MRD_black",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "CUP_U_B_BAF_DPM_UBACSLONGKNEE";
-        backpack = "CUP_B_Motherlode_MTP";
+        uniformClass = "CUP_U_B_CZ_DST_NoKneepads";
+        backpack = "B_Kitbag_cbr";
     };
     class East_Medic_0 {
         displayName = "Default Gear";
@@ -448,37 +420,37 @@ class CfgRespawnInventory {
             "CUP_HandGrenade_RGO"
         };
         linkedItems[] = {
-            "V_SmershVest_01_F",
-            "H_Watchcap_camo",
-            "CUP_optic_1P87_RIS_woodland",
+            "V_HarnessO_gry",
+            "CUP_H_PMC_Cap_Tan",
+            "CUP_optic_1P87_RIS_desert",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "U_O_R_Gorka_01_camo_F";
-        backpack = "CUP_O_RUS_Patrol_bag_Green";
+        uniformClass = "U_O_R_Gorka_01_brown_F";
+        backpack = "B_FieldPack_cbr";
     };
     class West_SpecOps_0 {
         displayName = "Default Gear";
         role = "SpecOps";
         weapons[] = {
-            "CUP_arifle_G36K_KSK_VFG_hex",
+            "CUP_arifle_G36K_KSK_VFG_camo",
             "CUP_launch_M136",
             "CUP_hgun_Glock17_blk",
             "Binocular",
             "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_556x45_G36_hex",
+            "CUP_30Rnd_556x45_G36_camo",
             "CUP_17Rnd_9x19_glock17"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
-            "CUP_30Rnd_556x45_G36_hex", "CUP_30Rnd_556x45_G36_hex", "CUP_30Rnd_556x45_G36_hex",
-            "CUP_30Rnd_556x45_G36_hex", "CUP_30Rnd_556x45_G36_hex", "CUP_30Rnd_556x45_G36_hex",
-            "CUP_30Rnd_556x45_G36_hex",
+            "CUP_30Rnd_556x45_G36_camo", "CUP_30Rnd_556x45_G36_camo", "CUP_30Rnd_556x45_G36_camo",
+            "CUP_30Rnd_556x45_G36_camo", "CUP_30Rnd_556x45_G36_camo", "CUP_30Rnd_556x45_G36_camo",
+            "CUP_30Rnd_556x45_G36_camo",
             "CUP_17Rnd_9x19_glock17",
             "CUP_17Rnd_9x19_glock17",
             "CUP_17Rnd_9x19_glock17",
@@ -489,20 +461,20 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "CUP_V_B_GER_Carrier_Rig_2",
-            "CUP_H_Ger_Boonie_Flecktarn",
-            "G_Bandanna_oli",
-            "CUP_muzzle_snds_G36_hex",
+            "CUP_V_B_GER_Carrier_Rig_3_Brown",
+            "CUP_H_Ger_Boonie_desert",
+            "CUP_G_PMC_Facewrap_Tan_Glasses_Dark_Headset",
+            "CUP_muzzle_snds_G36_desert",
             "CUP_muzzle_snds_M9",
-            "CUP_optic_AC11704_OD",
+            "CUP_optic_AC11704_Coyote",
             "optic_MRD_black",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "CUP_U_B_GER_Fleck_Crye";
-        backpack = "B_AssaultPack_khk";
+        uniformClass = "CUP_U_B_GER_Crye";
+        backpack = "CUP_B_GER_Medic_Tropentarn";
     };
     class East_SpecOps_0 {
         displayName = "Default Gear";
@@ -534,9 +506,9 @@ class CfgRespawnInventory {
             "CUP_HandGrenade_RGO"
         };
         linkedItems[] = {
-            "V_SmershVest_01_F",
-            "CUP_H_RUS_Balaclava_Ratnik_Headphones",
-            "CUP_acc_ANPEQ_15_Top_Flashlight_Black_L",
+            "V_HarnessO_gry",
+            "H_Booniehat_khk_hs",
+            "CUP_acc_ANPEQ_15_Flashlight_Tan_L",
             "CUP_optic_1p63",
             "CUP_muzzle_snds_SA61",
             "ItemMap",
@@ -544,8 +516,8 @@ class CfgRespawnInventory {
             "ItemWatch",
             "ItemRadio"
         };
-        uniformClass = "U_O_R_Gorka_01_camo_F";
-        backpack = "CUP_O_RUS_Patrol_bag_Green";
+        uniformClass = "U_O_R_Gorka_01_brown_F";
+        backpack = "B_Kitbag_cbr";
     };
     class West_Saved_Soldier_0 {
     	displayName = "Last Saved Gear";
