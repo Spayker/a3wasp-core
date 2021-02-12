@@ -51,7 +51,7 @@ class CfgRespawnInventory {
 			"ItemRadio"
 		};
 		uniformClass = "CUP_U_CRYE_G3C_Tan_MC_US";
-		backpack = "CUP_B_Kombat_Olive";
+		backpack = "B_Kitbag_cbr";
 	};
 
 	class East_Soldier_0 {
@@ -270,23 +270,24 @@ class CfgRespawnInventory {
     };
     class West_Support_0 {
         displayName = "Default Gear";
-        role = "Support";
+        role = "Medic";
         weapons[] = {
-            "CUP_arifle_L85A2_G",
+            "CUP_arifle_CZ805_A1_coyote",
             "CUP_launch_M136",
             "CUP_hgun_M17_Green",
             "Binocular",
              "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_556x45_Stanag_L85",
+            "CUP_30Rnd_556x45_CZ805",
             "CUP_21Rnd_9x19_M17_Green"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
-            "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
-            "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
+            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
+            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
+            "CUP_30Rnd_556x45_CZ805",
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
@@ -296,18 +297,17 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "CUP_V_B_BAF_MTP_Osprey_Mk4_Webbing",
-            "CUP_H_CZ_Cap_Headphones",
-            "optic_MRD_black",
+            "V_Chestrig_khk",
+            "CUP_H_CZ_Cap_Headphones_des",
             "CUP_optic_AC11704_Coyote",
+            "optic_MRD_black",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
-            "ItemRadio",
-            "B_UavTerminal"
+            "ItemRadio"
         };
-        uniformClass = "CUP_U_B_BAF_MTP_UBACSLONGKNEE_Gloves";
-        backpack = "B_UGV_02_Demining_backpack_F";
+        uniformClass = "CUP_U_B_CZ_DST_NoKneepads";
+        backpack = "B_Kitbag_cbr";
     };
     class East_Support_0 {
         displayName = "Default Gear";
@@ -352,24 +352,23 @@ class CfgRespawnInventory {
     };
     class West_Medic_0 {
         displayName = "Default Gear";
-        role = "Medic";
+        role = "Support";
         weapons[] = {
-            "CUP_arifle_CZ805_A1_coyote",
+            "CUP_arifle_L85A2_G",
             "CUP_launch_M136",
             "CUP_hgun_M17_Green",
             "Binocular",
             "CUP_NVG_PVS14_Hide_WASP"
         };
         magazines[] = {
-            "CUP_30Rnd_556x45_CZ805",
+            "CUP_30Rnd_556x45_Stanag_L85",
             "CUP_21Rnd_9x19_M17_Green"
         };
         items[] = {
             "FirstAidKit",
             "FirstAidKit",
-            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
-            "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805", "CUP_30Rnd_556x45_CZ805",
-            "CUP_30Rnd_556x45_CZ805",
+            "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
+            "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85", "CUP_30Rnd_556x45_Stanag_L85",
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
             "CUP_21Rnd_9x19_M17_Green",
@@ -379,17 +378,18 @@ class CfgRespawnInventory {
             "HandGrenade"
         };
         linkedItems[] = {
-            "V_Chestrig_khk",
-            "CUP_H_CZ_Cap_Headphones_des",
-            "CUP_optic_AC11704_Coyote",
+            "CUP_V_B_BAF_MTP_Osprey_Mk4_Webbing",
+            "CUP_H_CZ_Cap_Headphones",
             "optic_MRD_black",
+            "CUP_optic_AC11704_Coyote",
             "ItemMap",
             "ItemCompass",
             "ItemWatch",
-            "ItemRadio"
+            "ItemRadio",
+            "B_UavTerminal"
         };
-        uniformClass = "CUP_U_B_CZ_DST_NoKneepads";
-        backpack = "B_Kitbag_cbr";
+        uniformClass = "CUP_U_B_BAF_MTP_UBACSLONGKNEE_Gloves";
+        backpack = "B_UGV_02_Demining_backpack_F";
     };
     class East_Medic_0 {
         displayName = "Default Gear";
