@@ -5,6 +5,7 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
     hudOn = false;
 
     if(isFirstSpawnIsDone) then {
+        [{true}, WF_C_RESPAWN_DELAY - 5, ""] call BIS_fnc_setRespawnDelay;
         [_oldUnit] Spawn WFCL_FNC_OnKilled
     } else {
         _side = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
