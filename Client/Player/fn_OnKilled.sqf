@@ -4,7 +4,7 @@
 		- Killed
 */
 
-params ["_killed"];
+params ["_killed", "_respawnDelay"];
 Private ["_delay"];
 
 if(!isNull (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
@@ -20,7 +20,6 @@ if !(isNil "HQAction") then {(leader WF_Client_Team) removeAction HQAction};
 //--- Close any existing dialogs.
 if (dialog) then {closeDialog 0};
 
-WF_DeathLocation = getPosATL _killed;
 (_killed) connectTerminalToUAV objNull;
 
 //--- Update the player.
@@ -41,7 +40,6 @@ if (! (isPlayer (_killed)) && !(WF_Client_SideJoined isEqualTo resistance)) then
 { _x call BIS_fnc_removeRespawnPosition } forEach WF_C_RESPAWN_LOCATIONS;
 WF_C_RESPAWN_LOCATIONS = [];
 _spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRespawnAvailable;
-
 {
     if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
         _type = _x getVariable ['wf_structure_type', ''];
@@ -59,7 +57,7 @@ _spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRe
             if (typeof _x == WF_C_CAMP ) then {
                 _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable ['name', ''];
                 _txt = 'Camp ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
-                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 20] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
+                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
             } else {
                 WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
             }
@@ -84,4 +82,6 @@ if(isFirstSpawnIsDone && WF_P_gearPurchased) then {
     [WF_Client_SideJoined, [format["%1_Support_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Medic_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_SpecOps_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
-}
+};
+
+[{true}, WF_C_RESPAWN_DELAY - _respawnDelay, ""] call BIS_fnc_setRespawnDelay

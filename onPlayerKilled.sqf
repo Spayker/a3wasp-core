@@ -3,10 +3,9 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 [_oldUnit, _killer, _respawn, _respawnDelay] spawn {
     params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
     hudOn = false;
-
+    WF_DeathLocation = getPosATL _oldUnit;
     if(isFirstSpawnIsDone) then {
-        [{true}, WF_C_RESPAWN_DELAY - 5, ""] call BIS_fnc_setRespawnDelay;
-        [_oldUnit] Spawn WFCL_FNC_OnKilled
+        [_oldUnit, _respawnDelay] Spawn WFCL_FNC_OnKilled;
     } else {
         _side = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
         WF_Client_SideJoined = _side;
@@ -27,8 +26,8 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
         { _x call BIS_fnc_removeRespawnPosition } forEach WF_C_RESPAWN_LOCATIONS;
         WF_C_RESPAWN_LOCATIONS = [];
-        {
 
+        {
             if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
                 _type = _x getVariable ['wf_structure_type', ""];
                 _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
@@ -44,7 +43,7 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
                     if (typeof _x == WF_C_CAMP ) then {
                         _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable ['name', ''];
                         _txt = 'Camp ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
-                        WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 20] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
+                        WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
                     } else {
                         WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
                     }
