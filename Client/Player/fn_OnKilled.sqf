@@ -67,16 +67,16 @@ _spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRe
 
 private _respawnInfo = [player] call BIS_fnc_getRespawnInventories;
 
-if(isFirstSpawnIsDone && WF_P_gearPurchased) then {
+if(WF_P_gearPurchased) then {
     //// last saved gear
-    [WF_Client_SideJoined, [format["%1_Saved_Soldier_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
+    [WF_Client_SideJoined, [format["%1_Saved_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Saved_Engineer_0", WF_Client_SideJoined], -1,  6]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Saved_Recon_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Saved_Support_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Saved_Medic_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Saved_SpecOps_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
 } else {
-    [WF_Client_SideJoined, [format["%1_Soldier_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
+    [WF_Client_SideJoined, [format["%1_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Engineer_0", WF_Client_SideJoined], -1,  6]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Recon_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Support_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;

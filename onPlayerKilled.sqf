@@ -1,5 +1,12 @@
 params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
+_playerBots = units _oldUnit;
+
+if(count _playerBots > 0) then {
+    WF_C_RESPAWN_TEMP_GROUP = createGroup [switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}, true];
+    (units (group player) - [player]) joinSilent WF_C_RESPAWN_TEMP_GROUP;
+};
+
 [_oldUnit, _killer, _respawn, _respawnDelay] spawn {
     params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
     hudOn = false;
@@ -7,8 +14,7 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
     if(isFirstSpawnIsDone) then {
         [_oldUnit, _respawnDelay] Spawn WFCL_FNC_OnKilled;
     } else {
-        _side = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
-        WF_Client_SideJoined = _side;
+        WF_Client_SideJoined = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
         WF_C_RESPAWN_LOCATIONS = [];
 
         [WF_Client_SideJoined, [format["%1_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;

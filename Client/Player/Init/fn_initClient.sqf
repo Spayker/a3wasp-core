@@ -38,6 +38,7 @@ WF_role_list = [];
 WF_Client_LastGroupJoinRequest = -5000;
 WF_Client_PendingRequests = [];
 WF_Client_PendingRequests_Accepted = [];
+WF_C_RESPAWN_TEMP_GROUP = grpNull;
 call WFCL_fnc_Squads;
 
 //--- Notification HUD init

@@ -57,4 +57,9 @@ if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     player setCustomAimCoef 0.1;
 };
 
+if (count (units WF_C_RESPAWN_TEMP_GROUP) > 0) then {
+    (units WF_C_RESPAWN_TEMP_GROUP) joinSilent (group player);
+    WF_C_RESPAWN_TEMP_GROUP = grpNull
+};
+
 [WF_Client_SideJoinedText,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
