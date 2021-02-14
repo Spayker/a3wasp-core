@@ -1,8 +1,8 @@
 class CfgRespawnInventory {
 
-	class West_Soldier_0 {
+	class West_Assault_0 {
 		displayName = "Default Gear";
-		role = "Soldier";
+		role = "Assault";
 		weapons[] = {
 			"CUP_arifle_Mk16_CQC_EGLM_woodland",
 			"CUP_launch_M136",
@@ -54,9 +54,9 @@ class CfgRespawnInventory {
 		backpack = "CUP_B_USMC_AssaultPack";
 	};
 
-	class East_Soldier_0 {
+	class East_Assault_0 {
         displayName = "Default Gear";
-        role = "Soldier";
+        role = "Assault";
         weapons[] = {
             "CUP_arifle_AK74M_GL_top_rail_camo",
             "CUP_launch_RPG26",
@@ -519,9 +519,9 @@ class CfgRespawnInventory {
         uniformClass = "U_O_R_Gorka_01_camo_F";
         backpack = "CUP_O_RUS_Patrol_bag_Green";
     };
-    class West_Saved_Soldier_0 {
-    	displayName = "Last Saved Gear";
-    	role = "Soldier";
+    class West_Saved_Assault_0 {
+    	displayName = "Auto Saved Gear";
+    	role = "Assault";
     	weapons[] = {};
     	magazines[] = {};
     	items[] = {};
@@ -530,9 +530,9 @@ class CfgRespawnInventory {
     	backpack = "";
     };
 
-    class East_Saved_Soldier_0 {
-    	displayName = "Last Saved Gear";
-    	role = "Soldier";
+    class East_Saved_Assault_0 {
+    	displayName = "Auto Saved Gear";
+    	role = "Assault";
     	weapons[] = {};
     	magazines[] = {};
     	items[] = {};
@@ -542,7 +542,7 @@ class CfgRespawnInventory {
     };
 
     class West_Saved_Engineer_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Engineer";
     	weapons[] = {};
     	magazines[] = {};
@@ -553,7 +553,7 @@ class CfgRespawnInventory {
     };
 
     class East_Saved_Engineer_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Engineer";
     	weapons[] = {};
     	magazines[] = {};
@@ -563,7 +563,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class West_Saved_Recon_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Recon";
     	weapons[] = {};
     	magazines[] = {};
@@ -573,7 +573,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class East_Saved_Recon_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Recon";
     	weapons[] = {};
     	magazines[] = {};
@@ -583,7 +583,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class West_Saved_Support_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Support";
 
     	weapons[] = {};
@@ -594,7 +594,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class East_Saved_Support_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Support";
 
     	weapons[] = {};
@@ -605,7 +605,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class West_Saved_Medic_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Medic";
 
     	weapons[] = {};
@@ -616,7 +616,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class East_Saved_Medic_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "Medic";
 
     	weapons[] = {};
@@ -627,7 +627,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class West_Saved_SpecOps_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "SpecOps";
 
     	weapons[] = {};
@@ -638,7 +638,7 @@ class CfgRespawnInventory {
     	backpack = "";
     };
     class East_Saved_SpecOps_0 {
-    	displayName = "Last Saved Gear";
+    	displayName = "Auto Saved Gear";
     	role = "SpecOps";
 
     	weapons[] = {};

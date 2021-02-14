@@ -31,7 +31,7 @@ WF_SK_V_Type = _respawnRoleCombo lbText (lbCurSel _respawnRoleCombo);
 _respawnCombo = uiNamespace getVariable (["BIS_RscRespawnControlsMap_ctrlComboLoadout", "BIS_RscRespawnControlsSpectate_ctrlComboLoadout"] select (uiNamespace getVariable ["BIS_RscRespawnControlsSpectate_shown", false]));
 _respawnTemplateDisplayName = _respawnCombo lbText (lbCurSel _respawnCombo);
 
-if (_respawnTemplateDisplayName == 'Last Saved Gear') then {
+if (_respawnTemplateDisplayName == 'Auto Saved Gear') then {
 			_respawn_gear = if (isNil 'WF_P_CurrentGear') then {missionNamespace getVariable format ["WF_AI_%1_DEFAULT_GEAR", WF_Client_SideJoined]} else {WF_P_CurrentGear};
     [player, _respawn_gear] call WFCO_FNC_EquipUnit;
 };

@@ -40,7 +40,7 @@ WF_C_AMBIENT_ID = 9;
 
 //--- Role names
 WF_SNIPER         = "Recon";
-WF_SOLDIER        = "Soldier";
+WF_SOLDIER        = "Assault";
 WF_ENGINEER       = "Engineer";
 WF_SPECOPS        = "SpecOps";
 WF_MEDIC          = "Medic";

@@ -70,8 +70,8 @@ class CfgFunctions {
 };
 
 class CfgRoles {
-	class Soldier {
-		displayName = "Soldier";
+	class Assault {
+		displayName = "Assault";
 		icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\assault_ca.paa";
 	};
 	class Engineer {

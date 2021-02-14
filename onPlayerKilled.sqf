@@ -11,7 +11,7 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
         WF_Client_SideJoined = _side;
         WF_C_RESPAWN_LOCATIONS = [];
 
-        [WF_Client_SideJoined, [format["%1_Soldier_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
+        [WF_Client_SideJoined, [format["%1_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
         [WF_Client_SideJoined, [format["%1_Engineer_0", WF_Client_SideJoined], -1,  6]] call BIS_fnc_addRespawnInventory;
         [WF_Client_SideJoined, [format["%1_Recon_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
         [WF_Client_SideJoined, [format["%1_Support_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
