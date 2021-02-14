@@ -5,7 +5,7 @@
 			- Sanitize the variable to prevent variable hijacking.
 */
 
-//--- View distance.
+//--- Object distance.
 _profile_var = profileNamespace getVariable "WF_PERSISTENT_CONST_OBJECT_DISTANCE";
 if !(isNil '_profile_var') then {
 	if (typeName _profile_var == "SCALAR") then {

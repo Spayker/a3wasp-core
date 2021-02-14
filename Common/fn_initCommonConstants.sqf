@@ -150,8 +150,8 @@ with missionNamespace do {
 	WF_C_ECONOMY_HQ_PENALTY_INCREASE_STEP = 5000;
 
 //--- Environment.	
-	if (isNil "WF_C_OBJECT_MAX_VIEW") then {WF_C_OBJECT_MAX_VIEW = 5000;}; //--- Max object distance.
-	if (isNil "WF_C_ENVIRONMENT_MAX_VIEW") then {WF_C_ENVIRONMENT_MAX_VIEW = 5000;}; //--- Max view distance.
+	if (isNil "WF_C_OBJECT_MAX_VIEW") then {WF_C_OBJECT_MAX_VIEW = 4000;}; //--- Max object distance.
+	if (isNil "WF_C_ENVIRONMENT_MAX_VIEW") then {WF_C_ENVIRONMENT_MAX_VIEW = 4000;}; //--- Max view distance.
 	if (isNil "WF_C_ENVIRONMENT_MAX_CLUTTER") then {WF_C_ENVIRONMENT_MAX_CLUTTER = 50;}; //--- Max Terrain grid.
 	if (isNil "WF_C_ENVIRONMENT_STARTING_HOUR") then {WF_C_ENVIRONMENT_STARTING_HOUR = 9;}; //--- Starting Hour of the day.
 	if (isNil "WF_C_ENVIRONMENT_STARTING_MONTH") then {WF_C_ENVIRONMENT_STARTING_MONTH = 6;}; //--- Starting Month of the year.
