@@ -40,7 +40,8 @@ if (! (isPlayer (_killed)) && !(WF_Client_SideJoined isEqualTo resistance)) then
 
 { _x call BIS_fnc_removeRespawnPosition } forEach WF_C_RESPAWN_LOCATIONS;
 WF_C_RESPAWN_LOCATIONS = [];
-_spawn_locations = [WF_Client_SideJoined, WF_DeathLocation] Call WFCL_FNC_GetRespawnAvailable;
+_spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRespawnAvailable;
+
 {
     if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
         _type = _x getVariable ['wf_structure_type', ''];
@@ -55,7 +56,7 @@ _spawn_locations = [WF_Client_SideJoined, WF_DeathLocation] Call WFCL_FNC_GetRes
             _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
             WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
     } else {
-        WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
+            WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 20] call WFCO_FNC_GetSafePlace] call BIS_fnc_addRespawnPosition);
     }
     }
 } forEach _spawn_locations;

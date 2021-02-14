@@ -18,9 +18,9 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
         [WF_Client_SideJoined, [format["%1_Medic_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
         [WF_Client_SideJoined, [format["%1_SpecOps_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
 
-        _spawn_locations = [WF_Client_SideJoined, getPosATL player] Call WFCL_FNC_GetRespawnAvailable;
+        _spawn_locations = [WF_Client_SideJoined, getPosATL _oldUnit] Call WFCL_FNC_GetRespawnAvailable;
         while {count _spawn_locations == 0} do {
-            _spawn_locations = [WF_Client_SideJoined, getPosATL player] Call WFCL_FNC_GetRespawnAvailable;
+            _spawn_locations = [WF_Client_SideJoined, getPosATL _oldUnit] Call WFCL_FNC_GetRespawnAvailable;
             sleep 1;
         };
 
@@ -40,7 +40,7 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
                     _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
                     WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
             } else {
-                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
+                    WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 20] call WFCO_FNC_GetSafePlace] call BIS_fnc_addRespawnPosition);
             }
             }
         } forEach _spawn_locations;

@@ -12,22 +12,7 @@ _unit = _newUnit;
 _loadDefault = true;
 
 WF_DeathLocation = getPosATL _oldUnit;
-_spawn = nil;
-if(vehicle _unit != _unit) then {
-    _spawn = vehicle _unit
-} else {
-    _spawn_locations = [WF_Client_SideJoined, WF_DeathLocation] Call WFCL_FNC_GetRespawnAvailable;
-    _spawn = [WF_DeathLocation, _spawn_locations] Call WFCO_FNC_GetClosestEntity;
-};
-_typeof = typeOf _spawn;
-
 WF_Client_IsRespawning = false;
-_allowCustom = true;
-
-//--- Default gear enforcement on mobile respawn.
-if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") == 2) then {
-	if (_typeof in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_allowCustom = false};
-};
 
 [_this # 0] spawn {
 	waitUntil {!isNil "ASL_Add_Player_Actions"};
