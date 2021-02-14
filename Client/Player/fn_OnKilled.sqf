@@ -56,7 +56,13 @@ _spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRe
             _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
             WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
     } else {
-            WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 20] call WFCO_FNC_GetSafePlace] call BIS_fnc_addRespawnPosition);
+            if (typeof _x == WF_C_CAMP ) then {
+                _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable ['name', ''];
+                _txt = 'Camp ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
+                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 20] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
+            } else {
+                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
+            }
     }
     }
 } forEach _spawn_locations;
