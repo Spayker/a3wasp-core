@@ -83,16 +83,6 @@ WF_TYPE_RIFLE2H = 5;
 WF_TYPE_EQUIPMENT = 4096;
 WF_TYPE_ITEM = 131072;
 
-// adjusting fatigue
-if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
-    player setCustomAimCoef 0.35;
-    player setUnitRecoilCoefficient 0.75;
-    player enablestamina false;
-} else {
-    player enableFatigue false;
-    player setCustomAimCoef 0.1;
-};
-
 [_this # 0] spawn {
 	waitUntil {!isNil "ASL_Add_Player_Actions"};
 

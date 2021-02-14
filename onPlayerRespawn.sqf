@@ -64,9 +64,12 @@ if (!isNull commanderTeam) then {
 
 // adjusting fatigue
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
-    (leader WF_Client_Team) setCustomAimCoef 0.35;
-    (leader WF_Client_Team) setUnitRecoilCoefficient 0.75;
-    (leader WF_Client_Team) enablestamina false;
+    player setCustomAimCoef 0.35;
+    player setUnitRecoilCoefficient 0.75;
+    player enablestamina false;
+} else {
+    player enableFatigue false;
+    player setCustomAimCoef 0.1;
 };
 
 [WF_Client_SideJoinedText,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
