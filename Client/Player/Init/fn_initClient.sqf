@@ -417,6 +417,7 @@ sleep 5;
 WF_C_MAP_MARKER_HANDLER = {
     Private ['_unit', '_colorStr', '_iconType', '_color'];
 	_iconsToBeDisplayed = [];
+    _color = nil;
 
     {
         _unit = _x # 0;
@@ -427,7 +428,7 @@ WF_C_MAP_MARKER_HANDLER = {
         _text = if(count _x > 2) then { _x # 2 } else { '' };
         _iconType = getText (configFile >> "CfgVehicles" >> typeOf _unit >> "icon");
 
-        _color = nil;
+
         switch (_colorStr) do {
             case 'ColorEAST':{ _color = [0.5,0,0,1] };
             case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
@@ -486,6 +487,14 @@ WF_C_MAP_MARKER_HANDLER = {
     } forEach WF_UNIT_MARKERS;
 
 	{
+        _leader = leader _x;
+        if(vehicle _leader == _leader) then {
+            _iconType = getText (configFile >> "CfgVehicles" >> typeOf _leader >> "icon");
+            _iconsToBeDisplayed pushBackUnique ([_iconType, _color, _leader, name _leader ])
+        }
+    } forEach (WF_Client_Logic getVariable "wf_teams");
+
+    {
 		_iconType = _x # 0;
 		_color = 	_x # 1;
 		_unit  = 	_x # 2;
@@ -509,9 +518,6 @@ WF_C_MAP_MARKER_HANDLER = {
 
 waitUntil {!isNull findDisplay 12};
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
-
-/* Exec SQF|FSM Misc stuff. */
-[] spawn WFCL_fnc_updateTeamsMarkers;
 
 //--- res base logic clean up
 { deleteVehicle _x } forEach ([0,0,0] nearEntities [["LocationOutpost_F"], 100000]);

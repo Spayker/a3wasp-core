@@ -15,7 +15,6 @@ class WF_Client {
         class handleOnMap {};
         class initMarkers {};
         class initGlobalMarkingMonitorFunctions {};
-        class updateTeamsMarkers {};
         class updateTownMarkers {};
         class IconVehicle {};
         class UpdateRadarMarker {};
