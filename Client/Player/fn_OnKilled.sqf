@@ -84,4 +84,6 @@ if(WF_P_gearPurchased) then {
     [WF_Client_SideJoined, [format["%1_SpecOps_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
 };
 
+player removeAllEventHandlers "HandleHeal";
+
 [{true}, WF_C_RESPAWN_DELAY - _respawnDelay, ""] call BIS_fnc_setRespawnDelay

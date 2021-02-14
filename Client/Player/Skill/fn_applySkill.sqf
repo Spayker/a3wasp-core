@@ -79,6 +79,18 @@ switch (WF_SK_V_Type) do {
 	case WF_MEDIC: {
 	    player setUnitTrait ["Medic", true];
 		[_unit] call fnc_addFastRepairAction;
+		_unit addEventHandler ["HandleHeal", {
+        	_this spawn {
+        		params ["_injured", "_healer"];
+        		private _damage = damage _injured;
+        		waitUntil {damage _injured != _damage};
+        		if (_injured == _healer) then {
+        			_healer setDamage 0
+        		} else {
+        		    _injured setDamage 0
+        		}
+        	};
+        }];
 	};
     case WF_SUPPORT: {
         player setUnitTrait ["UAVHacker", true];
