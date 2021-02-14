@@ -4,6 +4,8 @@ hudOn = true;
 
 if(!isFirstSpawnIsDone) then {
     isFirstSpawnIsDone = true;
+    12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
+            "<br /><t size='1.5'>100%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",10, true, true];
 };
 
 _unit = _newUnit;

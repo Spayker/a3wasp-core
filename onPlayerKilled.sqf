@@ -24,17 +24,30 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
             sleep 1;
         };
 
+        { _x call BIS_fnc_removeRespawnPosition } forEach WF_C_RESPAWN_LOCATIONS;
+        WF_C_RESPAWN_LOCATIONS = [];
         {
-            _name = name _x;
+
             if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
                 _type = _x getVariable ['wf_structure_type', ""];
                 _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
                 _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
-                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition);
+                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition)
+            } else {
+                if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
+                    _type = _x getVariable ['wf_structure_type', ""];
+                    _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
+                    _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
+                    WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
             } else {
                 WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
             }
+            }
         } forEach _spawn_locations;
+
+        /* HQ Building Init. */
+        12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
+        	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingWaitForHQ')+"</t>","BLACK IN", 5, true, true];
 
         if (!isNil 'WF_PlayerMenuAction') then { player removeAction WF_PlayerMenuAction };
     }

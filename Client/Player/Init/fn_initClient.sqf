@@ -27,13 +27,9 @@ WF_Client_SideJoinedText = str WF_Client_SideJoined;
 
 WF_STRCUCTURES_ICONS = true;
 WF_MAXPLAYERS_IN_TEAM = 30;
-WF_EndIntro = if(WF_Skip_Intro) then {true} else {false};
 WF_IsRoleSelectedDialogClosed = false;
 WF_KillPay_Array = [];
 //--- Position the client on the temp spawn (Common is not yet init'd so we call is straigh away).
-//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
-	//"<br /><t size='1.5'>35%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetPreRespawn')+"</t>","BLACK IN",55555, true, true];
-// player setPos ([getMarkerPos Format["%1TempRespawnMarker",WF_Client_SideJoinedText],1,10] Call WFCO_FNC_GetRandomPosition);
 
 // Dialog: Skills Menu
 WF_role_list = [];
@@ -116,8 +112,6 @@ if (!(visibleMap) && (isNil "BIS_CONTROL_CAM")) then {Local_GUIWorking=true; 136
 4 enableChannel [true, true];  // enabling vehicle voice and chat
 5 enableChannel [true, true];  // enabling direct voice and chat
 
-12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
-	"<br /><t size='1.5'>65%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingPreparingRolesGear')+"</t>","BLACK IN",55555, true, true];
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_West.sqf"};
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_East.sqf"};
 
@@ -144,8 +138,6 @@ waitUntil {commonInitComplete};
 
 Call WFCL_fnc_initProfileVariables;
 
-12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
-	"<br /><t size='1.5'>80%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGlobalData')+"</t>","BLACK IN",55555, true, true];
 //--- Queue Protection.
 missionNamespace setVariable ['WF_C_QUEUE_BARRACKS',0];
 missionNamespace setVariable ['WF_C_QUEUE_BARRACKS_MAX',10];
@@ -331,8 +323,6 @@ if (!WF_Debug) then {
 };
 
 /* Get the client starting location */
-//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
-//	"<br /><t size='1.5'>85%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetRespawn')+"</t>","BLACK IN",55555, true, true];
 ["INITIALIZATION", "fn_initClient.sqf: Retrieving the client spawn location."] Call WFCO_FNC_LogContent;
 _base = objNull;
 if (time < 30) then {
@@ -349,19 +339,6 @@ if (time < 30) then {
 };
 
 ["INITIALIZATION", Format["fn_initClient.sqf: Client spawn location has been determined at [%1].", _base]] Call WFCO_FNC_LogContent;
-
-/* Position the client at the previously defined location */
-private _pos = getPosATL _base;
-_safePos = [_pos, 0, 60] call BIS_fnc_findSafePos;
-_pos set [0, _safePos # 0];
-_pos set [1, _safePos # 1];
-player setPosAtl _pos;
-
-/* HQ Building Init. */
-//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
-//	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingWaitForHQ')+"</t>","BLACK IN",55555, true, true];
-
-
 ["INITIALIZATION", "fn_initClient.sqf: Initializing COIN Module."] Call WFCO_FNC_LogContent;
 
 _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
@@ -415,9 +392,6 @@ waitUntil {townInit};
 /* A new player come to reinforce the battlefield */
 [WF_Client_SideJoinedText,'UnitsCreated',1] Call WFCO_FNC_UpdateStatistics;
 
-/* Client death handler. */
-// player addEventHandler ['Killed', {_this Spawn WFCL_FNC_OnKilled}];
-
 /* Client UAV deploy handler */
 player addEventHandler ["WeaponAssembled", {
 	params ["_unit", "_staticWeapon"];
@@ -426,11 +400,6 @@ player addEventHandler ["WeaponAssembled", {
         _staticWeapon removeMagazineTurret ["Laserbatteries",[0]]
 	}
 }];
-
-
-//_roleDefaultGear = [];
-//_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];
-//[player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
 
 WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
 WF_P_gearPurchased = false;
@@ -442,12 +411,7 @@ if (time > 10 && (WF_Client_Logic getVariable "wf_votetime") > 0) then {createDi
 /* Towns Task System */
 ["TownAddComplete"] Spawn WFCL_FNC_TaskSystem;
 
-//12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" +
-//	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",55555, true, true];
-// call WFCL_FNC_GetGearTemplates;
-
 [] ExecVM "Client\Player\Init\fn_initThirdViewHandler.sqf";
-
 
 clientInitComplete = true;
 
@@ -458,15 +422,6 @@ sleep 5;
 0 = [] spawn WFCL_fnc_initKeybind;
 //--- Valhalla init.
 0 = [] execVM "Client\Module\Valhalla\Init_Valhalla.sqf";
-
-if!(WF_Skip_Intro) then {
-    waitUntil { WF_EndIntro };
-	
-	[] spawn {
-		sleep 10;
-		["Buy first role for free near barracks or captured camp"] spawn WFCL_fnc_handleMessage;
-	};
-};
 
 //--- map marker handler
 WF_C_MAP_MARKER_HANDLER = {

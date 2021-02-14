@@ -108,7 +108,6 @@ class WF_Client {
         file = "Client\Player";
         class changeScore {};
         class onKilled {};
-        class missionIntro {};
         class showEndGameResults {};
         class updateCanJoinFlag {};
         class updateAvailableActions {};
