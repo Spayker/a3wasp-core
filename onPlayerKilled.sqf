@@ -36,7 +36,7 @@ params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
             } else {
                 if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
                     _type = _x getVariable ['wf_structure_type', ""];
-                    _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
+                    _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable ['name', ''];
                     _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
                     WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
             } else {
