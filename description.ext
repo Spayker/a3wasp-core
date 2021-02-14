@@ -91,7 +91,7 @@ class CfgRoles {
 		icon = "a3\Ui_f\data\IGUI\Cfg\Actions\heal_ca.paa";
 	};
 	class SpecOps {
-        displayName = "Spec Ops";
+        displayName = "SpecOps";
         icon = "a3\Ui_f\data\IGUI\Cfg\Actions\getincommander_ca.paa";
     };
 };
