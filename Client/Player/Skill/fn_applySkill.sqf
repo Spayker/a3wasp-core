@@ -11,21 +11,21 @@ fnc_addFastRepairAction = {
     params ["_unit"];
 
 	_unit addAction [
-		(localize "STR_WASP_actions_fastrep"),
+		("<t color='#f8d664'>" + localize "STR_WASP_actions_fastrep" + "</t>"),
 		{call WFCL_fnc_processLiteRepairAction},
 		[],
 		80,
 		false,
 		true,
 		"",
-        "time - WF_SK_V_LastUse_LR > WF_SK_V_Reload_LR && isNull objectParent player"
+        '_veh = [player] call WFCO_FNC_GetNearestVehicle; (time - WF_SK_V_LastUse_LR > WF_SK_V_Reload_LR && isNull objectParent player && !(isNull _veh))'
 	];
 };
 
 switch (WF_SK_V_Type) do {
 	case WF_ENGINEER: {
 		/* Repair Ability */
-		player setUnitTrait ["explosiveSpecialist ", true];
+		_unit setUnitTrait ["explosiveSpecialist ", true];
 		_unit addAction [
 			("<t color='#f8d664'>" + localize 'STR_WF_ACTION_Repair'+ "</t>"),
 			{call WFCL_fnc_processEngineerAction},
@@ -34,7 +34,7 @@ switch (WF_SK_V_Type) do {
 			false, 
 			true, 
 			"", 
-			"time - WF_SK_V_LastUse_Repair > WF_SK_V_Reload_Repair && isNull objectParent player"
+			'_veh = [player] call WFCO_FNC_GetNearestVehicle; (time - WF_SK_V_LastUse_Repair > WF_SK_V_Reload_Repair && isNull objectParent player && !(isNull _veh))'
 		];
 
 		_unit addAction ["<t color='#11ec52'>" + localize 'STR_WF_Repair_Camp' + "</t>",{call WFCL_fnc_repairCampEngineer}, [], 97, false, true, '', '_camp = [player] call WFCL_FNC_GetNearestCamp; (!isNull _camp && (isObjectHidden _camp))'];
@@ -56,8 +56,8 @@ switch (WF_SK_V_Type) do {
 		[_unit] call fnc_addFastRepairAction;
 	};
 	case WF_SNIPER: {
-	    player setUnitTrait ["audibleCoef", true];
-	    player setUnitTrait ["camouflageCoef", true];
+	    _unit setUnitTrait ["audibleCoef", true];
+	    _unit setUnitTrait ["camouflageCoef", true];
 		/* Spotting Ability */
 		_unit addAction [
 			("<t color='#f8d664'>" + localize 'STR_WF_ACTION_Spot'+ "</t>"),
@@ -72,12 +72,12 @@ switch (WF_SK_V_Type) do {
 		[_unit] call fnc_addFastRepairAction;
 	};
     case WF_SOLDIER: {
-        player setUnitTrait ["explosiveSpecialist ", true];
+        _unit setUnitTrait ["explosiveSpecialist ", true];
 		_unit addAction ["<t color='#11ec52'>" + localize 'STR_WF_Repair_Camp' + "</t>",{call WFCL_fnc_repairCampEngineer}, [], 97, false, true, '', '_camp = [player] call WFCL_FNC_GetNearestCamp; (!isNull _camp && (isObjectHidden _camp))'];
 		[_unit] call fnc_addFastRepairAction;
 	};
 	case WF_MEDIC: {
-	    player setUnitTrait ["Medic", true];
+	    _unit setUnitTrait ["Medic", true];
 		[_unit] call fnc_addFastRepairAction;
 		_unit addEventHandler ["HandleHeal", {
         	_this spawn {
@@ -93,8 +93,8 @@ switch (WF_SK_V_Type) do {
         }];
 	};
     case WF_SUPPORT: {
-        player setUnitTrait ["UAVHacker", true];
-        player setUnitTrait ["explosiveSpecialist ", true];
+        _unit setUnitTrait ["UAVHacker", true];
+        _unit setUnitTrait ["explosiveSpecialist ", true];
 		[_unit] call fnc_addFastRepairAction;
 	};
 };

@@ -215,6 +215,8 @@ with missionNamespace do {
 	WF_C_PLAYERS_UAV_SPOTTING_DELAY = 20; //--- Interval between each uav spotting routine.
 	WF_C_PLAYERS_UAV_SPOTTING_DETECTION = 0.21; //--- UAV will reveal each targets that it knows about this value (0-4)
 	WF_C_PLAYERS_UAV_SPOTTING_RANGE = 1100; //--- Max Range of the UAV spotting.
+	WF_C_NEAREST_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
+	WF_C_NEAREST_VEHICLE_RANGE = 6;
 
 //--- Respawn.
 	if (isNil "WF_C_RESPAWN_CAMPS_MODE") then {WF_C_RESPAWN_CAMPS_MODE = 2;}; //--- Respawn Camps (0: Disabled, 1: Classic [from town center], 2: Enhanced [from nearby camps]).
@@ -410,6 +412,10 @@ switch(side player) do {
 //--- Chemical protection
 WF_C_CHEMICAL_DAMAGE_RADIUS = 500;
 WF_C_GAS_MASKS = ['g_regulatormask_f','g_airpurifyingrespirator_02_olive_f','g_airpurifyingrespirator_02_sand_f','g_airpurifyingrespirator_02_black_f','g_airpurifyingrespirator_01_f'];
+
+    //--- Radio tower related
+    WF_C_RADIO_OBJECTS = ['Land_Vysilac_vez', 'Land_Vysilac_FM', 'Land_Vysilac_FM2', 'Land_Radar_F', 'Land_Radar_Small_F', 'Land_Radar', 'Land_Radar_EP1', 'Land_Communication_F', 'Land_TTowerSmall_1_F', 'Land_TTowerSmall_2_F', 'Land_TTowerBig_1_F', 'Land_TTowerBig_2_F', 'Land_Com_tower_ep1', 'Land_Telek1', 'Land_A_TVTower_Base'];
+    WF_C_RADIO_TOWER_RANGE = 15;
 
 };
 

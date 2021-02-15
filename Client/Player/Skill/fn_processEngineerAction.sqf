@@ -28,13 +28,13 @@ _skip = false;
 for [{_z = 0},{_z < 25},{_z = _z + 1}] do {
 	player playMove "Acts_carFixingWheel";
 	sleep 1;
-	if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > 5) exitWith {
+	if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > WF_C_NEAREST_VEHICLE_RANGE) exitWith {
 	    [format["%1", localize 'STR_HINT_FieldFailed']] spawn WFCL_fnc_handleMessage;
 	    _skip = true
 	};
 };
 
-if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > 5) exitWith {
+if (!alive player || vehicle player != player || !alive _vehicle || _vehicle distance player > WF_C_NEAREST_VEHICLE_RANGE) exitWith {
     [format["%1", localize 'STR_HINT_FieldFailed']] spawn WFCL_fnc_handleMessage;
     _skip = true
 };

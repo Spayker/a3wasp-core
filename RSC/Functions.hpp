@@ -38,6 +38,7 @@ class WF_Client {
         class allCampsCaptured {};
         class campCaptured {};
         class getNearestCamp {};
+        class getNearestRadioTower {};
     };
 
     class Base {
@@ -532,6 +533,7 @@ class WF_Common {
         class createVehicle {};
         class findTurretsRecursive {};
         class handleIncomingMissile {};
+        class GetNearestVehicle {};
         class placeSafe {};
         class rearmVehicle {};
         class requip_AIR_VEH {};
