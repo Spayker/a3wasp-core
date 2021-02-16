@@ -216,7 +216,7 @@ with missionNamespace do {
 	WF_C_PLAYERS_UAV_SPOTTING_DETECTION = 0.21; //--- UAV will reveal each targets that it knows about this value (0-4)
 	WF_C_PLAYERS_UAV_SPOTTING_RANGE = 1100; //--- Max Range of the UAV spotting.
 	WF_C_NEAREST_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
-	WF_C_NEAREST_VEHICLE_RANGE = 6;
+	WF_C_NEAREST_VEHICLE_RANGE = 5;
 
 //--- Respawn.
 	if (isNil "WF_C_RESPAWN_CAMPS_MODE") then {WF_C_RESPAWN_CAMPS_MODE = 2;}; //--- Respawn Camps (0: Disabled, 1: Classic [from town center], 2: Enhanced [from nearby camps]).

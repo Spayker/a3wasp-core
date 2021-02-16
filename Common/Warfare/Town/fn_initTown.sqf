@@ -27,7 +27,7 @@ _town setVariable ["initialStartSupplyValue",_townStartSV];
 
 waitUntil {commonInitComplete};
 
-_camps = nearestObjects [_town, [WF_C_CAMP], _townRange];
+_camps = nearestObjects [_town, WF_C_CAMP_SEARCH_ARRAY, _townRange];
 _camps = _camps select { (_x getVariable ["WF_CAMP_TOWN", ""]) == _townName };
 
 if (isServer || (!hasInterface && !isDedicated)) then {

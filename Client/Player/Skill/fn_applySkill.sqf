@@ -51,7 +51,7 @@ switch (WF_SK_V_Type) do {
 			false, 
 			true, 
 			"", 
-			"(time - WF_SK_V_LastUse_Lockpick > WF_SK_V_Reload_Lockpick && vehicle player == player)"
+			"_veh = [player] call WFCO_FNC_GetNearestVehicle; (time - WF_SK_V_LastUse_Lockpick > WF_SK_V_Reload_Lockpick && vehicle player == player && !(isNull _veh))"
 		];
 		[_unit] call fnc_addFastRepairAction;
 	};

@@ -9,7 +9,7 @@ private ["_camp","_camps","_delay","_range","_temp"];
 _range = missionNamespace getVariable ["WF_C_CAMPS_REPAIR_RANGE", 10];
 
 //--- Attempt to get a nearby camp.
-_camps = nearestObjects [_vehicle, [WF_C_CAMP], _range];
+_camps = nearestObjects [_vehicle, WF_C_CAMP_SEARCH_ARRAY, _range];
 
 //--- Only get the "real" camps, remove the possible undefined ones.
 _temp = _camps;

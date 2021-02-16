@@ -29,6 +29,7 @@ Call Compile preprocessFileLineNumbers 'Common\Warfare\Config\Core\Core_US.sqf';
 //--- Types.
 WF_Logic_Airfield = "Land_Ss_hangard";
 WF_Logic_Depot = ["Land_BagBunker_Large_F", "Land_Ss_hangard"];
+WF_C_CAMP_SEARCH_ARRAY = [missionNamespace getVariable 'WF_C_CAMP'];
 
 /* Call in the teams template - Combined Operations */
 _team_west = 'US';

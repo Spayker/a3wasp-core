@@ -6,7 +6,7 @@ _range = missionNamespace getVariable "WF_C_CAMPS_RANGE";
 
 if(!(isNil "_unit") && (alive _unit)) then {
 	//--- Attempt to get a nearby camp.
-	_camps = nearestObjects [_unit, [WF_C_CAMP], _range];
+	_camps = nearestObjects [_unit, WF_C_CAMP_SEARCH_ARRAY, _range, true];
 
 	//--- Only get the "real" camps, remove the possible undefined ones.
 	_temp = _camps;
@@ -16,7 +16,7 @@ if(!(isNil "_unit") && (alive _unit)) then {
 
 	if (count _camps > 0) then {
 	    //--- Get the closest camp then.
-	    _camp = [_unit, _camps] call WFCO_FNC_GetClosestEntity;
+	    _camp = _camps # 0
 	};
 };
 
