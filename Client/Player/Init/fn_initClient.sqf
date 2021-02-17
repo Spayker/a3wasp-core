@@ -161,11 +161,9 @@ missionNamespace setVariable ['WF_C_GROUP_QUEUE_DEPOT',0];
 missionNamespace setVariable ['WF_C_GROUP_QUEUE_DEPOT_MAX',3];
 
 //--- Global Client Variables.
-sideID = WF_Client_SideJoined Call WFCO_FNC_GetSideID;
 paramBoundariesRunning = false;
 call WFCL_fnc_initGlobalMarkingMonitorFunctions;
 WF_Client_Logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-WF_Client_SideID = sideID;
 WF_Client_Color = switch (WF_Client_SideJoined) do { case west: {missionNamespace getVariable "WF_C_WEST_COLOR"}; case east: {missionNamespace getVariable "WF_C_EAST_COLOR"}; case resistance: {missionNamespace getVariable "WF_C_GUER_COLOR"};};
 WF_Client_Team = group player;
 WF_Client_Teams = missionNamespace getVariable Format['WF_%1TEAMS',WF_Client_SideJoinedText];
@@ -370,13 +368,6 @@ if (WF_Debug) then {
 waitUntil {townInit};
 ["INITIALIZATION", "fn_initClient.sqf: Towns are initialized."] Call WFCO_FNC_LogContent;
 
-/* JIP System, initialize the camps and towns properly. */
-[] Spawn {
-	sleep 2;
-	["INITIALIZATION", "fn_initClient.sqf: Updating JIP Markers."] Call WFCO_FNC_LogContent;
-	Call WFCL_fnc_initMarkers;
-};
-
 /* Repair Truck CoIn Handling. */
 [missionNamespace getVariable "WF_C_BASE_COIN_AREA_REPAIR",false,RCoin,"REPAIR"] Call WFCL_FNC_initConstructionModule;
 
@@ -391,8 +382,6 @@ player addEventHandler ["WeaponAssembled", {
         _staticWeapon removeMagazineTurret ["Laserbatteries",[0]]
 	}
 }];
-
-WF_P_gearPurchased = false;
 
 /* Vote System, define whether a vote is already running or not */
 ["INITIALIZATION", "fn_initClient.sqf: Vote system is initialized."] Call WFCO_FNC_LogContent;

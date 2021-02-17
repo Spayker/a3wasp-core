@@ -37,35 +37,32 @@ if (! (isPlayer (_killed)) && !(WF_Client_SideJoined isEqualTo resistance)) then
 	}
 }];
 
-{ _x call BIS_fnc_removeRespawnPosition } forEach WF_C_RESPAWN_LOCATIONS;
-WF_C_RESPAWN_LOCATIONS = [];
-_spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRespawnAvailable;
+_killedPos = if(isNil '_killed') then { getPosATL player } else { getPosATL _killed };
+_spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAvailable;
+
 {
     if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
         _type = _x getVariable ['wf_structure_type', ''];
         _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
-        _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
-
-        WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition)
+        _txt = _type + ' ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+        [WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition
     } else {
         if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
             _type = _x getVariable ['wf_structure_type', ""];
-            _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable ['name', ''];
-            _txt = _type + ' ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
-            WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
+            _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
+            _txt = _type + ' ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+            [WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition
     } else {
             if (typeof _x == WF_C_CAMP ) then {
-                _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable ['name', ''];
-                _txt = 'Camp ' + _nearTown + ' ' + str (round((vehicle player) distance _x)) + 'M';
-                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
+                _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
+                _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+                [WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition;
             } else {
-                WF_C_RESPAWN_LOCATIONS pushBack ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition);
+                [WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition;
             }
     }
     }
 } forEach _spawn_locations;
-
-private _respawnInfo = [player] call BIS_fnc_getRespawnInventories;
 
 if(WF_P_gearPurchased && !isNil ('WF_P_CurrentGear')) then {
     //// last saved gear
