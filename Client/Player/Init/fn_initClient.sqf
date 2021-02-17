@@ -392,7 +392,6 @@ player addEventHandler ["WeaponAssembled", {
 	}
 }];
 
-WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
 WF_P_gearPurchased = false;
 
 /* Vote System, define whether a vote is already running or not */

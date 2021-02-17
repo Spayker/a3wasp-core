@@ -34,7 +34,7 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 	
 	case 2: {
 		/* Enhanced Respawn - Get the camps around the unit */
-		_nearestCamps = nearestObjects [_deathLoc, [WF_C_CAMP], (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_RANGE")];
+		_nearestCamps = nearestObjects [_deathLoc, WF_C_CAMP_SEARCH_ARRAY, (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_RANGE")];
 		{
 			if !(isNil {_x getVariable 'sideID'}) then {
 				if ((_side Call WFCO_FNC_GetSideID) == (_x getVariable 'sideID') && !isObjectHidden _x) then {
@@ -57,7 +57,7 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 	
 	case 3: {
 		/* Defender Only Respawn - Get the camps around the unit only if the town is friendly to the unit. */
-		_nearestCamps = nearestObjects [_deathLoc, [WF_C_CAMP], (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_RANGE")];
+		_nearestCamps = nearestObjects [_deathLoc, WF_C_CAMP_SEARCH_ARRAY, (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_RANGE")];
 		{
 			if !(isNil {_x getVariable 'sideID'}) then {
 				_town = _x getVariable 'town';

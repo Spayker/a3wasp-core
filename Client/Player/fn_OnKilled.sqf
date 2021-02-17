@@ -67,7 +67,7 @@ _spawn_locations = [WF_Client_SideJoined, getPosATL _killed] Call WFCL_FNC_GetRe
 
 private _respawnInfo = [player] call BIS_fnc_getRespawnInventories;
 
-if(WF_P_gearPurchased) then {
+if(WF_P_gearPurchased && !isNil ('WF_P_CurrentGear')) then {
     //// last saved gear
     [WF_Client_SideJoined, [format["%1_Saved_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
     [WF_Client_SideJoined, [format["%1_Saved_Engineer_0", WF_Client_SideJoined], -1,  6]] call BIS_fnc_addRespawnInventory;
