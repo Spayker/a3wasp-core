@@ -1,6 +1,8 @@
 params ["_object", "_side"];
 private ["_height", "_markerName", "_markerText", "_currentUpgrades"];
 
+waitUntil {!isNil "unitMarker"};
+
 unitMarker = unitMarker + 1;
 _markerName = Format ["unitMarker%1",unitMarker];
 

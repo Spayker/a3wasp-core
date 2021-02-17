@@ -1,5 +1,7 @@
 params ["_dropPosition"];
 
+waitUntil {!isNil "WF_C_CHEMICAL_DAMAGE_RADIUS"};
+
 [_dropPosition] spawn {
 
     params ["_dropPosition"];
