@@ -42,23 +42,26 @@ _spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAv
 
 {
     if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
-        _type = _x getVariable ['wf_structure_type', ''];
-        _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
-        _txt = _type + ' ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+        _type = _x getVariable ['wf_structure_type', ""];
+        _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
+        _nearTown = (_sorted select 0) getVariable 'name';
+        _txt = _type + ' ' + _nearTown;
         [WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition
     } else {
         if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
             _type = _x getVariable ['wf_structure_type', ""];
-            _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
-            _txt = _type + ' ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+            _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
+            _nearTown = (_sorted select 0) getVariable 'name';
+            _txt = _type + ' ' + _nearTown;
             [WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition
     } else {
             if (typeof _x == WF_C_CAMP ) then {
-                _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
+                _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
+                _nearTown = (_sorted select 0) getVariable 'name';
                 _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
                 [WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition;
             } else {
-                [WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition;
+                [WF_Client_SideJoined, _x, name _x] call BIS_fnc_addRespawnPosition;
             }
     }
     }

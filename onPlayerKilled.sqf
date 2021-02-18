@@ -10,10 +10,14 @@ if(count _playerBots > 0) then {
 WF_Client_SideJoined = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
 _respawnIdCounter = 0;
 while {count (WF_Client_SideJoined call BIS_fnc_getRespawnPositions) > 0} do {
-    {
-        [WF_Client_SideJoined, _respawnIdCounter] call BIS_fnc_removeRespawnPosition
-    } forEach (WF_Client_SideJoined call BIS_fnc_getRespawnPositions);
+    [WF_Client_SideJoined, _respawnIdCounter] call BIS_fnc_removeRespawnPosition;
     _respawnIdCounter = _respawnIdCounter + 1;
+};
+
+_inventoryIdCounter = 0;
+while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
+     [WF_Client_SideJoined, _inventoryIdCounter] call BIS_fnc_removeRespawnInventory;
+    _inventoryIdCounter = _inventoryIdCounter + 1;
 };
 
 [_oldUnit, _killer, _respawn, _respawnDelay] spawn {
@@ -42,27 +46,31 @@ while {count (WF_Client_SideJoined call BIS_fnc_getRespawnPositions) > 0} do {
         };
 
         _killedPos = if(isNil '_oldUnit') then { getPosATL player } else { getPosATL _oldUnit };
-        _spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAvailable;
+        _logik = (WF_Client_SideJoined) call WFCO_FNC_GetSideLogic;
 
+        _spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAvailable;
         {
             if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
                 _type = _x getVariable ['wf_structure_type', ""];
-                _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
-                _txt = _type + ' ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+                _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
+                _nearTown = (_sorted select 0) getVariable 'name';
+                _txt = _type + ' ' + _nearTown;
                 [WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition
             } else {
                 if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
                     _type = _x getVariable ['wf_structure_type', ""];
-                    _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
-                    _txt = _type + ' ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
+                    _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
+                    _nearTown = (_sorted select 0) getVariable 'name';
+                    _txt = _type + ' ' + _nearTown;
                     [WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition
             } else {
                     if (typeof _x == WF_C_CAMP ) then {
-                        _nearTown = ([_x, towns] Call WFCO_FNC_GetClosestEntity) getVariable 'name';
+                        _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
+                        _nearTown = (_sorted select 0) getVariable 'name';
                         _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
                         [WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition;
                     } else {
-                        [WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition;
+                        [WF_Client_SideJoined, _x, name _x] call BIS_fnc_addRespawnPosition;
                     }
             }
             }
