@@ -451,7 +451,13 @@ WF_C_MAP_MARKER_HANDLER = {
             if (count _unitCrew > 0) then {
                 _digitArray = [];
                 {
-                    if (group _x == WF_Client_Team) then { _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit) };
+                    if (group _x == WF_Client_Team) then {
+                        _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit)
+                    } else {
+                        if (isPlayer _x) then {
+                            _digitArray pushBack ((_x) call WFCO_FNC_GetAIDigit)
+                        }
+                    }
                 } forEach _unitCrew;
                         _text = _digitArray joinString ", ";
             }
