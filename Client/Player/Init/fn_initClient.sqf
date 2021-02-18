@@ -410,6 +410,7 @@ WF_C_MAP_MARKER_HANDLER = {
 
     {
         _unit = _x # 0;
+        if(alive _unit) then {
         _colorStr = _x # 1;
 		_unitPos = getPos _unit;
         _shallDraw = true;
@@ -477,7 +478,9 @@ WF_C_MAP_MARKER_HANDLER = {
 			if(_shallAdd) then {
 				_iconsToBeDisplayed pushBack [_iconType, _color, vehicle _unit, _text]
             }
-
+            }
+        } else {
+            WF_UNIT_MARKERS = WF_UNIT_MARKERS - [_x]
 		}
     } forEach WF_UNIT_MARKERS;
 
