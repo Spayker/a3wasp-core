@@ -1003,6 +1003,14 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 			_items = _logic getVariable "BIS_COIN_items";
 			_canAffordCountOld = _canAffordCount;
 			_canAffordCount = 0;
+
+			_upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
+
+			_restrictAdvancedAntiAirDeployment = true;
+			if(((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_ADV_AA_DEFENSE > 0) then {
+                _restrictAdvancedAntiAirDeployment = false
+            };
+
 			for "_i" from 0 to (count _categories - 1) do {
 				_category = _categories select _i;
 				_arrayNames = [];
@@ -1012,6 +1020,14 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 				_j = 0;
 				{
 					_itemclass = _x select 0;
+					_skip=false;
+					if (_itemclass in WF_C_AAA_DEFENSE_TYPES) then {
+					    if(_restrictAdvancedAntiAirDeployment) then {
+					        _skip = true
+					    }
+					};
+
+					if(!_skip) then {
 					_itemcategory = _x select 1;
 					if (_itemcategory isEqualType "") then {//--- Backward compatibility
 						_itemcategory = _categories find _itemcategory;
@@ -1068,6 +1084,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 							_arrayParams pushBack ([_logic getVariable "BIS_COIN_ID"] + [_x,_i]);
 						};
 						_j = _j + 1;
+					};
 					};
 				} forEach _items;
 

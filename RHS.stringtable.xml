@@ -3304,6 +3304,15 @@
 				<Russian>Позволяет использовать дистанционное управление юнитом через камеру юнита</Russian>
 			</Key>
 
+<Key ID="STR_WF_UPGRADE_ADV_AA_DEFENSE">
+				<English>Advanced Anti-Air defense</English>
+				<Russian>Система ПВО дальнего действия</Russian>
+			</Key>
+			<Key ID="STR_WF_UPGRADE_ADV_AA_DEFENSE_DESC">
+				<English>Allows deployment of C-RAMS, Long-Range AA defenses at bases</English>
+				<Russian>Позволяет размещать систему ПВО дальнего действия на территории баз</Russian>
+			</Key>
+
 			<!--UnitCamera Menu - ALL DONE-->
 			<Key ID="STR_WF_UNITCAM_CamMode">
 				<English>Camera mode:</English>

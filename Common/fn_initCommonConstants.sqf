@@ -66,6 +66,7 @@ WF_UP_ARTYAMMO = 15;
 WF_UP_HEAVY_MAGZ = 16;
 WF_UP_HC_GROUP_AMOUNT = 17;
 WF_UP_REMOTE_CONTROL = 18;
+WF_UP_ADV_AA_DEFENSE = 19;
 
 /*
 	### Working with the missionNamespace ###
@@ -426,6 +427,9 @@ WF_C_GAS_MASKS = ['g_regulatormask_f','g_airpurifyingrespirator_02_olive_f','g_a
     //--- Radio tower related
     WF_C_RADIO_OBJECTS = ['Land_Vysilac_vez', 'Land_Vysilac_FM', 'Land_Vysilac_FM2', 'Land_Radar_F', 'Land_Radar_Small_F', 'Land_Radar', 'Land_Radar_EP1', 'Land_Communication_F', 'Land_TTowerSmall_1_F', 'Land_TTowerSmall_2_F', 'Land_TTowerBig_1_F', 'Land_TTowerBig_2_F', 'Land_Com_tower_ep1', 'Land_Telek1', 'Land_A_TVTower_Base'];
     WF_C_RADIO_TOWER_RANGE = 15;
+
+    //--- Advanced Anti Air defense
+    WF_C_AAA_DEFENSE_TYPES = ['B_AAA_System_01_F_OPFOR','O_SAM_System_04_F','O_Radar_System_02_F','B_AAA_System_01_F','B_SAM_System_03_F','B_Radar_System_01_F'];
 
 };
 
