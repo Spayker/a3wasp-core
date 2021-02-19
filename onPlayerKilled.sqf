@@ -12,12 +12,6 @@ if(count _playerBots > 0) then {
     (units (group player) - [player]) joinSilent WF_C_RESPAWN_TEMP_GROUP;
 };
 
-_inventoryIdCounter = 0;
-while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
-     [WF_Client_SideJoined, _inventoryIdCounter] call BIS_fnc_removeRespawnInventory;
-    _inventoryIdCounter = _inventoryIdCounter + 1;
-};
-
         [_oldUnit, _respawnDelay] Spawn WFCL_FNC_OnKilled;
     } else {
         WF_Client_SideJoined = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
@@ -25,6 +19,12 @@ while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
         WF_Client_SideID = sideID;
         WF_P_gearPurchased = false;
         WF_C_RESPAWN_LOCATIONS = [];
+
+        _inventoryIdCounter = 0;
+        while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
+             [WF_Client_SideJoined, _inventoryIdCounter] call BIS_fnc_removeRespawnInventory;
+            _inventoryIdCounter = _inventoryIdCounter + 1;
+        };
 
         _inventoryIdCounter = 0;
         while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
@@ -60,7 +60,7 @@ while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
                 _txt = _type + ' ' + _nearTown;
                 WF_C_RESPAWN_LOCATIONS pushBackUnique ([WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition)
             } else {
-                if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
+                if (typeof _x in ["CUP_O_BTR90_HQ_RU" , "CUP_B_LAV25_HQ_USMC" , "CUP_B_LAV25_HQ_desert_USMC"]) then {
                     _type = _x getVariable ['wf_structure_type', ""];
                     _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
                     _nearTown = (_sorted select 0) getVariable 'name';

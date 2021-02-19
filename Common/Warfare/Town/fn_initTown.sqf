@@ -30,18 +30,6 @@ waitUntil {commonInitComplete};
 _camps = nearestObjects [_town, WF_C_CAMP_SEARCH_ARRAY, _townRange];
 _camps = _camps select { (_x getVariable ["WF_CAMP_TOWN", ""]) == _townName };
 
-if(WF_C_MILITARY_BASE in _townSpecialities || WF_C_AIR_BASE in _townSpecialities) then {
-    _respVehPositions = [];
-    {
-       _respVehDetails = [];
-       _respVehDetails pushBack (getPosAtl _x);
-       _respVehDetails pushBack (getDir _x);
-       _respVehPositions pushBack (_respVehDetails);
-       deleteVehicle _x
-    } forEach (_town nearEntities[["LocationRespawnPoint_F"], _townRange]);
-    _town setVariable ["respVehPositions", _respVehPositions]
-};
-
 if (isServer || (!hasInterface && !isDedicated)) then {
     //--- Get the camps and defenses
     _town setVariable ["camps", _camps, true];
@@ -97,6 +85,18 @@ _defenseLocations = [];
 
             ["INITIALIZATION",Format ["Init_Town.sqf : Initialized Camp in [%1].", _town getVariable "name"]] call WFCO_FNC_LogContent
         } forEach _camps;
+
+        if(WF_C_MILITARY_BASE in _townSpecialities || WF_C_AIR_BASE in _townSpecialities) then {
+            _respVehPositions = [];
+            {
+               _respVehDetails = [];
+               _respVehDetails pushBack (getPosAtl _x);
+               _respVehDetails pushBack (getDir _x);
+               _respVehPositions pushBack (_respVehDetails);
+               deleteVehicle _x
+            } forEach (_town nearEntities[["LocationRespawnPoint_F"], _townRange]);
+            _town setVariable ["respVehPositions", _respVehPositions]
+        }
     }
 };
 

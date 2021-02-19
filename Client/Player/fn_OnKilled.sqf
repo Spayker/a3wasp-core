@@ -51,7 +51,7 @@ WF_C_RESPAWN_LOCATIONS = [];
         _txt = _type + ' ' + _nearTown;
         WF_C_RESPAWN_LOCATIONS pushBackUnique([WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition)
     } else {
-        if (_x isKindOf "CUP_O_BTR90_HQ_RU" || _x isKindOf "CUP_B_LAV25_HQ_USMC" || _x isKindOf "CUP_B_LAV25_HQ_desert_USMC") then {
+        if (typeof _x in ["CUP_O_BTR90_HQ_RU" , "CUP_B_LAV25_HQ_USMC" , "CUP_B_LAV25_HQ_desert_USMC"]) then {
             _type = _x getVariable ['wf_structure_type', ""];
             _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
             _nearTown = (_sorted select 0) getVariable 'name';
