@@ -8,23 +8,17 @@ if(count _playerBots > 0) then {
 };
 
 WF_Client_SideJoined = switch (getNumber(configFile >> "CfgVehicles" >> typeof player >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}};
+_inventoryIdCounter = 0;
+while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
+     [WF_Client_SideJoined, _inventoryIdCounter] call BIS_fnc_removeRespawnInventory;
+    _inventoryIdCounter = _inventoryIdCounter + 1;
+};
 
 [_oldUnit, _killer, _respawn, _respawnDelay] spawn {
     params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
     hudOn = false;
     WF_DeathLocation = getPosATL _oldUnit;
     if(isFirstSpawnIsDone) then {
-_respawnIdCounter = 0;
-while {count (WF_Client_SideJoined call BIS_fnc_getRespawnPositions) > 0} do {
-    [WF_Client_SideJoined, _respawnIdCounter] call BIS_fnc_removeRespawnPosition;
-    _respawnIdCounter = _respawnIdCounter + 1;
-};
-
-_inventoryIdCounter = 0;
-while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
-     [WF_Client_SideJoined, _inventoryIdCounter] call BIS_fnc_removeRespawnInventory;
-    _inventoryIdCounter = _inventoryIdCounter + 1;
-};
         [_oldUnit, _respawnDelay] Spawn WFCL_FNC_OnKilled;
     } else {
         sideID = WF_Client_SideJoined Call WFCO_FNC_GetSideID;
