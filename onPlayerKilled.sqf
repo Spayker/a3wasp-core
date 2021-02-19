@@ -24,6 +24,7 @@ while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
         sideID = WF_Client_SideJoined Call WFCO_FNC_GetSideID;
         WF_Client_SideID = sideID;
         WF_P_gearPurchased = false;
+        WF_C_RESPAWN_LOCATIONS = [];
 
         _inventoryIdCounter = 0;
         while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
