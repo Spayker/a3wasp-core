@@ -70,7 +70,7 @@ while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
                         _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
                         [WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition;
                     } else {
-                        [WF_Client_SideJoined, _x, name _x] call BIS_fnc_addRespawnPosition;
+                        [WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition
                     }
             }
             }

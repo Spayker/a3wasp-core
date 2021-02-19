@@ -61,7 +61,7 @@ _spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAv
                 _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
                 [WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition;
             } else {
-                [WF_Client_SideJoined, _x, name _x] call BIS_fnc_addRespawnPosition;
+                [WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition
             }
     }
     }
