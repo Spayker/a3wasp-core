@@ -37,7 +37,7 @@ if (! (isPlayer (_killed)) && !(WF_Client_SideJoined isEqualTo resistance)) then
 	}
 }];
 
-_killedPos = if(isNil '_killed') then { getPosATL player } else { getPosATL _killed };
+_killedPos = if(isNil '_killed') then { getPosATL (vehicle player) } else { getPosATL (vehicle _killed) };
 _spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAvailable;
 
 {

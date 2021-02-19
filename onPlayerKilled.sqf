@@ -45,7 +45,7 @@ while {count (WF_Client_SideJoined call BIS_fnc_getRespawnInventories) > 0} do {
         	Call WFCL_fnc_initMarkers;
         };
 
-        _killedPos = if(isNil '_oldUnit') then { getPosATL player } else { getPosATL _oldUnit };
+        _killedPos = if(isNil '_oldUnit') then { getPosATL (vehicle player) } else { getPosATL (vehicle _oldUnit) };
         _spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAvailable;
         {
             if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
