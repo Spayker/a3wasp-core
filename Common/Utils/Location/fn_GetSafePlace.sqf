@@ -9,8 +9,8 @@ _placed = false;
 _direction = 0;
 
 for [{_count = 0},{_count < 40 && !_placed},{_count = _count + 1}] do {
-	_obstacles = _currentPosition nearEntities [["Building"], 15];
-	_vehicles = _currentPosition nearEntities [["Building","Car","Tank","Air"], 7];
+	_obstacles = _currentPosition nearEntities [WF_C_BUILDING_KIND, 15];
+	_vehicles = _currentPosition nearEntities [WF_C_BUILDING_CAR_TANK_AIR_KIND, 7];
 
 	if (count _obstacles > 0 || count _vehicles > 0 || surfaceIsWater _currentPosition) then {
 		_currentPosition = [(_position # 0)+((sin _direction)*_radius),(_position # 1)+((cos _direction)*_radius),.5];

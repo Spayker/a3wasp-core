@@ -34,6 +34,7 @@ params [["_autoConfigureCommanders",true]];
 [] call AIC_fnc_eventHandlerManager;
 
 AIC_INIT_STARTUP_SCRIPTS_EXECUTED = true;
+AIC_INIT_REPORT_KINDS = ["Wheeled_APC","Tracked_APC","Car","Tank","Helicopter","Plane","Ship","StaticCannon","StaticMortar"];
 
 if(!_autoConfigureCommanders || !isServer) exitWith {};
 

@@ -106,7 +106,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD", {
             _opposite_side pushBack west
         };
 
-        _detected = (_area nearEntities [["Man", "Car", "Motorcycle", "Tank", "Air", "Ship", "Uav"], missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
+        _detected = (_area nearEntities [WF_C_VEHICLE_KINDS, missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
         {
             if(side _x in _opposite_side) exitwith {
                 _color = _colorRed;

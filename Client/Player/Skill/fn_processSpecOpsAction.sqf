@@ -4,7 +4,7 @@
 */
 private ['_min','_ran','_vehicle','_vehicles','_forbiddenVehs','_z'];
 
-_vehicles = player nearEntities [["Car","Motorcycle","Tank","Ship","Air"],5];
+_vehicles = player nearEntities [WF_C_CAR_MOTO_SHIP_TANK_AIR_KINDS,5];
 if (count _vehicles < 1) exitWith {};
 
 if (isNil "WF_SK_V_LockpickChance") then {

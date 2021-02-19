@@ -215,8 +215,18 @@ with missionNamespace do {
 	WF_C_PLAYERS_UAV_SPOTTING_DELAY = 20; //--- Interval between each uav spotting routine.
 	WF_C_PLAYERS_UAV_SPOTTING_DETECTION = 0.21; //--- UAV will reveal each targets that it knows about this value (0-4)
 	WF_C_PLAYERS_UAV_SPOTTING_RANGE = 1100; //--- Max Range of the UAV spotting.
-	WF_C_NEAREST_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
 	WF_C_NEAREST_VEHICLE_RANGE = 5;
+	WF_C_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
+	WF_C_ALL_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV','StaticWeapon'];
+	WF_C_ALL_MAN_VEHICLE_KINDS = ['Man', 'Car','Motorcycle','Tank','Air','Ship','UAV','StaticWeapon'];
+	WF_C_ALL_MAN_VEHICLE_KINDS_NO_STATIC = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
+	WF_C_CAR_MOTO_TANK_AIR_KINDS = ['Car','Motorcycle','Tank','Air'];
+	WF_C_CAR_MOTO_SHIP_TANK_AIR_KINDS = ['Car','Motorcycle','Ship','Tank','Air'];
+	WF_C_CAR_MOTO_TANK_KINDS = ['Car','Motorcycle','Tank'];
+	WF_C_MAN_KIND = ['Man'];
+	WF_C_BUILDING_KIND = ['Building'];
+	WF_C_BUILDING_CAR_TANK_AIR_KIND = WF_C_BUILDING_KIND + ["Car","Tank","Air"];
+
 
 //--- Respawn.
 	if (isNil "WF_C_RESPAWN_CAMPS_MODE") then {WF_C_RESPAWN_CAMPS_MODE = 2;}; //--- Respawn Camps (0: Disabled, 1: Classic [from town center], 2: Enhanced [from nearby camps]).
@@ -289,7 +299,6 @@ with missionNamespace do {
 	if (isNil "WF_C_UNITS_BALANCING") then {WF_C_UNITS_BALANCING = 1;}; //--- Enable Units weaponry balancing.
 	if (isNil "WF_C_UNITS_CLEAN_TIMEOUT") then {WF_C_UNITS_CLEAN_TIMEOUT = 120;}; //--- Lifespan of a dead body.
 	if (isNil "WF_C_UNITS_EMPTY_TIMEOUT") then {WF_C_UNITS_EMPTY_TIMEOUT = 1200;}; //--- Lifespan of an empty vehicle.
-	if (isNil "WF_C_UNITS_KAMOV_DISABLED") then {WF_C_UNITS_KAMOV_DISABLED = 0;}; //--- Enable Kamov.
 	if (isNil "WF_C_UNITS_PRICING") then {WF_C_UNITS_PRICING = 0;}; //--- Price Focus. (0: Default, 1: Infantry, 2: Tanks, 3: Air).
 	if (isNil "WF_C_UNITS_TOWN_PURCHASE") then {WF_C_UNITS_TOWN_PURCHASE = 1;}; //--- Allow AIs to be bought from depots.
 	if (isNil "WF_C_UNITS_TRACK_INFANTRY") then {WF_C_UNITS_TRACK_INFANTRY = 1;}; //--- Track units on map (infantry).
@@ -412,6 +421,7 @@ switch(side player) do {
 //--- Chemical protection
 WF_C_CHEMICAL_DAMAGE_RADIUS = 500;
 WF_C_GAS_MASKS = ['g_regulatormask_f','g_airpurifyingrespirator_02_olive_f','g_airpurifyingrespirator_02_sand_f','g_airpurifyingrespirator_02_black_f','g_airpurifyingrespirator_01_f'];
+    WF_C_CHEMICAL_DAMAGE_VEHICLE_KINDS = ['Car','Motorcycle','Ship','StaticWeapon'];
 
     //--- Radio tower related
     WF_C_RADIO_OBJECTS = ['Land_Vysilac_vez', 'Land_Vysilac_FM', 'Land_Vysilac_FM2', 'Land_Radar_F', 'Land_Radar_Small_F', 'Land_Radar', 'Land_Radar_EP1', 'Land_Communication_F', 'Land_TTowerSmall_1_F', 'Land_TTowerSmall_2_F', 'Land_TTowerBig_1_F', 'Land_TTowerBig_2_F', 'Land_Com_tower_ep1', 'Land_Telek1', 'Land_A_TVTower_Base'];

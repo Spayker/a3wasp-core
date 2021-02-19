@@ -22,8 +22,8 @@ waitUntil {!isNil "WF_C_CHEMICAL_DAMAGE_RADIUS"};
     while {time - _timeMissileStriked < 300} do {
 
         _units = [];
-        _units = _units + (_dropPosition nearEntities [["Man"], WF_C_CHEMICAL_DAMAGE_RADIUS]);
-        _vehicles = _dropPosition nearEntities [["Motorcycle", "Car", "Ship", "StaticWeapon"], WF_C_CHEMICAL_DAMAGE_RADIUS];
+        _units = _units + (_dropPosition nearEntities [WF_C_MAN_KIND, WF_C_CHEMICAL_DAMAGE_RADIUS]);
+        _vehicles = _dropPosition nearEntities [WF_C_CHEMICAL_DAMAGE_VEHICLE_KINDS, WF_C_CHEMICAL_DAMAGE_RADIUS];
 
         {
             _vehicle = _x;

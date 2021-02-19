@@ -7,7 +7,7 @@ _percentage = missionNamespace getVariable "WF_C_UNITS_SALVAGER_SCAVENGE_RATIO";
 while {!WF_GameOver || !(alive _vehicle)} do {
 	if(!(isNull (driver _vehicle)) && !WF_GameOver && alive _vehicle) then
 	{		
-		_vehicles = nearestObjects [getPos _vehicle, ['Car','Motorcycle','Ship','Air','Tank','StaticWeapon'],_salvagerRange];
+		_vehicles = nearestObjects [getPos _vehicle, WF_C_ALL_VEHICLE_KINDS, _salvagerRange];
 
 		_wrecks = [];
 		{

@@ -35,7 +35,7 @@ _vehicles = [];
             };
         };
     };
-} forEach (vehicle player nearEntities [["Car", "Ship", "Motorcycle", "Tank", "Air", "StaticWeapon"], WF_C_BASE_AREA_RANGE]);
+} forEach (vehicle player nearEntities [WF_C_ALL_VEHICLE_KINDS, WF_C_BASE_AREA_RANGE]);
 
 uiNamespace setVariable ["wf_dialog_ui_gear_units", _list];
 

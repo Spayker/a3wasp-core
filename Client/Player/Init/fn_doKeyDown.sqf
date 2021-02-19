@@ -77,7 +77,7 @@ if (_key in (actionKeys "User2")) then {
 	_vehicle = vehicle player;
 
     if (player == _vehicle) then {
-    	_objects = player nearEntities[["Car","Motorcycle","Tank","Air"],10];
+    	_objects = player nearEntities[WF_C_CAR_MOTO_TANK_AIR_KINDS,10];
     	if (count _objects > 0) then {
     		{
     			if (getPos _x select 2 > 3 && !surfaceIsWater (getPos _x)) then {

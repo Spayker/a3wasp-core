@@ -91,7 +91,7 @@ while {true} do {
 	if (mouseButtonUp == 0) then {
 		mouseButtonUp = -1;
 		_near = _map PosScreenToWorld[mouseX,mouseY];
-		_list = _near nearEntities [["Man","Car","Motorcycle","Ship","Tank","Air"],200];
+		_list = _near nearEntities [WF_C_ALL_MAN_VEHICLE_KINDS_NO_STATIC,200];
 		if (count _list > 0) then {
 			_objects = [];
 			{if (!(_x isKindOf "Man") && side _x != WF_Client_SideJoined) then {if (count (crew _x) == 0) then {_objects = _objects - [_x]}};if (side _x == WF_Client_SideJoined) then {_objects = _objects + [_x]}} forEach _list;

@@ -4,7 +4,7 @@
 */
 Private ['_dammages','_skip','_vehicle','_vehicles','_z'];
 
-_vehicles = player nearEntities [["Car","Motorcycle","Tank","Ship","Air"],5];
+_vehicles = player nearEntities [WF_C_CAR_MOTO_SHIP_TANK_AIR_KINDS,5];
 if (count _vehicles < 1) exitWith {};
 
 _vehicle = [player,_vehicles] Call WFCO_FNC_GetClosestEntity;

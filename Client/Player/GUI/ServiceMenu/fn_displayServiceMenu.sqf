@@ -154,7 +154,7 @@ _repairTrucks = (getPos player) nearEntities[_typeRepair, missionNamespace getVa
 if (count _repairTrucks > 0) then {
 	_repair = _repairTrucks select 0;
 	_foundRepairTruck = _repair;
-	_vehi = ((getPos _repair) nearEntities[["Car","Motorcycle","Tank","Air","Ship","StaticWeapon","UAV"],100]) - [_repair];
+	_vehi = ((getPos _repair) nearEntities[WF_C_ALL_VEHICLE_KINDS,100]) - [_repair];
 	{
 		if !(_x in _effective) then {
 			_effective pushBackUnique _x;

@@ -629,7 +629,6 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_direction = (missionNamespace getVariable Format ["WF_%1STRUCTUREDIRECTIONS",WF_Client_SideJoinedText]) # _index;
 					_npos = [getPos _preview,_distance,getDir _preview + _direction] Call WFCO_FNC_GetPositionFrom;
 					_helper = "VR_3DSelector_01_default_F" createVehicleLocal _npos;
-					_helper setPos _npos;
 					_logic setVariable ['WF_Helper',_helper];
 
                     [_preview, _helper, _distance] spawn {

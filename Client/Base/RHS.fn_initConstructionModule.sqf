@@ -36,7 +36,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
 
         if(count _walls > 1) exitwith {_colorRed};
         if(count (nearestObjects [_preview, missionNamespace getVariable (Format["WF_%1DEFENSENAMES",WF_Client_SideJoined]),((((boundingbox _preview) select 1) select 0) max (((boundingbox _preview) select 1) select 1)) max 2] - [_preview]) > 0) then {_color = _colorRed} else{_color = _colorGreen};
-        _entities = (position _preview) nearEntities [['Man','Car','Motorcycle','Tank','Air','Ship'],12];
+        _entities = (position _preview) nearEntities [WF_C_VEHICLE_KINDS,12];
         if ((count _entities > 0) && {side _x != WF_Client_SideJoined} count _entities !=0) exitwith {_colorRed};
         _factories = nearestObjects [_preview, ["Warfare_HQ_base_unfolded","WarfareBBaseStructure","Base_WarfareBContructionSite"],25];
         if (count _factories > 0) then {
@@ -100,7 +100,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
             _opposite_side pushBack west
         };
 
-        _detected = (_area nearEntities [["Man", "Car", "Motorcycle", "Tank", "Air", "Ship", "Uav"], missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
+        _detected = (_area nearEntities [WF_C_VEHICLE_KINDS, missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
         {
             if(side _x in _opposite_side) exitWith {
                 [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage;

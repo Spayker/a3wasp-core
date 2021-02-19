@@ -97,7 +97,7 @@
 		_vehCount = count _vehTypes;
 
 		//--- General types (CASE SENSITIVE!)
-		_classes = ["Wheeled_APC","Tracked_APC","Car","Tank","Helicopter","Plane","Ship","StaticCannon","StaticMortar"];
+		_classes = AIC_INIT_REPORT_KINDS;
 		_names = [localize "STR_DN_APC" + " (Wheeled)",localize "STR_DN_APC" + " (Tracked)","","","","","","",""];
 		_db = [];
 		{
