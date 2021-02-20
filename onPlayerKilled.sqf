@@ -75,8 +75,8 @@ if(count _playerBots > 0) then {
                     } else {
                         if (typeof _x == WF_C_DEPOT) then {
                             _townSpeciality = _x getVariable ["townSpeciality", []];
-                            _baseTypeName = 'Military Base';
-                            if (WF_C_AIR_BASE in _townSpeciality) then { _baseTypeName = 'Air Base' };
+                            _baseTypeName = 'Military Base ';
+                            if (WF_C_AIR_BASE in _townSpeciality) then { _baseTypeName = 'Air Base ' };
                             _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
                             _nearTown = (_sorted select 0) getVariable 'name';
                             _txt = _baseTypeName + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
