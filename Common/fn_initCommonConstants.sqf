@@ -220,7 +220,7 @@ with missionNamespace do {
 	WF_C_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
 	WF_C_ALL_VEHICLE_KINDS = ['Car','Motorcycle','Tank','Air','Ship','UAV','StaticWeapon'];
 	WF_C_ALL_MAN_VEHICLE_KINDS = ['Man', 'Car','Motorcycle','Tank','Air','Ship','UAV','StaticWeapon'];
-	WF_C_ALL_MAN_VEHICLE_KINDS_NO_STATIC = ['Car','Motorcycle','Tank','Air','Ship','UAV'];
+	WF_C_ALL_MAN_VEHICLE_KINDS_NO_STATIC = ['Man', 'Car','Motorcycle','Tank','Air','Ship','UAV'];
 	WF_C_CAR_MOTO_TANK_AIR_KINDS = ['Car','Motorcycle','Tank','Air'];
 	WF_C_CAR_MOTO_SHIP_TANK_AIR_KINDS = ['Car','Motorcycle','Ship','Tank','Air'];
 	WF_C_CAR_MOTO_TANK_KINDS = ['Car','Motorcycle','Tank'];
