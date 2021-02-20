@@ -136,7 +136,14 @@ if(!hasInterface && !isDedicated) then {
 							    if (_wpType == "MOVE") then {
                                         if (_forEachIndex == 0) then {
                                             {
-                                                if(_x != _groupLeader) then { _x doMove ([getWPPos (_groupWaypoints # 0), 10] call WFCO_fnc_getEmptyPosition ) }
+                                                _crewVehicle = vehicle _x;
+                                                if(_x == commander _crewVehicle) then {
+                                                    _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
+                                                } else {
+                                                    if(_x == gunner _crewVehicle) then {
+                                                        _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
+                                                    }
+                                                }
                                             } forEach (units _group)
                                         };
 
