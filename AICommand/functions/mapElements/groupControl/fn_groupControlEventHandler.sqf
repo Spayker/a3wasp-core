@@ -154,14 +154,9 @@ if(isNil "_groupControlId") then {
 		if(count (waypoints _group) > 0) then {
             {
                     _crewVehicle = vehicle _x;
-                    if(_x == commander _crewVehicle) then {
-                        _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
-                    } else {
-                        if(_x == gunner _crewVehicle) then {
+                    if(_x == driver _crewVehicle) then {
                             _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
                         }
-                    }
-
             } forEach (units _group);
             }
 		};
