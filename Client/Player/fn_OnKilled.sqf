@@ -64,7 +64,7 @@ WF_C_RESPAWN_LOCATIONS = [];
                 _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
                 WF_C_RESPAWN_LOCATIONS pushBackUnique ([WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
             } else {
-                if (typeof _x == WF_C_DEPOT) then {
+                if (typeof _x in  WF_Logic_Depot || typeof _x == WF_Logic_Airfield) then {
                     _townSpeciality = _x getVariable ["townSpeciality", []];
                     _baseTypeName = 'Military Base ';
                     if (WF_C_AIR_BASE in _townSpeciality) then { _baseTypeName = 'Air Base ' };

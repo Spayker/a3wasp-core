@@ -155,6 +155,7 @@ if(isNil "_groupControlId") then {
             {
                     _crewVehicle = vehicle _x;
                     if(_x == driver _crewVehicle) then {
+                        doStop _x;
                             _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
                         }
             } forEach (units _group);

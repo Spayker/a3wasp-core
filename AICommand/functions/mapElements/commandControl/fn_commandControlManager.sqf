@@ -132,23 +132,10 @@ if(!hasInterface && !isDedicated) then {
 							};
 							_wp = _group addWaypoint [_x select 1, 0];
                                 _groupLeader = leader _group;
-                                if (_wpCondition == "true" && (vehicle _groupLeader != _groupLeader)) then {
-							    if (_wpType == "MOVE") then {
-                                        if (_forEachIndex == 0) then {
-                                            {
-                                                _crewVehicle = vehicle _x;
-                                                if(_x == driver _crewVehicle) then {
-                                                    _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
-                                                }
-                                            } forEach (units _group)
-                                        };
-
+                                if (_wpCondition == "true") then {
                                         _wp setWaypointStatements ["true", "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
                                     } else {
 							_wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",_wpCondition], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
-							    }
-							} else {
-                                    _wp setWaypointStatements [format ["true && ((group this) getVariable ['AIC_WP_DURATION_REMANING',0]) <= 0 && {%1}",_wpCondition], "[group this, "+str (_x select 0)+"] call AIC_fnc_disableWaypoint;" + _wpActionScript];
 							};
 
 							_wp setWaypointType _wpType;
@@ -191,6 +178,18 @@ if(!hasInterface && !isDedicated) then {
 						[_group, _nextActiveWaypoint] call AIC_fnc_setWaypoint;
 					};
 				};
+
+                    {
+                        _crewVehicle = vehicle _x;
+                        if(_crewVehicle != _x) then {
+                            if (_x == driver _crewVehicle) then {
+                                if ((speed _crewVehicle)  == 0 && canMove _crewVehicle) then {
+                                    doStop _x;
+                                    _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
+                                }
+                            }
+                        }
+                    } forEach (units _group);
 				}
 			} forEach allGroups;
 			sleep 2
