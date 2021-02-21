@@ -37,8 +37,9 @@ class WF_Client {
         class getClosestCamp {};
         class allCampsCaptured {};
         class campCaptured {};
-        class getNearestCamp {};
+        class checkObjectsAround {};
         class getNearestRadioTower {};
+        class takeCamp {};
     };
 
     class Base {

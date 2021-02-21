@@ -99,6 +99,14 @@ if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     player setCustomAimCoef 0.1;
 };
 
+
+//--- WF action vars init
+WF_VEHICLE_NEAR = false;
+WF_RADIO_TOWER_NEAR = false;
+WF_CAMP_NEAR = false;
+WF_CAMP_NEAR_HIDDEN = false;
+WF_TOWN_NEAR = false;
+
 [_this # 0] spawn {
 	waitUntil {!isNil "ASL_Add_Player_Actions"};
 
