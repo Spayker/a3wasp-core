@@ -149,18 +149,19 @@ if(isNil "_groupControlId") then {
 			
 		} forEach _waypointsArray;
 	
-        _groupLeader = leader _group;
-        if(vehicle _groupLeader != _groupLeader) then {
-		if(count (waypoints _group) > 0) then {
             {
                     _crewVehicle = vehicle _x;
+            if(_crewVehicle != _x) then {
+                if ((speed _crewVehicle)  == 0 && canMove _crewVehicle) then {
                     if(_x == driver _crewVehicle) then {
-                        doStop _x;
-                            _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
+                        if(vehicle (leader _group) != leader _group) then {
+                            _x doWatch objNull;
+                            _x doFollow (leader _group)
+                        };
+                    }
+                }
                         }
             } forEach (units _group);
-            }
-		};
 
 		if(_waypointIconIndex < _waypointIconCount) then {
 			for "_i" from _waypointIconIndex to (_waypointIconCount-1) do

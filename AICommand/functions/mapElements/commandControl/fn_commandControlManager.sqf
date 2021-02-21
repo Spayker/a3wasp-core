@@ -182,17 +182,19 @@ if(!hasInterface && !isDedicated) then {
                     {
                         _crewVehicle = vehicle _x;
                         if(_crewVehicle != _x) then {
+                            if ((speed _crewVehicle)  == 0 && canMove _crewVehicle) then {
                             if (_x == driver _crewVehicle) then {
-                                if ((speed _crewVehicle)  == 0 && canMove _crewVehicle) then {
-                                    doStop _x;
-                                    _x doMove ([getWPPos ((waypoints _group) # 0), 10] call WFCO_fnc_getEmptyPosition)
+                                    if(vehicle (leader _group) != leader _group) then {
+                                        _x doWatch objNull;
+                                        _x doFollow (leader _group)
+                                    };
                                 }
                             }
                         }
                     } forEach (units _group);
 				}
 			} forEach allGroups;
-			sleep 2
+			sleep 5
 		}
 	}
 }
