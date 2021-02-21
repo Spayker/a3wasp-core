@@ -382,8 +382,7 @@ switch (_action) do {
 
 			call WFCL_fnc_updatePrice;
 			(_gear) call WFCL_fnc_displayInventory;
-		};
-		//todo reload from config if nil
+		}
 	};
 
 	case "onTemplateCreation": {

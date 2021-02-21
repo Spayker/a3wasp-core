@@ -4,32 +4,45 @@
 		- Killed
 */
 
-params ["_killed", "_respawnDelay"];
+params ["_killed", "_killer"];
 Private ["_delay"];
 
 if(!isNull (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
-    [missionNamespace getVariable "wf_remote_ctrl_unit"] spawn WFCL_FNC_abortRemoteControl
+    [missionNamespace getVariable "wf_remote_ctrl_unit"] spawn WFCL_FNC_abortRemoteControl;
 };
 
 if(WF_GameOver) exitWith {};
 
 WF_Client_IsRespawning = true;
 
-if !(isNil "HQAction") then {(leader WF_Client_Team) removeAction HQAction};
+if !(isNil "HQAction") then {player removeAction HQAction};
 
 //--- Close any existing dialogs.
 if (dialog) then {closeDialog 0};
 
-(_killed) connectTerminalToUAV objNull;
+WF_DeathLocation = getPos _killed;
+player connectTerminalToUAV objNull;
+
+//--- Fade transition.
+titleCut["","BLACK OUT",1];
+
+[_killed, _killer, sideID] Spawn WFCO_FNC_OnUnitKilled;
+
+waitUntil {alive player};
 
 //--- Update the player.
-[WF_Client_Team, _killed] remoteExecCall ["WFSE_FNC_updateTeamLeader",2];
+[WF_Client_Team, player] remoteExecCall ["WFSE_FNC_updateTeamLeader",2];
 
 //--- Make sure that player is always the leader (of his group).
-if (! (isPlayer (_killed)) && !(WF_Client_SideJoined isEqualTo resistance)) then {(WF_Client_Team) selectLeader (_killed)};
+if (! (isPlayer (leader(group player))) && !(WF_Client_SideJoined isEqualTo resistance)) then {(group player) selectLeader player};
+
+//--- Create a respawn menu.
+createDialog "WF_RespawnMenu";
+
+titleCut["","BLACK IN",1];
 
 /* Re-add client UAV deploy handler */
-(leader WF_Client_Team) addEventHandler ["WeaponAssembled", {
+player addEventHandler ["WeaponAssembled", {
 	params ["_unit", "_staticWeapon"];
 	if((typeof _staticWeapon) in WF_AR2_UAVS) then {
         _staticWeapon removeWeaponTurret ["Laserdesignator_mounted",[0]];
@@ -37,67 +50,30 @@ if (! (isPlayer (_killed)) && !(WF_Client_SideJoined isEqualTo resistance)) then
 	}
 }];
 
-_killedPos = if(isNil '_killed') then { getPosATL (vehicle player) } else { getPosATL (vehicle _killed) };
-_spawn_locations = [WF_Client_SideJoined, _killedPos] Call WFCL_FNC_GetRespawnAvailable;
+//--- Call the pre respawn routine.
+(player) Call WFCL_FNC_PreRespawnHandler;
 
-{ _x call BIS_fnc_removeRespawnPosition } forEach WF_C_RESPAWN_LOCATIONS;
-WF_C_RESPAWN_LOCATIONS = [];
+//--- Camera & PP thread
+_delay = missionNamespace getVariable "WF_C_RESPAWN_DELAY";
 
-{
-    if(_x isKindOf "WarfareBBaseStructure" || _x isKindOf "Warfare_HQ_base_unfolded") then {
-        _type = _x getVariable ['wf_structure_type', ""];
-        _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
-        _nearTown = (_sorted select 0) getVariable 'name';
-        _txt = _type + ' ' + _nearTown;
-        WF_C_RESPAWN_LOCATIONS pushBackUnique([WF_Client_SideJoined, _x, _txt] call BIS_fnc_addRespawnPosition)
-    } else {
-        if (typeof _x in ["CUP_O_BTR90_HQ_RU" , "CUP_B_LAV25_HQ_USMC" , "CUP_B_LAV25_HQ_desert_USMC"]) then {
-            _type = _x getVariable ['wf_structure_type', ""];
-            _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
-            _nearTown = (_sorted select 0) getVariable 'name';
-            _txt = _type + ' ' + _nearTown;
-            WF_C_RESPAWN_LOCATIONS pushBackUnique([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
-    } else {
-            if (typeof _x == WF_C_CAMP ) then {
-                _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
-                _nearTown = (_sorted select 0) getVariable 'name';
-                _txt = 'Camp ' + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
-                WF_C_RESPAWN_LOCATIONS pushBackUnique ([WF_Client_SideJoined, [getPosATL _x, 5] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition);
-            } else {
-                if (typeof _x in  WF_Logic_Depot || typeof _x == WF_Logic_Airfield) then {
-                    _townSpeciality = _x getVariable ["townSpeciality", []];
-                    _baseTypeName = 'Military Base ';
-                    if (WF_C_AIR_BASE in _townSpeciality) then { _baseTypeName = 'Air Base ' };
-                    _sorted = [getPosATL _x, towns] Call WFCO_FNC_SortByDistance;
-                    _nearTown = (_sorted select 0) getVariable 'name';
-                    _txt = _baseTypeName + _nearTown + ' ' + str (round((_killedPos) distance _x)) + 'M';
-                    WF_C_RESPAWN_LOCATIONS pushBackUnique([WF_Client_SideJoined, [getPosATL _x, 60] call WFCO_FNC_GetSafePlace, _txt] call BIS_fnc_addRespawnPosition)
-                } else {
-                WF_C_RESPAWN_LOCATIONS pushBackUnique ([WF_Client_SideJoined, _x] call BIS_fnc_addRespawnPosition)
+"dynamicBlur" ppEffectEnable true;
+"dynamicBlur" ppEffectAdjust [1];
+"dynamicBlur" ppEffectCommit _delay/3;
+"colorCorrections" ppEffectAdjust [1, 1, 0, [0.1, 0.0, 0.0, 1], [1.0, 0.5, 0.5, 0.1], [0.199, 0.587, 0.114, 0.0]];
+"colorCorrections" ppEffectCommit 0.1;
+"colorCorrections" ppEffectEnable true;
+"colorCorrections" ppEffectAdjust [1, 1, 0, [0.1, 0.0, 0.0, 0.5], [1.0, 0.5, 0.5, 0.1], [0.199, 0.587, 0.114, 0.0]];
+"colorCorrections" ppEffectCommit _delay/3;
 
-                }
-            }
-    }
-    }
-} forEach _spawn_locations;
+WF_DeathCamera = "camera" camCreate WF_DeathLocation;
+WF_DeathCamera camSetFov 0.7;
+WF_DeathCamera cameraEffect["Internal","TOP"];
 
-if(WF_P_gearPurchased && !isNil ('WF_P_CurrentGear')) then {
-    //// last saved gear
-    [WF_Client_SideJoined, [format["%1_Saved_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Saved_Engineer_0", WF_Client_SideJoined], -1,  6]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Saved_Recon_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Saved_Support_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Saved_Medic_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Saved_SpecOps_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
-} else {
-    [WF_Client_SideJoined, [format["%1_Assault_0", WF_Client_SideJoined],  -1, 12]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Engineer_0", WF_Client_SideJoined], -1,  6]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Recon_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Support_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_Medic_0", WF_Client_SideJoined],    -1,  3]] call BIS_fnc_addRespawnInventory;
-    [WF_Client_SideJoined, [format["%1_SpecOps_0", WF_Client_SideJoined],  -1,  3]] call BIS_fnc_addRespawnInventory;
-};
+WF_DeathCamera camSetTarget WF_DeathLocation;
+WF_DeathCamera camSetPos [WF_DeathLocation select 0,(WF_DeathLocation select 1) + 2,5];
+WF_DeathCamera camCommit 0;
 
-player removeAllEventHandlers "HandleHeal";
+waitUntil {camCommitted WF_DeathCamera};
 
-[{true}, WF_C_RESPAWN_DELAY - _respawnDelay, ""] call BIS_fnc_setRespawnDelay
+WF_DeathCamera camSetPos [WF_DeathLocation select 0,(WF_DeathLocation select 1) + 2,30];
+WF_DeathCamera camCommit _delay+2;

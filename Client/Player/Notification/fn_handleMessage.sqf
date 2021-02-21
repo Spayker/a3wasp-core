@@ -4,11 +4,6 @@
 //  Description: Handle the creation of new messages
 
 // Error checks
-if (isNil 'clientInitComplete') then {
-    life_message_active = scriptNull;
-    life_message_list = [];
-};
-
 if ((isNil "_thisScript") || !(canSuspend)) exitWith {_this spawn (call compile _fnc_scriptName)};
 
 // Parameters

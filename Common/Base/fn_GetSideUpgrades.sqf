@@ -5,9 +5,9 @@
 */
 
 switch (_this) do {
-	case west: {WF_L_BLU getVariable ["wf_upgrades", []]};
-	case east: {WF_L_OPF getVariable ["wf_upgrades", []]};
-	case resistance: {WF_L_GUE getVariable ["wf_upgrades", []]};
+	case west: {WF_L_BLU getVariable "wf_upgrades"};
+	case east: {WF_L_OPF getVariable "wf_upgrades"};
+	case resistance: {WF_L_GUE getVariable "wf_upgrades"};
 	default { 
 				private _upgrades = [];
 				{

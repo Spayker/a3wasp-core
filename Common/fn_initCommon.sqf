@@ -11,6 +11,34 @@ varQueu = time + random 10000 - random 500 + diag_frameno; //clt, to remove with
 varGroupQueu = time + random 10000 - random 500 + diag_frameno; //clt, to remove with new sys later on.
 unitMarker = 0;
 
+/* Respawn Markers */
+createMarkerLocal ["respawn_east",getMarkerPos "EastTempRespawnMarker"];
+if(WF_C_PARAMETER_COLORATION == 1) then {
+	"respawn_east" setMarkerColorLocal "ColorEAST";
+} else {
+	"respawn_east" setMarkerColorLocal "ColorGreen";
+};
+"respawn_east" setMarkerShapeLocal "RECTANGLE";
+"respawn_east" setMarkerBrushLocal "BORDER";
+"respawn_east" setMarkerSizeLocal [15,15];
+"respawn_east" setMarkerAlphaLocal 0;
+createMarkerLocal ["respawn_west",getMarkerPos "WestTempRespawnMarker"];
+if(WF_C_PARAMETER_COLORATION == 1) then {
+	"respawn_west" setMarkerColorLocal "ColorWEST";
+} else {
+	"respawn_west" setMarkerColorLocal "ColorGreen";
+};
+"respawn_west" setMarkerShapeLocal "RECTANGLE";
+"respawn_west" setMarkerBrushLocal "BORDER";
+"respawn_west" setMarkerSizeLocal [15,15];
+"respawn_west" setMarkerAlphaLocal 0;
+createMarkerLocal ["respawn_guerrila",getMarkerPos "GuerTempRespawnMarker"];
+"respawn_guerrila" setMarkerColorLocal "ColorGUER";
+"respawn_guerrila" setMarkerShapeLocal "RECTANGLE";
+"respawn_guerrila" setMarkerBrushLocal "BORDER";
+"respawn_guerrila" setMarkerSizeLocal [15,15];
+"respawn_guerrila" setMarkerAlphaLocal 0;
+
 /* Wait for BIS Module Init */
 waitUntil {!(isNil 'BIS_fnc_init')};
 waitUntil {BIS_fnc_init};

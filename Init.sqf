@@ -6,6 +6,11 @@ WF_Debug = false;
 	WF_Debug = true;
 #endif
 
+WF_Skip_Intro = false;
+#ifdef WF_SKIP_INTRO
+	WF_Skip_Intro = true;
+#endif
+
 WF_Camo = false;
 #ifdef WF_CAMO
 	WF_Camo = true;
@@ -55,7 +60,6 @@ if ((isHostedServer || isDedicated) && !isHeadLessClient) then { //--- JIP Handl
 
 //--- Client initialization, either hosted or pure client. Part I
 if (isHostedServer || (!isHeadLessClient && !isDedicated)) then {
-    isFirstSpawnIsDone = false;
 	["INITIALIZATION", "Init.sqf: Client detected... waiting for non null result..."] Call WFCO_FNC_LogContent;
 	waitUntil {!isNull player};
 	["INITIALIZATION", "Init.sqf: Client is not null..."] Call WFCO_FNC_LogContent;
@@ -122,25 +126,24 @@ if (WF_C_ENVIRONMENT_WEATHER_SNOWSTORM > 0) then {
 
 //--- Client initialization, either hosted or pure client. Part II
 if (isHostedServer || (!isHeadLessClient && !isDedicated)) then {
-
-	waitUntil {!isNil 'WF_PRESENTSIDES' && isFirstSpawnIsDone}; //--- Await for teams to be set before processing the client init.
+	waitUntil {!isNil 'WF_PRESENTSIDES'}; //--- Await for teams to be set before processing the client init.
 	{
-	    [_x] spawn {
-	        params ['_side'];
-            _logik = (_side) Call WFCO_FNC_GetSideLogic;
-
+		_logik = (_x) Call WFCO_FNC_GetSideLogic;
 		waitUntil {!isNil {_logik getVariable "wf_teams"}};
-            while { count (_logik getVariable "wf_teams") == 0} do { sleep 1 };
+		missionNamespace setVariable [Format["WF_%1TEAMS",_x], _logik getVariable "wf_teams"];
+	} forEach WF_PRESENTSIDES;
 
-            missionNamespace setVariable [Format["WF_%1TEAMS", _side], _logik getVariable "wf_teams"];
-
-            if (WF_Client_SideJoined == _side) then {
 	["INITIALIZATION", "Init.sqf: Executing the Client Initialization."] Call WFCO_FNC_LogContent;
-                [] spawn WFCL_fnc_initClient
-            }
-	    }
-    } forEach WF_PRESENTSIDES;
 
+	[] spawn WFCL_fnc_initClient;
+	waitUntil {clientInitComplete};
+	if!(WF_Skip_Intro) then {
+	    [] spawn WFCL_FNC_MissionIntro;
+        waitUntil {WF_EndIntro};
+	} else {
+	    12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 
+		"<br /><t size='1.5'>100%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",5, true, true];
+	};
 };
 
 //--- Run the headless client initialization.

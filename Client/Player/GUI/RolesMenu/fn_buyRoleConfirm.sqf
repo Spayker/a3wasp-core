@@ -41,7 +41,9 @@ if!(isNil 'WF_newBuyRolerequest')then{
 				[format[localize 'STR_WF_RoleSelector_Text', (_roleDetails # 1)]] spawn WFCL_fnc_handleMessage;
                 [] call WFCL_fnc_updateRolesMenu;
                 removeAllActions player;
+
                 WF_PlayerMenuAction = player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
+
 
 				[] spawn {
 					waitUntil {!isNil "ASL_Add_Player_Actions"};					
@@ -64,11 +66,14 @@ if!(isNil 'WF_newBuyRolerequest')then{
                 if (!isNull (findDisplay 2800)) then { ctrlEnable[2805, true]; };
                 [] call WF_fnc_selectRole;
 
+                WF_FreeRolePurchase = false;
+
+                if(!WF_isFirstRoleSelected)then {
                     if!(WF_P_gearPurchased) then {
                     _roleDefaultGear = [];
                     switch (WF_SK_V_Type) do {
-                        case WF_SNIPER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", WF_Client_SideJoinedText];};
-                        case WF_SOLDIER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];};
+                        case WF_RECON: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", WF_Client_SideJoinedText];};
+                        case WF_ASSAULT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];};
                         case WF_ENGINEER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearEngineer", WF_Client_SideJoinedText];};
                         case WF_SPECOPS: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearLock", WF_Client_SideJoinedText];};
                             case WF_MEDIC: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", WF_Client_SideJoinedText];};
@@ -77,9 +82,11 @@ if!(isNil 'WF_newBuyRolerequest')then{
                     [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
                         WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout
                     };
+                    WF_isFirstRoleSelected = true;
                     closeDialog 0;
                 };
             };
+        };
         WF_newBuyRolerequest = false;
     };
 };

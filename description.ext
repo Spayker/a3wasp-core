@@ -33,6 +33,7 @@
 #include "Client\Player\GUI\UpgradeMenu\Dialog.hpp"
 #include "Client\Player\GUI\VoteMenu\Dialog.hpp"
 #include "Client\Player\GUI\CommanderVoteMenu\Dialog.hpp"
+#include "Client\Player\GUI\RespawnMenu\Dialog.hpp"
 #include "Client\Player\GUI\FundsMenu\Dialog.hpp"
 #include "Client\Player\GUI\GearMenu\Dialog.hpp"
 #include "Client\Player\GUI\TeamMenu\Dialog.hpp"
@@ -68,37 +69,3 @@ class CfgFunctions {
     #include "Rsc\Functions.hpp"
     #include "AICommand\Functions.hpp"
 };
-
-class CfgRoles {
-	class Assault {
-		displayName = "Assault";
-		icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\assault_ca.paa";
-	};
-	class Engineer {
-        displayName = "Engineer";
-        icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\support_ca.paa";
-    };
-	class Support {
-		displayName = "Fire Support";
-		icon = "a3\Ui_f\data\IGUI\Cfg\Actions\gear_ca.paa";
-	};
-	class Recon {
-		displayName = "Recon";
-		icon = "a3\Ui_f\data\GUI\Cfg\RespawnRoles\recon_ca.paa";
-	};
-	class Medic {
-		displayName = "Medic";
-		icon = "a3\Ui_f\data\IGUI\Cfg\Actions\heal_ca.paa";
-	};
-	class SpecOps {
-        displayName = "SpecOps";
-        icon = "a3\Ui_f\data\IGUI\Cfg\Actions\getincommander_ca.paa";
-    };
-};
-
-//--Start Gear Template
-#ifdef WF_CAMO
-    #include "Rsc\StartGearTemplatesForest.hpp"
-#else
-    #include "Rsc\StartGearTemplatesSand.hpp"
-#endif

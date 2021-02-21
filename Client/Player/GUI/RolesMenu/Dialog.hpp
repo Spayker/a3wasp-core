@@ -5,7 +5,7 @@ class WF_roles_menu
     movingEnable = false;
     enableSimulation = true;
     onLoad = "[] spawn WFCL_fnc_updateRolesMenu;";
-    onUnload="closeDialog 0";
+    onUnload="[] spawn WFCL_fnc_closeRoleSelectDialog;";
     class controlsBackground
     {
         class WF_roles_menu_frame: RscFrame
@@ -15,6 +15,7 @@ class WF_roles_menu
             y = 0.225 * safezoneH + safezoneY;
             w = 0.4125 * safezoneW;
             h = 0.55 * safezoneH;
+
         };
         class WF_roles_menu_background: Box
         {
@@ -111,7 +112,7 @@ class WF_roles_menu
             x = 0.681219 * safezoneW + safezoneX;
             y = 0.193 * safezoneH + safezoneY;
             h = 0.03 * safezoneH;
-            onButtonClick = "closeDialog 0";
+            onButtonClick = "[] spawn WFCL_fnc_closeRoleSelectDialog;";
         };
     };
 };

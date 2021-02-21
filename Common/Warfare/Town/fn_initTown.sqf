@@ -95,7 +95,7 @@ _defenseLocations = [];
                _respVehPositions pushBack (_respVehDetails);
                deleteVehicle _x
             } forEach (_town nearEntities[["LocationRespawnPoint_F"], _townRange]);
-            _town setVariable ["respVehPositions", _respVehPositions]
+            _town setVariable ["respVehPositions", _respVehPositions, true]
         }
     }
 };

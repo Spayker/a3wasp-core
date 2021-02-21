@@ -6,8 +6,8 @@ _availableRoles = missionNamespace getVariable Format["WF_%1AvailableRoles",str 
 if(isNil '_availableRoles')then{
     _availableRoles = [];
     _availableRoles pushBack [
-        WF_SNIPER,
-        WF_SNIPER,
+        WF_RECON,
+        WF_RECON,
         "Sniper role with special abilities: <br/>" +
          "- leaves marks on map by aiming<br/>" +
          "- have harder to spot by enemy feature<br/>" +
@@ -20,8 +20,8 @@ if(isNil '_availableRoles')then{
     ];
 
     _availableRoles pushBack [
-        WF_SOLDIER,
-        WF_SOLDIER,
+        WF_ASSAULT,
+        WF_ASSAULT,
         "Assault role for town taking. Abilities: <br/>"+
         "- have access to assault rifles<br/>"+
         "- repairs camps",

@@ -3389,6 +3389,34 @@
 				<English>Waiting for the Server</English>				
 				<Russian>Ожидание Сервера</Russian>
 			</Key>			
+			<Key ID="STR_WF_LoadingGearTemplates">
+				<English>Receiving player gear templates</English>
+				<Russian>Получение шаблонов снаряжения игрока</Russian>
+			</Key>
+			<Key ID="STR_WF_LoadingGetPreRespawn">
+				<English>Compute prerespawn position</English>
+				<Russian>Вычисление предварительной позиции игрока</Russian>
+			</Key>
+			<Key ID="STR_WF_LoadingGetGearMenu">
+				<English>Preparing gear menu</English>
+				<Russian>Подготовка меню снаряжения</Russian>
+			</Key>
+			<Key ID="STR_WF_LoadingPreparingRoles">
+				<English>Preparing roles</English>	
+				<Russian>Подготовка ролей</Russian>
+			</Key>
+			<Key ID="STR_WF_LoadingPreparingRolesGear">
+				<English>Preparing gear of roles</English>
+				<Russian>Подготовка снаряжения ролей</Russian>
+			</Key>
+			<Key ID="STR_WF_LoadingGlobalData">
+				<English>Loading global data</English>
+				<Russian>Подготовка глобальных данных</Russian>
+			</Key>
+			<Key ID="STR_WF_LoadingGetRespawn">
+				<English>Preparing final respawn of player</English>
+				<Russian>Подготовка окончательной позиции появления игрока</Russian>
+			</Key>
 			<Key ID="STR_WF_LoadingWaitForHQ">
 				<English>Waiting for HQ</English>
 				<Russian>Ожидание Штаба</Russian>
@@ -3458,6 +3486,15 @@
 				<Russian>Включить</Russian>
 				<Italian>Abilitato</Italian>
 				<Portuguese>Habilitado</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Enabled_DefaultGear" >
+				<!--shared W-->
+				<English>Enabled (Default Gear)</English>
+				<French>Activé (Equipement par Défaut)</French>
+				<German>Aktiviert (Respawn mit Standardausrüstung)</German>
+				<Russian>Включить (Cнаряжения по умолчанию)</Russian>
+				<Italian>Abilitato (Equipaggiamento Default)</Italian>
+				<Portuguese>Habilitado (Equipamento Padrão(</Portuguese>
 			</Key>
 			<Key ID="STR_WF_Purchase">
 				<!--shared U-->

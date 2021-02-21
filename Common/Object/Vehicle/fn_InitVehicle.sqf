@@ -25,7 +25,7 @@ if(_isHQ) then {
     _hqs = (_side) call WFCO_FNC_GetSideHQ;
 	_hqs = _logik getVariable ["wf_hq", []];
 	_hqs = _hqs - [objNull];
-	_hqs pushBackUnique _vehicle;
+	_hqs pushBack _vehicle;
 	_logik setVariable ["wf_hq", _hqs, true]
 } else {
     [_vehicle] remoteExec ["WFSE_FNC_addEmptyVehicleToQueue", 2]

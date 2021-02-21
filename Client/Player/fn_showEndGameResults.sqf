@@ -39,6 +39,13 @@ _vehi setVelocity [0,0,-0.1];
 _vehi setPos ([getPos _hq,20,30] Call WFCO_FNC_GetRandomPosition);
 [_vehi, false] remoteExecCall ["enableSimulationGlobal", 2];
 
+if (!isNil "WF_DeathCamera") then {
+	WF_DeathCamera cameraEffect["TERMINATE","BACK"];
+	camDestroy WF_DeathCamera;
+	"colorCorrections" ppEffectEnable false;
+	"dynamicBlur" ppEffectEnable false;
+};
+
 _camera = "camera" camCreate (getPos (_blist select 0));
 _camera camSetFov 0.200;
 _camera cameraEffect["Internal","back"];

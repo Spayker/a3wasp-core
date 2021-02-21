@@ -36,7 +36,9 @@ if(_result)then{
         };
     } foreach (_roleDetails select 3);
 
-
+    if(!WF_isFirstRoleSelected)then{
+        WF_IsRoleSelectedDialogClosed = true;
+    }else{
         // check if the user have enough money
         _funds = call WFCL_FNC_GetPlayerFunds;
         if (_funds < _cost) exitWith {
@@ -44,6 +46,7 @@ if(_result)then{
         };
         -(_cost) Call WFCL_FNC_ChangePlayerFunds;
         ["Buying role, please wait.."] spawn WFCL_fnc_handleMessage;
+    };
 
     [player,_role] remoteExecCall ["WFSE_fnc_buyRole", 2];
 };
