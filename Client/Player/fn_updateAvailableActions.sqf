@@ -18,6 +18,7 @@ _commandCenter = objNull;
 
 while {!WF_GameOver} do {
 
+    _ccr = missionNamespace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
 		_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
         _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
@@ -38,7 +39,7 @@ while {!WF_GameOver} do {
             _capturedRadars = [WF_Client_SideJoined, WF_C_RADAR, true] call WFCO_fnc_getSpecialLocations;
             if(count _capturedRadars > 0) then {
                 {
-                    if ((_x distance player) <= (_ccr/2)) exitWith { commandInRange = true; _purchaseRange = _ccr/2 }
+                    if ((_x distance player) <= (_ccr/2)) exitWith { commandInRange = true; _ccr = _ccr/2 }
                 } forEach _capturedRadars;
             }
         };
