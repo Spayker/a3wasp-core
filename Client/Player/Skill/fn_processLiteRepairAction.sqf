@@ -46,7 +46,9 @@ if (!_skip) then {
 	_dammages = _dammages - .15;
 	if (_dammages < 0) then {_dammages = 0};
 	_vehicle setDammage _dammages;
-	[format["%1", localize 'STR_HINT_FieldComplete']] spawn WFCL_fnc_handleMessage
+	[format["%1", localize 'STR_HINT_FieldComplete']] spawn WFCL_fnc_handleMessage;
+	_fuel = fuel _vehicle;
+	if(_fuel < 0.25) then { _vehicle setFuel (_fuel + 0.25) }
 };
 
 player switchmove "";
