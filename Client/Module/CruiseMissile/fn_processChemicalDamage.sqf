@@ -1,5 +1,9 @@
 params ["_dropPosition"];
 
+if (!hasInterface && !isDedicated) exitWith {
+    ["INFORMATION", "fn_processChemicalDamage.sqf: headless client should not run processing of chemical damage"] call WFCO_FNC_LogContent;
+};
+
 waitUntil {!isNil "WF_C_CHEMICAL_DAMAGE_RADIUS"};
 
 [_dropPosition] spawn {
