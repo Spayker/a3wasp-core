@@ -4,6 +4,11 @@
 //  Description: Handle the creation of new messages
 
 // Error checks
+if (isNil 'clientInitComplete') then {
+    life_message_active = scriptNull;
+    life_message_list = [];
+};
+
 if ((isNil "_thisScript") || !(canSuspend)) exitWith {_this spawn (call compile _fnc_scriptName)};
 
 // Parameters
@@ -18,7 +23,7 @@ WF_PREVIOUS_HINT_MESSAGE = _text;
 for "_i" from 0 to 1 step 0 do {
 
 	// Check to exit message queue
-	if (life_message_active isEqualTo _thisScript) exitWith {};
+    if (life_message_active isEqualTo _thisScript || life_message_active isEqualTo scriptNull) exitWith {};
 	waitUntil {uiSleep 0.025; (scriptDone life_message_active)};
 	life_message_active = _thisScript;
 };
