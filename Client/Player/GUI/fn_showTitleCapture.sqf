@@ -93,8 +93,8 @@ while {!WF_GameOver} do {
 	
 			_barColor = _colorResistance;
 			
-			if ((_sideID == WESTID)&&(sideID == WESTID) || (_sideID == EASTID)&&(sideID == EASTID)) then {_barColor = _colorFriendly}; //--- Green
-			if ((_sideID == WESTID)&&(sideID == EASTID) || (_sideID == EASTID)&&(sideID == WESTID)) then {_barColor = _colorEnemy};
+			if ((_sideID == WESTID)&&(WF_Client_SideID == WESTID) || (_sideID == EASTID)&&(WF_Client_SideID == EASTID)) then {_barColor = _colorFriendly}; //--- Green
+			if ((_sideID == WESTID)&&(WF_Client_SideID == EASTID) || (_sideID == EASTID)&&(WF_Client_SideID == WESTID)) then {_barColor = _colorEnemy};
 
 			_control = (uiNamespace getVariable "wf_title_capture") displayCtrl 601001;
 			_control ctrlShow true;
