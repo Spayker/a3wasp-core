@@ -26,7 +26,7 @@ player connectTerminalToUAV objNull;
 //--- Fade transition.
 titleCut["","BLACK OUT",1];
 
-[_killed, _killer, sideID] Spawn WFCO_FNC_OnUnitKilled;
+[_killed, _killer, WF_Client_SideID] Spawn WFCO_FNC_OnUnitKilled;
 
 waitUntil {alive player};
 

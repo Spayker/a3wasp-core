@@ -188,11 +188,10 @@ missionNamespace setVariable ['WF_C_GROUP_QUEUE_DEPOT',0];
 missionNamespace setVariable ['WF_C_GROUP_QUEUE_DEPOT_MAX',3];
 
 //--- Global Client Variables.
-sideID = WF_Client_SideJoined Call WFCO_FNC_GetSideID;
+WF_Client_SideID = WF_Client_SideJoined Call WFCO_FNC_GetSideID;
 paramBoundariesRunning = false;
 call WFCL_fnc_initGlobalMarkingMonitorFunctions;
 WF_Client_Logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-WF_Client_SideID = sideID;
 WF_Client_Color = switch (WF_Client_SideJoined) do { case west: {missionNamespace getVariable "WF_C_WEST_COLOR"}; case east: {missionNamespace getVariable "WF_C_EAST_COLOR"}; case resistance: {missionNamespace getVariable "WF_C_GUER_COLOR"};};
 WF_Client_Team = group player;
 WF_Client_Teams = missionNamespace getVariable Format['WF_%1TEAMS',WF_Client_SideJoinedText];

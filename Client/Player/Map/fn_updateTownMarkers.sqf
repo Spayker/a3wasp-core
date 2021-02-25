@@ -12,7 +12,7 @@ while {!WF_GameOver} do {
 		_maxSupplyValue = _town getVariable "maxSupplyValue";
 		_range = (_town getVariable "range") * _tcarm;
 		_visible = false;
-		if ((_town getVariable "sideID") == sideID) then {_visible = true} else {{if (_town distance _x < _range) then {_visible = true}} forEach _units};
+		if ((_town getVariable "sideID") == WF_Client_SideID) then {_visible = true} else {{if (_town distance _x < _range) then {_visible = true}} forEach _units};
 		if!(isNil '_townName') then {
 		_marker = Format ["WF_%1_CityMarker", _townName];
 		_townSpecialities = _town getVariable ["townSpeciality", []];

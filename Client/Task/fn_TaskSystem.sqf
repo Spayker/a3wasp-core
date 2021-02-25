@@ -22,7 +22,7 @@ switch (_type) do {
 			waitUntil {_sideID = _town getVariable 'sideID';!isNil '_sideID'};
 			_sideID = _town getVariable "sideID";
 			_task = player createSimpleTask [Format["TakeTowns_%1",str _town]];
-			if (_sideID != sideID) then {
+			if (_sideID != WF_Client_SideID) then {
 				_task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
 			} else {
 				_task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown_Complete",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
@@ -59,7 +59,7 @@ switch (_type) do {
 		_task = _location getVariable 'taskLink';
 		_sideID = _location getVariable "sideID";
 		if !(isNil '_task') then {
-			if (_sideID == sideID) then {
+			if (_sideID == WF_Client_SideID) then {
 				_task setTaskState "Succeeded";
 				_task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown_Complete",_location getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_location getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_location getVariable "name"]];
 			} else {
