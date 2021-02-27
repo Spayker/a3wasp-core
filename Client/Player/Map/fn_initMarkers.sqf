@@ -35,7 +35,7 @@
 
     if (WF_C_WAREHOUSE in _townSpeciality) then { _townMarker setMarkerTypeLocal "n_installation" };
 
-    if (WF_C_PLANT in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_Power" };
+    if (WF_C_PLANT in _townSpeciality || WF_C_POWER_PLANT in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_Power" };
 
 	_townMarker setMarkerColorLocal _townColor;
 

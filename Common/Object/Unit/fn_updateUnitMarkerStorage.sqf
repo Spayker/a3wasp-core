@@ -2,7 +2,6 @@
 params ['_unit', '_sideID'];
 
 waitUntil {!isNil 'WF_UNIT_MARKERS'};
-waitUntil {!isNil 'sideID'};
 
 if (typeName _sideId == "SIDE") then {_sideId = (_sideId) call WFCO_FNC_GetSideID};
 
@@ -31,6 +30,5 @@ if !(isHeadLessClient) then {
         _params = [_unit, _color];
         if (_unit_kind == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _params = [_unit, "ColorCIV"] }//--- HQ.
     };
-
     WF_UNIT_MARKERS pushBack (_params)
 }
