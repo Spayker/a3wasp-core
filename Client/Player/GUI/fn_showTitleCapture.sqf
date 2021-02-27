@@ -73,8 +73,6 @@ while {!WF_GameOver} do {
 
 		         if(WF_C_PORT in (_townSpecialities)) then { _hasSuppluySpeciality = false };
 
-		         if(WF_C_RADAR in (_townSpecialities)) then { _hasSuppluySpeciality = false };
-
                  if(WF_C_MINE in (_townSpecialities)) then { _hasSuppluySpeciality = false }
 			};
 

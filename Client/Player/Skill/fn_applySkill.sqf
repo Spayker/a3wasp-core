@@ -53,7 +53,27 @@ switch (WF_SK_V_Type) do {
 			"", 
 			"(time - WF_SK_V_LastUse_Lockpick > WF_SK_V_Reload_Lockpick && vehicle player == player && WF_VEHICLE_NEAR)"
 		];
-		_unit addAction ["<t color='#11ec52'>" + localize 'STR_WF_Hack_Tower' + "</t>",{[[player] call WFCL_FNC_GetNearestRadioTower] remoteExec ["WFSE_FNC_UpdateRadarTower", 2, true]}, [], 97, false, true, '', 'WF_RADIO_TOWER_NEAR'];
+		[
+            _unit,
+            "<t color='#11ec52'>" + localize 'STR_WF_Hack_Tower' + "</t>",
+            "\A3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_hack_ca.paa",
+            "\A3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_hack_ca.paa",
+            "WF_RADIO_TOWER_NEAR",
+            "WF_RADIO_TOWER_NEAR",
+            {},
+            {},
+            {
+                diag_log format ['fn_applySkill.sqf: player - %1', player];
+                diag_log format ['fn_applySkill.sqf: [player] call WFCL_FNC_GetNearestRadioTower - %1', [player] call WFCL_FNC_GetNearestRadioTower];
+                [player, [player] call WFCL_FNC_GetNearestRadioTower] remoteExec ["WFSE_FNC_UpdateRadarTower", 2]
+            },
+            {},
+            [],
+            2,
+            1000,
+            false,
+            false
+        ] call BIS_fnc_holdActionAdd;
 		[_unit] call fnc_addFastRepairAction;
 	};
 	case WF_RECON: {
@@ -99,7 +119,7 @@ switch (WF_SK_V_Type) do {
 		[_unit] call fnc_addFastRepairAction;
 	};
 };
-//--- Repair Trucks.
+//--- Take camp
 [
     _unit,					            						    // Object the action is attached to
     "<t color='#11ec52'>" + localize 'STR_WF_Take_Camp' + "</t>",        				// Title of the action
@@ -116,6 +136,25 @@ switch (WF_SK_V_Type) do {
     1000,													        // Priority
     false,												            // Remove on completion
     false												            // Show in unconscious state
+] call BIS_fnc_holdActionAdd;
+
+//--- Take town
+[
+    _unit,
+    "<t color='#11ec52'>" + localize 'STR_WF_Take_Town' + "</t>",
+    "\A3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa",
+    "\A3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa",
+    "WF_LOCATION_NEAR",
+    "WF_LOCATION_NEAR",
+    {},
+    {},
+    {call WFCL_FNC_TakeTown},
+    {},
+    [],
+    2,
+    1000,
+    false,
+    false
 ] call BIS_fnc_holdActionAdd;
 
 //--- Repair Trucks.

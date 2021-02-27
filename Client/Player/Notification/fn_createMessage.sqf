@@ -99,7 +99,7 @@ private _startPositionY = 0;
 } forEach life_message_list;
 
 // Wait until all control groups have been moved to new position and then insert new message to master list
-if ((count life_message_list) >= 1) then {waitUntil {ctrlCommitted ((life_message_list select ((count life_message_list) - 1)) select 1)}};
+if ((count life_message_list) > 0) then {waitUntil {ctrlCommitted ((life_message_list select ((count life_message_list) - 1)) select 1)}};
 life_message_list = [life_message_list, [_priority, _ctrlGroup], _insertIndex] call WFCL_fnc_insertElement;
 
 // Move to start position

@@ -8,10 +8,9 @@ if(isNil '_availableRoles')then{
     _availableRoles pushBack [
         WF_RECON,
         WF_RECON,
-        "Sniper role with special abilities: <br/>" +
+        "Recon role with special abilities: <br/>" +
          "- leaves marks on map by aiming<br/>" +
-         "- have harder to spot by enemy feature<br/>" +
-         "- can request arty strikes",
+         "- can purchase sniper rifles <br/>",
         [],
         2500,
         [],
@@ -24,7 +23,7 @@ if(isNil '_availableRoles')then{
         WF_ASSAULT,
         "Assault role for town taking. Abilities: <br/>"+
         "- have access to assault rifles<br/>"+
-        "- repairs camps",
+        "- can repair camps",
         [],
         2500,
         [],
@@ -35,9 +34,9 @@ if(isNil '_availableRoles')then{
         WF_ENGINEER,
         WF_ENGINEER,
         "Support role on battlefield. Abilities: <br/>" +
-        "- Repairs vehicles without toolsets <br/>"+
-        "- Can destroy camps<br/>"+
-        "- Repairs camps",
+        "- can repair vehicles without toolsets <br/>"+
+        "- can destroy camps<br/>"+
+        "- can repair camps",
         [],
         5000,
         [],
@@ -48,8 +47,8 @@ if(isNil '_availableRoles')then{
         WF_SPECOPS,
         WF_SPECOPS,
         "Support role on battlefield. Abilities: <br/>"+
-        "- hi-jacks enemy locked vehicles <br/>" +
-        "- access to adv silencer rifles <br/>",
+        "- can hi-jack enemy locked vehicles <br/>" +
+        "- can hack radio towers <br/>",
         [],
         5000,
         [],
@@ -61,8 +60,7 @@ if(isNil '_availableRoles')then{
         WF_MEDIC,
         "Support role on battlefield. Abilities: <br/>"+
         "- can do full heal<br/>" +
-        "- can heal with medkit package <br/>" +
-        "- can build field hospitals<br/>",
+        "- can heal with medkit package <br/>",
         [],
         5000,
         [],
@@ -74,8 +72,8 @@ if(isNil '_availableRoles')then{
         WF_SUPPORT,
         "Support role on battlefield. Features: <br/>"+
         "- access to backpacks with UAVs<br/>" +
-        "- can hack UAV vehicles<br/>" +
-        "- access to advanced artillery<br/>",
+        "- can buy UAV vehicles<br/>" +
+        "- can buy advanced rocket artillery<br/>",
         [],
         5000,
         [],

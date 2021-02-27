@@ -35,12 +35,29 @@ while {!WF_GameOver} do {
         _checks = ['COMMANDCENTERTYPE',_buildings,_ccr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange;
         _commandCenter = _checks;
         commandInRange = if (isNull _checks) then {false} else {true};
+
         if!(commandInRange) then {
-            _capturedRadars = [WF_Client_SideJoined, WF_C_RADAR, true] call WFCO_fnc_getSpecialLocations;
-            if(count _capturedRadars > 0) then {
                 {
-                    if ((_x distance player) <= (_ccr/2)) exitWith { commandInRange = true; _ccr = _ccr/2 }
-                } forEach _capturedRadars;
+                _location = _x # 0;
+                _locationPos = _x # 1;
+                if(isNull _location) then {
+                    deleteMarkerLocal format["radiotower%1", (_locationPos) # 0];
+                    deleteMarkerLocal format["WF_%1_TowerMarker", (_locationPos) # 1];
+                    WF_C_TAKEN_RADIO_TOWERS deleteAt _forEachIndex;
+                } else {
+                    if(!alive _location) then {
+                        deleteMarkerLocal format["radiotower%1", (_locationPos) # 0];
+                        deleteMarkerLocal format["WF_%1_TowerMarker", (_locationPos) # 1];
+                        WF_C_TAKEN_RADIO_TOWERS deleteAt _forEachIndex;
+                    }
+                }
+            } forEach WF_C_TAKEN_RADIO_TOWERS;
+
+            if(count WF_C_TAKEN_RADIO_TOWERS > 0) then {
+                {
+                    _location = _x # 0;
+                    if ((_location distance player) <= (_ccr/2)) exitWith { commandInRange = true; _ccr = _ccr/2 }
+                } forEach WF_C_TAKEN_RADIO_TOWERS;
             }
         };
 

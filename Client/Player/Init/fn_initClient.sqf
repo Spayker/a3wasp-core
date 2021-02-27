@@ -392,9 +392,12 @@ missionNamespace setVariable ["COIN_UseHelper", _greenList];
 //--- Make sure that player is always the leader.
 if (leader(WF_Client_Team) != player) then {(WF_Client_Team) selectLeader player};
 
-// initiate the passive skills.
+//--- initiate the passive skills.
 WF_gbl_boughtRoles = [];
 WF_FreeRolePurchase = true;
+
+//--- init radio tower array
+WF_C_TAKEN_RADIO_TOWERS = [];
 
 // map click drop
 onMapSingleClick {if (_shift) then {false} else {true}};
@@ -482,25 +485,23 @@ if!(WF_Skip_Intro) then {
 WF_C_MAP_MARKER_HANDLER = {
     Private ['_unit', '_colorStr', '_iconType', '_color'];
 	_iconsToBeDisplayed = [];
-    _color = nil;
+    _color = [0.85,0.4,0,1];
 
     {
         _unit = _x # 0;
         if(alive _unit) then {
         _colorStr = _x # 1;
-		_unitPos = getPos _unit;
+            _unitPos = getPosATL _unit;
         _shallDraw = true;
 
         _text = if(count _x > 2) then { _x # 2 } else { '' };
         _iconType = getText (configFile >> "CfgVehicles" >> typeOf _unit >> "icon");
-
 
         switch (_colorStr) do {
             case 'ColorEAST':{ _color = [0.5,0,0,1] };
             case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
             case 'ColorYellow':{ _color = [0.85,0.85,0,1] };
             case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
-            default {_color = [0.85,0.4,0,1] };
         };
 
         if(_unit isKindOf 'Man') then {
@@ -569,11 +570,11 @@ WF_C_MAP_MARKER_HANDLER = {
     } forEach (WF_Client_Logic getVariable "wf_teams");
 
     {
+        if (count _this > 0) then {
 		_iconType = _x # 0;
 		_color = 	_x # 1;
 		_unit  = 	_x # 2;
-		_text  = 	_x # 3;
-
+            _text  = 	if (count _x > 3) then {_x # 3} else {""};
         (_this select 0) drawIcon [
                 _iconType,
                 _color,
@@ -587,6 +588,7 @@ WF_C_MAP_MARKER_HANDLER = {
                 "TahomaB",
                 "right"
             ]
+        }
 	} foreach _iconsToBeDisplayed
 };
 

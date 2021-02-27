@@ -33,8 +33,6 @@
 
     if (WF_C_MILITARY_BASE in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_WaterTower" };
 
-    if (WF_C_RADAR in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_Transmitter" };
-
     if (WF_C_WAREHOUSE in _townSpeciality) then { _townMarker setMarkerTypeLocal "n_installation" };
 
     if (WF_C_PLANT in _townSpeciality) then { _townMarker setMarkerTypeLocal "loc_Power" };

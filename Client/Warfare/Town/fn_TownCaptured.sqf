@@ -35,8 +35,6 @@ if (isNil '_task') then {_task = objNull};
 //--- Client side capture.
 if (_town_side_value_new == WF_Client_SideID) then {
 
-    if(WF_C_RADAR in _townSpecialities) then { [_town] call WFCL_FNC_updateRadarMarker };
-
 	//--- Retrieve the closest unit of the town.
 	_closest = [_town, (units group player) Call WFCO_FNC_GetLiveUnits] Call WFCO_FNC_GetClosestEntity;
 	

@@ -20,6 +20,7 @@ playSound "Hint";
 WF_PREVIOUS_HINT_MESSAGE = _text;
 
 // Queue message handling
+if(!isNil 'life_message_active') then {
 for "_i" from 0 to 1 step 0 do {
 
 	// Check to exit message queue
@@ -42,3 +43,4 @@ private _foundPriorities = {(_x select 0) isEqualTo _priority} count _currentMes
 
 // Create message
 [_insertIndex, _text, _duration, _priority, _color, _condition] call WFCL_fnc_createMessage;
+};

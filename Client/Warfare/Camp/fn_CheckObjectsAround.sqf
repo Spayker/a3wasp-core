@@ -17,7 +17,19 @@ if(!(isNil "_unit") && (alive _unit)) then {
         };
 
         if (typeOf _object in WF_C_RADIO_OBJECTS) then {
+            _isNewRadioTower = true;
+            {
+                _location = _x # 0;
+                if (_location isEqualTo _object) exitWith {
+                    _isNewRadioTower = false
+                }
+            } forEach WF_C_TAKEN_RADIO_TOWERS;
+
+            if(_isNewRadioTower) then {
             WF_RADIO_TOWER_NEAR = true
+        } else {
+            WF_RADIO_TOWER_NEAR = false
+            }
         } else {
             WF_RADIO_TOWER_NEAR = false
         };

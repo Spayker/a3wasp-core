@@ -13,7 +13,13 @@ if(!(isNil "_unit") && (alive _unit)) then {
 		if (!alive _x) then {_towers deleteAt _forEachIndex}
 	} forEach _towers;
 
-	if (count _towers > 0) then { _tower = _towers # 0 }
+	if (count _towers > 0) then {
+	    _tower = _towers # 0;
+	    _newSID = WF_Client_SideJoined Call WFCO_FNC_GetSideID;
+	    _tower setVariable ["sideID",_newSID,true];
+	};
+
+
 };
 
 _tower
