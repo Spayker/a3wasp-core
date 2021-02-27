@@ -405,7 +405,6 @@ switch(side player) do {
 
     //----
     WF_C_WAREHOUSE = "warehouse";           // +10k to max suppluy
-    WF_C_RADAR = "radar";                   // command center feature available
     WF_C_MILITARY_BASE = "militaryBase";    // 5% discount on unit purchase
     WF_C_AIR_BASE = "airBase";              // 5% discount on unit purchase
     WF_C_PLANT = "plant";                   // pure supply income
