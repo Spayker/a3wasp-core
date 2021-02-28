@@ -487,13 +487,16 @@ WF_C_MAP_MARKER_HANDLER = {
 	_iconsToBeDisplayed = [];
     _color = [0.85,0.4,0,1];
 
-            _friendlyPlayers = WF_Client_Logic getVariable "wf_teams";
+
+    _friendlyPlayers = WF_Client_Logic getVariable ["wf_teams", []];
             {
-                _laserTargetObject = laserTarget (leader _x);
+        _leader = leader _x;
+        if((_leader getUnitTrait 'camouflageCoef') == 1) then {
+            _laserTargetObject = laserTarget _leader;
                 if!(isNull _laserTargetObject) then {
                     _iconType = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _laserTargetObject) >> "icon");
-
-                    _iconsToBeDisplayed pushBackUnique [_iconType, [1,0.3,0.4,1] , vehicle _laserTargetObject, name (leader _x)]
+                _iconsToBeDisplayed pushBackUnique [_iconType, [1,0.3,0.4,1] , vehicle _laserTargetObject, name _leader]
+            }
                 }
             } forEach _friendlyPlayers;
 

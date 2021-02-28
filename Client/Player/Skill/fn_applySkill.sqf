@@ -77,8 +77,8 @@ switch (WF_SK_V_Type) do {
 		[_unit] call fnc_addFastRepairAction;
 	};
 	case WF_RECON: {
-	    _unit setUnitTrait ["audibleCoef", true];
-	    _unit setUnitTrait ["camouflageCoef", true];
+	    _unit setUnitTrait ["audibleCoef", 1];
+	    _unit setUnitTrait ["camouflageCoef", 1];
 		/* Spotting Ability */
 		_unit addAction [
 			("<t color='#f8d664'>" + localize 'STR_WF_ACTION_Spot'+ "</t>"),
