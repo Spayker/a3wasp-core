@@ -10,6 +10,7 @@ if(isNil '_availableRoles')then{
         WF_RECON,
         "Recon role with special abilities: <br/>" +
          "- leaves marks on map by aiming<br/>" +
+         "- can laser tag targets on map<br/>" +
          "- can purchase sniper rifles <br/>",
         [],
         2500,
