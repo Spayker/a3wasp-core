@@ -21,6 +21,8 @@ _markerName setMarkerTextLocal _markerText;
 
 _height = missionNamespace getVariable "WF_C_STRUCTURES_ANTIAIRRADAR_DETECTION";
 
+waitUntil {!isNil "antiAirRadarInRange"};
+
 while {alive _object && !(isNull _object)} do {
 	if (antiAirRadarInRange) then {
 		if (((getPos _object) # 2) > _height) then {
