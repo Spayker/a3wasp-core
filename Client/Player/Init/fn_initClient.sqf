@@ -487,10 +487,6 @@ WF_C_MAP_MARKER_HANDLER = {
 	_iconsToBeDisplayed = [];
     _color = [0.85,0.4,0,1];
 
-    _selectedRole = WF_gbl_boughtRoles select 0;
-    if!(isNil '_selectedRole')then{
-        if(_selectedRole == WF_RECON) then {
-
             _friendlyPlayers = WF_Client_Logic getVariable "wf_teams";
             {
                 _laserTargetObject = laserTarget (leader _x);
@@ -500,8 +496,6 @@ WF_C_MAP_MARKER_HANDLER = {
                     _iconsToBeDisplayed pushBackUnique [_iconType, [1,0.3,0.4,1] , vehicle _laserTargetObject, name (leader _x)]
                 }
             } forEach _friendlyPlayers;
-        }
-    };
 
     {
         _unit = _x # 0;
