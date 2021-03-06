@@ -35,7 +35,7 @@ WF_KillPay_Array = [];
 //--- Position the client on the temp spawn (Common is not yet init'd so we call is straigh away).
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
 	"<br /><t size='1.5'>35%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGetPreRespawn')+"</t>","BLACK IN",55555, true, true];
-player setPos ([getMarkerPos Format["%1TempRespawnMarker",WF_Client_SideJoinedText],1,10] Call WFCO_FNC_GetRandomPosition);
+player setPosATL ([getMarkerPos Format["%1TempRespawnMarker",WF_Client_SideJoinedText],1,10] Call WFCO_FNC_GetRandomPosition);
 
 // Dialog: Skills Menu
 WF_role_list = [];
@@ -365,7 +365,7 @@ private _pos = getPos _base;
 _safePos = [_pos, 0, 60] call BIS_fnc_findSafePos;
 _pos set [0, _safePos # 0];
 _pos set [1, _safePos # 1];
-player setPos _pos;
+player setPosATL _pos;
 
 /* HQ Building Init. */
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 
@@ -409,7 +409,7 @@ WF_SHOW_FAST_REPAIR_ACTION = false;
 
 /* Debug System - Client */
 if (WF_Debug) then {
-	onMapSingleClick "vehicle player setpos _pos;(vehicle player) setVelocity [0,0,-0.1];diag_log getpos player;"; //--- Teleport
+	onMapSingleClick "vehicle player setPosATL _pos;(vehicle player) setVelocity [0,0,-0.1];diag_log getpos player;"; //--- Teleport
 	player addEventHandler ["HandleDamage", {if (player != (_this # 3)) then {(_this # 3) setDammage 1}; false}]; //--- God-Slayer mode.
 };
 
