@@ -114,6 +114,7 @@ _showConstructionMode = {
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlCommit 0;
 
     _optionTextValue = format ["<t color='#00FF00' shadow='2' size='%1' align='left' valign='middle'>",_optionSize];
+    _optionLines = 0;
     for "_i" from 0 to 1 do {
         _optionTextValue = _optionTextValue + format["%1<br />", _optionValues # _i];
         _optionLines = _optionLines + 0.05;
@@ -125,6 +126,44 @@ _showConstructionMode = {
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlSetPosition [_optionPos # 0,_optionPos # 1,_optionPos # 2,(_optionPos # 3) + _optionLines];
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlShow true;
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlCommit 0;
+
+    _cameraViewTextValue = format ["<t color='#1C9DD6' shadow='2' size='%1' align='left' valign='middle'>", _optionSize];
+    _cameraViewValues = [
+        localize "STR_WF_Construction_Camera_Move",
+        localize "STR_WF_Construction_Object_Rotate"
+    ];
+
+    _optionLines = 0;
+    for "_i" from 0 to 1 do {
+        _cameraViewTextValue = _cameraViewTextValue + format["%1<br />", _cameraViewValues # _i];
+        _optionLines = _optionLines + 0.05;
+    };
+
+    _cameraViewTextValue = _cameraViewTextValue + "</t>";
+    _cameraViewPos = ctrlPosition ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlSetStructuredText (parseText _cameraViewTextValue);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlSetPosition [_cameraViewPos # 0,_cameraViewPos # 1,_cameraViewPos # 2,(_cameraViewPos # 3) + _optionLines];
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlShow true;
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlCommit 0;
+
+    _constructionTextValue = format ["<t color='#43B4E6' shadow='2' size='%1' align='left' valign='middle'>", _optionSize];
+    _constructionViewValues = [
+        localize "STR_WF_Construction_Last_Built",
+        localize "STR_WF_Construction_Sell"
+    ];
+
+    _optionLines = 0;
+    for "_i" from 0 to 1 do {
+        _constructionTextValue = _constructionTextValue + format["%1<br />", _constructionViewValues # _i];
+        _optionLines = _optionLines + 0.05;
+    };
+
+    _constructionTextValue = _constructionTextValue + "</t>";
+    _constructionViewPos = ctrlPosition ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlSetStructuredText (parseText _constructionTextValue);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlSetPosition [_constructionViewPos # 0,_constructionViewPos # 1,_constructionViewPos # 2,(_constructionViewPos # 3) + _optionLines];
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlShow true;
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlCommit 0;
 };
 
 _logic setVariable ["BIS_COIN_selected",objNull];
@@ -264,7 +303,7 @@ BIS_CONTROL_CAM_Handler = {
 		if(_key in _keyAutoWallConstructing) then { WF_AutoWallConstructingEnabled = !WF_AutoWallConstructingEnabled };
 
 		//--- Last Built Defense (Custom Action #15).
-		if ((_key in (actionKeys "User15")) && count lastBuilt > 0) then {
+		if ((_key in (actionKeys "curatorToggleEdit")) && count lastBuilt > 0) then {
 			_deployed = true;
 			_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
             _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
@@ -280,7 +319,7 @@ BIS_CONTROL_CAM_Handler = {
 		if (_key in (actionKeys "User13")) then { WF_AutoManningDefense = !WF_AutoManningDefense };
 
 		//--- Sell Defense. (Commander only) (Custom Action #17).
-		if ((_key in (actionKeys "User17"))) then {
+		if ((_key in (actionKeys "curatorDelete"))) then {
 		    _preview = _logic getVariable "BIS_COIN_preview";
 		    if (isNil "_preview") then {//--- Proceed when there is no preview.
 		    	_targeting = screenToWorld [0.5,0.5];
@@ -946,7 +985,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 		if (!([_cashValues,_cashValuesOld] call bis_fnc_arraycompare)) then {
 			_cashValuesCount = count _cashValues;
 			_cashSize = [2.8 / _cashValuesCount, 2] select (_cashValuesCount <= 1);
-			_cashText = format ["<t color='#ffffffff' shadow='2' size='%1' align='left' valign='middle'>",_cashSize];
+			_cashText = format ["<t color='#ffae2b' shadow='2' size='%1' align='left' valign='middle'>",_cashSize];
 			_cashLines = 0;
 			for "_i" from 0 to (count _funds - 1) do {
 				_cashValue = _cashValues # _i;

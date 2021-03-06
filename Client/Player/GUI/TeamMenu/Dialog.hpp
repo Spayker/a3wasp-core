@@ -156,8 +156,8 @@ class RscMenu_Team {
 			y = 0.465;
 			w = 0.279999;
 			text = $STR_WF_TEAM_DisbandButton;
-			colorBackground[] = {0.768627451, 1, 0.137254902, 0.7};
-            colorBackgroundActive[] = {0.668627451, 0.9, 0.037254902, 1};
+			colorBackground[] = {0.09,0.65,0.23,1};
+            colorBackgroundActive[] = {0.1,0.72,0.25,1};
             colorFocused[] = {0.768627451, 1, 0.137254902, 1};
             colorShadow[] = {0,0,0,1};
             colorBorder[] = {0,0,0,1};

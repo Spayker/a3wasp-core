@@ -99,8 +99,8 @@ class RscMenu_Tactical {
 			y = 0.566833;
 			w = 0.25;
 			text = $STR_WF_TACTICAL_ArtilleryCallFireMission;
-			colorBackground[] = {0.768627451, 1, 0.137254902, 0.7};
-            colorBackgroundActive[] = {0.668627451, 0.9, 0.037254902, 1};
+			colorBackground[] = {0.09,0.65,0.23,1};
+            colorBackgroundActive[] = {0.1,0.72,0.25,1};
             colorFocused[] = {0.768627451, 1, 0.137254902, 1};
             colorShadow[] = {0,0,0,1};
             colorBorder[] = {0,0,0,1};
@@ -150,8 +150,8 @@ class RscMenu_Tactical {
 			x = 0.22021;
 			y = 0.905171;
 			w = 0.15;
-			colorBackground[] = {0.768627451, 1, 0.137254902, 0.7};
-            colorBackgroundActive[] = {0.668627451, 0.9, 0.037254902, 1};
+			colorBackground[] = {0.09,0.65,0.23,1};
+            colorBackgroundActive[] = {0.1,0.72,0.25,1};
             colorFocused[] = {0.768627451, 1, 0.137254902, 1};
             colorShadow[] = {0,0,0,1};
             colorBorder[] = {0,0,0,1};

@@ -3613,6 +3613,38 @@
 				<Italian>Fortificazione</Italian>
 				<Portuguese>Fortificação</Portuguese>
 			</Key>
+			<Key ID="STR_WF_Construction_Camera_Move">
+				<English>W-A-S-D, Q-Z: Move Camera</English>
+				<French>W-A-S-D, Q-Z: Move Camera</French>
+				<German>W-A-S-D, Q-Z: Move Camera</German>
+				<Russian>W-A-S-D, Q-Z: Камера</Russian>
+				<Italian>W-A-S-D, Q-Z: Move Camera</Italian>
+				<Portuguese>W-A-S-D, Q-Z: Move Camera</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Construction_Object_Rotate">
+				<English>Left Ctrl: Rotate</English>
+				<French>Left Ctrl: Rotate</French>
+				<German>Left Ctrl: Rotate</German>
+				<Russian>Left Ctrl: Вращение Объекта</Russian>
+				<Italian>Left Ctrl: Rotate</Italian>
+				<Portuguese>Left Ctrl: Rotate</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Construction_Last_Built">
+				<English>E: Last Built</English>
+				<French>E: Last Built</French>
+				<German>E: Last Built</German>
+				<Russian>E: Выбрать последний объект</Russian>
+				<Italian>E: Last Built</Italian>
+				<Portuguese>E: Last Built</Portuguese>
+			</Key>
+			<Key ID="STR_WF_Construction_Sell">
+				<English>DELETE: Sell</English>
+				<French>DELETE: Sell</French>
+				<German>DELETE: Sell</German>
+				<Russian>DELETE: Продать</Russian>
+				<Italian>DELETE: Sell</Italian>
+				<Portuguese>DELETE: Sell</Portuguese>
+			</Key>
 			<Key ID="STR_WF_Defense">
 				<English>Defense</English>
 				<French>Defense</French>

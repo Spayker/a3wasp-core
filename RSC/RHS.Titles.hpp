@@ -637,12 +637,7 @@ class RscTitles {
 			class descBackCenter : descBackLeft {
 				idc = 112212;
 				x = "SafezoneX + 0.01 +	0.3";
-				w = "SafeZoneW - 0.02 -	0.3*2";
-			};
-			class descBackRight : descBackLeft {
-				idc = 112213;
-				x = "SafezoneX + SafeZoneW - 0.01 -	0.3";
-				w = 0.3;
+				w = "SafeZoneW - 0.02 -	0.3";
 			};
 
 			class descText : RscStructuredText {
@@ -679,7 +674,7 @@ class RscTitles {
 
 			class autoOptionsText : descText {
                 idc = 112225;
-                x = "SafezoneX + 0.652*2";
+                x = "SafezoneX + 0.102*2";
                 y = "SafezoneY + SafezoneH - 0.13 + 0.02";
                 w = 0.4;
                 h = 0.1;
@@ -687,7 +682,7 @@ class RscTitles {
 
             class autoOptionsValueText : descText {
                 idc = 112227;
-                x = "SafezoneX + 0.760*2";
+                x = "SafezoneX + 0.210*2";
                 y = "SafezoneY + SafezoneH - 0.13 + 0.02";
                 w = 0.4;
                 h = 0.1;
@@ -695,9 +690,25 @@ class RscTitles {
 
 			class defenseText : descText {
                 idc = 112226;
-                x = "SafezoneX + 0.802*2";
+                x = "SafezoneX + 0.270*2";
                 y = "SafezoneY + SafezoneH - 0.13 + 0.02";
                 w = 0.3;
+                h = 0.1;
+            };
+
+            class MoveCameraText : descText {
+                idc = 112228;
+                x = "SafezoneX + 0.420*2";
+                y = "SafezoneY + SafezoneH - 0.13 + 0.02";
+                w = 0.6;
+                h = 0.1;
+            };
+
+            class ConstructionText : descText {
+                idc = 112229;
+                x = "SafezoneX + 0.620*2";
+                y = "SafezoneY + SafezoneH - 0.13 + 0.02";
+                w = 0.6;
                 h = 0.1;
             };
 		};
