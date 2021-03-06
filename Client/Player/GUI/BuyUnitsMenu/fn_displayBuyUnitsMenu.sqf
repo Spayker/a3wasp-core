@@ -37,7 +37,6 @@ _updateList = true;
 _updateMap = true;
 _val = 0;
 _mbu = missionNamespace getVariable 'WF_C_PLAYERS_AI_MAX';
-_selectedRole = WF_gbl_boughtRoles select 0;
 
 ctrlSetText[12025,localize 'STR_WF_UNITS_FactionChoiceLabel' + ":"];
 ctrlSetText[120255,localize 'STR_WF_UNITS_PurchaseTypeChoiceLabel' + ":"];
@@ -242,7 +241,7 @@ while {alive player && dialog} do {
                     _hcAllowedGroupAmount = WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT + ( (((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HC_GROUP_AMOUNT) * 2 );
 
                     _purchasedGroups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
-                    if((count _purchasedGroups) >= _hcAllowedGroupAmount ) then {
+                    if((count _purchasedGroups) + groupQueu >= _hcAllowedGroupAmount ) then {
                         _skip = true;
                         [Format [localize 'STR_WF_INFO_HC_Group_Max', _hcAllowedGroupAmount]] spawn WFCL_fnc_handleMessage
                     }
