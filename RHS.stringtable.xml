@@ -3754,6 +3754,14 @@
 				<Italian>Spingi (Veicolo)</Italian>
 				<Portuguese>Empurrar (Veículo)</Portuguese>
 			</Key>
+			<Key ID="STR_WF_Hack_Tower">
+				<English>Hack Radio Tower</English>
+				<French>Hack Radio Tower</French>
+				<German>Hack Radio Tower</German>
+				<Russian>Взлом Радио Вышки</Russian>
+				<Italian>Hack Radio Tower</Italian>
+				<Portuguese>Hack Radio Tower</Portuguese>
+			</Key>
 			<Key ID="STR_WF_Repair_Camp">
 				<English>Repair (Camp)</English>
 				<French>Réparation (Camp)</French>
