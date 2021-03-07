@@ -373,7 +373,6 @@ class WF_Common {
     class Base {
         file = "Common\Base";
         class buildingInRange {};
-        class buildingHandleDamage {};
         class cleanResBaseArea {};
         class getClosestStructure {};
         class getFactories {};

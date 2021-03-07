@@ -14,12 +14,22 @@ if(_isHQ) then {
     _vehicle setVariable ["wf_trashable", false, true];
     _vehicle setVariable ["wf_structure_type", "Headquarters", true];
     _vehicle setVariable ["wf_hq_deployed", false, true];
-    _vehicle addEventHandler ['handleDamage', {
-        params ["_unit", "_selection", "_damage", "_source"];
-        if(WF_C_BASE_ALLOW_TEAM_DAMMAGE <= 0 && ((side _source) == (_unit getVariable "wf_side"))) exitWith {0};
+    _vehicle addMPEventHandler ["MPHit",{
+        params ["_unit", "_causedBy", "_damage", "_instigator"];
+
+        if(WF_C_BASE_ALLOW_TEAM_DAMMAGE <= 0 && ((side _causedBy) == (_unit getVariable "wf_side"))) then {
+            _unit setDammage ((getDammage _unit) - _damage)
+        } else {
+            if(!hasInterface && !isDedicated)then{
+                [_unit] call WFHC_FNC_BuildingDamaged;
+
+                if!(alive _unit) then {
+                    [_unit, _causedBy] call WFHC_FNC_OnHQKilled
+                }
+            }
+        }
+
     }];
-    _vehicle addMPEventHandler ['MPKilled', {_this call WFSE_FNC_OnHQKilled}];
-    _vehicle addMPEventHandler ["MPHit",{_this call WFSE_FNC_BuildingDamaged}];
 
 	_logik = (_side) Call WFCO_FNC_GetSideLogic;
     _hqs = (_side) call WFCO_FNC_GetSideHQ;
@@ -102,6 +112,7 @@ if(_isHQ) then {
 		};
 	}];
 
+    if!(_isHQ) then {
 	if(_vehicle isKindOf "Car" || _vehicle isKindOf "Apc" || _vehicle isKindOf "Motorcycle") then {
         _vehicle addEventHandler ["HandleDamage", {
         if ((_this # 1) find "wheel" != -1) then {
@@ -110,6 +121,7 @@ if(_isHQ) then {
             (_this # 2)
         }
         }]
+        }
 	};
 
 	if(_skin > -1) then {
