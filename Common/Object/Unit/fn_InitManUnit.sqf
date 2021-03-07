@@ -61,10 +61,11 @@ if (_side != WF_DEFENDER_ID) then {
 };
 
 if!(isPlayer (leader _group)) then {
-    _unit removeItem "ItemWatch";
-    _unit removeItem "ItemMap";
-    _unit removeItem "ItemCompass";
-    _unit removeItem "Binocular"
+    _unit unlinkItem  "ItemWatch";
+    _unit unlinkItem  "ItemMap";
+    _unit unlinkItem  "ItemCompass";
+    _unit unlinkItem  "ItemGPS";
+    _unit removeWeapon  "Binocular";
 };
 
 if (_side IsEqualType WEST) then {_side = (_side) Call WFCO_FNC_GetSideID;};
