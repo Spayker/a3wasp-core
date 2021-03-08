@@ -60,12 +60,10 @@ if (_side != WF_DEFENDER_ID) then {
     if(!(_unit hasWeapon "CUP_NVG_PVS14_Hide_WASP")) then { _unit addWeapon "CUP_NVG_PVS14_Hide_WASP" }
 };
 
-if!(isPlayer (leader _group)) then {
     _unit unlinkItem  "ItemWatch";
-    _unit unlinkItem  "ItemMap";
     _unit unlinkItem  "ItemCompass";
     _unit unlinkItem  "ItemGPS";
-    _unit removeWeapon  "Binocular";
+_unit removeWeapon  (binocular _unit);
 
     _handgunMagazines = handgunMagazine _unit;
     if(count _handgunMagazines > 0) then { _unit removeMagazines (_handgunMagazines # 0) };
@@ -74,7 +72,10 @@ if!(isPlayer (leader _group)) then {
 
     {
     	if(_x in WF_C_GEAR_CHEMLIGHT_TYPES) then { _unit removeItem _x }
-    } forEach (itemsWithMagazines _unit)
+} forEach (itemsWithMagazines _unit);
+
+if!(isPlayer (leader _group)) then {
+    _unit unlinkItem  "ItemMap";
 };
 
 if (_side IsEqualType WEST) then {_side = (_side) Call WFCO_FNC_GetSideID;};
