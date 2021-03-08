@@ -19,6 +19,7 @@
 
 // Prevent init from running twice
 if(!isNil "AIC_INIT") exitWith {}; 
+if(isServer) exitWith {};
 AIC_INIT = true;
 
 params [["_autoConfigureCommanders",true]];
@@ -36,10 +37,10 @@ params [["_autoConfigureCommanders",true]];
 AIC_INIT_STARTUP_SCRIPTS_EXECUTED = true;
 AIC_INIT_REPORT_KINDS = ["Wheeled_APC","Tracked_APC","Car","Tank","Helicopter","Plane","Ship","StaticCannon","StaticMortar"];
 
-if(!_autoConfigureCommanders || !isServer) exitWith {};
+if(!_autoConfigureCommanders) exitWith {};
 
 // Auto-configure commanders and groups under command
-
+if ((!hasInterface && !isDedicated)) then {
 private["_commandersModules","_groupsModules","_configurationMode"];
 
 _commandersModules = allMissionObjects "AdvancedAICommand_Commanders";
@@ -84,6 +85,7 @@ if(_configurationMode == "SPECIFIED_COMMANDERS_ALL_GROUPS") then {
 if(_configurationMode == "ALL_COMMANDERS_ALL_GROUPS") then {
 	[_configurationMode] remoteExec ["AIC_fnc_initAICommandClient", -2, true];
 };
+}
 
 
 
