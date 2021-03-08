@@ -196,6 +196,7 @@ with missionNamespace do {
 	WF_C_PLAYERS_COMMANDER_SCORE_BUILD = 2;
 	WF_C_PLAYERS_COMMANDER_SCORE_CAPTURE = 5;
 	WF_C_PLAYERS_COMMANDER_SCORE_UPGRADE = 2;
+	WF_C_GEAR_CHEMLIGHT_TYPES = ["Chemlight_blue", "Chemlight_green", "Chemlight_red", "Chemlight_yellow"];
 	WF_C_PLAYERS_GEAR_SELL_COEF = 0.6; //--- Sell price of the gear: item price * x (800 * 0.2 = 400)
 	WF_C_PLAYERS_GEAR_TEMPLATES_COUNT = 10; //--A count limit of gear templates for a role--
 	WF_C_PLAYERS_GEAR_VEHICLE_RANGE = 50; //--- Possible to buy gear in vehicle if that one is within that range.

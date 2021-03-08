@@ -66,6 +66,15 @@ if!(isPlayer (leader _group)) then {
     _unit unlinkItem  "ItemCompass";
     _unit unlinkItem  "ItemGPS";
     _unit removeWeapon  "Binocular";
+
+    _handgunMagazines = handgunMagazine _unit;
+    if(count _handgunMagazines > 0) then { _unit removeMagazines (_handgunMagazines # 0) };
+    _unit removeWeapon (handgunWeapon _unit);
+    removeAllHandgunItems _unit;
+
+    {
+    	if(_x in WF_C_GEAR_CHEMLIGHT_TYPES) then { _unit removeItem _x }
+    } forEach (itemsWithMagazines _unit)
 };
 
 if (_side IsEqualType WEST) then {_side = (_side) Call WFCO_FNC_GetSideID;};
