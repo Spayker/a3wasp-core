@@ -86,4 +86,4 @@ if (_list isEqualType "") then {_list = [_list]};
 {_group addVehicle _x} forEach _vehicles; //--- Add vehicles.
 _group allowFleeing 0; //--- Make the units brave.
 
-[_units,_vehicles,_group,[]]
+[_units,_vehicles]
