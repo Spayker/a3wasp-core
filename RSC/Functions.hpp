@@ -500,7 +500,6 @@ class WF_Common {
 
     class ObjectUnitTeam {
         file = "Common\Object\Unit\Team";
-        class createTeam {};
         class getTeamArtillery {};
         class getTeamMoveMode {};
         class getTeamMovePos {};
