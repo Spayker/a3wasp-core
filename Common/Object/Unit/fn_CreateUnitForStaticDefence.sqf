@@ -49,3 +49,8 @@ _sideID = _side call WFCO_FNC_GetSideID;
 	_soldier moveInGunner _defence;	
     _defence setVariable ["crewUnits", _crewUnits, true];
 } forEach _defences;
+
+if(_side == resistance) then {
+    _civGroup = createGroup [civilian, true];
+    (units _group) joinSilent _civGroup
+}
