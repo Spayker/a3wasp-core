@@ -777,7 +777,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 			if (!_new && !isNil "_preview" &&  ((BIS_CONTROL_CAM_LMB && 65536 in (actionKeys "DefaultAction")) ||
 			    {_x in (actionKeys "DefaultAction")} count BIS_CONTROL_CAM_keys > 0) && (_color == _colorGreen ||
 			    _color == _colorYellow)) then {
-				_pos = position _preview;
+				_pos = screenToWorld [0.5,0.5];
 				_dir = direction _preview;
 				deleteVehicle _preview;
 				_logic setVariable ["BIS_COIN_preview",nil];
