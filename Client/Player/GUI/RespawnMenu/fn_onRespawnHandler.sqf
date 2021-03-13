@@ -19,6 +19,9 @@ if (_spawn isKindOf "Man") then {_spawn = vehicle _spawn};
 _safePos = [getPos _spawn, 1, 45, 1, 0, 0, 0] call BIS_fnc_findSafePos;
 _unit setPos _safePos;
 
+/* HUD MODULE */
+0 = [] spawn WFCL_FNC_updatePlayerHud;
+
 //--Disable fatigue--
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {
     _unit enableFatigue false;

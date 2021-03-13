@@ -13,25 +13,6 @@ CutRsc["OptionsAvailable","PLAIN",0];
 
 private _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
 
-//--Old HUD variables--START------------------------------------------------------------------------------------------//
-_textHealth 	= format["%1:", localize "STR_WF_HUD_HEALTH"];
-_textComm 		= format["%1:", localize "STR_WF_HUD_COMM"];
-_textUptime 	= format["%1:", localize "STR_WF_HUD_UPTIME"];
-_textMoney 		= format["%1:", localize "STR_WF_HUD_MONEY"];
-_textIncome 	= format["%1:", localize "STR_WF_HUD_INCOME"];
-_textSupply 	= format["%1:", localize "STR_WF_HUD_SUPPLY"];
-_textSVMIN 		= format["%1:", localize "STR_WF_HUD_SVMIN"];
-_textTowns 		= format["%1:", localize "STR_WF_HUD_TOWNS"];
-_textFPS 		= format["%1:", localize "STR_WF_HUD_FPS"];
-
-_lineLabel0 = _cutDisplay DisplayCtrl 1344;
-_flagwest01 = _cutDisplay DisplayCtrl 1362;
-_flageast01 = _cutDisplay DisplayCtrl 1365;
-
-_playerWestCountIndicator = _cutDisplay DisplayCtrl 1364;
-_playerEastCountIndicator = _cutDisplay DisplayCtrl 1367;
-//--Old HUD variables--END--------------------------------------------------------------------------------------------//
-
 //--HUD variables--START----------------------------------------------------------------------------------------------//
 _bgControl = _cutDisplay DisplayCtrl 1099;
 _hControl = _cutDisplay DisplayCtrl 1100;
@@ -86,18 +67,12 @@ _icons = [
 	"RSC\Pictures\icon_wf_building_am_radar.paa"
 ];
 
-12450 cutRsc ["OptionsAvailable","PLAIN",0];
-
-while {true} do {
-
+while {alive (leader WF_Client_Team)} do {
 
     _usable = [hqInRange,barracksInRange,gearInRange,lightInRange,heavyInRange,aircraftInRange,hangarInRange,
                                     serviceInRange,commandInRange,antiAirRadarInRange,antiArtyRadarInRange];
     _c = 0;
 
-    if(isNull _cutDisplay) then {
-        _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
-    } else {
         if (hudOn) then {
             //--HUD variables--START----------------------------------------------------------------------------------------------//
             _bgControl = _cutDisplay DisplayCtrl 1099;
@@ -208,7 +183,7 @@ while {true} do {
             _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaBold' size='%5' valign='middle'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\default_ca.paa'/>%1 <img image='\A3\ui_f\data\GUI\Rsc\RscDisplayOptionsVideo\icon_performance.paa'/> S:%2 HC:%3 C:%4</t>",
             format["%1/%2", WF_Client_SideJoined Call WFCO_FNC_GetTownsHeld, count towns], floor(missionNamespace getVariable["WF_SERVER_FPS", 0]), floor(missionNamespace getVariable["WF_HC_FPS", 0]), floor(diag_fps), _textSize];
             _tControl ctrlSetStructuredText parseText _fText;
-        if (isNull _cutDisplay) then {12450 cutRsc["OptionsAvailable","PLAIN",0]};
+
         {
             if (_x) then {
                 ((_cutDisplay) DisplayCtrl (3500 + _c)) ctrlSetText (_icons select _c);
@@ -217,7 +192,7 @@ while {true} do {
                 ((_cutDisplay) DisplayCtrl (3500 + _c)) CtrlSetText "";
             };
             _c = _c + 1;
-        } forEach _usable;
+        } forEach _usable
 	} else {
         call _hideHud;
         {
@@ -226,7 +201,7 @@ while {true} do {
             };
             _c = _c + 1;
         } forEach _usable
-        }
     };
+
 	sleep 3
 }
