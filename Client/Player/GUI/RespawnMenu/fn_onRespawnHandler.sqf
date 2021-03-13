@@ -22,6 +22,8 @@ _unit setPos _safePos;
 /* HUD MODULE */
 0 = [] spawn WFCL_FNC_updatePlayerHud;
 
+WF_PlayerMenuAction = (leader WF_Client_Team) addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
+
 //--Disable fatigue--
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {
     _unit enableFatigue false;

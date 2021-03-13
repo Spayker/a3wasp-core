@@ -472,6 +472,8 @@ sleep 5;
 //--- Valhalla init.
 0 = [] execVM "Client\Module\Valhalla\Init_Valhalla.sqf";
 
+WF_PlayerMenuAction = (leader WF_Client_Team) addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
+
 if!(WF_Skip_Intro) then {
     waitUntil { WF_EndIntro };
 	
