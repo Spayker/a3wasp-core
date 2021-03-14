@@ -13,21 +13,13 @@ unitMarker = 0;
 
 /* Respawn Markers */
 createMarkerLocal ["respawn_east",getMarkerPos "EastTempRespawnMarker"];
-if(WF_C_PARAMETER_COLORATION == 1) then {
 	"respawn_east" setMarkerColorLocal "ColorEAST";
-} else {
-	"respawn_east" setMarkerColorLocal "ColorGreen";
-};
 "respawn_east" setMarkerShapeLocal "RECTANGLE";
 "respawn_east" setMarkerBrushLocal "BORDER";
 "respawn_east" setMarkerSizeLocal [15,15];
 "respawn_east" setMarkerAlphaLocal 0;
 createMarkerLocal ["respawn_west",getMarkerPos "WestTempRespawnMarker"];
-if(WF_C_PARAMETER_COLORATION == 1) then {
 	"respawn_west" setMarkerColorLocal "ColorWEST";
-} else {
-	"respawn_west" setMarkerColorLocal "ColorGreen";
-};
 "respawn_west" setMarkerShapeLocal "RECTANGLE";
 "respawn_west" setMarkerBrushLocal "BORDER";
 "respawn_west" setMarkerSizeLocal [15,15];
@@ -66,13 +58,6 @@ _team_east = 'RU';
 
 ["INITIALIZATION", "Init_Common.sqf: Core Files are loaded."] Call WFCO_FNC_LogContent;
 
-//--- new system.
-_grpWest = (missionNamespace getVariable 'WF_C_UNITS_FACTIONS_WEST') # (missionNamespace getVariable 'WF_C_UNITS_FACTION_WEST');
-_grpEast = (missionNamespace getVariable 'WF_C_UNITS_FACTIONS_EAST') # (missionNamespace getVariable 'WF_C_UNITS_FACTION_EAST');
-_grpRes = (missionNamespace getVariable 'WF_C_UNITS_FACTIONS_GUER') # (missionNamespace getVariable 'WF_C_UNITS_FACTION_GUER');
-
-["INITIALIZATION", Format["Init_Common.sqf: Using groups - West [%1], East [%2], Resistance [%3].",_grpWest,_grpEast,_grpRes]] Call WFCO_FNC_LogContent;
-
 /* CORE SYSTEM - End */
 
 //--- Determine which logics are defined.
@@ -86,25 +71,28 @@ _presents = [];
 
 WF_PRESENTSIDES = _presents;
 
-WF_DEFENDER = resistance;
+WF_DEFENDER = civilian;
 WF_DEFENDER_ID = (WF_DEFENDER) Call WFCO_FNC_GetSideID;
 
 //--- Import the desired global side variables.
-Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Core_Root\Root_%1.sqf",_grpRes];
-Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Core_Root\Root_%1.sqf", _team_west];
-Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Core_Root\Root_%1.sqf", _team_east];
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Gue.sqf";
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Civ.sqf";
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_RU.sqf";
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_US.sqf";
 
-//--- Import the desired defenses. (todo, Replace the old defense init by this one).
-Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Defenses\Defenses_%1.sqf",_grpWest];
-Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Defenses\Defenses_%1.sqf",_grpEast];
-Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Defenses\Defenses_%1.sqf",_grpRes];
+//--- Import the desired defenses.
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_RU.sqf";
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_US.sqf";
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_Gue.sqf";
+Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_Civ.sqf";
 
 //--- Server Exec.
 if (isServer || isHeadLessClient) then {
 	//--- Import the desired town groups.
-	Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Groups\Groups_%1.sqf",_grpWest];
-	Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Groups\Groups_%1.sqf",_grpEast];
-	Call Compile preprocessFileLineNumbers Format["Common\Warfare\Config\Groups\Groups_%1.sqf",_grpRes];
+	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_US.sqf";
+	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_RU.sqf";
+	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_Gue.sqf";
+	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_Civ.sqf";
 };
 
 //--- Airports Init.

@@ -1,8 +1,4 @@
 //--- DO NOT CHANGE.
-WESTID = 0;
-EASTID = 1;
-RESISTANCEID = 2;
-//--- DO NOT CHANGE.
 QUERYUNITLABEL = 0;
 QUERYUNITPICTURE = 1;
 QUERYUNITPRICE = 2;
@@ -166,7 +162,6 @@ with missionNamespace do {
 	WF_C_ENVIRONMENT_WEATHER_TRANSITION = 1800; //--- Weather Transition period, change weather overcast each x seconds (longer is more realistic).
 
 //--- Gameplay.
-	if (isNil "WF_C_PARAMETER_COLORATION") then {WF_C_PARAMETER_COLORATION = 1;}; //--- Map Coloration.
 	if (isNil "WF_C_GAMEPLAY_BOUNDARIES_ENABLED") then {WF_C_GAMEPLAY_BOUNDARIES_ENABLED = 1;}; //--- Enable the map boundaries if defined.
 	if (isNil "WF_C_GAMEPLAY_FATIGUE_ENABLED") then {WF_C_GAMEPLAY_FATIGUE_ENABLED = 0;}; //--- Disable the fatigue system for default.
 	if (isNil "WF_C_GAMEPLAY_UPGRADES_CLEARANCE") then {WF_C_GAMEPLAY_UPGRADES_CLEARANCE = 0;}; //--- Upgrade clearance (on start), 0: Disabled, 1: West, 2: East, 3: Res, 4: West + East, 5: West + Res, 6: East + Res, 7: All.
@@ -342,32 +337,13 @@ with missionNamespace do {
 	if (isNil "WF_C_UNITS_FACTION_EAST") then {WF_C_UNITS_FACTION_EAST = 0;}; //--- East Faction.
 	if (isNil "WF_C_UNITS_FACTION_GUER") then {WF_C_UNITS_FACTION_GUER = 0;}; //--- Guerilla Faction.
 	if (isNil "WF_C_UNITS_FACTION_WEST") then {WF_C_UNITS_FACTION_WEST = 0;}; //--- West Faction.
-	WF_C_UNITS_FACTIONS_EAST = ['RU']; //--- East Factions.
-	WF_C_UNITS_FACTIONS_GUER = ['GUE']; //--- Guerilla Factions.
-	WF_C_UNITS_FACTIONS_WEST = ['US']; //--- West Factions.
 
 //--- Overall mission coloration.
-if(WF_C_PARAMETER_COLORATION == 1) then {
 	missionNamespace setVariable ["WF_C_WEST_COLOR", "ColorWEST"];
 	missionNamespace setVariable ["WF_C_EAST_COLOR", "ColorEAST"];
 	missionNamespace setVariable ["WF_C_GUER_COLOR", "ColorGUER"];
 	missionNamespace setVariable ["WF_C_CIV_COLOR", "ColorYellow"];
-	missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "Color2_FD_F"];
-} else {
-	if (side player == west) then {
-	missionNamespace setVariable ["WF_C_WEST_COLOR", "ColorGreen"];
-	missionNamespace setVariable ["WF_C_EAST_COLOR", "ColorRed"];
-	missionNamespace setVariable ["WF_C_GUER_COLOR", "ColorBlue"];
-	missionNamespace setVariable ["WF_C_CIV_COLOR", "ColorYellow"];
-	missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "ColorBlue"];
-	} else {
-		missionNamespace setVariable ["WF_C_WEST_COLOR", "ColorRed"];
-		missionNamespace setVariable ["WF_C_EAST_COLOR", "ColorGreen"];
-		missionNamespace setVariable ["WF_C_GUER_COLOR", "ColorBlue"];
-		missionNamespace setVariable ["WF_C_CIV_COLOR", "ColorYellow"];
-		missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "ColorBlue"];
-	};
-};
+missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "ColorCIV"];
 
 WF_C_TITLETEXT_COLOR = "#c8c832";
 WF_C_TITLETEXT_COLOR_INT = [0.78, 0.78, 0.2, 1];
@@ -376,7 +352,6 @@ switch(side player) do {
         WF_C_TITLETEXT_COLOR = "#00a2e8";
         WF_C_TITLETEXT_COLOR_INT = [0, 0.64, 0.91, 1];
     };
-
     case EAST: {
         WF_C_TITLETEXT_COLOR = "#c83232";
         WF_C_TITLETEXT_COLOR_INT = [0.78, 0.2, 0.2, 1];
@@ -402,7 +377,7 @@ switch(side player) do {
 //--- Apply a towns unit coeficient.
 	WF_C_TOWNS_UNITS_COEF = switch (WF_C_TOWNS_OCCUPATION) do {case 0: {0}; case 1: {1}; case 2: {1}; case 3: {2}; case 4: {2}; default {1}};
 	WF_C_TOWNS_UNITS_DEFENDER_COEF = switch (WF_C_TOWNS_DEFENDER) do {case 0: {0}; case 1: {1}; case 2: {1.5}; case 3: {2}; case 4: {2.5}; default {1}};
-	WF_C_TOWNS_ALL_SIDES = [west, east, resistance, sideEnemy];
+	WF_C_TOWNS_ALL_SIDES = [west, east, resistance, civilian, sideEnemy];
 
     //----
     WF_C_WAREHOUSE = "warehouse";           // +10k to max suppluy
