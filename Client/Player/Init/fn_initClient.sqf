@@ -130,18 +130,23 @@ if (!(visibleMap) && (isNil "BIS_CONTROL_CAM")) then {Local_GUIWorking=true; 136
 	"<br /><t size='1.5'>65%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingPreparingRolesGear')+"</t>","BLACK IN",55555, true, true];
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_West.sqf"};
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_East.sqf"};
+if (WF_Client_SideJoined == resistance) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Guer.sqf"};
 
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_West.sqf"};
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_East.sqf"};
+if (WF_Client_SideJoined == resistance) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Guer.sqf"};
 
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf"};
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf"};
+if (WF_Client_SideJoined == resistance) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf"};
 
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_East.sqf"};
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_West.sqf"};
+if (WF_Client_SideJoined == resistance) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_Guer.sqf"};
 
 if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_East.sqf"};
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_West.sqf"};
+if (WF_Client_SideJoined == resistance) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_Guer.sqf"};
 
 
 //--- UI Namespace release from previous possible games (only on titles dialog!).
