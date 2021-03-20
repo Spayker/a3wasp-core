@@ -6,8 +6,13 @@
 private ["_templates"];
 
 {
+    _templates = nil;
+    if (side player == resistance) then {
+        _templates = (["WFSE_FNC_GetGearTemplates", player, [steamid, WF_Client_SideJoinedText, _x], 200] call WFCL_FNC_remoteExecServer);
+    } else {
     _templates = [_x, 4] call compile preprocessFileLineNumbers format["Common\Warfare\Config\Gear\RoleBased\Gear_Templates_%1.sqf", WF_Client_SideJoinedText];
 	_templates = _templates + (["WFSE_FNC_GetGearTemplates", player, [steamid, WF_Client_SideJoinedText, _x], 200] call WFCL_FNC_remoteExecServer);
+    };
 
 	if(isNil "_templates") then {
 		_templates = [];
