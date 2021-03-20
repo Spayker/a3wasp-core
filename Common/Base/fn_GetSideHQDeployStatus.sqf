@@ -6,9 +6,9 @@
 params ["_side", "_hq"];
 
 switch (_side) do {
-	case west: {_hq getVariable "wf_hq_deployed"};
-	case east: {_hq getVariable "wf_hq_deployed"};
-	case resistance: {_hq getVariable "wf_hq_deployed"};
-	default {objNull};
+	case west: {_hq getVariable ["wf_hq_deployed", false]};
+	case east: {_hq getVariable ["wf_hq_deployed", false]};
+	case resistance: {_hq getVariable ["wf_hq_deployed", false]};
+	default {false};
 }
 

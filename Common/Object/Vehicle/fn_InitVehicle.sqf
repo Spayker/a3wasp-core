@@ -32,7 +32,6 @@ if(_isHQ) then {
     }];
 
 	_logik = (_side) Call WFCO_FNC_GetSideLogic;
-    _hqs = (_side) call WFCO_FNC_GetSideHQ;
 	_hqs = _logik getVariable ["wf_hq", []];
 	_hqs = _hqs - [objNull];
 	_hqs pushBack _vehicle;

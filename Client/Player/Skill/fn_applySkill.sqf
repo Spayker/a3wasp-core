@@ -138,25 +138,6 @@ switch (WF_SK_V_Type) do {
     false												            // Show in unconscious state
 ] call BIS_fnc_holdActionAdd;
 
-//--- Take town
-[
-    _unit,
-    "<t color='#11ec52'>" + localize 'STR_WF_Take_Town' + "</t>",
-    "\A3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa",
-    "\A3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_requestLeadership_ca.paa",
-    "WF_LOCATION_NEAR",
-    "WF_LOCATION_NEAR",
-    {},
-    {},
-    {call WFCL_FNC_TakeTown},
-    {},
-    [],
-    2,
-    1000,
-    false,
-    false
-] call BIS_fnc_holdActionAdd;
-
 //--- Repair Trucks.
 _unit addAction [localize 'STR_WF_BuildMenu_Repair',
                  {call WFCL_fnc_callBuildMenuForRepairTruck},
