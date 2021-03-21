@@ -8,6 +8,7 @@ if (_locked) then {_vehicle lock _locked};
 _vehicle spawn WFCO_FNC_ClearVehicleCargo;
 
 _isHQ = (typeOf _vehicle == (missionNamespace getVariable [Format["WF_%1MHQNAME", _side], ""]));
+
 //-- Init HQ
 if(_isHQ) then {
     _vehicle setVariable ["wf_side", _side, true];
@@ -46,9 +47,10 @@ if(_isHQ) then {
 
     if (_global) then {
             if (_vehicle isKindOf "Air") then { //--- Air units.
-                _enemySide = resistance;
+            _enemySide = civilian;
                 if(_side == west) then {_enemySide = east};
                 if(_side == east) then {_enemySide = west};
+            if(_side == resistance) then {_enemySide = resistance};
             if (_sideId != WF_DEFENDER_ID) then {
                 [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true]
             };

@@ -23,7 +23,7 @@ if (vehicle _killer != _killer) then {
 	_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
 };
 
-if(_killer_side == resistance) exitWith {};
+if(_killer_side == civilian) exitWith {};
 
 //--- Retrieve basic information.
 _killer_group = group _killer;

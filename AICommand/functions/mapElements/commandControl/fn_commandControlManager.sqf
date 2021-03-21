@@ -112,7 +112,7 @@ if(!hasInterface && !isDedicated) then {
 			private ["_group","_groupControl","_lastWpRevision","_groupWaypoints","_groupControlWaypoints","_currentWpRevision","_groupControlWaypointArray","_wp","_goCodeWpFound","_wpType","_waitForCode","_wpActionScript","_wpCondition","_wpTimeout"];
 			{
 				_group = _x;
-				if (side _group != resistance && (_group getVariable["isHighCommandPurchased",false]) ) then {
+				if (side _group != civilian && (_group getVariable["isHighCommandPurchased",false]) ) then {
 				_lastWpRevision = _group getVariable ["AIC_Server_Last_Wp_Revision",0];
 				_groupWaypoints = waypoints _group;
 				_groupControlWaypoints = [_group] call AIC_fnc_getAllActiveWaypoints;

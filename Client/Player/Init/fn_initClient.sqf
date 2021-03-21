@@ -380,14 +380,18 @@ player setPosATL _pos;
 ["INITIALIZATION", "fn_initClient.sqf: Initializing COIN Module."] Call WFCO_FNC_LogContent;
 
 _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
+if (count _mhqs > 0) then {
 _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 _isDeployed = [WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus;
 if(isNil "_isDeployed") then { _isDeployed = false };
 
 if (_isDeployed) then {
-	[missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_DEPLOYED",true,MCoin] Call WFCL_FNC_initConstructionModule;
+        [missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_DEPLOYED",true,MCoin] Call WFCL_FNC_initConstructionModule
 } else {
-	[missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_UNDEPLOYED",false,MCoin] Call WFCL_FNC_initConstructionModule;
+        [missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_UNDEPLOYED",false,MCoin] Call WFCL_FNC_initConstructionModule
+    }
+} else {
+    [missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_UNDEPLOYED",false,MCoin] Call WFCL_FNC_initConstructionModule
 };
 
 _greenList = [];
@@ -520,6 +524,7 @@ WF_C_MAP_MARKER_HANDLER = {
         switch (_colorStr) do {
             case 'ColorEAST':{ _color = [0.5,0,0,1] };
             case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
+                case 'ColorGUER':{ _color = [0,0.5,0,1]  };
             case 'ColorYellow':{ _color = [0.85,0.85,0,1] };
             case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
         };

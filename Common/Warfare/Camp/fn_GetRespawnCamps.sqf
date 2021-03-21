@@ -17,8 +17,22 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 					if (_respawnCampsRuleMode > 0) then {
 						_closestCamp = [_deathLoc,_camps] Call WFCO_FNC_GetClosestEntity;
 
-						_enemySide = [[west], [east]] select (_side == west);
-						if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (resistance)};
+						_enemySide = [];
+						if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (civilian)};
+                        if(_side == west) then {
+                            _enemySide pushBack east;
+                            _enemySide pushBack resistance
+                        };
+
+                        if(_side == east) then {
+                            _enemySide pushBack west;
+                            _enemySide pushBack resistance
+                        };
+
+                        if(_side == resistance) then {
+                            _enemySide pushBack east;
+                            _enemySide pushBack west
+                        };
 
 						_hostiles = [_closestCamp,_enemySide,_respawnMinRange] Call WFCO_FNC_GetHostilesInArea;
 						if (_deathLoc distance _closestCamp < _respawnMinRange && _hostiles > 0) then {
@@ -40,8 +54,24 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 				if ((_side Call WFCO_FNC_GetSideID) == (_x getVariable 'sideID') && !isObjectHidden _x) then {
 					if (_respawnCampsRuleMode > 0) then {
 						if (_deathLoc distance _x < _respawnMinRange) then {
-								_enemySide = [[west], [east]] select (_side == west);
-								if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (resistance)};
+                            _enemySide = [];
+                            if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (civilian)};
+
+                            if(_side == west) then {
+                                _enemySide pushBack east;
+                                _enemySide pushBack resistance
+                            };
+
+                            if(_side == east) then {
+                                _enemySide pushBack west;
+                                _enemySide pushBack resistance
+                            };
+
+                            if(_side == resistance) then {
+                                _enemySide pushBack east;
+                                _enemySide pushBack west
+                            };
+
 							_hostiles = [_x,_enemySide,_respawnMinRange] Call WFCO_FNC_GetHostilesInArea;
 							if (_hostiles == 0) then {_availableSpawn pushBack _x};
 						} else {
@@ -65,8 +95,23 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 				if ((_side Call WFCO_FNC_GetSideID) == _townSID && (_x getVariable 'sideID') == _townSID && !isObjectHidden _x) then {
 					if (_respawnCampsRuleMode > 0) then {
 						if (_deathLoc distance _x < _respawnMinRange) then {
-								_enemySide = [[west], [east]] select (_side == west);
-								if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (resistance)};
+                            _enemySide = [];
+                            if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (civilian)};
+
+                            if(_side == west) then {
+                                _enemySide pushBack east;
+                                _enemySide pushBack resistance
+                            };
+
+                            if(_side == east) then {
+                                _enemySide pushBack west;
+                                _enemySide pushBack resistance
+                            };
+
+                            if(_side == resistance) then {
+                                _enemySide pushBack east;
+                                _enemySide pushBack west
+                            };
 							_hostiles = [_x,_enemySide,_respawnMinRange] Call WFCO_FNC_GetHostilesInArea;
 							if (_hostiles == 0) then {_availableSpawn pushBack _x};
 						} else {

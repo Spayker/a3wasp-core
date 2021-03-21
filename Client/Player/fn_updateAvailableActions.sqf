@@ -21,16 +21,7 @@ while {!WF_GameOver} do {
     _ccr = missionNamespace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
 		_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
-        _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
 
-        {
-            if((typeOf _x) in (missionNamespace getVariable [format["WF_AMBULANCES_%1", WF_Client_SideJoined], []])) then {
-                  _mhqs deleteAt _forEachIndex;
-                  _logik = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-                  _logik setVariable ["wf_hq", _mhqs, true];
-            }
-        } forEach _mhqs;
-        _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
         _purchaseRange = -1;
         _checks = ['COMMANDCENTERTYPE',_buildings,_ccr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange;
         _commandCenter = _checks;
@@ -87,6 +78,10 @@ while {!WF_GameOver} do {
             };
         };
 
+        _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
+        if (count _mhqs > 0) then {
+            _base = [player, _mhqs] call WFCO_FNC_GetClosestEntity;
+
 		//--- Fast Travel.
         if (commandInRange) then {
         	_fastTravel = false;
@@ -108,6 +103,7 @@ while {!WF_GameOver} do {
 		if !(isNull _base) then {
 			hqInRange = if ((player distance _base < _mhqbr) && alive _base  && (side _base in [WF_Client_SideJoined,civilian])) then {true} else {false};
 		};
+        };
 
 		barracksInRange = if (isNull (['BARRACKSTYPE',_buildings,_purchaseRange,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
 		gearInRange = if (isNull (['BARRACKSTYPE',_buildings,_pgr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};

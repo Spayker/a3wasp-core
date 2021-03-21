@@ -11,7 +11,7 @@ _defense_range = missionNamespace getVariable 'WF_C_TOWNS_DEFENSE_RANGE';
 _aliveTeam = !(count ((units _group) Call WFCO_FNC_GetLiveUnits) == 0 || isNull _group);
 
 	_currentSV = _location getVariable ['supplyValue', 10];
-	if (_currentSV < _lastSV || _currentSV < _startSV || (_sideID == (_location getVariable 'sideID'))) then {
+	if (_currentSV < _lastSV || _currentSV < _startSV || (_sideID != (_location getVariable 'sideID'))) then {
 		_mode = "defense";
 	};
 

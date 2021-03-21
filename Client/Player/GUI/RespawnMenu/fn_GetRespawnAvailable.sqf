@@ -49,8 +49,22 @@ _towns =(WF_Client_SideJoined) call WFCO_FNC_GetSideTowns;
 {
     _townSpecialities = _x getVariable ["townSpeciality", []];
     if (WF_C_MILITARY_BASE in (_townSpecialities) || WF_C_AIR_BASE in (_townSpecialities)) then {
-        _enemySide = [[west], [east]] select (_side == west);
-        _enemySide pushBack (resistance);
+        _enemySide = [civilian];
+        if(_side == west) then {
+            _enemySide pushBack east;
+            _enemySide pushBack resistance
+        };
+
+        if(_side == east) then {
+            _enemySide pushBack west;
+            _enemySide pushBack resistance
+        };
+
+        if(_side == resistance) then {
+            _enemySide pushBack east;
+            _enemySide pushBack west
+        };
+
         _respawnMinRange = missionNamespace getVariable "WF_C_RESPAWN_CAMPS_SAFE_RADIUS";
         _hostiles = [_x, _enemySide,_respawnMinRange] Call WFCO_FNC_GetHostilesInArea;
         if (_hostiles == 0) then { _availableSpawn pushBackUnique _x }

@@ -34,7 +34,7 @@ waitUntil {alive player};
 [WF_Client_Team, player] remoteExecCall ["WFSE_FNC_updateTeamLeader",2];
 
 //--- Make sure that player is always the leader (of his group).
-if (! (isPlayer (leader(group player))) && !(WF_Client_SideJoined isEqualTo resistance)) then {(group player) selectLeader player};
+if (! (isPlayer (leader(group player))) && !(WF_Client_SideJoined isEqualTo civilian)) then {(group player) selectLeader player};
 
 //--- Create a respawn menu.
 createDialog "WF_RespawnMenu";

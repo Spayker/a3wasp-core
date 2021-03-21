@@ -33,7 +33,7 @@ _sideID = _side call WFCO_FNC_GetSideID;
 		["INFORMATION", format["fn_CreateUnitForstaticDefence.sqf: [%1] will create %2 at %3", _side, _gunnerType, _position]] spawn WFCO_FNC_LogContent;
 		_soldier = [_gunnerType, _group, _position, _sideID] call WFCO_FNC_CreateUnit;
 
-		if(_side in [west, east]) then {
+		if(_side in [west, east, resistance]) then {
 			_soldier setSkill 1;
 			[_group, 1000, getPosATL _defence] spawn WFCO_FNC_RevealArea;
 		};
@@ -50,7 +50,7 @@ _sideID = _side call WFCO_FNC_GetSideID;
     _defence setVariable ["crewUnits", _crewUnits, true];
 } forEach _defences;
 
-if(_side == resistance) then {
+if(_side == civilian) then {
     _civGroup = createGroup [civilian, true];
     (units _group) joinSilent _civGroup
 }
