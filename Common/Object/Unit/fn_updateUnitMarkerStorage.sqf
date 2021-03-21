@@ -28,7 +28,7 @@ if !(isHeadLessClient) then {
         if (local _unit && isMultiplayer) then {_color = "ColorOrange"};
         if (_unit_kind in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_color = "ColorYellow"};//--- Medical.
         _params = [_unit, _color];
-        if (_unit_kind == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _params = [_unit, "ColorCIV"] }//--- HQ.
+        if (_unit_kind == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _params = [_unit, "ColorWhite"] }//--- HQ.
     };
     WF_UNIT_MARKERS pushBack (_params)
 }

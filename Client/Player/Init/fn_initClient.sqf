@@ -527,6 +527,7 @@ WF_C_MAP_MARKER_HANDLER = {
                 case 'ColorGUER':{ _color = [0,0.5,0,1]  };
             case 'ColorYellow':{ _color = [0.85,0.85,0,1] };
             case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
+                case 'ColorWhite':{ _color = [1,1,1,1]   };
         };
 
         if(_unit isKindOf 'Man') then {
