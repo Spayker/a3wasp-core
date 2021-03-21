@@ -93,8 +93,10 @@ if (WF_Debug) then { //--- Debug.
 	//missionNamespace setVariable ["WF_C_TOWNS_STARTING_MODE", 2];
 	missionNamespace setVariable ["WF_C_ECONOMY_SUPPLY_START_EAST", 999999];
 	missionNamespace setVariable ["WF_C_ECONOMY_SUPPLY_START_WEST", 999999];
+	missionNamespace setVariable ["WF_C_ECONOMY_SUPPLY_START_GUER", 999999];
 	missionNamespace setVariable ["WF_C_ECONOMY_FUNDS_START_EAST", 999999];
 	missionNamespace setVariable ["WF_C_ECONOMY_FUNDS_START_WEST", 999999];
+	missionNamespace setVariable ["WF_C_ECONOMY_FUNDS_START_GUER", 999999];
 	missionNamespace setVariable ["WF_C_MODULE_WF_EASA", 1];
 	missionNamespace setVariable ["WF_DEBUG_DISABLE_TOWN_INIT", 0];  // 0 -> disabled, 1 -> enabled
 };
