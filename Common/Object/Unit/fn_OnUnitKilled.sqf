@@ -23,6 +23,13 @@ if (vehicle _killer != _killer) then {
 	_killer_side = switch (getNumber(configFile >> "CfgVehicles" >> _killer_type >> "side")) do {case 0: {east}; case 1: {west}; case 2: {resistance}; default {civilian}}
 };
 
+if (_killed_side == resistance && _killer_side == resistance) then {
+	_faction = getText(configFile >> "CfgVehicles" >> _killer_type >> "faction");
+	if(_faction == 'CUP_I_PMC_ION') then {
+		_killed_side = civilian
+	}
+};
+
 if(_killer_side == civilian) exitWith {};
 
 //--- Retrieve basic information.
