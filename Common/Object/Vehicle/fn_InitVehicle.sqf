@@ -36,7 +36,9 @@ if(_isHQ) then {
 	_hqs = _logik getVariable ["wf_hq", []];
 	_hqs = _hqs - [objNull];
 	_hqs pushBack _vehicle;
-	_logik setVariable ["wf_hq", _hqs, true]
+
+	_logik setVariable ["wf_hq", _hqs, true];
+	_hqs = _logik getVariable ["wf_hq", []];
 } else {
     [_vehicle] remoteExec ["WFSE_FNC_addEmptyVehicleToQueue", 2]
 };

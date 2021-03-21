@@ -93,11 +93,21 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
 
     if(_itemcategory >= 0 && _color == _colorGreen)then{
         _current_side  = WF_Client_SideJoined;
-        _opposite_side = [resistance];
+        _opposite_side = [civilian];
+
+        if(_current_side == west) then {
+            _opposite_side pushBack east;
+            _opposite_side pushBack resistance;
+        };
+
         if(_current_side == west)then{
-            _opposite_side pushBack east
-        } else{
-            _opposite_side pushBack west
+            _opposite_side pushBack east;
+            _opposite_side pushBack resistance;
+        };
+
+        if(_current_side == resistance) then {
+            _opposite_side pushBack east;
+            _opposite_side pushBack west;
         };
 
         _detected = (_area nearEntities [WF_C_VEHICLE_KINDS, missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
