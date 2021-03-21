@@ -496,20 +496,12 @@ if!(WF_Skip_Intro) then {
 WF_C_MAP_MARKER_HANDLER = {
     Private ['_unit', '_colorStr', '_iconType', '_color'];
 	_iconsToBeDisplayed = [];
-    _color = [0.85,0.4,0,1];
 
-
-    _friendlyPlayers = WF_Client_Logic getVariable ["wf_teams", []];
-            {
-        _leader = leader _x;
-        if((_leader getUnitTrait 'camouflageCoef') == 1) then {
-            _laserTargetObject = laserTarget _leader;
-                if!(isNull _laserTargetObject) then {
-                    _iconType = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _laserTargetObject) >> "icon");
-                _iconsToBeDisplayed pushBackUnique [_iconType, [1,0.3,0.4,1] , vehicle _laserTargetObject, name _leader]
-            }
-                }
-            } forEach _friendlyPlayers;
+    _leaderColor = [0.5,0,0,1];
+    switch (WF_Client_SideJoined) do {
+        case west:{ _leaderColor = [0,0.3,0.6,1] };
+        case resistance:{ _leaderColor = [0,0.5,0,1]};
+    };
 
     {
         _unit = _x # 0;
@@ -520,15 +512,6 @@ WF_C_MAP_MARKER_HANDLER = {
 
         _text = if(count _x > 2) then { _x # 2 } else { '' };
         _iconType = getText (configFile >> "CfgVehicles" >> typeOf _unit >> "icon");
-
-        switch (_colorStr) do {
-            case 'ColorEAST':{ _color = [0.5,0,0,1] };
-            case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
-                case 'ColorGUER':{ _color = [0,0.5,0,1]  };
-            case 'ColorYellow':{ _color = [0.85,0.85,0,1] };
-            case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
-                case 'ColorWhite':{ _color = [1,1,1,1]   };
-        };
 
         if(_unit isKindOf 'Man') then {
             if(group _unit != WF_Client_Team) then {_text = ''};
@@ -579,6 +562,17 @@ WF_C_MAP_MARKER_HANDLER = {
 			} foreach _iconsToBeDisplayed;
 
 			if(_shallAdd) then {
+
+                    switch (_colorStr) do {
+                        case 'ColorEAST':{ _color = [0.5,0,0,1] };
+                        case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
+                        case 'ColorGUER':{ _color = [0,0.5,0,1]  };
+                        case 'ColorYellow':{ _color = [0.85,0.85,0,1] };
+                        case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
+                        case 'ColorWhite':{ _color = [1,1,1,1]   };
+                    };
+
+
 				_iconsToBeDisplayed pushBack [_iconType, _color, vehicle _unit, _text]
             }
             }
@@ -591,7 +585,7 @@ WF_C_MAP_MARKER_HANDLER = {
         _leader = leader _x;
         if(vehicle _leader == _leader) then {
             _iconType = getText (configFile >> "CfgVehicles" >> typeOf _leader >> "icon");
-            _iconsToBeDisplayed pushBackUnique ([_iconType, _color, _leader, name _leader ])
+            _iconsToBeDisplayed pushBackUnique ([_iconType, _leaderColor, _leader, name _leader ])
         }
     } forEach (WF_Client_Logic getVariable "wf_teams");
 
@@ -604,7 +598,7 @@ WF_C_MAP_MARKER_HANDLER = {
         (_this select 0) drawIcon [
                 _iconType,
                 _color,
-                getPos _unit,
+                getPosATL _unit,
                 24,
                 24,
                 getDir _unit,

@@ -24,7 +24,7 @@ if (vehicle _killer != _killer) then {
 };
 
 if (_killed_side == resistance && _killer_side == resistance) then {
-	_faction = getText(configFile >> "CfgVehicles" >> _killer_type >> "faction");
+	_faction = getText(configFile >> "CfgVehicles" >> _killed_type >> "faction");
 	if(_faction == 'CUP_I_PMC_ION') then {
 		_killed_side = civilian
 	}
