@@ -468,7 +468,6 @@ class WF_Common {
         file = "Common\Object\Unit";
         class createUnit {};
         class createUnitForStaticDefence {};
-        class createUnitsForResBases {};
         class equipUnit {};
         class initUnit {};
         class initManUnit {};
