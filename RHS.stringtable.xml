@@ -1471,6 +1471,14 @@
 				<Italian>Economia: Fondi Iniziali (Ovest)</Italian>
 				<Portuguese>ECONOMIA: Dinheiro Inicial (Oeste)</Portuguese>
 			</Key>
+			<Key ID="STR_WF_PARAMETER_Funds_Guer">
+				<English>ECONOMY: Starting Funds (Guer)</English>
+				<French>ECONOMIE: Fonds de départ (Guer)</French>
+				<German>ÖKONOMIE: Startkapital für Spieler (Guer)</German>
+				<Russian>Экономика: Деньги на старте (Сопротивление)</Russian>
+				<Italian>Economia: Fondi Iniziali (Guer)</Italian>
+				<Portuguese>ECONOMIA: Dinheiro Inicial (Guer)</Portuguese>
+			</Key>
 			<Key ID="STR_WF_PARAMETER_Supply_East">
 				<English>ECONOMY: Starting Supply (East)</English>
 				<French>ECONOMIE: Logistique de départ (Est)</French>
@@ -1486,6 +1494,14 @@
 				<Russian>Экономика: Снабжение на старте (Запад)</Russian>
 				<Italian>Economia: Supply Iniziali (Ovest)</Italian>
 				<Portuguese>ECONOMIA: Suprimentos iniciais (Oeste)</Portuguese>
+			</Key>
+			<Key ID="STR_WF_PARAMETER_Supply_Guer">
+				<English>ECONOMY: Starting Supply (Guer)</English>
+				<French>ECONOMIE: Logistique de départ (Guer)</French>
+				<German>ÖKONOMIE: Start-Supply (Guer)</German>
+				<Russian>Экономика: Снабжение на старте (Сопротивление)</Russian>
+				<Italian>Economia: Supply Iniziali (Guer)</Italian>
+				<Portuguese>ECONOMIA: Suprimentos iniciais (Guer)</Portuguese>
 			</Key>
 			<Key ID="STR_WF_PARAMETER_Max_Supply_Limit">
 				<English>ECONOMY: Max Supply Limit</English>
