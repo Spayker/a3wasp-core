@@ -441,6 +441,12 @@ waitUntil {townInit};
 
 /* Client death handler. */
 player addEventHandler ['Killed', {_this Spawn WFCL_FNC_OnKilled}];
+player addEventHandler ["HandleRating", {
+	params ["_unit", "_rating"];
+	if(_rating < 0) then {
+	    _unit addRating 7500;
+	}
+}];
 
 /* Client UAV deploy handler */
 player addEventHandler ["WeaponAssembled", {
