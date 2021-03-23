@@ -49,7 +49,7 @@ _towns =(WF_Client_SideJoined) call WFCO_FNC_GetSideTowns;
 {
     _townSpecialities = _x getVariable ["townSpeciality", []];
     if (WF_C_MILITARY_BASE in (_townSpecialities) || WF_C_AIR_BASE in (_townSpecialities)) then {
-        _enemySide = [civilian];
+        _enemySide = [];
         if(_side == west) then {
             _enemySide pushBack east;
             _enemySide pushBack resistance

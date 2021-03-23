@@ -18,7 +18,6 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 						_closestCamp = [_deathLoc,_camps] Call WFCO_FNC_GetClosestEntity;
 
 						_enemySide = [];
-						if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (civilian)};
                         if(_side == west) then {
                             _enemySide pushBack east;
                             _enemySide pushBack resistance
@@ -55,7 +54,6 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 					if (_respawnCampsRuleMode > 0) then {
 						if (_deathLoc distance _x < _respawnMinRange) then {
                             _enemySide = [];
-                            if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (civilian)};
 
                             if(_side == west) then {
                                 _enemySide pushBack east;
@@ -96,7 +94,6 @@ switch (missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") do {
 					if (_respawnCampsRuleMode > 0) then {
 						if (_deathLoc distance _x < _respawnMinRange) then {
                             _enemySide = [];
-                            if (_respawnCampsRuleMode == 2) then {_enemySide pushBack (civilian)};
 
                             if(_side == west) then {
                                 _enemySide pushBack east;

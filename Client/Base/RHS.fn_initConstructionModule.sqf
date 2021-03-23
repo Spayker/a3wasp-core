@@ -93,7 +93,7 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
 
     if(_itemcategory >= 0 && _color == _colorGreen)then{
         _current_side  = WF_Client_SideJoined;
-        _opposite_side = [civilian];
+        _opposite_side = [];
 
         if(_current_side == west) then {
             _opposite_side pushBack east;

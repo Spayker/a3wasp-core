@@ -71,7 +71,7 @@ _presents = [];
 
 WF_PRESENTSIDES = _presents;
 
-WF_DEFENDER = civilian;
+WF_DEFENDER = resistance;
 WF_DEFENDER_ID = (WF_DEFENDER) Call WFCO_FNC_GetSideID;
 
 //--- Import the desired global side variables.

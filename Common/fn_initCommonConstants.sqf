@@ -228,7 +228,7 @@ with missionNamespace do {
 //--- Respawn.
 	if (isNil "WF_C_RESPAWN_CAMPS_MODE") then {WF_C_RESPAWN_CAMPS_MODE = 2;}; //--- Respawn Camps (0: Disabled, 1: Classic [from town center], 2: Enhanced [from nearby camps]).
 	if (isNil "WF_C_RESPAWN_CAMPS_RANGE") then {WF_C_RESPAWN_CAMPS_RANGE = 550;}; //--- How far a player need to be from a town to spawn at camps.
-	if (isNil "WF_C_RESPAWN_CAMPS_RULE_MODE") then {WF_C_RESPAWN_CAMPS_RULE_MODE = 2;}; //--- Respawn Camps Rule (0: Disabled, 1: West | East, 2: West | East | Resistance).
+	if (isNil "WF_C_RESPAWN_CAMPS_RULE_MODE") then {WF_C_RESPAWN_CAMPS_RULE_MODE = 1;}; //--- Respawn Camps Rule (0: Disabled, 1: West | East | Resistance).
 	if (isNil "WF_C_RESPAWN_DELAY") then {WF_C_RESPAWN_DELAY = 10;}; //--- Respawn Delay (Players/AI).
 	if (WF_Debug) then {WF_C_RESPAWN_DELAY = 5;};
 	if (isNil "WF_C_RESPAWN_MOBILE") then {WF_C_RESPAWN_MOBILE = 2;}; //--- Allow mobile respawn (0: Disabled, 1: Enabled, 2: Enabled but default gear).

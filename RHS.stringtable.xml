@@ -2158,15 +2158,6 @@
 				<Italian>Game parameters</Italian>
 				<Portuguese>Parametros do jogo</Portuguese>
 			</Key>
-			<Key ID="STR_WF_PARAMETER_Respawn_CampsRule_WestEast">
-				<!--shared U-->
-				<English>West | East</English>
-				<French>Ouest | Est</French>
-				<German>Westmächte | Ostblock</German>
-				<Russian>Запад | Восток</Russian>
-				<Italian>Ovest | Est</Italian>
-				<Portuguese> Oeste | Leste</Portuguese>
-			</Key>
 			<Key ID="STR_WF_PARAMETER_Respawn_CampsRule_WestEastRes">
 				<!--shared U-->
 				<English>West | East | Resistance</English>
