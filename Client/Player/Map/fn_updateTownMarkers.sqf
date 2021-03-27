@@ -7,12 +7,32 @@ while {!WF_GameOver} do {
     towns = towns - [objNull];
 	{
 		_town = _x;
+		_townSideId = _town getVariable "sideID";
 		_townName = _town getVariable "name";
 		_supplyValue = _town getVariable "supplyValue";
 		_maxSupplyValue = _town getVariable "maxSupplyValue";
 		_range = (_town getVariable "range") * _tcarm;
 		_visible = false;
-		if ((_town getVariable "sideID") == WF_Client_SideID) then {_visible = true} else {{if (_town distance _x < _range) then {_visible = true}} forEach _units};
+
+		if (_townSideId == WF_Client_SideID) then {
+		    if(_townSideId == WF_DEFENDER_ID) then {
+		        _resFaction = _town getVariable ['resFaction', WF_DEFENDER_GUER_FACTION];
+                if(_resFaction == WF_DEFENDER_CDF_FACTION) then {
+                    _visible = false
+                } else {
+                    _visible = true
+                }
+		    } else {
+		        _visible = true
+		    }
+		} else {
+		    {
+		        if (_town distance _x < _range) then {
+		            _visible = true
+		        }
+		    } forEach _units
+		};
+
 		if!(isNil '_townName') then {
 		_marker = Format ["WF_%1_CityMarker", _townName];
 		_townSpecialities = _town getVariable ["townSpeciality", []];

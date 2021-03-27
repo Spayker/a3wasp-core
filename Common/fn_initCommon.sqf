@@ -73,6 +73,8 @@ WF_PRESENTSIDES = _presents;
 
 WF_DEFENDER = resistance;
 WF_DEFENDER_ID = (WF_DEFENDER) Call WFCO_FNC_GetSideID;
+WF_DEFENDER_GUER_FACTION = "guer";
+WF_DEFENDER_CDF_FACTION = "cdf";
 
 //--- Import the desired global side variables.
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Gue.sqf";

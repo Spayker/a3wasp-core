@@ -73,7 +73,16 @@ while {!WF_GameOver} do {
 			
 			if(_sideID == WF_C_WEST_ID) then { _barColor = _colorBlue };
 			if(_sideID == WF_C_EAST_ID) then { _barColor = _colorRed };
-			if(_sideID == WF_C_GUER_ID) then { _barColor = _colorGreen };
+			if(_sideID == WF_C_GUER_ID) then {
+			    _resFaction = _nearest getVariable ["resFaction", nil];
+			    if (isNil '_resFaction') then {
+			        _barColor = _colorGreen
+			    } else {
+			        if(_resFaction == WF_DEFENDER_CDF_FACTION)  then {
+			            _barColor = _colorCiv
+			        }
+			    }
+			};
 			if(_sideID == WF_C_CIV_ID) then { _barColor = _colorCiv };
 
 			_control = (uiNamespace getVariable "wf_title_capture") displayCtrl 601001;
