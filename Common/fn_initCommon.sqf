@@ -4,6 +4,7 @@ private ['_count'];
 
 [east] call WFCO_fnc_roleList;
 [west] call WFCO_fnc_roleList;
+[resistance] call WFCO_fnc_roleList;
 
 ["INITIALIZATION", "fn_initCommon.sqf: Functions are initialized."] Call WFCO_FNC_LogContent;
 
