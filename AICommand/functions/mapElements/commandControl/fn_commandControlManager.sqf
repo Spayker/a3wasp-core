@@ -15,6 +15,7 @@
 
 ["ALL_EAST"] call AIC_fnc_createCommandControl;
 ["ALL_WEST"] call AIC_fnc_createCommandControl;
+["ALL_GUER"] call AIC_fnc_createCommandControl;
 
 if(hasInterface) then {
 		
@@ -77,6 +78,9 @@ if(!hasInterface && !isDedicated) then {
                         };
                         if(_side == west) then {
                             ["ALL_WEST",_x] call AIC_fnc_commandControlAddGroup
+                        };
+                        if(_side == resistance) then {
+                            ["ALL_GUER",_x] call AIC_fnc_commandControlAddGroup
                         };
                     }
                 }

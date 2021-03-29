@@ -42,6 +42,9 @@ if(_configurationMode == "SPECIFIED_COMMANDERS_ALL_GROUPS") then {
 			if(side player == east) then {
 				["ALL_EAST",true] call AIC_fnc_showCommandControl;
 			};
+			if(side player == resistance) then {
+				["ALL_GUER",true] call AIC_fnc_showCommandControl;
+			};
 		};
 	} forEach (synchronizedObjects _commandersModule);
 };
@@ -52,5 +55,8 @@ if(_configurationMode == "ALL_COMMANDERS_ALL_GROUPS") then {
 	};
 	if(side player == east) then {
 		["ALL_EAST",true] call AIC_fnc_showCommandControl;
+	};
+	if(side player == resistance) then {
+		["ALL_GUER",true] call AIC_fnc_showCommandControl;
 	};
 };
