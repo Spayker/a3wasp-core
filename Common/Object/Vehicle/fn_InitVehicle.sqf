@@ -49,18 +49,24 @@ if(_isHQ) then {
 
     if (_global) then {
             if (_vehicle isKindOf "Air") then { //--- Air units.
-            _enemySide = civilian;
-                if(_side == west) then {_enemySide = east};
-                if(_side == east) then {_enemySide = west};
-            if(_side == resistance) then {_enemySide = resistance};
-            if (_sideId != WF_DEFENDER_ID) then {
-                [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true]
+            [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true];
+
+            if(_side == west) then {
+                [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", east, true];
+                [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", resistance, true]
             };
-            [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", _enemySide, true]
+
+            if(_side == east) then {
+                [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", west, true];
+                [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", resistance, true]
+            };
+
+            if(_side == resistance) then {
+                [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", east, true];
+                [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", west, true]
+            };
         } else {
-            if (_sideId != WF_DEFENDER_ID) then {
-                [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true];
-            }
+            [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true]
         }
     };
 
