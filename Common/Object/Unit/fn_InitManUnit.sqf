@@ -9,13 +9,14 @@
 		- {PLacement}
 */
 
-params ["_unit", "_type", "_group", "_position", "_side", ["_global", true]];
+params ["_unit", "_type", "_group", "_position", "_sideId", ["_global", true]];
 private ["_get", "_skill"];
 
+_side = _sideId call WFCO_FNC_GetSideFromID;
 if(isNil '_group') then { _group = createGroup [_side, true]; };
 
 //--Set unit skill according config core--
-if(_side == 2) then {
+if(_sideId == 2) then {
     _skill = missionNamespace getVariable ["WF_C_TOWNS_DEFENDER_AIM_SKILL", 2];
     _skill = _skill / 10;    
     _unit setSkill ["aimingShake", _skill];
@@ -56,7 +57,7 @@ if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     _unit enableFatigue false;
     _unit enableStamina false
 };
-if (_side != WF_DEFENDER_ID) then {
+if (_sideId != WF_DEFENDER_ID) then {
     if(!(_unit hasWeapon "CUP_NVG_PVS14_Hide_WASP")) then { _unit addWeapon "CUP_NVG_PVS14_Hide_WASP" }
 };
 
@@ -78,8 +79,6 @@ if!(isPlayer (leader _group)) then {
     _unit unlinkItem  "ItemMap";
 };
 
-if (_side IsEqualType WEST) then {_side = (_side) Call WFCO_FNC_GetSideID;};
-
 //--Check the need for unit re-equip--
 for "_x" from 0 to ((count WF_C_INFANTRY_TO_REQUIP) - 1) do {
 	_currentElement = WF_C_INFANTRY_TO_REQUIP # _x;
@@ -88,9 +87,9 @@ for "_x" from 0 to ((count WF_C_INFANTRY_TO_REQUIP) - 1) do {
 
 if (_global) then {
 		if ((missionNamespace getVariable "WF_C_UNITS_TRACK_INFANTRY") > 0) then {
-            [_unit,_side] remoteExec ["WFCO_FNC_updateUnitMarkerStorage", (_side) call WFCO_FNC_GetSideFromID, true]
+        [_unit,_sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage", _side, true]
 		} else {
-            if (isPlayer leader _group) then {[_unit, _side] spawn WFCO_FNC_initUnit}
+        if (isPlayer leader _group) then {[_unit, _sideId] spawn WFCO_FNC_initUnit}
         }
 };
 
@@ -100,6 +99,6 @@ _unit addMPEventHandler ['MPKilled', {
 }];
 
 ["INFORMATION", Format ["fn_InitManUnit.sqf: [%1] Unit [%2] skill [%5] with a was created at [%3] and has been assigned to team [%4]",
-    _side Call WFCO_FNC_GetSideFromID, _type, _position, _group, _skill]] Call WFCO_FNC_LogContent;
+    _side, _type, _position, _group, _skill]] Call WFCO_FNC_LogContent;
 
 _unit

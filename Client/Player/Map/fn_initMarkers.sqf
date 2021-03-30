@@ -80,6 +80,8 @@
                     } else {
                         _campColor = missionNamespace getVariable "WF_C_GUER_COLOR";
                     }
+                } else {
+                    _campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
                 }
 		    }
 		} else {

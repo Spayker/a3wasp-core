@@ -1,20 +1,23 @@
-params ["_side", "_deathLoc"];
+params ["_deathLoc"];
 private ["_availableSpawn","_base_respawn","_buildings","_checks","_deathLoc","_farps","_has_baserespawn","_mhqs","_mobileRespawns","_range","_side","_sideText","_upgrades"];
 
-_sideText = str _side;
 _enemySide = sideEnemy;
+_availableSpawn = [];
 
 //--- Base.
-_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
-_availableSpawn = _mhqs;
-_buildings = (_side) Call WFCO_FNC_GetSideStructures;
-_checks = [_side,missionNamespace getVariable Format["WF_%1BARRACKSTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
+{
+    _friendlySide = _x;
+    _sideText = str _friendlySide;
+    _mhqs = (_friendlySide) Call WFCO_FNC_GetSideHQ;
+    _availableSpawn = _availableSpawn + _mhqs;
+    _buildings = (_friendlySide) Call WFCO_FNC_GetSideStructures;
+    _checks = [_friendlySide,missionNamespace getVariable Format["WF_%1BARRACKSTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
 if (count _checks > 0) then {_availableSpawn = _availableSpawn + _checks};
-_checks = [_side,missionNamespace getVariable Format["WF_%1LIGHTTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
+    _checks = [_friendlySide,missionNamespace getVariable Format["WF_%1LIGHTTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
 if (count _checks > 0) then {_availableSpawn = _availableSpawn + _checks};
-_checks = [_side,missionNamespace getVariable Format["WF_%1HEAVYTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
+    _checks = [_friendlySide,missionNamespace getVariable Format["WF_%1HEAVYTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
 if (count _checks > 0) then {_availableSpawn = _availableSpawn + _checks};
-_checks = [_side,missionNamespace getVariable Format["WF_%1AIRCRAFTTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
+    _checks = [_friendlySide,missionNamespace getVariable Format["WF_%1AIRCRAFTTYPE",_sideText],_buildings] Call WFCO_FNC_GetFactories;
 if (count _checks > 0) then {_availableSpawn = _availableSpawn + _checks};
 
 _base_respawn = _availableSpawn - _mhqs;
@@ -25,11 +28,10 @@ _has_baserespawn = false;
     if (!alive _x && count _availableSpawn > 1) then {_availableSpawn = _availableSpawn - [_x]};
 } forEach _mhqs;
 
-
 //--- Mobile respawn.
 if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") > 0) then {
-	_mobileRespawns = missionNamespace getVariable [format["WF_AMBULANCES_%1", _side], []];
-	_upgrades = (_side) Call WFCO_FNC_GetSideUpgrades;
+        _mobileRespawns = missionNamespace getVariable [format["WF_AMBULANCES_%1", _friendlySide], []];
+        _upgrades = (_friendlySide) Call WFCO_FNC_GetSideUpgrades;
 	_range = (missionNamespace getVariable "WF_C_RESPAWN_RANGES") select (_upgrades select WF_UP_RESPAWNRANGE);
 	_checks = _deathLoc nearEntities[_mobileRespawns,_range];
 	if (count _checks > 0) then {
@@ -41,36 +43,44 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") > 0) then {
 
 //--- Camps.
 if ((missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") > 0) then {
-	_availableSpawn = _availableSpawn + ([_deathLoc, _side] Call WFCO_FNC_GetRespawnCamps);
+        _availableSpawn = _availableSpawn + ([_deathLoc, _friendlySide] Call WFCO_FNC_GetRespawnCamps)
 };
 
 //--- Military Bases
-_towns =(WF_Client_SideJoined) call WFCO_FNC_GetSideTowns;
+    _towns =(_friendlySide) call WFCO_FNC_GetSideTowns;
 {
     _townSpecialities = _x getVariable ["townSpeciality", []];
     if (WF_C_MILITARY_BASE in (_townSpecialities) || WF_C_AIR_BASE in (_townSpecialities)) then {
         _enemySide = [];
-        if(_side == west) then {
+
+            if(count WF_FRIENDLY_SIDES == 1) then {
+                if(_friendlySide == west) then {
             _enemySide pushBack east;
             _enemySide pushBack resistance
         };
 
-        if(_side == east) then {
+                if(_friendlySide == east) then {
             _enemySide pushBack west;
             _enemySide pushBack resistance
         };
 
-        if(_side == resistance) then {
+                if(_friendlySide == resistance) then {
             _enemySide pushBack east;
             _enemySide pushBack west
+                }
+            } else {
+                {
+                    if!(_x in WF_FRIENDLY_SIDES) exitWith {
+                        _enemySide pushBack _x
+                    }
+                } forEach WF_PRESENTSIDES
         };
 
         _respawnMinRange = missionNamespace getVariable "WF_C_RESPAWN_CAMPS_SAFE_RADIUS";
         _hostiles = [_x, _enemySide,_respawnMinRange] Call WFCO_FNC_GetHostilesInArea;
         if (_hostiles == 0) then { _availableSpawn pushBackUnique _x }
     }
-} forEach _towns;
-
-
+    } forEach _towns
+} forEach WF_FRIENDLY_SIDES;
 
 _availableSpawn

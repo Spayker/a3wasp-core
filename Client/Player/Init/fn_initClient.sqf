@@ -25,6 +25,33 @@ if(count (toArray(_reqAddons)) > 0) then {
 
 WF_Client_SideJoined = side player;
 WF_Client_SideJoinedText = str WF_Client_SideJoined;
+WF_FRIENDLY_SIDES = [WF_Client_SideJoined];
+switch (WF_Client_SideJoined) do {
+    case west: {
+        if((west getFriend east) > 0.6) then {
+            WF_FRIENDLY_SIDES pushBack east
+        };
+        if((west getFriend resistance) > 0.6) then {
+            WF_FRIENDLY_SIDES pushBack resistance
+        }
+    };
+    case east: {
+        if((east getFriend west) > 0.6) then {
+            WF_FRIENDLY_SIDES pushBack west
+        };
+        if((east getFriend resistance) > 0.6) then {
+            WF_FRIENDLY_SIDES pushBack resistance
+        }
+    };
+    case resistance: {
+        if((resistance getFriend west) > 0.6) then {
+            WF_FRIENDLY_SIDES pushBack west
+        };
+        if((resistance getFriend east) > 0.6) then {
+            WF_FRIENDLY_SIDES pushBack east
+        }
+    };
+};
 
 WF_STRCUCTURES_ICONS = true;
 WF_MAXPLAYERS_IN_TEAM = 30;
@@ -273,6 +300,9 @@ if (isNil { missionNamespace getVariable (format ["wf_%1_hq_penalty", WF_Client_
     missionNamespace setVariable [format ["wf_%1_hq_penalty", WF_Client_SideJoined], 0]
 };
 
+//--- init radio tower array
+WF_C_TAKEN_RADIO_TOWERS = [];
+
 /* Don't pause the client initialization process. */
 [] Spawn {
 	waitUntil {townInit};
@@ -356,17 +386,22 @@ if (time < 30) then {
 } else {
 	waitUntil {!isNil {WF_Client_Logic getVariable "wf_hq"}};
 	waitUntil {!isNil {WF_Client_Logic getVariable "wf_structures"}};
-	_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
-    _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
-	_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
 
-	if (count _buildings > 0) then {_base = _buildings # 0;};
+	{
+        _mhqs = (_x) Call WFCO_FNC_GetSideHQ;
+    _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
+        _buildings = (_x) Call WFCO_FNC_GetSideStructures;
+
+        if (count _buildings > 0) exitWith {
+            _base = _buildings # 0
+        }
+	} forEach WF_FRIENDLY_SIDES
 };
 
 ["INITIALIZATION", Format["fn_initClient.sqf: Client spawn location has been determined at [%1].", _base]] Call WFCO_FNC_LogContent;
 
 /* Position the client at the previously defined location */
-private _pos = getPos _base;
+private _pos = getPosATL _base;
 _safePos = [_pos, 0, 60] call BIS_fnc_findSafePos;
 _pos set [0, _safePos # 0];
 _pos set [1, _safePos # 1];
@@ -404,9 +439,6 @@ if (leader(WF_Client_Team) != player) then {(WF_Client_Team) selectLeader player
 //--- initiate the passive skills.
 WF_gbl_boughtRoles = [];
 WF_FreeRolePurchase = true;
-
-//--- init radio tower array
-WF_C_TAKEN_RADIO_TOWERS = [];
 
 // map click drop
 onMapSingleClick {if (_shift) then {false} else {true}};

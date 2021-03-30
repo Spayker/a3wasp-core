@@ -48,7 +48,7 @@ while {WF_RespawnTime > 0 && dialog && alive player && !WF_GameOver} do
 		_spawn_last_get = time;
 		
 		//--- Return the available spawn locations
-		_spawn_locations = [WF_Client_SideJoined, WF_DeathLocation] Call WFCL_FNC_GetRespawnAvailable;
+		_spawn_locations = [WF_DeathLocation] Call WFCL_FNC_GetRespawnAvailable;
 
 		//---No spawn available at frist? get one!
 		if (isNull _spawn_at_current) then {

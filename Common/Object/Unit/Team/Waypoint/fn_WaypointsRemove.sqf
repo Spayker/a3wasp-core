@@ -4,10 +4,10 @@
 		- Team.
 */
 
-Private ['_team'];
+Private ['_group'];
 
-_team = _this;
+_group = _this;
 
-for '_z' from (count (waypoints _team))-1 to 0 step -1 do {
-	deleteWaypoint [_team, _z];
+for '_z' from (count (waypoints _group))-1 to 0 step -1 do {
+	deleteWaypoint [_group, _z];
 };

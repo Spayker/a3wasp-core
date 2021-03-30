@@ -1,18 +1,15 @@
 //---[Side specific initialization] (Run on the desired client team).
-params ['_unit', '_sideID'];
+params ['_unit', '_sideId'];
 
 waitUntil {!isNil 'WF_UNIT_MARKERS'};
 
-if (typeName _sideId == "SIDE") then {_sideId = (_sideId) call WFCO_FNC_GetSideID};
-
-if (WF_Client_SideID != _sideID) exitWith {};
+_side = _sideId call WFCO_FNC_GetSideFromID;
+if !(_side in WF_FRIENDLY_SIDES) exitWith {};
 
 _unit_kind = typeOf _unit;
 _isMan = (_unit isKindOf 'Man');
-_side = (_sideID) call WFCO_FNC_GetSideFromID;
 
 if !(isHeadLessClient) then {
-
     Private ["_color","_params"];
     //--- Map Marker tracking.
     _color = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);

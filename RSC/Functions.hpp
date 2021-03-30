@@ -18,6 +18,7 @@ class WF_Client {
         class updateTownMarkers {};
         class IconVehicle {};
         class UpdateRadarMarker {};
+        class updateFriendlyMarkers {};
     };
 
     class Warfare {
@@ -589,6 +590,7 @@ class WF_Common {
         class sortByDistance {};
         class initAirports {};
 		class respawnStartVeh {};
+		class updateFriendlySides {};
     };
 
     class WarfareTown {
