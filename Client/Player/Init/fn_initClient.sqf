@@ -161,6 +161,20 @@ if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNu
 if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_West.sqf"};
 if (WF_Client_SideJoined == resistance) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_Guer.sqf"};
 
+_list = missionNamespace getVariable "wf_gear_list_primary";
+_list = _list + (missionNamespace getVariable "wf_gear_list_secondary");
+_list = _list + (missionNamespace getVariable "wf_gear_list_pistol");
+_list = _list + (missionNamespace getVariable "wf_gear_list_uniforms");
+_list = _list + (missionNamespace getVariable "wf_gear_list_backpacks");
+_list = _list + (missionNamespace getVariable "wf_gear_list_special");
+_list = _list + (missionNamespace getVariable "wf_gear_list_explosives");
+_list = _list + (missionNamespace getVariable "wf_gear_list_headgear");
+_list = _list + (missionNamespace getVariable "wf_gear_list_vests");
+_list = _list + (missionNamespace getVariable "wf_gear_list_glasses");
+_list = _list + (missionNamespace getVariable "wf_gear_list_misc");
+_list = _list + (missionNamespace getVariable "wf_gear_list_magazines");
+_list = _list + (missionNamespace getVariable "wf_gear_list_accessories");
+WF_C_GEAR_LIST = _list;
 
 //--- UI Namespace release from previous possible games (only on titles dialog!).
 {uiNamespace setVariable [_x, displayNull]} forEach ["wf_title_capture"];

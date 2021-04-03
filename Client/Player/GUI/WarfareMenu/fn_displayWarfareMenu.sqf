@@ -75,21 +75,7 @@ while {alive player && dialog} do {
         _upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
         _upgrade_gear = _upgrades select WF_UP_GEAR;
 
-        _list = [];
-            _list = missionNamespace getVariable "wf_gear_list_primary";
-            _list = _list + (missionNamespace getVariable "wf_gear_list_secondary");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_pistol");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_uniforms");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_backpacks");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_special");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_explosives");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_headgear");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_vests");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_glasses");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_misc");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_magazines");
-            _list = _list + (missionNamespace getVariable "wf_gear_list_accessories");
-
+        _list = WF_C_GEAR_LIST;
         if(!isNil '_selectedRole') then {
             _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
             if!(isNil '_gearListPrimary')then{
