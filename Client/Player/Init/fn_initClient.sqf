@@ -94,20 +94,6 @@ WF_SUBTYPE_VEST = 701;
 WF_SUBTYPE_UNIFORM = 801;
 WF_SUBTYPE_BACKPACK = 901;
 
-WF_GEAR_TAB_PRIMARY = 0;
-WF_GEAR_TAB_SECONDARY = 1;
-WF_GEAR_TAB_HANDGUN = 2;
-WF_GEAR_TAB_UNIFORMS = 3;
-WF_GEAR_TAB_BACKPACK = 4;
-WF_GEAR_TAB_EQUIPMENT = 5;
-WF_GEAR_TAB_HEADGEAR = 6;
-WF_GEAR_TAB_GLASSES = 7;
-WF_GEAR_TAB_EXPLOSIVES = 8;
-WF_GEAR_TAB_SPECIAL = 9;
-WF_GEAR_TAB_MAGAZINES = 10;
-WF_GEAR_TAB_MISC = 11;
-WF_GEAR_TAB_TEMPLATES = 12;
-
 //--- Gear: Config ID
 WF_TYPE_RIFLE = 1;
 WF_TYPE_PISTOL = 2;
@@ -504,7 +490,6 @@ if ((WF_Client_Logic getVariable "wf_votetime") > 0) then {createDialog "WF_Vote
 
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 
 	"<br /><t size='1.5'>90%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",55555, true, true];
-call WFCL_FNC_GetGearTemplates;
 
 [] ExecVM "Client\Player\Init\fn_initThirdViewHandler.sqf";
 
@@ -513,6 +498,7 @@ clientInitComplete = true;
 
 sleep 5;
 /* HUD MODULE */
+shallResetDisplay = true;
 0 = [] spawn WFCL_FNC_updatePlayerHud;
 /* Key Binding */
 0 = [] spawn WFCL_fnc_initKeybind;

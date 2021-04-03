@@ -18,7 +18,6 @@ WF_Camo = false;
 
 //--- Global Init, first file called.
 isHostedServer = (isServer && !isDedicated);
-isHeadLessClient = false;
 //--- Headless Client?
 isHeadLessClient = (!hasInterface && !isDedicated);
 

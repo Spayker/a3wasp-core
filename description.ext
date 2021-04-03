@@ -35,7 +35,6 @@
 #include "Client\Player\GUI\CommanderVoteMenu\Dialog.hpp"
 #include "Client\Player\GUI\RespawnMenu\Dialog.hpp"
 #include "Client\Player\GUI\FundsMenu\Dialog.hpp"
-#include "Client\Player\GUI\GearMenu\Dialog.hpp"
 #include "Client\Player\GUI\TeamMenu\Dialog.hpp"
 #include "Client\Player\GUI\BuyUnitsMenu\Dialog.hpp"
 #include "Client\Player\GUI\SquadMenu\Dialog.hpp"
@@ -48,6 +47,7 @@
 #include "Client\Player\GUI\EconomyMenu\Dialog.hpp"
 #include "Client\Player\GUI\HelpMenu\Dialog.hpp"
 #include "Client\Player\GUI\RolesMenu\Dialog.hpp"
+#include "Client\Player\GUI\GearMenu\gui\cfgGUI.hpp"
 
 class CfgServer {
     DatabaseName = "wasp_warfare";

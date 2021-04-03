@@ -186,57 +186,6 @@ class WF_Client {
         class displayTransferMenu {};
     };
 
-    class GuiGearMenu {
-        file = "Client\Player\GUI\GearMenu";
-        class displayGearMenu {};
-        class displayWarfareGearMenu {};
-        class displayInventoryVehicle {};
-        class loadAvailableUnits {};
-        class displayShoppingItems {};
-        class getTotalMass {};
-        class updateContainerProgress {};
-        class updatePrice {};
-        class displayInventory {};
-        class getVehicleLoad {};
-        class enableVehicleOverlay {};
-        class updateVehicleContainerProgress {};
-        class addItem {};
-        class addVehicleItem {};
-        class equipTemplate {};
-        class equipVehicleCargo {};
-        class onShoppingItemDrag {};
-        class onShoppingItemDrop {};
-        class updateLinkedItems {};
-        class displayContainerItems {};
-        class replaceContainer {};
-        class replaceWeapon {};
-        class updateMass {};
-        class updateVehicleLoad {};
-        class changeCurrentMagazine {};
-        class highlightTab {};
-        class tryContainerAddItem {};
-        class tryEquipAccessory {};
-        class addContainerItem {};
-        class canAddItemWithMass {};
-        class checkAccessories {};
-        class checkMagazines {};
-        class getGearCostDelta {};
-        class changeCurrentGrenade {};
-        class getItemConfigType {};
-        class getItemAllowedSlots {};
-        class getGenericItemMass {};
-        class getContainerMassCapacity {};
-        class getItemsMass {};
-        class getContainerMass {};
-    };
-
-    class GuiGearTemplates {
-        file = "Client\Player\GUI\GearMenu\Templates";
-        class getGearTemplates {};
-        class saveGearTemplate {};
-        class deleteGearTemplate {};
-    };
-
     class GuiHelpMenu {
         file = "Client\Player\GUI\HelpMenu";
         class displayHelpMenu {};
@@ -344,6 +293,25 @@ class WF_Client {
         file = "WASP\TaskDirector\tasks\saveTourists";
         class svTrstTsk {};
     };
+
+};
+
+class TER
+{
+	class VASS
+	{
+		file = "Client\Player\GUI\GearMenu\fnc";
+		class shop {
+			preInit = 1;
+			postInit = 1;
+		};
+		class getItemValues {};
+		class VASShandler {};
+		class addShopCargo {};
+		class addShop {};
+		class callShop {};
+		class resetTimer {};
+	};
 };
 
 class WFDC {
@@ -368,7 +336,6 @@ class WF_Common {
         class arrayShift {};
         class arrayShuffle {};
         class arrayToLower {};
-        class multiArrayToSimple {};
     };
 
     class Base {

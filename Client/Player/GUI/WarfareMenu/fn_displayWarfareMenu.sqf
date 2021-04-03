@@ -1,6 +1,9 @@
 _display = _this select 0;
 
 _enable = false;
+_gear_field_range = missionNamespace getVariable "WF_C_UNITS_PURCHASE_GEAR_MOBILE_RANGE";
+_gear_barrack_range = missionNamespace getVariable "WF_C_UNITS_PURCHASE_GEAR_RANGE";
+
 ctrlEnable [2001, false];
 ctrlEnable [2002, false];
 ctrlEnable [2003, false];
@@ -61,7 +64,110 @@ while {alive player && dialog} do {
 	if (WF_MenuAction == 2) exitWith {
 		WF_MenuAction = -1;
 		closeDialog 0;
-		createDialog "WF_BuyGearMenu";
+		_closestShop = [vehicle player, _gear_field_range] Call WFCL_FNC_GetClosestCamp;
+		if(isNull _closestShop) then {
+		    _buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
+            _closestShop = ['BARRACKSTYPE', _buildings, _gear_barrack_range, WF_Client_SideJoined, player] call WFCO_FNC_BuildingInRange;
+		};
+
+        _items = [];
+        _selectedRole = WF_gbl_boughtRoles select 0;
+        _upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
+        _upgrade_gear = _upgrades select WF_UP_GEAR;
+
+        _list = [];
+        if(isNil '_selectedRole') then {
+            _list = missionNamespace getVariable "wf_gear_list_primary";
+            _list = _list + (missionNamespace getVariable "wf_gear_list_secondary");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_pistol");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_uniforms");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_backpacks");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_special");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_explosives");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_headgear");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_vests");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_glasses");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_misc");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_magazines");
+            _list = _list + (missionNamespace getVariable "wf_gear_list_accessories");
+        } else {
+            _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
+            if!(isNil '_gearListPrimary')then{
+                _list = (missionNamespace getVariable "wf_gear_list_primary") + _gearListPrimary
+            };
+
+            _gear_list_secondary = missionNamespace getVariable format["wf_gear_list_secondary_%1", _selectedRole];
+            if!(isNil '_gear_list_secondary')then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_secondary") + _gear_list_secondary
+            };
+
+            _gear_list_pistol = missionNamespace getVariable format["wf_gear_list_pistol_%1", _selectedRole];
+            if!(isNil '_gear_list_pistol')then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_pistol") + _gear_list_pistol
+            };
+
+            _gear_list_uniforms = missionNamespace getVariable format["wf_gear_list_uniforms_%1", _selectedRole];
+            if(!(isNil '_gear_list_uniforms'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_uniforms") + _gear_list_uniforms
+            };
+
+            _gear_list_backpacks = missionNamespace getVariable format["wf_gear_list_backpacks_%1", _selectedRole];
+            if(!(isNil '_gear_list_backpacks'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_backpacks") + _gear_list_backpacks
+            };
+
+            _gear_list_special = missionNamespace getVariable format["wf_gear_list_special_%1", _selectedRole];
+            if(!(isNil '_gear_list_special'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_special") + _gear_list_special
+            };
+
+            _gear_list_explosives = missionNamespace getVariable format["wf_gear_list_explosives_%1", _selectedRole];
+            if(!(isNil '_gear_list_explosives'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_explosives") + _gear_list_explosives
+            };
+
+            _gear_list_headgear = missionNamespace getVariable format["wf_gear_list_headgear_%1", _selectedRole];
+            if(!(isNil '_gear_list_headgear'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_headgear") + _gear_list_headgear
+            };
+
+            _gear_list_vests = missionNamespace getVariable format["wf_gear_list_vests_%1", _selectedRole];
+            if(!(isNil '_gear_list_vests'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_vests") + _gear_list_vests
+            };
+
+            _gear_list_glasses = missionNamespace getVariable format["wf_gear_list_glasses_%1", _selectedRole];
+            if(!(isNil '_gear_list_glasses'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_glasses") + _gear_list_glasses
+            };
+
+            _gear_list_misc = missionNamespace getVariable format["wf_gear_list_misc_%1", _selectedRole];
+            if(!(isNil '_gear_list_misc'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_misc") + _gear_list_misc
+            };
+
+            _gear_list_magazines = missionNamespace getVariable format["wf_gear_list_magazines_%1", _selectedRole];
+            if(!(isNil '_gear_list_magazines'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_magazines
+            };
+
+            _gear_list_accessories = missionNamespace getVariable format["wf_gear_list_accessories_%1", _selectedRole];
+            if(!(isNil '_gear_list_accessories'))then{
+                _list = _list + (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_accessories
+            };
+        };
+
+        {
+            _get = missionNamespace getVariable format["wf_%1", _x];
+            if (((_get select 0) select 0) <= _upgrade_gear) then {
+                _items pushBack _x;
+                _items pushBack ((_get select 0) select 1);
+                _items pushBack true
+            }
+        } forEach _list;
+
+        [_closestShop, _items] call TER_fnc_addShopCargo;
+		[_closestShop] call TER_fnc_callShop;
 	};
 
 	//--- Team Menu.

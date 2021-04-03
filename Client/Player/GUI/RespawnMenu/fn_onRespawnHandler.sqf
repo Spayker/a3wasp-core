@@ -17,9 +17,10 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") == 2) then {
 if (_spawn isKindOf "Man") then {_spawn = vehicle _spawn};
 
 _safePos = [getPos _spawn, 1, 45, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-_unit setPos _safePos;
+_unit setPosATL _safePos;
 
 /* HUD MODULE */
+shallResetDisplay = true;
 0 = [] spawn WFCL_FNC_updatePlayerHud;
 
 WF_PlayerMenuAction = (leader WF_Client_Team) addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
