@@ -76,7 +76,6 @@ while {alive player && dialog} do {
         _upgrade_gear = _upgrades select WF_UP_GEAR;
 
         _list = [];
-        if(isNil '_selectedRole') then {
             _list = missionNamespace getVariable "wf_gear_list_primary";
             _list = _list + (missionNamespace getVariable "wf_gear_list_secondary");
             _list = _list + (missionNamespace getVariable "wf_gear_list_pistol");
@@ -90,10 +89,11 @@ while {alive player && dialog} do {
             _list = _list + (missionNamespace getVariable "wf_gear_list_misc");
             _list = _list + (missionNamespace getVariable "wf_gear_list_magazines");
             _list = _list + (missionNamespace getVariable "wf_gear_list_accessories");
-        } else {
+
+        if(!isNil '_selectedRole') then {
             _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
             if!(isNil '_gearListPrimary')then{
-                _list = (missionNamespace getVariable "wf_gear_list_primary") + _gearListPrimary
+                _list = _list + (missionNamespace getVariable "wf_gear_list_primary") + _gearListPrimary
             };
 
             _gear_list_secondary = missionNamespace getVariable format["wf_gear_list_secondary_%1", _selectedRole];
@@ -154,7 +154,7 @@ while {alive player && dialog} do {
             _gear_list_accessories = missionNamespace getVariable format["wf_gear_list_accessories_%1", _selectedRole];
             if(!(isNil '_gear_list_accessories'))then{
                 _list = _list + (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_accessories
-            };
+            }
         };
 
         {
