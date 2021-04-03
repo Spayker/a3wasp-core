@@ -159,12 +159,9 @@ switch _mode do {
 		for "_i" from 0 to 1 do {_cargo deleteAt 0};//remove this script's default values
 		[TER_VASS_shopObject, _cargo, 2] call TER_fnc_addShopCargo;
 		TER_VASS_shopObject setVariable ["TER_VASS_cargo", _cargo, TER_VASS_shopObject getVariable ["TER_VASS_shared", true]];
-		WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
-        WF_P_gearPurchased = true;
         hudOn = true;
         shallResetDisplay = true;
         ctrlSetText[13020, "HUD ON"];
-
 
 		//--- Exit arsenal
 		_displayArsenal closeDisplay 1;

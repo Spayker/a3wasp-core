@@ -226,6 +226,9 @@ switch _mode do {
 		}] call BIS_fnc_addScriptedEventHandler;
 	};
 	case "arsenalClosed": {
+	    WF_P_CurrentGear = (_center) call WFCO_FNC_GetUnitLoadout;
+        WF_P_gearPurchased = true;
+        missionNamespace setVariable ["wf_gear_lastpurchased", WF_P_CurrentGear];
         hudOn = true;
         shallResetDisplay = true;
         ctrlSetText[13020, "HUD ON"]
