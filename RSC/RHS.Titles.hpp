@@ -151,8 +151,8 @@ class RscTitles {
 		duration = 15000;
 		name = "OptionsAvailable";
 		onLoad = "_this call WFCL_fnc_setCurrentCutDisplay";
-		onUnload = "_this call WFCL_fnc_clearCurrentCutDisplay";
-        controls[] = {"BGHUD","HealthHUD","FlagRedHUD","FlagBlueHUD","FlagBlueValHUD","FlagRedValHUD","MoneyHUD","MoneyValHUD","SupplyHUD","SupplyValHUD","TownsHUD",
+		//onUnload = "_this call WFCL_fnc_clearCurrentCutDisplay";
+        controls[] = {"BGHUD","HealthHUD","SideSlot1","SideSlotValue1","SideSlot3","SideSlot2","SideSlotValue2","RelationMark1","RelationMark2","SideSlotValue3","MoneyHUD","MoneyValHUD","SupplyHUD","SupplyValHUD","TownsHUD",
         "statblue","score_blue","statred","score_red","OptionsIcon0", "OptionsIcon1", "OptionsIcon2", "OptionsIcon3", "OptionsIcon4", "OptionsIcon5", "OptionsIcon6", "OptionsIcon7", "OptionsIcon8",
         "OptionsIcon9", "OptionsIcon10", "OptionsIcon11", "OptionsIcon12", "OptionsIcon13", "OptionsIcon14", "OptionsIcon15", "OptionsIcon16"};
 		controlsBackground[] = {};
@@ -177,42 +177,88 @@ class RscTitles {
 			h = 0.0375 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
-		class FlagBlueHUD: RscStructuredText
+
+		class SideSlot1: RscStructuredText
 		{
-			idc = 1101;
+            idc = 1112;
 			
-			x = 0.9625 * safezoneW + safezoneX;
-			y = 0.905 * safezoneH + safezoneY;
+            x = 0.895 * safezoneW + safezoneX;
+            y = 0.935 * safezoneH + safezoneY;
 			w = 0.0625 * safezoneW;
 			h = 0.04 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
-		class FlagRedHUD: RscStructuredText
+
+        class SideSlotValue1: RscStructuredText
 		{
-			idc = 1102;
+            idc = 1113;
+
+            x = 0.8975 * safezoneW + safezoneX;
+            y = 0.937 * safezoneH + safezoneY;
+            w = 0.035 * safezoneW;
+            h = 0.0375 * safezoneH;
+            colorBackground[] = {0,0,0,0};
+        };
 			
-			x = 0.9625 * safezoneW + safezoneX;
+		class RelationMark1: RscStructuredText
+        {
+            idc = 1111;
+            x = 0.914 * safezoneW + safezoneX;
 			y = 0.935 * safezoneH + safezoneY;
 			w = 0.0625 * safezoneW;
 			h = 0.04 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
-		class FlagBlueValHUD: RscStructuredText
+
+		class SideSlot2: RscStructuredText
+		{
+			idc = 1101;
+			
+			x = 0.9325 * safezoneW + safezoneX;
+			y = 0.935 * safezoneH + safezoneY;
+			w = 0.0625 * safezoneW;
+			h = 0.04 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+		};
+
+		class SideSlotValue2: RscStructuredText
         {
         	idc = 1103;
 
-        	x = 0.975 * safezoneW + safezoneX;
-        	y = 0.903 * safezoneH + safezoneY;
+        	x = 0.935 * safezoneW + safezoneX;
+        	y = 0.937 * safezoneH + safezoneY;
         	w = 0.035 * safezoneW;
         	h = 0.0375 * safezoneH;
         	colorBackground[] = {0,0,0,0};
         };
-        class FlagRedValHUD: RscStructuredText
+
+        class RelationMark2: RscStructuredText
+        {
+            idc = 1110;
+
+            x = 0.953 * safezoneW + safezoneX;
+            y = 0.935 * safezoneH + safezoneY;
+            w = 0.0625 * safezoneW;
+            h = 0.04 * safezoneH;
+            colorBackground[] = {0,0,0,0};
+        };
+
+		class SideSlot3: RscStructuredText
+		{
+			idc = 1102;
+
+			x = 0.9725 * safezoneW + safezoneX;
+			y = 0.935 * safezoneH + safezoneY;
+			w = 0.0625 * safezoneW;
+			h = 0.04 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+		};
+        class SideSlotValue3: RscStructuredText
         {
         	idc = 1104;
 
         	x = 0.975 * safezoneW + safezoneX;
-        	y = 0.933 * safezoneH + safezoneY;
+        	y = 0.937 * safezoneH + safezoneY;
         	w = 0.035 * safezoneW;
         	h = 0.0375 * safezoneH;
         	colorBackground[] = {0,0,0,0};

@@ -1,6 +1,6 @@
 private ["_health", "_color", "_uptimeValue", "_commanderValue", "_playersWestCount", "_playersEastCount",
-        "_moneyTotalValue", "_moneyIncomeValue", "_supplyTotalValue", "_supplyIncomeValue", "_hControl", "_fbControl",
-        "_frControl", "_fbvControl", "_frvControl", "_mControl", "_mvControl", "_sControl", "_svControl", "_tControl",
+        "_moneyTotalValue", "_moneyIncomeValue", "_supplyTotalValue", "_supplyIncomeValue", "_hControl", "_sideSlot2",
+        "_sideSlot1", "_sideSlotValue2", "_sideSlotValue3", "_mControl", "_mvControl", "_sControl", "_svControl", "_tControl",
 		"_textSize", "_textSize1", "_textSize2", "_uiSize",
 
 		"_textHealth","_textComm","_textUptime","_textMoney","_textIncome","_textSupply", "_textSVMIN", "_textTowns",
@@ -9,23 +9,7 @@ private ["_health", "_color", "_uptimeValue", "_commanderValue", "_playersWestCo
 
 disableSerialization;
 
-CutRsc["OptionsAvailable","PLAIN",0];
-
-private _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
-
-//--HUD variables--START----------------------------------------------------------------------------------------------//
-_bgControl = _cutDisplay DisplayCtrl 1099;
-_hControl = _cutDisplay DisplayCtrl 1100;
-_fbControl = _cutDisplay DisplayCtrl 1101;
-_frControl = _cutDisplay DisplayCtrl 1102;
-_fbvControl = _cutDisplay DisplayCtrl 1103;
-_frvControl = _cutDisplay DisplayCtrl 1104;
-_mControl = _cutDisplay DisplayCtrl 1105;
-_mvControl = _cutDisplay DisplayCtrl 1106;
-_sControl = _cutDisplay DisplayCtrl 1107;
-_svControl = _cutDisplay DisplayCtrl 1108;
-_tControl = _cutDisplay DisplayCtrl 1109;
-//--HUD variables--END------------------------------------------------------------------------------------------------//
+private _cutDisplay = nil;
 
 _uiSize = getResolution # 5;
 _textSize = 1.95 - _uiSize;
@@ -40,12 +24,34 @@ if(_uiSize > 0.85) then {
 };
 
 _hideHud = {
+
+    _sideSlot1 = _cutDisplay DisplayCtrl 1112;
+    _sideSlotValue1 = _cutDisplay DisplayCtrl 1113;
+    _sideSlot2 = _cutDisplay DisplayCtrl 1101;
+    _sideSlotValue2 = _cutDisplay DisplayCtrl 1103;
+    _sideSlot3 = _cutDisplay DisplayCtrl 1102;
+    _sideSlotValue3 = _cutDisplay DisplayCtrl 1104;
+    _relationMark1 = _cutDisplay DisplayCtrl 1111;
+    _relationMark2 = _cutDisplay DisplayCtrl 1110;
+
+    _bgControl = _cutDisplay DisplayCtrl 1099;
+    _hControl = _cutDisplay DisplayCtrl 1100;
+    _mControl = _cutDisplay DisplayCtrl 1105;
+    _mvControl = _cutDisplay DisplayCtrl 1106;
+    _sControl = _cutDisplay DisplayCtrl 1107;
+    _svControl = _cutDisplay DisplayCtrl 1108;
+    _tControl = _cutDisplay DisplayCtrl 1109;
+
     _bgControl ctrlShow false;
     _hControl ctrlShow false;
-    _fbControl ctrlShow false;
-    _frControl ctrlShow false;
-    _fbvControl ctrlShow false;
-    _frvControl ctrlShow false;
+    _sideSlot1 ctrlShow false;
+    _sideSlot2 ctrlShow false;
+    _sideSlot3 ctrlShow false;
+    _sideSlotValue1 ctrlShow false;
+    _sideSlotValue2 ctrlShow false;
+    _sideSlotValue3 ctrlShow false;
+    _relationMark1 ctrlShow false;
+    _relationMark2 ctrlShow false;
     _mControl ctrlShow false;
     _mvControl ctrlShow false;
     _sControl ctrlShow false;
@@ -69,23 +75,46 @@ _icons = [
 
 while {alive (leader WF_Client_Team)} do {
 
+    _uiSize = getResolution # 5;
+    _textSize = 1.95 - _uiSize;
+    _textSize1 = 1.8 - _uiSize;
+    _textSize2 = 1.7 - _uiSize;
+    _bgSize = 8 - _uiSize;
+    if(_uiSize >= 0.7) then {
+    	_bgSize = _bgSize - 2;
+    };
+    if(_uiSize > 0.85) then {
+    	_bgSize = _bgSize - 4;
+    };
+
     _usable = [hqInRange,barracksInRange,gearInRange,lightInRange,heavyInRange,aircraftInRange,hangarInRange,
                                     serviceInRange,commandInRange,antiAirRadarInRange,antiArtyRadarInRange];
     _c = 0;
 
         if (hudOn) then {
+
+        if(shallResetDisplay) then {
+            CutRsc["OptionsAvailable","PLAIN",0];
+            _cutDisplay = ["currentCutDisplay"] call BIS_FNC_GUIget;
+            shallResetDisplay = false;
+        };
+
             //--HUD variables--START----------------------------------------------------------------------------------------------//
             _bgControl = _cutDisplay DisplayCtrl 1099;
             _hControl = _cutDisplay DisplayCtrl 1100;
-            _fbControl = _cutDisplay DisplayCtrl 1101;
-            _frControl = _cutDisplay DisplayCtrl 1102;
-            _fbvControl = _cutDisplay DisplayCtrl 1103;
-            _frvControl = _cutDisplay DisplayCtrl 1104;
+        _sideSlot2 = _cutDisplay DisplayCtrl 1101;
+        _sideSlot3 = _cutDisplay DisplayCtrl 1102;
+        _sideSlotValue2 = _cutDisplay DisplayCtrl 1103;
+        _sideSlotValue3 = _cutDisplay DisplayCtrl 1104;
             _mControl = _cutDisplay DisplayCtrl 1105;
             _mvControl = _cutDisplay DisplayCtrl 1106;
             _sControl = _cutDisplay DisplayCtrl 1107;
             _svControl = _cutDisplay DisplayCtrl 1108;
             _tControl = _cutDisplay DisplayCtrl 1109;
+        _relationMark1 = _cutDisplay DisplayCtrl 1111;
+        _relationMark2 = _cutDisplay DisplayCtrl 1110;
+        _sideSlot1 = _cutDisplay DisplayCtrl 1112;
+        _sideSlotValue1 = _cutDisplay DisplayCtrl 1113;
             //--HUD variables--END------------------------------------------------------------------------------------------------//
 
             //--Background--
@@ -113,24 +142,306 @@ while {alive (leader WF_Client_Team)} do {
             _hControl ctrlSetStructuredText parseText _fText;
 
             //--Flags and players--
-            _fbControl ctrlShow true;
-            _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\flag_bluefor_ca.paa'/></t>", _textSize];
-            _fbControl ctrlSetStructuredText parseText _fText;
 
-            _frControl ctrlShow true;
-            _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\flag_opfor_ca.paa'/></t>", _textSize];
-            _frControl ctrlSetStructuredText parseText _fText;
+        _westCount = count (missionNamespace getVariable ["WF_PLAYERS_WEST", []]);
+        _eastCount = count (missionNamespace getVariable ["WF_PLAYERS_EAST", []]);
+        _guerCount = count (missionNamespace getVariable ["WF_PLAYERS_GUER", []]);
 
-            _playersWestCount = count (missionNamespace getVariable ["WF_PLAYERS_WEST", []]);
-            _playersEastCount = count (missionNamespace getVariable ["WF_PLAYERS_EAST", []]);
+        if(count WF_FRIENDLY_SIDES == 1) then {
+            switch (WF_Client_SideJoined) do {
+                case west: {
+                    _sideSlot1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                    _sideSlot1 ctrlSetStructuredText parseText _fText;
 
-            _fbvControl ctrlShow true;
-            _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaBold' size='%2' valign='middle'>%1<t/>", _playersWestCount, _textSize];
-            _fbvControl ctrlSetStructuredText parseText _fText;
+                    _sideSlotValue1 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                    _sideSlotValue1 ctrlSetStructuredText parseText _fText;
 
-            _frvControl ctrlShow true;
-            _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaBold' size='%2' valign='middle'>%1<t/>", _playersEastCount, _textSize];
-            _frvControl ctrlSetStructuredText parseText _fText;
+                    _relationMark1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                    _relationMark1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlot2 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                    _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue2 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                    _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlot3 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                    _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue3 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                    _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+
+                    if((resistance getFriend east) > 0.6) then {
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\defend_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+                    } else {
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+                    }
+                };
+                case east: {
+                    _sideSlot1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                    _sideSlot1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue1 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                    _sideSlotValue1 ctrlSetStructuredText parseText _fText;
+
+                    _relationMark1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                    _relationMark1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlot2 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                    _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue2 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                    _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlot3 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                    _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue3 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                    _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+
+                    if((resistance getFriend west) > 0.6) then {
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\defend_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+                    } else {
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+                    }
+                };
+                case resistance: {
+                    _sideSlot1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                    _sideSlot1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue1 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                    _sideSlotValue1 ctrlSetStructuredText parseText _fText;
+
+                    _relationMark1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                    _relationMark1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlot2 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                    _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue2 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                    _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlot3 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                    _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue3 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                    _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+
+                    if((east getFriend west) > 0.6) then {
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\defend_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+                    } else {
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+                    }
+                }
+            }
+        } else {
+            switch (WF_Client_SideJoined) do {
+                case west: {
+                    _sideSlot1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                    _sideSlot1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue1 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                    _sideSlotValue1 ctrlSetStructuredText parseText _fText;
+
+                    _relationMark1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\defend_ca.paa'/></t>", _textSize];
+                    _relationMark1 ctrlSetStructuredText parseText _fText;
+
+                    if((WF_Client_SideJoined getFriend east) > 0.6) then {
+                        _sideSlot2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                        _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue2 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                        _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlot3 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                        _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue3 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                        _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+                    };
+
+                    if((WF_Client_SideJoined getFriend resistance) > 0.6) then {
+                        _sideSlot2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                        _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue2 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                        _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlot3 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                        _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue3 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                        _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+                    };
+                };
+                case east: {
+                    _sideSlot1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                    _sideSlot1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue1 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                    _sideSlotValue1 ctrlSetStructuredText parseText _fText;
+
+                    _relationMark1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\defend_ca.paa'/></t>", _textSize];
+                    _relationMark1 ctrlSetStructuredText parseText _fText;
+
+                    if((WF_Client_SideJoined getFriend west) > 0.6) then {
+                        _sideSlot2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                        _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue2 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                        _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlot3 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                        _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue3 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                        _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+                    };
+
+                    if((WF_Client_SideJoined getFriend resistance) > 0.6) then {
+                        _sideSlot2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                        _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue2 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                        _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlot3 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                        _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue3 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                        _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+                    };
+                };
+                case resistance: {
+                    _sideSlot1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\g_flag.paa'/></t>", _textSize];
+                    _sideSlot1 ctrlSetStructuredText parseText _fText;
+
+                    _sideSlotValue1 ctrlShow true;
+                    _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _guerCount, 1.65 - _uiSize];
+                    _sideSlotValue1 ctrlSetStructuredText parseText _fText;
+
+                    _relationMark1 ctrlShow true;
+                    _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\defend_ca.paa'/></t>", _textSize];
+                    _relationMark1 ctrlSetStructuredText parseText _fText;
+
+                    if((WF_Client_SideJoined getFriend west) > 0.6) then {
+                        _sideSlot2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                        _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue2 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                        _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlot3 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                        _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue3 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                        _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+                    };
+
+                    if((WF_Client_SideJoined getFriend east) > 0.6) then {
+                        _sideSlot2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\o_flag.paa'/></t>", _textSize];
+                        _sideSlot2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue2 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _eastCount, 1.65 - _uiSize];
+                        _sideSlotValue2 ctrlSetStructuredText parseText _fText;
+
+                        _relationMark2 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='\A3\ui_f\data\IGUI\Cfg\simpleTasks\types\attack_ca.paa'/></t>", _textSize];
+                        _relationMark2 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlot3 ctrlShow true;
+                        _fText = format["<t size='%1' valign='bottom'><img image='RSC\Pictures\b_flag.paa'/></t>", _textSize];
+                        _sideSlot3 ctrlSetStructuredText parseText _fText;
+
+                        _sideSlotValue3 ctrlShow true;
+                        _fText = format["<t color='#FFFFFF' shadow='1' font='PuristaMedium' size='%2' valign='middle'>%1<t/>", _westCount, 1.65 - _uiSize];
+                        _sideSlotValue3 ctrlSetStructuredText parseText _fText;
+                    };
+                }
+            }
+        };
 
             //--Money--
             _mControl ctrlShow true;
@@ -192,7 +503,7 @@ while {alive (leader WF_Client_Team)} do {
                 ((_cutDisplay) DisplayCtrl (3500 + _c)) CtrlSetText "";
             };
             _c = _c + 1;
-        } forEach _usable
+        } forEach _usable;
 	} else {
         call _hideHud;
         {

@@ -558,7 +558,7 @@ class RscStructuredTextGear {
 };
 
 class RscButton_LesserGear : RscButtonGear {
-	colorBackground[] = {0.768627451, 1, 0.137254902, 0.7};
+	colorBackground[] = {0.09,0.65,0.23,1};
 	colorBackgroundActive[] = {0.768627451, 1, 0.137254902, 1};
 	colorFocused[] = {0.768627451, 1, 0.137254902, 1};
 };
