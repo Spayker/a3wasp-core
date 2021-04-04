@@ -139,7 +139,6 @@ private _fnc_getUnitInsignia  = { _this getVariable ["BIS_fnc_setUnitInsignia_cl
 #define ERROR if !(_item in _disabledItems) then {_disabledItems set [count _disabledItems,_item];};
 
 //--- Function to get item DLC. Don't use item itself, but the first addon in which it's defined. SOme items are re-defined in mods.
-//#define GETDLC	{configsourcemod _this}
 #define GETDLC\
 	{\
 		private _dlc = "";\
@@ -686,10 +685,10 @@ switch _mode do {
 			{
 				_removedItems pushBack uniform _center;
 				if (_item == "") then {
-					_removedItems append uniformItems _center;//m
+					_removedItems append uniformItems _center;
 					removeuniform _center;
 				} else {
-					_items = uniformitems _center;//m
+					_items = uniformitems _center;
 					_removedItems append _items;
 					_center forceadduniform _item;
 					_addedItems = [_item];
@@ -708,7 +707,7 @@ switch _mode do {
 			{
 				_removedItems pushBack vest _center;
 				if (_item == "") then {
-					_removedItems append vestItems _center;//m
+					_removedItems append vestItems _center;
 					removevest _center;
 				} else {
 					_items = vestitems _center;
@@ -771,6 +770,7 @@ switch _mode do {
 				};
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
+			    if (typeName _item == "ARRAY") then { _item = _item # 0 };
 				if (_item == "") then {
 					_weapons = [];
 					for "_l" from 0 to (lbsize _ctrlList) do {_weapons set [count _weapons,tolower (_ctrlList lbdata _l)];};
@@ -793,6 +793,7 @@ switch _mode do {
 					if ({count _x > 0} count _loadedMags > 0) then {
 						{
 							_x params ["_class", "_count"];
+							if (typeName _class == "ARRAY") then { _class = _class # 0 };
 							if (_center canAdd _class) then {
 								_center addMagazine [_class, _count];
 							} else {
@@ -829,9 +830,7 @@ switch _mode do {
 						{
 							_x params ["_class", "_count"];
 							if (_center canAdd _class) then {
-                                if (typeName _x == "ARRAY") then {
-                                    _x = _x # 0;
-                                };
+                                if (typeName _x == "ARRAY") then { _x = _x # 0 };
 								_center addMagazine [_x, _count];
 							} else {
 								_removedItems pushBack _class;
@@ -864,6 +863,9 @@ switch _mode do {
 					if ({count _x > 0} count _loadedMags > 0) then {
 						{
 							_x params ["_class", "_count"];
+							if (typeName _x == "ARRAY") then {
+                                _x = _x # 0
+                            };
 							if (_center canAdd _class) then {
 								_center addMagazine [_x, _count];
 							} else {
