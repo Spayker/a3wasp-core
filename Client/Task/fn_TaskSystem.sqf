@@ -22,12 +22,31 @@ switch (_type) do {
 			waitUntil {_sideID = _town getVariable 'sideID';!isNil '_sideID'};
 			_sideID = _town getVariable "sideID";
 			_task = player createSimpleTask [Format["TakeTowns_%1",str _town]];
+
 			if (_sideID != WF_Client_SideID) then {
 				_task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
 			} else {
+			    if(_sideId == WF_DEFENDER_ID) then {
+			        _resFaction = _town getVariable ["resFaction", nil];
+                    if (isNil '_resFaction') then {
 				_task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown_Complete",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
-				_task setTaskState "Succeeded";
+                        _task setTaskState "Succeeded"
+                    } else {
+                        if(_resFaction == WF_DEFENDER_CDF_FACTION)  then {
+                            _task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
+                        } else {
+                            _task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown_Complete",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
+                            _task setTaskState "Succeeded"
+                        }
+                    }
+			    } else {
+                    _task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown_Complete",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_town getVariable "name"]];
+                    _task setTaskState "Succeeded"
+			    }
 			};
+
+
+
 			_task setSimpleTaskDestination (getPos _town);
                 _town setVariable ['taskLink',_task]
 			}
