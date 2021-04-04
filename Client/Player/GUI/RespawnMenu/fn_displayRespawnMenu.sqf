@@ -163,7 +163,7 @@ if(WF_GameOver) then {
 					WF_RespawnTime = nil;
 					
 					//--- Execute actions on respawn.
-					[player,_this] Call WFCL_FNC_onRespawnHandler;
+					[_this] Call WFCL_FNC_onRespawnHandler;
 					
 					//--- Destroy the camera.
 					if !(isNil 'WF_DeathCamera') then {
@@ -186,7 +186,7 @@ if(WF_GameOver) then {
 			WF_RespawnTime = nil;
 			
 			//--- Execute actions on respawn.
-			[player,_spawn_at_current] Call WFCL_FNC_onRespawnHandler;
+			[_spawn_at_current] Call WFCL_FNC_onRespawnHandler;
 			
 			//--- Destroy the camera.
 			if !(isNil 'WF_DeathCamera') then {

@@ -1,9 +1,10 @@
-Private ["_allowCustom","_buildings","_charge","_funds","_get","_loadDefault","_listbp","_mode","_price","_skip","_spawn","_spawnInside","_typeof","_unit","_weaps"];
+Private ["_allowCustom","_buildings","_charge","_funds","_get","_loadDefault","_listbp","_mode","_price","_skip","_spawn","_spawnInside","_typeof","_weaps"];
 
-_unit = _this select 0;
-_spawn = _this select 1;
+
+_spawn = _this select 0;
 _loadDefault = true;
 _typeof = typeOf _spawn;
+_player = (leader WF_Client_Team);
 
 WF_Client_IsRespawning = false;
 _allowCustom = true;
@@ -17,18 +18,18 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_MOBILE") == 2) then {
 if (_spawn isKindOf "Man") then {_spawn = vehicle _spawn};
 
 _safePos = [getPos _spawn, 1, 45, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-_unit setPosATL _safePos;
+_player setPos _safePos;
 
 /* HUD MODULE */
 shallResetDisplay = true;
 0 = [] spawn WFCL_FNC_updatePlayerHud;
 
-WF_PlayerMenuAction = (leader WF_Client_Team) addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
+WF_PlayerMenuAction = _player addAction ["<t color='#42b6ff'>" + (localize "STR_WF_Options") + "</t>",{createDialog "WF_Menu"}, "", 999, false, true, "", ""];
 
 //--Disable fatigue--
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 0) then {
-    _unit enableFatigue false;
-    player setCustomAimCoef 0.1;
+    _player enableFatigue false;
+    _player setCustomAimCoef 0.1;
 };
 
 WF_PlayerMenuAction = nil;
@@ -49,7 +50,7 @@ if (!isNil 'WF_P_CurrentGear' && !WF_RespawnDefaultGear && _allowCustom) then {
 	if (_mode in [0,2,3,4,5]) then {
 		//--- Calculate the price/funds.
 		_skip = false;
-		_gear_cost = _unit getVariable "wf_custom_gear_cost";
+		_gear_cost = _player getVariable "wf_custom_gear_cost";
 		if (_mode != 0) then {
 			_price = 0;
 
@@ -83,7 +84,7 @@ if (!isNil 'WF_P_CurrentGear' && !WF_RespawnDefaultGear && _allowCustom) then {
 		if !(_skip) then {
 			
 			_respawn_gear = if (isNil 'WF_P_CurrentGear') then {missionNamespace getVariable format ["WF_AI_%1_DEFAULT_GEAR", WF_Client_SideJoined]} else {WF_P_CurrentGear};
-			[player, _respawn_gear] call WFCO_FNC_EquipUnit; //--- Equip the equipment
+			[_player, _respawn_gear] call WFCO_FNC_EquipUnit; //--- Equip the equipment
 			
 			_loadDefault = false;
 		};
@@ -109,5 +110,5 @@ if (_loadDefault) then {
         case WF_SUPPORT: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", WF_Client_SideJoinedText];};
 	};
 	
-	[player, _default] call WFCO_FNC_EquipUnit;
+	[_player, _default] call WFCO_FNC_EquipUnit;
 };
