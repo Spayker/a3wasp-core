@@ -74,8 +74,6 @@ WF_PRESENTSIDES = _presents;
 
 WF_DEFENDER = resistance;
 WF_DEFENDER_ID = (WF_DEFENDER) Call WFCO_FNC_GetSideID;
-WF_DEFENDER_GUER_FACTION = "guer";
-WF_DEFENDER_CDF_FACTION = "cdf";
 
 //--- friendly side array
 WF_FRIENDLY_SIDES = [];

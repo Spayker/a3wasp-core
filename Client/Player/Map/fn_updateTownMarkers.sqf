@@ -15,16 +15,7 @@ while {!WF_GameOver} do {
 		_visible = false;
 
 		if (_townSideId == WF_Client_SideID) then {
-		    if(_townSideId == WF_DEFENDER_ID) then {
-		        _resFaction = _town getVariable ['resFaction', WF_DEFENDER_GUER_FACTION];
-                if(_resFaction == WF_DEFENDER_CDF_FACTION) then {
-                    _visible = false
-                } else {
                     _visible = true
-                }
-		    } else {
-		        _visible = true
-		    }
 		} else {
 		    {
 		        if (_town distance _x < _range) then {

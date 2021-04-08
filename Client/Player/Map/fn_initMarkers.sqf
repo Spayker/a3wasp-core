@@ -35,31 +35,16 @@
 
     //--- Determine the coloration method.
     _townColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-    _resFaction = nil;
 
-    if(_townSide == resistance) then {
-        _resFaction = _x getVariable ["resFaction", nil];
-        if (_townSideId == WF_Client_SideID) then {
-            if(isNil '_resFaction') then {
-                _townColor = missionNamespace getVariable "WF_C_GUER_COLOR";
-            } else {
-                if(_resFaction == WF_DEFENDER_CDF_FACTION) then {
-                    _townColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-                } else {
-                    _townColor = missionNamespace getVariable "WF_C_GUER_COLOR";
-                }
-            }
-        }
-    } else{
         if (_townSideId == WF_Client_SideID) then {
             _townColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR",_townSide]);
         } else {
             if (WF_Client_SideJoined == WF_DEFENDER) then {
                 _townColor = missionNamespace getVariable "WF_C_CIV_COLOR";
             }
-        }
-
     };
+
+
 	_townMarker setMarkerColorLocal _townColor;
 
 	//--- The town may have some camps.
@@ -71,21 +56,9 @@
 		// --- Determine the coloration method.
 		_campColor = missionNamespace getVariable "WF_C_UNKNOWN_COLOR";
 		if(_campSide == resistance) then {
-		    if(isNil '_resFaction') then {
 		        _campColor = missionNamespace getVariable "WF_C_GUER_COLOR";
 		    } else {
 		if (_campSideId == WF_Client_SideID) then {
-                    if(_resFaction == WF_DEFENDER_CDF_FACTION) then {
-                        _campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-                    } else {
-                        _campColor = missionNamespace getVariable "WF_C_GUER_COLOR";
-                    }
-                } else {
-                    _campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-                }
-		    }
-		} else {
-            if (_campSideId == WF_Client_SideID) then {
                 _campColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR", _campSide])
             } else {
                 if (WF_Client_SideJoined == WF_DEFENDER) then {

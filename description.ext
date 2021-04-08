@@ -1,5 +1,5 @@
 #include "version.sqf"
-//#include "Sounds\description.ext"
+
 //--- Header contains the mission tite.
 #include "Rsc\Header.hpp"
 

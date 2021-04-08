@@ -6,18 +6,9 @@ _totalSupply = 0;
 {
     _town = _x;
     _townSideId = _town getVariable "sideID";
-    _keepProcessingFlag = true;
-
-    if(_sideID == WF_DEFENDER_ID && _townSideId == _sideID) then {
-        _resFaction = _town getVariable ['resFaction', WF_DEFENDER_GUER_FACTION];
-        if(_resFaction == WF_DEFENDER_CDF_FACTION) then {
-            _keepProcessingFlag = false
-        }
-    };
-
-    if(_keepProcessingFlag) then {
     _camps = _town getVariable "camps";
         _townSpecialities = _town getVariable "townSpeciality";
+
         if(isNil '_townSpecialities') then {
             if ((_townSideId) == _sideID) then	{
                         _totalSupply = _totalSupply + (_town getVariable "supplyValue")
@@ -35,7 +26,6 @@ _totalSupply = 0;
                 if ((_townSideId) == _sideID) then	{
             _totalSupply = _totalSupply + (_town getVariable "supplyValue")
         }
-    }
     }
     }
 } forEach towns;
