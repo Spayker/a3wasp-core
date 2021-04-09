@@ -208,14 +208,14 @@ private _fnc_getUnitInsignia  = { _this getVariable ["BIS_fnc_setUnitInsignia_cl
 #define COL_DATA_COUNT 0
 #define COL_DATA_STARTCOUNT 1
 
-_fncCurAdd = {
+_fnc_CurAdd = {
 	params ["_item"];
 	private _addCur = [TER_VASS_changedItems, tolower _item] call BIS_fnc_findInPairs;
 	_addCur = if (_addCur == -1) then {0} else {TER_VASS_changedItems#_addCur#1};
 	_addCur
 };
 
-_stringReplace = {
+_fnc_stringReplace = {
     params["_str", "_find", "_replace"];
 
     private _return = "";
@@ -229,6 +229,79 @@ _stringReplace = {
         _pos = _str find _find;
     };
     _return + _str;
+};
+
+_fnc_getEquipment = {
+    private _target = player;
+    //--- Uniform, Vest and backpack
+    _uniform = toLower(uniform _target);
+    _uniform_items = (uniformItems _target) call _fnc_arrayToLower;
+    _vest = toLower(vest _target);
+    _vest_items = (vestItems _target) call _fnc_arrayToLower;
+    _backpack = toLower(backpack _target);
+    _backpack_items = (backpackItems _target) call _fnc_arrayToLower;
+
+    //--- Weapons
+    _primary = toLower(primaryWeapon _target);
+    _primary_accessories = (primaryWeaponItems _target) call _fnc_arrayToLower;
+    _secondary = toLower(secondaryWeapon _target);
+    _secondary_accessories = (secondaryWeaponItems _target) call _fnc_arrayToLower;
+    _handgun = toLower(handgunWeapon _target);
+    _handgun_accessories = (handgunItems _target) call _fnc_arrayToLower;
+
+    //--- Currently loaded magazines
+    _primary_current_magazine = (primaryWeaponMagazine _target) call _fnc_arrayToLower;
+    _secondary_current_magazine = (secondaryWeaponMagazine _target) call _fnc_arrayToLower;
+    _handgun_current_magazine = (handgunMagazine _target) call _fnc_arrayToLower;
+
+    //--- Accessories
+    _headgear = toLower(headgear _target);
+    _goggles = toLower(goggles _target);
+
+    _binomag = "";
+    {
+        if ((_x select 0) isEqualTo binocular _target) exitWith {
+            _binomag = (_x select 4) param [0, ""];
+        };
+    } forEach weaponsitems _target;
+
+    //--- Items
+    _allitems = ((assignedItems _target) call _fnc_arrayToLower) - [_headgear, _goggles];
+    _items = [["", ["",""]], ["", "", "", "", ""]];
+
+    {
+        _slot = switch (getText(configFile >> 'CfgWeapons' >> _x >> 'simulation')) do {
+            case "NVGoggles": {[0,0]};
+            case "Binocular": {[0,1]};
+            case "ItemMap": {[1,0]};
+            case "ItemGPS": {[1,1]};
+            case "ItemRadio": {[1,2]};
+            case "ItemCompass": {[1,3]};
+            case "ItemWatch": {[1,4]};
+            default {[-1]};
+        };
+        if ((_slot select 0) isEqualTo -1) then {
+            if (getNumber(configFile >> 'CfgWeapons' >> _x >> 'ItemInfo' >> 'type') isEqualTo WF_SUBTYPE_UAVTERMINAL) then {_slot = [1,1]};
+            if (getNumber(configFile >> 'CfgWeapons' >> _x >> 'useAsBinocular') isEqualTo 1 && getText(configFile >> 'CfgWeapons' >> _x >> 'simulation') isEqualTo "weapon") then {_slot = [0,1]};
+        };
+        if !(_slot select 0 isEqualTo -1) then {
+            if (_slot isEqualTo [0,1]) then {
+                ((_items select (_slot select 0)) select (_slot select 1)) set [0, _x];
+                ((_items select (_slot select 0)) select (_slot select 1)) set [1, _binomag];
+            } else {
+                (_items select (_slot select 0)) set [(_slot select 1), _x];
+            }
+        };
+    } forEach _allitems;
+    _items = [[toLower ((_items select 0) select 0), ((_items select 0) select 1) call _fnc_arrayToLower] , (_items select 1) call _fnc_arrayToLower];
+
+    //--- Return the preformated gear
+    [
+        [[_primary, _primary_accessories, _primary_current_magazine], [_secondary, _secondary_accessories, _secondary_current_magazine], [_handgun, _handgun_accessories, _handgun_current_magazine]],
+        [[_uniform, _uniform_items], [_vest, _vest_items], [_backpack, _backpack_items]],
+        [_headgear, _goggles],
+        _items
+    ]
 };
 
 switch _mode do {
@@ -259,8 +332,6 @@ switch _mode do {
         ctrlSetText[13020, "HUD ON"]
 	};
 	case "arsenalOpened":{
-
-	    profilenamespace setvariable ["bis_fnc_saveInventory_data", []];
 		if (isNil "TER_VASS_shopObject") exitWith {};
 		_display = _this select 0;
 		uiNamespace setVariable ["TER_VASS_changedItems",[]];
@@ -285,6 +356,10 @@ switch _mode do {
 
 		_ctrlButtonLoadTemplateOk = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONOK;
         _ctrlButtonLoadTemplateOk ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonTemplateOk',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
+
+        _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
+        _ctrlTemplateButtonDelete ctrlRemoveAllEventHandlers "buttonclick";
+        _ctrlTemplateButtonDelete ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonDelete',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
 
 		//--- New "BUY" button
 		_ctrlButtonInterface = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONINTERFACE;
@@ -413,7 +488,7 @@ switch _mode do {
 		_mpCost = 0;
 		_value = {_x == _item} count _items;
 		_lnbData = _display displayCtrl IDC_RSCDISPLAYARSENAL_DATA;
-		_addCur = [_item] call _fncCurAdd;
+		_addCur = [_item] call _fnc_CurAdd;
 		_addMax = [TER_VASS_shopObject, _item, 2] call TER_fnc_getItemValues;
 		_addAllowed = if (_addMax isEqualType true) then {_addMax} else {_addCur < _addMax};
 
@@ -680,7 +755,7 @@ switch _mode do {
 						_itemMax = [TER_VASS_shopObject, _class, 2] call TER_fnc_getItemValues;
 
 						_value =  {_x == _class} count _itemsCurrent;
-						_addCur = [_class] call _fncCurAdd;
+						_addCur = [_class] call _fnc_CurAdd;
 						_text = if (_itemMax isEqualType true) then {str _value} else {format ["%1|%2", _value, _itemMax - _addCur]};
 						_ctrlList lnbsettext [[_l, COL_COUNT], _text];
 					};
@@ -1051,7 +1126,7 @@ switch _mode do {
 								_value = {_x == _mag} count _itemsCurrent;
 								_displayName = gettext (_cfgMag >> "displayName");
 								([TER_VASS_shopObject, _mag] call TER_fnc_getItemValues) params ["","_itemCost","_itemMax"];
-								_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_mag] call _fncCurAdd)] };
+								_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_mag] call _fnc_CurAdd)] };
 								_lbAdd = _ctrlList lnbaddrow ["", _displayName, _text, format ["%1$", [_itemCost] call BIS_fnc_numberText]];
 								_ctrlList lnbSetColor [[_lbAdd,3],MONEYGREEN];
 								_ctrlList lnbsetdata [[_lbAdd,0],_mag];
@@ -1076,7 +1151,7 @@ switch _mode do {
 										_value = {_x == _mag} count _itemsCurrent;
 										_displayName = gettext (_cfgMag >> "displayName");
 										([TER_VASS_shopObject, _mag] call TER_fnc_getItemValues) params ["","_itemCost","_itemMax"];
-										_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_mag] call _fncCurAdd)] };
+										_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_mag] call _fnc_CurAdd)] };
 										_lbAdd = _ctrlList lnbaddrow ["", _displayName, _text, format ["%1$", [_itemCost] call BIS_fnc_numberText]];
 										_ctrlList lnbSetColor [[_lbAdd,3],MONEYGREEN];
 										_ctrlList lnbsetdata [[_lbAdd,0],_mag];
@@ -1101,7 +1176,7 @@ switch _mode do {
 						_class = _ctrlList lnbdata [_l,0];
 						([TER_VASS_shopObject, _class] call TER_fnc_getItemValues) params ["","_itemCost","_itemMax"];
 						_value =  {_x == _class} count _itemsCurrent;
-						_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_class] call _fncCurAdd)] };
+						_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_class] call _fnc_CurAdd)] };
 						_ctrlList lnbsettext [[_l, COL_COUNT], _text];
 					};
 					["SelectItemRight",[_display,_ctrlList,_index]] call bis_fnc_arsenal;
@@ -1388,88 +1463,37 @@ switch _mode do {
 		uinamespace setvariable ["ter_fnc_shop_sort",_sortValues];
 	};
     case "buttonLoad":{
-        private _target = player;
-        //--- Uniform, Vest and backpack
-        _uniform = toLower(uniform _target);
-        _uniform_items = (uniformItems _target) call _fnc_arrayToLower;
-        _vest = toLower(vest _target);
-        _vest_items = (vestItems _target) call _fnc_arrayToLower;
-        _backpack = toLower(backpack _target);
-        _backpack_items = (backpackItems _target) call _fnc_arrayToLower;
-
-        //--- Weapons
-        _primary = toLower(primaryWeapon _target);
-        _primary_accessories = (primaryWeaponItems _target) call _fnc_arrayToLower;
-        _secondary = toLower(secondaryWeapon _target);
-        _secondary_accessories = (secondaryWeaponItems _target) call _fnc_arrayToLower;
-        _handgun = toLower(handgunWeapon _target);
-        _handgun_accessories = (handgunItems _target) call _fnc_arrayToLower;
-
-        //--- Currently loaded magazines
-        _primary_current_magazine = (primaryWeaponMagazine _target) call _fnc_arrayToLower;
-        _secondary_current_magazine = (secondaryWeaponMagazine _target) call _fnc_arrayToLower;
-        _handgun_current_magazine = (handgunMagazine _target) call _fnc_arrayToLower;
-
-        //--- Accessories
-        _headgear = toLower(headgear _target);
-        _goggles = toLower(goggles _target);
-
-        _binomag = "";
-        {
-            if ((_x select 0) isEqualTo binocular _target) exitWith {
-                _binomag = (_x select 4) param [0, ""];
+        missionnamespace setVariable ["WF_start_player_loadout", call _fnc_getEquipment ]
             };
-        } forEach weaponsitems _target;
+    case "buttonDelete":{
+        _display = _this select 0;
+        _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
+        _cursel = lnbcurselrow _ctrlTemplateValue;
+        _name = _ctrlTemplateValue lnbtext [_cursel,0];
+        [_center,[profilenamespace,_name],nil,true] call bis_fnc_saveInventory;
+        _ctrlTemplateValue lnbDeleteRow _cursel;
 
-        //--- Items
-        _allitems = ((assignedItems _target) call _fnc_arrayToLower) - [_headgear, _goggles];
-        _items = [["", ["",""]], ["", "", "", "", ""]];
-
+        _ctrlTemplateValue lnbsetcurselrow (_cursel max (lbsize _ctrlTemplateValue - 1));
+        _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
         {
-        	_slot = switch (getText(configFile >> 'CfgWeapons' >> _x >> 'simulation')) do {
-        		case "NVGoggles": {[0,0]};
-        		case "Binocular": {[0,1]};
-        		case "ItemMap": {[1,0]};
-        		case "ItemGPS": {[1,1]};
-        		case "ItemRadio": {[1,2]};
-        		case "ItemCompass": {[1,3]};
-        		case "ItemWatch": {[1,4]};
-        		default {[-1]};
-        	};
-        	if ((_slot select 0) isEqualTo -1) then {
-        		if (getNumber(configFile >> 'CfgWeapons' >> _x >> 'ItemInfo' >> 'type') isEqualTo WF_SUBTYPE_UAVTERMINAL) then {_slot = [1,1]};
-        		if (getNumber(configFile >> 'CfgWeapons' >> _x >> 'useAsBinocular') isEqualTo 1 && getText(configFile >> 'CfgWeapons' >> _x >> 'simulation') isEqualTo "weapon") then {_slot = [0,1]};
-        	};
-        	if !(_slot select 0 isEqualTo -1) then {
-        		if (_slot isEqualTo [0,1]) then {
-        			((_items select (_slot select 0)) select (_slot select 1)) set [0, _x];
-        			((_items select (_slot select 0)) select (_slot select 1)) set [1, _binomag];
-        		} else {
-        			(_items select (_slot select 0)) set [(_slot select 1), _x];
+            if(count _x > 0) then {
+                if((_x # 0) == _name) exitWith {
+                    _savedInventroyData deleteAt _forEachIndex;
+                    profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
+                }
         		}
+        } forEach _savedInventroyData
         	};
-        } forEach _allitems;
-        _items = [[toLower ((_items select 0) select 0), ((_items select 0) select 1) call _fnc_arrayToLower] , (_items select 1) call _fnc_arrayToLower];
 
-        //--- Return the preformated gear
-        _result = [
-        	[[_primary, _primary_accessories, _primary_current_magazine], [_secondary, _secondary_accessories, _secondary_current_magazine], [_handgun, _handgun_accessories, _handgun_current_magazine]],
-        	[[_uniform, _uniform_items], [_vest, _vest_items], [_backpack, _backpack_items]],
-        	[_headgear, _goggles],
-        	_items
-        ];
-        missionnamespace setVariable ["WF_start_player_loadout", _result ]
-    };
 	case "buttonTemplateOk":{
 
 		_display = _this select 0;
 		_ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
-
 		_ctrlTemplateName = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_EDITNAME;
-        if (ctrlenabled _ctrlTemplateName) then {
-            // _templateName = ctrltext _ctrlTemplateName;
 
-            diag_log format ['fn_shop.sqf: _addedItems - %1', getUnitLoadout player];
+        if (ctrlenabled _ctrlTemplateName) then {
+
+            //--- Save
             [
                 _center,
                 [profilenamespace,ctrltext _ctrlTemplateName],
@@ -1479,16 +1503,46 @@ switch _mode do {
                     _center call bis_fnc_getUnitInsignia
                 ]
             ] call bis_fnc_saveInventory;
+
+            _inventory = [];
+            _saveName = '';
+            _saveData = profilenamespace getvariable ["bis_fnc_saveInventory_data",[]];
+
+            {
+                if(_x isEqualType "STRING") then {
+                    if(_x == ctrltext _ctrlTemplateName) exitWith {
+                        _saveName = _x;
+                        _inventory = _saveData select (_foreachindex + 1)
+                    }
+                };
+            } forEach _saveData;
+
+            if(_saveName != '' && count _inventory > 0) then {
+                _savedInventroyData = [];//profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
+                _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment]);
+                profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
+            }
         } else {
+
             _inventory = [];
             if ((_ctrlTemplateValue lbvalue lnbcurselrow _ctrlTemplateValue) >= 0) then {
+
                 _saveName = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue,0];
+                _saveDataCustom = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data",[]];
+                {
+                    if(_x isEqualType "STRING" && {_x == _saveName})exitWith{
+                        _inventory = _saveDataCustom select (_foreachindex + 1)
+                    };
+                } forEach _saveDataCustom;
+
+                if(count _inventory == 0) then {
                 _saveData = profilenamespace getvariable ["bis_fnc_saveInventory_data",[]];
                 {
                     if(_x isEqualType "STRING" && {_x == _saveName})exitWith{
                         _inventory = _saveData select (_foreachindex + 1)
-                    };
-                } forEach _saveData;
+                        }
+                    } forEach _saveData
+                }
             };
 
             private _dirtyAddedItemsArray = (_inventory) call _fnc_arrayFlatten;
@@ -1501,7 +1555,7 @@ switch _mode do {
                     if(_x != "") then {
 
                         if(["_Loaded", (_x)] call BIS_fnc_inString) then {
-                            _x = [_x, "_Loaded", ""] call _stringReplace;
+                            _x = [_x, "_Loaded", ""] call _fnc_stringReplace;
                             _dirtyAddedItemsArray set [_forEachIndex, _x]
                         };
 
@@ -1517,7 +1571,7 @@ switch _mode do {
                     if(_x != "") then {
 
                         if(["_loaded", (toLower _x)] call BIS_fnc_inString) then {
-                            _x = [toLower _x, "_loaded", ""] call _stringReplace;
+                            _x = [toLower _x, "_loaded", ""] call _fnc_stringReplace;
                             _dirtyAddedItemsArray set [_forEachIndex, _x]
                         };
 
@@ -1528,9 +1582,7 @@ switch _mode do {
                 }
             } forEach _dirtyRemovedItemsArray;
 
-            diag_log format ['fn_shop.sqf: _addedItems - %1', _addedItems];
-            diag_log format ['fn_shop.sqf: before _removedItems - %1', missionnamespace getVariable "WF_start_player_loadout"];
-            diag_log format ['fn_shop.sqf: _removedItems - %1', _removedItems];
+            missionnamespace setVariable ["WF_loaded_inventory", _inventory];
 
             ["costChange",[_display,_addedItems,+1]] call SELF;
             ["costChange",[_display,_removedItems,-1]] call SELF;
@@ -1557,7 +1609,7 @@ switch _mode do {
 
         if(count _changedItems > 0) then {
             if(["_Loaded", (_changedItems # 0)] call BIS_fnc_inString) then {
-                _changedItems set [0, [_changedItems # 0, "_Loaded", ""] call _stringReplace]
+                _changedItems set [0, [_changedItems # 0, "_Loaded", ""] call _fnc_stringReplace]
             }
         };
 
