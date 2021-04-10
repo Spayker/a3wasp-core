@@ -21,15 +21,17 @@ if(_isHQ) then {
         if(WF_C_BASE_ALLOW_TEAM_DAMMAGE <= 0 && ((side _causedBy) == (_unit getVariable "wf_side"))) then {
             _unit setDammage ((getDammage _unit) - _damage)
         } else {
-            if(!hasInterface && !isDedicated)then{
-                [_unit] call WFHC_FNC_BuildingDamaged;
-
-                if!(alive _unit) then {
-                    [_unit, _causedBy] call WFHC_FNC_OnHQKilled
+            if(isHeadLessClient)then{
+                [_unit] call WFHC_FNC_BuildingDamaged
                 }
             }
-        }
+    }];
 
+    _vehicle addMPEventHandler ["MPKilled", {
+    	params ["_unit", "_killer", "_instigator", "_useEffects"];
+    	if(isHeadLessClient)then{
+            [_unit, _killer] call WFHC_FNC_OnHQKilled
+        }
     }];
 
 	_logik = (_side) Call WFCO_FNC_GetSideLogic;
