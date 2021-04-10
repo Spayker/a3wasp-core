@@ -62,7 +62,7 @@ _defenseLocations = [];
 
     [_town,_camps,_townStartSV, _townMaxSV, _townSpecialities, _townRange, _townServices] spawn {
         params ["_town", "_camps","_townStartSV", "_townMaxSV", "_townSpecialities", "_townRange", "_townServices"];
-        if (isNil {_town getVariable "sideID"}) then {_town setVariable ["sideID",WF_DEFENDER_ID,true]};
+        if (isNil {_town getVariable "sideID"}) then {_town setVariable ["sideID", WF_C_CIV_ID, true]};
         if (count _townSpecialities > 0) then {
             _town setVariable ["supplyValue",_townMaxSV,true]
         } else {
