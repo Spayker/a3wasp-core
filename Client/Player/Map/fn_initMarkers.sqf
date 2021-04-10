@@ -35,13 +35,12 @@
 
     //--- Determine the coloration method.
     _townColor = missionNamespace getVariable "WF_C_CIV_COLOR";
+    _townSide = (_townSideId) call WFCO_FNC_GetSideFromID;
 
-        if (_townSideId == WF_Client_SideID) then {
+    if (_townSide in WF_FRIENDLY_SIDES) then {
             _townColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR",_townSide]);
         } else {
-            if (WF_Client_SideJoined == WF_DEFENDER) then {
                 _townColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-            }
     };
 
 	_townMarker setMarkerColorLocal _townColor;
@@ -54,7 +53,7 @@
 		
 		// --- Determine the coloration method.
 		_campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-		if (_campSideId == WF_Client_SideID) then {
+		if (_campSide in WF_FRIENDLY_SIDES) then {
                 _campColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR", _campSide])
 		};
 
