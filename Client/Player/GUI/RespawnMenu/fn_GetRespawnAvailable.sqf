@@ -3,8 +3,7 @@ private ["_availableSpawn","_base_respawn","_buildings","_checks","_deathLoc","_
 
 _enemySide = sideEnemy;
 _availableSpawn = [];
-_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-_friendlySides = _logic getVariable ["wf_friendlySides", []];
+_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 
 //--- Base.
 {

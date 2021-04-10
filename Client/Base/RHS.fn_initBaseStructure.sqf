@@ -14,9 +14,7 @@ if (local player) then {
     _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 	waitUntil {clientInitComplete};
 
-	_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-	_friendlySides = _logic getVariable ["wf_friendlySides", []];
-	diag_log format ['fn_initBaseStructure.sqf: _friendlySides - %1', _friendlySides];
+	_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 	if !(_side in _friendlySides) exitWith {};
 
 	_marker = Format["BaseMarker%1",buildingMarker];

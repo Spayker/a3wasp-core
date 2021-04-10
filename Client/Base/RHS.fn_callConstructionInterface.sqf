@@ -730,15 +730,12 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 				    && _itemclass isKindOf "StaticWeapon") then {
 						//--Check if defense is special and barracks in area--
 						_buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
-						_closest = ['BARRACKSTYPE',_buildings,
-									WF_C_BASE_DEFENSE_MANNING_RANGE,_preview] call WFCO_FNC_BuildingInRange;
+						_closest = ['BARRACKSTYPE',_buildings, WF_C_BASE_DEFENSE_MANNING_RANGE,_preview] call WFCO_FNC_BuildingInRange;
 
 						if (!alive _closest) then {
 							//--Second check if we have a barracks in WF_C_BASE_DEFENSE_MANNING_RANGE + WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2 (DIAMETER)--
 							//--and any building in this area--
-							_closest = ['BARRACKSTYPE',_buildings,
-									   (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2)),
-									   _preview] call WFCO_FNC_BuildingInRange;
+							_closest = ['BARRACKSTYPE',_buildings, (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2)), _preview] call WFCO_FNC_BuildingInRange;
 							if!(alive _closest && alive([position _preview,_buildings] call WFCO_FNC_GetClosestEntity5)) then {
 								_color = _colorYellow;
 							};

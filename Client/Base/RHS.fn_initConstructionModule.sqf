@@ -100,8 +100,8 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
             _opposite_side pushBack resistance;
         };
 
-        if(_current_side == west)then{
-            _opposite_side pushBack east;
+        if(_current_side == east) then {
+            _opposite_side pushBack west;
             _opposite_side pushBack resistance;
         };
 

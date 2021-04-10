@@ -146,8 +146,7 @@ while {alive (leader WF_Client_Team)} do {
         _westCount = count (missionNamespace getVariable ["WF_PLAYERS_WEST", []]);
         _eastCount = count (missionNamespace getVariable ["WF_PLAYERS_EAST", []]);
         _guerCount = count (missionNamespace getVariable ["WF_PLAYERS_GUER", []]);
-        _logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-        _friendlySides = _logic getVariable ["wf_friendlySides", []];
+        _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 
         if(count _friendlySides == 1) then {
             switch (WF_Client_SideJoined) do {

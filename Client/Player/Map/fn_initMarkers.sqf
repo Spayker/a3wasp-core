@@ -4,11 +4,10 @@
 
 {
 	Private ["_townColor", "_townMarker", "_townSideId"];
-    _logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
 
 	//--- Wait for the sideID to be initialized.
 	waitUntil {!isNil {_x getVariable "sideID"}};
-	waitUntil {count (_logic getVariable ["wf_friendlySides", []]) > 0};
+	waitUntil {count (WF_Client_Logic getVariable ["wf_friendlySides", []]) > 0};
 	_townSideId = _x getVariable "sideID";
 	_townSide = (_townSideId) Call WFCO_FNC_GetSideFromID;
 	_camps = _x getVariable ["camps", []];
@@ -39,7 +38,7 @@
     _townColor = missionNamespace getVariable "WF_C_CIV_COLOR";
     _townSide = (_townSideId) call WFCO_FNC_GetSideFromID;
 
-    _friendlySides = _logic getVariable ["wf_friendlySides", []];
+    _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 
     if (_townSide in _friendlySides) then {
             _townColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR",_townSide]);
@@ -57,8 +56,7 @@
 		
 		// --- Determine the coloration method.
 		_campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-		_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-        _friendlySides = _logic getVariable ["wf_friendlySides", []];
+        _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 		if (_campSide in _friendlySides) then {
                 _campColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR", _campSide])
 		};

@@ -359,9 +359,7 @@ if (time < 30) then {
 } else {
 	waitUntil {!isNil {WF_Client_Logic getVariable "wf_hq"}};
 	waitUntil {!isNil {WF_Client_Logic getVariable "wf_structures"}};
-
-  	_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-    _friendlySides = _logic getVariable ["wf_friendlySides", []];
+    _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 
 	{
         _mhqs = (_x) Call WFCO_FNC_GetSideHQ;

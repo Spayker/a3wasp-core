@@ -33,8 +33,7 @@ _UpLight = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_LIGHT;
 _UpHeavy = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HEAVY;
 _UpAir = ((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_AIR;
 
-_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-_isFirstOutTeam = _logic getVariable ["wf_isFirstOutTeam", false];
+_isFirstOutTeam = WF_Client_Logic getVariable ["wf_isFirstOutTeam", false];
 {
 	_addin = true;
 	_isAdvVehicle = false;

@@ -39,9 +39,8 @@ while {alive player && dialog} do {
 	if (!dialog) exitWith {};
 
 	//--- vote menu
-	_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-    _isFirstOutTeam = _logic getVariable ["wf_isFirstOutTeam", false];
-    _friendlySides = _logic getVariable ["wf_friendlySides", []];
+    _isFirstOutTeam = WF_Client_Logic getVariable ["wf_isFirstOutTeam", false];
+    _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
     if(_isFirstOutTeam) then {
         ctrlEnable [2008, false]
     } else {
