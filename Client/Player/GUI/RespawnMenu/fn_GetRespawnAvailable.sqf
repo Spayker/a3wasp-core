@@ -3,6 +3,8 @@ private ["_availableSpawn","_base_respawn","_buildings","_checks","_deathLoc","_
 
 _enemySide = sideEnemy;
 _availableSpawn = [];
+_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+_friendlySides = _logic getVariable ["wf_friendlySides", []];
 
 //--- Base.
 {
@@ -53,7 +55,8 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") > 0) then {
     if (WF_C_MILITARY_BASE in (_townSpecialities) || WF_C_AIR_BASE in (_townSpecialities)) then {
         _enemySide = [];
 
-            if(count WF_FRIENDLY_SIDES == 1) then {
+
+            if(count _friendlySides == 1) then {
                 if(_friendlySide == west) then {
             _enemySide pushBack east;
             _enemySide pushBack resistance
@@ -70,7 +73,7 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") > 0) then {
                 }
             } else {
                 {
-                    if!(_x in WF_FRIENDLY_SIDES) exitWith {
+                    if!(_x in _friendlySides) exitWith {
                         _enemySide pushBack _x
                     }
                 } forEach WF_PRESENTSIDES
@@ -81,6 +84,6 @@ if ((missionNamespace getVariable "WF_C_RESPAWN_CAMPS_MODE") > 0) then {
         if (_hostiles == 0) then { _availableSpawn pushBackUnique _x }
     }
     } forEach _towns
-} forEach WF_FRIENDLY_SIDES;
+} forEach _friendlySides;
 
 _availableSpawn

@@ -20,9 +20,11 @@ while {!WF_GameOver} do {
     _ccr = missionNamespace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
 		_buildings = [];
+		_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+        _friendlySides = _logic getVariable ["wf_friendlySides", []];
 		{
 		    _buildings = _buildings + ((_x) Call WFCO_FNC_GetSideStructures);
-		} forEach WF_FRIENDLY_SIDES;
+		} forEach _friendlySides;
 
         _purchaseRange = -1;
         _checks = ['COMMANDCENTERTYPE',_buildings,_ccr,player] Call WFCO_FNC_BuildingInRange;

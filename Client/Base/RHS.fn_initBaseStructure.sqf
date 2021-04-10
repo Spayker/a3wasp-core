@@ -13,7 +13,11 @@ if (local player) then {
 	_index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
     _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 	waitUntil {clientInitComplete};
-	if !(_side in WF_FRIENDLY_SIDES) exitWith {};
+
+	_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+	_friendlySides = _logic getVariable ["wf_friendlySides", []];
+	diag_log format ['fn_initBaseStructure.sqf: _friendlySides - %1', _friendlySides];
+	if !(_side in _friendlySides) exitWith {};
 
 	_marker = Format["BaseMarker%1",buildingMarker];
 	buildingMarker = buildingMarker + 1;

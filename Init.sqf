@@ -86,7 +86,7 @@ WF_Parameters_Ready = true; //--- All parameters are set and ready.
 call WFCO_fnc_initCommonConstants;//--- Set the constants and the parameters, skip the params if they're already defined.
 
 if (WF_Debug) then { //--- Debug.
-	missionNamespace setVariable ["WF_C_GAMEPLAY_UPGRADES_CLEARANCE", 7];
+	//missionNamespace setVariable ["WF_C_GAMEPLAY_UPGRADES_CLEARANCE", 7];
 	missionNamespace setVariable ["WF_C_TOWNS_OCCUPATION", 1];
 	missionNamespace setVariable ["WF_C_TOWNS_DEFENDER", 2];
 	missionNamespace setVariable ["WF_C_ECONOMY_SUPPLY_START_EAST", 999999];

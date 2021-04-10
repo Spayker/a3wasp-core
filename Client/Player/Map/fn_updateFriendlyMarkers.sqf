@@ -1,4 +1,4 @@
-params ["_side"];
+params ["_side", ["_shallDropCommanderInfo", false]];
 private ['_winnerSideId', '_town', '_townSideId', '_color', '_townMarker', '_friendlyUnits'];
 
 _sideId = _side Call WFCO_FNC_GetSideID;
@@ -36,4 +36,6 @@ _hqs = (_side) call WFCO_FNC_GetSideHQ;
 _structures = (_side) call WFCO_FNC_GetSideStructures;
 {
     [_x,false,_sideId] call WFCL_fnc_initBaseStructure
-} forEach _structures
+} forEach _structures;
+
+if(_shallDropCommanderInfo) then { commanderTeam = objNull }

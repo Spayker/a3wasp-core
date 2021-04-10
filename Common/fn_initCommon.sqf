@@ -75,9 +75,6 @@ WF_PRESENTSIDES = _presents;
 WF_DEFENDER = resistance;
 WF_DEFENDER_ID = (WF_DEFENDER) Call WFCO_FNC_GetSideID;
 
-//--- friendly side array
-WF_FRIENDLY_SIDES = [];
-
 //--- Import the desired global side variables.
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Gue.sqf";
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Civ.sqf";

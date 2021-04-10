@@ -4,7 +4,9 @@ params ['_unit', '_sideId'];
 waitUntil {!isNil 'WF_UNIT_MARKERS'};
 
 _side = _sideId call WFCO_FNC_GetSideFromID;
-if !(_side in WF_FRIENDLY_SIDES) exitWith {};
+_logic = (_side) Call WFCO_FNC_GetSideLogic;
+_friendlySides = _logic getVariable ["wf_friendlySides", []];
+if !(_side in _friendlySides) exitWith {};
 
 _unit_kind = typeOf _unit;
 _isMan = (_unit isKindOf 'Man');

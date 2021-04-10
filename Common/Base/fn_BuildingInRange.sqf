@@ -3,10 +3,13 @@ private ["_checks","_closest"];
 
 _closest = objNull;
 _checks = [];
+_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+_friendlySides = _logic getVariable ["wf_friendlySides", []];
+
 {
     _side = _x;
     _checks = _checks + [_side,missionNamespace getVariable format ["WF_%1%2",str _side,_buildingType],_buildings] call WFCO_FNC_GetFactories;
-} forEach WF_FRIENDLY_SIDES;
+} forEach _friendlySides;
 
 if (count _checks > 0) then {
 	_closest = [_unit,_checks] Call WFCO_FNC_GetClosestEntity;

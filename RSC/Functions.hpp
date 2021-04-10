@@ -557,7 +557,6 @@ class WF_Common {
         class sortByDistance {};
         class initAirports {};
 		class respawnStartVeh {};
-		class updateFriendlySides {};
     };
 
     class WarfareTown {

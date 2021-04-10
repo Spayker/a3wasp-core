@@ -62,7 +62,9 @@ switch (_type) do {
 		_sideID = _location getVariable "sideID";
 		_side = (_sideID) Call WFCO_FNC_GetSideFromID;
 		if !(isNil '_task') then {
-			if (_side in WF_FRIENDLY_SIDES) then {
+		    _logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+            _friendlySides = _logic getVariable ["wf_friendlySides", []];
+			if (_side in _friendlySides) then {
 				_task setTaskState "Succeeded";
 				_task setSimpleTaskDescription [Format[localize "STR_WF_TaskTown_Complete",_location getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_location getVariable "name"], Format [localize "STR_WF_CHAT_TaskTown_Display",_location getVariable "name"]];
 			} else {

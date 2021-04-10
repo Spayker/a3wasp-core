@@ -38,6 +38,16 @@ _AllButtons = [2000, 2001, 2002, 2003, 2004, 2005, 2007, 2008, 2009, 2011, 2012,
 while {alive player && dialog} do {
 	if (!dialog) exitWith {};
 
+	//--- vote menu
+	_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+    _isFirstOutTeam = _logic getVariable ["wf_isFirstOutTeam", false];
+    _friendlySides = _logic getVariable ["wf_friendlySides", []];
+    if(_isFirstOutTeam) then {
+        ctrlEnable [2008, false]
+    } else {
+        ctrlEnable [2008, true]
+    };
+
 	//--- Build Units.
 	_enable = false;
 	if ((barracksInRange || lightInRange || heavyInRange || aircraftInRange || hangarInRange || depotInRange) && (player == leader WF_Client_Team)) then {_enable = true};
@@ -66,7 +76,10 @@ while {alive player && dialog} do {
 		closeDialog 0;
 		_closestShop = [vehicle player, _gear_field_range] Call WFCL_FNC_GetClosestCamp;
 		if(isNull _closestShop) then {
-		    _buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
+		    _buildings = [];
+		    {
+		        _buildings = _buildings + ((_x) call WFCO_FNC_GetSideStructures)
+		    } forEach _friendlySides;
             _closestShop = ['BARRACKSTYPE', _buildings, _gear_barrack_range, player] call WFCO_FNC_BuildingInRange;
 		};
 

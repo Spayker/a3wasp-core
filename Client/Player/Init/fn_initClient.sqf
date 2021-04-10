@@ -25,33 +25,6 @@ if(count (toArray(_reqAddons)) > 0) then {
 
 WF_Client_SideJoined = side player;
 WF_Client_SideJoinedText = str WF_Client_SideJoined;
-WF_FRIENDLY_SIDES = [WF_Client_SideJoined];
-switch (WF_Client_SideJoined) do {
-    case west: {
-        if((west getFriend east) > 0.6) then {
-            WF_FRIENDLY_SIDES pushBack east
-        };
-        if((west getFriend resistance) > 0.6) then {
-            WF_FRIENDLY_SIDES pushBack resistance
-        }
-    };
-    case east: {
-        if((east getFriend west) > 0.6) then {
-            WF_FRIENDLY_SIDES pushBack west
-        };
-        if((east getFriend resistance) > 0.6) then {
-            WF_FRIENDLY_SIDES pushBack resistance
-        }
-    };
-    case resistance: {
-        if((resistance getFriend west) > 0.6) then {
-            WF_FRIENDLY_SIDES pushBack west
-        };
-        if((resistance getFriend east) > 0.6) then {
-            WF_FRIENDLY_SIDES pushBack east
-        }
-    };
-};
 
 WF_STRCUCTURES_ICONS = true;
 WF_MAXPLAYERS_IN_TEAM = 30;
@@ -387,6 +360,9 @@ if (time < 30) then {
 	waitUntil {!isNil {WF_Client_Logic getVariable "wf_hq"}};
 	waitUntil {!isNil {WF_Client_Logic getVariable "wf_structures"}};
 
+  	_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+    _friendlySides = _logic getVariable ["wf_friendlySides", []];
+
 	{
         _mhqs = (_x) Call WFCO_FNC_GetSideHQ;
     _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
@@ -395,7 +371,7 @@ if (time < 30) then {
         if (count _buildings > 0) exitWith {
             _base = _buildings # 0
         }
-	} forEach WF_FRIENDLY_SIDES
+  	} forEach _friendlySides
 };
 
 ["INITIALIZATION", Format["fn_initClient.sqf: Client spawn location has been determined at [%1].", _base]] Call WFCO_FNC_LogContent;
