@@ -304,6 +304,200 @@ _fnc_getEquipment = {
     ]
 };
 
+_fnc_ArrayToLower = {
+    private ["_array","_index"];
+
+    _array = +_this;
+    _tolower = [];
+
+    {_tolower pushBack (toLower _x)} forEach _array;
+
+    _tolower
+};
+
+_fnc_ArrayDiffers = {
+    private ["_array1", "_array2", "_different", "_item"];
+    _array1 = _this select 0;
+    _array2 = _this select 1;
+
+    _different = false;
+
+    if (count _array1 != count _array2) then {
+    	_different = true;
+    } else {
+    	{
+    		_item = _x;
+    		if (({_x == _item} count _array1) != ({_x == _item} count _array2)) exitWith { _different = true };
+    	} forEach _array1;
+    };
+    _different
+};
+
+_fnc_EquipContainerBackpack = {
+    params ["_unit", "_backpack", "_items"];
+    private ["_added", "_count"];
+
+    if !(backpack _unit isEqualTo _backpack) then { removeBackpack _unit };
+    if (!(_backpack isEqualTo "") && backpack _unit isEqualTo "") then { _unit addBackpack _backpack };
+    if !(backpack _unit isEqualTo "") then { clearAllItemsFromBackpack _unit };
+
+    _added = [];
+    {
+    	_item = _x;
+    	if !(_item isEqualTo "") then {
+    		if !(_item in _added) then {
+    			_added pushBack _item;
+    			_count = {_x isEqualTo _item} count _items;
+
+    			(unitBackPack _unit) addItemCargoGlobal [_item, _count];
+    		};
+    	};
+    } forEach _items;
+};
+
+_fnc_EquipContainerVest = {
+    params ["_unit", "_vest", "_items"];
+    private ["_added", "_count"];
+
+    if !(vest _unit isEqualTo "") then {removeVest _unit};
+    if (!(_vest isEqualTo "") && vest _unit isEqualTo "") then { _unit addVest _vest };
+
+    _added = [];
+    {
+    	_item = _x;
+    	if !(_item isEqualTo "") then {
+    		if !(_item in _added) then {
+    			_added pushBack _item;
+    			_count = {_x isEqualTo _item} count _items;
+
+    			(vestContainer _unit) addItemCargoGlobal [_item, _count];
+    		};
+    	};
+    } forEach _items;
+};
+
+_fnc_EquipContainerUniform = {
+    params ["_unit", "_uniform", "_items"];
+    private ["_added", "_count"];
+
+    if !(uniform _unit isEqualTo "") then {removeUniform _unit};
+    if (!(_uniform isEqualTo "") && uniform _unit isEqualTo "") then { _unit forceAddUniform _uniform };
+
+    _added = [];
+    {
+    	_item = _x;
+    	if !(_item isEqualTo "") then {
+    		if !(_item in _added) then {
+    			_added pushBack _item;
+    			_count = {_x isEqualTo _item} count _items;
+
+    			(uniformContainer _unit) addItemCargoGlobal [_item, _count];
+    		};
+    	};
+    } forEach _items;
+};
+
+_fnc_EquipUnit = {
+    params["_unit", "_gear"];
+
+    //--- ######## [Weapons check-in] ########
+    //--- Primary
+    _new = (_gear select 0) select 0;
+
+    _item = _new select 0;
+
+    _accessories = (_new select 1) call _fnc_ArrayToLower;
+    _magazines = _new select 2;
+
+    if (primaryWeapon _unit != _item && primaryWeapon _unit != "") then {_unit removeWeapon (primaryWeapon _unit)};
+    if (primaryWeapon _unit != _item && _item != "") then {_unit addWeapon _item};
+    if (_item != "") then {
+
+        {_unit removeMagazine _x} forEach magazines _unit;
+        _unit removeWeapon _item;
+        {
+            _unit addMagazine _x;
+        }foreach _magazines;
+        _unit addWeapon _item;
+    	_accessories_current = (primaryWeaponItems _unit) call _fnc_ArrayToLower;
+    	{if (!(_x in _accessories) && (_x != "")) then {_unit removePrimaryWeaponItem _x}} forEach _accessories_current;
+    	{if (!(_x in _accessories_current) && (_x != "")) then {_unit addPrimaryWeaponItem _x}} forEach (_accessories + _magazines);
+    };
+
+    //--- Secondary
+    _new = (_gear select 0) select 1;
+    _item = _new select 0;
+    _accessories = (_new select 1) call _fnc_ArrayToLower;
+    _magazines = _new select 2;
+
+    if (secondaryWeapon _unit != _item && secondaryWeapon _unit != "") then {_unit removeWeapon (secondaryWeapon _unit)};
+    if (secondaryWeapon _unit != _item && _item != "") then {_unit addWeapon _item};
+    if (_item != "") then {
+    	_accessories_current = (secondaryWeaponItems _unit) call _fnc_ArrayToLower;
+    	{if (!(_x in _accessories) && (_x != "")) then {_unit removeSecondaryWeaponItem _x}} forEach _accessories_current;
+    	{if (!(_x in _accessories_current) && (_x != "")) then {_unit addSecondaryWeaponItem _x}} forEach (_accessories + _magazines);
+    };
+
+    //--- Handgun
+    _new = (_gear select 0) select 2;
+    _item = _new select 0;
+    _accessories = (_new select 1) call _fnc_ArrayToLower;
+    _magazines = _new select 2;
+
+    if (handgunWeapon _unit != _item && handgunWeapon _unit != "") then {_unit removeWeapon (handgunWeapon _unit)};
+    if (handgunWeapon _unit != _item && _item != "") then {_unit addWeapon _item};
+    if (_item != "") then {
+    	_accessories_current = (handgunItems _unit) call _fnc_ArrayToLower;
+    	{if (!(_x in _accessories) && (_x != "")) then {_unit removeHandgunItem _x}} forEach _accessories_current;
+    	{if (!(_x in _accessories_current) && (_x != "")) then {_unit addHandgunItem _x}} forEach (_accessories + _magazines);
+    };
+
+    //--- Muzzle
+    {
+    	if !(_x isEqualTo "") exitWith {
+    		_muzzles = getArray (configFile >> "CfgWeapons" >> _x >> "muzzles");
+    		if !("this" in _muzzles) then {_unit selectWeapon (_muzzles select 0)} else {_unit selectWeapon _x};
+    	};
+    } forEach [primaryWeapon _unit, handgunWeapon _unit, secondaryWeapon _unit];
+
+    //--- ######## [Equipment check-in] ########
+    _new = _gear select 1;
+
+    //--- Check if the containers are ok
+    if (!((((_gear select 1) select 2) select 0) isEqualTo backpack _unit) || [((_gear select 1) select 2) select 1, backpackItems _unit] call _fnc_ArrayDiffers) then {
+    	[_unit, ((_gear select 1) select 2) select 0, ((_gear select 1) select 2) select 1] call _fnc_EquipContainerBackpack;
+    };
+    if (!((((_gear select 1) select 1) select 0) isEqualTo vest _unit) || [((_gear select 1) select 1) select 1, vestItems _unit] call _fnc_ArrayDiffers) then {
+    	[_unit, ((_gear select 1) select 1) select 0, ((_gear select 1) select 1) select 1] call _fnc_EquipContainerVest;
+    };
+    if (!((((_gear select 1) select 0) select 0) isEqualTo uniform _unit) || [((_gear select 1) select 0) select 1, uniformItems _unit] call _fnc_ArrayDiffers) then {
+    	[_unit, ((_gear select 1) select 0) select 0, ((_gear select 1) select 0) select 1] call _fnc_EquipContainerUniform;
+    };
+
+
+    //--- ######## [Assigned items check-in] ########
+    removeAllAssignedItems _unit; //--- Due to the lack of commands for some of them, we remove everything first aside from goggles and headgear
+    _new = _gear select 2;
+
+    _item = _new select 0;
+    if !(_item isEqualTo headgear _unit) then {removeHeadgear _unit};
+    if !(_item isEqualTo "") then {_unit addHeadgear _item};
+
+    _item = _new select 1;
+    if !(_item isEqualTo goggles _unit) then {removeGoggles _unit};
+    if !(_item isEqualTo "") then {_unit addGoggles _item};
+
+    { if !(_x isEqualTo "") then {_unit linkItem _x} } forEach ([((_gear select 3) select 0) select 0] + ((_gear select 3) select 1));
+
+    //--- Binoculars are special, they can't be linked like the other items.
+    if ((((_gear select 3) select 0) select 1) isEqualType []) then {
+    	if !(((((_gear select 3) select 0) select 1) select 0) isEqualTo "") then {_unit addWeapon ((((_gear select 3) select 0) select 1) select 0)};
+    	if !(((((_gear select 3) select 0) select 1) select 1) isEqualTo "") then {_unit addMagazine ((((_gear select 3) select 0) select 1) select 1)};
+    } else {
+    	if !((((_gear select 3) select 0) select 1) isEqualTo "") then {_unit addWeapon (((_gear select 3) select 0) select 1)};
+    }
+};
+
 switch _mode do {
 	case "postInit": {
 	    [ missionNamespace, "arsenalClosed", {
@@ -355,6 +549,7 @@ switch _mode do {
         _ctrlButtonLoad ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonLoad',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
 
 		_ctrlButtonLoadTemplateOk = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONOK;
+		_ctrlButtonLoadTemplateOk ctrlRemoveAllEventHandlers "buttonclick";
         _ctrlButtonLoadTemplateOk ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonTemplateOk',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
 
         _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
@@ -1518,7 +1713,7 @@ switch _mode do {
             } forEach _saveData;
 
             if(_saveName != '' && count _inventory > 0) then {
-                _savedInventroyData = [];//profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
+                _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
                 _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment]);
                 profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
             }
@@ -1530,8 +1725,8 @@ switch _mode do {
                 _saveName = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue,0];
                 _saveDataCustom = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data",[]];
                 {
-                    if(_x isEqualType "STRING" && {_x == _saveName})exitWith{
-                        _inventory = _saveDataCustom select (_foreachindex + 1)
+                    if((_x # 0) isEqualType "STRING" && {(_x # 0) == _saveName})exitWith{
+                        _inventory = _x # 1
                     };
                 } forEach _saveDataCustom;
 
@@ -1581,9 +1776,10 @@ switch _mode do {
                     }
                 }
             } forEach _dirtyRemovedItemsArray;
+            _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
+            [_center, _inventory] call _fnc_EquipUnit;
 
             missionnamespace setVariable ["WF_loaded_inventory", _inventory];
-
             ["costChange",[_display,_addedItems,+1]] call SELF;
             ["costChange",[_display,_removedItems,-1]] call SELF;
         }

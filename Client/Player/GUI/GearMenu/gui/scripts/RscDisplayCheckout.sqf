@@ -169,10 +169,6 @@ switch _mode do {
 		_displayArsenal closeDisplay 1;
 		["#(argb,8,8,3)color(0,0,0,1)",false,nil,0,[0,0.5]] call bis_fnc_textTiles;
 		["Exit"] call BIS_fnc_arsenal;
-
-        _inventory = missionnamespace getVariable ["WF_loaded_inventory", []];
-        _center setUnitLoadout _inventory;
-        missionnamespace setVariable ["WF_loaded_inventory", []];
 	};
 	case "btnReturn":{
 		params ["_btnReturn"];
