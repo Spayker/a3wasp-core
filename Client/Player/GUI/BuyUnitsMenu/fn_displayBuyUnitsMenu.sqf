@@ -370,8 +370,14 @@ while {alive player && dialog} do {
 			};
 			//--- Factories
 			default {
-				_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
-				_factories = [WF_Client_SideJoined,missionNamespace getVariable Format ['WF_%1%2TYPE',WF_Client_SideJoinedText,_type],_buildings] Call WFCO_FNC_GetFactories;
+				_factories = [];
+				_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
+                _friendlySides = _logic getVariable ["wf_friendlySides", []];
+				{
+                    _buildings = (_x) Call WFCO_FNC_GetSideStructures;
+                    _factories = _factories + ([_x,missionNamespace getVariable Format ['WF_%1%2TYPE',str _x,_type],_buildings] Call WFCO_FNC_GetFactories);
+				} forEach _friendlySides;
+
 				_sorted = [vehicle player,_factories] Call WFCO_FNC_SortByDistance;
 				_closest = _sorted select 0;
 				_countAlive = count _factories;
