@@ -44,7 +44,6 @@
             }
     };
 
-
 	_townMarker setMarkerColorLocal _townColor;
 
 	//--- The town may have some camps.
@@ -54,17 +53,9 @@
 		_campSide = (_campSideId) Call WFCO_FNC_GetSideFromID;
 		
 		// --- Determine the coloration method.
-		_campColor = missionNamespace getVariable "WF_C_UNKNOWN_COLOR";
-		if(_campSide == resistance) then {
-		        _campColor = missionNamespace getVariable "WF_C_GUER_COLOR";
-		    } else {
+		_campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
 		if (_campSideId == WF_Client_SideID) then {
                 _campColor = missionNamespace getVariable (Format ["WF_C_%1_COLOR", _campSide])
-            } else {
-                if (WF_Client_SideJoined == WF_DEFENDER) then {
-                    _campColor = missionNamespace getVariable "WF_C_CIV_COLOR";
-                }
-            }
 		};
 
 		//--- Place a marker over the logic.
