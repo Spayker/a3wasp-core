@@ -28,7 +28,12 @@ private _fnc_arrayFlatten = {
         {
             if (typeName _x isEqualTo "ARRAY") then [
                 {_x call _fnc; false},
-                {_res pushBack _x; false}
+                {
+                    if(_x != "") then {
+                        _res pushBack _x;
+                        false
+                    };
+                }
             ];
         } count _this;
     };
@@ -1657,7 +1662,44 @@ switch _mode do {
 		uinamespace setvariable ["ter_fnc_shop_sort",_sortValues];
 	};
     case "buttonLoad":{
-        missionnamespace setVariable ["WF_start_player_loadout", call _fnc_getEquipment ]
+        missionnamespace setVariable ["WF_start_player_loadout", call _fnc_getEquipment ];
+        private _display = _this select 0;
+
+        _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
+        _ctrlTemplate ctrlsetfade 0;
+        _ctrlTemplate ctrlcommit 0;
+        _ctrlTemplate ctrlenable true;
+
+        _ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
+        _ctrlMouseBlock ctrlenable true;
+        ctrlsetfocus _ctrlMouseBlock;
+
+        {
+            (_display displayctrl _x) ctrlsettext localize "str_disp_int_load";
+        } foreach [IDC_RSCDISPLAYARSENAL_TEMPLATE_TITLE,IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONOK];
+        {
+            _ctrl = _display displayctrl _x;
+            _ctrl ctrlshow false;
+            _ctrl ctrlenable false;
+        } foreach [IDC_RSCDISPLAYARSENAL_TEMPLATE_TEXTNAME,IDC_RSCDISPLAYARSENAL_TEMPLATE_EDITNAME];
+
+        _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
+        if (lnbcurselrow _ctrlTemplateValue < 0) then {_ctrlTemplateValue lnbsetcurselrow 0;};
+        ctrlsetfocus _ctrlTemplateValue;
+ 
+        _saveDataCustom = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data",[]];
+        _inventory = [];
+        {
+            _shallRemoveTemplate = false;
+            _inventory = (_x # 1) call _fnc_arrayFlatten;
+            {
+                if !(tolower _x in (TER_VASS_shopObject getVariable ["TER_VASS_cargo",[]])) exitWith {
+                    _shallRemoveTemplate = true
+                }
+            } forEach _inventory;
+
+            if(_shallRemoveTemplate) then { _ctrlTemplateValue lnbDeleteRow _forEachIndex }
+        } forEach _saveDataCustom
             };
     case "buttonDelete":{
         _display = _this select 0;
@@ -1764,9 +1806,9 @@ switch _mode do {
                 if(typeName _x == "STRING") then {
                     if(_x != "") then {
 
-                        if(["_loaded", (toLower _x)] call BIS_fnc_inString) then {
-                            _x = [toLower _x, "_loaded", ""] call _fnc_stringReplace;
-                            _dirtyAddedItemsArray set [_forEachIndex, _x]
+                        if(["_Loaded", (toLower _x)] call BIS_fnc_inString) then {
+                            _x = [toLower _x, "_Loaded", ""] call _fnc_stringReplace;
+                            _dirtyRemovedItemsArray set [_forEachIndex, _x]
                         };
 
                         _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
