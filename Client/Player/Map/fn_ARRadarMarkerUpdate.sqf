@@ -7,7 +7,7 @@ if(_side == side player)then{
 	_radar_range = missionNamespace getVariable "WF_C_STRUCTURES_ANTIARTYRADAR_DETECTION";
 
 	_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
-	_artyRadarInRange = !(isNull (['ArtyRadarTYPE',_buildings,_radar_range,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange));
+	_artyRadarInRange = !(isNull (['ArtyRadarTYPE',_buildings,_radar_range,player] Call WFCO_FNC_BuildingInRange));
 
 	if (antiArtyRadarInRange) then {
 		if (_artyRadarInRange) then {

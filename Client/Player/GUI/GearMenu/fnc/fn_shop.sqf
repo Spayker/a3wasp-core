@@ -570,7 +570,6 @@ switch _mode do {
 		_wBtn =  2 * ((safezoneW - 1 * (((safezoneW / safezoneH) min 1.2) / 40)) * 0.1) - 0.1 * (((safezoneW / safezoneH) min 1.2) / 40);
 		_ctrlButtonInterface ctrlSetPositionW _wBtn;
 		_ctrlButtonInterface ctrlCommit 0;
-		// _ctrlButtonInterface ctrlShow false;
 		//--- New checkout controlsgroup
 		_ctrlCheckout = _display ctrlCreate ["TER_VASS_RscCheckout", IDC_RSCDISPLAYCHECKOUT_CHECKOUT];
 		_ctrlCheckout ctrlEnable false;

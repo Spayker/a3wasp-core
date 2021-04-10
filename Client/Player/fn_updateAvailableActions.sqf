@@ -17,13 +17,15 @@ _typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_
 _commandCenter = objNull;
 
 while {!WF_GameOver} do {
-
     _ccr = missionNamespace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
-		_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
+		_buildings = [];
+		{
+		    _buildings = _buildings + ((_x) Call WFCO_FNC_GetSideStructures);
+		} forEach WF_FRIENDLY_SIDES;
 
         _purchaseRange = -1;
-        _checks = ['COMMANDCENTERTYPE',_buildings,_ccr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange;
+        _checks = ['COMMANDCENTERTYPE',_buildings,_ccr,player] Call WFCO_FNC_BuildingInRange;
         _commandCenter = _checks;
         commandInRange = if (isNull _checks) then {false} else {true};
 
@@ -105,8 +107,8 @@ while {!WF_GameOver} do {
 		};
         };
 
-		barracksInRange = if (isNull (['BARRACKSTYPE',_buildings,_purchaseRange,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
-		gearInRange = if (isNull (['BARRACKSTYPE',_buildings,_pgr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
+		barracksInRange = if (isNull (['BARRACKSTYPE',_buildings,_purchaseRange,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
+		gearInRange = if (isNull (['BARRACKSTYPE',_buildings,_pgr,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
 		if !(gearInRange) then {
 			if (_buygearfrom in [1,2,3]) then {
 				_nObject = objNull;
@@ -119,10 +121,10 @@ while {!WF_GameOver} do {
 			};
 		};
 
-		lightInRange = if (isNull (['LIGHTTYPE',_buildings,_purchaseRange,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
-		heavyInRange = if (isNull (['HEAVYTYPE',_buildings,_purchaseRange,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
-		aircraftInRange = if (isNull (['AIRCRAFTTYPE',_buildings,_purchaseRange,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
-		serviceInRange = if (isNull (['SERVICEPOINTTYPE',_buildings,_spr,WF_Client_SideJoined,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
+		lightInRange = if (isNull (['LIGHTTYPE',_buildings,_purchaseRange,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
+		heavyInRange = if (isNull (['HEAVYTYPE',_buildings,_purchaseRange,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
+		aircraftInRange = if (isNull (['AIRCRAFTTYPE',_buildings,_purchaseRange,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
+		serviceInRange = if (isNull (['SERVICEPOINTTYPE',_buildings,_spr,player] Call WFCO_FNC_BuildingInRange)) then {false} else {true};
 
 		if !(serviceInRange) then {
 			_checks = (getPos player) nearEntities[_typeRepair,_rptr];

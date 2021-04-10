@@ -460,7 +460,7 @@ waitUntil {townInit};
 
 /* JIP System, initialize the camps and towns properly. */
 [] Spawn {
-	sleep 2;
+	sleep 5;
 	["INITIALIZATION", "fn_initClient.sqf: Updating JIP Markers."] Call WFCO_FNC_LogContent;
 	Call WFCL_fnc_initMarkers;
 };

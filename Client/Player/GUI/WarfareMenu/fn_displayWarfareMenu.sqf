@@ -67,7 +67,7 @@ while {alive player && dialog} do {
 		_closestShop = [vehicle player, _gear_field_range] Call WFCL_FNC_GetClosestCamp;
 		if(isNull _closestShop) then {
 		    _buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
-            _closestShop = ['BARRACKSTYPE', _buildings, _gear_barrack_range, WF_Client_SideJoined, player] call WFCO_FNC_BuildingInRange;
+            _closestShop = ['BARRACKSTYPE', _buildings, _gear_barrack_range, player] call WFCO_FNC_BuildingInRange;
 		};
 
         _items = [];
