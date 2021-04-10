@@ -551,6 +551,7 @@ switch _mode do {
 		} forEach [IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONEXPORT, IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONIMPORT, IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONRANDOM];
 
 		_ctrlButtonLoad = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONLOAD;
+		_ctrlButtonLoad ctrlRemoveAllEventHandlers "buttonclick";
         _ctrlButtonLoad ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonLoad',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
 
 		_ctrlButtonLoadTemplateOk = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONOK;
