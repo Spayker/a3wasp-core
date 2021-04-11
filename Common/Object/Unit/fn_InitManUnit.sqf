@@ -16,39 +16,21 @@ _side = _sideId call WFCO_FNC_GetSideFromID;
 if(isNil '_group') then { _group = createGroup [_side, true]; };
 
 //--Set unit skill according config core--
-if(_sideId == 2) then {
-    _skill = missionNamespace getVariable ["WF_C_TOWNS_DEFENDER_AIM_SKILL", 2];
-    _skill = _skill / 10;    
-    _unit setSkill ["aimingShake", _skill];
-	
-	if(_skill < 0.5) then {
-		_unit setSkill ["aimingAccuracy", _skill - 0.1];
-		_unit setSkill ["aimingSpeed", _skill - 0.4];
-		_unit setSkill ["spotTime", _skill - 0.1];
-		_unit setSkill ["spotDistance", _skill - 0.1];
-	} else {
-		_unit setSkill ["aimingAccuracy", _skill];
-		_unit setSkill ["aimingSpeed", _skill];
-		_unit setSkill ["spotTime", _skill];
-		_unit setSkill ["spotDistance", _skill];
-	};
-} else {
-    _upgrades = (_side) Call WFCO_FNC_GetSideUpgrades;
-    _current_infantry_upgrade = _upgrades select WF_UP_BARRACKS;
-    _skill = 0.3;
-    switch (_current_infantry_upgrade) do {
-        case 1: { _skill = 0.65 };
-        case 2: { _skill = 0.85 };
-        case 3: { _skill = 1 };
-    };
-    _unit setSkill ["aimingShake", _skill];
-    _unit setSkill ["aimingAccuracy", _skill];
-    _unit setSkill ["aimingSpeed", _skill];
-    _unit setSkill ["spotTime", _skill];
-    _unit setSkill ["spotDistance", _skill];
-    _unit setSkill ["commanding", _skill];
-    _unit setSkill ["courage", 1]
+_upgrades = (_side) Call WFCO_FNC_GetSideUpgrades;
+_current_infantry_upgrade = _upgrades select WF_UP_BARRACKS;
+_skill = 0.3;
+switch (_current_infantry_upgrade) do {
+   case 1: { _skill = 0.65 };
+   case 2: { _skill = 0.85 };
+   case 3: { _skill = 1 };
 };
+_unit setSkill ["aimingShake", _skill];
+_unit setSkill ["aimingAccuracy", _skill];
+_unit setSkill ["aimingSpeed", _skill];
+_unit setSkill ["spotTime", _skill];
+_unit setSkill ["spotDistance", _skill];
+_unit setSkill ["commanding", _skill];
+_unit setSkill ["courage", 1];
 
 if ((missionNamespace getVariable "WF_C_GAMEPLAY_FATIGUE_ENABLED") == 1) then {
     _unit enableFatigue true;
