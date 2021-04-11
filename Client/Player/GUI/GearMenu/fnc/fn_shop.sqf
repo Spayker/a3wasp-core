@@ -517,7 +517,82 @@ switch _mode do {
 			_file = format["Client\Player\GUI\GearMenu\fnc\fn_%1.sqf", configName _x];
 			uiNamespace setVariable [_fnc, compile preprocessFileLineNumbers _file];
 		} forEach ("true" configClasses (missionConfigFile >> "CfgFunctions" >> "TER" >> "VASS"));
-		["Preload"] call BIS_fnc_arsenal;
+
+		// ["Preload"] call BIS_fnc_arsenal;
+		private ["_data"];
+        INITTYPES
+        _data = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+
+        _configArray = (
+            ("isclass _x" configclasses (configfile >> "cfgweapons")) +
+            ("isclass _x" configclasses (configfile >> "cfgvehicles")) +
+            ("isclass _x" configclasses (configfile >> "cfgglasses"))
+        );
+
+        {
+            _class = _x;
+            _className = configname _x;
+            _scope = if (isnumber (_class >> "scopeArsenal")) then {getnumber (_class >> "scopeArsenal")} else {getnumber (_class >> "scope")};
+            _isBase = if (isarray (_x >> "muzzles")) then {(_className call bis_fnc_baseWeapon == _className)} else {true}; //-- Check if base weapon (true for all entity types)
+            if (_scope == 2 && {gettext (_class >> "model") != ""} && _isBase) then {
+                private ["_weaponType","_weaponTypeCategory"];
+                _weaponType = (_className call bis_fnc_itemType);
+                _weaponTypeCategory = _weaponType select 0;
+                if (_weaponTypeCategory != "VehicleWeapon") then {
+                    private ["_weaponTypeSpecific","_weaponTypeID"];
+                    _weaponTypeSpecific = _weaponType select 1;
+                    _weaponTypeID = -1;
+                    {
+                        if (_weaponTypeSpecific in _x) exitwith {_weaponTypeID = _foreachindex;};
+                    } foreach _types;
+                    if (_weaponTypeID >= 0) then {
+                        private ["_items"];
+                        _items = _data select _weaponTypeID;
+                        _items set [count _items,configname _class];
+                    };
+                };
+            };
+        } foreach _configArray;
+
+        //--- Magazines - Put and Throw
+        _magazinesThrowPut = [];
+        {
+            private ["_weapons","_tab","_magazines"];
+            _weapon = _x select 0;
+            _tab = _x select 1;
+            _magazines = [];
+            {
+                {
+                    private ["_mag"];
+                    _mag = _x;
+                    if ({_x == _mag} count _magazines == 0) then {
+                        private ["_cfgMag"];
+                        _magazines set [count _magazines,_mag];
+                        _cfgMag = configfile >> "cfgmagazines" >> _mag;
+                        if (getnumber (_cfgMag >> "scope") == 2 || getnumber (_cfgMag >> "scopeArsenal") == 2) then {
+                            private ["_items"];
+                            _items = _data select _tab;
+                            _items pushback configname _cfgMag;
+                            _magazinesThrowPut pushback tolower _mag;
+                        };
+                    };
+                } foreach getarray (_x >> "magazines");
+            } foreach ("isclass _x" configclasses (configfile >> "cfgweapons" >> _weapon));
+        } foreach [
+            ["throw",IDC_RSCDISPLAYARSENAL_TAB_CARGOTHROW],
+            ["put",IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT]
+        ];
+
+        //--- Magazines
+        {
+            if (getnumber (_x >> "type") > 0 && {(getnumber (_x >> "scope") == 2 || getnumber (_x >> "scopeArsenal") == 2) && {!(tolower configname _x in _magazinesThrowPut)}}) then {
+                private _items = _data select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL;
+                _items pushback configname _x;
+            };
+        } foreach ("isclass _x" configclasses (configfile >> "cfgmagazines"));
+
+        missionnamespace setvariable ["bis_fnc_arsenal_data",_data];
+
 		[ missionNamespace, "arsenalOpened", {
 			["arsenalOpened",_this] call SELF;
 		}] call BIS_fnc_addScriptedEventHandler;
@@ -548,7 +623,7 @@ switch _mode do {
 			_btnDisable ctrlShow false;
 			_btnDisable ctrlSetFade 1;
 			_btnDisable ctrlCommit 0;
-		} forEach [IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONEXPORT, IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONIMPORT, IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONRANDOM];
+		} forEach [IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONIMPORT, IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONRANDOM];
 
 		_ctrlButtonLoad = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONLOAD;
 		_ctrlButtonLoad ctrlRemoveAllEventHandlers "buttonclick";
@@ -561,6 +636,11 @@ switch _mode do {
         _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
         _ctrlTemplateButtonDelete ctrlRemoveAllEventHandlers "buttonclick";
         _ctrlTemplateButtonDelete ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonDelete',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
+
+        _ctrlButtonExport = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONEXPORT;
+        _ctrlButtonExport ctrlRemoveAllEventHandlers "buttonclick";
+        _ctrlButtonExport ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonReload',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
+        _ctrlButtonExport ctrlSetText "Reload";
 
 		//--- New "BUY" button
 		_ctrlButtonInterface = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONINTERFACE;
@@ -1663,8 +1743,58 @@ switch _mode do {
 		uinamespace setvariable ["ter_fnc_shop_sort",_sortValues];
 	};
     case "buttonLoad":{
+        // profileNamespace setVariable ["bis_fnc_saveInventory_data", [] ];
+        // profileNamespace setVariable ["wf_bis_fnc_saveInventory_data", [] ];
+
         missionnamespace setVariable ["WF_start_player_loadout", call _fnc_getEquipment ];
         private _display = _this select 0;
+
+        _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
+        lnbclear _ctrlTemplateValue;
+        _data = profilenamespace getvariable ["bis_fnc_saveInventory_data",[]];
+        _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
+
+        for "_i" from 0 to (count _data - 1) step 2 do {
+            _name = _data select _i;
+            _inventory = _data select (_i + 1);
+
+            _inventoryWeapons = [
+                (_inventory select 5), //--- Binocular
+                (_inventory select 6 select 0), //--- Primary weapon
+                (_inventory select 7 select 0), //--- Secondary weapon
+                (_inventory select 8 select 0) //--- Handgun
+            ] - [""];
+            _inventoryMagazines = (
+                (_inventory select 0 select 1) + //--- Uniform
+                (_inventory select 1 select 1) + //--- Vest
+                (_inventory select 2 select 1) //--- Backpack items
+            ) - [""];
+            _inventoryItems = (
+                [_inventory select 0 select 0] + (_inventory select 0 select 1) + //--- Uniform
+                [_inventory select 1 select 0] + (_inventory select 1 select 1) + //--- Vest
+                (_inventory select 2 select 1) + //--- Backpack items
+                [_inventory select 3] + //--- Headgear
+                [_inventory select 4] + //--- Goggles
+                (_inventory select 6 select 1) + //--- Primary weapon items
+                (_inventory select 7 select 1) + //--- Secondary weapon items
+                (_inventory select 8 select 1) + //--- Handgun items
+                (_inventory select 9) //--- Assigned items
+            ) - [""];
+            _inventoryBackpacks = [_inventory select 2 select 0] - [""];
+
+
+            _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,2],gettext (configfile >> "cfgweapons" >> (_inventory select 7 select 0) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,3],gettext (configfile >> "cfgweapons" >> (_inventory select 8 select 0) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,4],gettext (configfile >> "cfgweapons" >> (_inventory select 0 select 0) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,5],gettext (configfile >> "cfgweapons" >> (_inventory select 1 select 0) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,6],gettext (configfile >> "cfgvehicles" >> (_inventory select 2 select 0) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
+
+        };
+        _ctrlTemplateValue lnbsort [0,false];
 
         _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
         _ctrlTemplate ctrlsetfade 0;
@@ -1698,13 +1828,56 @@ switch _mode do {
                     _shallRemoveTemplate = true
                 }
             } forEach _inventory;
-
-            if(_shallRemoveTemplate) then { _ctrlTemplateValue lnbDeleteRow _forEachIndex }
         } forEach _saveDataCustom
+    };
+    case "buttonReload":{
+        _display = _this select 0;
+        _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
+        private _dirtyAddedItemsArray = (missionnamespace getVariable "WF_loaded_inventory") call _fnc_arrayFlatten;
+        private _dirtyRemovedItemsArray = (call _fnc_getEquipment) call _fnc_arrayFlatten;
+        private _addedItems = [];
+        private _removedItems = [];
+
+        {
+            if(typeName _x == "STRING") then {
+                if(_x != "") then {
+                    if(["_Loaded", (_x)] call BIS_fnc_inString) then {
+                        _x = [_x, "_Loaded", ""] call _fnc_stringReplace;
+                        _dirtyAddedItemsArray set [_forEachIndex, _x]
+                    };
+
+                    _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
+                    _itemValues params ["", "_itemCost", "_itemAmount"];
+                    if(_itemCost > 0) then { _addedItems pushBack _x }
+                }
+            }
+        } forEach _dirtyAddedItemsArray;
+
+        {
+            if(typeName _x == "STRING") then {
+                if(_x != "") then {
+
+                    if(["_loaded", (toLower _x)] call BIS_fnc_inString) then {
+                        _x = [toLower _x, "_loaded", ""] call _fnc_stringReplace;
+                        _dirtyRemovedItemsArray set [_forEachIndex, _x]
+                    };
+
+                    _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
+                    _itemValues params ["", "_itemCost", "_itemAmount"];
+                    if(_itemCost > 0) then { _removedItems pushBack _x }
+                }
+            }
+        } forEach _dirtyRemovedItemsArray;
+
+        [_center, missionnamespace getVariable "WF_loaded_inventory"] call _fnc_EquipUnit;
+        missionnamespace setVariable ["WF_loaded_inventory", call _fnc_getEquipment];
+        ["costChange",[_display, _addedItems, +1]] call SELF;
+        ["costChange",[_display, _removedItems, -1]] call SELF;
             };
     case "buttonDelete":{
         _display = _this select 0;
         _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
+        _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
         _cursel = lnbcurselrow _ctrlTemplateValue;
         _name = _ctrlTemplateValue lnbtext [_cursel,0];
         [_center,[profilenamespace,_name],nil,true] call bis_fnc_saveInventory;
@@ -1727,6 +1900,7 @@ switch _mode do {
 		_display = _this select 0;
 		_ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
 		_ctrlTemplateName = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_EDITNAME;
+        _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
 
         if (ctrlenabled _ctrlTemplateName) then {
 
@@ -1758,7 +1932,13 @@ switch _mode do {
                 _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
                 _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment]);
                 profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
-            }
+            };
+            _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
+            _ctrlTemplate ctrlsetfade 1;
+            _ctrlTemplate ctrlcommit 0;
+            _ctrlTemplate ctrlenable false;
+            _ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
+            _ctrlMouseBlock ctrlenable false;
         } else {
 
             _inventory = [];
@@ -1818,10 +1998,7 @@ switch _mode do {
                     }
                 }
             } forEach _dirtyRemovedItemsArray;
-            _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
             [_center, _inventory] call _fnc_EquipUnit;
-
-            missionnamespace setVariable ["WF_loaded_inventory", _inventory];
             ["costChange",[_display,_addedItems,+1]] call SELF;
             ["costChange",[_display,_removedItems,-1]] call SELF;
         }

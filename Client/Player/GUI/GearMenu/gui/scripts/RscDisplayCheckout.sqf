@@ -133,38 +133,11 @@ switch _mode do {
 		_cost = _displayArsenal getVariable "shop_cost";
 		//--- Update player's money
 		with missionnamespace do {["setMoney",[_center, -_cost]] call TER_fnc_VASShandler};
-		//--- Update shop inventory
-		_cargo = TER_VASS_shopObject getVariable ["TER_VASS_cargo",[]];
-		_cargo = [0,-1] + _cargo;// if an item is not in the cargo these values will be used
-		private _resetArray = [];
-		{
-			_x params ["_item", "_amount"];
-			_findInd = _cargo findIf {_x isEqualTo _item};
-			_indAmount = _findInd +2;// Amount of the item comes 2 places behind class
-			if !((_cargo select _indAmount) isEqualTo true) then {// Only modify finite items (true indicates inifite ones)
-				_newAmount = (_cargo select _indAmount) -_amount;
-				_itemPrice = [TER_VASS_shopObject, _item, 1] call TER_fnc_getItemValues;
-				_resetArray append [_item, _itemPrice, _amount];
-				if (_newAmount <= 0) then {// Delete empty items
-					for "_i" from 0 to 2 do {_cargo deleteAt _findInd};
-				} else {// Add/remove sold item count
-					_cargo set [_indAmount, _newAmount];
-				};
-			};
-		} forEach TER_VASS_changedItems;// Format: ["class", change]
-		if (TER_VASS_shopObject getVariable ["TER_VASS_refresh",-1] > 0) then {
-			// Reset inventory after certain time
-			[TER_VASS_shopObject, _resetArray] spawn TER_fnc_resetTimer;
-		};
-		for "_i" from 0 to 1 do {_cargo deleteAt 0};//remove this script's default values
 		[TER_VASS_shopObject, _cargo, 2] call TER_fnc_addShopCargo;
 		TER_VASS_shopObject setVariable ["TER_VASS_cargo", _cargo, TER_VASS_shopObject getVariable ["TER_VASS_shared", true]];
         hudOn = true;
         shallResetDisplay = true;
         ctrlSetText[13020, "HUD ON"];
-
-
-
 		//--- Exit arsenal
 		_displayArsenal closeDisplay 1;
 		["#(argb,8,8,3)color(0,0,0,1)",false,nil,0,[0,0.5]] call bis_fnc_textTiles;

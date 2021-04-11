@@ -468,6 +468,7 @@ _roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier
 [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
 WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
 WF_P_gearPurchased = false;
+missionnamespace setVariable ["WF_loaded_inventory", WF_P_CurrentGear];
 
 /* Vote System, define whether a vote is already running or not */
 ["INITIALIZATION", "fn_initClient.sqf: Vote system is initialized."] Call WFCO_FNC_LogContent;
@@ -574,7 +575,6 @@ WF_C_MAP_MARKER_HANDLER = {
 			} foreach _iconsToBeDisplayed;
 
 			if(_shallAdd) then {
-
                     switch (_colorStr) do {
                         case 'ColorEAST':{ _color = [0.5,0,0,1] };
                         case 'ColorWEST':{ _color = [0,0.3,0.6,1] };
@@ -583,8 +583,6 @@ WF_C_MAP_MARKER_HANDLER = {
                         case 'ColorCIV':{ _color = [0.4,0,0.5,1]  };
                         case 'ColorWhite':{ _color = [1,1,1,1]   };
                     };
-
-
 				_iconsToBeDisplayed pushBack [_iconType, _color, vehicle _unit, _text]
             }
             }

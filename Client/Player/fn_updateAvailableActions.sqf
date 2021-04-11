@@ -155,5 +155,5 @@ while {!WF_GameOver} do {
 	};
 
 	_lastUpdate = time;
-	sleep 5;
+	sleep 0.1;
 };

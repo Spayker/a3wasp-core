@@ -752,8 +752,7 @@ while {alive player && dialog} do {
 	if (_lastCheck > 2 && _type != 'Depot' && _type != 'Airport') then {
 		_lastCheck = 0;
 		_factories = [];
-		_logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-        _friendlySides = _logic getVariable ["wf_friendlySides", []];
+        _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 		{
             _buildings = (_x) Call WFCO_FNC_GetSideStructures;
             _factories = _factories + [_x,missionNamespace getVariable Format ['WF_%1%2TYPE',str _x,_type],_buildings] Call WFCO_FNC_GetFactories;

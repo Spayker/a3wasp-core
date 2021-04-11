@@ -80,7 +80,8 @@ if!(isNil 'WF_newBuyRolerequest')then{
                             case WF_SUPPORT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", WF_Client_SideJoinedText];};
                     };
                     [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
-                        WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout
+                        WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
+                        missionnamespace setVariable ["WF_loaded_inventory", WF_P_CurrentGear];
                     };
                     WF_isFirstRoleSelected = true;
                     closeDialog 0;
