@@ -132,7 +132,6 @@ if (_isMan) then {
 
 	_direction = -((((_position # 1) - (_factoryPosition # 1)) atan2 ((_position # 0) - (_factoryPosition # 0))) - 90);//--- model to world that later on.
     _vehicle = [_unit, _position, WF_Client_SideID, _direction, _locked, nil, nil, nil, _unitdescription] Call WFCO_FNC_CreateVehicle;
-    _vehicle setVectorUp surfaceNormal position _vehicle;
     WF_Client_Team reveal _vehicle;
     createVehicleCrew _vehicle;
 

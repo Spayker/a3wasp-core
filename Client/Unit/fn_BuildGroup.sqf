@@ -80,6 +80,8 @@ while {_unique != _queu # 0 && alive _building && !isNull _building} do {
 if (_show) then { [Format [localize "STR_WF_INFO_BuyEffective",_unitdescription]] spawn WFCL_fnc_handleMessage };
 
 _position = [_position, 30] call WFCO_fnc_getEmptyPosition;
+_factoryPosition = getPos _building;
+_direction = -((((_position # 1) - (_factoryPosition # 1)) atan2 ((_position # 0) - (_factoryPosition # 0))) - 90);
 [player,_selectedGroupTemplate, _position, _direction] remoteExecCall ["WFSE_fnc_buyGroup", 2];
 
 sleep _commonTime;
