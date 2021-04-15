@@ -32,7 +32,7 @@ private _fnc_arrayFlatten = {
                     if(_x != "") then {
                         _res pushBack _x;
                         false
-                    };
+                    }
                 }
             ];
         } count _this;
@@ -1743,9 +1743,6 @@ switch _mode do {
 		uinamespace setvariable ["ter_fnc_shop_sort",_sortValues];
 	};
     case "buttonLoad":{
-        // profileNamespace setVariable ["bis_fnc_saveInventory_data", [] ];
-        // profileNamespace setVariable ["wf_bis_fnc_saveInventory_data", [] ];
-
         missionnamespace setVariable ["WF_start_player_loadout", call _fnc_getEquipment ];
         private _display = _this select 0;
 
@@ -1758,6 +1755,29 @@ switch _mode do {
             _name = _data select _i;
             _inventory = _data select (_i + 1);
 
+            _shallRemoveTemplate = false;
+            _flatternIventory = (_inventory) call _fnc_arrayFlatten;
+
+            {
+                _loweredGearClassName = tolower _x;
+                if(!(["default", (_loweredGearClassName)] call BIS_fnc_inString) &&
+                        !(["male", (_loweredGearClassName)] call BIS_fnc_inString) &&
+                            !(["wasp", (_loweredGearClassName)] call BIS_fnc_inString)) then {
+
+                    if((parseNumber _x) == 0) then {
+                        if(["_loaded", _loweredGearClassName] call BIS_fnc_inString) then {
+                            _loweredGearClassName = [_loweredGearClassName, "_loaded", ""] call _fnc_stringReplace;
+                            _flatternIventory set [_forEachIndex, _loweredGearClassName]
+                        };
+
+                        if !(_loweredGearClassName in (TER_VASS_shopObject getVariable ["TER_VASS_cargo",[]])) exitWith {
+                            _shallRemoveTemplate = true
+                        }
+                    }
+                }
+            } forEach _flatternIventory;
+
+            if!(_shallRemoveTemplate) then {
             _inventoryWeapons = [
                 (_inventory select 5), //--- Binocular
                 (_inventory select 6 select 0), //--- Primary weapon
@@ -1782,7 +1802,6 @@ switch _mode do {
             ) - [""];
             _inventoryBackpacks = [_inventory select 2 select 0] - [""];
 
-
             _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,2],gettext (configfile >> "cfgweapons" >> (_inventory select 7 select 0) >> "picture")];
@@ -1791,11 +1810,10 @@ switch _mode do {
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,5],gettext (configfile >> "cfgweapons" >> (_inventory select 1 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,6],gettext (configfile >> "cfgvehicles" >> (_inventory select 2 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")]
+            };
 
-        };
         _ctrlTemplateValue lnbsort [0,false];
-
         _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
         _ctrlTemplate ctrlsetfade 0;
         _ctrlTemplate ctrlcommit 0;
@@ -1816,19 +1834,8 @@ switch _mode do {
 
         _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
         if (lnbcurselrow _ctrlTemplateValue < 0) then {_ctrlTemplateValue lnbsetcurselrow 0;};
-        ctrlsetfocus _ctrlTemplateValue;
- 
-        _saveDataCustom = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data",[]];
-        _inventory = [];
-        {
-            _shallRemoveTemplate = false;
-            _inventory = (_x # 1) call _fnc_arrayFlatten;
-            {
-                if !(tolower _x in (TER_VASS_shopObject getVariable ["TER_VASS_cargo",[]])) exitWith {
-                    _shallRemoveTemplate = true
+            ctrlsetfocus _ctrlTemplateValue
                 }
-            } forEach _inventory;
-        } forEach _saveDataCustom
     };
     case "buttonReload":{
         _display = _this select 0;
