@@ -21,11 +21,14 @@
 
 params [ "_object", ["_title","Shop"], ["_priority",1.5], ["_condition","alive _this && alive _target"], ["_radius",5] ];
 _actionID = _object getVariable ["TER_VASS_actionID",-1];
+
 if (_actionID > -1) then {_object removeAction _actionID};
+
 _actionID = _object addAction [_title,{
 	params ["_object", "_caller", "_actionId", "_arguments"];
 	TER_VASS_shopObject = _object;
 	uiNamespace setVariable ["TER_VASS_shopObject",_object];
+
 	//--- Arsenal cargo
 	_cargo = _object getVariable ["TER_VASS_cargo",[]];
 	_cargo = _cargo select {_x isEqualType ""};
@@ -34,7 +37,9 @@ _actionID = _object addAction [_title,{
 		_amount = _iValues#2;
 		if (_amount isEqualType 0) then {_amount > 0} else {_amount}
 	};
+
 	_vItems = [[/*Weapons*/],[/*Items*/],[/*Mags*/],[/*backpacks*/]];
+
 	{
 		_category = (_x call BIS_fnc_itemType) select 0;
 		_type = (_x call BIS_fnc_itemType) select 1;
@@ -52,21 +57,26 @@ _actionID = _object addAction [_title,{
 		};
 		_vItems#_ind pushback _x;
 	} forEach _cargo;
+
 	if (isNil {_object getvariable "bis_fnc_arsenal_action"}) then {
 		_object setvariable ["bis_fnc_arsenal_action",-1];// Prevent default arsenal action. for some reason it's still getting added otherwise
 	};
+
 	{
 		[_object, true, false] call call compile format ["BIS_fnc_removeVirtual%1Cargo",_x];
-		[_object, _vItems select _forEachIndex, false, false] call call compile format ["BIS_fnc_addVirtual%1Cargo",_x];
-	} forEach ["Weapon","Item","Magazine","Backpack"];
+		_fnc = call compile format ["BIS_fnc_addVirtual%1Cargo",_x];
+		[_object, _vItems select _forEachIndex, false, false] call _fnc;
+	} forEach ["backpack", "item", "magazine", "weapon" ];
 	//--- Open Arsenal
 	["Open",[nil,_object,_caller]] call bis_fnc_arsenal;
 }, [], _priority, true, true, "", _condition, _radius];
+
 _object setVariable ["TER_VASS_actionID",_actionId];
 //--- Update shops array but only if the shop hasnt been added yet
 if (isNil "TER_VASS_allShops") then {
 	TER_VASS_allShops = [];
 };
+
 _newInd = TER_VASS_allShops pushBackUnique _object;
 if (_newInd >= 0) then {publicVariable "TER_VASS_allShops";};
 _actionID
