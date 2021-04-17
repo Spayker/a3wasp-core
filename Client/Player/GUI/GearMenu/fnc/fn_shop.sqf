@@ -705,7 +705,7 @@ switch _mode do {
 						_itemValues = [TER_VASS_shopObject, _item] call TER_fnc_getItemValues;
 						_itemValues params ["", "_itemCost","_itemAmount"];
 						_curText = _ctrlList lbText _row;
-						_text = [format ["%2", _itemAmount, _curText], _curText] select (_itemAmount isEqualTo true);// TODO: Find way to display item amount
+						_text = [format ["%2", _itemAmount, _curText], _curText] select (_itemAmount isEqualTo true);
 						_ctrlList lbSettext [_row, _text];
 						_ctrlList lbSetTextRight [_row,format ["%1$", [_itemCost] call BIS_fnc_numberText]];
 						_ctrlList lbSetColorRight [_row, MONEYGREEN];
@@ -862,7 +862,40 @@ switch _mode do {
 			_ctrlTab ctrlenable !_active;
 
 			if (_active) then {
+
 				_ctrlList = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _idc);
+			    if(_idc == IDC_RSCDISPLAYARSENAL_TAB_GOGGLES) then {
+			        lbclear _ctrlList;
+
+			        _lbAdd = _ctrlList lbadd format ["<%1>",localize "str_empty"];
+                    _ctrlList lbsetvalue [_lbAdd,-1e+6];
+                    _ctrlList lbSetPictureRight [_lbAdd,"\a3\ui_f\data\igui\cfg\targeting\empty_ca.paa"];
+
+                    private _cargo = (TER_VASS_shopObject) getVariable ["TER_VASS_cargo",[]];
+                    {
+                        if (typeName _x == 'STRING') then {
+                            _config = configFile >> 'CfgGlasses' >> _x;
+                            if(isClass _config) then {
+                                _itemCost = _cargo # (_forEachIndex + 1);
+                                _itemAmount = _cargo # (_forEachIndex + 2);
+                                private _displayName = gettext (_config >> "displayName");
+                                private _data = str [_x,_itemAmount,_displayName];
+                                _lbAdd = _ctrlList lbadd _displayName;
+                                _ctrlList lbsetdata [_lbAdd,_x];
+                                _ctrlList lbsetpicture [_lbAdd,gettext (_config >> "picture")];
+                                _curText = _ctrlList lbText _lbAdd;
+                                _text = [format ["%2", _itemAmount, _curText], _curText] select (_itemAmount isEqualTo true);
+                                _ctrlList lbSettext [_lbAdd, _text];
+                                _ctrlList lbSetTextRight [_lbAdd,format ["%1$", [_itemCost] call BIS_fnc_numberText]];
+                                _ctrlList lbSetColorRight [_lbAdd, MONEYGREEN];
+                                _ctrlList lbsetvalue [_lbAdd, _itemCost];
+                                _ctrlList lbSetPictureRight [_lbAdd,"\a3\ui_f\data\igui\cfg\targeting\empty_ca.paa"];
+                                (_config) call ADDMODICON;
+                            }
+                        }
+                    } forEach _cargo;
+			    };
+
 				_ctrlLineTabLeft = _display displayctrl IDC_RSCDISPLAYARSENAL_LINETABLEFT;
 				_ctrlLineTabLeft ctrlsetfade 0;
 				_ctrlTabPos = ctrlposition _ctrlTab;
