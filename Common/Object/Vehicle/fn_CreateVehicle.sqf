@@ -7,7 +7,7 @@ if (typeName _sideId == "SIDE") then {_sideId = (_sideId) call WFCO_FNC_GetSideI
 if (_special == "FLY") then {
     _vehicle = createVehicle [_type, _position, [], 7, _special];
 } else {
-    _vehicle = createVehicle [_type, _position, [], 10, _special];
+    _vehicle = createVehicle [_type, [_position # 0, _position # 1, 0.5], [], 10, _special];
     _vehicle removeAllEventHandlers "HandleDamage";
     _vehicleHandleDamageEventHandler = _vehicle addEventHandler ["HandleDamage", {false}];
     [_vehicle, _vehicleHandleDamageEventHandler, _sideId]  spawn {
