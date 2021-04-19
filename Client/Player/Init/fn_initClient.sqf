@@ -225,7 +225,6 @@ lastCruiseMissileCall = -1200;
 lastChemicalMissileCall = -1200;
 canBuildWHQ = true;
 WF_RespawnDefaultGear = false;
-WF_ForceUpdate = true;
 
 //--Set default Shadows Distance if it wasn't loaded from the profile--
 if (isNil 'currentSD') then {

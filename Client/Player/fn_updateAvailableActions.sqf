@@ -17,8 +17,7 @@ _typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_
 _commandCenter = objNull;
 
 while {!WF_GameOver} do {
-    _ccr = missionNamespace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
-	if (time - _lastUpdate > 5 || WF_ForceUpdate) then {
+
 		_buildings = [];
         _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 		{
@@ -151,9 +150,5 @@ while {!WF_GameOver} do {
 			missionNamespace setVariable ["ASL_Nearby_Vehicles", (call ASL_Find_Nearby_Vehicles)];
 		};
 
-		if (WF_ForceUpdate) then {WF_ForceUpdate  = false}
-	};
-
-	_lastUpdate = time;
-	sleep 0.1;
+	sleep 1;
 };
