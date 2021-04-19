@@ -266,6 +266,6 @@ while {alive player && dialog} do {
 		-(round(_rearmPrice / 2)) Call WFCL_FNC_ChangePlayerFunds;		
 		
 		_veh setVariable ["_pylons", nil]; 
-		[_veh, side player] Spawn WFCO_FNC_RearmVehicle;
+		[_veh] Spawn WFCO_FNC_RearmVehicle;
 	};
 };

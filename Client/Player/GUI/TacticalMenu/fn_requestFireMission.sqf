@@ -6,6 +6,7 @@ if (count _units < 1 || _type < 0) exitWith { [format ["%1", localize "STR_WF_IN
 
 {
     _unit = _x;
+    [_unit] call WFCO_FNC_RearmVehicle;
     if (isPlayer (leader (group _unit))) then {
         [_unit, _destination, WF_Client_SideJoined, artyRange] Spawn WFCO_FNC_FireArtillery
     } else {

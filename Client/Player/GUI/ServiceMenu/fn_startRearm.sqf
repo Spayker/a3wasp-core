@@ -77,5 +77,5 @@ while {true} do {
 
 //--- Rearm?
 if (_cts != 0) then {
-	[_veh, WF_Client_SideJoined] spawn WFCO_FNC_RearmVehicle;
+	[_veh] spawn WFCO_FNC_RearmVehicle;
 };
