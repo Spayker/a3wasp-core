@@ -149,7 +149,7 @@ AIC_fnc_remoteControlActionHandler = {
 
 	_fromUnit = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull];
 	if(isNull _fromUnit || !alive _fromUnit) then {
-		_fromUnit = player;
+		_fromUnit = leader WF_Client_Team;
 		missionNamespace setVariable ["AIC_Remote_Control_From_Unit",_fromUnit];
 	};
 	
@@ -184,7 +184,7 @@ AIC_fnc_remoteControlActionHandler = {
 	    if(alive _unit) then {
             {_unit disableAI _x} forEach ["MOVE","TEAMSWITCH","AUTOTARGET","TARGET"]
 	    }
-	} forEach (units (group player));
+	} forEach (units (group (leader WF_Client_Team)));
 
     selectPlayer _rcUnit;
 	(vehicle _rcUnit) switchCamera "External";
@@ -221,7 +221,7 @@ AIC_fnc_terminateRemoteControl = {
 	(missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_From_Unit_Event_Handler",-1])];
 	(missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
 
-	_player = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",player];
+	_player = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",(leader WF_Client_Team)];
 	{
         _unit = _x;
         if(alive _unit) then {
@@ -229,10 +229,10 @@ AIC_fnc_terminateRemoteControl = {
         }
     } forEach (units (group _player));
 
-	selectPlayer (_player);
+    if(alive _player) then { selectPlayer _player };
 
 	missionNamespace setVariable ["AIC_Remote_Control_From_Unit",nil];
-	(vehicle player) switchCamera cameraView;
+	(vehicle _player) switchCamera cameraView;
 	BIS_fnc_feedback_allowPP = true;
 	["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL",localize "STR_WF_HC_REMOTECONTROL_TERMINATED"]] call BIS_fnc_showNotification;
 

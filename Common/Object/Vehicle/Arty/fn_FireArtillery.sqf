@@ -73,4 +73,5 @@ if (alive (_gunner)) then {{_gunner enableAI _x} forEach ['MOVE','TARGET','AUTOT
 [_artillery] Call WFCO_FNC_finishArtyMission; //--- Free the artillery unit from the fire mission submission.
 sleep 5;
 
-_artillery setVariable ["restricted",false,true];[_artillery] call WFCO_FNC_RearmVehicle
+_artillery setVariable ["restricted",false,true];
+[_artillery] call WFCO_FNC_RearmVehicle
