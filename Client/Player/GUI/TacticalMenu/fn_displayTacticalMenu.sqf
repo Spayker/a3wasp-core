@@ -122,7 +122,12 @@ while {alive player && dialog} do {
         _canFT = false;
         _startPoint = objNull;
         _lastUpdate = time;
-        _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
+
+        _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
+        {
+            _mhqs = _mhqs +  ((_x) Call WFCO_FNC_GetSideHQ)
+        } forEach _friendlySides;
+
         _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 
         _closestTown = [player, towns] call WFCO_FNC_GetClosestEntity;
