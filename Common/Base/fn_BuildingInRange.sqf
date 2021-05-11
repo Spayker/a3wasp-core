@@ -11,7 +11,7 @@ if(isHeadLessClient) then {
     _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 {
     _side = _x;
-        _checks = _checks + [WF_Client_SideJoined,missionNamespace getVariable format ["WF_%1%2",str WF_Client_SideJoined,_buildingType],_buildings] call WFCO_FNC_GetFactories;
+        _checks = _checks + [_side,missionNamespace getVariable format ["WF_%1%2",str _side,_buildingType],_buildings] call WFCO_FNC_GetFactories;
     } forEach _friendlySides
 };
 
