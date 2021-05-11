@@ -590,13 +590,16 @@ WF_C_MAP_MARKER_HANDLER = {
 		}
     } forEach WF_UNIT_MARKERS;
 
+
+    _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 	{
-        _leader = leader _x;
-        if(vehicle _leader == _leader) then {
-            _iconType = getText (configFile >> "CfgVehicles" >> typeOf _leader >> "icon");
-            _iconsToBeDisplayed pushBackUnique ([_iconType, _leaderColor, _leader, name _leader ])
+        if (side _x in _friendlySides) then {
+            if(vehicle _x == _x) then {
+                _iconType = getText (configFile >> "CfgVehicles" >> typeOf _x >> "icon");
+                _iconsToBeDisplayed pushBackUnique ([_iconType, _leaderColor, _x, name _x ])
+            }
         }
-    } forEach (WF_Client_Logic getVariable "wf_teams");
+    } forEach playableUnits;
 
     {
         if (count _this > 0) then {
