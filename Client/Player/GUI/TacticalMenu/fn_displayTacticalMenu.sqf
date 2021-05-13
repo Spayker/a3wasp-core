@@ -76,7 +76,7 @@ _maxRange = 200;
 _requestMarkerTransition = false;
 _requestRangedList = true;
 _startLoad = true;
-_logik = (side player) Call WFCO_FNC_GetSideLogic;
+_mhqs = [];
 
 //--- Startup coloration.
 with uinamespace do {
@@ -100,6 +100,7 @@ WF_MenuAction = -1;
 mouseButtonUp = -1;
 
 while {alive player && dialog} do {
+
 	if (side player != WF_Client_SideJoined) exitWith {
 	    deleteMarkerLocal _marker;
 	    deleteMarkerLocal _area;
@@ -108,9 +109,9 @@ while {alive player && dialog} do {
 	    closeDialog 0
 	};
 
-
 	if (!dialog) exitWith {deleteMarkerLocal _marker;deleteMarkerLocal _area;{deleteMarkerLocal _x} forEach _markers};
 	
+	_logik = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
 	_currentUpgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
 	_currentSel = lbCurSel(_listBox);
 
@@ -125,7 +126,12 @@ while {alive player && dialog} do {
 
         _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
         {
+            if(count _mhqs == 0) then {
+                _mhqs = ((_x) Call WFCO_FNC_GetSideHQ)
+            } else {
+                _mhqs = _mhqs - [objNull];
             _mhqs = _mhqs +  ((_x) Call WFCO_FNC_GetSideHQ)
+            }
         } forEach _friendlySides;
 
         _base = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
