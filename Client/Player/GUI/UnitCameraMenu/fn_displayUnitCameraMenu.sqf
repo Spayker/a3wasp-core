@@ -1,249 +1,353 @@
-disableSerialization;
+private ["_action","_groups","_sideLetter"];
+_action = _this select 0;
 
-params ["_display"];
+//--- The mouse is in a "up" state
+WF_UI_KeyHandler_UnitsCam_MouseButtonUp = {
+	_button = _this select 1;
 
-WF_MenuAction = -1;
-mouseButtonUp = -1;
-
-_cameraModes = ["Internal","External","Gunner","Group"];
-
-_n = 1;
-{lbAdd[21002,Format["[%1] %2",_n,name (leader _x)]];_n = _n + 1} forEach WF_Client_Teams;
-_id = WF_Client_Teams find WF_Client_Team;
-lbSetCurSel[21002,_id];
-_currentUnit = (player) Call WFCL_FNC_getUnitVehicle;
-_currentUnitMan = objNull;
-_currentMode = "Internal";
-_currentUnit switchCamera _currentMode;
-_casVehicle = objNull;
-_casGunner = objNull;
-_units = (Units (group player) - [player]) Call WFCO_FNC_GetLiveUnits;
-private _track = 0;
-{
-    lbAdd[21004,Format["(%1) %2 %3",_x Call WFCO_FNC_GetAIDigit,getText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];
-    _n = _n + 1;
-
-    //--Check is there WF_A_Tracked variables--
-    if(_track == 0) then {
-        _track = (vehicle _x) getVariable ["WF_A_Tracked",0];
-    };
-} forEach _units;
-
-_checkCasVehicle = {
-
-    if !(isNull commanderTeam) then {
-        if (commanderTeam == group player) then {
-            {
-                _group = _x;
-                if(side _group == WF_Client_SideJoined) then {
-
-                    _isCasGroup = _group getVariable ['isCasGroup', false];
-                    if(_isCasGroup) exitWith {
-
-                        _casVehicle = vehicle (leader _group);
-                        _casGunner = gunner _casVehicle;
-                        lbAdd[21004,Format["(%1) %2 ",getText (configFile >> "CfgVehicles" >> (typeOf _casVehicle) >> "displayName"),name _casGunner]];
-                        _n = _n + 1;
-
-                        //--Check is there WF_A_Tracked variables--
-                        if(_track == 0) then {
-                            _track = (_casVehicle) getVariable ["WF_A_Tracked",0];
-                        };
-                    }
-                }
-            } forEach allGroups
-        }
-    }
-};
-
-[] call _checkCasVehicle;
-
-//--Don't check difficultyEnabled. Use three cam modes every time.--
-_type = ["Internal","External","Ironsight"];
-{lbAdd[21006,_x]} forEach _type;
-lbSetCurSel[21006,0];
-
-_map = _display displayCtrl 21007;
-_drawMarkerId = _map ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
-_map ctrlMapAnimAdd [0,.25,getPos _currentUnit];
-ctrlMapAnimCommit _map;
-
-ctrlEnable [160003, false];
-
-if(((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_REMOTE_CONTROL == 0) then {
-    ctrlEnable [160004, false];
-};
-
-if(cameraOn == (vehicle player)) then {
-    missionNamespace setVariable ["wf_remote_ctrl_unit", nil];
-
-    waitUntil {!isNull (findDisplay 46)};
-    (findDisplay 46) displayRemoveEventHandler ["KeyDown", missionNamespace getVariable ["wf_remote_ctrl_displayEH", -1]];
-};
-
-while {true} do {
-	sleep 0.1;
-
-	_cameraSwap = false;
-	if (Side player != WF_Client_SideJoined || !dialog) exitWith {};
-
-	//--- Map click.
-	if (mouseButtonUp == 0) then {
-		mouseButtonUp = -1;
-		_near = _map PosScreenToWorld[mouseX,mouseY];
-		_list = _near nearEntities [WF_C_ALL_MAN_VEHICLE_KINDS_NO_STATIC,200];
-		if (count _list > 0) then {
-			_objects = [];
-			{if (!(_x isKindOf "Man") && side _x != WF_Client_SideJoined) then {if (count (crew _x) == 0) then {_objects = _objects - [_x]}};if (side _x == WF_Client_SideJoined) then {_objects = _objects + [_x]}} forEach _list;
-			if (count _objects > 0) then {
-				_currentUnit = ([_near,_objects] Call WFCO_FNC_GetClosestEntity) Call WFCL_FNC_getUnitVehicle;
-				_currentUnitMan = [_near,_objects] Call WFCO_FNC_GetClosestEntity;
-				_cameraSwap = true;
-			};
-		};
+	if (_button == 1) then { //--- Right clicked
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_anchor", nil];
 	};
+};
 
-	//--- Leader Selection.
-	if (WF_MenuAction == 101) then {
-		WF_MenuAction = -1;
-		_selected = leader (WF_Client_Teams select (lbCurSel 21002));
-		_currentUnit = (_selected) Call WFCL_FNC_getUnitVehicle;
-		_currentUnitMan = _selected;
-		_n = 0;
-		_units = (Units (group _selected) - [_selected]) Call WFCO_FNC_GetLiveUnits;
+//--- The mouse is in a "up" state
+WF_UI_KeyHandler_UnitsCam_MouseButtonDown = {
+	_button = _this select 1;
+	_coord_x = _this select 2;
+	_coord_y = _this select 3;
 
-		lbClear 21004;
-		{
-		    lbAdd[21004,Format["(%1) %2 %3",_x Call WFCO_FNC_GetAIDigit, GetText (configFile >> "CfgVehicles" >> (typeOf (vehicle _x)) >> "displayName"),name _x]];
-		    _n = _n + 1
-		} forEach _units;
+	switch (_button) do {
+		case 0: { //--- Left clicked
+			_position = screenToWorld [_coord_x, _coord_y];
+			_nearestObjects = [_position, _position nearEntities [["AllVehicles"], 40]] call WFCO_FNC_SortByDistance;
 
-		[] call _checkCasVehicle;
-		_cameraSwap = true;
-	};
-
-	//--- Leader commands AIs.
-	if (WF_MenuAction == 102) then {
-		WF_MenuAction = -1;
-		_currentUnit = (_units # (lbCurSel 21004)) Call WFCL_FNC_getUnitVehicle;
-		_currentUnitMan = _units # (lbCurSel 21004);
-
-		if(isNil '_currentUnit') then {
-		    _currentUnit = _casVehicle;
-		    _currentUnitMan = _casGunner
-		};
-
-		_vehicle = vehicle _currentUnit;
-		_crew = crew _vehicle;
-		{
-			if(_x in (units group player)) then {
-				ctrlEnable [160003, true];
-				}
-				else
-				{
-					ctrlEnable [160003, false];
+			_swapto = objNull;
+			_groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
+			{
+				if (_x isKindOf "Man") then {
+					if (group _x in _groups) exitWith { _swapto = _x };
+				} else {
+					{if (group _x in _groups) exitWith { _swapto = _x }} forEach crew _x;
 				};
-		} forEach _crew;
-		_cameraSwap = true;
-	};
+				if !(isNull _swapto) exitWith {};
+			} forEach _nearestObjects;
 
-	//--- Camera Modes
-	if (WF_MenuAction == 103) then {
-		WF_MenuAction = -1;
-		_currentMode = (_cameraModes select (lbCurSel 21006));
-		_cameraSwap = true;
-	};
+			if !(isNull _swapto) then {
+				uiNamespace setVariable ["wf_dialog_ui_unitscam_focus", _swapto];
 
-	//--Remote control clicked--
-    if (WF_MenuAction == 141 && !(isNil "_currentUnitMan")) then {
-    	WF_MenuAction = -1;
-    	if(!(isPlayer (_currentUnitMan)) && ((group player == group _currentUnitMan) || ((group _currentUnitMan) getVariable ['isCasGroup', false]))
-    	    && !alive (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
-    	    if(_currentUnitMan getVariable ["wf_remote_ctrl_eh", 0] == 0) then { //--Avoid stacked EH--
-    	        _currentUnitMan setVariable ["wf_remote_ctrl_eh", 1];
-                _currentUnitMan addEventHandler ["Killed", {
-                    params ["_unit"];
+				if (_swapto != leader group _swapto) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_screenselect", _swapto]};
 
-                    [_unit] spawn WFCL_FNC_abortRemoteControl;
-                }];
-            };
-
-            //--Exec remote control--
-            missionNamespace setVariable ["wf_remote_ctrl_unit", _currentUnitMan];
-            player remoteControl _currentUnitMan;
-            ["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL", localize "STR_WF_HC_REMOTECONTROL_PRESSDEL"]] call BIS_fnc_showNotification;
-
-            waitUntil {!isNull (findDisplay 46)};
-            _eventId = (findDisplay 46) displayAddEventHandler ["KeyDown",
-                {
-                    if(_this # 1 == 211) then {
-                        _controledUnit = missionNamespace getVariable ["wf_remote_ctrl_unit", objNull];
-                        if(!isNull _controledUnit) then {
-                            [_controledUnit] spawn WFCL_FNC_abortRemoteControl;
-                        };
-                    };
-                    false
-                }];
-
-            missionNamespace setVariable ["wf_remote_ctrl_displayEH", _eventId];
-                _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
-            closeDialog 0;
-    	};
-    };
-
-	//--- Unflip button clicked
-	if (WF_MenuAction == 140 && !(isNil "_currentUnit")) then {
-		WF_MenuAction = -1;
-		if(!(isNil "_currentUnit")) then {
-			if(!(isPlayer (_currentUnit))) then {
-				_vehicle = vehicle _currentUnit;
-
-				[_vehicle] Call WFCO_FNC_BrokeTerObjsAround;
-
-				_vehicle setPos [getPos _vehicle select 0, getPos _vehicle select 1, 0.5];
-				_vehicle setVelocity [0,0,-0.5];
+				((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180100) lbSetCurSel (_groups find group _swapto);
 			};
 		};
-		_cameraSwap = true;
-	};
-
-    if(isNil '_currentUnit') then {
-        _currentUnit = _casVehicle;
-        _currentUnitMan = _casGunner
-    };
-
-	if !(alive _currentUnit) then {
-		_currentUnit = (player) Call WFCL_FNC_getUnitVehicle;
-		_cameraSwap = true;
-	};
-
-	//--- Update the Camera.
-	if (_cameraSwap) then {
-		ctrlMapAnimClear _map;
-		_map ctrlMapAnimAdd [1,.25,getPos _currentUnit];
-		ctrlMapAnimCommit _map;
-		_currentUnit switchCamera _currentMode;
+		case 1: { //--- Right clicked
+			uiNamespace setVariable ["wf_dialog_ui_unitscam_anchor", [_coord_x, _coord_y]];
+		};
 	};
 };
 
-_map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
-closeDialog 0;
+//--- The mouse is being moved/held
+WF_UI_KeyHandler_UnitsCam_MouseMoving = {
+	private ["_coord_x", "_coord_y"];
+	_coord_x = _this select 1;
+	_coord_y = _this select 2;
 
-//--If we have some WF_A_Tracked variables, then delete arti markers--
-if(_track > 0) then {
-    for "_i" from 0 to 2500 do {
-        deleteMarkerLocal format ["WF_A_Large%1", _i];
-        deleteMarkerLocal format ["WF_A_Small%1", _i];
-    };
+	_anchor = uiNamespace getVariable "wf_dialog_ui_unitscam_anchor";
+	if (!isNil '_anchor') then { //--- Make sure that the mouse is still being held
+		_origin_x = _anchor select 0;
+		_origin_y = _anchor select 1;
+
+		_dX = ((_coord_x - _origin_x) * 180) / 20;
+		_dY = (-(_coord_y - _origin_y) * 180) / 20;
+
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_dir", (uiNamespace getVariable "wf_dialog_ui_unitscam_dir") + _dX];
+		_pitch = ((uiNamespace getVariable "wf_dialog_ui_unitscam_pitch") + _dY) max -90 min +90;
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_pitch", _pitch];
+	};
 };
 
-if(WF_C_GAMEPLAY_THIRDVIEW == 0) then {
-    _currentMode = "INTERNAL";
-};
+switch (_action) do {
+	case "onLoad": {
+		_groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
 
-_controledUnit = missionNamespace getVariable ["wf_remote_ctrl_unit", objNull];
-if(alive _controledUnit) then {
-    _controledUnit switchCamera _currentMode;
-} else {
-    ((player) call WFCL_FNC_getUnitVehicle) switchCamera _currentMode;
+		_track = player;
+		showCinemaBorder false;
+
+		_pitch = 0;
+		_dir = 180;
+		_distance = 2.5;
+		_pos = [(sin _dir)*(cos _pitch * _distance),(cos _pitch) * (cos _dir * _distance),1.5-(sin _pitch * _distance)];
+
+		WF_UnitsCamera = "camera" camCreate getPosATL _track;
+		WF_UnitsCamera camSetTarget _track;
+		WF_UnitsCamera camSetRelPos _pos;
+		WF_UnitsCamera camCommit 0;
+
+		if (difficultyOption "thirdPersonView" == 1) then {
+			uiNamespace setVariable ["wf_dialog_ui_unitscam_camview", "external"];
+			WF_UnitsCamera cameraEffect ["EXTERNAL", "BACK"];
+			vehicle _track switchCamera "EXTERNAL";
+
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180021) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.01), SafeZoneY + (SafeZoneH * 0.80), SafeZoneW * 0.14, SafeZoneH * 0.04]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180021) ctrlCommit 0; //--- Bring back the button!
+		} else {
+			uiNamespace setVariable ["wf_dialog_ui_unitscam_camview", "internal"];
+			vehicle _track switchCamera "INTERNAL";
+		};
+
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_anchor", nil];
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_camview_in", cameraView];
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_screenselect", objNull];
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_pitch", 0];
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_dir", 180];
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_focus", _track];
+
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseButtonDown", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseButtonDown"];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseButtonUp", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseButtonUp"];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseMoving", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseMoving"];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseHolding", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseMoving"];
+
+		ctrlSetFocus ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001);
+
+		_groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_groups", _groups];
+		_origin = uiNamespace getVariable "wf_dialog_ui_unitscam_origin";
+		if (isNil '_origin') then { _origin = objNull };
+		{
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180100) lbAdd format ["%1 (%2)",groupID _x, if (isPlayer leader _x) then {name leader _x} else {"AI"}];
+			if (isNull _origin) then {
+				if (group _track == _x) then {((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180100) lbSetCurSel _forEachIndex};
+			} else {
+				if (group _origin == _x) then {if (_origin == leader _x) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_origin", nil]}; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180100) lbSetCurSel _forEachIndex};
+			};
+		} forEach _groups;
+
+		if (isNil {uiNamespace getVariable "wf_dialog_ui_unitscam_showgroups"}) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_showgroups", true]};
+		if (uiNamespace getVariable "wf_dialog_ui_unitscam_showgroups") then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180007) ctrlSetText "Hide Teams";
+		} else {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180007) ctrlSetText "Show Teams";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow false} forEach [180002, 180003, 180004, 180005, 180006, 180100, 180101];
+		};
+
+		if (isNil {uiNamespace getVariable "wf_dialog_ui_unitscam_showmap"}) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_showmap", true]};
+		if (uiNamespace getVariable "wf_dialog_ui_unitscam_showmap") then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180008) ctrlSetText "Hide Map";
+		} else {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180008) ctrlSetText "Show Map";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow false} forEach [180009, 180010];
+		};
+
+		if (isNil {uiNamespace getVariable "wf_dialog_ui_unitscam_showinfo"}) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_showinfo", false]};
+		if (uiNamespace getVariable "wf_dialog_ui_unitscam_showinfo") then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180015) ctrlSetText "Hide Info";
+		} else {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180015) ctrlSetText "Show Info";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow false} forEach [180016, 180018];
+		};
+
+		{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.01), SafeZoneY + (SafezoneH * 0.06), SafeZoneW * 0.31, SafeZoneH * 0.6]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlCommit 0} forEach [180016, 180018];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180009) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.8), SafeZoneY + (SafezoneH * 0.62), SafeZoneW * 0.19, SafeZoneH * 0.32]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180009) ctrlCommit 0;
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180010) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.805), SafeZoneY + (SafezoneH * 0.63), SafeZoneW * 0.18, SafeZoneH * 0.30]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180010) ctrlCommit 0;
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180002) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.8), SafeZoneY + (SafezoneH * 0.06), SafeZoneW * 0.19, SafeZoneH * 0.55]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180002) ctrlCommit 0;
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180003) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.805), SafeZoneY + (SafezoneH * 0.0605), SafeZoneW * 0.19, SafeZoneH * 0.03]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180003) ctrlCommit 0;
+		{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.805), SafeZoneY + (SafeZoneH * 0.10), SafeZoneW * 0.18, SafeZoneH * 0.3]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlCommit 0} forEach [180004, 180100];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180005) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.805), SafeZoneY + (SafezoneH * 0.41), SafeZoneW * 0.19, SafeZoneH * 0.03]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180005) ctrlCommit 0;
+		{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.805), SafeZoneY + (SafezoneH * 0.45), SafeZoneW * 0.18, SafeZoneH * 0.15]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlCommit 0} forEach [180006, 180101];
+
+        _isCommander = false;
+        if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
+		if (_isCommander) then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180023) ctrlSetPosition [SafeZoneX + (SafeZoneW * 0.01), SafeZoneY + (SafeZoneH * 0.70), SafeZoneW * 0.14, SafeZoneH * 0.04]; ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180023) ctrlCommit 0; //--- Bring back the button!
+		};
+
+		if (isNil {uiNamespace getVariable "wf_dialog_ui_unitscam_viewmode"}) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_viewmode", 0]};
+		_mode = "Normal";
+		switch (uiNamespace getVariable "wf_dialog_ui_unitscam_viewmode") do { case 1: {_mode = "NVG"; camUseNVG true }; };
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180013) ctrlSetText _mode;
+
+		//--- Load the AI Members
+        _ais = ((Units (Group player)) - [leader _group]) call WFCO_FNC_GetLiveUnits;
+        uiNamespace setVariable ["wf_dialog_ui_unitscam_groups_ai", _ais];
+        {
+            ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101) lbAdd format["%1", _x];
+            if (alive _origin && _x == _origin) then {((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101) lbSetCurSel _forEachIndex};
+        } forEach (_ais);
+
+		[] spawn WFCL_fnc_processUnitsCamera;
+	};
+	case "onUnitsLBSelChanged": {
+		_changeto = _this select 1;
+
+		_group = (uiNamespace getVariable "wf_dialog_ui_unitscam_groups") select _changeto;
+		lbClear ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101);
+
+		_origin = uiNamespace getVariable "wf_dialog_ui_unitscam_origin";
+		if (isNil '_origin') then { _origin = objNull };
+
+		//--- Load the AI Members
+		_ais = ((Units (Group player)) - [leader _group]) call WFCO_FNC_GetLiveUnits;
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_groups_ai", _ais];
+		{
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101) lbAdd format["%1", _x];
+			if (alive _origin && _x == _origin) then {((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101) lbSetCurSel _forEachIndex};
+		} forEach (_ais);
+
+		if !(isNil {uiNamespace getVariable "wf_dialog_ui_unitscam_origin"}) then {
+			uiNamespace setVariable ["wf_dialog_ui_unitscam_origin", nil];
+		} else {
+			if !(isNull (uiNamespace getVariable "wf_dialog_ui_unitscam_screenselect")) then {
+				((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101) lbSetCurSel (_ais find (uiNamespace getVariable "wf_dialog_ui_unitscam_screenselect"));
+				uiNamespace setVariable ["wf_dialog_ui_unitscam_screenselect", objNull];
+			} else {
+				if (alive leader _group) then {
+					switch (uiNamespace getVariable "wf_dialog_ui_unitscam_camview") do {
+						case "internal": {(vehicle leader _group) switchCamera "INTERNAL"};
+						case "ironsight": {(vehicle leader _group) switchCamera "GUNNER"};
+						case "external": {(vehicle leader _group) switchCamera "EXTERNAL"}
+					};
+					((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180011) ctrlSetText format["Feed: %1", leader _group];
+					uiNamespace setVariable ["wf_dialog_ui_unitscam_focus", leader _group];
+				};
+			};
+		};
+	};
+	case "onUnitsAILBSelChanged": {
+		_changeto = _this select 1;
+
+		_ai = (uiNamespace getVariable "wf_dialog_ui_unitscam_groups_ai") select _changeto;
+		if (alive _ai) then {
+			uiNamespace setVariable ["wf_dialog_ui_unitscam_focus", _ai];
+			switch (uiNamespace getVariable "wf_dialog_ui_unitscam_camview") do {
+				case "internal": {vehicle _ai switchCamera "INTERNAL"};
+				case "ironsight": {vehicle _ai switchCamera "GUNNER"};
+				case "external": {vehicle _ai switchCamera "EXTERNAL"}
+			};
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180011) ctrlSetText format["Feed: %1", _ai];
+		};
+	};
+	case "onToggleGroup": {
+		_changeto = !(uiNamespace getVariable "wf_dialog_ui_unitscam_showgroups");
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_showgroups", _changeTo];
+
+		if (_changeto) then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180007) ctrlSetText "Hide Teams";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow true} forEach [180002, 180003, 180004, 180005, 180006, 180100, 180101];
+		} else {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180007) ctrlSetText "Show Teams";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow false} forEach [180002, 180003, 180004, 180005, 180006, 180100, 180101];
+		};
+	};
+	case "onToggleMap": {
+		_changeto = !(uiNamespace getVariable "wf_dialog_ui_unitscam_showmap");
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_showmap", _changeTo];
+
+		if (_changeto) then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180008) ctrlSetText "Hide Map";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow true} forEach [180009, 180010];
+		} else {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180008) ctrlSetText "Show Map";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow false} forEach [180009, 180010];
+		};
+	};
+	case "onToggleInfo": {
+		_changeto = !(uiNamespace getVariable "wf_dialog_ui_unitscam_showinfo");
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_showinfo", _changeTo];
+
+		if (_changeto) then {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180015) ctrlSetText "Hide Info";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow true} forEach [180016, 180018];
+		} else {
+			((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180015) ctrlSetText "Show Info";
+			{((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl _x) ctrlShow false} forEach [180016, 180018];
+		};
+	};
+	case "onViewModeChanged": {
+		_mode = (uiNamespace getVariable "wf_dialog_ui_unitscam_viewmode") + 1;
+		if (_mode > 1) then { _mode = 0 };
+		uiNamespace setVariable ["wf_dialog_ui_unitscam_viewmode", _mode];
+		switch (_mode) do {
+			case 1: {_mode = "NVG"; camUseNVG true};
+			default {_mode = "Normal"; camUseNVG false};
+		};
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180013) ctrlSetText _mode;
+	};
+	case "onCamChange": {
+		_changeto = _this select 1;
+		_track = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
+
+		if !(isNil '_track') then {
+			switch (_changeto) do {
+				case "ironsight": {
+					WF_UnitsCamera cameraEffect["TERMINATE","BACK"];
+					vehicle _track switchCamera "GUNNER";
+					uiNamespace setVariable ["wf_dialog_ui_unitscam_camview", "ironsight"];
+				};
+				case "internal": {
+					WF_UnitsCamera cameraEffect["TERMINATE","BACK"];
+					vehicle _track switchCamera "INTERNAL";
+					uiNamespace setVariable ["wf_dialog_ui_unitscam_camview", "internal"];
+				};
+				case "external": {
+					if (difficultyOption "thirdPersonView" == 1) then {
+						WF_UnitsCamera cameraEffect ["TERMINATE", "BACK"];
+						vehicle _track switchCamera "EXTERNAL";
+						uiNamespace setVariable ["wf_dialog_ui_unitscam_camview", "external"];
+					};
+				};
+			};
+		};
+	};
+	case "onUnitDisband": {
+		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
+
+        _isCommander = false;
+        if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
+		if (alive _who && _isCommander) then {
+			if !(isPlayer leader _who) then {
+				_who setDammage 1;
+			};
+		};
+	};
+	case "onRemote": {
+		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
+		_dialog = uiNamespace getVariable 'WF_dialog_ui_unitscam';
+		if (alive _who ) then {
+		    _isCommander = false;
+            if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
+			if ((player == leader _who) || !(isPlayer leader _who) && _isCommander )then {
+				_who spawn {
+					waitUntil {cameraOn == player};
+					sleep 0.5;
+					player remoteControl _this;
+					_this switchCamera "Internal";
+				};
+				_dialog closeDisplay 1;
+			};
+		};
+	};
+	case "onUnitUnflip": {
+		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
+		_who_vehicle = vehicle _who;
+		if (alive _who && speed _who_vehicle < 5 && (getPos _who_vehicle select 2) < 5 && !isPlayer _who) then {
+			_unflip = false;
+			_isCommander = false;
+            if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
+			if (_isCommander) then {
+				_unflip = true
+			} else {
+				if (_who in units player) then {_unflip = true};
+			};
+
+			if (_unflip) then {
+				_who_vehicle setPos [getPos _who_vehicle select 0, getPos _who_vehicle select 1, 1];
+				_who_vehicle setVelocity [0,0,1];
+			};
+		};
+	};
+	case "onUnload": {
+		WF_UnitsCamera cameraEffect["TERMINATE","BACK"];
+		camDestroy WF_UnitsCamera;
+		vehicle player switchCamera (uiNamespace getVariable "wf_dialog_ui_unitscam_camview_in");
+		showCinemaBorder true;
+	};
 };

@@ -1958,6 +1958,35 @@
 				<Italian>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Le prese d'orecchio sono rimosse</Italian>
 				<Portuguese>&lt;t size='1.3' color='#2394ef'&gt;Information&lt;/t&gt;&lt;br /&gt;Fones de ouvido Removidos</Portuguese>
 			</Key>
+			<Key ID="STR_Menu_Control_UnitsList_Label">
+				<Original>Teams :</Original>
+				<Russian>Команды :</Russian>
+			</Key>
+			<Key ID="STR_Menu_Control_UnitsAIList_Label">
+				<Original>AI Members :</Original>
+				<Russian>ИИ Единицы :</Russian>
+			</Key>
+			<Key ID="STR_Menu_Control_Exit">
+				<Original>Exit</Original>
+				<Russian>Выход</Russian>
+			</Key>
+			<Key ID="STR_Menu_Control_IronSight">
+				<Original>Iron Sight</Original>
+				<Russian>Вид от мушки</Russian>
+			</Key>
+			<Key ID="STR_Menu_Control_Internal">
+				<Original>Internal</Original>
+				<Russian>От первого лица</Russian>
+			</Key>
+			<Key ID="STR_Menu_Control_External">
+				<Original>External</Original>
+				<Russian>От третьего лица</Russian>
+			</Key>
+			<Key ID="STR_Menu_Control_Unflip">
+				<Original>Unflip Unit</Original>
+				<Russian>Перевернуть Технику</Russian>
+			</Key>
+
 			<Key ID="STR_ACT_LowGearOff">
 				<English>High-climbing gear off</English>
 				<French>High-climbing gear off</French>

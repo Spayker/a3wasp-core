@@ -147,7 +147,7 @@ while {alive player && dialog} do {
 	if (WF_MenuAction == 101) exitWith {
 		WF_MenuAction = -1;
 		closeDialog 0;
-		createDialog "RscMenu_UnitCamera";
+		createDialog "Rsc_UnitCamera";
 	};
 	
 	//--- Squad menu

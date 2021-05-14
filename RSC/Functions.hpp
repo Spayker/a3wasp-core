@@ -262,6 +262,7 @@ class WF_Client {
         file = "Client\Player\GUI\UnitCameraMenu";
         class displayUnitCameraMenu {};
         class getUnitVehicle {};
+        class processUnitsCamera {};
         class abortRemoteControl {};
     };
 
