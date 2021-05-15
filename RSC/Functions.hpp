@@ -264,6 +264,9 @@ class WF_Client {
         class getUnitVehicle {};
         class processUnitsCamera {};
         class abortRemoteControl {};
+        class mouseMoveKeyHandler {};
+        class mouseButtonUpKeyHandler {};
+        class mouseButtonDownKeyHandler {};
     };
 
     class GuiUpgradeMenu {

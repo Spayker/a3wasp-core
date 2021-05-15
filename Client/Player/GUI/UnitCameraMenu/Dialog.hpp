@@ -77,7 +77,7 @@ class Rsc_UnitCamera {
 			w = "SafeZoneW * 0.19";
 
 			text = "";
-			action = "['onToggleGroup'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onToggleGroup'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_ToggleMap : WF_Menu_Control_ToggleGroups {
 			idc = 180008;
@@ -85,7 +85,7 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.95)";
 
 			text = "";
-			action = "['onToggleMap'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onToggleMap'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Background_Map : WF_Background { //--- Render out.
 			idc = 180009;
@@ -133,7 +133,7 @@ class Rsc_UnitCamera {
 			x = "SafeZoneX + (SafeZoneW * 0.16)";
 
 			text = "";
-			action = "['onViewModeChanged'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onViewModeChanged'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_ToggleInfo : WF_Menu_Control_ToggleGroups {
 			idc = 180015;
@@ -142,7 +142,7 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.01)";
 
 			text = "";
-			action = "['onToggleInfo'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onToggleInfo'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Background_Info : WF_Background { //--- Render out.
 			idc = 180016;
@@ -181,7 +181,7 @@ class Rsc_UnitCamera {
 			w = "SafeZoneW * 0.14";
 
 			text = $STR_Menu_Control_IronSight;
-			action = "['onCamChange', 'ironsight'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onCamChange', 'ironsight'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_Internal : WF_Menu_Control_IronSight {
 			idc = 180020;
@@ -189,7 +189,7 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.85)";
 
 			text = $STR_Menu_Control_Internal;
-			action = "['onCamChange', 'internal'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onCamChange', 'internal'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_External : WF_Menu_Control_IronSight { //--- Render out.
 			idc = 180021;
@@ -197,7 +197,7 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.80)";
 
 			text = $STR_Menu_Control_External;
-			action = "['onCamChange', 'external'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onCamChange', 'external'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_Unflip : WF_Menu_Control_IronSight {
 			idc = 180022;
@@ -205,7 +205,7 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.75)";
 
 			text = $STR_Menu_Control_Unflip;
-			action = "['onUnitUnflip'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onUnitUnflip'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_Disband : WF_Menu_Control_IronSight { //--- Render out.
 			idc = 180023;
@@ -213,8 +213,16 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.70)";
 
 			text = $STR_WF_TEAM_DisbandButton;
-			action = "['onUnitDisband'] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			action = "['onUnitDisband'] call WFCL_fnc_displayUnitCameraMenu";
 		};
+		class WF_Menu_Control_Remote : WF_Menu_Control_IronSight {
+            idc = 180024;
+
+            y = "SafeZoneY + (SafeZoneH * 0.65)";
+
+            text = "Remote Control";
+            action = "['onRemote'] call WFCL_fnc_displayUnitCameraMenu";
+        };
 
 		class WF_Menu_Control_UnitsList : RscListBox { //--- Render out.
 			idc = 180100;
@@ -230,7 +238,7 @@ class Rsc_UnitCamera {
 			colorText[] = {1,1,1,1};
 			colorBackground[] = {0,0,0,0};
 
-			onLBSelChanged = "['onUnitsLBSelChanged', _this select 1] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			onLBSelChanged = "['onUnitsLBSelChanged', _this select 1] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_UnitsAIList : WF_Menu_Control_UnitsList { //--- Render out.
 			idc = 180101;
@@ -238,7 +246,7 @@ class Rsc_UnitCamera {
 			y = "SafeZoneY + (SafeZoneH * 0.45)";
 			h = "SafeZoneH * 0.15";
 
-			onLBSelChanged = "['onUnitsAILBSelChanged', _this select 1] call compile preprocessFileLineNumbers 'Client\Events\Events_UI_UnitsCamera.sqf'";
+			onLBSelChanged = "['onUnitsAILBSelChanged', _this select 1] call WFCL_fnc_displayUnitCameraMenu";
 		};
 	};
 };

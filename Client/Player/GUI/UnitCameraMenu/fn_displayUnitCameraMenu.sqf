@@ -1,75 +1,15 @@
 private ["_action","_groups","_sideLetter"];
 _action = _this select 0;
 
-//--- The mouse is in a "up" state
-WF_UI_KeyHandler_UnitsCam_MouseButtonUp = {
-	_button = _this select 1;
-
-	if (_button == 1) then { //--- Right clicked
-		uiNamespace setVariable ["wf_dialog_ui_unitscam_anchor", nil];
-	};
-};
-
-//--- The mouse is in a "up" state
-WF_UI_KeyHandler_UnitsCam_MouseButtonDown = {
-	_button = _this select 1;
-	_coord_x = _this select 2;
-	_coord_y = _this select 3;
-
-	switch (_button) do {
-		case 0: { //--- Left clicked
-			_position = screenToWorld [_coord_x, _coord_y];
-			_nearestObjects = [_position, _position nearEntities [["AllVehicles"], 40]] call WFCO_FNC_SortByDistance;
-
-			_swapto = objNull;
-			_groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
-			{
-				if (_x isKindOf "Man") then {
-					if (group _x in _groups) exitWith { _swapto = _x };
-				} else {
-					{if (group _x in _groups) exitWith { _swapto = _x }} forEach crew _x;
-				};
-				if !(isNull _swapto) exitWith {};
-			} forEach _nearestObjects;
-
-			if !(isNull _swapto) then {
-				uiNamespace setVariable ["wf_dialog_ui_unitscam_focus", _swapto];
-
-				if (_swapto != leader group _swapto) then {uiNamespace setVariable ["wf_dialog_ui_unitscam_screenselect", _swapto]};
-
-				((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180100) lbSetCurSel (_groups find group _swapto);
-			};
-		};
-		case 1: { //--- Right clicked
-			uiNamespace setVariable ["wf_dialog_ui_unitscam_anchor", [_coord_x, _coord_y]];
-		};
-	};
-};
-
-//--- The mouse is being moved/held
-WF_UI_KeyHandler_UnitsCam_MouseMoving = {
-	private ["_coord_x", "_coord_y"];
-	_coord_x = _this select 1;
-	_coord_y = _this select 2;
-
-	_anchor = uiNamespace getVariable "wf_dialog_ui_unitscam_anchor";
-	if (!isNil '_anchor') then { //--- Make sure that the mouse is still being held
-		_origin_x = _anchor select 0;
-		_origin_y = _anchor select 1;
-
-		_dX = ((_coord_x - _origin_x) * 180) / 20;
-		_dY = (-(_coord_y - _origin_y) * 180) / 20;
-
-		uiNamespace setVariable ["wf_dialog_ui_unitscam_dir", (uiNamespace getVariable "wf_dialog_ui_unitscam_dir") + _dX];
-		_pitch = ((uiNamespace getVariable "wf_dialog_ui_unitscam_pitch") + _dY) max -90 min +90;
-		uiNamespace setVariable ["wf_dialog_ui_unitscam_pitch", _pitch];
-	};
-};
-
 switch (_action) do {
 	case "onLoad": {
-		_groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
+        _groups = [group player];
 
+        _isCommander = false;
+        if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
+        if(_isCommander) then {
+		    _groups = _groups + ([WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups)
+        };
 		_track = player;
 		showCinemaBorder false;
 
@@ -101,14 +41,14 @@ switch (_action) do {
 		uiNamespace setVariable ["wf_dialog_ui_unitscam_dir", 180];
 		uiNamespace setVariable ["wf_dialog_ui_unitscam_focus", _track];
 
-		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseButtonDown", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseButtonDown"];
-		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseButtonUp", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseButtonUp"];
-		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseMoving", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseMoving"];
-		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseHolding", "nullReturn = _this call WF_UI_KeyHandler_UnitsCam_MouseMoving"];
+        diag_log format ['fn_displayUnitCameraMenu.sqf: going to run WFCL_fnc_MouseButtonDownKeyHandler _track: %1', _track];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseButtonDown", "nullReturn = _this call WFCL_fnc_MouseButtonDownKeyHandler"];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseButtonUp", "nullReturn = _this call WFCL_fnc_mouseButtonUpKeyHandler"];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseMoving", "nullReturn = _this call WFCL_fnc_MouseMoveKeyHandler"];
+		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001) ctrlAddEventHandler ["MouseHolding", "nullReturn = _this call WFCL_fnc_MouseMoveKeyHandler"];
 
 		ctrlSetFocus ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180001);
 
-		_groups = [WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups;
 		uiNamespace setVariable ["wf_dialog_ui_unitscam_groups", _groups];
 		_origin = uiNamespace getVariable "wf_dialog_ui_unitscam_origin";
 		if (isNil '_origin') then { _origin = objNull };
@@ -166,7 +106,7 @@ switch (_action) do {
 		((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180013) ctrlSetText _mode;
 
 		//--- Load the AI Members
-        _ais = ((Units (Group player)) - [leader _group]) call WFCO_FNC_GetLiveUnits;
+        _ais = ((Units (Group player)) - [player]) call WFCO_FNC_GetLiveUnits;
         uiNamespace setVariable ["wf_dialog_ui_unitscam_groups_ai", _ais];
         {
             ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101) lbAdd format["%1", _x];
@@ -299,12 +239,9 @@ switch (_action) do {
 	};
 	case "onUnitDisband": {
 		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
-
-        _isCommander = false;
-        if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
-		if (alive _who && _isCommander) then {
-			if !(isPlayer leader _who) then {
-				_who setDammage 1;
+		if (alive _who) then {
+			if !(isPlayer _who) then {
+				_who setDammage 1
 			};
 		};
 	};
