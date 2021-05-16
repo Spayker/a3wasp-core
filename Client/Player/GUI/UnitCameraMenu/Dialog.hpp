@@ -23,7 +23,7 @@ class Rsc_UnitCamera {
 		class WF_Background : RscText { //--- Render out.
 			idc = 180002;
 
-			x = "SafeZoneX + (SafeZoneW * 0.8)";
+			x = "SafeZoneX + (SafeZoneW * 0.01)";
 			y = "SafeZoneY + (SafezoneH * 0.06)";
 			w = "SafeZoneW * 0.19";
 			h = "SafeZoneH * 0.55";
@@ -33,7 +33,7 @@ class Rsc_UnitCamera {
 		class WF_Menu_Control_UnitsList_Label : RscText { //--- Render out.
 			idc = 180003;
 
-			x = "SafeZoneX + (SafeZoneW * 0.805)";
+			x = "SafeZoneX + (SafeZoneW * 0.015)";
 			y = "SafeZoneY + (SafezoneH * 0.0605)";
 			w = "SafeZoneW * 0.19";
 			h = "SafeZoneH * 0.03";
@@ -45,7 +45,7 @@ class Rsc_UnitCamera {
 		class WF_Menu_Control_UnitsList_Frame : RscFrame { //--- Render out.
 			idc = 180004;
 
-			x = "SafeZoneX + (SafeZoneW * 0.805)";
+			x = "SafeZoneX + (SafeZoneW * 0.015)";
 			y = "SafeZoneY + (SafeZoneH * 0.10)";
 			h = "SafeZoneH * 0.3";
 			w = "SafeZoneW * 0.18";
@@ -53,7 +53,7 @@ class Rsc_UnitCamera {
 		class WF_Menu_Control_UnitsAIList_Label : WF_Menu_Control_UnitsList_Label { //--- Render out.
 			idc = 180005;
 
-			x = "SafeZoneX + (SafeZoneW * 0.805)";
+			x = "SafeZoneX + (SafeZoneW * 0.015)";
 			y = "SafeZoneY + (SafezoneH * 0.41)";
 			w = "SafeZoneW * 0.19";
 			h = "SafeZoneH * 0.03";
@@ -63,33 +63,33 @@ class Rsc_UnitCamera {
 		class WF_Menu_Control_UnitsAIList_Frame : WF_Menu_Control_UnitsList_Frame { //--- Render out.
 			idc = 180006;
 
-			x = "SafeZoneX + (SafeZoneW * 0.805)";
+			x = "SafeZoneX + (SafeZoneW * 0.015)";
 			y = "SafeZoneY + (SafeZoneH * 0.45)";
 			h = "SafeZoneH * 0.15";
 			w = "SafeZoneW * 0.18";
 		};
-		class WF_Menu_Control_ToggleGroups : RscButton_Opac {
+		class WF_Menu_Control_ToggleGroups : RscButton {
 			idc = 180007;
 
-			x = "SafeZoneX + (SafeZoneW * 0.8)";
+			x = "SafeZoneX + (SafeZoneW * 0.01)";
 			y = "SafeZoneY + (SafeZoneH * 0.01)";
 			h = "SafeZoneH * 0.04";
 			w = "SafeZoneW * 0.19";
 
-			text = "";
+			text = "Hide Teams";
 			action = "['onToggleGroup'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_ToggleMap : WF_Menu_Control_ToggleGroups {
 			idc = 180008;
-
+            x = "SafeZoneX + (SafeZoneW * 0.8)";
 			y = "SafeZoneY + (SafeZoneH * 0.95)";
 
-			text = "";
+			text = "Hide Map";
 			action = "['onToggleMap'] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Background_Map : WF_Background { //--- Render out.
 			idc = 180009;
-
+            x = "SafeZoneX + (SafeZoneW * 0.8)";
 			y = "SafeZoneY + (SafezoneH * 0.62)";
 			h = "SafeZoneH * 0.32";
 		};
@@ -104,25 +104,13 @@ class Rsc_UnitCamera {
 
 			showCountourInterval = 1;
 		};
-		class WF_Background_Top : WF_Background {
-			idc = 180011;
-			style = ST_CENTER;
-
-			x = "SafeZoneX + (SafeZoneW * 0.33)";
-			y = "SafeZoneY + (SafezoneH * 0.01)";
-			w = "SafeZoneW * 0.34";
-			h = "SafeZoneH * 0.04";
-
-			text = "";
-			sizeEx = "0.94 * (			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-		};
-		class WF_Menu_Control_Exit : RscButton_Opac {
+		class WF_Menu_Control_Exit : RscButton {
 			idc = 180012;
 
 			x = "SafeZoneX + (SafeZoneW * 0.01)";
 			y = "SafeZoneY + (SafeZoneH * 0.95)";
 			h = "SafeZoneH * 0.04";
-			w = "SafeZoneW * 0.14";
+			w = "SafeZoneW * 0.1";
 
 			text = $STR_Menu_Control_Exit;
 			action = "closeDialog 0";
@@ -130,104 +118,68 @@ class Rsc_UnitCamera {
 		class WF_Menu_Control_Mode : WF_Menu_Control_Exit {
 			idc = 180013;
 
-			x = "SafeZoneX + (SafeZoneW * 0.16)";
+			x = "SafeZoneX + (SafeZoneW * 0.12)";
+			w = "SafeZoneW * 0.1";
 
-			text = "";
+			text = "Normal";
 			action = "['onViewModeChanged'] call WFCL_fnc_displayUnitCameraMenu";
 		};
-		class WF_Menu_Control_ToggleInfo : WF_Menu_Control_ToggleGroups {
-			idc = 180015;
-
-			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafeZoneH * 0.01)";
-
-			text = "";
-			action = "['onToggleInfo'] call WFCL_fnc_displayUnitCameraMenu";
-		};
-		class WF_Background_Info : WF_Background { //--- Render out.
-			idc = 180016;
-
-			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafezoneH * 0.06)";
-			w = "SafeZoneW * 0.31";
-			h = "SafeZoneH * 0.6";
-		};
-		class WF_Menu_Help_ControlsGroup : RscControlsGroup { //--- Render out.
-			idc = 180018;
-			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafezoneH * 0.06)";
-			w = "SafeZoneW * 0.31";
-			h = "SafeZoneH * 0.6";
-
-			class controls {
-				class WF_Menu_Control_Info : RscStructuredText {
-					idc = 180017;
-
-					x = 0;
-					y = 0;
-					w = "SafeZoneW * 0.31";
-					h = "SafeZoneH * 1";
-
-					size = "0.75 * (			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-				};
-			};
-		};
-		class WF_Menu_Control_IronSight : RscButton_Opac {
-			idc = 180019;
-
-			x = "SafeZoneX + (SafeZoneW * 0.01)";
-			y = "SafeZoneY + (SafeZoneH * 0.90)";
-			h = "SafeZoneH * 0.04";
-			w = "SafeZoneW * 0.14";
-
-			text = $STR_Menu_Control_IronSight;
-			action = "['onCamChange', 'ironsight'] call WFCL_fnc_displayUnitCameraMenu";
-		};
-		class WF_Menu_Control_Internal : WF_Menu_Control_IronSight {
+		class WF_Menu_Control_Internal : RscButton {
 			idc = 180020;
 
-			y = "SafeZoneY + (SafeZoneH * 0.85)";
+			x = "SafeZoneX + (SafeZoneW * 0.67)";
+            y = "SafeZoneY + (SafeZoneH * 0.95)";
+            w = "SafeZoneW * 0.1";
+			h = "SafeZoneH * 0.04";
 
 			text = $STR_Menu_Control_Internal;
 			action = "['onCamChange', 'internal'] call WFCL_fnc_displayUnitCameraMenu";
 		};
-		class WF_Menu_Control_External : WF_Menu_Control_IronSight { //--- Render out.
+		class WF_Menu_Control_External : WF_Menu_Control_Internal { //--- Render out.
 			idc = 180021;
 
-			y = "SafeZoneY + (SafeZoneH * 0.80)";
+			x = "SafeZoneX + (SafeZoneW * 0.56)";
+            y = "SafeZoneY + (SafeZoneH * 0.95)";
+            w = "SafeZoneW * 0.1";
 
 			text = $STR_Menu_Control_External;
 			action = "['onCamChange', 'external'] call WFCL_fnc_displayUnitCameraMenu";
 		};
-		class WF_Menu_Control_Unflip : WF_Menu_Control_IronSight {
+		class WF_Menu_Control_Unflip : WF_Menu_Control_Internal {
 			idc = 180022;
 
-			y = "SafeZoneY + (SafeZoneH * 0.75)";
+            x = "SafeZoneX + (SafeZoneW * 0.45)";
+			y = "SafeZoneY + (SafeZoneH * 0.95)";
+            w = "SafeZoneW * 0.1";
 
 			text = $STR_Menu_Control_Unflip;
 			action = "['onUnitUnflip'] call WFCL_fnc_displayUnitCameraMenu";
 		};
-		class WF_Menu_Control_Disband : WF_Menu_Control_IronSight { //--- Render out.
+		class WF_Menu_Control_Disband : WF_Menu_Control_Internal {
 			idc = 180023;
 
-			y = "SafeZoneY + (SafeZoneH * 0.70)";
+            x = "SafeZoneX + (SafeZoneW * 0.23)";
+			y = "SafeZoneY + (SafeZoneH * 0.95)";
+			w = "SafeZoneW * 0.1";
 
 			text = $STR_WF_TEAM_DisbandButton;
 			action = "['onUnitDisband'] call WFCL_fnc_displayUnitCameraMenu";
 		};
-		class WF_Menu_Control_Remote : WF_Menu_Control_IronSight {
+		class WF_Menu_Control_Remote : WF_Menu_Control_Internal {
             idc = 180024;
 
-            y = "SafeZoneY + (SafeZoneH * 0.65)";
+            x = "SafeZoneX + (SafeZoneW * 0.34)";
+            y = "SafeZoneY + (SafeZoneH * 0.95)";
+            w = "SafeZoneW * 0.1";
 
-            text = "Remote Control";
+            text = $STR_WF_UPGRADE_REMOTE_CONTROL;
             action = "['onRemote'] call WFCL_fnc_displayUnitCameraMenu";
         };
 
 		class WF_Menu_Control_UnitsList : RscListBox { //--- Render out.
 			idc = 180100;
 
-			x = "SafeZoneX + (SafeZoneW * 0.805)";
+			x = "SafeZoneX + (SafeZoneW * 0.015)";
 			y = "SafeZoneY + (SafeZoneH * 0.10)";
 			h = "SafeZoneH * 0.3";
 			w = "SafeZoneW * 0.18";
@@ -238,7 +190,7 @@ class Rsc_UnitCamera {
 			colorText[] = {1,1,1,1};
 			colorBackground[] = {0,0,0,0};
 
-			onLBSelChanged = "['onUnitsLBSelChanged', _this select 1] call WFCL_fnc_displayUnitCameraMenu";
+			onLBSelChanged = "['onGroupsLBSelChanged', _this select 1] call WFCL_fnc_displayUnitCameraMenu";
 		};
 		class WF_Menu_Control_UnitsAIList : WF_Menu_Control_UnitsList { //--- Render out.
 			idc = 180101;

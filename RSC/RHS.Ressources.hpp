@@ -218,13 +218,6 @@ class RscButton_Exit : RscButton {
 	colorBackgroundActive[] = {0.9, 0, 0, 1};
 	colorFocused[] = {0.5020, 0, 0, 1};
 };
-class RscButton_Opac : RscButton {
-	colorShadow[] = {0, 0, 0, 0.3};
-	colorDisabled[] = {0.4,0.4,0.4,0.5};
-	colorBackground[] = {0.2, 0.2, 0.2, 0.5};
-	colorBackgroundActive[] = {0.35, 0.35, 0.35, 0.7};
-	colorFocused[] = {0.35, 0.35, 0.35, 0.7};
-};
 /* RscShortcutButton */
 class RscShortcutButton {
 	type = 16;
