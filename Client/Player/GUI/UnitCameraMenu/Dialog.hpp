@@ -155,6 +155,16 @@ class Rsc_UnitCamera {
 			text = $STR_Menu_Control_Unflip;
 			action = "['onUnitUnflip'] call WFCL_fnc_displayUnitCameraMenu";
 		};
+		class WF_Menu_Control_Disband : WF_Menu_Control_Internal {
+			idc = 180023;
+
+            x = "SafeZoneX + (SafeZoneW * 0.23)";
+			y = "SafeZoneY + (SafeZoneH * 0.95)";
+			w = "SafeZoneW * 0.1";
+
+			text = $STR_WF_TEAM_DisbandButton;
+			action = "['onUnitDisband'] call WFCL_fnc_displayUnitCameraMenu";
+		};
 		class WF_Menu_Control_Remote : WF_Menu_Control_Internal {
             idc = 180024;
 

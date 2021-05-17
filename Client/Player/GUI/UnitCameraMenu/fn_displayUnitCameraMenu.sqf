@@ -104,7 +104,7 @@ switch (_action) do {
 	};
 	case "onGroupsLBSelChanged": {
 		_changeto = _this select 1;
-
+        uiNamespace setVariable ["wf_dialog_ui_unitscam_changeTo", _changeto];
 		_group = (uiNamespace getVariable "wf_dialog_ui_unitscam_groups") select _changeto;
 		lbClear ((uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180101);
 
@@ -233,6 +233,30 @@ switch (_action) do {
 				};
 			};
 		};
+	case "onUnitDisband": {
+		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
+		if (alive _who) then {
+			if !(isPlayer _who) then {
+				_vehicle = vehicle _who;
+                _destroy = [_who];
+                if (_vehicle != _who) then {_destroy = _destroy + [_vehicle]};
+                {
+                    if !(isPlayer _x) then {
+                        if (_x isKindOf 'Man') then {removeAllWeapons _x};
+                        [typeOf _x, false] spawn WFCL_FNC_AwardBounty;
+                        deleteVehicle _x;
+                    };
+                } forEach _destroy;
+
+                _display = uiNamespace getVariable "wf_dialog_ui_unitscam_changeTo";
+                if (isNil '_display') then {
+                    ['onGroupsLBSelChanged'] call WFCL_fnc_displayUnitCameraMenu
+                } else {
+                    ['onGroupsLBSelChanged', _display] call WFCL_fnc_displayUnitCameraMenu
+                }
+			};
+		};
+	};
 	case "onRemote": {
 		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
 		_whoGroup = group _who;
