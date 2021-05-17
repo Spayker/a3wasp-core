@@ -233,14 +233,6 @@ switch (_action) do {
 				};
 			};
 		};
-	case "onUnitDisband": {
-		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
-		if (alive _who) then {
-			if !(isPlayer _who) then {
-				_who setDammage 1
-			};
-		};
-	};
 	case "onRemote": {
 		_who = uiNamespace getVariable "wf_dialog_ui_unitscam_focus";
 		_whoGroup = group _who;
