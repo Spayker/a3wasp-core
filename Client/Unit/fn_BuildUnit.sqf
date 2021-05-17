@@ -24,11 +24,8 @@ _unitlogo = _currentUnit # 1;
 _type = typeOf _building;
 _index = (missionNamespace getVariable Format ["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText]) find _type;
 if (_index != -1) then {
-	_distance = (missionNamespace getVariable Format ["WF_%1STRUCTUREDISTANCES",WF_Client_SideJoinedText]) # _index;
-	_direction = (missionNamespace getVariable Format ["WF_%1STRUCTUREDIRECTIONS",WF_Client_SideJoinedText]) # _index;
 	_factoryType = (missionNamespace getVariable Format ["WF_%1STRUCTURES",WF_Client_SideJoinedText]) # _index;
-	_position = _building modelToWorld [(sin _direction * _distance), (cos _direction * _distance), 0];
-	_position set [2, .5];
+	_position = _building getVariable 'respawnPoint';
 	_longest = missionNamespace getVariable Format ["WF_LONGEST%1BUILDTIME",_factoryType];
 } else {
 	if (_type in WF_Logic_Depot) then {
@@ -37,7 +34,7 @@ if (_index != -1) then {
 		_factoryType = "Depot";
 
 	};
-	_position = _building modelToWorld [(sin _direction * _distance), (cos _direction * _distance), 0];
+	_position = _building getVariable 'respawnPoint';
 
 	if (_type == WF_Logic_Airfield) then {
 		_distance = missionNamespace getVariable "WF_C_HANGAR_BUY_DISTANCE";

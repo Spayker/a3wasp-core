@@ -109,6 +109,7 @@ with missionNamespace do {
 	if (isNil "WF_C_BASE_START_TOWN") then {WF_C_BASE_START_TOWN = 1;}; //--- Remove the spawn locations which are too far away from the towns.
 	if (isNil "WF_C_BASE_STARTING_DISTANCE") then {WF_C_BASE_STARTING_DISTANCE = 7500;}; //--- Sides need at last xkm of distance between them.
 	if (isNil "WF_C_BASE_STARTING_MODE") then {WF_C_BASE_STARTING_MODE = 2;}; //--- Starting Locations Mode: 0 = WN|ES; 1 = WS|EN; 2 = Random;
+	WF_C_BASE_TERRAIN_CLEAN_AREA_RANGE = 40; //--- A base area to be cleaned up from terrain objects
 	WF_C_BASE_AREA_RANGE = 250; //--- A base area has a range of x meters.
 	WF_C_BASE_HQ_BUILD_RANGE = 120; //--- HQ Build range.
 	WF_C_BASE_AV_FORTIFICATIONS = 30; //--- Base available fotifications.
@@ -222,7 +223,13 @@ with missionNamespace do {
 	WF_C_CAR_MOTO_TANK_KINDS = ['Car','Motorcycle','Tank'];
 	WF_C_MAN_KIND = ['Man'];
 	WF_C_BUILDING_KIND = ['Building'];
-	WF_C_BUILDING_CAR_TANK_AIR_KIND = WF_C_BUILDING_KIND + ["Car","Tank","Air"];
+	WF_C_CLEAN_AREA_KINDS = ['TREE', 'SMALL TREE', 'BUSH', 'HOUSE', 'BUILDING', 'FOREST BORDER', 'FOREST TRIANGLE',
+	    'FOREST SQUARE', 'CHURCH', 'CHAPEL', 'CROSS', 'BUNKER', 'FORTRESS', 'FOUNTAIN', 'VIEW-TOWER', 'LIGHTHOUSE',
+	    'FUELSTATION', 'HOSPITAL', 'FENCE', 'WALL', 'BUSSTOP', 'FOREST', 'TRANSMITTER', 'STACK', 'RUIN', 'TOURISM',
+	    'WATERTOWER', 'ROCK', 'ROCKS', 'POWER LINES', 'POWERSOLAR', 'POWERWAVE', 'POWERWIND'];
+	WF_C_WARFARE_STRUCUTRE_TYPES = ['Warfare_HQ_base_unfolded','Base_WarfareBBarracks','Base_WarfareBLightFactory','Base_WarfareBHeavyFactory',
+        'Base_WarfareBAircraftFactory','Base_WarfareBUAVterminal','Base_WarfareBVehicleServicePoint','BASE_WarfareBAntiAirRadar'];
+	WF_C_BUILDING_CAR_TANK_AIR_KIND = WF_C_BUILDING_KIND + ['Car','Tank','Air'];
 
 
 //--- Respawn.

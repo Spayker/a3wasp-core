@@ -160,14 +160,14 @@ AIC_fnc_remoteControlActionHandler = {
 	_exitingRcUnit = missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull];
 	if(!isNull _exitingRcUnit) then {
 		_exitingRcUnit removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
-		["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
+		["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Escape_Handler",-1])] call AIC_fnc_removeEventHandler;
 	};
 	missionNamespace setVariable ["AIC_Remote_Control_To_Unit",_rcUnit];
 	missionNamespace setVariable ["AIC_Remote_Control_To_GroupId",_groupControlId];
 
 	AIC_Remote_Control_From_Unit_Event_Handler = _fromUnit addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
 	AIC_Remote_Control_To_Unit_Event_Handler = _rcUnit addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
-	AIC_Remote_Control_Delete_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 211) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
+	AIC_Remote_Control_Escape_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 1) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
 	
 	BIS_fnc_feedback_allowPP = false;
 
@@ -210,14 +210,14 @@ AIC_fnc_remoteControlActionHandler = {
                      "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') && (_this == driver _target) && Local_HighClimbingModeOn && canMove _target"
     ];
 	
-	["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL",localize "STR_WF_HC_REMOTECONTROL_PRESSDEL"]] call BIS_fnc_showNotification;
+	["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL",localize "STR_WF_HC_REMOTECONTROL_PRESSESC"]] call BIS_fnc_showNotification;
 };
 
 AIC_fnc_terminateRemoteControl = {
 	_originalLeader = missionNamespace getVariable "AIC_Remote_Control_To_Unit";
     removeAllActions (vehicle _originalLeader);
 
-	["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
+	["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Escape_Handler",-1])] call AIC_fnc_removeEventHandler;
 	(missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_From_Unit_Event_Handler",-1])];
 	(missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
 

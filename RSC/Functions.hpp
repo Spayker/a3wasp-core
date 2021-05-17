@@ -346,6 +346,7 @@ class WF_Common {
         file = "Common\Base";
         class buildingInRange {};
         class cleanResBaseArea {};
+        class cleanTerrainObjects {};
         class getClosestStructure {};
         class getFactories {};
         class getSideHQ {};

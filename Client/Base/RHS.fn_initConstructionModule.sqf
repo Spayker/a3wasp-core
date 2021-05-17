@@ -10,14 +10,12 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
     _colorGreen = "#(argb,8,8,3)color(0,1,0,0.3,ca)";
     _color = _this # 2;
     _eside = if (side commanderTeam == west) then {east} else {west};
-    _affected = ["Warfare_HQ_base_unfolded","Base_WarfareBBarracks","Base_WarfareBLightFactory","Base_WarfareBHeavyFactory",
-                        "Base_WarfareBAircraftFactory","Base_WarfareBUAVterminal","Base_WarfareBVehicleServicePoint","BASE_WarfareBAntiAirRadar"];
     _area = [_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
 
     
     if (surfaceIsWater(position _preview)) exitwith { _colorRed };
 
-    if ({_preview isKindOf _x} count _affected != 0 && _color == _colorGreen) then {
+    if ({_preview isKindOf _x} count WF_C_WARFARE_STRUCUTRE_TYPES != 0 && _color == _colorGreen) then {
         Private["_building","_sort","_strs","_lax","_lay"];
         _strs = ((position _preview) nearObjects ["House",25]) - [_preview];
         if (count _strs > 0) then {
