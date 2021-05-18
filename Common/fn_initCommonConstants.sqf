@@ -116,6 +116,7 @@ with missionNamespace do {
 	WF_C_BASE_PROTECTION_RANGE = 800;  //--- Base protection range.
 	WF_C_BASE_HQ_REPAIR_PRICE = 25000; //--- HQ Repair price.
     WF_C_BASE_HQ_REPAIR_PRICE_CASH = 250000; //--- HQ Repair price with cash.
+    WF_C_BASE_PRODUCTION_STRUCTURE_NAMES = ["BARRACKS","LIGHT","HEAVY","AIRCRAFT"]; //--- HQ Repair price with cash.
 	
 //--- Camps.
 	WF_C_CAMPS_CAPTURE_BOUNTY = 500; //--- Bounty received by player whenever he capture a camp.
