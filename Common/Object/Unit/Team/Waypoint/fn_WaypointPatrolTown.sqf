@@ -13,7 +13,7 @@ if (!(_town isEqualType objNull)) exitWith {};
 if (isNull _team) exitWith {};
 _townPos = getPos _town;
 
-_camps = _town getVariable 'camps';//wf2
+_camps = _town getVariable 'camps';
 
 _usable = [_town] + _camps;
 _maxWaypoints = (missionNamespace getVariable 'WF_C_TOWNS_UNITS_WAYPOINTS') + count(_usable);
