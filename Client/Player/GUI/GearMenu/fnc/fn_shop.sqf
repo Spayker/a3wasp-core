@@ -866,32 +866,41 @@ switch _mode do {
 			    _gearClassnames = [];
 			    _cfgClassName = 'CfgWeapons';
 			    _subType = '';
+			    _wearedGear = '';
                 switch (_idc) do {
                     case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_primary", []];
+                        _wearedGear = primaryweapon player call bis_fnc_baseWeapon;
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_secondary", []];
+                        _wearedGear = secondaryweapon player call bis_fnc_baseWeapon;
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_pistol", []];
+                        _wearedGear = handgunWeapon player call bis_fnc_baseWeapon
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_uniforms", []];
+                        _wearedGear = uniform player
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_vests", []];
+                        _wearedGear = vest player
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_backpacks", []];
-                        _cfgClassName = 'CfgVehicles'
+                        _cfgClassName = 'CfgVehicles';
+                        _wearedGear = backpack player
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_headgear", []];
+                        _wearedGear = headgear player
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_GOGGLES: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_glasses", []];
-                        _cfgClassName = 'CfgGlasses'
+                        _cfgClassName = 'CfgGlasses';
+                        _wearedGear = goggles player
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_NVGS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_special", []];
@@ -899,11 +908,11 @@ switch _mode do {
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_special", []];
-                        _subType = 'Binocular'
+                        _subType = 'Binocular';
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_MAP: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = 'ItemMap'
+                        _subType = 'ItemMap';
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_GPS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
