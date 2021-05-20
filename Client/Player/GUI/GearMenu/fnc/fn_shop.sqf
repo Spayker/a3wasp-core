@@ -922,6 +922,7 @@ switch _mode do {
                         _subType = 'ItemWatch'
                     };
                 };
+
                 _selectedRole = TER_VASS_shopObject getVariable 'selectedRole';
                 if(!isNil '_selectedRole') then {
                     _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
@@ -2003,8 +2004,16 @@ switch _mode do {
                             _flatternIventory set [_forEachIndex, _loweredGearClassName]
                         };
 
-                        if !(_loweredGearClassName in (TER_VASS_shopObject getVariable ["TER_VASS_cargo",[]])) exitWith {
+                        if!(isNil '_loweredGearClassName') then {
+                            _gearDataArray = missionNamespace getVariable format["wf_%1", _x];
+                            if (isNil '_gearDataArray') exitWith {
                             _shallRemoveTemplate = true
+                            };
+
+                            _upgrade_gear = TER_VASS_shopObject getVariable 'currentGearUpgradeLevel';
+                            if (_upgrade_gear <= (_gearDataArray # 0) # 0) exitWith {
+                                _shallRemoveTemplate = true
+                            }
                         }
                     }
                 }
