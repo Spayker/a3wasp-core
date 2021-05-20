@@ -922,7 +922,6 @@ switch _mode do {
                         _subType = 'ItemWatch'
                     };
                 };
-                ////////////////////////
                 _selectedRole = TER_VASS_shopObject getVariable 'selectedRole';
                 if(!isNil '_selectedRole') then {
                     _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
@@ -1248,8 +1247,6 @@ switch _mode do {
 
 		private _addedItems = [];
 		private _removedItems = [];
-
-		_loadout = getUnitLoadout _center;
 		switch _index do
 		{
 			case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM:
@@ -1388,6 +1385,23 @@ switch _mode do {
 							};
 						} foreach _weaponAccessories;
 					};
+
+                    _magazines = [];
+                    {
+                        if (_x == "this") then {
+                            _magazines = _magazines + getArray(configFile >> 'CfgWeapons' >> _item >> 'magazines');
+                        } else {
+                            _magazines = _magazines + getArray(configfile >> 'CfgWeapons' >> _item >> _x >> 'magazines')
+                        };
+                    } forEach (getArray(configFile >> 'CfgWeapons' >> _item >> 'muzzles'));
+
+                    if (_item != "") then {
+                        _new = ((call _fnc_getEquipment) select 0) select 0;
+                        _accessories = (_new select 1) call _fnc_ArrayToLower;
+                        _accessories_current = (primaryWeaponItems _center) call _fnc_ArrayToLower;
+
+                        {if (!(_x in _accessories_current) && (_x != "")) then {_center addPrimaryWeaponItem _x}} forEach (_accessories + _magazines);
+                    };
 				};
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON: {
@@ -1425,6 +1439,26 @@ switch _mode do {
 						} foreach _weaponAccessories;
 					};
 				};
+
+                _new = ((call _fnc_getEquipment) select 0) select 1;
+                _accessories = (_new select 1) call _fnc_ArrayToLower;
+
+                _magazines = [];
+                {
+                    if (_x == "this") then {
+                        _magazines = _magazines + getArray(configFile >> 'CfgWeapons' >> _item >> 'magazines');
+                    } else {
+                        _magazines = _magazines + getArray(configfile >> 'CfgWeapons' >> _item >> _x >> 'magazines')
+                    };
+                } forEach (getArray(configFile >> 'CfgWeapons' >> _item >> 'muzzles'));
+
+                if (secondaryWeapon _center != _item && secondaryWeapon _center != "") then {_center removeWeapon (secondaryWeapon _center)};
+                if (secondaryWeapon _center != _item && _item != "") then {_center addWeapon _item};
+                if (_item != "") then {
+                	_accessories_current = (secondaryWeaponItems _center) call _fnc_ArrayToLower;
+                	{if (!(_x in _accessories) && (_x != "")) then {_center removeSecondaryWeaponItem _x}} forEach _accessories_current;
+                	{if (!(_x in _accessories_current) && (_x != "")) exitWith {_center addSecondaryWeaponItem _x}} forEach (_accessories + _magazines);
+                };
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN: {
 				_isDifferentWeapon = (handgunweapon _center call bis_fnc_baseWeapon) != _item;
@@ -1464,6 +1498,25 @@ switch _mode do {
 						} foreach _weaponAccessories;
 					};
 				};
+
+				_new = ((call _fnc_getEquipment) select 0) select 2;
+                _accessories = (_new select 1) call _fnc_ArrayToLower;
+               _magazines = [];
+               {
+                   if (_x == "this") then {
+                       _magazines = _magazines + getArray(configFile >> 'CfgWeapons' >> _item >> 'magazines');
+                   } else {
+                       _magazines = _magazines + getArray(configfile >> 'CfgWeapons' >> _item >> _x >> 'magazines')
+                   };
+               } forEach (getArray(configFile >> 'CfgWeapons' >> _item >> 'muzzles'));
+
+                if (handgunWeapon _center != _item && handgunWeapon _center != "") then {_center removeWeapon (handgunWeapon _center)};
+                if (handgunWeapon _center != _item && _item != "") then {_center addWeapon _item};
+                if (_item != "") then {
+                	_accessories_current = (handgunItems _center) call _fnc_ArrayToLower;
+                	{if (!(_x in _accessories) && (_x != "")) then {_center removeHandgunItem _x}} forEach _accessories_current;
+                	{if (!(_x in _accessories_current) && (_x != "")) then {_center addHandgunItem _x}} forEach (_accessories + _magazines);
+                };
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_MAP;
 			case IDC_RSCDISPLAYARSENAL_TAB_GPS;
