@@ -137,6 +137,7 @@ if (WF_Client_SideJoined == resistance) then {(west) call compile preprocessFile
 _list = missionNamespace getVariable "wf_gear_list_explosives";
 _list = _list + (missionNamespace getVariable "wf_gear_list_magazines");
 _list = _list + (missionNamespace getVariable "wf_gear_list_accessories");
+_list = _list + (missionNamespace getVariable "wf_gear_list_misc");
 WF_C_GEAR_LIST = _list;
 
 //--- UI Namespace release from previous possible games (only on titles dialog!).
