@@ -185,16 +185,6 @@ class RscMenu_Tactical {
 				align = "center";
 			};
 		};
-		class Ca_ArtilleryToggle : RscClickableText {
-			idc = 17023;
-			x = 0.310672;
-			y = 0.121233;
-			w = 0.064;
-			h = 0.064;
-			text = "RSC\Pictures\tog_arty.paa";
-			action = "WF_MenuAction = 40";
-			tooltip = $STR_WF_TOOLTIP_ArtilleryToggle;
-		};
 		class CA_ArtilleryList : RscListBoxA {
 			idc = 17024;
 			x = 0.00459768;

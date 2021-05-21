@@ -78,16 +78,6 @@ _requestRangedList = true;
 _startLoad = true;
 _mhqs = [];
 
-//--- Startup coloration.
-with uinamespace do {
-	currentBEDialog = _display;
-	switch (_mode) do {
-		case 0: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [1,1,1,1]};
-		case 1: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [0,0.635294,0.909803,1]};
-		case 2: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [0.6,0.850980,0.917647,1]};
-	};
-};
-
 lbSetCurSel[_listbox, 0];
 
 if ((missionNamespace getVariable "WF_C_ARTILLERY") == 0) then {
@@ -634,27 +624,6 @@ while {alive player && dialog} do {
 			lnbSetColor [17024,[_i,1],_color];
 			_i = _i + 1;
 		} forEach _trackingArray;
-	};
-	
-	//--- Artillery map toggle.
-	if (WF_MenuAction == 40) then {
-		WF_MenuAction = -1;
-		if (_mode == -1) then {_mode = 0};
-		_mode = [_mode + 1, 0] select (_mode == 2);
-		with uinamespace do {
-			switch (_mode) do {
-				case 0: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [1,1,1,1]};
-				case 1: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [0,0.635294,0.909803,1]};
-				case 2: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [0.6,0.850980,0.917647,1]};
-			};
-		};
-		
-		if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
-		_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ArtilleryMinimapInfo',7,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
-		
-		missionNamespace setVariable ['WF_V_ARTILLERYMINMAP',_mode];
-		
-		_requestMarkerTransition = true;
 	};
 	
 	//--- Update artillery display.
