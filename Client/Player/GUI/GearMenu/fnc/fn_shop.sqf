@@ -1006,8 +1006,27 @@ switch _mode do {
                     _ctrlList lbsetvalue [_lbAdd,-1e+6];
                     _ctrlList lbSetPictureRight [_lbAdd,"\a3\ui_f\data\igui\cfg\targeting\empty_ca.paa"];
 
-                _upgrade_gear = TER_VASS_shopObject getVariable 'currentGearUpgradeLevel';
+                if(_wearedGear != '') then {
+                    _get = missionNamespace getVariable format["wf_%1", _wearedGear];
+                    _itemCost = ((_get select 0) select 1);
+                    _itemAmount = true;
+                    _config = configFile >> _cfgClassName >> _wearedGear;
+                    private _displayName = gettext (_config >> "displayName");
+                    private _data = str [_wearedGear, _itemAmount, _displayName];
+                    _lbAdd = _ctrlList lbadd _displayName;
+                    _ctrlList lbsetdata [_lbAdd, _wearedGear];
+                    _ctrlList lbsetpicture [_lbAdd, gettext (_config >> "picture")];
+                    _curText = _ctrlList lbText _lbAdd;
+                    _text = [format ["%2", _itemAmount, _curText], _curText] select (_itemAmount isEqualTo true);
+                    _ctrlList lbSettext [_lbAdd, _text];
+                    _ctrlList lbSetTextRight [_lbAdd,format ["%1$", [_itemCost] call BIS_fnc_numberText]];
+                    _ctrlList lbSetColorRight [_lbAdd, MONEYGREEN];
+                    _ctrlList lbsetvalue [_lbAdd, _itemCost];
+                    _ctrlList lbSetPictureRight [_lbAdd, "\a3\ui_f\data\igui\cfg\targeting\empty_ca.paa"];
+                    (_config) call ADDMODICON
+                };
 
+                _upgrade_gear = TER_VASS_shopObject getVariable 'currentGearUpgradeLevel';
                 _items = [];
                 {
                     _get = missionNamespace getVariable format["wf_%1", _x];
