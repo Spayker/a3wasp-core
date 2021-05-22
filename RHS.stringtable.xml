@@ -1331,20 +1331,24 @@
 				<Russian>Статус:</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_ArtilleryRadius">
-				<English>Target-Radius:</English>
-				<Russian>Радиус до цели:</Russian>
+				<English>Radius:</English>
+				<Russian>Разброс:</Russian>
+			</Key>
+			<Key ID="STR_WF_TACTICAL_ArtilleryAmmoType">
+				<English>Ammo:</English>
+				<Russian>Боеприпас:</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_ArtilleryOverview">
-				<English>Artillery Overview</English>
-				<Russian>Обзор артиллерии</Russian>
+				<English>Artillery Overview:</English>
+				<Russian>Обзор артиллерии:</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_ArtillerySetFireMission">
-				<English>Set Fire Mission</English>
-				<Russian>Назначить арт. цель</Russian>
+				<English>Select Target</English>
+				<Russian>Выберите цель</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_ArtilleryCallFireMission">
-				<English>Call Fire Mission</English>
-				<Russian>Вызвать арт. удар</Russian>
+				<English>Fire</English>
+				<Russian>Стрелять</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_Artillery">
 				<!--shared U-->
@@ -1382,22 +1386,32 @@
 				<Russian>Быстрое перемещение</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_ParadropVehicle">
-				<English>Paradrop - Vehicle</English>
-				<Russian>Сброс - Машина</Russian>
+				<English>Vehicle Paradrop</English>
+				<Russian>Сброс Техники</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_Heli_Paratroop">
 				<!--shared W-->
-				<English>Heli Paratroops</English>
+				<English>Heli Paratroopers</English>
 				<Russian>Вертолётный десант</Russian>
+			</Key>
+			<Key ID="STR_WF_TACTICAL_Heli_Paratroop_HC">
+				<!--shared W-->
+				<English>High Command Heli Paratroopers</English>
+				<Russian>Командирский Вертолётный десант</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_Paratroop">
 				<!--shared W-->
-				<English>Paratroops</English>
-				<Russian>Сброс десанта</Russian>
+				<English>Paratroopers</English>
+				<Russian>Десант</Russian>
+			</Key>
+			<Key ID="STR_WF_TACTICAL_Paratroop_HC">
+				<!--shared W-->
+				<English>High Command Paratroops</English>
+				<Russian>Командирский десант</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_Paradrop">
 				<!--shared W-->
-				<English>Paradrop</English>
+				<English>Ammo Paradrop</English>
 				<Russian>Сброс боеприпасов</Russian>
 			</Key>
 			<Key ID="STR_WF_TACTICAL_Price">
@@ -1934,6 +1948,11 @@
 				<!--shared W-->
 				<English>Chemical Missile</English>
 				<Russian>Химическая Ракета</Russian>
+			</Key>
+			<Key ID="STR_WF_CAS">
+				<!--shared W-->
+				<English>Close Air Support</English>
+				<Russian>Поддержка с воздуха</Russian>
 			</Key>
 			<Key ID="STR_WF_Price">
 				<!--shared W-->

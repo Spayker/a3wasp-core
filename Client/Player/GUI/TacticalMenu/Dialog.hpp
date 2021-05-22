@@ -67,13 +67,20 @@ class RscMenu_Tactical {
 		class CA_Artillery_Label_Radius : RscText {
 			idc = 17030;
 			x = 0.00602637;
-			y = 0.182926;
+			y = 0.226604;
 			w = 0.2;
 			text = $STR_WF_TACTICAL_ArtilleryRadius;
 		};
+		class CA_Artillery_Label_Ammo_Type : RscText {
+            idc = 17033;
+            x = 0.00602637;
+            y = 0.181795;
+            w = 0.2;
+            text = $STR_WF_TACTICAL_ArtilleryAmmoType;
+        };
 		class CA_Artillery_Label_Unit : RscText {
 			idc = 17031;
-			x = 0.00434496;
+			x = 0.00602637;
 			y = 0.14259;
 			w = 0.2;
 			text = $STR_WF_TACTICAL_Artillery;
@@ -81,23 +88,31 @@ class RscMenu_Tactical {
 		class CA_Artillery_Slider : RscXSliderH {
 			idc = 17005;
 			x = 0.14652;
-			y = 0.188795;
+			y = 0.226604;
 			w = 0.224033;
 			h = 0.029412;
 		};
+		class CA_Artillery_Ammo_Type_Combo : RscCombo {
+            idc = 17033;
+            x = 0.145945;
+            y = 0.185795;
+            w = 0.224033;
+            h = 0.029412;
+            onLBSelChanged = "WF_MenuAction = 200";
+        };
 		class CA_SetFMission_Button : RscButton {
 			idc = 17006;
-			x = 0.12047;
-			y = 0.515631;
-			w = 0.25;
+			x = 0.01334496;
+			y = 0.566833;
+			w = 0.15;
 			text = $STR_WF_TACTICAL_ArtillerySetFireMission;
 			action = "WF_MenuAction = 1";
 		};
 		class CA_FireMission_Button : RscButton {
 			idc = 17007;
-			x = 0.12047;
+			x = 0.22047;
 			y = 0.566833;
-			w = 0.25;
+			w = 0.15;
 			text = $STR_WF_TACTICAL_ArtilleryCallFireMission;
 			colorBackground[] = {0.09,0.65,0.23,1};
             colorBackgroundActive[] = {0.1,0.72,0.25,1};
@@ -110,7 +125,7 @@ class RscMenu_Tactical {
 			idc = 17008;
 			x = 0.145945;
 			y = 0.146217;
-			w = 0.147;
+			w = 0.224033;
 			h = 0.029412;
 			onLBSelChanged = "WF_MenuAction = 200";
 		};
@@ -188,7 +203,7 @@ class RscMenu_Tactical {
 		class CA_ArtilleryList : RscListBoxA {
 			idc = 17024;
 			x = 0.00459768;
-			y = 0.270084;
+			y = 0.321286;
 			w = 0.365209;
 			h = 0.235;
 			columns[] = {0.02, 0.55};
@@ -207,8 +222,10 @@ class RscMenu_Tactical {
 		class CA_ArtilleryTable_Label : RscText {
 			idc = 17025;
 			x = 0.00495766;
-			y = 0.226604;
+			y = 0.276604;
 			w = 0.339999;
+
+			text = $STR_WF_TACTICAL_ArtilleryOverview;
 		};
 		/* Separators */
 		class LineTRH1 : RscText {

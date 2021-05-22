@@ -8,8 +8,6 @@ _listBox = 17019;
 sliderSetRange[17005, 10, missionNamespace getVariable "WF_C_ARTILLERY_AREA_MAX"];
 sliderSetPosition[17005, artyRange];
 
-ctrlSetText [17025,localize "STR_WF_TACTICAL_ArtilleryOverview" + ":"];
-
 _markers = [];
 _FTLocations = [];
 _checks = [];
@@ -53,10 +51,61 @@ _currentFee = -1;
 
 //--- Support List.
 _lastSel = -1;
-_addToList = [localize 'STR_WF_TACTICAL_FastTravel',localize 'STR_WF_CRUISE_MISSILE', localize 'STR_WF_CHEMICAL_MISSILE', 'CAS', localize 'STR_WF_TACTICAL_ParadropVehicle',localize 'STR_WF_TACTICAL_Paratroop',localize 'STR_WF_TACTICAL_Heli_Paratroop'];
-_addToListID = ["Fast_Travel","Cruise Missile","Chemical Missile",'CAS',"Paradrop_Vehicle","Paratroopers","HeliParatroopers"];
+
+_isCommander = false;
+if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCommander = true}};
+
+_addToList = [
+    localize 'STR_WF_TACTICAL_FastTravel',
+    localize 'STR_WF_CRUISE_MISSILE',
+    localize 'STR_WF_CHEMICAL_MISSILE',
+    localize 'STR_WF_CAS',
+    localize 'STR_WF_TACTICAL_ParadropVehicle',
+    localize 'STR_WF_TACTICAL_Paratroop',
+    localize 'STR_WF_TACTICAL_Heli_Paratroop'
+];
+
+_addToListID = [
+    "Fast_Travel",
+    "Cruise Missile",
+    "Chemical Missile",
+    'CAS',
+    "Paradrop_Vehicle",
+    "Paratroopers",
+    "HeliParatroopers"
+];
+
 _addToListFee = [0,7500,7500,5000,9500,3500,3500];
 _addToListInterval = [0,500,500,1000,800,600,600];
+
+if (_isCommander) then {
+    _addToList = [
+        localize 'STR_WF_TACTICAL_FastTravel',
+        localize 'STR_WF_CRUISE_MISSILE',
+        localize 'STR_WF_CHEMICAL_MISSILE',
+        localize 'STR_WF_CAS',
+        localize 'STR_WF_TACTICAL_ParadropVehicle',
+        localize 'STR_WF_TACTICAL_Paratroop',
+        localize 'STR_WF_TACTICAL_Heli_Paratroop',
+        localize 'STR_WF_TACTICAL_Paratroop_HC',
+        localize 'STR_WF_TACTICAL_Heli_Paratroop_HC'
+    ];
+
+    _addToListID = [
+        "Fast_Travel",
+        "Cruise Missile",
+        "Chemical Missile",
+        'CAS',
+        "Paradrop_Vehicle",
+        "Paratroopers",
+        "HeliParatroopers",
+        "ParatroopersHC",
+        "HeliParatroopersHC"
+    ];
+
+    _addToListFee = [0,7500,7500,5000,9500,3500,3500,3500,3500];
+    _addToListInterval = [0,500,500,1000,800,600,600,600,600];
+};
 
 for '_i' from 0 to count(_addToList)-1 do {
 	lbAdd [_listBox,_addToList # _i];
@@ -242,12 +291,32 @@ while {alive player && dialog} do {
                     _controlEnable = ((commanderTeam == WF_Client_Team) && _funds >= _currentFee && time - lastCasCall > _currentInterval)
                 }
 			};
+			case "ParatroopersHC": {
+			    _currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
+			    _hcAllowedGroupAmount = WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT + ( (((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HC_GROUP_AMOUNT) * 2 );
+			    _currentHCGroupAmount = (count ([WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups)) + groupQueu;
+
+                _controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastParaCall > _currentInterval && _currentHCGroupAmount >= _hcAllowedGroupAmount);
+                if(_currentHCGroupAmount >= _hcAllowedGroupAmount) then {
+                    [format ["%1", localize "STR_WF_INFO_Paratroop_NotAllowed"]] spawn WFCL_fnc_handleMessage
+                };
+			};
 			case "Paratroopers": {
 				_currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
 				_controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastParaCall > _currentInterval && _currentGroupSize <= WF_C_PLAYERS_AI_MAX);
 				if(_currentGroupSize > WF_C_PLAYERS_AI_MAX) then {
 				    [format ["%1", localize "STR_WF_INFO_Paratroop_NotAllowed"]] spawn WFCL_fnc_handleMessage
 				};
+			};
+			case "HeliParatroopersHC": {
+                _currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
+                _hcAllowedGroupAmount = WF_C_HIGH_COMMAND_MIN_GROUP_AMOUNT + ( (((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_HC_GROUP_AMOUNT) * 2 );
+                _currentHCGroupAmount = (count ([WF_Client_SideJoined] call WFCO_FNC_getHighCommandGroups)) + groupQueu;
+
+                _controlEnable = (_funds >= _currentFee && _currentLevel > 0 && time - lastParaCall > _currentInterval && _currentHCGroupAmount >= _hcAllowedGroupAmount);
+                if(_currentHCGroupAmount >= _hcAllowedGroupAmount) then {
+                    [format ["%1", localize "STR_WF_INFO_Paratroop_NotAllowed"]] spawn WFCL_fnc_handleMessage
+                };
 			};
 			case "HeliParatroopers": {
                 _currentLevel = _currentUpgrades # WF_UP_PARATROOPERS;
@@ -298,11 +367,21 @@ while {alive player && dialog} do {
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
 				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
 			};
+			case "ParatroopersHC": {
+				WF_MenuAction = 5;
+				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
+			};
 			case "HeliParatroopers": {
                 WF_MenuAction = 4;
 				if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
 				_textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
 			};
+			case "HeliParatroopers": {
+                WF_MenuAction = 6;
+                if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+                _textAnimHandler = [17022,localize 'STR_WF_TACTICAL_ClickOnMap',10,"ff9900"] spawn WFCL_FNC_SetControlFadeAnim;
+            };
 			case "Paradrop_Vehicle": {
 				WF_MenuAction = 9;
 
@@ -339,6 +418,21 @@ while {alive player && dialog} do {
 				[format ["%1", localize "STR_WF_INFO_Paratroop_Info"]] spawn WFCL_fnc_handleMessage
 			};
 		};
+
+		//--- Paratroops HC.
+        if (WF_MenuAction == 5) then {
+            WF_MenuAction = -1;
+            _forceReload = true;
+            if !(scriptDone _textAnimHandler) then {terminate _textAnimHandler};
+            [17022] Call WFCL_FNC_SetControlFadeAnimStop;
+            _callPos = _map posScreenToWorld[mouseX,mouseY];
+            if (!surfaceIsWater _callPos) then {
+                lastParaCall = time;
+                -(_currentFee) Call WFCL_FNC_ChangePlayerFunds;
+                [WF_Client_SideJoined, _callPos, nil, WF_C_PLAYERS_AI_MAX] remoteExec ["WFCO_FNC_Paratroopers",2];
+                [format ["%1", localize "STR_WF_INFO_Paratroop_Info"]] spawn WFCL_fnc_handleMessage
+            };
+        };
 
 		//--- Heli Paratroops.
         if (WF_MenuAction == 4) then {
