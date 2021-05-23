@@ -1,20 +1,20 @@
 private['_bd','_built','_built_inf','_currentLevel','_currentUpgrades','_destination','_greenlight','_vehicleGrp',
-    '_paratroopers','_playerTeam','_closestStartPos','_side','_sideID','_units',
+    '_paratroopers','_closestStartPos','_side','_sideID','_units',
     '_vehicle','_vehicle_cargo','_vehicle_model'];
-params ["_side","_destination","_playerTeam", ["_allowedGroupSize", 10]];
+params ["_side","_destination","_paraGroup", ["_allowedGroupSize", 10], '_isHc'];
 
 if (isServer) exitWith {
     _hc = missionNamespace getVariable ["WF_HEADLESSCLIENT_ID", 0];
     if(_hc > 0) then {
         ["INFORMATION", Format["fn_HeliParaTroopers.sqf: delegating heli para troopers request to hc - %1", _hc]] Call WFCO_FNC_LogContent;
-        [_side, _destination, _playerTeam, _allowedGroupSize] remoteExec ["WFCO_FNC_HeliParatroopers",_hc]
+        [_side, _destination, _paraGroup, _allowedGroupSize, _isHc] remoteExec ["WFCO_FNC_HeliParatroopers",_hc]
     }
 };
 
 _sideID = _side Call WFCO_FNC_GetSideID;
 _greenlight = false;
 
-["INFORMATION", Format["fn_HeliParaTroopers.sqf : [%1] Team [%2] has requested heli paratroopers.", _side, _playerTeam]] Call WFCO_FNC_LogContent;
+["INFORMATION", Format["fn_HeliParaTroopers.sqf : [%1] Team [%2] has requested heli paratroopers.", _side, _paraGroup]] Call WFCO_FNC_LogContent;
 
 //--- Determine a random spawn location.
 _startPosArray = [];
@@ -108,10 +108,15 @@ while {!_greenlight} do {
 
 //--- Units are ready to bail!
 if (_greenlight) then {
+    if (_isHc) then {
+        _paraGroup setVariable ["isHighCommandPurchased",true, true]
+    } else {
     {
-        [_x] join (leader _playerTeam);
+            [_x] join (leader _paraGroup);
         sleep 0.8;
     } forEach _paratroopers;
+    };
+
     //--- Once done, the air units can fly back to their source.
     sleep 15;
     [_vehicleGrp, _closestStartPos, "MOVE", 5] Call WFCO_fnc_aiMoveTo;

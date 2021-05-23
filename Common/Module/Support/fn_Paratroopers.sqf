@@ -1,13 +1,13 @@
 private['_bd','_built','_built_inf','_currentLevel','_currentUpgrades','_destination','_greenlight','_grp',
-    '_index','_paratroopers','_playerTeam','_ran','_ranDir','_ranPos','_side','_sideID','_starttime','_units',
+    '_index','_paratroopers','_ran','_ranDir','_ranPos','_side','_sideID','_starttime','_units',
     '_vehicle','_vehicle_cargo','_vehicle_count','_vehicle_model','_vehicle_pilot','_vehicles','_vehPos'];
-params ["_side","_destination","_playerTeam", ["_allowedGroupSize", 10]];
+params ["_side","_destination","_paraGroup", ["_allowedGroupSize", 10], '_isHc'];
 
 if (isServer) exitWith {
     _hc = missionNamespace getVariable ["WF_HEADLESSCLIENT_ID", 0];
     if(_hc > 0) then {
         ["INFORMATION", Format["fn_Paratroopers.sqf: delegating para troopers request to hc - %1", _hc]] Call WFCO_FNC_LogContent;
-        [_side, _destination, _playerTeam, _allowedGroupSize] remoteExec ["WFCO_FNC_Paratroopers",_hc]
+        [_side, _destination, _paraGroup, _allowedGroupSize, _isHc] remoteExec ["WFCO_FNC_Paratroopers",_hc]
     }
 };
 
@@ -15,7 +15,7 @@ _sideID = _side Call WFCO_FNC_GetSideID;
 _starttime = time;
 _parachute = "B_parachute";
 
-["INFORMATION", Format["fn_Paratroopers.sqf : [%1] Team [%2] has requested paratroopers.", _side, _playerTeam]] Call WFCO_FNC_LogContent;
+["INFORMATION", Format["fn_Paratroopers.sqf : [%1] Team [%2] has requested paratroopers.", _side, _paraGroup]] Call WFCO_FNC_LogContent;
 
 //--- Determine a random spawn location.
 _ranPos = [];
@@ -123,7 +123,7 @@ while {true} do {
 
 	if (({alive _x} count _vehicles) == 0) exitWith { };//--- Vehicle destruction.
 	if (({alive driver _x} count _vehicles) == 0) exitWith { };//--- Pilots are dead.
-	if (!(isPlayer (leader _playerTeam)) || time - _starttime > 300) exitWith { };//--- Timeout out AI Controlled.
+	if (!(isPlayer (leader _paraGroup)) || time - _starttime > 300) exitWith { };//--- Timeout out AI Controlled.
 
 	_vehicleCoord = [(getPos vehicle (leader _grp)) select 0, (getPos vehicle (leader _grp)) select 1];
 	_positionCoord = [_destination select 0, _destination select 1];
@@ -147,12 +147,12 @@ if (_greenlight) then {
 	{
 		_vehicle = _x;
 		{
-		    [_x, _vehicle, _parachute, _dir, _playerTeam, _side] spawn {
+		    [_x, _vehicle, _parachute, _dir, _paraGroup, _side] spawn {
 		        _paratrooper = _this select 0;
 		        _vehicle = _this select 1;
 		        _parachute = _this select 2;
 		        _dir = _this select 3;
-				_playerTeam = _this select 4;
+				_paraGroup = _this select 4;
 				_side = _this select 5;
 
 		        _paratrooper allowDamage false;
@@ -175,12 +175,14 @@ if (_greenlight) then {
 		_vehicle flyInHeight 1000;
 	} forEach _vehicles;
 
+    if (_isHc) then {
+        _grp setVariable ["isHighCommandPurchased",true, true]
+    } else {
     {
-        [_x] join (leader _playerTeam);
-
-        sleep 0.8;
-    }
-    forEach _paratroopers;
+            [_x] join (leader _paraGroup);
+            sleep 0.8
+        } forEach _paratroopers
+    };
 
 	//--- Once done, the air units can fly back to their source.
 	[_grp, (_ranPos select _ran), "MOVE", 5] Call WFCO_fnc_aiMoveTo;
