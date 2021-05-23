@@ -865,138 +865,144 @@ switch _mode do {
 			    _ctrlList = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _idc);
 			    _gearClassnames = [];
 			    _cfgClassName = 'CfgWeapons';
-			    _subType = '';
+			    _subType = [];
 			    _wearedGear = '';
+			    _selectedRole = TER_VASS_shopObject getVariable 'selectedRole';
+
                 switch (_idc) do {
                     case IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_primary", []];
                         _wearedGear = primaryweapon player call bis_fnc_baseWeapon;
+                        if(!isNil '_selectedRole') then {
+                            _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
+                            if!(isNil '_gearListPrimary')then{
+                                _gearClassnames = _gearClassnames +  _gearListPrimary
+                            }
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_secondary", []];
                         _wearedGear = secondaryweapon player call bis_fnc_baseWeapon;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_secondary = missionNamespace getVariable format["wf_gear_list_secondary_%1", _selectedRole];
+                            if!(isNil '_gear_list_secondary')then{
+                                _gearClassnames = _gearClassnames +  _gear_list_secondary
+                            }
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_HANDGUN: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_pistol", []];
-                        _wearedGear = handgunWeapon player call bis_fnc_baseWeapon
+                        _wearedGear = handgunWeapon player call bis_fnc_baseWeapon;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_pistol = missionNamespace getVariable format["wf_gear_list_pistol_%1", _selectedRole];
+                            if!(isNil '_gear_list_pistol') then {
+                                _gearClassnames = _gearClassnames +  _gear_list_pistol
+                            }
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_uniforms", []];
-                        _wearedGear = uniform player
+                        _wearedGear = uniform player;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_uniforms = missionNamespace getVariable format["wf_gear_list_uniforms_%1", _selectedRole];
+                            if(!(isNil '_gear_list_uniforms'))then{
+                                _gearClassnames = _gearClassnames +  _gear_list_uniforms
+                            };
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_vests", []];
-                        _wearedGear = vest player
+                        _wearedGear = vest player;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_vests = missionNamespace getVariable format["wf_gear_list_vests_%1", _selectedRole];
+                            if(!(isNil '_gear_list_vests')) then {
+                                _gearClassnames = _gearClassnames +  _gear_list_vests
+                            }
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_backpacks", []];
                         _cfgClassName = 'CfgVehicles';
-                        _wearedGear = backpack player
+                        _wearedGear = backpack player;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_backpacks = missionNamespace getVariable format["wf_gear_list_backpacks_%1", _selectedRole];
+                            if(!(isNil '_gear_list_backpacks')) then {
+                                _gearClassnames = _gearClassnames +  _gear_list_backpacks
+                            }
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_headgear", []];
-                        _wearedGear = headgear player
+                        _wearedGear = headgear player;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_headgear = missionNamespace getVariable format["wf_gear_list_headgear_%1", _selectedRole];
+                            if(!(isNil '_gear_list_headgear'))then{
+                                _gearClassnames = _gearClassnames +  _gear_list_headgear
+                            };
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_GOGGLES: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_glasses", []];
                         _cfgClassName = 'CfgGlasses';
-                        _wearedGear = goggles player
+                        _wearedGear = goggles player;
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_glasses = missionNamespace getVariable format["wf_gear_list_glasses_%1", _selectedRole];
+                            if(!(isNil '_gear_list_glasses'))then{
+                                _gearClassnames = _gearClassnames +  _gear_list_glasses
+                            };
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_NVGS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_special", []];
-                        _subType = 'NVGoggles'
+                        _subType = ['NVGoggles'];
+                        if(!isNil '_selectedRole') then {
+
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_special", []];
-                        _subType = 'Binocular';
+                        _subType = ['Binocular'];
+                        if(!isNil '_selectedRole') then {
+
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_MAP: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = 'ItemMap';
+                        _subType = ['ItemMap'];
+                        if(!isNil '_selectedRole') then {
+
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_GPS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = 'ItemGPS'
+                        _subType = ['ItemGPS', 'O_UavTerminal'];
+                        if(!isNil '_selectedRole') then {
+                            _gear_list_misc = missionNamespace getVariable format["wf_gear_list_misc_%1", _selectedRole];
+                            if(!(isNil '_gear_list_misc'))then{
+                                _gearClassnames = _gearClassnames +  _gear_list_misc
+                            };
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_RADIO: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = 'ItemRadio'
+                        _subType = ['ItemRadio'];
+                        if(!isNil '_selectedRole') then {
+
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_COMPASS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = 'ItemCompass'
+                        _subType = ['ItemCompass'];
+                        if(!isNil '_selectedRole') then {
+
+                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_WATCH: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = 'ItemWatch'
-                    };
-                };
-
-                _selectedRole = TER_VASS_shopObject getVariable 'selectedRole';
+                        _subType = ['ItemWatch'];
                 if(!isNil '_selectedRole') then {
-                    _gearListPrimary = missionNamespace getVariable format["wf_gear_list_primary_%1", _selectedRole];
-                    if!(isNil '_gearListPrimary')then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_primary") + _gearListPrimary
-                    };
 
-                    _gear_list_secondary = missionNamespace getVariable format["wf_gear_list_secondary_%1", _selectedRole];
-                    if!(isNil '_gear_list_secondary')then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_secondary") + _gear_list_secondary
-                    };
-
-                    _gear_list_pistol = missionNamespace getVariable format["wf_gear_list_pistol_%1", _selectedRole];
-                    if!(isNil '_gear_list_pistol')then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_pistol") + _gear_list_pistol
-                    };
-
-                    _gear_list_uniforms = missionNamespace getVariable format["wf_gear_list_uniforms_%1", _selectedRole];
-                    if(!(isNil '_gear_list_uniforms'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_uniforms") + _gear_list_uniforms
-                    };
-
-                    _gear_list_backpacks = missionNamespace getVariable format["wf_gear_list_backpacks_%1", _selectedRole];
-                    if(!(isNil '_gear_list_backpacks'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_backpacks") + _gear_list_backpacks
-                    };
-
-                    _gear_list_special = missionNamespace getVariable format["wf_gear_list_special_%1", _selectedRole];
-                    if(!(isNil '_gear_list_special'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_special") + _gear_list_special
-                    };
-
-                    _gear_list_explosives = missionNamespace getVariable format["wf_gear_list_explosives_%1", _selectedRole];
-                    if(!(isNil '_gear_list_explosives'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_explosives") + _gear_list_explosives
-                    };
-
-                    _gear_list_headgear = missionNamespace getVariable format["wf_gear_list_headgear_%1", _selectedRole];
-                    if(!(isNil '_gear_list_headgear'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_headgear") + _gear_list_headgear
-                    };
-
-                    _gear_list_vests = missionNamespace getVariable format["wf_gear_list_vests_%1", _selectedRole];
-                    if(!(isNil '_gear_list_vests'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_vests") + _gear_list_vests
-                    };
-
-                    _gear_list_glasses = missionNamespace getVariable format["wf_gear_list_glasses_%1", _selectedRole];
-                    if(!(isNil '_gear_list_glasses'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_glasses") + _gear_list_glasses
-                    };
-
-                    _gear_list_misc = missionNamespace getVariable format["wf_gear_list_misc_%1", _selectedRole];
-                    if(!(isNil '_gear_list_misc'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_misc") + _gear_list_misc
-                    };
-
-                    _gear_list_magazines = missionNamespace getVariable format["wf_gear_list_magazines_%1", _selectedRole];
-                    if(!(isNil '_gear_list_magazines'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_magazines
-                    };
-
-                    _gear_list_accessories = missionNamespace getVariable format["wf_gear_list_accessories_%1", _selectedRole];
-                    if(!(isNil '_gear_list_accessories'))then{
-                        _gearClassnames = _gearClassnames + (missionNamespace getVariable "wf_gear_list_magazines") + _gear_list_accessories
+                        }
                     }
                 };
 
@@ -1042,9 +1048,13 @@ switch _mode do {
                         _get = missionNamespace getVariable format["wf_%1", _x];
 
                         _skip = false;
-                        if (_subType != '') then {
-                            if (_subType != getText(configFile >> 'CfgWeapons' >> _x >> 'simulation')) then {
-                                _skip = true
+                        if (count _subType > 0) then {
+                            _gearSubtype = getText(configFile >> 'CfgWeapons' >> _x >> 'simulation');
+                            if !(_gearSubtype in _subType) then {
+                                _skip = true;
+                                if(_x in _subType) then {
+                                    _skip = false
+                                }
                             }
                         };
 
@@ -1067,7 +1077,6 @@ switch _mode do {
                                 (_config) call ADDMODICON;
                             }
                         }
-
                     }
                 } forEach _items;
 
