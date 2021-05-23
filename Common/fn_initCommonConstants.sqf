@@ -57,11 +57,10 @@ WF_UP_AMMOCOIN = 10;
 WF_UP_EASA = 11;
 WF_UP_AAR1 = 12;
 WF_UP_SUPPLYPARADROP = 13;
-WF_UP_ARTYAMMO = 14;
-WF_UP_HEAVY_MAGZ = 15;
-WF_UP_HC_GROUP_AMOUNT = 16;
-WF_UP_REMOTE_CONTROL = 17;
-WF_UP_ADV_AA_DEFENSE = 18;
+WF_UP_HEAVY_MAGZ = 14;
+WF_UP_HC_GROUP_AMOUNT = 15;
+WF_UP_REMOTE_CONTROL = 16;
+WF_UP_ADV_AA_DEFENSE = 17;
 
 /*
 	### Working with the missionNamespace ###
@@ -153,7 +152,6 @@ with missionNamespace do {
 	if (isNil "WF_C_ENVIRONMENT_MAX_CLUTTER") then {WF_C_ENVIRONMENT_MAX_CLUTTER = 50;}; //--- Max Terrain grid.
 	if (isNil "WF_C_ENVIRONMENT_STARTING_HOUR") then {WF_C_ENVIRONMENT_STARTING_HOUR = 9;}; //--- Starting Hour of the day.
 	if (isNil "WF_C_ENVIRONMENT_STARTING_MONTH") then {WF_C_ENVIRONMENT_STARTING_MONTH = 6;}; //--- Starting Month of the year.
-	if (isNil "WF_C_ENVIRONMENT_WEATHER_SNOWSTORM") then {WF_C_ENVIRONMENT_WEATHER_SNOWSTORM = 0;}; //--- snow storms
 	if (isNil "WF_C_ENVIRONMENT_WEATHER_OVERCAST") then {WF_C_ENVIRONMENT_WEATHER_OVERCAST = 30;}; //--- weather conditions
 	if (isNil "WF_C_ENVIRONMENT_WEATHER_FOG") then {WF_C_ENVIRONMENT_WEATHER_FOG = 0;}; //--- fog conditions
 	if (isNil "WF_C_ENVIRONMENT_WEATHER_WIND") then {WF_C_ENVIRONMENT_WEATHER_WIND = 30;}; //--- wind conditions

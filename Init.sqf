@@ -118,12 +118,6 @@ if (isHostedServer || isDedicated) then { //--- Run the server's part.
 	[] spawn WFSE_fnc_initServer;
 };
 
-//--- Weather	
-if (WF_C_ENVIRONMENT_WEATHER_SNOWSTORM > 0) then {
-	//"_snowfall","_duration_storm","_ambient_sounds_al","_breath_vapors","_snow_burst","_effect_on_objects","_vanilla_fog","_local_fog","_intensifywind","_unitsneeze"
-	[true,           6000,                15,                    false,           10,             false, 			false,         true,        true,          true] execvm "Common\Module\Weather\SnowStorm\al_snow.sqf";
-};
-
 //--- Client initialization, either hosted or pure client. Part II
 if (isHostedServer || (!isHeadLessClient && !isDedicated)) then {
 	waitUntil {!isNil 'WF_PRESENTSIDES'}; //--- Await for teams to be set before processing the client init.
