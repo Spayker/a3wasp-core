@@ -6,7 +6,7 @@ Params ['_position'];
 
 
 {
-    if(!(_x isKindOf 'WarfareBBaseStructure') && !(_x isKindOf 'StaticWeapon') && !(typeOf _x in WF_C_GARBAGE_OBJECTS)
+    if(!(_x isKindOf 'WarfareBBaseStructure') && !(_x isKindOf 'Warfare_HQ_base_unfolded') && !(_x isKindOf 'StaticWeapon') && !(typeOf _x in WF_C_GARBAGE_OBJECTS)
             && !(typeOf _x in WF_C_CAMP_SEARCH_ARRAY) && !(typeOf _x in WF_Logic_Depot) ) then {
         _x hideObjectGlobal true
     }
