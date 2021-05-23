@@ -1434,20 +1434,7 @@
 				<English>Unit Camera</English>
 				<Russian>Камера юнита</Russian>
 			</Key>
-			<Key ID="STR_WF_TACTICAL_UAV">
-				<English>UAV - Deploy</English>
-				<Russian>БЛА - развернуть</Russian>
-			</Key>
-			<Key ID="STR_WF_TACTICAL_UAVDestroy">
-				<English>UAV - Destroy</English>
-				<Russian>БЛА - уничтожить</Russian>
-			</Key>
-			<Key ID="STR_WF_TACTICAL_UAVRemoteControl">
-				<English>UAV - Remote Control</English>
-				<Russian>БЛА - удаленный доступ</Russian>
-			</Key>
-
-			<!--Team Menu - ALL DONE-->
+						<!--Team Menu - ALL DONE-->
 			<Key ID="STR_WF_TEAM_DisbandLabel">
 				<English>Squad AI:</English>
 				<Russian>Squad AI:</Russian>
@@ -1540,8 +1527,8 @@
 				<Russian>Только командир распределяет доходы</Russian>
 			</Key>
 			<Key ID="STR_WF_TOOLTIP_CommandMenu_SpecialMenu">
-				<English>Artillery, Ammo/Vehicle-drop, Paratroop, UnitCam, FastTravel, UAV and Cruise Missile</English>
-				<Russian>Артиллерия, Сброс боеприпасов/техники, Десант, Камера юнитов, Быстрое перемещение, БЛА и Крылатая Ракета</Russian>
+				<English>Artillery, Ammo/Vehicle-drop, Paratroop, UnitCam, FastTravel and Cruise Missile</English>
+				<Russian>Артиллерия, Сброс боеприпасов/техники, Десант, Камера юнитов, Быстрое перемещение и Крылатая Ракета</Russian>
 			</Key>
 			<Key ID="STR_WF_TOOLTIP_CommandMenu_SupportMenu">
 				<English>Rearm, Refuel, Repair, Heal and EASA</English>
@@ -1764,10 +1751,6 @@
 			<Key ID="STR_WF_UPGRADE_Paratroop_Desc">
 				<English>This upgrade unlocks paratroop.&lt;br/&gt;&lt;br/&gt;This allows the team to call paratroop drops from the Tactical Center</English>
 				<Russian>Данная модернизация разблокирует десант.&lt;br/&gt;&lt;br/&gt;Это позволяет команде вызвать десант из Тактического центра</Russian>
-			</Key>
-			<Key ID="STR_WF_UPGRADE_UAV_Desc">
-				<English>This upgrade unlocks UAV.&lt;br/&gt;&lt;br/&gt;This allows the team to buy a UAV from the Tactical Center</English>
-				<Russian>Данная модернизация разблокирует БЛА.&lt;br/&gt;&lt;br/&gt;Это поможет купить Беспилотный Летательный Аппарат в Тактическом центре</Russian>
 			</Key>
 			<Key ID="STR_WF_UPGRADE_CRUISE_MISSILE_Desc">
 				<English>This upgrade unlocks Cruise Missile.&lt;br/&gt;&lt;br/&gt;This allows the team to buy an Cruise Missile from the Tactical Center.&lt;br/&gt;&lt;br/&gt;Maximum pain for our good friends</English>
