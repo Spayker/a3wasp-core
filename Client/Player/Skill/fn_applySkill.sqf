@@ -63,8 +63,6 @@ switch (WF_SK_V_Type) do {
             {},
             {},
             {
-                diag_log format ['fn_applySkill.sqf: player - %1', player];
-                diag_log format ['fn_applySkill.sqf: [player] call WFCL_FNC_GetNearestRadioTower - %1', [player] call WFCL_FNC_GetNearestRadioTower];
                 [player, [player] call WFCL_FNC_GetNearestRadioTower] remoteExec ["WFSE_FNC_UpdateRadarTower", 2]
             },
             {},

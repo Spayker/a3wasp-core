@@ -93,7 +93,7 @@ class RscMenu_Tactical {
 			h = 0.029412;
 		};
 		class CA_Artillery_Ammo_Type_Combo : RscCombo {
-            idc = 17033;
+            idc = 17034;
             x = 0.145945;
             y = 0.185795;
             w = 0.224033;

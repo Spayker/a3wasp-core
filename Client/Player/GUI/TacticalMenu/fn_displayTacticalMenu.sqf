@@ -39,7 +39,12 @@ _pard = missionNamespace getVariable "WF_C_PLAYERS_SUPPORT_PARATROOPERS_DELAY";
 {lbAdd[17008,_x]} forEach (missionNamespace getVariable Format ["WF_%1_ARTILLERY_DISPLAY_NAME",WF_Client_SideJoinedText]);
 lbSetCurSel[17008,0];
 
-_IDCS = [17005,17006,17007,17008];
+{
+    lbAdd[17034, getText (configFile >> "CfgMagazines" >> _x >> "displayName")]
+} forEach ( (missionNamespace getVariable Format ["WF_%1_ARTILLERY_EXTENDED_MAGS", WF_Client_SideJoinedText]) # 0 );
+lbSetCurSel[17034,0];
+
+_IDCS = [17005,17006,17007,17008,17034];
 if ((missionNamespace getVariable "WF_C_ARTILLERY") == 0) then {{ctrlEnable [_x,false]} forEach _IDCS};
 
 {ctrlEnable [_x, false]} forEach [17010,17011,17012,17013,17014,17015,17017,17018,17020];
@@ -642,7 +647,7 @@ while {alive player && dialog} do {
 		_units = [WF_Client_Team,true,lbCurSel(17008),WF_Client_SideJoinedText,_logik] Call WFCO_FNC_GetTeamArtillery;
 		if (Count _units > 0) then {
 			fireMissionTime = time;
-			[GetMarkerPos "artilleryMarker",lbCurSel(17008),_logik,_units] Spawn WFCL_FNC_RequestFireMission;
+			[GetMarkerPos "artilleryMarker", lbCurSel(17008), lbCurSel(17034), _logik, _units] Spawn WFCL_FNC_RequestFireMission;
 		} else {
 			[format ["%1", localize "STR_WF_INFO_NoArty"]] spawn WFCL_fnc_handleMessage
 		};			
@@ -651,8 +656,13 @@ while {alive player && dialog} do {
 	//--- Arty Combo Change or Script init.
 	if (WF_MenuAction == 200 || _startLoad) then {
 		WF_MenuAction = -1;
-		
 		_index = lbCurSel(17008);
+
+		lnbClear 17034;
+		{
+            lbAdd[17034, getText (configFile >> "CfgMagazines" >> _x >> "displayName")]
+        } forEach ( (missionNamespace getVariable Format ["WF_%1_ARTILLERY_EXTENDED_MAGS", WF_Client_SideJoinedText]) # _index );
+		
 		_minRange = (missionNamespace getVariable Format ["WF_%1_ARTILLERY_RANGES_MIN",WF_Client_SideJoined]) # _index;
 		_maxRange = round(((missionNamespace getVariable Format ["WF_%1_ARTILLERY_RANGES_MAX",WF_Client_SideJoined]) # _index) / (missionNamespace getVariable "WF_C_ARTILLERY"));
 
