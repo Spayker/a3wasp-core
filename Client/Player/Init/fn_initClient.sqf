@@ -615,6 +615,11 @@ WF_C_MAP_MARKER_HANDLER = {
 	} foreach _iconsToBeDisplayed
 };
 
+addMissionEventHandler ["Map", {
+	params ["_mapIsOpened", "_mapIsForced"];
+	if (_mapIsOpened) then { mapAnimAdd [1, 0.05, player] }
+}];
+
 waitUntil {!isNull findDisplay 12};
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
 
