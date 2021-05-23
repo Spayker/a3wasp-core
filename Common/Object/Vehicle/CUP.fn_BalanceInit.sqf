@@ -1,24 +1,5 @@
 switch (typeOf _this) do 
 {	
-
-	case "CUP_B_D30_CDF";
-	case "CUP_O_D30_RU":{
-        _this removeMagazineTurret ["CUP_30Rnd_122mmAT_D30_M",[0]];
-        _this removeMagazineTurret ["CUP_30Rnd_122mmWP_D30_M",[0]];
-        _this removeMagazineTurret ["CUP_30Rnd_122mmLASER_D30_M",[0]];
-        _this removeMagazineTurret ["CUP_30Rnd_122mmSMOKE_D30_M",[0]];
-        _this removeMagazineTurret ["CUP_30Rnd_122mmILLUM_D30_M",[0]];
-    };
-
-    case "CUP_B_M252_USMC";
-    case "CUP_O_2b14_82mm_RU":{
-        _this removeMagazineTurret ["8Rnd_82mm_Mo_Flare_white",[0]];
-        _this removeMagazineTurret ["8Rnd_82mm_Mo_Smoke_white",[0]];
-        _this removeMagazineTurret ["8Rnd_82mm_Mo_guided",[0]];
-        _this removeMagazineTurret ["8Rnd_82mm_Mo_LG",[0]];
-	};
-	
-	
 	case "CUP_B_MCV80_GB_W";
 	case "CUP_B_MCV80_GB_W_SLAT";
 	case "CUP_B_MCV80_GB_D";
