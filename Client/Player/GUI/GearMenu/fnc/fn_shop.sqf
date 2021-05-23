@@ -955,23 +955,14 @@ switch _mode do {
                     case IDC_RSCDISPLAYARSENAL_TAB_NVGS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_special", []];
                         _subType = ['NVGoggles'];
-                        if(!isNil '_selectedRole') then {
-
-                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_special", []];
-                        _subType = ['Binocular'];
-                        if(!isNil '_selectedRole') then {
-
-                        }
+                        _subType = ['Binocular','Laserdesignator','Item_Laserdesignator_02','Laserdesignator_02_ghex_F','Laserdesignator_01_khk_F'];
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_MAP: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
                         _subType = ['ItemMap'];
-                        if(!isNil '_selectedRole') then {
-
-                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_GPS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
@@ -986,23 +977,14 @@ switch _mode do {
                     case IDC_RSCDISPLAYARSENAL_TAB_RADIO: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
                         _subType = ['ItemRadio'];
-                        if(!isNil '_selectedRole') then {
-
-                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_COMPASS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
                         _subType = ['ItemCompass'];
-                        if(!isNil '_selectedRole') then {
-
-                        }
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_WATCH: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
                         _subType = ['ItemWatch'];
-                if(!isNil '_selectedRole') then {
-
-                        }
                     }
                 };
 
