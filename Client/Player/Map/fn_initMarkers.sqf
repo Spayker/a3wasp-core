@@ -116,3 +116,12 @@
         _x setVariable ["serviceMarkers", _townServiceMarkers]
 	};
 } forEach towns;
+{
+    _currentTowerSideID = _x getVariable ["sideID", WF_C_UNKNOWN_ID];
+    if (_currentTowerSideID == WF_Client_SideID) then {
+        [WF_Client_SideID, _x] call WFCL_FNC_UpdateRadarMarker;
+    } else {
+        [_currentTowerSideID, _x] call WFCL_FNC_UpdateRadarMarker
+    }
+
+} forEach (nearestObjects [[0,0,0], WF_C_RADIO_OBJECTS, 100000])

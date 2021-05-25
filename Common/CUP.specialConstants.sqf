@@ -25,13 +25,6 @@ WF_C_INFANTRY_TO_REQUIP = [
 
 ]; //--Example: ['rhs_vdv_des_at', ['AK-74M', '9M131'], ['7H10 30 AK-74 x8', 'RGN x1', '9M131 x1']]
 
-WF_C_COMBAT_JETS_WITH_BOMBS = ['CUP_O_SU34_RU','CUP_O_L39_TK','CUP_B_L39_CZ','CUP_B_F35B_BAF','CUP_B_F35B_Stealth_BAF',
-    'CUP_B_AV8B_DYN_USMC','CUP_B_A10_DYN_USA','CUP_O_Su25_Dyn_TKA'];
-
-WF_C_BOMBS_TO_DISABLE_AUTOGUIDE = ["CUP_FAB250", "CUP_Mk_82", "CUP_Bo_GBU12_LGB", "CUP_Bo_KAB250_LGB",
-    "CUP_PylonPod_1Rnd_GBU12_M","CUP_PylonPod_2Rnd_GBU12_M","CUP_PylonPod_3Rnd_GBU12_M",
-	"CUP_Triple_Bomb_Rack_Dummy", "CUP_Dual_Bomb_Rack_Dummy"];
-
 WF_C_ADV_AIR_DEFENCE = [
 							["B_SAM_System_02_F", "B_SAM_System_03_F", "O_SAM_System_04_F", "B_Radar_System_01_F", "O_Radar_System_02_F", "CUP_WV_B_CRAM", "CUP_WV_B_CRAM_OPFOR"], //--Weapons--
 							[                 10,					0,					 0,						0,					   0,               0,                     0]	//--Reload time--
