@@ -85,7 +85,6 @@ Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_US.
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_RU.sqf";
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_US.sqf";
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_Gue.sqf";
-Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Defenses\Defenses_Civ.sqf";
 
 //--- Server Exec.
 if (isServer || isHeadLessClient) then {
