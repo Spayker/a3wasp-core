@@ -1,5 +1,5 @@
 private["_startSV","_patrol_range"];
-params ["_location", "_group", "_sideID", "_focus"];
+params ["_location", "_group", "_sideID", ["_focus", objNull]];
 
 _startSV = _location getVariable ['startingSupplyValue', 10];
 

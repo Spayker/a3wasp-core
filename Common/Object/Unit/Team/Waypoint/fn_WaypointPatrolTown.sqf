@@ -9,13 +9,16 @@
 private ['_camps','_insert','_insertObject','_insertStep','_maxWaypoints','_pos','_rand1','_rand2','_townPos','_type','_update','_usable','_wpcompletionRadius','_wpradius','_wps'];
 params ["_team", "_town", ["_radius", 30]];
 
-if (!(_town isEqualType objNull)) exitWith {};
+if (isNull _town) exitWith {};
 if (isNull _team) exitWith {};
+
 _townPos = getPos _town;
+_camps = _town getVariable ['camps', []];
 
-_camps = _town getVariable 'camps';
+_usable = [_town];
+if(count _camps > 0) then {  _usable = _usable + _camps };
 
-_usable = [_town] + _camps;
+diag_log format ['fn_WaypointPatrolTown.sqf: _usable - %1', _usable];
 _maxWaypoints = (missionNamespace getVariable 'WF_C_TOWNS_UNITS_WAYPOINTS') + count(_usable);
 _wps = [];
 
