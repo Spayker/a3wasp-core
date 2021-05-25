@@ -62,8 +62,6 @@ if (!isNull(commanderTeam)) then {if (commanderTeam == group player) then {_isCo
 
 _addToList = [
     localize 'STR_WF_TACTICAL_FastTravel',
-    localize 'STR_WF_CRUISE_MISSILE',
-    localize 'STR_WF_CHEMICAL_MISSILE',
     localize 'STR_WF_CAS',
     localize 'STR_WF_TACTICAL_ParadropVehicle',
     localize 'STR_WF_TACTICAL_Paratroop',
@@ -72,8 +70,6 @@ _addToList = [
 
 _addToListID = [
     "Fast_Travel",
-    "Cruise Missile",
-    "Chemical Missile",
     'CAS',
     "Paradrop_Vehicle",
     "Paratroopers",
@@ -83,33 +79,32 @@ _addToListID = [
 _addToListFee = [0,7500,7500,5000,9500,3500,3500];
 _addToListInterval = [0,500,500,1000,800,600,600];
 
+if (WF_Client_SideJoined != resistance) then {
+    _addToList pushBack (localize 'STR_WF_CRUISE_MISSILE');
+    _addToList pushBack (localize 'STR_WF_CHEMICAL_MISSILE');
+
+    _addToListID pushBack ("Cruise Missile");
+    _addToListID pushBack ("Chemical Missile");
+
+    _addToListFee pushBack 7500;
+    _addToListFee pushBack 7500;
+
+    _addToListInterval pushBack 500;
+    _addToListInterval pushBack 500;
+};
+
 if (_isCommander) then {
-    _addToList = [
-        localize 'STR_WF_TACTICAL_FastTravel',
-        localize 'STR_WF_CRUISE_MISSILE',
-        localize 'STR_WF_CHEMICAL_MISSILE',
-        localize 'STR_WF_CAS',
-        localize 'STR_WF_TACTICAL_ParadropVehicle',
-        localize 'STR_WF_TACTICAL_Paratroop',
-        localize 'STR_WF_TACTICAL_Heli_Paratroop',
-        localize 'STR_WF_TACTICAL_Paratroop_HC',
-        localize 'STR_WF_TACTICAL_Heli_Paratroop_HC'
-    ];
+    _addToList pushBack (localize 'STR_WF_TACTICAL_Paratroop_HC');
+    _addToList pushBack (localize 'STR_WF_TACTICAL_Heli_Paratroop_HC');
 
-    _addToListID = [
-        "Fast_Travel",
-        "Cruise Missile",
-        "Chemical Missile",
-        'CAS',
-        "Paradrop_Vehicle",
-        "Paratroopers",
-        "HeliParatroopers",
-        "ParatroopersHC",
-        "HeliParatroopersHC"
-    ];
+    _addToListID pushBack ("ParatroopersHC");
+    _addToListID pushBack ("HeliParatroopersHC");
 
-    _addToListFee = [0,7500,7500,5000,9500,3500,3500,3500,3500];
-    _addToListInterval = [0,500,500,1000,800,600,600,600,600];
+    _addToListFee pushBack 3500;
+    _addToListFee pushBack 3500;
+
+    _addToListInterval pushBack 600;
+    _addToListInterval pushBack 600;
 };
 
 for '_i' from 0 to count(_addToList)-1 do {
