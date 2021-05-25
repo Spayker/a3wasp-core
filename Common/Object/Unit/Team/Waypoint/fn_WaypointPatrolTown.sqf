@@ -18,15 +18,8 @@ _camps = _town getVariable ['camps', []];
 _usable = [_town];
 if(count _camps > 0) then {  _usable = _usable + _camps };
 
-diag_log format ['fn_WaypointPatrolTown.sqf: _usable - %1', _usable];
 _maxWaypoints = (missionNamespace getVariable 'WF_C_TOWNS_UNITS_WAYPOINTS') + count(_usable);
 _wps = [];
-
-//--- Randomize the behaviours.
-if (random 100 > 50) then {_team setFormation "DIAMOND"} else {_team setFormation "STAG COLUMN"};
-if (random 100 > 50) then {_team setCombatMode "YELLOW"} else {_team setCombatMode "RED"};
-if (random 100 > 50) then {_team setBehaviour "AWARE"} else {_team setBehaviour "COMBAT"};
-if (random 100 > 50) then {_team setSpeedMode "NORMAL"} else {_team setSpeedMode "LIMITED"};
 
 //--- Dyn insert.
 _insertStep = [-1, floor(_maxWaypoints / count(_usable))] select (count(_usable) != 0);
