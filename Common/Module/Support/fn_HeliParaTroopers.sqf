@@ -69,6 +69,8 @@ _waypoint setWayPointSpeed "FULL";
 _waypoint setWayPointType "MOVE";
 _waypoint setWaypointStatements ["true", "[vehicle this, 15, [(getPosASL this) # 0, (getPosASL this) # 1, ((getPosASL this) # 2) - 30] ] call AR_Rappel_ALL_Cargo;"];
 
+_vehicle flyInHeight 100;
+
 _vehicleGrp setBehaviour 'COMBAT';
 _vehicleGrp setCombatMode 'YELLOW';
 {_pilot disableAI _x} forEach ["AUTOTARGET","TARGET"];
@@ -82,7 +84,9 @@ _vehicle lockDriver true;
 //--- Create the units.
 _built_inf = 0;
 _paratroopers = [];
-_paraGroup = createGroup [_side, true];
+
+if (_isHc) then { _paraGroup = createGroup [_side, true] };
+
 {
     if (_built_inf <= _vehicle_cargo && _built_inf <= _allowedGroupSize) then {
         //--- Spawn the unit.
