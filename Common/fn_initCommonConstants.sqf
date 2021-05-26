@@ -296,8 +296,8 @@ with missionNamespace do {
 missionNamespace setVariable ["WF_C_CIV_COLOR", "ColorCIV"];
 missionNamespace setVariable ["WF_C_UNKNOWN_COLOR", "ColorYellow"];
 
-WF_C_TITLETEXT_COLOR = "#c8c832";
-WF_C_TITLETEXT_COLOR_INT = [0.78, 0.78, 0.2, 1];
+WF_C_TITLETEXT_COLOR = "#008000";
+WF_C_TITLETEXT_COLOR_INT = [0,0.5,0,1];
 switch(side player) do {
     case WEST: {
         WF_C_TITLETEXT_COLOR = "#00a2e8";
