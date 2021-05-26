@@ -92,23 +92,32 @@ if (!isNil 'WF_P_CurrentGear' && !WF_RespawnDefaultGear && _allowCustom) then {
 };
 
 //--- Load the default loadout.
+if (player getVariable ['shallSetupFriendlyStartGear', false]) then { _loadDefault = true };
 if (_loadDefault) then {
 	Private ["_default"];
 	_default = [];
+	_sideGearTxt = WF_Client_SideJoinedText;
+	_friendlySide = call WFCO_fnc_getFriendlySide;
+	if(_friendlySide != sideUnknown) then {
+	    _sideGearTxt = str _friendlySide;
+	    player setVariable ['shallSetupFriendlyStartGear', false]
+	};
+
 	switch (WF_SK_V_Type) do {
 
-		case WF_RECON: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", WF_Client_SideJoinedText]};
+		case WF_RECON: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", _sideGearTxt]};
 
-		case WF_ASSAULT: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText]};
+		case WF_ASSAULT: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", _sideGearTxt]};
 
-		case WF_ENGINEER: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearEngineer", WF_Client_SideJoinedText]};
+		case WF_ENGINEER: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearEngineer", _sideGearTxt]};
 
-		case WF_SPECOPS: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearLock", WF_Client_SideJoinedText]};
+		case WF_SPECOPS: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearLock", _sideGearTxt]};
 
-        case WF_MEDIC: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", WF_Client_SideJoinedText];};
+        case WF_MEDIC: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", _sideGearTxt]};
 
-        case WF_SUPPORT: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", WF_Client_SideJoinedText];};
+        case WF_SUPPORT: {_default = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", _sideGearTxt]};
+
+        default { _default = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", _sideGearTxt] }
 	};
-	
 	[_player, _default] call WFCO_FNC_EquipUnit;
 };

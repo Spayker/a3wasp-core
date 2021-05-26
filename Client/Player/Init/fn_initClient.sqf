@@ -114,31 +114,19 @@ if (!(visibleMap) && (isNil "BIS_CONTROL_CAM")) then {Local_GUIWorking=true; 136
 
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
 	"<br /><t size='1.5'>65%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingPreparingRolesGear')+"</t>","BLACK IN",55555, true, true];
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_West.sqf"};
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_East.sqf"};
-if (WF_Client_SideJoined == resistance) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Guer.sqf"};
 
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_West.sqf"};
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_East.sqf"};
-if (WF_Client_SideJoined == resistance) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Guer.sqf"};
-
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf"};
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf"};
-if (WF_Client_SideJoined == resistance) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf"};
-
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_East.sqf"};
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_West.sqf"};
-if (WF_Client_SideJoined == resistance) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_Guer.sqf"};
-
-if (WF_Client_SideJoined == east) then {(east) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_East.sqf"};
-if (WF_Client_SideJoined == west) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_West.sqf"};
-if (WF_Client_SideJoined == resistance) then {(west) call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\RoleBased\Gear_Support_Guer.sqf"};
+call compile preprocessFileLineNumbers "Common\Warfare\Config\Gear\Gear_Vanilla_Common.sqf";
+call compile preprocessFileLineNumbers format ["Common\Warfare\Config\Gear\Gear_%1.sqf", WF_Client_SideJoined];
+call compile preprocessFileLineNumbers format ["Common\Warfare\Config\Gear\Gear_Vanilla_%1.sqf", WF_Client_SideJoined];
+call compile preprocessFileLineNumbers format ["Common\Warfare\Config\Gear\RoleBased\Gear_Sniper_%1.sqf", WF_Client_SideJoined];
+call compile preprocessFileLineNumbers format ["Common\Warfare\Config\Gear\RoleBased\Gear_Support_%1.sqf", WF_Client_SideJoined];
 
 _list = missionNamespace getVariable "wf_gear_list_explosives";
 _list = _list + (missionNamespace getVariable "wf_gear_list_magazines");
 _list = _list + (missionNamespace getVariable "wf_gear_list_accessories");
 _list = _list + (missionNamespace getVariable "wf_gear_list_misc");
 WF_C_GEAR_LIST = _list;
+WF_C_GEAR_CARGO_OBJECTS = [];
 
 //--- UI Namespace release from previous possible games (only on titles dialog!).
 {uiNamespace setVariable [_x, displayNull]} forEach ["wf_title_capture"];
@@ -453,9 +441,18 @@ player addEventHandler ["WeaponAssembled", {
 	}
 }];
 
+
+_sideGearTxt = WF_Client_SideJoinedText;
+_friendlySide = call WFCO_fnc_getFriendlySide;
+if(_friendlySide != sideUnknown) then {
+    _sideGearTxt = str _friendlySide;
+    player setVariable ['shallSetupFriendlyStartGear', false]
+};
+
 _roleDefaultGear = [];
-_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];
+_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", _sideGearTxt];
 [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
+
 WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
 WF_P_gearPurchased = false;
 missionnamespace setVariable ["WF_loaded_inventory", WF_P_CurrentGear];

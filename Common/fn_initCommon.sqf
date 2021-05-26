@@ -77,7 +77,6 @@ WF_DEFENDER_ID = (WF_DEFENDER) Call WFCO_FNC_GetSideID;
 
 //--- Import the desired global side variables.
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Gue.sqf";
-Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_Civ.sqf";
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_RU.sqf";
 Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Core_Root\Root_US.sqf";
 
@@ -92,7 +91,6 @@ if (isServer || isHeadLessClient) then {
 	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_US.sqf";
 	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_RU.sqf";
 	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_Gue.sqf";
-	Call Compile preprocessFileLineNumbers "Common\Warfare\Config\Groups\Groups_Civ.sqf";
 };
 
 //--- Airports Init.

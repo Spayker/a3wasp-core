@@ -114,6 +114,7 @@ class WF_Client {
         class missionIntro {};
         class showEndGameResults {};
         class updateCanJoinFlag {};
+        class updateLostTeamWithFriendlyData {};
         class updateAvailableActions {};
     };
 
@@ -421,6 +422,7 @@ class WF_Common {
         file = "Common\Object";
         class trashObject {};
         class getSideFromID {};
+        class getFriendlySide {};
         class getSideID {};
         class getSideLogic {};
         class getHighCommandGroups {};
