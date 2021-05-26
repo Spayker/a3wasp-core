@@ -91,13 +91,14 @@ if (!isNil 'WF_P_CurrentGear' && !WF_RespawnDefaultGear && _allowCustom) then {
 	};
 };
 
+_friendlySide = call WFCO_fnc_getFriendlySide;
 //--- Load the default loadout.
 if (player getVariable ['shallSetupFriendlyStartGear', false]) then { _loadDefault = true };
 if (_loadDefault) then {
 	Private ["_default"];
 	_default = [];
 	_sideGearTxt = WF_Client_SideJoinedText;
-	_friendlySide = call WFCO_fnc_getFriendlySide;
+
 	if(_friendlySide != sideUnknown) then {
 	    _sideGearTxt = str _friendlySide;
 	    player setVariable ['shallSetupFriendlyStartGear', false]
@@ -121,3 +122,11 @@ if (_loadDefault) then {
 	};
 	[_player, _default] call WFCO_FNC_EquipUnit;
 };
+
+//--- update allied channel
+if(_friendlySide != sideUnknown) then {
+    _alliedFriendlyChannelData = missionNamespace getVariable ['alliedFriendlyChannelData', nil];
+    _alliedFriendlyChannelId = _alliedFriendlyChannelData # 0;
+    _alliedFriendlyChannelId radioChannelAdd [player]
+}
+

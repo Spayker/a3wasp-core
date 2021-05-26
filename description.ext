@@ -55,8 +55,6 @@ class CfgServer {
 
 disabledAI=1;
 
-loadScreen = "logo1.paa";
-
 joinUnassigned = 1;
 
 DebugConsole = 1;

@@ -115,6 +115,7 @@ class WF_Client {
         class showEndGameResults {};
         class updateCanJoinFlag {};
         class updateLostTeamWithFriendlyData {};
+        class setFriendlyChannelData {};
         class updateAvailableActions {};
     };
 

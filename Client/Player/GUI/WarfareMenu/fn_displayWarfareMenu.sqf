@@ -98,7 +98,7 @@ while {alive player && dialog} do {
 
         _closestShop setVariable ['currentGearUpgradeLevel', _upgrade_gear];
         _closestShop setVariable ['selectedRole', WF_gbl_boughtRoles select 0];
-
+        WF_C_GEAR_CARGO_OBJECTS pushBackUnique _closestShop;
         [_closestShop, _items] call TER_fnc_addShopCargo;
 		[_closestShop] call TER_fnc_callShop;
 	};
