@@ -317,6 +317,10 @@ while {alive player && dialog} do {
         if (_selectedPurchaseTypeIndex == 0) then {
 
             _listUnits = missionNamespace getVariable Format ['WF_%1%2UNITS',WF_Client_SideJoinedText,_type];
+            if(WF_Client_Logic getVariable ["wf_isFirstOutTeam", false]) then {
+                _listUnits = missionNamespace getVariable Format ['WF_%1%2UNITS', str (call WFCO_fnc_getFriendlySide), _type];
+            };
+
             {
                 _un = _x;
                 if(isNil "_un")then{
