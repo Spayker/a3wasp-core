@@ -41,8 +41,10 @@ while {alive player && dialog} do {
     _isFirstOutTeam = WF_Client_Logic getVariable ["wf_isFirstOutTeam", false];
     _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
     if(_isFirstOutTeam) then {
+        ctrlEnable [2004, false];
         ctrlEnable [2008, false]
     } else {
+        ctrlEnable [2004, true];
         ctrlEnable [2008, true]
     };
 
