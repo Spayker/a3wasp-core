@@ -13,7 +13,7 @@ WF_C_GARBAGE_OBJECTS = ['Land_HBarrier_large','Land_HBarrier5','Base_WarfareBBar
 'Land_BagBunker_01_small_green_F', 'Land_HBarrier_01_wall_6_green_F', 'Land_HBarrier_01_wall_corner_green_F', 'Land_fort_artillery_nest',
 'Land_fort_rampart', 'Hedgehog', 'Land_Razorwire_F', 'Wire', 'Hhedgehog_concreteBig', 'Concrete_Wall_EP1', 'Land_CamoConcreteWall_01_l_4m_v2_F',
 'Land_Vez_svetla', 'Land_HBarrier_large', 'Land_fort_bagfence_long','Land_fort_bagfence_round',  'CamoNet_INDP_F',
-'CamoNet_INDP_open_F', 'CamoNet_INDP_big_F', 'CamoNet_BLUFOR_F', 'CamoNet_BLUFOR_open_F', 'CamoNet_BLUFOR_big_F', 'Land_StoneWall_01_s_d_F','Fort_Barricade_EP1'];
+'CamoNet_INDP_open_F', 'CamoNet_INDP_big_F', 'CamoNet_BLUFOR_F', 'CamoNet_BLUFOR_open_F', 'CamoNet_BLUFOR_big_F', 'Land_StoneWall_01_s_d_F','Fort_Barricade_EP1','Land_Barricade_01_10m_F'];
 
 WF_C_STATIC_DEFENCE_FOR_COMPOSITIONS = ['CUP_I_DSHKM_NAPA', 'CUP_I_2b14_82mm_TK_GUE', 'CUP_I_ZU23_NAPA'];
 
