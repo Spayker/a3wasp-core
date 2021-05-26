@@ -1,4 +1,4 @@
-Private ['_oldListPrimary', '_oldListSecondary', '_oldListPistol', '_oldListMagazines', '_oldListAccessories', '_oldListMisc', '_oldListSpecial', '_oldListUniforms', '_oldListVests', '_oldListBackpacks', '_oldListHeadgear', '_oldListGlasses', '_oldListExplosives', '_oldGear', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+Private ['_oldListPrimary', '_oldListSecondary', '_oldListPistol', '_oldListMagazines', '_oldListAccessories', '_oldListMisc', '_oldListSpecial', '_oldListUniforms', '_oldListVests', '_oldListBackpacks', '_oldListHeadgear', '_oldListGlasses', '_oldListExplosives', '_oldGear'];
 
 { WF_C_GEAR_LIST deleteAt _forEachIndex } forEach WF_C_GEAR_LIST;
 
