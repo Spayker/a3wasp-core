@@ -139,6 +139,8 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
                     if (_commanderTeam == group player) then {
                         if (_killer_type isKindOf "StaticWeapon") then { // base static defense
 
+                            _isTownStaticDefense = _vehicleKiller getVariable ["wf_defense_kind", nil];
+                            if(isNil '_isTownStaticDefense') then {
                             [_killer_isplayer, _killer, _killed_type, _commanderTeam] call WFCO_FNC_processCommanderBounty;
 							
 							if(_killed_isplayer) then {
@@ -148,6 +150,7 @@ if (!isNil '_get' ) then { //--- Make sure that type killed type is defined in t
                             _shallUpdateStats = true;
                             _shallChangeScore = true;
                             _shallCheck = false
+                            }
                         };
 
                         if(_shallCheck) then {
