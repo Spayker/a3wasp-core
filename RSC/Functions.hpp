@@ -317,6 +317,7 @@ class TER
 		class addShop {};
 		class callShop {};
 		class resetTimer {};
+		class cleanGearData {};
 	};
 };
 
