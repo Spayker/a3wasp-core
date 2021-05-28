@@ -2,6 +2,8 @@ WF_MenuAction = -1;
 
 _vehi = [group player,false] Call WFCO_FNC_GetTeamVehicles;
 _playerUav = getConnectedUAV player;
+_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
+
 if!(isNull _playerUav) then { _vehi pushBack _playerUav };
 
 if (!isNull(commanderTeam)) then {
@@ -11,8 +13,8 @@ if (!isNull(commanderTeam)) then {
             {
                 _vehi = _vehi + ([_x, false] Call WFCO_FNC_GetTeamVehicles);
             } forEach _hcGroups;
-        };
-    };
+        }
+    }
 };
 
 _alives = (units group player) Call WFCO_FNC_GetLiveUnits;
@@ -33,12 +35,20 @@ if (!isNull(commanderTeam)) then {
             {
                 if(!isNull (gunner _x)) then { _alives pushBackUnique _x }
             } forEach _foundArtyEntities;
-        } forEach _areas;
-    };
+        } forEach _areas
+    }
 };
+
 {if (vehicle _x == _x) then {_vehi pushBackUnique _x}} forEach _alives;
+
 _lastUse = 0;
-_typeRepair = missionNamespace getVariable Format['WF_%1REPAIRTRUCKS',WF_Client_SideJoinedText];
+_typeRepair = [];
+{
+    _truckTypes = _x;
+    {
+        _typeRepair pushBack (missionNamespace getVariable Format['WF_%1REPAIRTRUCKS', str (_x # 0)])
+    } forEach _truckTypes
+} forEach _friendlySides;
 
 _healPrice = 0;
 _repairPrice = 0;
@@ -173,7 +183,7 @@ _colorConfigs = [];
 
 ctrlSetText [20016, localize 'STR_WF_SKIN'];
 
-while {true} do {
+while {dialog && alive player && !WF_GameOver} do {
 	sleep 0.1;
 
 	if (Side player != WF_Client_SideJoined) exitWith {closeDialog 0};
