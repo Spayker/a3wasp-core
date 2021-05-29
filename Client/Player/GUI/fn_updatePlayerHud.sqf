@@ -25,6 +25,7 @@ if(_uiSize > 0.85) then {
 
 _hideHud = {
 
+    if!(isNil '_cutDisplay') then {
     _sideSlot1 = _cutDisplay DisplayCtrl 1112;
     _sideSlotValue1 = _cutDisplay DisplayCtrl 1113;
     _sideSlot2 = _cutDisplay DisplayCtrl 1101;
@@ -57,6 +58,7 @@ _hideHud = {
     _sControl ctrlShow false;
     _svControl ctrlShow false;
     _tControl ctrlShow false;
+    }
 };
 
 _icons = [

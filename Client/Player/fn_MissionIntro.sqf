@@ -1,15 +1,26 @@
-uiSleep 5;
-
-0 setFog [0.5, 0.05, 0];
-_randomValue = random 100;
+uisleep 3;
 
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
-	"<br /><t size='1.5'>100%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",5, true, true];
+	"<br /><t size='1.5'>100%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",2, true, true];
 
 [] spawn {
-	uiSleep 7;
-	[parseText format["<t align='center' font='PuristaBold' size='4.5'>Warfare at %1</t><br /><br /><t align='center' valign='center' size='10'><img image='logo1.paa'/></t><br /><br /><br /><t align='center'>by WASP COMMUNITY</t>", worldName],
-		[0,0,1,1], [10, 10], 7] spawn BIS_fnc_textTiles;
+	uisleep 3;
+
+    _tipsData = selectRandom WF_C_INTRO_TIPS;
+    _imageTips = _tipsData # 0;
+    _textTips = localize (_tipsData # 1);
+
+	[
+	    parseText format["<t align='center' color='%1' font='PuristaBold' size='4.5'>%2 %3</t><br /><t align='center' font='PuristaLight' size='2.5'>%4</t><br /><br /><t align='center' valign='center' size='12'><img shadow='1' image='%5'/><br /><br /><t align='center' color='#ffd719' size='1'>%6</t></t>",
+                        '#00a2e8', // title color
+                        localize 'STR_MissionWorld_Intro_Title', // title text n1
+                        localize format ['STR_MissionWorld_%1_Region', toLower worldName], // title text n2
+                        localize 'STR_MissionWorld_Intro_QuickTips',
+                        _imageTips,
+                        _textTips
+	                ],
+		[0,0,1,1], [10, 10], 12, 1, 0.5
+    ] spawn BIS_fnc_textTiles;
 };
 
 [] spawn {
@@ -26,7 +37,7 @@ _randomValue = random 100;
 	[
 			[
 				[localize "STR_MissionInfo_Region", "<t align = 'center' shadow = '1' size = '1' font='TahomaB'>%1</t>", 1],
-				[toUpper worldName, "<t align = 'center' shadow = '1' size = '0.9'> %1</t>", 1],
+				[localize format ['STR_MissionWorld_%1_Region', toLower worldName], "<t align = 'center' shadow = '1' size = '0.9'> %1</t>", 1],
 				[localize "STR_MissionInfo_Time", "<br /><t align = 'center' shadow = '1' size = '1' font='TahomaB'>%1</t>", 1],
 				[[] call WFCO_FNC_dateToString, "<t align = 'center' shadow = '1' size = '0.9'> %1</t>", 1],
 				[localize "STR_MissionInfo_HQStatus", "<br /><t align = 'center' shadow = '1' size = '1' font='TahomaB'>%1</t>", 1],
@@ -39,6 +50,7 @@ _randomValue = random 100;
 	] spawn BIS_fnc_typeText;
 };
 
+_randomValue = random 100;
 _camera = "camera" camCreate [((getPosATL player) # 0) + _randomValue, ((getPosATL player) # 1)+_randomValue,
                 ((getPosATL player) # 2) + 500];
 _camera cameraEffect ["Internal","back"];
@@ -67,6 +79,7 @@ waituntil {camCommitted _camera};
 _camera cameraEffect ["Terminate","back"];
 
 WF_EndIntro = true;
+hudOn = true;
 
 _logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
 _sleepTime = 3;

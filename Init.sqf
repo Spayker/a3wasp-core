@@ -9,8 +9,9 @@ WF_Debug = false;
 WF_Skip_Intro = false;
 #ifdef WF_SKIP_INTRO
 	WF_Skip_Intro = true;
+    hudOn = true;
 #else
-    if (time > 60) then { WF_Skip_Intro = true };
+    hudOn = false;
 #endif
 
 WF_Camo = false;

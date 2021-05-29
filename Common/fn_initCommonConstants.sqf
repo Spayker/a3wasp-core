@@ -34,6 +34,21 @@ WF_C_LOGIC_ID = 7;
 WF_C_EMPTY_ID = 8;
 WF_C_AMBIENT_ID = 9;
 
+//--- intro tips array
+WF_C_INTRO_TIPS = [
+    //          image path                 text
+        ['RSC\Pictures\tips\wf_map_town_marker.jpg', "STR_Mission_Intro_Hint_1"],
+        ['RSC\Pictures\tips\wf_map_town_marker_2.jpg', "STR_Mission_Intro_Hint_2"],
+        ['RSC\Pictures\tips\wf_map_town_marker_3.jpg', "STR_Mission_Intro_Hint_3"],
+        ['RSC\Pictures\tips\wf_map_town_marker_4.jpg', "STR_Mission_Intro_Hint_4"],
+        ['RSC\Pictures\tips\wf_map_town_marker_5.jpg', "STR_Mission_Intro_Hint_5"],
+        ['RSC\Pictures\tips\wf_menu_1.jpg', "STR_Mission_Intro_Hint_6"],
+        ['RSC\Pictures\tips\wf_menu_2.jpg', "STR_Mission_Intro_Hint_7"],
+        ['RSC\Pictures\tips\wf_menu_3.jpg', "STR_Mission_Intro_Hint_8"],
+        ['RSC\Pictures\tips\wf_menu_4.jpg', "STR_Mission_Intro_Hint_9"],
+        ['RSC\Pictures\tips\wf_menu_5.jpg', "STR_Mission_Intro_Hint_10"]
+    ];
+
 //--- Role names
 WF_RECON         = "Recon";
 WF_ASSAULT        = "Assault";

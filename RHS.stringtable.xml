@@ -2,6 +2,98 @@
 <Project name="ARMA3 WASP WARFARE">
 	<Package name="CWarfare">
 		<Container name="WF">
+			<Key ID="STR_MissionWorld_Intro_Title">
+				<English>Warfare For</English>
+				<Russian>Война За</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_Intro_QuickTips">
+				<English>Quick Tips</English>
+				<Russian>Быстрая Подсказка</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_chernarus_Region">
+				<English>Chernarus</English>
+				<Russian>Черноруссия</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_takistan_Region">
+				<English>Takistan</English>
+				<Russian>Такистан</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_utes_Region">
+				<English>Utes</English>
+				<Russian>Утёс</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_stratis_Region">
+				<English>Stratis</English>
+				<Russian>Стратис</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_zargabad_Region">
+				<English>Zargabad</English>
+				<Russian>Заргабад</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_altis_Region">
+				<English>Altis</English>
+				<Russian>Алтис</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_malden_Region">
+				<English>Malden</English>
+				<Russian>Малден</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_tanoa_Region">
+				<English>Tanoa</English>
+				<Russian>Таноа</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_enoch_Region">
+				<English>Livonia</English>
+				<Russian>Ливония</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_sahrani_Region">
+				<English>Sahrani</English>
+				<Russian>Сахрани</Russian>
+			</Key>
+			<Key ID="STR_MissionWorld_napf_Region">
+				<English>Napf</English>
+				<Russian>Напф</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_1">
+				<English>Use camps (ROMBS on map) as a local point to spawn. Besides it gives you access to GEAR menu</English>
+				<Russian>Используйте кемпы (РОМБЫ на карте) как точка локального спавна. Они также дают доступ к меню вооружения</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_2">
+				<English>Town name contains additional info: $S - brings money and supplies; 10/40 - provides 10$ and 10S per minute from 40 max</English>
+				<Russian>Имя города содержит доп. информацию: $S - даёт деньги и снабдение; 10/40 - дает 10$ and 10S за минуту из 40 возможных</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_3">
+				<English>Taken central town depot (big square on map) gives you access to common vehicles, light infantry in purchase menu</English>
+				<Russian>Захваченный бункер (большой квадрат на карте) даёт доступ к относительно простому набору техники и пехоты в меню покупки юнитов</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_4">
+				<English>Some locations bring additional service features. Check left side from location depot marker set of available service types</English>
+				<Russian>Некоторые локации предоставляют доп. сервис. Проверьте слева от маркера центрального бункера весь набор доступного сервиса</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_5">
+				<English>Radio towers can be taken by specOps soldiers (a separate in-game role) to provide command center features around</English>
+				<Russian>Радиовышки захватываются specOps солдатом (отдельная внутри-игровая роль) и расширяет локально радиус командного центра </Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_6">
+				<English>Gear can be bought via: WF Menu -> Purchase Gear. Stay near friendly barracks or camp to make menu available</English>
+				<Russian>Оружие можно купить, если открыть WF Меню -> Купить оружие. Дружественные бараки или захваченый кэмп должен быть рядом</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_7">
+				<English>Roles can be bought via: WF Menu -> Roles. First role gives for FREE. Stay near friendly barracks or camp to make menu available</English>
+				<Russian>Роли можно купить, если открыть WF Меню -> Роли. Первая роль даётся БЕСПЛАТНО. Дружественные бараки или захваченый кэмп должен быть рядом</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_8">
+				<English>Commander voting can be run via: WF Menu -> Voting. AI commander can be selected if no one wants commanding</English>
+				<Russian>Голосование за командира запускается в: WF Меню -> Роли. Можно выбрать ИИ командира, если никто не хочет уомандовать</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_9">
+				<English>Infantry and vehicles can be bought in: WF Menu -> Purchase units. Stay close to production factories or in borders of command center radius of work</English>
+				<Russian>Пехоту и технику можно купить в: WF Меню -> Отряды. Находитесь рядом с производственными постройками или в пределах радиуса работы командного центра</Russian>
+			</Key>
+			<Key ID="STR_Mission_Intro_Hint_10">
+				<English>Additional graphic and group settings can be found via: WF Menu -> Team Settings. It contains additional distance rendering and your squad options</English>
+				<Russian>Доп. настройки графики и группы можно найти в: WF Меню -> Командные Настройки. Меню содержит настройки по дальности прорисовки объектов и настройки вашей группы</Russian>
+			</Key>
 			<Key ID="STR_MissionInfo_Region">
 				<English>Region:</English>
 				<Russian>Местоположение:</Russian>

@@ -195,7 +195,6 @@ artyPos = [0,0,0];
 comTask = objNull;
 voted = false;
 votePopUp = true;
-hudOn = true;
 WF_AutoManningDefense = true;
 lastParaCall = -1200;
 lastSupplyCall = -1200;
