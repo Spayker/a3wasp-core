@@ -614,7 +614,8 @@ WF_C_MAP_MARKER_HANDLER = {
 
 addMissionEventHandler ["Map", {
 	params ["_mapIsOpened", "_mapIsForced"];
-	if (_mapIsOpened) then { mapAnimAdd [1, 0.05, player] }
+	mapAnimAdd [0, 0.05, player];
+	mapAnimCommit;
 }];
 
 waitUntil {!isNull findDisplay 12};
