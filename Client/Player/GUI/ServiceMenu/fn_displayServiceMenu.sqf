@@ -59,11 +59,16 @@ _lastDmg = 0;
 _lastFue = 0;
 
 _currentUpgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
-_buildings = (WF_Client_SideJoined) Call WFCO_FNC_GetSideStructures;
 
 //--- Service Point.
 _csp = objNull;
-_sp = [WF_Client_SideJoined, missionNamespace getVariable Format ["WF_%1SERVICEPOINTTYPE",WF_Client_SideJoinedText],_buildings] Call WFCO_FNC_GetFactories;
+_sp = [];
+{
+    _side = _x;
+    _buildings = (_side) Call WFCO_FNC_GetSideStructures;
+    _sp = _sp + [_side, missionNamespace getVariable Format ["WF_%1SERVICEPOINTTYPE", str _side], _buildings] Call WFCO_FNC_GetFactories
+} forEach _friendlySides;
+
 if (count _sp > 0) then {
 	_csp = [vehicle player,_sp] Call WFCO_FNC_GetClosestEntity;
 };
