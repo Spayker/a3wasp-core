@@ -641,6 +641,8 @@ switch _mode do {
         _ctrlButtonExport ctrlRemoveAllEventHandlers "buttonclick";
         _ctrlButtonExport ctrladdeventhandler ["buttonclick",format ["with uinamespace do {['buttonReload',[ctrlparent (_this select 0),'init']] call %1;};",STRSELF]];
         _ctrlButtonExport ctrlSetText "Reload";
+        _ctrlButtonExport ctrlSetTooltip "Reload ammo of current gear";
+        _ctrlButtonExport ctrlEnable true;
 
 		//--- New "BUY" button
 		_ctrlButtonInterface = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONINTERFACE;
