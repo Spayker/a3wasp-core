@@ -510,7 +510,7 @@ while {alive (leader WF_Client_Team)} do {
 	} else {
         call _hideHud;
         {
-            if (_x) then {
+            if (_x && !(isnil '_cutDisplay')) then {
                 ((_cutDisplay) DisplayCtrl (3500 + _c)) ctrlSetText ("");
             };
             _c = _c + 1;

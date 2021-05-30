@@ -3,6 +3,8 @@ uisleep 3;
 12452 cutText ["<t size='2' color='#00a2e8'>"+(localize 'STR_WF_Loading')+":</t>" + 	
 	"<br /><t size='1.5'>100%</t>   <t color='#ffd719' size='1.5'>"+(localize 'STR_WF_LoadingGearTemplates')+"</t>","BLACK IN",2, true, true];
 
+hudOn = false;
+
 [] spawn {
 	uisleep 3;
 

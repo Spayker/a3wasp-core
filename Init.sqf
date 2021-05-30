@@ -9,9 +9,6 @@ WF_Debug = false;
 WF_Skip_Intro = false;
 #ifdef WF_SKIP_INTRO
 	WF_Skip_Intro = true;
-    hudOn = true;
-#else
-    hudOn = false;
 #endif
 
 WF_Camo = false;

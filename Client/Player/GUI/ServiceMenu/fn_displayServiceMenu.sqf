@@ -44,10 +44,8 @@ if (!isNull(commanderTeam)) then {
 _lastUse = 0;
 _typeRepair = [];
 {
-    _truckTypes = _x;
-    {
-        _typeRepair pushBack (missionNamespace getVariable Format['WF_%1REPAIRTRUCKS', str (_x # 0)])
-    } forEach _truckTypes
+    _side = _x;
+    _typeRepair pushBack (missionNamespace getVariable Format['WF_%1REPAIRTRUCKS', str _side])
 } forEach _friendlySides;
 
 _healPrice = 0;

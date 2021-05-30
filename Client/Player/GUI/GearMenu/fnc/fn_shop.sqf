@@ -966,7 +966,7 @@ switch _mode do {
                     };
                     case IDC_RSCDISPLAYARSENAL_TAB_GPS: {
                         _gearClassnames = missionNamespace getVariable ["wf_gear_list_misc", []];
-                        _subType = ['ItemGPS', 'O_UavTerminal'];
+                        _subType = ['ItemGPS', 'O_UavTerminal', 'B_UavTerminal', 'I_UavTerminal'];
                         if(!isNil '_selectedRole') then {
                             _gear_list_misc = missionNamespace getVariable format["wf_gear_list_misc_%1", _selectedRole];
                             if(!(isNil '_gear_list_misc'))then{
