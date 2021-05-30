@@ -8,7 +8,7 @@
 	//--- Wait for the sideID to be initialized.
 	waitUntil {!isNil {_x getVariable "sideID"}};
 	waitUntil {count (WF_Client_Logic getVariable ["wf_friendlySides", []]) > 0};
-	_townSideId = _x getVariable "sideID";
+	_townSideId = _x getVariable ["sideID", WF_C_CIV_ID];
 	_townSide = (_townSideId) Call WFCO_FNC_GetSideFromID;
 	_camps = _x getVariable ["camps", []];
 	
@@ -51,7 +51,7 @@
 	//--- The town may have some camps.
 	{
 		Private ["_campColor","_campMarker","_campSide"];
-		_campSideId = _x getVariable "sideID";
+		_campSideId = _x getVariable ["sideID", WF_C_CIV_ID];
 		_campSide = (_campSideId) Call WFCO_FNC_GetSideFromID;
 		
 		// --- Determine the coloration method.
