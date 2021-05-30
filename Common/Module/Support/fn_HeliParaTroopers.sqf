@@ -69,7 +69,7 @@ _waypoint setWayPointSpeed "FULL";
 _waypoint setWayPointType "MOVE";
 _waypoint setWaypointStatements ["true", "[vehicle this, 15, [(getPosASL this) # 0, (getPosASL this) # 1, ((getPosASL this) # 2) - 30] ] call AR_Rappel_ALL_Cargo;"];
 
-_vehicle flyInHeight 100;
+_vehicle flyInHeight 50;
 
 _vehicleGrp setBehaviour 'COMBAT';
 _vehicleGrp setCombatMode 'YELLOW';
@@ -85,12 +85,18 @@ _vehicle lockDriver true;
 _built_inf = 0;
 _paratroopers = [];
 
-if (_isHc) then { _paraGroup = createGroup [_side, true] };
+_tempGroup = grpNull;
+if (_isHc) then {
+    _paraGroup = createGroup [_side, true];
+    _tempGroup = _paraGroup
+} else {
+    _tempGroup = createGroup [_side, true]
+};
 
 {
     if (_built_inf <= _vehicle_cargo && _built_inf <= _allowedGroupSize) then {
         //--- Spawn the unit.
-        _unit = [_x, _paraGroup, [100,12000,0], _sideID] Call WFCO_FNC_CreateUnit;
+        _unit = [_x, _tempGroup, [100,12000,0], _sideID] Call WFCO_FNC_CreateUnit;
         _unit moveInCargo _vehicle;
         _built_inf = _built_inf + 1;
         _paratroopers pushBack _unit;
@@ -106,7 +112,7 @@ if (_isHc) then { _paraGroup = createGroup [_side, true] };
 _vehicleGrp setCurrentWaypoint [_vehicleGrp, 1];
 
 while {!_greenlight} do {
-    if ((vehicle (leader _paraGroup) == leader _paraGroup)) exitWith { _greenlight = true};
+    if ((vehicle (leader _tempGroup) == leader _tempGroup)) exitWith { _greenlight = true};
     sleep 3;
 };
 
