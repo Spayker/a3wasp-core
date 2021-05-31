@@ -59,7 +59,7 @@ switch (_type) do {
 	//--- Update a town's value.
 	case "TownUpdate": {
 		_task = _location getVariable 'taskLink';
-		_sideID = _location getVariable "sideID";
+		_sideID = _location getVariable ["sideID", WF_C_CIV_ID];
 		_side = (_sideID) Call WFCO_FNC_GetSideFromID;
 		if !(isNil '_task') then {
             _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
