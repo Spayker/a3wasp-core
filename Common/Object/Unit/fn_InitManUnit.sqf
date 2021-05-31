@@ -68,9 +68,7 @@ for "_x" from 0 to ((count WF_C_INFANTRY_TO_REQUIP) - 1) do {
 };
 
 if (_global) then {
-		if ((missionNamespace getVariable "WF_C_UNITS_TRACK_INFANTRY") > 0) then {
-        [_unit,_sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage", _side, true]
-		} else {
+    if ((missionNamespace getVariable "WF_C_UNITS_TRACK_INFANTRY") == 0) then {
         if (isPlayer leader _group) then {[_unit, _sideId] spawn WFCO_FNC_initUnit}
         }
 };

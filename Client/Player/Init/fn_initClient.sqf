@@ -181,7 +181,6 @@ WF_Client_Team = group player;
 WF_Client_Teams = missionNamespace getVariable Format['WF_%1TEAMS',WF_Client_SideJoinedText];
 WF_Client_Teams_Count = count WF_Client_Teams;
 WF_Client_IsRespawning = false;
-WF_UNIT_MARKERS = [];
 
 commanderTeam = objNull;
 buildingMarker = 0;
@@ -503,6 +502,32 @@ WF_C_MAP_MARKER_HANDLER = {
         case resistance:{ _leaderColor = [0,0.5,0,1]};
     };
 
+    _unitMarkers = [];
+    {
+        _side = _x;
+        _sideId = _side Call WFCO_FNC_GetSideID;
+        _unitColor = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);
+        {
+            _sideUnit = side _x;
+            if (_sideUnit == _side) then {
+                _unitMarkers pushBack ([_x, _unitColor, (_x) call WFCO_FNC_GetAIDigit])
+            }
+        } forEach allUnits;
+
+        {
+            _vehicle = _x;
+            _vehicleSideId = getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "side");
+
+            if (local _vehicle && isMultiplayer) then {_color = "ColorOrange"};
+            if ((typeOf _vehicle) in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_color = "ColorYellow"};
+            if ((typeOf _vehicle) == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _color = "ColorWhite" };
+
+            if (_vehicleSideId == _sideId) then {
+                _unitMarkers pushBack ([_vehicle, _unitColor, ''])
+            }
+        } forEach vehicles;
+    } forEach (WF_Client_Logic getVariable ["wf_friendlySides", []]);
+
     {
         _unit = _x # 0;
         if(alive _unit) then {
@@ -574,20 +599,9 @@ WF_C_MAP_MARKER_HANDLER = {
             }
             }
         } else {
-            WF_UNIT_MARKERS = WF_UNIT_MARKERS - [_x]
+            _unitMarkers = _unitMarkers - [_x]
 		}
-    } forEach WF_UNIT_MARKERS;
-
-
-    _friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
-	{
-        if (side _x in _friendlySides) then {
-            if(vehicle _x == _x) then {
-                _iconType = getText (configFile >> "CfgVehicles" >> typeOf _x >> "icon");
-                _iconsToBeDisplayed pushBackUnique ([_iconType, _leaderColor, _x, name _x ])
-            }
-        }
-    } forEach playableUnits;
+    } forEach _unitMarkers;
 
     {
         if (count _this > 0) then {

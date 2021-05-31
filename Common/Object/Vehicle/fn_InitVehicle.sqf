@@ -51,8 +51,6 @@ if(_isHQ) then {
 
     if (_global) then {
             if (_vehicle isKindOf "Air") then { //--- Air units.
-            [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true];
-
             if(_side == west) then {
                 [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", east, true];
                 [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", resistance, true]
@@ -67,8 +65,6 @@ if(_isHQ) then {
                 [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", east, true];
                 [_vehicle, _side] remoteExec ["WFCO_FNC_performAirVehicleTracking", west, true]
             };
-        } else {
-            [_vehicle, _sideId] remoteExec ["WFCO_FNC_updateUnitMarkerStorage",_side, true]
         }
     };
 

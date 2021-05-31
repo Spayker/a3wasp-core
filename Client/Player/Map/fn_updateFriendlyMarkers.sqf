@@ -20,10 +20,6 @@ _sideId = _side Call WFCO_FNC_GetSideID;
         _friendlyUnits = [];
         {if ((side _x) == _side) then {_friendlyUnits pushBackUnique _x}} forEach allUnits;
 
-        {
-            [_x, _sideId] call WFCO_FNC_updateUnitMarkerStorage
-        } forEach _friendlyUnits;
-
         ["TownUpdate", _town] Spawn WFCL_FNC_TaskSystem
     }
 } forEach towns;
