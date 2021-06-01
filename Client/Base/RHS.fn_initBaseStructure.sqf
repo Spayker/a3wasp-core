@@ -1,6 +1,8 @@
 if (!hasInterface && !isDedicated) exitWith {};
 
+if(canSuspend) then {
 waitUntil {commonInitComplete}; //--- Wait for the common part.
+};
 
 if (local player) then {
     params["_structure","_hq","_sideID"];
@@ -72,15 +74,21 @@ if (local player) then {
         };
     }];
 
-    missionNamespace setVariable [format["wf_structure_icon%1", _ehDescriptor], [_structure,
-                    [WF_C_TITLETEXT_COLOR_INT # 0, WF_C_TITLETEXT_COLOR_INT # 1, WF_C_TITLETEXT_COLOR_INT # 2,
-                    WF_C_TITLETEXT_COLOR_INT # 3 - 0.3],
-                    (missionNamespace getVariable format ["WF_%1STRUCTUREICON",str _side]) # _index,
-                    (missionNamespace getVariable format ["WF_%1STRUCTUREMAXHEALTH",str _side]) # _index]];
-    //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
+    _structureIconArray = missionNamespace getVariable format ["WF_%1STRUCTUREICON", str _side];
+    _structureMaxHealthArray = missionNamespace getVariable format ["WF_%1STRUCTUREMAXHEALTH", str _side];
 
-	waitUntil {!alive _structure};
+    if (_index != -1 && !(isNil '_structureIconarray') && !(isNil '_structureMaxHealthArray')) then {
+        missionNamespace setVariable [format["wf_structure_icon%1", _ehDescriptor],
+        [_structure, [WF_C_TITLETEXT_COLOR_INT # 0, WF_C_TITLETEXT_COLOR_INT # 1, WF_C_TITLETEXT_COLOR_INT # 2, WF_C_TITLETEXT_COLOR_INT # 3 - 0.3],
+                        (_structureIconArray) # _index,
+                        (_structureMaxHealthArray) # _index]]
+    };
+    //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
+    if(canSuspend) then {
+        waitUntil {!alive _structure}
+    };
 
 	deleteMarkerLocal _marker;
 	if(typeOf _structure isKindOf "Base_WarfareBUAVterminal") then {deleteMarkerLocal _markercc};
-};
+}
+
