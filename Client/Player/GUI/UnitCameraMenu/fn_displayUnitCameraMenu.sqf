@@ -1,6 +1,9 @@
 private ["_action","_groups","_sideLetter"];
 params ['_action'];
 
+_map = nil;
+_drawMarkerId = nil;
+
 switch (_action) do {
 	case "onLoad": {
 
@@ -8,6 +11,9 @@ switch (_action) do {
             hudOn = !hudOn;
             ctrlSetText[13020, "HUD OFF"];
         };
+
+        _map =  (uiNamespace getVariable "wf_dialog_ui_unitscam") displayCtrl 180010;
+        _drawMarkerId = _map ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
 
         _groups = [group player];
         _isCommander = false;
@@ -393,6 +399,9 @@ switch (_action) do {
 		showCinemaBorder true;
 		hudOn = true;
         shallResetDisplay = true;
+
+        _map ctrlRemoveEventHandler ["Draw", _drawMarkerId];
+
         ctrlSetText[13020, "HUD ON"]
 	};
 };
