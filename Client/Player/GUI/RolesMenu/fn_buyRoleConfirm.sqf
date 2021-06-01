@@ -71,13 +71,18 @@ if!(isNil 'WF_newBuyRolerequest')then{
                 if(!WF_isFirstRoleSelected)then {
                     if!(WF_P_gearPurchased) then {
                     _roleDefaultGear = [];
+
+                        _sideGearTxt = WF_Client_SideJoinedText;
+                        _friendlySide = call WFCO_fnc_getFriendlySide;
+                        if(_friendlySide != sideUnknown) then { _sideGearTxt = str _friendlySide };
+
                     switch (WF_SK_V_Type) do {
-                        case WF_RECON: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", WF_Client_SideJoinedText];};
-                        case WF_ASSAULT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", WF_Client_SideJoinedText];};
-                        case WF_ENGINEER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearEngineer", WF_Client_SideJoinedText];};
-                        case WF_SPECOPS: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearLock", WF_Client_SideJoinedText];};
-                            case WF_MEDIC: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", WF_Client_SideJoinedText];};
-                            case WF_SUPPORT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", WF_Client_SideJoinedText];};
+                            case WF_RECON: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSpot", _sideGearTxt];};
+                            case WF_ASSAULT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSoldier", _sideGearTxt];};
+                            case WF_ENGINEER: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearEngineer", _sideGearTxt];};
+                            case WF_SPECOPS: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearLock", _sideGearTxt];};
+                            case WF_MEDIC: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearMedic", _sideGearTxt];};
+                            case WF_SUPPORT: {_roleDefaultGear = missionNamespace getVariable Format["WF_%1_DefaultGearSupport", _sideGearTxt];};
                     };
                     [player, _roleDefaultGear] call WFCO_FNC_EquipUnit;
                         WF_P_CurrentGear = (player) call WFCO_FNC_GetUnitLoadout;
