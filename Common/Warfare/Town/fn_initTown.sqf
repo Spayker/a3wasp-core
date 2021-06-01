@@ -77,7 +77,7 @@ _defenseLocations = [];
 
         {
             //--- Initialize the camp.
-            if (isNil {_x getVariable "sideID"}) then {_x setVariable ["sideID",WF_DEFENDER_ID,true]};
+            if (isNil {_x getVariable "sideID"}) then {_x setVariable ["sideID",WF_C_CIV_ID,true]};
             if (isNil {_x getVariable "supplyValue"}) then {
                 waitUntil {!isNil {_town getVariable "supplyValue"}};
                 _x setVariable ["supplyValue", _town getVariable "supplyValue", true]
