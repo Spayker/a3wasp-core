@@ -1671,33 +1671,6 @@ switch _mode do {
 							};
 						};
 					} foreach getarray (_cfgMuzzle >> "magazines");
-					// Magazine wells
-					{
-						// Find all entries inside magazine well
-						{
-							// Add all magazines from magazineWell sub class
-							{
-								private _item = _x;
-								if (CONDITION(_virtualMagazineCargo)) then {
-									_mag = tolower _item;
-									_cfgMag = configfile >> "cfgmagazines" >> _mag;
-									if (!(_mag in _magazines) && {getnumber (_cfgMag >> "scope") == 2 || getnumber (_cfgMag >> "scopeArsenal") == 2}) then {
-										_magazines set [count _magazines,_mag];
-										_value = {_x == _mag} count _itemsCurrent;
-										_displayName = gettext (_cfgMag >> "displayName");
-										([TER_VASS_shopObject, _mag] call TER_fnc_getItemValues) params ["","_itemCost","_itemMax"];
-										_text = if (_itemMax isEqualType true) then {str _value} else { format ["%1|%2", _value, _itemMax - ([_mag] call _fnc_CurAdd)] };
-										_lbAdd = _ctrlList lnbaddrow ["", _displayName, _text, format ["%1$", [_itemCost] call BIS_fnc_numberText]];
-										_ctrlList lnbSetColor [[_lbAdd,3],MONEYGREEN];
-										_ctrlList lnbsetdata [[_lbAdd,0],_mag];
-										_ctrlList lnbsetvalue [[_lbAdd,0],getnumber (_cfgMag >> "mass")];
-										_ctrlList lnbsetpicture [[_lbAdd,0],gettext (_cfgMag >> "picture")];
-										_ctrlList lbsettooltip [_lbAdd * _columns,format ["%1\n%2",_displayName,_item]];
-									};
-								};
-							}foreach (getArray _x);
-						}foreach (configProperties [configFile >> "CfgMagazineWells" >> _x,"isarray _x"]);
-					} foreach getarray (_cfgMuzzle >> "magazineWell");
 
 				} foreach getarray (_cfgWeapon >> "muzzles");
 			} foreach (weapons _center - ["Throw","Put"]);
@@ -2032,7 +2005,7 @@ switch _mode do {
                             };
 
                             _upgrade_gear = TER_VASS_shopObject getVariable 'currentGearUpgradeLevel';
-                            if (_upgrade_gear <= (_gearDataArray # 0) # 0) exitWith {
+                            if (((_gearDataArray # 0) # 0) > _upgrade_gear) exitWith {
                                 _shallRemoveTemplate = true
                             }
                         }
