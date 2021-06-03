@@ -81,16 +81,14 @@ _addToListInterval = [0,500,500,1000,800,600,600];
 
 if (WF_Client_SideJoined != resistance) then {
     _addToList pushBack (localize 'STR_WF_CRUISE_MISSILE');
-    _addToList pushBack (localize 'STR_WF_CHEMICAL_MISSILE');
-
     _addToListID pushBack ("Cruise Missile");
+    _addToListFee pushBack 7500;
+    _addToListInterval pushBack 500
+} else {
+    _addToList pushBack (localize 'STR_WF_CHEMICAL_MISSILE');
     _addToListID pushBack ("Chemical Missile");
-
     _addToListFee pushBack 7500;
-    _addToListFee pushBack 7500;
-
-    _addToListInterval pushBack 500;
-    _addToListInterval pushBack 500;
+    _addToListInterval pushBack 500
 };
 
 if (_isCommander) then {
