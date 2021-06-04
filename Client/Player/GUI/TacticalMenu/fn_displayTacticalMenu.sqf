@@ -448,7 +448,7 @@ while {alive player && dialog} do {
 			};
 		};
 
-		//--- Heli Paratroops.
+		//--- Heli Paratroops HC.
         if (WF_MenuAction == 6) then {
             WF_MenuAction = -1;
             _forceReload = true;
