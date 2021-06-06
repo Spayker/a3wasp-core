@@ -1,31 +1,34 @@
 //--- Nuke launching.
-params ["_target", "_nukeMarker"];
+params ["_target"];
 private ['_cruise','_dropPosition','_dropPosX','_dropPosY','_dropPosZ','_misFlare','_path','_pathS','_planespawnpos','_type'];
 
-['TacticalLaunch'] remoteExecCall ["WFCL_FNC_LocalizeMessage"];
+['TacticalLaunch'] remoteExecCall ["WFCL_FNC_LocalizeMessage", -2];
 
-sleep (missionNamespace getVariable "WF_C_INCOME_TIME_OF_ICBM");
+sleep 15;
 
 _dropPosition = getpos _target;
-_type = 'Missile_AGM_01_F';
-_cruise = createVehicle [_type,[(_dropPosition select 0) - 4000, (_dropPosition select 1) - 4000, 13000],[], 0, "FLY"];
-_cruise setVectorDir [ 0.1,- 1,+ 0.5];
-_cruise setVelocity [0,2,0];
-_cruise flyInHeight 13000;
-_cruise setSpeedMode "FULL";
+_distance = 4000;
+_cruise = "cwr3_scud_ammo" createVehicle ([(getPos _target) # 0, (getPos _target) # 1, _distance]);
+
+_missileSpeed = 400;
 _perSecondsChecks = 100;
-_missileSpeed = 500;
 
-[WF_Client_SideJoined,_target,_cruise,WF_Client_Team] remoteExec ["WFSE_FNC_processIcbmEvent",2];
+//Making the missile point the target
+_dir = [_cruise, _target] call BIS_fnc_DirTo;
+_cruise setDir _dir;
 
-sleep 1.5;
+//Giving the missile the desired speed
+_vel = velocity _cruise;
+_cruise setVelocity
+[
+    (_vel select 0) + (sin _dir * _missileSpeed),
+    (_vel select 1) + (cos _dir * _missileSpeed),
+    (_vel select 2)
+];
 
-[_target, _cruise] remoteExec ["WFCL_FNC_initIcbmStrike"];
+[WF_Client_SideJoined,_target,_cruise,WF_Client_Team] remoteExec ["WFSE_FNC_processTacticalNukeMissileEvent",2];
 
 //create missile and setting pos
-_pos = [(_dropPosition select 0) - 4000, (_dropPosition select 1) - 4000, 13000];
-
-//ajusting missile pos while flying
 while {alive _cruise} do {
 	if (_cruise distance _target > (_missileSpeed / 10)) then {
 		_dirHor = [_cruise, _target] call BIS_fnc_DirTo;
@@ -41,16 +44,8 @@ while {alive _cruise} do {
 		_velocityZ = (((getPosASL _target) select 2) - ((getPosASL _cruise) select 2)) / _flyingTime;
 		_cruise setVelocity [_velocityX, _velocityY, _velocityZ];
 
-		sleep (1/ _perSecondsChecks);
-	};
+		sleep (1/ _perSecondsChecks)
+	}
 };
 
 [_cruise] execVM "Client\Module\Nuke\scripts\exhaust1.sqf";
-
-
-sleep 7;
-
-waitUntil {!alive _cruise};
-
-sleep 50;
-deleteMarkerLocal _nukeMarker;

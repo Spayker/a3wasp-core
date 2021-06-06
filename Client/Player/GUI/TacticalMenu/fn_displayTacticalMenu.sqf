@@ -639,8 +639,20 @@ while {alive player && dialog} do {
 		WF_MenuAction = -1;
 		_units = [WF_Client_Team,true,lbCurSel(17008),WF_Client_SideJoinedText,_logik] Call WFCO_FNC_GetTeamArtillery;
 		if (Count _units > 0) then {
+		    _isScud = false;
+		    {
+		        if (typeOf _x == WF_MOBILE_TACTICAL_MISSILE_LAUNCHER_TYPE) exitWith {
+		            _isScud = true;
+		            [_x, 15] execVM "\cwr3\vehicles\cwr3_scud\functions\scud_launch.sqf"
+		        }
+		    } forEach _units;
 			fireMissionTime = time;
+		    if (_isScud) then {
+		        _callPos = _map PosScreenToWorld[mouseX,mouseY];
+                ["Land_HelipadEmpty_F" createVehicle _callPos] spawn WFCL_FNC_NukeIncoming;
+		    } else {
 			[GetMarkerPos "artilleryMarker", lbCurSel(17008), lbCurSel(17034), _logik, _units] Spawn WFCL_FNC_RequestFireMission;
+		    }
 		} else {
 			[format ["%1", localize "STR_WF_INFO_NoArty"]] spawn WFCL_fnc_handleMessage
 		};			
@@ -707,7 +719,11 @@ while {alive player && dialog} do {
             _artillery = _x;
 		    _magazineRangeOk = false;
 
-		    if(artypos inRangeOfArtillery [[_artillery], currentMagazine _artillery]) then { _magazineRangeOk = true };
+		    if(artypos inRangeOfArtillery [[_artillery], currentMagazine _artillery]) then {
+		        _magazineRangeOk = true
+		    } else {
+		        if (typeOf _artillery == WF_MOBILE_TACTICAL_MISSILE_LAUNCHER_TYPE) then { _magazineRangeOk = true }
+		    };
 
             _text = localize 'STR_WF_TACTICAL_ArtilleryInRange'; 																		//"In Range";
 			_color = [0, 0.875, 0, 0.8];

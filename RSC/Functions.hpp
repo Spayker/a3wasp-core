@@ -142,6 +142,13 @@ class WF_Client {
 		class doJump {};
 	};
 
+	class Icbm {
+        file = "Client\Module\Nuke";
+        class initIcbmStrike {};
+        class nuke {};
+        class nukeincoming {};
+    };
+
     class CruiseMissile {
         file = "Client\Module\CruiseMissile";
         class CruiseMissileIncoming {};

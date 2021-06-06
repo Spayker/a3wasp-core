@@ -267,6 +267,10 @@
 				<English>You were deducted from $%1 due to your gear</English>
 				<Russian>У вас изъято $%1 за ваше снаряжение</Russian>
 			</Key>
+			<Key ID="STR_WF_CHAT_ICBM_Launch">
+				<English>WARNNING! A Tactical ballistic missile launch has been detected!</English>
+				<Russian>ВНИМАНИЕ! Зафиксирован запуск тактической ядерной ракеты!</Russian>
+			</Key>
 			<Key ID="STR_WF_CHAT_PlayerCommander">
 				<!--shared U-->
 				<English>You are the new Commander! Good luck!</English>
@@ -2597,6 +2601,11 @@
 			<Key ID="STR_WF_MaxLoad">
 				<English>max load</English>
 				<Russian>ёмкость</Russian>
+			</Key>
+		<Key ID="STR_WF_ICBM">
+				<!--shared W-->
+				<English>ICBM</English>
+				<Russian>МБР</Russian>
 			</Key>
 		</Container>
 	</Package>
