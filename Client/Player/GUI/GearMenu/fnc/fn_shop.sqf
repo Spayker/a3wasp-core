@@ -2014,30 +2014,6 @@ switch _mode do {
             } forEach _flatternIventory;
 
             if!(_shallRemoveTemplate) then {
-            _inventoryWeapons = [
-                (_inventory select 5), //--- Binocular
-                (_inventory select 6 select 0), //--- Primary weapon
-                (_inventory select 7 select 0), //--- Secondary weapon
-                (_inventory select 8 select 0) //--- Handgun
-            ] - [""];
-            _inventoryMagazines = (
-                (_inventory select 0 select 1) + //--- Uniform
-                (_inventory select 1 select 1) + //--- Vest
-                (_inventory select 2 select 1) //--- Backpack items
-            ) - [""];
-            _inventoryItems = (
-                [_inventory select 0 select 0] + (_inventory select 0 select 1) + //--- Uniform
-                [_inventory select 1 select 0] + (_inventory select 1 select 1) + //--- Vest
-                (_inventory select 2 select 1) + //--- Backpack items
-                [_inventory select 3] + //--- Headgear
-                [_inventory select 4] + //--- Goggles
-                (_inventory select 6 select 1) + //--- Primary weapon items
-                (_inventory select 7 select 1) + //--- Secondary weapon items
-                (_inventory select 8 select 1) + //--- Handgun items
-                (_inventory select 9) //--- Assigned items
-            ) - [""];
-            _inventoryBackpacks = [_inventory select 2 select 0] - [""];
-
             _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,2],gettext (configfile >> "cfgweapons" >> (_inventory select 7 select 0) >> "picture")];
