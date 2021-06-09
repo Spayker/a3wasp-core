@@ -761,9 +761,9 @@
 				<English>Headquarters: reconnaissance reported, in the locality %1 there are tourists of the union state. A group of tourists has very important information</English>
 				<Russian>Штаб: разведка доложила, в населенном пункте %1 находятся туристы союзного государства. Группа туристов обладает очень важными сведениями</Russian>
 			</Key>
-			<Key ID="STR_WF_M_DeliverTouristTownDesc1">
-				<English>It is necessary to release the settlement and talk to them! In order to avoid getting civilians under attack, clean out the point from the insurgents before announcing it to ours!</English>
-				<Russian>Необходимо освободить населенный пункт и поговорить с ними!  Во избежании попадания гражданских под удар зачистите пункт от повстанцев, перед тем как объявить его нашим!</Russian>
+			<Key ID="STR_WF_M_InterceptScudDesc">
+				<English>Headquarters: SCUD launcher has been detected in target area. Take it and use against your enemies</English>
+				<Russian>Штаб: Обнаружена установка SCUD в заданной области. Перехватите её, чтоб в дальнейшем использовать против наших врагов</Russian>
 			</Key>
 			<Key ID="STR_WF_M_DeliverTouristTownTitle">
 				<English>Release the town where tourists hide</English>
