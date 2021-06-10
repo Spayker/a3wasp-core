@@ -789,6 +789,10 @@
 				<English>Headquarters: Civilians must successfully reach the building with a bunker</English>
 				<Russian>Штаб: Гражданские должны успешно добраться до здания с бункером</Russian>			
 			</Key>
+			<Key ID="STR_WF_M_ScudIsIntercepted">
+				<English>Headquarters: SCUD launcher must be delivered to nearest base location</English>
+				<Russian>Штаб: Установка СКАД должна быть доставлена на ближайшую базу</Russian>
+			</Key>
 			<Key ID="STR_WF_M_DeliverTouristGiveSupportTitle">
 				<English>Ensure waste!</English>
 				<Russian>Обеспечить отход!</Russian>			
