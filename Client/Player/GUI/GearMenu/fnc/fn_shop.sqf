@@ -2052,7 +2052,8 @@ switch _mode do {
     case "buttonReload":{
         _display = _this select 0;
         _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
-        private _dirtyAddedItemsArray = (missionnamespace getVariable "WF_loaded_inventory") call _fnc_arrayFlatten;
+
+        private _dirtyAddedItemsArray = (missionnamespace getVariable "wf_gear_lastpurchased") call _fnc_arrayFlatten;
         private _dirtyRemovedItemsArray = (call _fnc_getEquipment) call _fnc_arrayFlatten;
         private _addedItems = [];
         private _removedItems = [];
@@ -2088,8 +2089,7 @@ switch _mode do {
             }
         } forEach _dirtyRemovedItemsArray;
 
-        [_center, missionnamespace getVariable "WF_loaded_inventory"] call _fnc_EquipUnit;
-        missionnamespace setVariable ["WF_loaded_inventory", call _fnc_getEquipment];
+        [_center, missionnamespace getVariable "wf_gear_lastpurchased"] call _fnc_EquipUnit;
         ["costChange",[_display, _addedItems, +1]] call SELF;
         ["costChange",[_display, _removedItems, -1]] call SELF;
             };
@@ -2144,7 +2144,7 @@ switch _mode do {
                         _saveName = _x;
                         _inventory = _saveData select (_foreachindex + 1)
                     }
-                };
+                }
             } forEach _saveData;
 
             if(_saveName != '' && count _inventory > 0) then {
@@ -2152,12 +2152,7 @@ switch _mode do {
                 _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment]);
                 profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
             };
-            _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
-            _ctrlTemplate ctrlsetfade 1;
-            _ctrlTemplate ctrlcommit 0;
-            _ctrlTemplate ctrlenable false;
-            _ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
-            _ctrlMouseBlock ctrlenable false;
+
         } else {
 
             _inventory = [];
@@ -2168,7 +2163,7 @@ switch _mode do {
                 {
                     if((_x # 0) isEqualType "STRING" && {(_x # 0) == _saveName})exitWith{
                         _inventory = _x # 1
-                    };
+                    }
                 } forEach _saveDataCustom;
 
                 if(count _inventory == 0) then {
@@ -2189,7 +2184,6 @@ switch _mode do {
             {
                 if(typeName _x == "STRING") then {
                     if(_x != "") then {
-
                         if(["_Loaded", (_x)] call BIS_fnc_inString) then {
                             _x = [_x, "_Loaded", ""] call _fnc_stringReplace;
                             _dirtyAddedItemsArray set [_forEachIndex, _x]
@@ -2205,7 +2199,6 @@ switch _mode do {
             {
                 if(typeName _x == "STRING") then {
                     if(_x != "") then {
-
                         if(["_Loaded", (toLower _x)] call BIS_fnc_inString) then {
                             _x = [toLower _x, "_Loaded", ""] call _fnc_stringReplace;
                             _dirtyRemovedItemsArray set [_forEachIndex, _x]
@@ -2217,10 +2210,17 @@ switch _mode do {
                     }
                 }
             } forEach _dirtyRemovedItemsArray;
+
             [_center, _inventory] call _fnc_EquipUnit;
             ["costChange",[_display,_addedItems,+1]] call SELF;
-            ["costChange",[_display,_removedItems,-1]] call SELF;
-        }
+            ["costChange",[_display,_removedItems,-1]] call SELF
+        };
+        _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
+        _ctrlTemplate ctrlsetfade 1;
+        _ctrlTemplate ctrlcommit 0;
+        _ctrlTemplate ctrlenable false;
+        _ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
+        _ctrlMouseBlock ctrlenable false
 	};
 	case "buttonBuy":{
 		_display = _this select 0;
