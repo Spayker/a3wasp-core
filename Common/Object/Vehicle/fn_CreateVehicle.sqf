@@ -10,8 +10,8 @@ if (_special == "FLY") then {
     _vehicle = createVehicle [_type, [_position # 0, _position # 1, 0.5], [], 10, _special];
     _vehicle removeAllEventHandlers "HandleDamage";
     _vehicleHandleDamageEventHandler = _vehicle addEventHandler ["HandleDamage", {false}];
-    [_vehicle, _vehicleHandleDamageEventHandler, _sideId]  spawn {
-        params["_vehicle", "_eventHandler", "_sideId"];
+    [_vehicle, _vehicleHandleDamageEventHandler]  spawn {
+        params["_vehicle", "_eventHandler"];
         _vehicle allowDamage false;
         sleep 15;
         _vehicle removeEventHandler ["HandleDamage", _eventHandler];

@@ -757,6 +757,10 @@
 				<English>Voting</English>
 				<Russian>Голосование</Russian>
 			</Key>
+			<Key ID="STR_WF_M_DeliverScudTownTitle">
+				<English>Intercept SCUD launcher vessel</English>
+				<Russian>Перехватить установку СКАД раньше врагов</Russian>
+			</Key>
 			<Key ID="STR_WF_M_DeliverTouristTownDesc">
 				<English>Headquarters: reconnaissance reported, in the locality %1 there are tourists of the union state. A group of tourists has very important information</English>
 				<Russian>Штаб: разведка доложила, в населенном пункте %1 находятся туристы союзного государства. Группа туристов обладает очень важными сведениями</Russian>

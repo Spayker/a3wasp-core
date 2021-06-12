@@ -42,11 +42,13 @@ if(_isHQ) then {
 	_logik setVariable ["wf_hq", _hqs, true];
 	_hqs = _logik getVariable ["wf_hq", []];
 } else {
+    if (typeOf _vehicle != WF_MOBILE_TACTICAL_MISSILE_LAUNCHER_TYPE) then {
     [_vehicle] remoteExec ["WFSE_FNC_addEmptyVehicleToQueue", 2]
+    }
 };
 
-[_vehicle, _bounty, _sideId, _side, _global, _skin, _ishq] spawn {
-    params ["_vehicle", "_bounty", "_sideId", "_side", "_global", "_skin", "_ishq"];
+[_vehicle, _bounty, _side, _global, _skin, _ishq] spawn {
+    params ["_vehicle", "_bounty", "_side", "_global", "_skin", "_ishq"];
 
 
     if (_global) then {
