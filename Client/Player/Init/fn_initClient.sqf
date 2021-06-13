@@ -635,4 +635,21 @@ findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDL
 //--- res base logic clean up
 { deleteVehicle _x } forEach ([0,0,0] nearEntities [["LocationOutpost_F"], 100000]);
 
+0 = [] spawn {
+    disableSerialization;
+    private "_ctrl";
+    waitUntil {_ctrl = ({ if !(isNull (_x displayCtrl 510)) exitWith {_x}; displayNull } forEach allDisplays) displayCtrl 510; !isNull _ctrl};
+    while {!isnull _ctrl} do {
+        if(lbSize _ctrl == 4) then {
+            _ctrl lbDelete 3
+        };
+        if(lbSize _ctrl == 3) then {
+            _ctrl lbDelete 2
+        };
+        if(lbSize _ctrl == 2) then {
+            _ctrl lbDelete 1
+        }
+    };
+};
+
 ["INITIALIZATION", Format ["fn_initClient.sqf: Client initialization ended at [%1]", time]] Call WFCO_FNC_LogContent;
