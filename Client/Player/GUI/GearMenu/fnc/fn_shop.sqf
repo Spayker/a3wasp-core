@@ -598,7 +598,7 @@ switch _mode do {
 		}] call BIS_fnc_addScriptedEventHandler;
 	};
 	case "arsenalClosed": {
-	    WF_P_CurrentGear = (_center) call WFCO_FNC_GetUnitLoadout;
+	    WF_P_CurrentGear = (_center) call _fnc_getEquipment;
         WF_P_gearPurchased = true;
         missionNamespace setVariable ["wf_gear_lastpurchased", WF_P_CurrentGear];
         hudOn = true;
@@ -2057,41 +2057,44 @@ switch _mode do {
         private _dirtyRemovedItemsArray = (call _fnc_getEquipment) call _fnc_arrayFlatten;
         private _addedItems = [];
         private _removedItems = [];
-
         {
             if(typeName _x == "STRING") then {
                 if(_x != "") then {
                     if(["_Loaded", (_x)] call BIS_fnc_inString) then {
-                        _x = [_x, "_Loaded", ""] call _fnc_stringReplace;
+                        _x = [_x, "_loaded", ""] call _fnc_stringReplace;
                         _dirtyAddedItemsArray set [_forEachIndex, _x]
                     };
 
-                    _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
-                    _itemValues params ["", "_itemCost", "_itemAmount"];
+                    _get = missionNamespace getVariable format["wf_%1", _x];
+                    _itemCost = ((_get select 0) select 1);
                     if(_itemCost > 0) then { _addedItems pushBack _x }
                 }
             }
         } forEach _dirtyAddedItemsArray;
+        ["costChange",[_display, _addedItems, +1]] call SELF;
 
+        if (count _addedItems > 0) then {
         {
             if(typeName _x == "STRING") then {
                 if(_x != "") then {
 
-                    if(["_loaded", (toLower _x)] call BIS_fnc_inString) then {
+                        if(["_Loaded", (toLower _x)] call BIS_fnc_inString) then {
                         _x = [toLower _x, "_loaded", ""] call _fnc_stringReplace;
                         _dirtyRemovedItemsArray set [_forEachIndex, _x]
                     };
 
-                    _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
-                    _itemValues params ["", "_itemCost", "_itemAmount"];
+                        _get = missionNamespace getVariable format["wf_%1", _x];
+                        _itemCost = ((_get select 0) select 1);
                     if(_itemCost > 0) then { _removedItems pushBack _x }
                 }
             }
         } forEach _dirtyRemovedItemsArray;
 
+            ["costChange", [_display, _removedItems, -1]] call SELF;
         [_center, missionnamespace getVariable "wf_gear_lastpurchased"] call _fnc_EquipUnit;
-        ["costChange",[_display, _addedItems, +1]] call SELF;
-        ["costChange",[_display, _removedItems, -1]] call SELF;
+            _ctrlButtonExport = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONEXPORT;
+            _ctrlButtonExport ctrlEnable false;
+        }
             };
     case "buttonDelete":{
         _display = _this select 0;
@@ -2106,7 +2109,7 @@ switch _mode do {
         _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
         {
             if(count _x > 0) then {
-                if((_x # 0) == _name) exitWith {
+                if((_x # 0) == _name && (_x # 2) == side player) exitWith {
                     _savedInventroyData deleteAt _forEachIndex;
                     profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
                 }
@@ -2149,7 +2152,7 @@ switch _mode do {
 
             if(_saveName != '' && count _inventory > 0) then {
                 _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
-                _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment]);
+                _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment, side player]);
                 profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
             };
 
@@ -2161,19 +2164,10 @@ switch _mode do {
                 _saveName = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue,0];
                 _saveDataCustom = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data",[]];
                 {
-                    if((_x # 0) isEqualType "STRING" && {(_x # 0) == _saveName})exitWith{
+                    if((_x # 0) isEqualType "STRING" && {(_x # 0) == _saveName} && (_x # 2 == side player)) exitWith {
                         _inventory = _x # 1
                     }
                 } forEach _saveDataCustom;
-
-                if(count _inventory == 0) then {
-                _saveData = profilenamespace getvariable ["bis_fnc_saveInventory_data",[]];
-                {
-                    if(_x isEqualType "STRING" && {_x == _saveName})exitWith{
-                        _inventory = _saveData select (_foreachindex + 1)
-                        }
-                    } forEach _saveData
-                }
             };
 
             private _dirtyAddedItemsArray = (_inventory) call _fnc_arrayFlatten;
@@ -2185,12 +2179,12 @@ switch _mode do {
                 if(typeName _x == "STRING") then {
                     if(_x != "") then {
                         if(["_Loaded", (_x)] call BIS_fnc_inString) then {
-                            _x = [_x, "_Loaded", ""] call _fnc_stringReplace;
+                            _x = [_x, "_loaded", ""] call _fnc_stringReplace;
                             _dirtyAddedItemsArray set [_forEachIndex, _x]
                         };
 
-                        _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
-                        _itemValues params ["", "_itemCost", "_itemAmount"];
+                        _get = missionNamespace getVariable format["wf_%1", _x];
+                        _itemCost = ((_get select 0) select 1);
                         if(_itemCost > 0) then { _addedItems pushBack _x }
                     }
                 }
@@ -2200,12 +2194,12 @@ switch _mode do {
                 if(typeName _x == "STRING") then {
                     if(_x != "") then {
                         if(["_Loaded", (toLower _x)] call BIS_fnc_inString) then {
-                            _x = [toLower _x, "_Loaded", ""] call _fnc_stringReplace;
+                            _x = [toLower _x, "_loaded", ""] call _fnc_stringReplace;
                             _dirtyRemovedItemsArray set [_forEachIndex, _x]
                         };
 
-                        _itemValues = [TER_VASS_shopObject, _x] call TER_fnc_getItemValues;
-                        _itemValues params ["", "_itemCost", "_itemAmount"];
+                        _get = missionNamespace getVariable format["wf_%1", _x];
+                        _itemCost = ((_get select 0) select 1);
                         if(_itemCost > 0) then { _removedItems pushBack _x }
                     }
                 }

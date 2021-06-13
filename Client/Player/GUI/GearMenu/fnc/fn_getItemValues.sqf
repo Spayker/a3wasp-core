@@ -30,5 +30,10 @@ _rArray = [_dClass, _cargo#(_findInd+1), _cargo#(_findInd+2)];
 if (_return < 0) then {
 	_rArray
 } else {
-	_rArray#_return
+	_itemCost = _rArray # _return;
+	if (_itemCost == 0) then {
+	    _get = missionNamespace getVariable format["wf_%1", _class];
+        _itemCost = ((_get select 0) select 1)
+	};
+	_itemCost
 };
