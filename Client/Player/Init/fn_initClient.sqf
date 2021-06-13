@@ -239,9 +239,6 @@ if (isMultiplayer) then {
 	[WF_Client_Team, player] remoteExecCall ["WFSE_FNC_updateTeamLeader",2];
 };
 
-//--- Disable Artillery Computer.
-Call Compile "enableEngineArtillery false;";
-
 //--- Commander % stock init.
 if (isNil { missionNamespace getVariable "wf_commander_percent"}) then { missionNamespace setVariable ["wf_commander_percent", if ((missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX") >= 50 && (missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX") <= 100) then {missionNamespace getVariable "WF_C_ECONOMY_INCOME_PERCENT_MAX"} else {100}]};
 
