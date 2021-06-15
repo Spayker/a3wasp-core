@@ -807,15 +807,42 @@ switch _mode do {
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
 				if (_add > 0) then {
-					if (_center canAddItemToBackpack _item && _addAllowed) then {
-						_mpCost = 1;
+                    _config_type = switch (true) do { //--- Determine the kind of item that we're dealing with
+                        case (isClass (configFile >> 'CfgWeapons' >> _item)): {"CfgWeapons"};
+                        case (isClass (configFile >> 'CfgMagazines' >> _item)): {"CfgMagazines"};
+                        case (isClass (configFile >> 'CfgVehicles' >> _item)): {"CfgVehicles"};
+                        case (isClass (configFile >> 'CfgGlasses' >> _item)): {"CfgGlasses"};
+                        default {"nil"};
+                    };
+
+                    _mass = 0;
+                    _type = getNumber(configFile >> _config_type >> _item >> "type");
+
+                    switch (_config_type) do {
+                        case "CfgWeapons": {
+                            if !(_type isEqualTo 131072) then {
+                                _mass = getNumber(configFile >> _config_type >> _item >> "WeaponSlotsInfo" >> "mass");
+                            } else {
+                                _mass = getNumber(configFile >> _config_type >> _item >> "ItemInfo" >> "mass");
+                            };
+                        };
+                        case "CfgMagazines": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
+                        case "CfgVehicles": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
+                        case "CfgGlasses": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
+                    };
+
+                    _currentBackpackLoad = loadBackpack player;
+                    _currentBackpackSpace = (getContainerMaxLoad backpack _center) - (_currentBackpackLoad * (getContainerMaxLoad backpack _center));
+
+					if (_currentBackpackSpace >= _mass && _addAllowed) then {
 						_center addItemToBackpack _item;
-					};//m
+						_mpCost = 1
+					}
 				} else {
 					if (backpackitems _center findIf {tolower _x == _item} > -1) then {
 						_mpCost = -1;
 						_center removeitemfrombackpack _item;
-					};//m
+					};
 				};
 				_load = loadbackpack _center;
 				_items = backpackitems _center;
@@ -1635,7 +1662,6 @@ switch _mode do {
 					_itemsCurrent = backpackitems _center;
 					_load = if (backpack _center == "") then {1} else {loadbackpack _center};
 				};
-				default {[]};
 			};
 
 			_ctrlLoadCargo = _display displayctrl IDC_RSCDISPLAYARSENAL_LOADCARGO;
@@ -2000,20 +2026,21 @@ switch _mode do {
 
                         if!(isNil '_loweredGearClassName') then {
                             _gearDataArray = missionNamespace getVariable format["wf_%1", _x];
-                            if (isNil '_gearDataArray') exitWith {
-                            _shallRemoveTemplate = true
+                            if (isNil '_gearDataArray') then {
+                                _path = [_inventory, _x] call BIS_fnc_findNestedElement;
+                                [_inventory, _path, ""] call BIS_fnc_setNestedElement
                             };
 
                             _upgrade_gear = TER_VASS_shopObject getVariable 'currentGearUpgradeLevel';
-                            if (((_gearDataArray # 0) # 0) > _upgrade_gear) exitWith {
-                                _shallRemoveTemplate = true
+                            if (((_gearDataArray # 0) # 0) > _upgrade_gear) then {
+                                _path = [_inventory, _x] call BIS_fnc_findNestedElement;
+                                [_inventory, _path, ""] call BIS_fnc_setNestedElement
                             }
                         }
                     }
                 }
             } forEach _flatternIventory;
 
-            if!(_shallRemoveTemplate) then {
             _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,2],gettext (configfile >> "cfgweapons" >> (_inventory select 7 select 0) >> "picture")];
@@ -2022,8 +2049,7 @@ switch _mode do {
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,5],gettext (configfile >> "cfgweapons" >> (_inventory select 1 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,6],gettext (configfile >> "cfgvehicles" >> (_inventory select 2 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
-                _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")]
-            };
+            _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
 
         _ctrlTemplateValue lnbsort [0,false];
         _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
