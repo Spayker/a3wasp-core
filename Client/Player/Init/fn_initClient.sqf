@@ -93,12 +93,12 @@ WF_CAMP_NEAR = false;
 WF_CAMP_NEAR_HIDDEN = false;
 WF_TOWN_NEAR = false;
 
-[_this # 0] spawn {
+[] spawn {
 	waitUntil {!isNil "ASL_Add_Player_Actions"};
 
-	if!(_this # 0 getVariable ["ASL_Actions_Loaded",false]) then {
+	if!(player getVariable ["ASL_Actions_Loaded",false]) then {
 		[] call ASL_Add_Player_Actions;
-		_this # 0 setVariable ["ASL_Actions_Loaded",true];
+		player setVariable ["ASL_Actions_Loaded",true];
 	};
 };
 
@@ -631,9 +631,6 @@ addMissionEventHandler ["Map", {
 
 waitUntil {!isNull findDisplay 12};
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw", WF_C_MAP_MARKER_HANDLER];
-
-//--- res base logic clean up
-{ deleteVehicle _x } forEach ([0,0,0] nearEntities [["LocationOutpost_F"], 100000]);
 
 0 = [] spawn {
     disableSerialization;
