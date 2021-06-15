@@ -2547,7 +2547,7 @@
 				<English>Remote view terminated</English>
 				<Russian>Прекращено</Russian>
 			</Key>
-			<Key ID="STR_WF_HC_REMOTECONTROL_PRESSESC">
+			<Key ID="STR_WF_HC_REMOTECONTROL_PRESSDELETE">
 				<English>Press DELETE to terminate remote interaction</English>
 				<Russian>Нажмите DELETE чтобы прекратить удаленное взаимодействие</Russian>
 			</Key>
