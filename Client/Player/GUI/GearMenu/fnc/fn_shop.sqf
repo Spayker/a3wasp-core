@@ -2029,13 +2029,16 @@ switch _mode do {
                             if (isNil '_gearDataArray') then {
                                 _path = [_inventory, _x] call BIS_fnc_findNestedElement;
                                 [_inventory, _path, ""] call BIS_fnc_setNestedElement
-                            };
-
+                            } else {
                             _upgrade_gear = TER_VASS_shopObject getVariable 'currentGearUpgradeLevel';
                             if (((_gearDataArray # 0) # 0) > _upgrade_gear) then {
                                 _path = [_inventory, _x] call BIS_fnc_findNestedElement;
                                 [_inventory, _path, ""] call BIS_fnc_setNestedElement
                             }
+
+
+                            }
+
                         }
                     }
                 }
