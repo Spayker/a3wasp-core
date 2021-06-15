@@ -186,9 +186,12 @@ AIC_fnc_remoteControlActionHandler = {
 	    }
 	} forEach (units (group (leader WF_Client_Team)));
 
-    selectPlayer _rcUnit;
-	(vehicle _rcUnit) switchCamera "External";
-	openMap false;
+
+	_vehicleRcUnit = vehicle _rcUnit;
+	if (_rcUnit != _vehicleRcUnit) then {
+
+	    _vehicleRcUnit addAction [localize "STR_WF_Unlock",{call WFCL_fnc_toggleLock}, [], 95, false, true, '', 'alive _target && (locked _target == 2)',10];
+        _vehicleRcUnit addAction [localize "STR_WF_Lock",{call WFCL_fnc_toggleLock}, [], 94, false, true, '', 'alive _target && (locked _target == 0)',10];
 	
 	(vehicle _rcUnit) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOn")+"</t>",
                      "Client\Module\Valhalla\LowGear_Toggle.sqf",
@@ -209,6 +212,11 @@ AIC_fnc_remoteControlActionHandler = {
                      "",
                      "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') && (_this == driver _target) && Local_HighClimbingModeOn && canMove _target"
     ];
+	};
+
+    selectPlayer _rcUnit;
+	(vehicle _rcUnit) switchCamera "External";
+	openMap false;
 	
 	["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL",localize "STR_WF_HC_REMOTECONTROL_PRESSDELETE"]] call BIS_fnc_showNotification;
 };
