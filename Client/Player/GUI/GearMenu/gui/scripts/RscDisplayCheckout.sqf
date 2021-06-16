@@ -133,8 +133,6 @@ switch _mode do {
 		_cost = _displayArsenal getVariable "shop_cost";
 		//--- Update player's money
 		with missionnamespace do {["setMoney",[_center, -_cost]] call TER_fnc_VASShandler};
-		[TER_VASS_shopObject, _cargo, 2] call TER_fnc_addShopCargo;
-		TER_VASS_shopObject setVariable ["TER_VASS_cargo", _cargo, TER_VASS_shopObject getVariable ["TER_VASS_shared", true]];
         hudOn = true;
         shallResetDisplay = true;
         ctrlSetText[13020, "HUD ON"];

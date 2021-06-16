@@ -774,10 +774,37 @@ switch _mode do {
 		_addMax = [TER_VASS_shopObject, _item, 2] call TER_fnc_getItemValues;
 		_addAllowed = if (_addMax isEqualType true) then {_addMax} else {_addCur < _addMax};
 
+		_config_type = switch (true) do { //--- Determine the kind of item that we're dealing with
+            case (isClass (configFile >> 'CfgWeapons' >> _item)): {"CfgWeapons"};
+            case (isClass (configFile >> 'CfgMagazines' >> _item)): {"CfgMagazines"};
+            case (isClass (configFile >> 'CfgVehicles' >> _item)): {"CfgVehicles"};
+            case (isClass (configFile >> 'CfgGlasses' >> _item)): {"CfgGlasses"};
+            default {"nil"};
+        };
+
+        _mass = 0;
+        _type = getNumber(configFile >> _config_type >> _item >> "type");
+
+        switch (_config_type) do {
+            case "CfgWeapons": {
+                if !(_type isEqualTo 131072) then {
+                    _mass = getNumber(configFile >> _config_type >> _item >> "WeaponSlotsInfo" >> "mass");
+                } else {
+                    _mass = getNumber(configFile >> _config_type >> _item >> "ItemInfo" >> "mass");
+                };
+            };
+            case "CfgMagazines": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
+            case "CfgVehicles": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
+            case "CfgGlasses": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
+        };
+
 		switch _selected do {
 			case IDC_RSCDISPLAYARSENAL_TAB_UNIFORM: {
 				if (_add > 0) then {
-					if (_center canAddItemToUniform _item && _addAllowed) then {
+				    _currentUniformLoad = loadUniform player;
+                    _currentUniformSpace = (getContainerMaxLoad uniform _center) - (_currentUniformLoad * (getContainerMaxLoad uniform _center));
+
+					if (_currentUniformSpace >= _mass && _addAllowed) then {
 						_mpCost = 1;
 						_center additemtouniform _item;
 					};
@@ -792,7 +819,9 @@ switch _mode do {
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
 				if (_add > 0) then {
-					if (_center canAddItemToVest _item && _addAllowed) then {
+				    _currentVestLoad = loadVest player;
+                    _currentVestSpace = (getContainerMaxLoad vest _center) - (_currentVestLoad * (getContainerMaxLoad vest _center));
+					if (_currentVestSpace >= _mass && _addAllowed) then {
 						_mpCost = 1;
 						_center additemtovest _item;
 					};
@@ -807,33 +836,8 @@ switch _mode do {
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_BACKPACK: {
 				if (_add > 0) then {
-                    _config_type = switch (true) do { //--- Determine the kind of item that we're dealing with
-                        case (isClass (configFile >> 'CfgWeapons' >> _item)): {"CfgWeapons"};
-                        case (isClass (configFile >> 'CfgMagazines' >> _item)): {"CfgMagazines"};
-                        case (isClass (configFile >> 'CfgVehicles' >> _item)): {"CfgVehicles"};
-                        case (isClass (configFile >> 'CfgGlasses' >> _item)): {"CfgGlasses"};
-                        default {"nil"};
-                    };
-
-                    _mass = 0;
-                    _type = getNumber(configFile >> _config_type >> _item >> "type");
-
-                    switch (_config_type) do {
-                        case "CfgWeapons": {
-                            if !(_type isEqualTo 131072) then {
-                                _mass = getNumber(configFile >> _config_type >> _item >> "WeaponSlotsInfo" >> "mass");
-                            } else {
-                                _mass = getNumber(configFile >> _config_type >> _item >> "ItemInfo" >> "mass");
-                            };
-                        };
-                        case "CfgMagazines": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
-                        case "CfgVehicles": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
-                        case "CfgGlasses": {_mass = getNumber(configFile >> _config_type >> _item >> "mass")};
-                    };
-
                     _currentBackpackLoad = loadBackpack player;
                     _currentBackpackSpace = (getContainerMaxLoad backpack _center) - (_currentBackpackLoad * (getContainerMaxLoad backpack _center));
-
 					if (_currentBackpackSpace >= _mass && _addAllowed) then {
 						_center addItemToBackpack _item;
 						_mpCost = 1
@@ -2181,24 +2185,28 @@ switch _mode do {
 
             if(_saveName != '' && count _inventory > 0) then {
                 _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
-                _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment, side player]);
-                profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
+                _savedInventroyData pushBack ([_saveName, call _fnc_getEquipment, playerSide]);
+                profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData];
             };
 
         } else {
-
+            _display setVariable ["shop_cost",0];
+            uiNamespace setVariable ["TER_VASS_changedItems",[]];
             _inventory = [];
-            if ((_ctrlTemplateValue lbvalue lnbcurselrow _ctrlTemplateValue) >= 0) then {
-
                 _saveName = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue,0];
                 _saveDataCustom = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data",[]];
                 {
-                    if((_x # 0) isEqualType "STRING" && {(_x # 0) == _saveName} && (_x # 2 == side player)) exitWith {
+                if(_x # 0 == _saveName) then {
+                    _savedSide = _x # 2;
+                    if (typeName _savedSide == "SIDE") then {
+                        if (_savedSide ==  playerSide) exitWith {
                         _inventory = _x # 1
                     }
+                    }
+                }
                 } forEach _saveDataCustom;
-            };
 
+            if (count _inventory > 0) then {
             private _dirtyAddedItemsArray = (_inventory) call _fnc_arrayFlatten;
             private _dirtyRemovedItemsArray = (missionnamespace getVariable "WF_start_player_loadout") call _fnc_arrayFlatten;
             private _addedItems = [];
@@ -2237,6 +2245,7 @@ switch _mode do {
             [_center, _inventory] call _fnc_EquipUnit;
             ["costChange",[_display,_addedItems,+1]] call SELF;
             ["costChange",[_display,_removedItems,-1]] call SELF
+            }
         };
         _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
         _ctrlTemplate ctrlsetfade 1;
@@ -2260,7 +2269,6 @@ switch _mode do {
 			["costChange", [_display, [""]]] call SELF;
 		};
 	};
-
 	case "costChange":{
 		params ["_display",["_changedItems",[]],["_mp",1]];
 
