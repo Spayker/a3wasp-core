@@ -134,7 +134,7 @@ if(_friendlySide != sideUnknown) then {
     disableSerialization;
     private "_ctrl";
     waitUntil {_ctrl = ({ if !(isNull (_x displayCtrl 510)) exitWith {_x}; displayNull } forEach allDisplays) displayCtrl 510; !isNull _ctrl};
-    while {!isnull _ctrl} do {
+    while {!isnull _ctrl && alive player} do {
         if(lbSize _ctrl == 4) then {
             _ctrl lbDelete 3
         };

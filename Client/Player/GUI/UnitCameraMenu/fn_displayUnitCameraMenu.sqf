@@ -320,6 +320,9 @@ switch (_action) do {
                 _who setVariable ["ASL_Actions_Loaded",true];
             };
 
+            (vehicle _who) addAction [localize "STR_WF_Unlock",{call WFCL_fnc_toggleLock}, [], 95, false, true, '', 'alive _target && (locked _target == 2)',10];
+            (vehicle _who) addAction [localize "STR_WF_Lock",{call WFCL_fnc_toggleLock}, [], 94, false, true, '', 'alive _target && (locked _target == 0)',10];
+
             (vehicle _who) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOn")+"</t>",
                              "Client\Module\Valhalla\LowGear_Toggle.sqf",
                              [],
@@ -379,6 +382,29 @@ switch (_action) do {
                             [_this] call ASL_Add_Player_Actions;
                             _this setVariable ["ASL_Actions_Loaded", true];
 			};
+
+                        (vehicle _this) addAction [localize "STR_WF_Unlock",{call WFCL_fnc_toggleLock}, [], 95, false, true, '', 'alive _target && (locked _target == 2)',10];
+                        (vehicle _this) addAction [localize "STR_WF_Lock",{call WFCL_fnc_toggleLock}, [], 94, false, true, '', 'alive _target && (locked _target == 0)',10];
+
+                        (vehicle _this) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOn")+"</t>",
+                                         "Client\Module\Valhalla\LowGear_Toggle.sqf",
+                                         [],
+                                         91,
+                                         false,
+                                         true,
+                                         "",
+                                         "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') &&  (_this == driver _target) && !Local_HighClimbingModeOn && canMove _target"
+                        ];
+
+                        (vehicle _this) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOff")+"</t>",
+                                         "Client\Module\Valhalla\LowGear_Toggle.sqf",
+                                         [],
+                                         91,
+                                         false,
+                                         true,
+                                         "",
+                                         "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') && (_this == driver _target) && Local_HighClimbingModeOn && canMove _target"
+                        ];
 
                         ["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL", localize "STR_WF_HC_REMOTECONTROL_PRESSDELETE"]] call BIS_fnc_showNotification;
 		};
