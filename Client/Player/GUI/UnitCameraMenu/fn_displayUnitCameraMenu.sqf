@@ -291,7 +291,7 @@ switch (_action) do {
 
             AIC_Remote_Control_From_Unit_Event_Handler = _fromUnit addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
             AIC_Remote_Control_To_Unit_Event_Handler = _who addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
-            AIC_Remote_Control_Delete_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 1) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
+            AIC_Remote_Control_Delete_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 211) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
 
             BIS_fnc_feedback_allowPP = false;
 
@@ -310,9 +310,15 @@ switch (_action) do {
                 }
             } forEach (units (group (leader WF_Client_Team)));
 
+
             selectPlayer _who;
             (vehicle _who) switchCamera "External";
             openMap false;
+
+            if!(_who getVariable ["ASL_Actions_Loaded",false]) then {
+                [_who] call ASL_Add_Player_Actions;
+                _who setVariable ["ASL_Actions_Loaded",true];
+            };
 
             (vehicle _who) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOn")+"</t>",
                              "Client\Module\Valhalla\LowGear_Toggle.sqf",
@@ -341,32 +347,40 @@ switch (_action) do {
                 if (player != _who && ((player == leader _who) || !(isPlayer leader _who)))then {
 
 				_who spawn {
-					waitUntil {cameraOn == player};
-					sleep 0.5;
-
                         _this setVariable ["wf_remote_ctrl_eh", 1];
-                        _this addEventHandler ["Killed", {
-                            params ["_unit"];
-                            [_unit] spawn WFCL_FNC_abortRemoteControl;
-                        }];
                         missionNamespace setVariable ["wf_remote_ctrl_unit", _this];
 
-					player remoteControl _this;
-                        _this switchCamera cameraView;
-                        ["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL", localize "STR_WF_HC_REMOTECONTROL_PRESSDELETE"]] call BIS_fnc_showNotification;
+                        _fromUnit = missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull];
+                        if(isNull _fromUnit || !alive _fromUnit) then {
+                            _fromUnit = leader WF_Client_Team;
+                            missionNamespace setVariable ["AIC_Remote_Control_From_Unit",_fromUnit];
+                        };
 
-                        waitUntil {!isNull (findDisplay 46)};
-                        _eventId = (findDisplay 46) displayAddEventHandler ["KeyDown",
-                            {
-                                if(_this # 1 == 211) then {
-                                    _controledUnit = missionNamespace getVariable ["wf_remote_ctrl_unit", objNull];
-                                    if(!isNull _controledUnit) then {
-                                        [_controledUnit] spawn WFCL_FNC_abortRemoteControl;
+                        if(!alive _this) exitWith {
+                            ["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL", localize "STR_WF_HC_REMOTECONTROL_FAILED"]] call BIS_fnc_showNotification;
+                        };
+                        _exitingRcUnit = missionNamespace getVariable ["AIC_Remote_Control_To_Unit",objNull];
+                        if(!isNull _exitingRcUnit) then {
+                            _exitingRcUnit removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_To_Unit_Event_Handler",-1])];
+                            ["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
 				};
+                        missionNamespace setVariable ["AIC_Remote_Control_To_Unit",_this];
+                        _groupControlId = missionNamespace getVariable ["AIC_Remote_Control_To_GroupId", nil];
+                        missionNamespace setVariable ["AIC_Remote_Control_To_GroupId",_groupControlId];
+
+                        AIC_Remote_Control_From_Unit_Event_Handler = _fromUnit addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
+                        AIC_Remote_Control_To_Unit_Event_Handler = _this addEventHandler ["HandleDamage", "if ((_this # 2) > 0.5) then { [] call AIC_fnc_terminateRemoteControl }; _this # 2;"];
+                        AIC_Remote_Control_Delete_Handler = ["MAIN_DISPLAY","KeyDown", "if(_this select 1 == 211) then { [] call AIC_fnc_terminateRemoteControl; }"] call AIC_fnc_addEventHandler;
+
+                        selectPlayer _this;
+                        (vehicle _this) switchCamera cameraView;
+
+                        if!(player getVariable ["ASL_Actions_Loaded",false]) then {
+                            [_this] call ASL_Add_Player_Actions;
+                            _this setVariable ["ASL_Actions_Loaded", true];
 			};
-                                false
-                            }];
-                        missionNamespace setVariable ["wf_remote_ctrl_displayEH", _eventId];
+
+                        ["RemoteControl",[localize "STR_WF_HC_REMOTECONTROL", localize "STR_WF_HC_REMOTECONTROL_PRESSDELETE"]] call BIS_fnc_showNotification;
 		};
                     _dialog closeDisplay 1
                 }
@@ -383,7 +397,7 @@ switch (_action) do {
 			if (_isCommander) then {
 				_unflip = true
 			} else {
-				if (_who in units player) then {_unflip = true};
+				if (_who in units player) then {_unflip = true}
 			};
 
 			if (_unflip) then {

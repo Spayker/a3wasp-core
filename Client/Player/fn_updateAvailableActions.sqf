@@ -147,7 +147,12 @@ while {!WF_GameOver} do {
 		[] spawn WFCL_fnc_updateCommanderState;
 
 		0 = [] spawn {
-			missionNamespace setVariable ["ASL_Nearby_Vehicles", (call ASL_Find_Nearby_Vehicles)];
+        _rcUnit = missionNamespace getVariable ["AIC_Remote_Control_To_Unit", objNull];
+        if(isNull _rcUnit) then {
+            missionNamespace setVariable ["ASL_Nearby_Vehicles", ([player] call ASL_Find_Nearby_Vehicles)]
+        } else {
+            missionNamespace setVariable ["ASL_Nearby_Vehicles", ([_rcUnit] call ASL_Find_Nearby_Vehicles)]
+        }
 		};
 
 	sleep 1;

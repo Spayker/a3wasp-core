@@ -7,10 +7,6 @@
 params ["_killed", "_killer"];
 Private ["_delay"];
 
-if(!isNull (missionNamespace getVariable ["wf_remote_ctrl_unit", objNull])) then {
-    [missionNamespace getVariable "wf_remote_ctrl_unit"] spawn WFCL_FNC_abortRemoteControl;
-};
-
 if(WF_GameOver) exitWith {};
 
 WF_Client_IsRespawning = true;

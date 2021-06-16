@@ -272,7 +272,6 @@ class WF_Client {
         class displayUnitCameraMenu {};
         class getUnitVehicle {};
         class processUnitsCamera {};
-        class abortRemoteControl {};
         class mouseMoveKeyHandler {};
         class mouseButtonUpKeyHandler {};
         class mouseButtonDownKeyHandler {};

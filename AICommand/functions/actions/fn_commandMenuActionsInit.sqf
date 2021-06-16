@@ -186,12 +186,8 @@ AIC_fnc_remoteControlActionHandler = {
 	    }
 	} forEach (units (group (leader WF_Client_Team)));
 
-
-	_vehicleRcUnit = vehicle _rcUnit;
-	if (_rcUnit != _vehicleRcUnit) then {
-
-	    _vehicleRcUnit addAction [localize "STR_WF_Unlock",{call WFCL_fnc_toggleLock}, [], 95, false, true, '', 'alive _target && (locked _target == 2)',10];
-        _vehicleRcUnit addAction [localize "STR_WF_Lock",{call WFCL_fnc_toggleLock}, [], 94, false, true, '', 'alive _target && (locked _target == 0)',10];
+    vehicle _rcUnit addAction [localize "STR_WF_Unlock",{call WFCL_fnc_toggleLock}, [], 95, false, true, '', 'alive _target && (locked _target == 2)',10];
+    vehicle _rcUnit addAction [localize "STR_WF_Lock",{call WFCL_fnc_toggleLock}, [], 94, false, true, '', 'alive _target && (locked _target == 0)',10];
 	
 	(vehicle _rcUnit) addAction ["<t color='#FFBD4C'>"+(localize "STR_ACT_LowGearOn")+"</t>",
                      "Client\Module\Valhalla\LowGear_Toggle.sqf",
@@ -212,6 +208,10 @@ AIC_fnc_remoteControlActionHandler = {
                      "",
                      "((vehicle _target) isKindOf 'Tank' || (vehicle _target) isKindOf 'Car') && (_this == driver _target) && Local_HighClimbingModeOn && canMove _target"
     ];
+
+	if!(_rcUnit getVariable ["ASL_Actions_Loaded", false]) then {
+        [_rcUnit] call ASL_Add_Player_Actions;
+        _rcUnit setVariable ["ASL_Actions_Loaded", true]
 	};
 
     selectPlayer _rcUnit;
@@ -224,6 +224,7 @@ AIC_fnc_remoteControlActionHandler = {
 AIC_fnc_terminateRemoteControl = {
 	_originalLeader = missionNamespace getVariable "AIC_Remote_Control_To_Unit";
     removeAllActions (vehicle _originalLeader);
+    _originalLeader setVariable ["ASL_Actions_Loaded", nil];
 
 	["MAIN_DISPLAY","KeyDown",(missionNamespace getVariable ["AIC_Remote_Control_Delete_Handler",-1])] call AIC_fnc_removeEventHandler;
 	(missionNamespace getVariable ["AIC_Remote_Control_From_Unit",objNull]) removeEventHandler ["HandleDamage", (missionNamespace getVariable ["AIC_Remote_Control_From_Unit_Event_Handler",-1])];

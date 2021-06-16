@@ -431,7 +431,7 @@
 
 			<!--Advanced Sling Loading-->
 			<Key ID="STR_WF_AdvSlingLoading_Extend_CR">
-				<English>Extand cargo ropes</English>
+				<English>Extend cargo ropes</English>
 				<Russian>Удлинить стропы</Russian>
 			</Key>			
 			<Key ID="STR_WF_AdvSlingLoading_Shorten_CR">
