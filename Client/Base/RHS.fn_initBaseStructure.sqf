@@ -1,6 +1,7 @@
 if (!hasInterface && !isDedicated) exitWith {};
 
 if(canSuspend) then {
+    waitUntil {!isNil "commonInitComplete"};
 waitUntil {commonInitComplete}; //--- Wait for the common part.
 };
 
@@ -14,7 +15,6 @@ if (local player) then {
 	_side = (_sideID) Call WFCO_FNC_GetSideFromID;
 	_index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
     _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
-	waitUntil {clientInitComplete};
 
 	_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 	if !(_side in _friendlySides) exitWith {};
