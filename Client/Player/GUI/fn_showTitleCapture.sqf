@@ -37,7 +37,7 @@ while {!WF_GameOver} do {
 		if (!isNull _camp) then {
 			if (!isObjectHidden _camp) then {
 				_sideID = _camp getVariable "sideID";
-				_curSV = _camp getVariable "supplyValue";
+				_curSV = _maxSV;
 				if (_lastCheck == "Town") then {_delay = 0};
 				_txt = "";
 				_lastCheck = "Camp"
