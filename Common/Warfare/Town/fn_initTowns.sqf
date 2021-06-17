@@ -14,9 +14,9 @@ _airBases = [];
 _towns = _towns + _airBases;
 
 //--- Await for a proper initialization.
-{
-	waitUntil {!isNil {_x getVariable "sideID"} || !isNil {_x getVariable "wf_inactive"}};
-} forEach _towns;
+//{
+//	waitUntil {!isNil {_x getVariable "wf_inactive"}};
+//} forEach _towns;
 
 townInit = true;
 

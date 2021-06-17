@@ -25,12 +25,13 @@ _town setVariable ["maxSupplyValue",_townMaxSV];
 _town setVariable ["initialMaxSupplyValue",_townMaxSV];
 _town setVariable ["initialStartSupplyValue",_townStartSV];
 
+waitUntil {!isNil "commonInitComplete"};
 waitUntil {commonInitComplete};
 
 _camps = nearestObjects [_town, WF_C_CAMP_SEARCH_ARRAY, _townRange];
 _camps = _camps select { (_x getVariable ["WF_CAMP_TOWN", ""]) == _townName };
 
-if (isServer || (!hasInterface && !isDedicated)) then {
+if (isServer) then {
     //--- Get the camps and defenses
     _town setVariable ["camps", _camps, true];
     ["INITIALIZATION",Format ["Init_Town.sqf : Found [%1] camps in [%2].", count _camps, _town getVariable "name"]] call WFCO_FNC_LogContent;
@@ -62,7 +63,7 @@ _defenseLocations = [];
 
     [_town,_camps,_townStartSV, _townMaxSV, _townSpecialities, _townRange, _townServices] spawn {
         params ["_town", "_camps","_townStartSV", "_townMaxSV", "_townSpecialities", "_townRange", "_townServices"];
-        if (isNil {_town getVariable "sideID"}) then {_town setVariable ["sideID", WF_C_GUER_ID, true]};
+        //_town setVariable ["sideID", WF_C_GUER_ID, true];
         if (count _townSpecialities > 0) then {
             _town setVariable ["supplyValue",_townMaxSV,true]
         } else {
@@ -75,11 +76,11 @@ _defenseLocations = [];
         //--- setup town service related data
         _town setVariable ["townServices", _townServices, true];
 
-        {
+        //{
             //--- Initialize the camp.
-            if (isNil {_x getVariable "sideID"}) then {_x setVariable ["sideID",WF_C_GUER_ID,true]};
-            ["INITIALIZATION",Format ["Init_Town.sqf : Initialized Camp in [%1].", _town getVariable "name"]] call WFCO_FNC_LogContent
-        } forEach _camps;
+        //    _x setVariable ["sideID",WF_C_GUER_ID,true];
+        //    ["INITIALIZATION",Format ["Init_Town.sqf : Initialized Camp in [%1].", _town getVariable "name"]] call WFCO_FNC_LogContent
+        //} forEach _camps;
 
         if(WF_C_MILITARY_BASE in _townSpecialities || WF_C_AIR_BASE in _townSpecialities) then {
             _respVehPositions = [];
