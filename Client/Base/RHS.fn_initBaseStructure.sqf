@@ -16,6 +16,7 @@ if (local player) then {
 	_index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
     _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 
+    waitUntil {!isNil "WF_Client_Logic"};
 	_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 	if !(_side in _friendlySides) exitWith {};
 
