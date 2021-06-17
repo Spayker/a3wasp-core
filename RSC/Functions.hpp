@@ -10,7 +10,6 @@ class WF_Client {
         file = "Client\Player\Map";
         class arRadarMarkerUpdate {};
         class getStructureMarkerLabel {};
-        class markerAnim {};
         class isOnMap {};
         class handleOnMap {};
         class initMarkers {};
