@@ -4,13 +4,14 @@
 params ["_newSideId", "_location"];
 private ["_marker", "_towerMarker", "_towerColor"];
 
+_radioTowers = missionNamespace getVariable ['WF_C_TAKEN_RADIO_TOWERS', []];
 {
     if((_x # 0) isEqualTo _location) exitWith {
         WF_C_TAKEN_RADIO_TOWERS deleteAt _forEachIndex;
         deleteMarkerLocal format["radiotower%1", (position _location) # 0];
         deleteMarkerLocal format["WF_%1_TowerMarker", (position _location) # 1];
     }
-} forEach WF_C_TAKEN_RADIO_TOWERS;
+} forEach _radioTowers;
 
 _newSide = (_newSideId) Call WFCO_FNC_GetSideFromID;
 _radioTowerColor = nil;

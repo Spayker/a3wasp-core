@@ -480,6 +480,9 @@ while {alive (leader WF_Client_Team)} do {
             _supplyTotalValue = WF_Client_SideJoined Call WFCO_FNC_GetSideSupply;
             _supplyIncomeValue = WF_Client_SideJoined Call WFCO_FNC_GetTotalSupplyValue;
 
+        if(isNil '_supplyTotalValue') then { _supplyTotalValue = 0 };
+        if(isNil '_supplyIncomeValue') then { _supplyIncomeValue = 0 };
+
             if(_supplyTotalValue > 99999) then {
                 _supplyTotalValue = _supplyTotalValue/1000;
                 _supplyTotalValue = format["%1K", [_supplyTotalValue, 1] call BIS_fnc_cutDecimals];
