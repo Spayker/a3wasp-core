@@ -125,6 +125,16 @@ _requestRangedList = true;
 _startLoad = true;
 _mhqs = [];
 
+//--- Startup coloration.
+with uinamespace do {
+	currentBEDialog = _display;
+	switch (_mode) do {
+		case 0: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [1,1,1,1]};
+		case 1: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [0,0.635294,0.909803,1]};
+		case 2: {(currentBEDialog displayCtrl 17023) ctrlSetTextColor [0.6,0.850980,0.917647,1]};
+	};
+};
+
 lbSetCurSel[_listbox, 0];
 
 if ((missionNamespace getVariable "WF_C_ARTILLERY") == 0) then {

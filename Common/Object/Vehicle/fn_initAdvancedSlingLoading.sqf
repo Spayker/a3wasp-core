@@ -1039,7 +1039,9 @@ ASL_Advanced_Sling_Loading_Install = {
 
 	ASL_Add_Player_Actions = {
 
-	    params [['_player', player]];
+	    params ['_player'];
+
+	    if(isNil '_player') then { _player = player };
 
 		_player addAction [localize "STR_WF_AdvSlingLoading_Extend_CR", {
 			[_player] call ASL_Extend_Ropes_Action;

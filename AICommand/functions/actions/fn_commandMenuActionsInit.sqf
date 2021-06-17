@@ -81,12 +81,12 @@ AIC_fnc_commandMenuIsAir = {
 	_menuParams params ["_groupControlId"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
 	_hasAir = false;
+	if!(isNil '_group') then {
 	{
-		if(_x isKindOf "Air") then {
-			_hasAir = true;
+            if(_x isKindOf "Air") then { _hasAir = true }
+        } forEach ([_group] call AIC_fnc_getGroupAssignedVehicles)
 		};
-	} forEach ([_group] call AIC_fnc_getGroupAssignedVehicles);
-	_hasAir;
+	_hasAir
 };
 
 AIC_fnc_setFlyInHeightActionHandler = {
