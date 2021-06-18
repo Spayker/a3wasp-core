@@ -1,9 +1,10 @@
 if (!hasInterface && !isDedicated) exitWith {};
 
-if(canSuspend) then {
+
+[] spawn {
     waitUntil {!isNil "commonInitComplete"};
 waitUntil {commonInitComplete}; //--- Wait for the common part.
-};
+    waitUntil {!isNil "WF_Client_Logic"};
 
 if (local player) then {
     params["_structure","_hq","_sideID"];
@@ -16,7 +17,7 @@ if (local player) then {
 	_index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
     _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 
-    waitUntil {!isNil "WF_Client_Logic"};
+
 	_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
 	if !(_side in _friendlySides) exitWith {};
 
@@ -85,11 +86,11 @@ if (local player) then {
                         (_structureMaxHealthArray) # _index]]
     };
     //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
-    if(canSuspend) then {
         waitUntil {!alive _structure}
-    };
 
 	deleteMarkerLocal _marker;
 	if(typeOf _structure isKindOf "Base_WarfareBUAVterminal") then {deleteMarkerLocal _markercc};
 }
+}
+
 
