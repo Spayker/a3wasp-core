@@ -15,7 +15,7 @@ private _updateCandidatesList = {
         };
     } forEach _votes;
 
-    lnbAddRow[500100, ["AI Commander", str(_votesAI)]];
+    lnbAddRow[500100, ["AI Commander", '0']];
     {
         _uid = _x # 0;
         _votesCount = 0;
