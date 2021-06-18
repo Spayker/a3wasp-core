@@ -1,7 +1,6 @@
+Params ['_side', ['_amount', 0]];
 Private ['_amount','_change','_currentSupply','_side'];
 
-_side = _this select 0;
-_amount = _this select 1;
 _maxSupplyLimit = WF_C_MAX_ECONOMY_SUPPLY_LIMIT;
 
 _currentSupply = (_side) Call WFCO_FNC_GetSideSupply;

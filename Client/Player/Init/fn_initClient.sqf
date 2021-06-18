@@ -503,23 +503,23 @@ WF_C_MAP_MARKER_HANDLER = {
     {
         _side = _x;
         _sideId = _side Call WFCO_FNC_GetSideID;
-        _unitColor = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);
         {
             _sideUnit = side _x;
             if (_sideUnit == _side) then {
-                _unitMarkers pushBack ([_x, _unitColor, (_x) call WFCO_FNC_GetAIDigit])
+                _unitMarkers pushBack ([_x, missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]), (_x) call WFCO_FNC_GetAIDigit])
             }
         } forEach allUnits;
 
         {
             _vehicle = _x;
-            _vehicleSideId = getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "side");
-
-            if (local _vehicle && isMultiplayer) then {_color = "ColorOrange"};
-            if ((typeOf _vehicle) in (missionNamespace getVariable ["WF_AMBULANCES", []])) then {_color = "ColorYellow"};
-            if ((typeOf _vehicle) == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _color = "ColorWhite" };
+            _typeVehicle = typeOf _vehicle;
+            _vehicleSideId = getNumber (configFile >> "CfgVehicles" >> _typeVehicle >> "side");
 
             if (_vehicleSideId == _sideId) then {
+                _unitColor = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);
+                if ((_typeVehicle) in (missionNamespace getVariable ["WF_AMBULANCES", []])) then { _unitColor = "ColorYellow" };
+                if ((typeOf _vehicle) == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _unitColor = "ColorWhite" };
+
                 _unitMarkers pushBack ([_vehicle, _unitColor, ''])
             }
         } forEach vehicles;

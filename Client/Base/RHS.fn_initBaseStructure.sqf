@@ -1,10 +1,9 @@
 if (!hasInterface && !isDedicated) exitWith {};
 
-
-[] spawn {
+if(canSuspend) then {
     waitUntil {!isNil "commonInitComplete"};
 waitUntil {commonInitComplete}; //--- Wait for the common part.
-    waitUntil {!isNil "WF_Client_Logic"};
+};
 
 if (local player) then {
     params["_structure","_hq","_sideID"];
@@ -17,9 +16,13 @@ if (local player) then {
 	_index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
     _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
 
+    waitUntil {!isNil "WF_Client_Logic"};
+    _logic = (_side) Call WFCO_FNC_GetSideLogic;
 
-	_friendlySides = WF_Client_Logic getVariable ["wf_friendlySides", []];
-	if !(_side in _friendlySides) exitWith {};
+    if(!isNil '_logic') then {
+        _friendlySides = _logic getVariable ["wf_friendlySides", []];
+        if !(_side in _friendlySides) exitWith {}
+    };
 
 	_marker = Format["BaseMarker%1",buildingMarker];
 	buildingMarker = buildingMarker + 1;
@@ -86,11 +89,10 @@ if (local player) then {
                         (_structureMaxHealthArray) # _index]]
     };
     //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
-        waitUntil {!alive _structure};
+    if(canSuspend) then {
+        waitUntil {!alive _structure}
+    };
 
 	deleteMarkerLocal _marker;
 	if(typeOf _structure isKindOf "Base_WarfareBUAVterminal") then {deleteMarkerLocal _markercc};
 }
-}
-
-
