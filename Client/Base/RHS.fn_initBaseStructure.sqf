@@ -86,7 +86,7 @@ if (local player) then {
                         (_structureMaxHealthArray) # _index]]
     };
     //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
-        waitUntil {!alive _structure}
+        waitUntil {!alive _structure};
 
 	deleteMarkerLocal _marker;
 	if(typeOf _structure isKindOf "Base_WarfareBUAVterminal") then {deleteMarkerLocal _markercc};
