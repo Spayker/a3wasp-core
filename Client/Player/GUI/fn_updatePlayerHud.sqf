@@ -101,6 +101,7 @@ while {alive (leader WF_Client_Team)} do {
             shallResetDisplay = false;
         };
 
+        if !(isNil '_cutDisplay') then {
             //--HUD variables--START----------------------------------------------------------------------------------------------//
             _bgControl = _cutDisplay DisplayCtrl 1099;
             _hControl = _cutDisplay DisplayCtrl 1100;
@@ -510,6 +511,9 @@ while {alive (leader WF_Client_Team)} do {
             };
             _c = _c + 1;
         } forEach _usable;
+        }
+
+
 	} else {
         call _hideHud;
         {
