@@ -81,6 +81,12 @@ if(isNil "_groupControlId") then {
 	if(_event == "LEFT_MOUSE_BUTTON_DOWN_MAP" ) then {
 		if(AIC_fnc_getGroupControlAddingWaypoints(_groupControlId)) then {
 			[_group, [(AIC_fnc_getMouseMapPosition()),false,"MOVE"]] call AIC_fnc_addWaypoint;
+			_isInfantry = _group getVariable ["isHighCommandInfantry", false];
+			if(_isInfantry) then {
+			    _group setBehaviour "SAFE";
+			    _group setCombatMode  "RED";
+			};
+
 			[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
 		};
 	};

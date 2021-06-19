@@ -15,11 +15,11 @@ if ((isNil "_thisScript") || !(canSuspend)) exitWith {_this spawn (call compile 
 params [["_text", ""], ["_duration", 5], ["_priority", 5], ["_color", [0.50, 0, 0]], ["_condition", {true}]];
 if (_text isEqualTo "") exitWith {};
 
-if(isNil 'WF_PREVIOUS_HINT_MESSAGE') then {
+if(isNil 'WF_PREVIOUS_HINT_MESSAGE') exitWith {
     WF_PREVIOUS_HINT_MESSAGE = ""
-} else {
-if (_text isEqualTo WF_PREVIOUS_HINT_MESSAGE) exitWith {};
 };
+
+if (_text isEqualTo WF_PREVIOUS_HINT_MESSAGE) exitWith {};
 
 playSound "Hint";
 WF_PREVIOUS_HINT_MESSAGE = _text;

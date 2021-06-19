@@ -123,12 +123,15 @@ if (_greenlight) then {
     } else {
     {
             [_x] join (leader _paraGroup);
-        sleep 0.8;
+            sleep 0.8
     } forEach _paratroopers;
     };
 
+
     //--- Once done, the air units can fly back to their source.
     sleep 15;
+
+    if (_isHc) then { { unassignVehicle _x } forEach (units _paraGroup) };
     [_vehicleGrp, _closestStartPos, "MOVE", 5] Call WFCO_fnc_aiMoveTo;
 
     //--- Loop until death or arrival.

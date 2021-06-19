@@ -48,6 +48,9 @@ _waypointsArray = _waypoints select 1;
 _waypoint = [count _waypointsArray] + _waypointParams;
 _waypointsArray pushBack _waypoint;
 
+_isInfantry = _group getVariable ["isHighCommandInfantry", false];
+if(_isInfantry) then { _waypoint setWaypointBehaviour 'SAFE' };
+
 _revision = _revision + 1;
 
 _group setVariable ["AIC_Waypoints",[_revision,_waypointsArray], true];
