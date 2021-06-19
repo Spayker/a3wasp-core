@@ -268,17 +268,17 @@ AIC_fnc_terminateRemoteControl = {
 
 ["GROUP",localize "STR_WF_HC_REMOTECONTROLDIRECT",[localize "STR_WF_HC_REMOTECONTROL"],AIC_fnc_remoteControlActionHandler,[],{
 	params ["_groupControlId"];
-	private ["_group"];
+	private ["_group", "_canControl"];
 	_group = AIC_fnc_getGroupControlGroup(_groupControlId);
-	private ["_canControl"];
+	if (isNil '_group') then {
+	    _canControl = false
+	} else {
 	_canControl = true;
-	if(!alive leader _group) then {
-		_canControl = false;
+        if(!alive leader _group) then { _canControl = false };
+        if(isPlayer leader _group) then { _canControl = false }
 	};
-	if(isPlayer leader _group) then {
-		_canControl = false;
-	};
-	_canControl;
+
+	_canControl
 }] call AIC_fnc_addCommandMenuAction;
 
 AIC_fnc_assignVehicleActionHandler = {
