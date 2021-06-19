@@ -45,7 +45,6 @@ switch _mode do {
 		*/
 		params ["_unit", "_change"];
 		/* EXAMPLE */
-		_unit addRating _change;
-		-(_change) call WFCL_FNC_ChangePlayerFunds;
+		(_change) call WFCL_FNC_ChangePlayerFunds;
 	};
 };

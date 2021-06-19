@@ -2142,7 +2142,7 @@ switch _mode do {
         _savedInventroyData = profilenamespace getvariable ["wf_bis_fnc_saveInventory_data", []];
         {
             if(count _x > 0) then {
-                if((_x # 0) == _name && (_x # 2) == side player) exitWith {
+                if((_x # 0) == _name && (_x # 2) == playerSide) exitWith {
                     _savedInventroyData deleteAt _forEachIndex;
                     profilenamespace setvariable ["wf_bis_fnc_saveInventory_data", _savedInventroyData]
                 }
@@ -2163,11 +2163,7 @@ switch _mode do {
             [
                 _center,
                 [profilenamespace,ctrltext _ctrlTemplateName],
-                [
-                    _center getvariable ["BIS_fnc_arsenal_face",face _center],
-                    speaker _center,
-                    _center call bis_fnc_getUnitInsignia
-                ]
+                []
             ] call bis_fnc_saveInventory;
 
             _inventory = [];
