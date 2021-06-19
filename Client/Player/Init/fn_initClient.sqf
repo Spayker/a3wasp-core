@@ -437,12 +437,15 @@ player addEventHandler ["WeaponAssembled", {
 	}
 }];
 
-
 _sideGearTxt = WF_Client_SideJoinedText;
 _friendlySide = call WFCO_fnc_getFriendlySide;
 if(_friendlySide != sideUnknown) then {
+    _isFirstOutTeam = WF_Client_Logic getVariable ["wf_isFirstOutTeam", false];
+    if(_isFirstOutTeam) then {
     _sideGearTxt = str _friendlySide;
-    player setVariable ['shallSetupFriendlyStartGear', false]
+        player setVariable ['shallSetupFriendlyStartGear', false];
+        [_friendlySide] call WFCL_fnc_updateLostTeamWithFriendlyData
+    }
 };
 
 _roleDefaultGear = [];
