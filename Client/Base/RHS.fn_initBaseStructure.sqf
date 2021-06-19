@@ -3,6 +3,7 @@ if (!hasInterface && !isDedicated) exitWith {};
 if(canSuspend) then {
     waitUntil {!isNil "commonInitComplete"};
 waitUntil {commonInitComplete}; //--- Wait for the common part.
+    waitUntil {clientInitComplete}
 };
 
 if (local player) then {
@@ -12,8 +13,7 @@ if (local player) then {
 	if(isNull _structure) exitWith {};
 
 	_side = (_sideID) Call WFCO_FNC_GetSideFromID;
-    _logic = (WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic;
-
+    _logic = (side player) Call WFCO_FNC_GetSideLogic;
     if(!isNil '_logic') then {
         _friendlySides = _logic getVariable ["wf_friendlySides", []];
         if (_side in _friendlySides) then  {
