@@ -49,7 +49,7 @@ _waypoint = [count _waypointsArray] + _waypointParams;
 _waypointsArray pushBack _waypoint;
 
 _isInfantry = _group getVariable ["isHighCommandInfantry", false];
-if(_isInfantry) then { _waypoint setWaypointBehaviour 'SAFE' };
+if(_isInfantry) then { _waypoint setWaypointBehaviour 'AWARE' };
 
 _revision = _revision + 1;
 

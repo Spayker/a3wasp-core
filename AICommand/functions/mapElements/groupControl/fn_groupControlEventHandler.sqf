@@ -113,7 +113,7 @@ if(isNil "_groupControlId") then {
             _group setBehaviour "SAFE";
             _group setCombatMode  "RED";
 
-            { _x setWaypointBehaviour 'SAFE' } forEach _waypoints
+            { _x setWaypointBehaviour 'AWARE' } forEach _waypoints
         };
 		
 		_waypointIconIndex = 0;
