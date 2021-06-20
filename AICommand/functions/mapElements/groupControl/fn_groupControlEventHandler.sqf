@@ -81,12 +81,6 @@ if(isNil "_groupControlId") then {
 	if(_event == "LEFT_MOUSE_BUTTON_DOWN_MAP" ) then {
 		if(AIC_fnc_getGroupControlAddingWaypoints(_groupControlId)) then {
 			[_group, [(AIC_fnc_getMouseMapPosition()),false,"MOVE"]] call AIC_fnc_addWaypoint;
-			_isInfantry = _group getVariable ["isHighCommandInfantry", false];
-			if(_isInfantry) then {
-			    _group setBehaviour "SAFE";
-			    _group setCombatMode  "RED";
-			};
-
 			[_groupControlId,"REFRESH_WAYPOINTS",[]] call AIC_fnc_groupControlEventHandler;
 		};
 	};
@@ -104,16 +98,23 @@ if(isNil "_groupControlId") then {
 		
 		private ["_waypointIcons","_waypointIconCount","_waypoints","_currentWpRevision","_waypointsArray", "_waypointIconIndex","_color"];
 		
-		_waypointIcons = AIC_fnc_getGroupControlWaypointIcons(_groupControlId);
 
+		_waypointIcons = AIC_fnc_getGroupControlWaypointIcons(_groupControlId);
 		_waypointIconCount = count _waypointIcons;
-		
 		_waypoints = [_group] call AIC_fnc_getAllActiveWaypoints;
 
 		_color = AIC_fnc_getGroupControlColor(_groupControlId);
 
 		_currentWpRevision = _waypoints select 0;
 		_waypointsArray = _waypoints select 1;
+		
+		_isInfantry = _group getVariable ["isHighCommandInfantry", false];
+        if(_isInfantry) then {
+            _group setBehaviour "SAFE";
+            _group setCombatMode  "RED";
+
+            { _x setWaypointBehaviour 'SAFE' } forEach _waypoints
+        };
 		
 		_waypointIconIndex = 0;
 
