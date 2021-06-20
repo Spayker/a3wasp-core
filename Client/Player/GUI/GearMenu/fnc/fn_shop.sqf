@@ -1315,9 +1315,37 @@ switch _mode do {
 					_addedItems = [_item];
 					while {count uniformitems _center > 0} do {_center removeitemfromuniform (uniformitems _center select 0);}; //--- Remove default config contents
 					{
-						if (_center canAddItemToUniform _x) then {
+
+                        _config_type = switch (true) do { //--- Determine the kind of item that we're dealing with
+                            case (isClass (configFile >> 'CfgWeapons' >> _x)): {"CfgWeapons"};
+                            case (isClass (configFile >> 'CfgMagazines' >> _x)): {"CfgMagazines"};
+                            case (isClass (configFile >> 'CfgVehicles' >> _x)): {"CfgVehicles"};
+                            case (isClass (configFile >> 'CfgGlasses' >> _x)): {"CfgGlasses"};
+                            default {"nil"};
+                        };
+					    _mass = 0;
+                        _type = getNumber(configFile >> _config_type >> _x >> "type");
+
+                        switch (_config_type) do {
+                            case "CfgWeapons": {
+                                if !(_type isEqualTo 131072) then {
+                                    _mass = getNumber(configFile >> _config_type >> _x >> "WeaponSlotsInfo" >> "mass");
+                                } else {
+                                    _mass = getNumber(configFile >> _config_type >> _x >> "ItemInfo" >> "mass");
+                                };
+                            };
+                            case "CfgMagazines": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                            case "CfgVehicles": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                            case "CfgGlasses": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                        };
+
+                        _currentUniformLoad = loadUniform player;
+                        _currentUniformSpace = (getContainerMaxLoad uniform _center) - (_currentUniformLoad * (getContainerMaxLoad uniform _center));
+
+						if (_currentUniformSpace >= _mass) then {
 							_center additemtouniform _x;
-							_removedItems deleteAt (_removedItems find _x)};
+							_removedItems deleteAt (_removedItems find _x)
+					    }
 					} foreach _items;
 				};
 
@@ -1337,9 +1365,36 @@ switch _mode do {
 					_addedItems = [_item];
 					while {count vestitems _center > 0} do {_center removeitemfromvest (vestitems _center select 0);}; //--- Remove default config contents
 					{
-						if (_center canAddItemToVest _x) then {
+					    _config_type = switch (true) do { //--- Determine the kind of item that we're dealing with
+                            case (isClass (configFile >> 'CfgWeapons' >> _x)): {"CfgWeapons"};
+                            case (isClass (configFile >> 'CfgMagazines' >> _x)): {"CfgMagazines"};
+                            case (isClass (configFile >> 'CfgVehicles' >> _x)): {"CfgVehicles"};
+                            case (isClass (configFile >> 'CfgGlasses' >> _x)): {"CfgGlasses"};
+                            default {"nil"};
+                        };
+                        _mass = 0;
+                        _type = getNumber(configFile >> _config_type >> _x >> "type");
+
+                        switch (_config_type) do {
+                            case "CfgWeapons": {
+                                if !(_type isEqualTo 131072) then {
+                                    _mass = getNumber(configFile >> _config_type >> _x >> "WeaponSlotsInfo" >> "mass");
+                                } else {
+                                    _mass = getNumber(configFile >> _config_type >> _x >> "ItemInfo" >> "mass");
+                                };
+                            };
+                            case "CfgMagazines": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                            case "CfgVehicles": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                            case "CfgGlasses": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                        };
+
+                        _currentVestLoad = loadVest player;
+                        _currentVestSpace = (getContainerMaxLoad vest _center) - (_currentVestLoad * (getContainerMaxLoad vest _center));
+
+						if (_currentVestSpace >= _mass) then {
 							_center addItemToVest _x;
-							_removedItems deleteAt (_removedItems find _x)};
+							_removedItems deleteAt (_removedItems find _x)
+					    }
 					} foreach _items;
 				};
 			};
@@ -1353,9 +1408,37 @@ switch _mode do {
 					_addedItems = [_item];
 					while {count backpackitems _center > 0} do {_center removeitemfrombackpack (backpackitems _center select 0);}; //--- Remove default config contents
 					{
-						if (_center canAddItemToBackpack _x) then {
+
+					    _config_type = switch (true) do { //--- Determine the kind of item that we're dealing with
+                            case (isClass (configFile >> 'CfgWeapons' >> _x)): {"CfgWeapons"};
+                            case (isClass (configFile >> 'CfgMagazines' >> _x)): {"CfgMagazines"};
+                            case (isClass (configFile >> 'CfgVehicles' >> _x)): {"CfgVehicles"};
+                            case (isClass (configFile >> 'CfgGlasses' >> _x)): {"CfgGlasses"};
+                            default {"nil"};
+                        };
+                        _mass = 0;
+                        _type = getNumber(configFile >> _config_type >> _x >> "type");
+
+                        switch (_config_type) do {
+                            case "CfgWeapons": {
+                                if !(_type isEqualTo 131072) then {
+                                    _mass = getNumber(configFile >> _config_type >> _x >> "WeaponSlotsInfo" >> "mass");
+                                } else {
+                                    _mass = getNumber(configFile >> _config_type >> _x >> "ItemInfo" >> "mass");
+                                };
+                            };
+                            case "CfgMagazines": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                            case "CfgVehicles": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                            case "CfgGlasses": {_mass = getNumber(configFile >> _config_type >> _x >> "mass")};
+                        };
+
+                        _currentBackpackLoad = loadBackpack player;
+                        _currentBackpackSpace = (getContainerMaxLoad backpack _center) - (_currentBackpackLoad * (getContainerMaxLoad backpack _center));
+
+						if (_currentBackpackSpace >= _mass) then {
 							_center addItemToBackpack _x;
-							_removedItems deleteAt (_removedItems find _x)};
+							_removedItems deleteAt (_removedItems find _x)
+						};
 					} foreach _items;
 				};
 			};
