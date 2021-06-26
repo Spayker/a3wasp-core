@@ -252,7 +252,7 @@ WF_C_TAKEN_RADIO_TOWERS = [];
 
 /* Don't pause the client initialization process. */
 [] Spawn {
-	waitUntil {townInit};
+	sleep 5;
 	/* Handle the capture GUI */
 	["INITIALIZATION", "fn_initClient.sqf: Initializing the Town Capture FSM"] Call WFCO_FNC_LogContent;
 	[] spawn WFCL_fnc_showTitleCapture;
@@ -506,10 +506,12 @@ WF_C_MAP_MARKER_HANDLER = {
     {
         _side = _x;
         _sideId = _side Call WFCO_FNC_GetSideID;
+        _defaultColor = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);
+
         {
             _sideUnit = side _x;
             if (_sideUnit == _side) then {
-                _unitMarkers pushBack ([_x, missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]), (_x) call WFCO_FNC_GetAIDigit])
+                _unitMarkers pushBack ([_x, _defaultColor, (_x) call WFCO_FNC_GetAIDigit])
             }
         } forEach allUnits;
 
@@ -519,14 +521,13 @@ WF_C_MAP_MARKER_HANDLER = {
             _vehicleSideId = getNumber (configFile >> "CfgVehicles" >> _typeVehicle >> "side");
 
             if (_vehicleSideId == _sideId) then {
-                _unitColor = missionNamespace getVariable (format ["WF_C_%1_COLOR", _side]);
+                _unitColor = _defaultColor;
                 if ((_typeVehicle) in (missionNamespace getVariable ["WF_AMBULANCES", []])) then { _unitColor = "ColorYellow" };
                 if ((typeOf _vehicle) == missionNamespace getVariable Format["WF_%1MHQNAME", _side]) then { _unitColor = "ColorWhite" };
 
                 _unitMarkers pushBack ([_vehicle, _unitColor, ''])
             }
         } forEach vehicles;
-    } forEach (WF_Client_Logic getVariable ["wf_friendlySides", []]);
 
     {
         _unit = _x # 0;
@@ -602,6 +603,7 @@ WF_C_MAP_MARKER_HANDLER = {
             _unitMarkers = _unitMarkers - [_x]
 		}
     } forEach _unitMarkers;
+    } forEach (WF_Client_Logic getVariable ["wf_friendlySides", []]);
 
     {
         if (count _this > 0) then {

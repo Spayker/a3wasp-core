@@ -186,6 +186,8 @@ AIC_fnc_remoteControlActionHandler = {
 	    }
 	} forEach (units (group (leader WF_Client_Team)));
 
+	_rcUnit addAction ["<t color='#7D1401'>" + (localize "STR_WF_Remote_Control_Terminate") + "</t>",{[] call AIC_fnc_terminateRemoteControl}, [], 95, false, true, '', '',10];
+
     vehicle _rcUnit addAction [localize "STR_WF_Unlock",{call WFCL_fnc_toggleLock}, [], 95, false, true, '', 'alive _target && (locked _target == 2)',10];
     vehicle _rcUnit addAction [localize "STR_WF_Lock",{call WFCL_fnc_toggleLock}, [], 94, false, true, '', 'alive _target && (locked _target == 0)',10];
 	

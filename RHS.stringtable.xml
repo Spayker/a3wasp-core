@@ -1883,6 +1883,10 @@
 				<English>Remote control</English>
 				<Russian>Удаленное управление</Russian>
 			</Key>
+			<Key ID="STR_WF_Remote_Control_Terminate">
+				<English>Terminate control</English>
+				<Russian>Прервать контроль</Russian>
+			</Key>
 			<Key ID="STR_WF_UPGRADE_REMOTE_CONTROL_DESC">
 				<English>Allows to use unit remote control through unit camera</English>
 				<Russian>Позволяет использовать дистанционное управление юнитом через камеру юнита</Russian>
