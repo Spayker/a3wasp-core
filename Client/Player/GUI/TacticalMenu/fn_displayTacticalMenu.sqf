@@ -628,7 +628,7 @@ while {alive player && dialog} do {
             -_currentFee Call WFCL_FNC_ChangePlayerFunds;
             _callPos = _map PosScreenToWorld[mouseX, mouseY];
 
-            [WF_Client_SideJoined, _callPos, WF_Client_Team] remoteExec ["WFCO_FNC_casRequest",2];
+            [WF_Client_SideJoined, _callPos] remoteExec ["WFCO_FNC_casRequest",2];
             [format ["%1", localize "STR_WF_INFO_Cas_Info"]] spawn WFCL_fnc_handleMessage;
         };
 	};

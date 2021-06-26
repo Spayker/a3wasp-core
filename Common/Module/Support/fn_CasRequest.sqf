@@ -1,19 +1,19 @@
-params ["_side", "_casPosition", "_playerTeam"];
+params ["_side", "_casPosition"];
 private['_bd', '_built', '_currentUpgrades', '_casPosition', '_closestStartPos', '_greenlight',
-    '_playerTeam', '_side', '_sideID', '_vehicle','_vehicle_cargo'];
+    '_side', '_sideID', '_vehicle','_vehicle_cargo'];
 
 if (isServer) exitWith {
     _hc = missionNamespace getVariable ["WF_HEADLESSCLIENT_ID", 0];
     if(_hc > 0) then {
         ["INFORMATION", Format["fn_CasRequest.sqf: delegating cas request to hc - %1", _hc]] Call WFCO_FNC_LogContent;
-        [_side, _casPosition, _playerTeam] remoteExec ["WFCO_FNC_casRequest",_hc]
+        [_side, _casPosition] remoteExec ["WFCO_FNC_casRequest",_hc]
     }
 };
 
 _sideID = _side Call WFCO_FNC_GetSideID;
 _greenlight = false;
 
-["INFORMATION", Format["fn_CasRequest.sqf: [%1] Team [%2] has requested CAS.", _side, _playerTeam]] Call WFCO_FNC_LogContent;
+["INFORMATION", Format["fn_CasRequest.sqf: [%1] has requested CAS", _side]] Call WFCO_FNC_LogContent;
 
 //--- Determine a random spawn location.
 _startPosArray = [];
