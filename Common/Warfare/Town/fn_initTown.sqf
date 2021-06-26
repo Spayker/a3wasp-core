@@ -63,7 +63,6 @@ _defenseLocations = [];
 
     [_town,_camps,_townStartSV, _townMaxSV, _townSpecialities, _townRange, _townServices] spawn {
         params ["_town", "_camps","_townStartSV", "_townMaxSV", "_townSpecialities", "_townRange", "_townServices"];
-        //_town setVariable ["sideID", WF_C_GUER_ID, true];
         if (count _townSpecialities > 0) then {
             _town setVariable ["supplyValue",_townMaxSV,true]
         } else {
@@ -75,13 +74,6 @@ _defenseLocations = [];
 
         //--- setup town service related data
         _town setVariable ["townServices", _townServices, true];
-
-        //{
-            //--- Initialize the camp.
-        //    _x setVariable ["sideID",WF_C_GUER_ID,true];
-        //    ["INITIALIZATION",Format ["Init_Town.sqf : Initialized Camp in [%1].", _town getVariable "name"]] call WFCO_FNC_LogContent
-        //} forEach _camps;
-
         if(WF_C_MILITARY_BASE in _townSpecialities || WF_C_AIR_BASE in _townSpecialities) then {
             _respVehPositions = [];
             {
