@@ -510,7 +510,7 @@ WF_C_MAP_MARKER_HANDLER = {
 
         {
             _sideUnit = side _x;
-            if (_sideUnit == _side) then {
+            if (_sideUnit == _side && typeOf _x != 'Logic') then {
                 _unitMarkers pushBack ([_x, _defaultColor, (_x) call WFCO_FNC_GetAIDigit])
             }
         } forEach allUnits;
