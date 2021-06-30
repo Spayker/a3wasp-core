@@ -32,9 +32,9 @@ on a dedicated server. However, a server requires one headless client to be conn
 It allows reducing server load significantly.
 
 Besides, a separate project was created to support bunch of vanilla and custom maps including:
-Altis, Stratis, Malden, Tanoa, Livonia, Cherno, Takistan, Utes, Zargabad, Sahrani, Napf
+_Altis, Stratis, Malden, Tanoa, Livonia, Cherno, Takistan, Utes, Zargabad, Sahrani, Napf_
 
-Last but not the least fact all sources are designed to be used with CUP content. Vanilla, RHS or other content related mod
+Last but not the least fact all sources are **designed to be used with CUP** content. Vanilla, RHS or other content related mod
 can be added by modifying of configs in a separate project (link can be found below).
 
 ## Assembling
