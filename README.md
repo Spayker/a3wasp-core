@@ -34,9 +34,9 @@ Last but not least fact all sources are designed to be used with CUP content. Va
 can be added by modifying of configs in a separate project (link can be found below) 
 
 ## Links
-Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2346741636
-Youtube: https://www.youtube.com/watch?v=P-jq3F4Huqg
-GitHub HC module: https://github.com/Spayker/a3wasp-hc
-GitHub Server module: https://github.com/Spayker/a3wasp-server
-GitHub Config base: https://github.com/Spayker/a3wasp-config
-GitHub Mission adaptations: https://github.com/Spayker/a3wasp-config
+Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2346741636 </br>
+Youtube: https://www.youtube.com/watch?v=P-jq3F4Huqg </br>
+GitHub HC module: https://github.com/Spayker/a3wasp-hc </br>
+GitHub Server module: https://github.com/Spayker/a3wasp-server </br>
+GitHub Config base: https://github.com/Spayker/a3wasp-config </br>
+GitHub Mission adaptations: https://github.com/Spayker/a3wasp-config </br>
