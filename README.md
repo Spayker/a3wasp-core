@@ -1,18 +1,16 @@
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Spayker/a3wasp-core/blob/master/LICENSE)
+
 # WARFARE (CTI) by WASP community of ARMA games
 Warfare mode for Arma 2/3 was a main reason of WASP community creation. Starting from 2010 WASP
 members were trying to improve all in-game aspects. Being one of co-founders I can finally
 say: our work has been completed.
 
 <p align="center">
-
   [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/P-jq3F4Huqg/0.jpg)](https://www.youtube.com/watch?v=P-jq3F4Huqg)
-
 </p>
 
-
-
-Arma 3 became last platform where everyone can try our final vision of CTI mode.
-Main differences comparing to old school Arma 2 warfare CTI mode are:
+Arma 3 became last platform where everyone can try our final vision of CTI mode. </br>
+**Main differences** comparing to old school Arma 2 warfare CTI mode are:
 - 3 playable sides: opfor, blufor, resistance
 - reworked all UIs
 - new AI commander
@@ -38,8 +36,8 @@ It allows reducing server load significantly.
 Besides, a separate project was created to support bunch of vanilla and custom maps including:
 Altis, Stratis, Malden, Tanoa, Livonia, Cherno, Takistan, Utes, Zargabad, Sahrani, Napf
 
-Last but not least fact all sources are designed to be used with CUP content. Vanilla, RHS or other content related mod
-can be added by modifying of configs in a separate project (link can be found below) 
+Last but not the least fact all sources are designed to be used with CUP content. Vanilla, RHS or other content related mod
+can be added by modifying of configs in a separate project (link can be found below).
 
 ## Links
 Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2346741636 </br>
