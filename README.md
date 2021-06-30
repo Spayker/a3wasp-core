@@ -31,7 +31,7 @@ Since all missions must be played in multiplayer mode, the project is designed t
 on a dedicated server. However, a server requires one headless client to be connected.
 It allows reducing server load significantly.
 
-Besides, a separate project was created to support bunch of vanilla and custom maps including:
+Besides, a separate project was created to support bunch of vanilla and custom maps including: </br>
 _Altis, Stratis, Malden, Tanoa, Livonia, Cherno, Takistan, Utes, Zargabad, Sahrani, Napf_
 
 Last but not the least fact all sources are **designed to be used with CUP** content. Vanilla, RHS or other content related mod
@@ -44,6 +44,7 @@ To run missions on your server you must prepare 3 main components:
 3) **h**eadless **c**lient mod
 
 ## Running
+Put packed missions (pbo files) in MPMissions folder of your server and run the server + HC processes.
 
 ## Links
 Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2346741636 </br>
