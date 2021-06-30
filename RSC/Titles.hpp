@@ -1,11 +1,11 @@
 /* Titles */
 
-#define usflag "\A3\Data_F\Flags\Flag_nato_CO.paa"
-#define ruflag "\A3\Data_F\Flags\Flag_CSAT_CO.paa"
+#define usflag "RSC\Pictures\flag_us_co.paa"
+#define ruflag "RSC\Pictures\flag_rus_co.paa"
 
 #ifndef usflag
-	#define usflag "\ca\ca_e\data\flag_us_co.paa"
-	#define ruflag "\ca\ca_e\data\flag_tkg_co.paa"
+	#define usflag "RSC\Pictures\flag_us_co.paa"
+	#define ruflag "RSC\Pictures\flag_tkg_co.paa"
 #endif
 
 #define height (safeZoneH * 0.05)
@@ -15,9 +15,7 @@
 
 class RscTitles {
 
-
-	titles[] = {RscOverlay, CaptureBar, EndOfGameStats, OptionsAvailable};
-
+	titles[] = {RscOverlay,CaptureBar,OptionsAvailable,EndOfGameStats};
 	class b2zgroup
 	{
 		idd=-2;
@@ -203,25 +201,25 @@ class RscTitles {
 			colorBackground[] = {0,0,0,0};
 		};
 		class FlagBlueValHUD: RscStructuredText
-        {
-        	idc = 1103;
+		{
+			idc = 1103;
+			
+			x = 0.975 * safezoneW + safezoneX;
+			y = 0.90415 * safezoneH + safezoneY;
+			w = 0.035 * safezoneW;
+			h = 0.0375 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+		};
+		class FlagRedValHUD: RscStructuredText
+		{
+			idc = 1104;
 
-        	x = 0.975 * safezoneW + safezoneX;
-        	y = 0.903 * safezoneH + safezoneY;
-        	w = 0.035 * safezoneW;
-        	h = 0.0375 * safezoneH;
-        	colorBackground[] = {0,0,0,0};
-        };
-        class FlagRedValHUD: RscStructuredText
-        {
-        	idc = 1104;
-
-        	x = 0.975 * safezoneW + safezoneX;
-        	y = 0.933 * safezoneH + safezoneY;
-        	w = 0.035 * safezoneW;
-        	h = 0.0375 * safezoneH;
-        	colorBackground[] = {0,0,0,0};
-        };
+			x = 0.975 * safezoneW + safezoneX;
+			y = 0.932 * safezoneH + safezoneY;
+			w = 0.035 * safezoneW;
+			h = 0.0375 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+		};
 		class MoneyHUD: RscStructuredText
 		{
 			idc = 1105;
@@ -479,8 +477,9 @@ class RscTitles {
         	sizeEx = 0.030;
         	colorText[] = {1,1,1,1};
         };
-
-        class statblue:RscPicture {
+		
+		class statblue:RscPicture
+		{
 			idc=1362;
 			x = 0.830 * safezoneW + safezoneX;
 			y = 0.354000 * safezoneH + safezoneY;
@@ -488,7 +487,8 @@ class RscTitles {
 			h = 0.036;
 			text="";
 		};	
-        class score_blue:RscText {
+		class score_blue:RscText
+		{
 			idc=1364;
 			w = 0.175 * safezoneW;
 			h=0.030 * safezoneH;
@@ -498,7 +498,8 @@ class RscTitles {
 			text="";
 		};
 		
-        class statred:RscPicture {
+		class statred:RscPicture
+		{
 			idc=1365;
 			x = 0.830 * safezoneW + safezoneX;
 			y = 0.378000 * safezoneH + safezoneY;
@@ -506,7 +507,8 @@ class RscTitles {
 			h = 0.036;
 			text="";
 		};
-        class score_red:RscText {
+		class score_red:RscText
+		{
 			idc=1367;
 			w = 0.175 * safezoneW;
 			h=0.030 * safezoneH;
@@ -561,67 +563,67 @@ class RscTitles {
 		class OptionsIcon6 : OptionsIcon0 {
 			idc = 3500 + 6;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 2)";
-			y = 0+(0.0510876*20);
+			            y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon7 : OptionsIcon0 {
 			idc = 3500 + 7;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 3)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon8 : OptionsIcon0 {
 			idc = 3500 + 8;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 4)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon9 : OptionsIcon0 {
 			idc = 3500 + 9;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 5)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon10 : OptionsIcon0 {
 			idc = 3500 + 10;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 6)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon11 : OptionsIcon0 {
 			idc = 3500 + 11;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 7)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon12 : OptionsIcon0 {
 			idc = 3500 + 12;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 8)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon13 : OptionsIcon0 {
 			idc = 3500 + 13;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 9)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon14 : OptionsIcon0 {
 			idc = 3500 + 14;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 10)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon15 : OptionsIcon0 {
 			idc = 3500 + 15;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 11)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 		class OptionsIcon16 : OptionsIcon0 {
 			idc = 3500 + 16;
 			x = "(SafeZoneW + SafeZoneX) - (0.0392157 * 12)";
-            		y = 0+(0.0510876*20);
+            			y = 0+(0.0510876*20);
 		};
 
 	};
@@ -893,14 +895,6 @@ class RscTitles {
                 h = 0.1;
             };
 
-            class autoOptionsValueText : descText {
-                idc = 112227;
-                x = "SafezoneX + 0.760*2";
-                y = "SafezoneY + SafezoneH - 0.13 + 0.02";
-                w = 0.4;
-                h = 0.1;
-            };
-
 			class defenseText : descText {
                 idc = 112226;
                 x = "SafezoneX + 0.802*2";
@@ -910,7 +904,7 @@ class RscTitles {
             };
 		};
 	};
-
+	
 	class MSG_KillPay {
     	idd = 68791014;
     	objects[] = {};
@@ -937,33 +931,5 @@ class RscTitles {
     			};
     		};
     	};
-    };
-
-    class life_message_hud {
-
-        idd = 245000;
-        name = "life_message_hud";
-        duration = 1e+007;
-        movingEnable = 0;
-        fadein = 0;
-        fadeout = 0;
-
-        onLoad = "uiNamespace setVariable ['life_message_hud', _this select 0]";
-        onUnload = "uiNamespace setVariable ['life_message_hud', nil]";
-
-        class controls {
-
-            class MessageContainer: Life_RscControlsGroupNoScrollbars
-            {
-                idc = 245001;
-
-                x = 0.8020 * safezoneW + safezoneX;
-                y = 0.1560 * safezoneH + safezoneY;
-                w = 0.1700 * safezoneW;
-                h = 0.2375 * safezoneH;
-
-                class controls {};
-            };
-        };
     };
 };

@@ -21,12 +21,12 @@ _tooFar = false;
 
 if (_source == _hq) then {_root = "HQ"};
 if ((missionNamespace getVariable "WF_C_BASE_AREA") > 0) then {
-	if (_source == _hq) then {
-		if (count(WF_Client_Logic getVariable "wf_basearea") >= (missionNamespace getVariable "WF_C_BASE_AREA")) then {
-			_startpos = [_startPos,WF_Client_Logic getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity;
-			if (_source distance _startpos > (missionNamespace getVariable "WF_C_BASE_HQ_BUILD_RANGE")) exitWith {_tooFar = true};
-		};
-	};
+    if (_source == _hq) then {
+        if (count(WF_Client_Logic getVariable "wf_basearea") >= (missionNamespace getVariable "WF_C_BASE_AREA")) then {
+            _startpos = [_startPos,WF_Client_Logic getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity;
+            if (_source distance _startpos > (missionNamespace getVariable "WF_C_BASE_HQ_BUILD_RANGE")) exitWith {_tooFar = true};
+        };
+    };
 };
 
 
@@ -58,7 +58,7 @@ if (_startPos isEqualType objNull) then {_startPos = getPos _startPos};
 
 _camera = nil;
 if (isNil "BIS_CONTROL_CAM") then {
-	_camera = "camconstruct" camCreate [position player # 0,position player # 1,15];
+	_camera = "camconstruct" camCreate [position player select 0,position player select 1,15];
 	_camera cameraEffect ["internal","back"];
 	_camera camPrepareFov 0.900;
 	_camera camPrepareFocus [-1,-1];
@@ -114,6 +114,7 @@ _showConstructionMode = {
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112225) ctrlCommit 0;
 
     _optionTextValue = format ["<t color='#00FF00' shadow='2' size='%1' align='left' valign='middle'>",_optionSize];
+    _optionLines = 0;
     for "_i" from 0 to 1 do {
         _optionTextValue = _optionTextValue + format["%1<br />", _optionValues # _i];
         _optionLines = _optionLines + 0.05;
@@ -125,6 +126,44 @@ _showConstructionMode = {
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlSetPosition [_optionPos # 0,_optionPos # 1,_optionPos # 2,(_optionPos # 3) + _optionLines];
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlShow true;
     ((uiNamespace getVariable "wf_title_coin") displayCtrl 112227) ctrlCommit 0;
+
+    _cameraViewTextValue = format ["<t color='#1C9DD6' shadow='2' size='%1' align='left' valign='middle'>", _optionSize];
+    _cameraViewValues = [
+        localize "STR_WF_Construction_Camera_Move",
+        localize "STR_WF_Construction_Object_Rotate"
+    ];
+
+    _optionLines = 0;
+    for "_i" from 0 to 1 do {
+        _cameraViewTextValue = _cameraViewTextValue + format["%1<br />", _cameraViewValues # _i];
+        _optionLines = _optionLines + 0.05;
+    };
+
+    _cameraViewTextValue = _cameraViewTextValue + "</t>";
+    _cameraViewPos = ctrlPosition ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlSetStructuredText (parseText _cameraViewTextValue);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlSetPosition [_cameraViewPos # 0,_cameraViewPos # 1,_cameraViewPos # 2,(_cameraViewPos # 3) + _optionLines];
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlShow true;
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112228) ctrlCommit 0;
+
+    _constructionTextValue = format ["<t color='#43B4E6' shadow='2' size='%1' align='left' valign='middle'>", _optionSize];
+    _constructionViewValues = [
+        localize "STR_WF_Construction_Last_Built",
+        localize "STR_WF_Construction_Sell"
+    ];
+
+    _optionLines = 0;
+    for "_i" from 0 to 1 do {
+        _constructionTextValue = _constructionTextValue + format["%1<br />", _constructionViewValues # _i];
+        _optionLines = _optionLines + 0.05;
+    };
+
+    _constructionTextValue = _constructionTextValue + "</t>";
+    _constructionViewPos = ctrlPosition ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlSetStructuredText (parseText _constructionTextValue);
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlSetPosition [_constructionViewPos # 0,_constructionViewPos # 1,_constructionViewPos # 2,(_constructionViewPos # 3) + _optionLines];
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlShow true;
+    ((uiNamespace getVariable "wf_title_coin") displayCtrl 112229) ctrlCommit 0;
 };
 
 _logic setVariable ["BIS_COIN_selected",objNull];
@@ -146,9 +185,9 @@ _bns = missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJ
 _greenList = missionNamespace getVariable "COIN_UseHelper";
 //--- Building Limit Init.
 _buildingsNames = _bns;
-_buildingsNames = _buildingsNames - [_buildingsNames # 0];
+_buildingsNames = _buildingsNames - [_buildingsNames select 0];
 _buildingsType = missionNamespace getVariable Format["WF_%1STRUCTURES",WF_Client_SideJoinedText];
-_buildingsType = _buildingsType - [_buildingsType # 0];
+_buildingsType = _buildingsType - [_buildingsType select 0];
 
 //--- Open menu
 _logic spawn {
@@ -168,8 +207,10 @@ _logic spawn {
 
 //--- Border - temporary solution
 _createBorder = {
-	params ["_logic","_startpos"];
-	_oldBorder = missionNamespace getVariable ["BIS_COIN_border", []];
+	Private ["_logic","_startpos"];
+	_logic = _this select 0;
+	_startpos = _this select 1;
+	_oldBorder = missionNamespace getVariable "BIS_COIN_border";
 	if (!isNil "_oldBorder") then {
 		{deleteVehicle _x} forEach _oldBorder;
 	};
@@ -177,7 +218,7 @@ _createBorder = {
 
 	_border = [];
 	_center = _startpos;
-	_size = (_logic getVariable "BIS_COIN_areasize") # 0;
+	_size = (_logic getVariable "BIS_COIN_areasize") select 0;
 	_width = 9.998;
 	_width = 9.996;
 	_width = 9.992;
@@ -197,13 +238,13 @@ _createBorder = {
 
 	for "_i" from 1 to _total do {
 		_dir = (360 / _total) * _i;
-		_xpos = (_center # 0) + (sin _dir * _size);
-		_ypos = (_center # 1) + (cos _dir * _size);
-		_zpos = (_center # 2);
+		_xpos = (_center select 0) + (sin _dir * _size);
+		_ypos = (_center select 1) + (cos _dir * _size);
+		_zpos = (_center select 2);
 
-		_a = "VR_3DSelector_01_complete_F" createVehicleLocal [_xpos,_ypos,_zpos];
-		_a setposatl [_xpos,_ypos,0];
-		_a setdir (_dir + 0);
+		_a = "transparentwall" createVehicleLocal [_xpos,_ypos,_zpos];
+		_a setposasl [_xpos,_ypos,0];
+		_a setdir (_dir + 90);
 		_border pushBack _a;
 	};
 	missionNamespace setVariable ["BIS_COIN_border",_border];
@@ -212,68 +253,22 @@ _createBorder = {
 
 _createBorderScope = [_logic,_startpos] spawn _createBorder;
 
-//--- Border - temporary solution
-_createBorderForStatic = {
-	Private ["_logic","_startpos"];
-	_logic = _this # 0;
-	_startpos = _this # 1;
-	_oldBorder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-	if (!isNil "_oldBorder") then {
-		{deleteVehicle _x} forEach _oldBorder;
-	};
-	missionNamespace setVariable ["BIS_COIN_staticborder",nil];
-
-	_border = [];
-	_center = _startpos;
-	_size = _this # 2;
-	_width = 9.998;
-	_width = 9.996;
-	_width = 9.992;
-	_width = 9.967;
-	_width = 9.917;
-	_width = 9.83;
-	_width = 9.48;
-	_width = 10 - (0.1/(_size * 0.2));
-	_width = 10;
-
-	_pi = 3.14159265358979323846;
-	_perimeter = (_size * _pi);
-	_perimeter = _perimeter + _width - (_perimeter % _width);
-	_size = (_perimeter / _pi);
-	_wallcount = _perimeter / _width * 2;
-	_total = _wallcount;
-
-	for "_i" from 1 to _total do {
-		_dir = (360 / _total) * _i;
-		_xpos = (_center # 0) + (sin _dir * _size);
-		_ypos = (_center # 1) + (cos _dir * _size);
-		_zpos = (_center # 2) + 3;
-
-		_a = "VR_3DSelector_01_exit_F" createVehicleLocal [_xpos,_ypos,_zpos];
-		_a setposatl [_xpos,_ypos,0];
-		_a setdir (_dir + 0);
-		_border pushBack _a;
-	};
-	missionNamespace setVariable ["BIS_COIN_staticborder",_border];	
-};
-//--- end of border init function
-
 //--- This block is pretty important
 if !(isNil "BIS_CONTROL_CAM_Handler") exitWith {endLoadingScreen};
 
 //--- init of camera control handler
 BIS_CONTROL_CAM_Handler = {
-	_mode = _this # 0;
-	_input = _this # 1;
+	_mode = _this select 0;
+	_input = _this select 1;
 	_logic = bis_coin_player getVariable "bis_coin_logic";
-	
+
 	_terminate = false;
 
   	if (isNil "_logic") exitWith {};
 
 	_areasize = (_logic getVariable "BIS_COIN_areasize");
-	_limitH = _areasize # 0;
-	_limitV = _areasize # 1;
+	_limitH = _areasize select 0;
+	_limitV = _areasize select 1;
 
 	_keysCancel	= actionKeys "ingamePause";
 
@@ -283,15 +278,15 @@ BIS_CONTROL_CAM_Handler = {
 
 	//--- Mouse DOWN
 	if (_mode == "mousedown") then {
-		_key = _input # 1;
+		_key = _input select 1;
 		if (_key == 1) then {_terminate = true};
 	};
 
 	//--- Key DOWN
 	if (_mode == "keydown") then {
 
-		_key = _input # 1;
-		_ctrl = _input # 3;
+		_key = _input select 1;
+		_ctrl = _input select 3;
 		if !(_key in (BIS_CONTROL_CAM_keys + _keysBanned)) then {BIS_CONTROL_CAM_keys = BIS_CONTROL_CAM_keys + [_key]};
 
 		//--- Terminate CoIn
@@ -308,13 +303,13 @@ BIS_CONTROL_CAM_Handler = {
 		if(_key in _keyAutoWallConstructing) then { WF_AutoWallConstructingEnabled = !WF_AutoWallConstructingEnabled };
 
 		//--- Last Built Defense (Custom Action #15).
-		if ((_key in (actionKeys "User15")) && count lastBuilt > 0) then {
+		if ((_key in (actionKeys "curatorToggleEdit")) && count lastBuilt > 0) then {
 			_deployed = true;
 			_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
             _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 			if (WF_COIN_Root == "HQ") then {_deployed = [WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus};
 			_currentCash = Call WFCL_FNC_GetPlayerFunds;
-			if (_currentCash > (lastBuilt # 2) # 1 && _deployed) then {
+			if (_currentCash > (lastBuilt select 2) select 1 && _deployed) then {
 				showCommandingMenu '';
 				_logic setVariable ["BIS_COIN_params",lastBuilt];
 			};
@@ -324,62 +319,62 @@ BIS_CONTROL_CAM_Handler = {
 		if (_key in (actionKeys "User13")) then { WF_AutoManningDefense = !WF_AutoManningDefense };
 
 		//--- Sell Defense. (Commander only) (Custom Action #17).
-        if ((_key in (actionKeys "User17"))) then {
-            _preview = _logic getVariable "BIS_COIN_preview";
-            if (isNil "_preview") then {//--- Proceed when there is no preview.
-            	_targeting = screenToWorld [0.5,0.5];
-            	_defense_list = missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText];
-            	_near = nearestObjects [_targeting, _defense_list,12];
+		if ((_key in (actionKeys "curatorDelete"))) then {
+		    _preview = _logic getVariable "BIS_COIN_preview";
+		    if (isNil "_preview") then {//--- Proceed when there is no preview.
+		    	_targeting = screenToWorld [0.5,0.5];
+		    	_defense_list = missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText];
+		    	_near = nearestObjects [_targeting, _defense_list,12];
 
-            	if (count _near > 0) then {
+		    	if (count _near > 0) then {
 		    		_closest = _near # 0;
-            		_sold = _closest getVariable 'sold';
-            		_closestType = typeOf (_closest);
-            		_get = missionNamespace getVariable _closestType;
+		    		_sold = _closest getVariable 'sold';
+		    		_closestType = typeOf (_closest);
+		    		_get = missionNamespace getVariable _closestType;
 
-            		if ((player distance _closest) > ((_logic getVariable "BIS_COIN_areasize") select 0) || (_closest getVariable 'side') != WF_Client_SideJoined) exitWith {};
+		    		if ((player distance _closest) > ((_logic getVariable "BIS_COIN_areasize") select 0) || (_closest getVariable 'side') != WF_Client_SideJoined) exitWith {};
 
-            		if (!isNil '_get' && isNil '_sold') then {
+		    		if (!isNil '_get' && isNil '_sold') then {
 		    		    _price = _get # QUERYUNITPRICE;
 
-                            _closest setVariable ['sold',true];
-                            _returnPrice = round(_price/2.5);
-                            _returnPrice Call WFCL_FNC_ChangePlayerFunds;
-                            [_returnPrice, (_get # QUERYUNITLABEL)] spawn WFCL_FNC_showAwardHint;
-                            _area = [getPos (_closest),((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+                        _closest setVariable ['sold',true];
+                        _returnPrice = round(_price/2.5);
+                        _returnPrice Call WFCL_FNC_ChangePlayerFunds;
+                        [_returnPrice, (_get # QUERYUNITLABEL)] spawn WFCL_FNC_showAwardHint;
+                        _area = [getPos (_closest),((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
 
-							if(_closest isKindOf "staticWeapon") then {
-							    _get = _area getVariable 'availStaticDefense';
-                                if(!isNil '_get') then {
-                                    if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_DEFENSE_MAX") then {
-                                        _area setVariable [ "availStaticDefense" ,_get +1];
-                                    };
-                                };
-							} else {
-                                _get = _area getVariable 'avail';
-
-                                if(!isNil '_get') then {
-                                    if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_AV_FORTIFICATIONS") then {
-                                        _area setVariable [ "avail" ,_get +1];
-                                    };
+                        if(_closest isKindOf "staticWeapon") then {
+                            _get = _area getVariable 'availStaticDefense';
+                            if(!isNil '_get') then {
+                                if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_DEFENSE_MAX") then {
+                                    _area setVariable [ "availStaticDefense" ,_get +1];
                                 };
                             };
+                        } else {
+                            _get = _area getVariable 'avail';
+
+                            if(!isNil '_get') then {
+                                if (!isNull _area && _get < missionNamespace getVariable "WF_C_BASE_AV_FORTIFICATIONS") then {
+                                    _area setVariable [ "avail" ,_get +1];
+                                };
+                            };
+                        };
 
                         deleteVehicle _closest
-            		};
-            	};
-            };
-        };
+		    		};
+		    	};
+		    };
+		};
 	};
 	//--- Key UP
 	if (_mode == "keyup") then {
-		_key = _input # 1;
+		_key = _input select 1;
 		if (_key in BIS_CONTROL_CAM_keys) then {BIS_CONTROL_CAM_keys = BIS_CONTROL_CAM_keys - [_key]};
 	};
 
 	//--- Deselect or Close
 	if (_terminate) then {
-		_menu = _this # 2;
+		_menu = _this select 2;
 
 		//--- Close
 		if (isNil "BIS_Coin_noExit") then {
@@ -389,16 +384,7 @@ BIS_CONTROL_CAM_Handler = {
 				BIS_CONTROL_CAM = nil;
 			} else {
 				_preview = _logic getVariable "BIS_COIN_preview";
-				if !(isNil "_preview") then {					
-					deleteVehicle _preview;
-					
-					[] spawn {
-						_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-						{deleteVehicle _x} forEach _staticborder;
-						missionNamespace setVariable ["BIS_COIN_staticborder",nil];				
-					};					
-					missionNamespace setVariable ["staticBorder", nil];
-				};
+				if !(isNil "_preview") then {deleteVehicle _preview};
 				_logic setVariable ["BIS_COIN_preview",nil];
 				_logic setVariable ["BIS_COIN_params",[]];
 				_get = _logic getVariable 'WF_Helper';
@@ -420,15 +406,7 @@ BIS_CONTROL_CAM_Handler = {
 		_player setVariable ["bis_coin_logic",nil];
 		bis_coin_player = objNull;
 		_preview = _logic getVariable "BIS_COIN_preview";
-		if !(isNil "_preview") then {
-			deleteVehicle _preview;
-			
-			[] spawn {
-				_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-				{deleteVehicle _x} forEach _staticborder;
-				missionNamespace setVariable ["BIS_COIN_staticborder",nil];				
-			};
-		};
+		if !(isNil "_preview") then {deleteVehicle _preview};
 		_logic setVariable ["BIS_COIN_preview",nil];
 		_get = _logic getVariable 'WF_Helper';
 		if !(isNil '_get') then {
@@ -449,18 +427,14 @@ BIS_CONTROL_CAM_Handler = {
 
 		//--- Behold the placeholders
 		BIS_COIN_QUIT = nil;
-		_border = missionNamespace getVariable ["BIS_COIN_border", []];
+		_border = missionNamespace getVariable "BIS_COIN_border";
 		{deleteVehicle _x} forEach _border;
 		missionNamespace setVariable ["BIS_COIN_border",nil];
-		
-		_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-		{deleteVehicle _x} forEach _staticborder;
-		missionNamespace setVariable ["BIS_COIN_staticborder",nil];
 	};
 };
 //--- end of init of camera control handler
 
-//waitUntil {scriptDone _createBorderScope};
+waitUntil {scriptDone _createBorderScope};
 endLoadingScreen;
 
 
@@ -535,15 +509,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 		_player setVariable ["bis_coin_logic",nil];
 		bis_coin_player = objNull;
 		_preview = _logic getVariable "BIS_COIN_preview";
-		if !(isNil "_preview") then {
-			deleteVehicle _preview;
-			
-			[] spawn {
-				_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-				{deleteVehicle _x} forEach _staticborder;
-				missionNamespace setVariable ["BIS_COIN_staticborder",nil];				
-			};
-		};
+		if !(isNil "_preview") then {deleteVehicle _preview};
 		_logic setVariable ["BIS_COIN_preview",nil];
 		_get = _logic getVariable 'WF_Helper';
 		if !(isNil '_get') then {
@@ -569,26 +535,21 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 		WF_COIN_DEH2 = nil;
 		WF_COIN_DEH3 = nil;
 		WF_COIN_DEH4 = nil;
-		_border = missionNamespace getVariable ["BIS_COIN_border", []];
+		_border = missionNamespace getVariable "BIS_COIN_border";
 		{deleteVehicle _x} forEach _border;
 		missionNamespace setVariable ["BIS_COIN_border",nil];
-		
-		_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-		{deleteVehicle _x} forEach _staticborder;
-		missionNamespace setVariable ["BIS_COIN_staticborder",nil];		
-		
 		endLoadingScreen;
 	};
 
 	_areasize = (_logic getVariable "BIS_COIN_areasize");
-	_limitH = _areasize # 0;
-	_limitV = _areasize # 1;
+	_limitH = _areasize select 0;
+	_limitV = _areasize select 1;
 	_limitHOld = _limitH;
 	_limitVOld = _limitV;
 
 	_keysCancel		= actionKeys "ingamePause";
 	_keysBanned		= [1];
-	
+
 	//--- Mouse moving or holding
 	if (_mode == "mousemoving" || _mode == "mouseholding") then {
 		//--- Check pressed keys
@@ -598,7 +559,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 		_alt = (56 in _keys);
 
 		//--- Construction or Selection
-		_params = _logic getVariable "BIS_COIN_params";		
+		_params = _logic getVariable "BIS_COIN_params";
 		_tooltip = "empty";
 		_tooltipType = "empty";
 		_selected = objNull;
@@ -607,12 +568,11 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 			_color = _colorGreen;
 
 			//--- Class, Category, Cost, (preview class), (display name)
-			_itemclass = _params # 0;
-			
-			_itemcategory = _params # 1;
-			_itemcost = _params # 2;
+			_itemclass = _params select 0;
+			_itemcategory = _params select 1;
+			_itemcost = _params select 2;
 			_itemcash = 0;
-			if (_itemcost isEqualType []) then {_itemcash = _itemcost # 0; _itemcost = _itemcost # 1};
+			if (_itemcost isEqualType []) then {_itemcash = _itemcost select 0; _itemcost = _itemcost select 1};
 			_funds = _logic getVariable "BIS_COIN_funds";
 			if (_funds isEqualType []) then {
 				_a = (WF_Client_SideJoined) Call WFCO_FNC_GetSideSupply;
@@ -621,35 +581,21 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 			} else {
 				_funds = [Call WFCL_FNC_GetPlayerFunds];
 			};
-			_itemFunds = _funds # _itemcash;
-			_itemname = "unknown";
-			if(count _params > 3) then {
-			    _itemname = _params # 3;
-			};
-
-			_itemclass_preview = _itemclass;			
-
-			if(_itemcategory == 1) then {
-				_itemclass_preview = "Sign_Arrow_Large_F";
+			_itemFunds = _funds select _itemcash;
+			_itemname = [getText (configFile >> "CfgVehicles" >> _itemclass >> "displayName"), _params # 3] select (count _params > 3);
+			_itemclass_preview = getText (configFile >> "CfgVehicles" >> _itemclass >> "ghostpreview");
+			if (_itemclass_preview == "") then {_itemclass_preview = _itemclass};
+			if(_itemclass_preview == "StaticCannon_Preview") then {
+				_itemclass_preview = "M2StaticMGPreview";
 			};
 
 			//--- Preview building
 			_preview = camtarget BIS_CONTROL_CAM;
 			_new = false;
-			if (typeof _preview != _itemclass_preview) then {				
-				
-				//--- No preview				
-				deleteVehicle _preview;				
-				
-				[] spawn {
-					_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-					{deleteVehicle _x} forEach _staticborder;
-					missionNamespace setVariable ["BIS_COIN_staticborder",nil];					
-				};
-				
-				if !(isNil {_logic getVariable "BIS_COIN_preview"}) then {
-					deleteVehicle (_logic getVariable "BIS_COIN_preview");
-				}; //--- Serialization hack
+			if (typeof _preview != _itemclass_preview) then {
+				//--- No preview
+				deleteVehicle _preview;
+				if !(isNil {_logic getVariable "BIS_COIN_preview"}) then {deleteVehicle (_logic getVariable "BIS_COIN_preview")}; //--- Serialization hack
 				_get = _logic getVariable 'WF_Helper';
 				if !(isNil '_get') then {
 					deleteVehicle _get;
@@ -663,11 +609,11 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 				if (_index == 0 && _hqDeployed) exitWith {
 					(_mhq) Spawn WFCL_FNC_HandleHQAction;
 					[WF_Client_SideJoined,_itemclass,[0,0,0],0,getPlayerUID player] remoteExecCall ["WFSE_fnc_RequestStructure",2];
-					
+
 					[missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_UNDEPLOYED",false,MCoin] Call WFCL_FNC_initConstructionModule;
 
 					_structuresCosts = missionNamespace getVariable Format["WF_%1STRUCTURECOSTS",WF_Client_SideJoinedText];
-					[WF_Client_SideJoined,-(_structuresCosts # _index)] Call WFCO_FNC_ChangeSideSupply;
+					[WF_Client_SideJoined,-(_structuresCosts select _index)] Call WFCO_FNC_ChangeSideSupply;
 
 					startLoadingScreen [localize "str_coin_exit" + " " + localize "str_coin_name","RscDisplayLoadMission"];
 
@@ -678,16 +624,8 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_player = bis_coin_player;
 					_player setVariable ["bis_coin_logic",nil];
 					bis_coin_player = objNull;
-					_preview = _logic getVariable "BIS_COIN_preview";					
-					if !(isNil "_preview") then {
-						deleteVehicle _preview;
-												
-						[] spawn {
-							_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-							{deleteVehicle _x} forEach _staticborder;
-							missionNamespace setVariable ["BIS_COIN_staticborder",nil];							
-						};
-					};
+					_preview = _logic getVariable "BIS_COIN_preview";
+					if !(isNil "_preview") then {deleteVehicle _preview};
 					_logic setVariable ["BIS_COIN_preview",nil];
 					_logic setVariable ["BIS_COIN_selected",nil];
 					_logic setVariable ["BIS_COIN_params",nil];
@@ -708,25 +646,19 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					WF_COIN_DEH2 = nil;
 					WF_COIN_DEH3 = nil;
 					WF_COIN_DEH4 = nil;
-					_border = missionNamespace getVariable ["BIS_COIN_border", []];
+					_border = missionNamespace getVariable "BIS_COIN_border";
 					{deleteVehicle _x} forEach _border;
 					missionNamespace setVariable ["BIS_COIN_border",nil];
-										
-					_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-					{deleteVehicle _x} forEach _staticborder;
-					missionNamespace setVariable ["BIS_COIN_staticborder",nil];
-					
 					endLoadingScreen;
 				};
-								
-				_preview = _itemclass_preview createVehicleLocal [0,0,0];
+
+				_preview = _itemclass_preview createVehicleLocal (screenToWorld [0.5,0.5]);
 				_preview enableSimulation false;
-				
+
 				_gdir = _logic getVariable 'BIS_COIN_lastdir';
-				if !(isNil '_gdir') then {_preview setDir _gdir};				
+				if !(isNil '_gdir') then {_preview setDir _gdir};
 				BIS_CONTROL_CAM camSetTarget _preview;
 				BIS_CONTROL_CAM camCommit 0;
-				
 				_logic setVariable ["BIS_COIN_preview",_preview];
 				_new = true;
 
@@ -736,70 +668,32 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_direction = (missionNamespace getVariable Format ["WF_%1STRUCTUREDIRECTIONS",WF_Client_SideJoinedText]) # _index;
 					_npos = [getPos _preview,_distance,getDir _preview + _direction] Call WFCO_FNC_GetPositionFrom;
 					_helper = "VR_3DSelector_01_default_F" createVehicleLocal _npos;
-					_helper setPos _npos;
 					_logic setVariable ['WF_Helper',_helper];
-					
-					[_preview, _helper, _distance, _direction, _buildingsType # (_index - 1)] spawn {
+
+                    [_preview, _helper, _distance] spawn {
 						_preview = _this # 0;
 						_helper = _this # 1;
 						_distance = _this # 2;
-						_direction = _this # 3;
-						_type = _this # 4;
-						
-						if(_direction == 0) then {
-							_direction = _direction + 90;
-						};
-						
-						if(_type == "Barracks") then {
-							_direction = _direction + 15;
-						};
-						
+
 						while{ true } do {
 							if(isNil "_helper") exitWith {};
 							if(isNull _helper) exitWith {};
-							
+
 							_mainDir = getDir _preview;
-							_mainDir = _direction - _mainDir;
-							
+							_mainDir = 0 - _mainDir;
+
 							_mainPos = getPos _preview;
-							
+
 							_xCoord = (_distance * cos(_mainDir)) + (_mainPos # 0);
 							_yCoord = (_distance * sin(_mainDir)) + (_mainPos # 1);
-							_helper setPosAtl [_xCoord, _yCoord, 0];																					
-							
-							sleep 0.3;
+							_helper setPosAtl [_xCoord, _yCoord, 0];
+
+							uiSleep 0.3;
 						};
 					};
 				};
-				
-				//--- Preview Helper For Static Weapon.				
-				if (_itemcategory == 1) then {					
-					_helper = "VR_Sector_01_60deg_50_red_F" createVehicleLocal [0,0,0];					
-					_logic setVariable ['WF_Helper',_helper];
-					
-					[_preview, _helper, 0, 0] spawn {
-						_preview = _this # 0;
-						_helper = _this # 1;
-						_distance = 25;
-						
-						while{ true } do {
-							if(isNil "_helper") exitWith {};
-							if(isNull _helper) exitWith {};
-							
-							_mainDir = getDir _preview;
-							_mainPos = getPos _preview;
-							
-							_xCoord = (_distance * sin(_mainDir)) + (_mainPos # 0);
-							_yCoord = (_distance * cos(_mainDir)) + (_mainPos # 1);
-							_helper setPosAtl [_xCoord, _yCoord, (_mainPos # 2) + 3];
-							_helper setVectorDir (vectorDir _preview);
-							_helper setVectorUp surfaceNormal position _helper;
-							
-							sleep 0.1;
-						};
-					};
-				};
-				
+
+				_preview setObjectTexture [0,_colorGray];
 				_preview setVariable ["BIS_COIN_color",_colorGray];
 
 				//--- Exception - preview not created
@@ -811,14 +705,9 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					if !(isNil '_get') then {
 						deleteVehicle _get;
 						_logic setVariable ['WF_Helper',nil];
-					};					
-					
-					[] spawn {
-						_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-						{deleteVehicle _x} forEach _staticborder;
-						missionNamespace setVariable ["BIS_COIN_staticborder",nil];						
 					};
 				};
+
 			} else {
 				//--- Check zone
 				if (([position _preview,_startPos] call BIS_fnc_distance2D) > _limitH) then {
@@ -828,34 +717,34 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_funds = 0;
 					call compile format ["_funds = %1;",_itemFunds];
 					_fundsRemaining = _funds - _itemcost;
-					if (_fundsRemaining < 0) then {_color = _colorRed};
+					if (_fundsRemaining < 0) then {
+						_color = _colorRed
+					};
+					_color = [_itemcategory, _preview, _color] Call (missionNamespace getVariable "WF_C_STRUCTURES_PLACEMENT_METHOD")
 				};
 
 				//--Check if it is stationary defense and barracks in the area--
 				_area = [_startPos,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
-				if!(isNil '_color') then {
-                if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
-                    && _itemclass isKindOf "StaticWeapon") then {
-                    //--Check if defense is special and barracks in area--
-                    _buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
-                    _closest = ['BARRACKSTYPE',_buildings,
-                                WF_C_BASE_DEFENSE_MANNING_RANGE,WF_Client_SideJoined,_preview] call WFCO_FNC_BuildingInRange;
+				
+					if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
+				    && _itemclass isKindOf "StaticWeapon") then {
+						//--Check if defense is special and barracks in area--
+						_buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
+						_closest = ['BARRACKSTYPE',_buildings, WF_C_BASE_DEFENSE_MANNING_RANGE,_preview] call WFCO_FNC_BuildingInRange;
 
-                    if (!alive _closest) then {
-                        //--Second check if we have a barracks in WF_C_BASE_DEFENSE_MANNING_RANGE + WF_C_BASE_DEFENSE_MANNING_RANGE * 2 (DIAMETER)--
-                        //--and any building in this area--
-                        _closest = ['BARRACKSTYPE',_buildings,
-                                   (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT) * 2),
-                                   WF_Client_SideJoined,_preview] call WFCO_FNC_BuildingInRange;
-                        if!(alive _closest && alive([position _preview,_buildings] call WFCO_FNC_GetClosestEntity5)) then {
-                    	    _color = _colorYellow;
-                    	};
-                    };
-                    _availStaticDefense = _area getVariable ['availStaticDefense', WF_C_BASE_DEFENSE_MAX];
-                    if (_availStaticDefense <= 0) then {
-                        _color = _colorRed
-                    }
-                };
+						if (!alive _closest) then {
+							//--Second check if we have a barracks in WF_C_BASE_DEFENSE_MANNING_RANGE + WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2 (DIAMETER)--
+							//--and any building in this area--
+							_closest = ['BARRACKSTYPE',_buildings, (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2)), _preview] call WFCO_FNC_BuildingInRange;
+							if!(alive _closest && alive([position _preview,_buildings] call WFCO_FNC_GetClosestEntity5)) then {
+								_color = _colorYellow;
+							};
+						};
+						_availStaticDefense = _area getVariable ['availStaticDefense', WF_C_BASE_DEFENSE_MAX];
+						if (_availStaticDefense <= 0) then {
+							_color = _colorRed
+						}
+				};
 
                 if (_color == _colorGreen && _itemclass in (missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText])
                 				    && !(_itemclass isKindOf "StaticWeapon")) then {
@@ -878,25 +767,16 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 
 				((uiNamespace getVariable "wf_title_coin") displayCtrl 112201) ctrlSetTextColor _colorGUI;
 				((uiNamespace getVariable "wf_title_coin") displayCtrl 112201) ctrlCommit 0;
-			};
+				
 			};
 
 			//--- Place
 			if (!_new && !isNil "_preview" &&  ((BIS_CONTROL_CAM_LMB && 65536 in (actionKeys "DefaultAction")) ||
 			    {_x in (actionKeys "DefaultAction")} count BIS_CONTROL_CAM_keys > 0) && (_color == _colorGreen ||
-                _color == _colorYellow)) then {
+			    _color == _colorYellow)) then {
 				_pos = screenToWorld [0.5,0.5];
 				_dir = direction _preview;
-								
 				deleteVehicle _preview;
-								
-				[] spawn {
-					_staticborder = missionNamespace getVariable ["BIS_COIN_staticborder", []];
-					{deleteVehicle _x} forEach _staticborder;
-					missionNamespace setVariable ["BIS_COIN_staticborder",nil];				
-				};
-				missionNamespace setVariable ["staticBorder", nil];
-				
 				_logic setVariable ["BIS_COIN_preview",nil];
 				_logic setVariable ["BIS_COIN_params",[]];
 				_get = _logic getVariable 'WF_Helper';
@@ -942,16 +822,16 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                                 }
                             }
                         };
-					
+
 						[WF_Client_SideJoined, -_price] Call WFCO_FNC_ChangeSideSupply;
 
 						if (_index == 0) then {
 						    _mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
                             _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 							_hqDeployed = [WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus;
-							if (_hqDeployed) then {								
+							if (_hqDeployed) then {
 								[missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_UNDEPLOYED",false,MCoin] Call WFCL_FNC_initConstructionModule;
-							} else {								
+							} else {
 								[missionNamespace getVariable "WF_C_BASE_COIN_AREA_HQ_DEPLOYED",true,MCoin] Call WFCL_FNC_initConstructionModule;
 							};
 							//_logic setVariable ["BIS_COIN_restart",true];
@@ -964,33 +844,33 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 					_mhqs = (WF_Client_SideJoined) Call WFCO_FNC_GetSideHQ;
                     _mhq = [player,_mhqs] call WFCO_FNC_GetClosestEntity;
 					_deployed = [WF_Client_SideJoined, _mhq] Call WFCO_FNC_GetSideHQDeployStatus;
-
+					
 					_find = _structureNames find _itemclass;
 					if (_find != -1) then {
 						//--- Increment the buildings.
 						if ((_find - 1) > -1) then {
 							_current = WF_Client_Logic getVariable "wf_structures_live";
-							_current set [_find - 1, (_current # (_find-1)) + 1];
+							_current set [_find - 1, (_current select (_find-1)) + 1];
 							WF_Client_Logic setVariable ["wf_structures_live", _current, true];
-						};						
-						
+						};
+
 						[WF_Client_SideJoined,_itemclass,_pos,_dir,getPlayerUID player] remoteExecCall ["WFSE_fnc_RequestStructure",2];
-					};					
+					};
 
 					if (_itemclass in _defenses) then {
-                        //--Check if defense is special and barracks in area--
-                        _canRequest = false;
+					    //--Check if defense is special and barracks in area--
+					    _canRequest = false;
 
                         _buildings = WF_Client_SideJoined call WFCO_FNC_GetSideStructures;
                         _closest = ['BARRACKSTYPE',_buildings,
-                           WF_C_BASE_DEFENSE_MANNING_RANGE,WF_Client_SideJoined,_pos] call WFCO_FNC_BuildingInRange;
+                           WF_C_BASE_DEFENSE_MANNING_RANGE,_pos] call WFCO_FNC_BuildingInRange;
 
                         if (!alive _closest) then {
                             //--Second check if we have a barracks in WF_C_BASE_DEFENSE_MANNING_RANGE + WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2 (DIAMETER)--
                             //--and any building in this area--
                             _closest = ['BARRACKSTYPE',_buildings,
                                        (WF_C_BASE_DEFENSE_MANNING_RANGE + (WF_C_BASE_DEFENSE_MANNING_RANGE_EXT * 2)),
-                                       WF_Client_SideJoined,_pos] call WFCO_FNC_BuildingInRange;
+                                       _pos] call WFCO_FNC_BuildingInRange;
                             if(alive _closest && alive([_pos,_buildings] call WFCO_FNC_GetClosestEntity5)) then {
                         	    _canRequest = true;
                         	};
@@ -1042,7 +922,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                                 [WF_Client_SideJoined,_itemclass,_pos,_dir,WF_AutoManningDefense,getPlayerUID player,clientOwner] remoteExec ["WFSE_fnc_RequestDefense",2];
 
                                 lastBuilt = _par;
-                                _area = [_pos,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+
                                 if(_itemclass isKindOf "staticWeapon") then {
                                     _get = _area getVariable 'availStaticDefense';
                                     if(!isNil '_get') then {
@@ -1062,12 +942,12 @@ while {!isNil "BIS_CONTROL_CAM"} do {
                                     };
                                 };
 
-                                if((_itemclass isKindOf "staticWeapon")  && !_canRequest) then {
+                                if((_itemclass isKindOf "staticWeapon") && !_canRequest) then {
                                     [format ["%1", localize 'STR_WF_INFO_BaseArea_NoBarracksStaticGunner']] spawn WFCL_fnc_handleMessage
                                 };
                             };
                         };
-                    };
+					};
 				};
 
 				//--- Temporary solution
@@ -1102,7 +982,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 		if (!([_cashValues,_cashValuesOld] call bis_fnc_arraycompare)) then {
 			_cashValuesCount = count _cashValues;
 			_cashSize = [2.8 / _cashValuesCount, 2] select (_cashValuesCount <= 1);
-			_cashText = format ["<t color='#ffffffff' shadow='2' size='%1' align='left' valign='middle'>",_cashSize];
+			_cashText = format ["<t color='#ffae2b' shadow='2' size='%1' align='left' valign='middle'>",_cashSize];
 			_cashLines = 0;
 			for "_i" from 0 to (count _funds - 1) do {
 				_cashValue = _cashValues # _i;
@@ -1150,7 +1030,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 			_categoriesMenu = [];
 			//--- Ammo Upgrade.
 			_upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
-			if (_upgrades # WF_UP_AMMOCOIN < 1) then {_categories = _categories - [localize 'STR_WF_Ammo']};
+			if (_upgrades select WF_UP_AMMOCOIN < 1) then {_categories = _categories - [localize 'STR_WF_Ammo']};
 
 			for "_i" from 0 to (count _categories - 1) do { _categoriesMenu pushBack _i; };
 			[["Categories",true],"BIS_Coin_categories",[_categoriesMenu,_categories],"#USER:BIS_Coin_%1_items_0","",""] call BIS_fnc_createmenu;
@@ -1159,33 +1039,66 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 			_items = _logic getVariable "BIS_COIN_items";
 			_canAffordCountOld = _canAffordCount;
 			_canAffordCount = 0;
+
+			_upgrades = (WF_Client_SideJoined) Call WFCO_FNC_GetSideUpgrades;
+
+			_restrictAdvancedAntiAirDeployment = true;
+			if(((WF_Client_SideJoined) call WFCO_FNC_GetSideUpgrades) # WF_UP_ADV_AA_DEFENSE > 0) then {
+                _restrictAdvancedAntiAirDeployment = false
+            };
+
 			for "_i" from 0 to (count _categories - 1) do {
-				_category = _categories # _i;
+				_category = _categories select _i;
 				_arrayNames = [];
 				_arrayNamesLong = [];
 				_arrayEnable = [];
 				_arrayParams = [];
 				_j = 0;
 				{
-					_itemclass = _x # 0;
-					_itemcategory = _x # 1;
+					_itemclass = _x select 0;
+					_skip=false;
+					if (_itemclass in WF_C_AAA_DEFENSE_TYPES) then {
+					    if(_restrictAdvancedAntiAirDeployment) then {
+					        _skip = true
+					    }
+					};
+
+					if(!_skip) then {
+					_itemcategory = _x select 1;
 					if (_itemcategory isEqualType "") then {//--- Backward compatibility
 						_itemcategory = _categories find _itemcategory;
 					};
+
 					if (_itemcategory < count _categories) then {
-						_itemcost = _x # 2;
+						_itemcost = _x select 2;
 						_itemcash = 0;
 
-						if (_itemcost isEqualType []) then {_itemcash = _itemcost # 0; _itemcost = _itemcost # 1};
-						_cashValue = _cashValues # _itemcash;
+						if (_itemcost isEqualType []) then {_itemcash = _itemcost select 0; _itemcost = _itemcost select 1};
+						_cashValue = _cashValues select _itemcash;
+						_cashDescription = ["?", _fundsDescription # _itemcash] select (count _fundsDescription > _itemcash);
+						_itemname = [getText (configFile >> "CfgVehicles" >> _itemclass >> "displayName"), _x # 3] select (count _x > 3);
 
-						_cashDescription = "?";
-						if(count _fundsDescription > _itemcash) then {
-						    _cashDescription = _fundsDescription # _itemcash;
-						};
-                        _itemname = "unknown";
-                        if(count _x > 3) then {
-                            _itemname = _x # 3;
+						//--- Military base or airfield near?
+						_area = [_startPos,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
+
+						_town = [_area] Call WFCO_FNC_GetClosestLocation;
+                        _townside =  (_town getVariable "sideID") Call WFCO_FNC_GetSideFromID;
+                        if!(isNil "_townside") then {
+                            if ((_startPos distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _area) then {
+                                _townSpecialities = _town getVariable "townSpeciality";
+                                if(WF_C_MILITARY_BASE in (_townSpecialities)) then {
+                                    if!(isNil "_itemname") then {
+                                        _discountStructures = missionNamespace getVariable Format["WF_%1MILITARY_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
+                                        if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                    }
+                                };
+                                if(WF_C_AIR_BASE in (_townSpecialities)) then {
+                                    if!(isNil "_itemname") then {
+                                        _discountStructures = missionNamespace getVariable Format["WF_%1AIR_BASE_DISCOUNT_PROGRAM",WF_Client_SideJoinedText];
+                                        if (_itemname in _discountStructures) then { _itemcost = _itemcost - (_itemcost * WF_C_BASE_CONSTRUCTION_DISCOUNT_PERCENT) }
+                                    }
+                                }
+                            }
                         };
 
 						//--- Build Limit reached?
@@ -1193,9 +1106,9 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 						_find = _buildingsNames find _itemclass;
 						if (_find != -1) then {
 							_current = WF_Client_Logic getVariable "wf_structures_live";
-							_limit = missionNamespace getVariable (Format['WF_C_STRUCTURES_MAX_%1',(_buildingsType # _find)]);
+							_limit = missionNamespace getVariable (Format['WF_C_STRUCTURES_MAX_%1',(_buildingsType select _find)]);
 							if (isNil '_limit') then {_limit = 4}; //--- Default.
-							if ((_current # _find) >= _limit) then {_buildLimit = true};
+							if ((_current select _find) >= _limit) then {_buildLimit = true};
 						};
 						if (_itemcategory == _i && !isNil "_itemcost") then {
 							_canAfford = [0, 1] select (_cashValue - _itemcost >= 0 && !_buildLimit);
@@ -1207,6 +1120,7 @@ while {!isNil "BIS_CONTROL_CAM"} do {
 							_arrayParams pushBack ([_logic getVariable "BIS_COIN_ID"] + [_x,_i]);
 						};
 						_j = _j + 1;
+					};
 					};
 				} forEach _items;
 

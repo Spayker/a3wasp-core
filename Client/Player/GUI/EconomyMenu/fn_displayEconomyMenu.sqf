@@ -66,7 +66,7 @@ while {alive player && dialog} do {
         if ((_transferAmount != 0)&&((WF_Client_Teams # _curSel) != group player)) then {
             [(WF_Client_Teams # _curSel),_transferAmount] Call WFCO_FNC_ChangeTeamFunds;
             -_transferAmount Call WFCL_FNC_ChangePlayerFunds;
-            _funds = Call WFCL_FNC_GetPlayerFunds;
+    _funds = Call WFCL_FNC_GetPlayerFunds;
             if (isPlayer leader (WF_Client_Teams # _curSel)) then {
                 ['FundsTransfer',_transferAmount,name player] remoteExecCall ["WFCL_FNC_LocalizeMessage", leader (WF_Client_Teams # _curSel)];
             };
@@ -158,15 +158,15 @@ while {alive player && dialog} do {
                 }
             }
 		}
-		};
-
+	};
+	
 	//--- WF3 Adv Funds transfers.
     if (WF_MenuAction == 101) exitWith {
         WF_MenuAction = -1;
         closeDialog 0;
         createDialog "WF_TransferMenu";
-	};
-	
+    };
+
     if (_timer > 2) then {ctrlSetText [13010, Format [localize "STR_WF_Income", Call WFCL_FNC_GetPlayerFunds, (WF_Client_SideJoined) Call WFCL_FNC_GetIncome]];_timer = 0};
     _timer = _timer + 0.05;
 	
@@ -175,6 +175,6 @@ while {alive player && dialog} do {
 		WF_MenuAction = -1;
 		closeDialog 0;
 		createDialog "WF_Menu"
-};
+	};
 	uiSleep 0.05;
 }

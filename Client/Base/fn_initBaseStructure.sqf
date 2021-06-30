@@ -1,30 +1,33 @@
 if (!hasInterface && !isDedicated) exitWith {};
 
+if(canSuspend) then {
+    waitUntil {!isNil "commonInitComplete"};
 waitUntil {commonInitComplete}; //--- Wait for the common part.
+    waitUntil {clientInitComplete}
+};
 
 if (local player) then {
-    params["_structure","_hq","_sideID"];
+    params[["_structure", objNull],"_hq","_sideID"];
 	private["_color","_marker" ,"_markercc","_text","_type","_side","_voteTime","_radius","_ehDescriptor","_pos","_index"];
 
-	if(isNil "_structure") exitWith {};
 	if(isNull _structure) exitWith {};
 
 	_side = (_sideID) Call WFCO_FNC_GetSideFromID;
-	_index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
-    _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
-	waitUntil {clientInitComplete};
-	if (_side != WF_Client_SideJoined) exitWith {};
-
+    _logic = (side player) Call WFCO_FNC_GetSideLogic;
+    if(!isNil '_logic') then {
+        _friendlySides = _logic getVariable ["wf_friendlySides", []];
+        if (_side in _friendlySides) then  {
 	_marker = Format["BaseMarker%1",buildingMarker];
 	buildingMarker = buildingMarker + 1;
 	_markercc= Format["CCrange%1",CCMarker];
     CCMarker = CCMarker + 1;
 	createMarkerLocal [_marker,getPos _structure];
-	if(_structure getVariable ["wf_structure_type", ""] == "CommandCenter") then {
+	if(typeOf _structure isKindOf "Base_WarfareBUAVterminal") then {
 	    createMarkerLocal [_markercc,getPos _structure];
 	    _markercc setMarkerBrushLocal "Border";
 	    _markercc setMarkerShapeLocal "Ellipse";
         _markercc setMarkerColorLocal "ColorBlack";
+                _radius = missionNameSpace getVariable "WF_C_STRUCTURES_COMMANDCENTER_RANGE";
         _markercc setMarkerSizeLocal [_radius,_radius];
 	};
 	_type = "mil_box";
@@ -32,10 +35,8 @@ if (local player) then {
 	if (_hq) then {_type = "b_hq"};
 	_marker setMarkerTypeLocal _type;
 	_text = "HQ";
-	if (!_hq) then {
-	    _text = [_structure, _side] Call WFCL_FNC_GetStructureMarkerLabel;_marker setMarkerSizeLocal [0.5,0.5]
-	};
-	if!(isNil '_text') then {
+	if (!_hq) then {_text = [_structure, _side] Call WFCL_FNC_GetStructureMarkerLabel;_marker setMarkerSizeLocal [0.5,0.5]};
+	if!(isNil '_text')then{
 	    if (_text != "") then {_marker setMarkerTextLocal _text};
 	};
 
@@ -72,15 +73,23 @@ if (local player) then {
         };
     }];
 
-    missionNamespace setVariable [format["wf_structure_icon%1", _ehDescriptor], [_structure,
-                    [WF_C_TITLETEXT_COLOR_INT # 0, WF_C_TITLETEXT_COLOR_INT # 1, WF_C_TITLETEXT_COLOR_INT # 2,
-                    WF_C_TITLETEXT_COLOR_INT # 3 - 0.3],
-                    (missionNamespace getVariable format ["WF_%1STRUCTUREICON",str _side]) # _index,
-                    (missionNamespace getVariable format ["WF_%1STRUCTUREMAXHEALTH",str _side]) # _index]];
-    //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
+    _structureIconArray = missionNamespace getVariable format ["WF_%1STRUCTUREICON", str _side];
+    _structureMaxHealthArray = missionNamespace getVariable format ["WF_%1STRUCTUREMAXHEALTH", str _side];
+            _index = (missionNamespace getVariable format ["WF_%1STRUCTURENAMES", str _side]) find (typeOf _structure);
 
-	waitUntil {!alive _structure};
+    if (_index != -1 && !(isNil '_structureIconarray') && !(isNil '_structureMaxHealthArray')) then {
+        missionNamespace setVariable [format["wf_structure_icon%1", _ehDescriptor],
+        [_structure, [WF_C_TITLETEXT_COLOR_INT # 0, WF_C_TITLETEXT_COLOR_INT # 1, WF_C_TITLETEXT_COLOR_INT # 2, WF_C_TITLETEXT_COLOR_INT # 3 - 0.3],
+                        (_structureIconArray) # _index,
+                        (_structureMaxHealthArray) # _index]]
+    };
+    //--Draw 3D icons for base structures--END------------------------------------------------------------------------//
+    if(canSuspend) then {
+        waitUntil {!alive _structure}
+    };
 
 	deleteMarkerLocal _marker;
-	if(_structure getVariable ["wf_structure_type", ""] == "CommandCenter") then {deleteMarkerLocal _markercc};
-};
+	if(typeOf _structure isKindOf "Base_WarfareBUAVterminal") then {deleteMarkerLocal _markercc};
+}
+    }
+}

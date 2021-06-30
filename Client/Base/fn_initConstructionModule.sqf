@@ -2,86 +2,78 @@ private ['_coinCategories','_coinItemArray','_curId','_d','_defenseCategories','
 params ["_area", "_isHQdeployed", "_coin", ["_extra", ""]];
 
 //--- Define the CoIn placement method.
-missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD", {
+missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD",{
     Private["_i","_factory","_sorted","_walls","_factories","_area","_lx","_ly","_type","_p","_entities"];
-    _itemcategory = _this # 0;	
+    _itemcategory = _this # 0;
     _preview = _this # 1;
-    _color = _this # 2;
-    _eside = if (WF_Client_SideJoined == west) then {east} else {west};
-    _affected = [];
-	_affected append (missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText]);
-    _area = [_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
     _colorRed = "#(argb,8,8,3)color(1,0,0,0.3,ca)";
+    _colorGreen = "#(argb,8,8,3)color(0,1,0,0.3,ca)";
+    _color = _this # 2;
+    _eside = if (side commanderTeam == west) then {east} else {west};
+    _area = [_preview,((WF_Client_SideJoined) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity2;
 
-    if(_area getVariable 'avail' <= 0) exitwith { _color = _colorRed };
-    if (surfaceIsWater(position _preview)) exitwith { _color = _colorRed };
-
-	_radius = 55;
     
-	if ({(typeOf _preview) == _x || _preview isKindOf _x} count _affected != 0) then {
+    if (surfaceIsWater(position _preview)) exitwith { _colorRed };
+
+    if ({_preview isKindOf _x} count WF_C_WARFARE_STRUCUTRE_TYPES != 0 && _color == _colorGreen) then {
         Private["_building","_sort","_strs","_lax","_lay"];
-        _strs = ((position _preview) nearEntities [
-			["Land","LandVehicle","Motorcycle","Tank","Man",
-			"Air","Ship","Car","Helicopter","Static","ThingEffect","Thing",
-			"ThingEffectLight","StaticWeapon","Plane","Strategic","Building",
-			"NonStrategic","Wreck","Site_F","Module_F","Logic","Church","House",
-			"HouseBase","Church_F","House_F","Ruins","Wall"], 
-		_radius]) - [_preview];
-		_strs1 = nearestTerrainObjects [_preview, 
-			["BUILDING", "HOUSE", "CHURCH", "CHAPEL", "BUNKER", "FORTRESS", 
-			"FOUNTAIN", "VIEW-TOWER", "LIGHTHOUSE", "QUAY", "FUELSTATION", 
-			"HOSPITAL", "FENCE", "WALL", "BUSSTOP", "TRANSMITTER", "RUIN", 
-			"TOURISM", "WATERTOWER", "ROCK", "ROCKS", "POWER LINES", "POWERSOLAR",
-			"POWERWAVE", "POWERWIND", "SHIPWRECK"], _radius];
-		_strs = _strs + _strs1;		
-        if (count _strs == 0) exitWith {};
+        _strs = ((position _preview) nearObjects ["House",25]) - [_preview];
+        if (count _strs > 0) then {
         _sort = [_preview,_strs] Call WFCO_FNC_SortByDistance;
         _building = _sort select 0;
         _lax=((boundingBox _building) select 1) select 0;
-        _lay=((boundingBox _building) select 1) select 1;		
-        if(_preview distance _building < (25  + (_lax max _lay))) then {
-            _color = _colorRed
+        _lay=((boundingBox _building) select 1) select 1;
+            if(_preview distance _building < 1.5*(_lax max _lay)) then {
+                _color = _colorRed
+            }
         }
-    };	
+    };
 
-    if (_itemcategory == 2) then {
+    if (_itemcategory == 2 && _color == _colorGreen) then {
         _walls = _preview nearEntities [[typeOf _preview],2];
 
-        if(count _walls > 1) exitwith {_color = _colorRed};
+        if(count _walls > 1) exitwith {_colorRed};
         if(count (nearestObjects [_preview, missionNamespace getVariable (Format["WF_%1DEFENSENAMES",WF_Client_SideJoined]),((((boundingbox _preview) select 1) select 0) max (((boundingbox _preview) select 1) select 1)) max 2] - [_preview]) > 0) then {_color = _colorRed} else{_color = _colorGreen};
-        _entities = (position _preview) nearEntities [['Man','Car','Motorcycle','Tank','Air','Ship'],12];
-        if ((count _entities > 0) && {side _x != WF_Client_SideJoined} count _entities !=0) then {_color = _colorRed};
-        _factories = _preview nearEntities [["house", "Man", "Air", "Car", "Motorcycle", "Tank"],35];
+        _entities = (position _preview) nearEntities [WF_C_VEHICLE_KINDS,12];
+        if ((count _entities > 0) && {side _x != WF_Client_SideJoined} count _entities !=0) exitwith {_colorRed};
+        _factories = nearestObjects [_preview, ["Warfare_HQ_base_unfolded","WarfareBBaseStructure","Base_WarfareBContructionSite"],25];
         if (count _factories > 0) then {
-            _sorted = [_preview,_factories] Call WFCO_FNC_SortByDistance;
-            _factory = _sorted select 0;
-            _type=typeOf _factory;
-            _lx=((boundingbox _factory) select 1) select 0;
-            _ly=((boundingbox _factory) select 1) select 1;		
+        _sorted = [_preview,_factories] Call WFCO_FNC_SortByDistance;
+        _factory = _sorted select 0;
+        _type=typeOf _factory;
+        _lx=((boundingbox _factory) select 1) select 0;
+        _ly=((boundingbox _factory) select 1) select 1;
 
-            _p=12;
+        switch (true) do {
+            case ( _factory isKindOf "Warfare_HQ_base_unfolded"):{_p=0.6};
+            case ( _factory isKindOf "Base_WarfareBBarracks"):{_p=0.57};
+            case ( _factory isKindOf "Base_WarfareBLightFactory"):{_p=0.6};
+            case ( _factory isKindOf "Base_WarfareBHeavyFactory"):{_p=0.54};
+            case ( _factory isKindOf "Base_WarfareBAircraftFactory"):{_p=0.74};
+            case ( _factory isKindOf "Base_WarfareBUAVterminal"):{_p=1};
+            case ( _factory isKindOf "Base_WarfareBContructionSite"):{_p=12};
+            default {_p=1};
+        };
 
-            if(_preview distance _factory < _p*(_lx min _ly)) exitwith { _color = _colorRed };
-        }
+            if(_preview distance _factory < _p*(_lx min _ly)) then { _color = _colorRed };
+        };
+		if(_area getVariable 'avail' <= 0) exitwith { _colorRed };
     } else {
         private ["_objects","_sideEfacs","_object"];
         _sideEfacs = if (side commanderTeam == west) then {east} else {west};
-		_preobjects = _preview nearEntities [[],85];
-		_objects = [];
-		
-		_objects = (_preobjects select { (typeOf _x) in (missionNamespace getVariable Format["WF_%1STRUCTURENAMES",WF_Client_SideJoinedText]) });
+        _objects = _preview nearEntities [["WarfareBBaseStructure","Base_WarfareBContructionSite"],25];
         if (count _objects > 0) then {
-            if (side (_objects select 0) == _sideEfacs && _preview distance (_objects select 0) < 10)then {_color = _colorRed};
+            if (side (_objects select 0) == _sideEfacs && _preview distance (_objects select 0) < 10) then  {_color = _colorRed};
         };
     };
 
-    if (_itemcategory == 3) then {
+    if (_itemcategory == 3 && _color == _colorGreen) then {
         Private["_camos"];
         _color = _colorGreen;
-        _camos = _preview nearEntities [[typeOf _preview],85];
-        if(count _camos > 1) exitwith {
+        _camos = _preview nearEntities [[typeOf _preview],25];
+        if(count _camos > 1) then {
             _color = _colorRed
-        };
+    };
     };
 
     if ((typeOf _preview) iskindOf "Warfare_HQ_base_unfolded" && _color == _colorGreen) then {
@@ -90,30 +82,40 @@ missionNamespace setVariable ["WF_C_STRUCTURES_PLACEMENT_METHOD", {
         _townside =  (_town getVariable "sideID") Call WFCO_FNC_GetSideFromID;
         _eArea = [_preview,((_eside) Call WFCO_FNC_GetSideLogic) getVariable "wf_basearea"] Call WFCO_FNC_GetClosestEntity3;
         if!(isNil "_townside")then{
-            if ((_preview distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _eArea) exitwith {
-                _color = _colorRed;
-                 [format ["%1", "<t color='#fb0808'> You have entered a restricted area ! Impossible to build here! </t>"]] spawn WFCL_fnc_handleMessage
+            if ((_preview distance _town < 600 && _townside != WF_Client_SideJoined) || !isNull _eArea) then {
+                 [format ["%1", "<t color='#fb0808'> You have entered a restricted area ! Impossible to build here! </t>"]] spawn WFCL_fnc_handleMessage;
+                _color = _colorRed
             };
         };
     };
 
     if(_itemcategory >= 0 && _color == _colorGreen)then{
         _current_side  = WF_Client_SideJoined;
-        _opposite_side = [resistance];
-        if(_current_side == west)then{
-            _opposite_side pushBack east
-        } else{
-            _opposite_side pushBack west
+        _opposite_side = [];
+
+        if(_current_side == west) then {
+            _opposite_side pushBack east;
+            _opposite_side pushBack resistance;
+        };
+
+        if(_current_side == east) then {
+            _opposite_side pushBack west;
+            _opposite_side pushBack resistance;
+        };
+
+        if(_current_side == resistance) then {
+            _opposite_side pushBack east;
+            _opposite_side pushBack west;
         };
 
         _detected = (_area nearEntities [WF_C_VEHICLE_KINDS, missionNamespace getVariable "WF_C_BASE_AREA_RANGE"]) unitsBelowHeight 20;
         {
-            if(side _x in _opposite_side) exitwith {
-                _color = _colorRed;
-                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage
+            if(side _x in _opposite_side) exitWith {
+                [format ["%1", "<t color='#fb0808'> Enemies are detected near your base! </t>"]] spawn WFCL_fnc_handleMessage;
+                _color = _colorRed
             }
         }foreach _detected
-            };
+    };
     _color
 }];
 
@@ -151,7 +153,7 @@ if (_updateStructures) then {
 if (_updateDefenses) then {
 	_defenses = missionNamespace getVariable Format["WF_%1DEFENSENAMES",WF_Client_SideJoinedText];
 	{
-		_d = missionNamespace getVariable _x;		
+		_d = missionNamespace getVariable _x;
 		if !(isNil '_d') then {
 			_defenseCosts pushBack (_d select QUERYUNITPRICE);
 			_defenseDescriptions pushBack ((_d select QUERYUNITLABEL));
@@ -185,7 +187,7 @@ for [{_i=_i}, {_i<count _structures}, {_i = _i+1}] do {
 _fix = 1;
 if (_extra == "REPAIR") then {_coinItemArray = [];_indexCategory=0;_fix = 0};
 
-for '_i' from 0 to count(_defenses)-1 do {	
+for '_i' from 0 to count(_defenses)-1 do {
 	_curId = _indexCategory;
 	
 	switch (_defenseCategories select _i) do {
