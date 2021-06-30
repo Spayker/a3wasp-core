@@ -3,6 +3,8 @@ Warfare mode for Arma 2/3 was a main reason of WASP community creation. Starting
 members were trying to improve all in-game aspects. Being one of co-founders I can finally
 say: our work has been completed.
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/P-jq3F4Huqg/0.jpg)](https://www.youtube.com/watch?v=P-jq3F4Huqg)
+
 Arma 3 became last platform where everyone can try our final vision of CTI mode.
 Main differences comparing to old school Arma 2 warfare CTI mode are:
 - 3 playable sides: opfor, blufor, resistance
@@ -35,7 +37,6 @@ can be added by modifying of configs in a separate project (link can be found be
 
 ## Links
 Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2346741636 </br>
-Youtube: https://www.youtube.com/watch?v=P-jq3F4Huqg </br>
 GitHub HC module: https://github.com/Spayker/a3wasp-hc </br>
 GitHub Server module: https://github.com/Spayker/a3wasp-server </br>
 GitHub Config base: https://github.com/Spayker/a3wasp-config </br>
