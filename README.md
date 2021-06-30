@@ -5,9 +5,7 @@ Warfare mode for Arma 2/3 was a main reason of WASP community creation. Starting
 members were trying to improve all in-game aspects. Being one of co-founders I can finally
 say: our work has been completed.
 
-<p align="center">
-  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/P-jq3F4Huqg/0.jpg)](https://www.youtube.com/watch?v=P-jq3F4Huqg)
-</p>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/P-jq3F4Huqg/0.jpg)](https://www.youtube.com/watch?v=P-jq3F4Huqg)
 
 Arma 3 became last platform where everyone can try our final vision of CTI mode. </br>
 **Main differences** comparing to old school Arma 2 warfare CTI mode are:
@@ -39,9 +37,17 @@ Altis, Stratis, Malden, Tanoa, Livonia, Cherno, Takistan, Utes, Zargabad, Sahran
 Last but not the least fact all sources are designed to be used with CUP content. Vanilla, RHS or other content related mod
 can be added by modifying of configs in a separate project (link can be found below).
 
+## Assembling
+To run missions on your server you must prepare 3 main components:
+1) missions themselves
+2) server mod
+3) **h**eadless **c**lient mod
+
+## Running
+
 ## Links
 Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2346741636 </br>
-GitHub HC module: https://github.com/Spayker/a3wasp-hc </br>
-GitHub Server module: https://github.com/Spayker/a3wasp-server </br>
-GitHub Config base: https://github.com/Spayker/a3wasp-config </br>
-GitHub Mission adaptations: https://github.com/Spayker/a3wasp-config </br>
+GitHub **HC** module: https://github.com/Spayker/a3wasp-hc </br>
+GitHub **Server** module: https://github.com/Spayker/a3wasp-server </br>
+GitHub **Config** base: https://github.com/Spayker/a3wasp-config </br>
+GitHub **Mission** adaptations: https://github.com/Spayker/a3wasp-config </br>
