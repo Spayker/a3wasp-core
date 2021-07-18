@@ -44,6 +44,8 @@ To run missions on your server you must prepare 3 main components:
 2) server mod
 3) **h**eadless **c**lient mod
 
+Missions must be assembled from Core, Config and Mission modules.
+
 ## Running
 Put packed missions (pbo files) in MPMissions folder of your server and run the server + HC processes.
 
@@ -52,4 +54,4 @@ Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=234674163
 GitHub **HC** module: https://github.com/Spayker/a3wasp-hc </br>
 GitHub **Server** module: https://github.com/Spayker/a3wasp-server </br>
 GitHub **Config** base: https://github.com/Spayker/a3wasp-config </br>
-GitHub **Mission** adaptations: https://github.com/Spayker/a3wasp-config </br>
+GitHub **Mission** adaptations: https://github.com/Spayker/a3wasp-missions </br>
