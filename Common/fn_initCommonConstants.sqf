@@ -292,13 +292,6 @@ with missionNamespace do {
 
 	#include "specialConstants.sqf";
 
-	WFDC_SMILES = [
-			//--FOR KILLER--
-			[":jack_o_lantern:", ":smiling_imp:", ":laughing:", ":japanese_ogre:", ":shark:", ":japanese_ogre:"],
-			//--FOR KILLED--
-			[":sob:", ":weary:", ":tired_face:", ":persevere:", ":skull:", ":rage:"]
-		];
-
 	//--- Units Factions.
 	if (isNil "WF_C_UNITS_FACTION_EAST") then {WF_C_UNITS_FACTION_EAST = 0;}; //--- East Faction.
 	if (isNil "WF_C_UNITS_FACTION_GUER") then {WF_C_UNITS_FACTION_GUER = 0;}; //--- Guerilla Faction.

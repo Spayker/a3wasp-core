@@ -37,7 +37,6 @@ class CfgRemoteExec {
 		F(WFSE_fnc_RequestStructureSell,SERVER)
 		F(WFSE_fnc_RequestDefense,SERVER)
 		F(WFSE_fnc_RequestAutoWallConstructinChange,SERVER)
-		F(WFDC_FNC_LogContent,SERVER)
 		F(WFSE_FNC_GetTownGroups,SERVER)
 		F(WFSE_FNC_MarkTownInactive,SERVER)
 		F(WFSE_FNC_addEmptyVehicleToQueue,SERVER)
