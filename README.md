@@ -5,7 +5,7 @@ Warfare mode for Arma 2/3 was a main reason of WASP community creation. Starting
 members were trying to improve all in-game aspects. Being one of co-founders I can finally
 say: our work has been completed.
 
-[<p style="text-align:center;"> <img src="https://img.youtube.com/vi/P-jq3F4Huqg/maxresdefault.jpg" class="center"> </p>](https://youtu.be/P-jq3F4Huqg)
+[<p style="text-align:center;"> <img src="https://img.youtube.com/vi/P-jq3F4Huqg/maxresdefault.jpg" class="center"> </p>](https://youtu.be/6d3cK24gkD0)
 
 
 Arma 3 became last platform where everyone can try our final vision of CTI mode. </br>
